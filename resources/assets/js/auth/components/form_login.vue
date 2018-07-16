@@ -1,0 +1,105 @@
+<template>
+    <form @submit.prevent="login">
+        <div class="panel panel-body login-form">
+            <div class="text-center">
+                <div class="icon-object border-slate-300 text-slate-300"  v-if="processing == false"><i class="icon-reading"></i></div>
+                <div class="pace-demo" v-if="processing == true" >
+                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                </div>
+                <h5 class="content-group">Đăng nhập <small :class="styleText" v-html="Text"></small></h5>
+
+            </div>
+
+            <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control" v-model="infoLogin.user_name" placeholder="Username">
+                <div class="form-control-feedback">
+                    <i class="icon-user text-muted"></i>
+                </div>
+
+            </div>
+
+            <div class="form-group has-feedback has-feedback-left">
+                <input type="password" class="form-control" v-model="infoLogin.password" placeholder="Password">
+                <div class="form-control-feedback">
+                    <i class="icon-lock2 text-muted"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Login<i class="icon-circle-right2 position-right"></i></button>
+            </div>
+
+            <div class="text-center">
+                <a href="javascript:void(0)" @click="forgotPassword">Quên mật khẩu?</a>
+            </div>
+        </div>
+    </form>
+</template>
+<script>
+    import axios from 'axios'
+    window.Cookies = require('cookies-js');
+
+    export default {
+        mounted(){
+
+        },
+        methods:{
+            forgotPassword()
+            {
+                this.$emit('forget_password')
+            },
+            login(){
+                var vm = this
+                    vm.processing = true
+                    axios.post('/api/login',vm.infoLogin).then(data => {
+                        let index = vm.styleText.findIndex(element => {
+                            return 'text-danger' == element
+                        })
+                        vm.styleText.splice(index,1)
+                        window.Cookies.set('token',data.data.token,{
+                            expires: 6000
+                        })
+                        vm.Text = ''
+                        axios.post('/login',vm.infoLogin).then(data => {
+                            window.location= window.location.origin
+                        }).catch(err =>{
+                            alert(err)
+                        })
+                        vm.processing = false
+                    }).catch(err => {
+                        console.log(err)
+                        vm.styleText.push('text-danger');
+                        if(err.response.data.user_name !== undefined)
+                        {
+                            let html = ''
+                            err.response.data.user_name.forEach(item => {
+                                html+=item
+                                html+='<br>'
+                            })
+                            vm.Text = html
+                        }
+                        else if(err.response.data.message !== undefined)
+                        {
+                            vm.Text = err.response.data.message
+                        }
+                        else{
+                            alert('Đã xảy ra lỗi. Vui lòng kiếm tra lại')
+                            console.dir(err)
+                        }
+                        vm.processing = false
+                    })
+            }
+        },
+        data(){
+            return {
+                infoLogin: {
+                    user_name:'',
+                    password: ''
+                },
+                styleText: ['display-block'],
+                Text: 'Điền tài khoản và mật khẩu của bạn',
+                processing: false
+            }
+        }
+    }
+</script>
