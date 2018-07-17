@@ -9,35 +9,35 @@
 namespace App\Services\Api\Productions\Admin;
 
 
-use App\Models\Enterprise;
+use App\Models\Notification;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
-class EnterpriseService implements ManageInterface
+class NotificationService implements ManageInterface
 {
 
 
     public function getAll()
     {
-        return Enterprise::all();
+        return Notification::all();
     }
 
     public function getOne($id)
     {
-        return Enterprise::findOrFail($id);
+        return Notification::findOrFail($id);
     }
 
     public function getProfile($option)
     {
-        return Enterprise::select($option);
+        return Notification::select($option);
     }
 
     public function save($inputs){
         try{
-            $enterprise = Enterprise::create($inputs);
-            return $enterprise;
+            $notification = Notification::create($inputs);
+            return $notification;
         }catch (\Exception $exception)
         {
             return ['err' => $exception->getMessage()];
@@ -48,46 +48,48 @@ class EnterpriseService implements ManageInterface
     {
 
             try{
-                $columns = Schema::getColumnListing((new Enterprise())->getTableName());
-                $enterprise = Enterprise::findOrFail($id);
+                $columns = Schema::getColumnListing((new Notification())->getTableName());
+                $notification = Notification::findOrFail($id);
                 foreach ($columns as $column)
                 {
                     if(isset($inputs[$column]))
                     {
-                        $enterprise->$column = $inputs[$column];
+                        $notification->$column = $inputs[$column];
                     }
 
                 }
-                $enterprise->update();
-                return $enterprise;
+                $notification->update();
+                return $notification;
             }catch (\Exception $exception)
             {
                 return ['err' => $exception->getMessage()];
             }
     }
+
     public function destroy($id)
     {
-        $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar))
+        $notification = Notification::findOrFail($id);
+
+        $notification->delete();
+        if(Storage::exists($notification->attachment))
         {
-            Storage::delete($enterprise->avatar);
+            Storage::delete($notification->attachment);
         }
-        $enterprise->delete();
-        return $enterprise;
+        return $notification;
     }
 
     public function delete($array)
     {
         foreach ($array as $item)
         {
-            $enterprise = Enterprise::find($item);
-            if($enterprise)
+            $notification = Notification::find($item);
+            if($notification)
             {
-                if(Storage::exists($enterprise->avatar))
+                if(Storage::exists($notification->attachment))
                 {
-                    Storage::delete($enterprise->avatar);
+                    Storage::delete($notification->attachment);
                 }
-                $enterprise->delete();
+                $notification->delete();
             }
         }
         return $array;
@@ -103,7 +105,7 @@ class EnterpriseService implements ManageInterface
             {
 
                 try{
-                    Enterprise::create($item);
+                    Notification::create($item);
                 }catch (\Exception $exception)
                 {
                     $list_err[] = [
@@ -124,28 +126,5 @@ class EnterpriseService implements ManageInterface
             'message' => 'Thêm danh sách doanh nghiệp thành công',
             'error' => $list_err
         ];
-    }
-
-    public function updateAvatar($id,$avatar){
-        $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar))
-        {
-            Storage::delete($enterprise->avatar);
-        }
-        $url = $avatar->store('/public/avatar');
-        $enterprise->avatar = $url;
-        $enterprise->update();
-        return [
-            'url' => $url
-        ];
-    }
-    public function getListStudent($id)
-    {
-        $enterprise = Enterprise::findOrFail($id);
-        return $enterprise->students;
-    }
-    public function getListJob($id){
-        $enterprise = Enterprise::findOrFail($id);
-        return $enterprise->jobs;
     }
 }

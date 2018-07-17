@@ -21,7 +21,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('name_president');
             $table->string('phone_number');
             $table->string('email_address')->unique();
-            $table->text('introduce');
+            $table->text('introduce')->nullable();
             $table->string('avatar',400)->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();

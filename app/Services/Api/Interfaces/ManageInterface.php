@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Services\Api\Interfaces;
+
 interface ManageInterface{
     public function getAll();
     public function getOne($id);

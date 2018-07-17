@@ -22,6 +22,7 @@ class CreateJobsTable extends Migration
             $table->date('time_start');
             $table->date('time_end');
             $table->string('description',400);
+            $table->string('attachment',300)->nullable();
             $table->text('content');
             $table->string('file_attach');
             $table->integer('salary_id');

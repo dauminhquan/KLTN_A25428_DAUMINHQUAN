@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Student;
 
+use App\Http\Requests\UpdateAvatarRequest;
 use App\Models\Employee;
 use App\Models\Enterprise;
 use App\Models\User;
@@ -18,6 +19,27 @@ use Illuminate\Support\Facades\Validator;
 
 class ProfileManageController extends Controller
 {
+    private $profileService;
+    public function __construct()
+    {
+        $this->profileService = new ProfileService();
+    }
+    public function getProfile()
+    {
+        return $this->profileService->profile();
+    }
+    public function updateProfile(StudentManageRequest $request)
+    {
+        return $this->profileService->updateProfile($request->all());
+    }
+    public function updateAvatar(UpdateAvatarRequest $request)
+    {
+        return $this->profileService->updateAvatar($request->avatar);
+    }
+
+
+    //
+
     public function option_profile_student(Request $request)
     {
         $get_data_service = new GetDataService();

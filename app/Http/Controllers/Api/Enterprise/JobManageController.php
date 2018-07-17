@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\Api\Enterprise;
 
-use App\Http\Requests\DeleteListRequest;
-use App\Http\Requests\JobManageRequest;
-use App\Services\Api\Productions\Admin\JobService;
+use App\Services\Api\Productions\Enterprise\JobService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,6 +37,4 @@ class JobManageController extends Controller
 
         return $this->jobService->delete($request->id_list);
     }
-
-
 }

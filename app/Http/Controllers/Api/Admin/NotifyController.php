@@ -2,133 +2,55 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Http\Requests\CsvRequest;
+use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\NotificationManageRequest;
 use App\Models\Notification;
+use App\Services\Api\Productions\Admin\NotificationService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class NotifyController extends Controller
 {
-    public function notifies(){
-        $notifies = Notification::all();
-        foreach ($notifies as $item)
-        {
-            $item->admin = $item->admin()->select('name_admin')->first()->name_admin;
-        }
-        return $notifies;
+    private $notificationService;
+    public function __construct()
+    {
+        $this->notificationService = new NotificationService();
     }
 
-    public function update_notify(Request $request,$id)
+    public function index()
     {
-        $validator = Validator::make($request->all(),[
-           'title_notify' => 'required',
-           'description_notify' => 'required',
-           'content_notify' => 'required',
-        ],[
-            'title_notify.required' => 'Khong co tieu de bai viet',
-            'description_notify.required' => 'Khong co mo ta bai viet',
-            'content_notify.required' => 'Khong co noi dung bai viet'
-        ]);
-        if($validator->fails())
-        {
-            return response()->json($validator->errors(),403);
-
-        }
-
-        $notify = Notification::findOrFail($id);
-        $notify->title_notify = $request->title_notify;
-        $notify->description_notify = $request->description_notify;
-        $notify->content_notify = $request->content_notify;
-        if($request->hasFile('file_attach_notify'))
-        {
-            Storage::delete($notify->file_attach_notify);
-            $notify->file_attach_notify = $request->file('file_attach_notify')->storeAs('public/file_attaches','notify_'.$notify->id.'_file_attach.'.$request->file('file_attach_notify')->getClientOriginalExtension());
-        }
-        $notify->update();
-        return  ['message' => 'Thanh cong'];
+        return $this->notificationService->getAll();
     }
 
-    public function delete_notify($id)
+    public function store(NotificationManageRequest $request)
     {
-        $notify = Notification::findOrFail($id);
-        Storage::delete($notify->file_attach_notify);
-        $notify->delete();
-        return ['message' => 'Xóa thành công'];
+        return $this->notificationService->save($request->all());
+
     }
 
-    public function add_notify (Request $request)
+    public function show($id)
     {
-        $validator = Validator::make($request->all(),[
-            'title_notify' => 'required',
-            'description_notify' => 'required',
-            'content_notify' => 'required',
-        ],[
-            'title_notify.required' => 'Khong co tieu de bai viet',
-            'description_notify.required' => 'Khong co mo ta bai viet',
-            'content_notify.required' => 'Khong co noi dung bai viet'
-        ]);
-        if($validator->fails())
-        {
-            return response()->json($validator->errors(),403);
-
-        }
-
-        $notify = new Notification();
-
-        $notify->id_admin = Auth::user()->admin->id;
-        $notify->title_notify = $request->title_notify;
-        $notify->description_notify = $request->description_notify;
-        $notify->content_notify = $request->content_notify;
-        $notify->save();
-        if($request->hasFile('file_attach_notify'))
-        {
-            $notify->file_attach_notify = $request->file('file_attach_notify')->storeAs('public/file_attaches','notify_'.$notify->id.'_file_attach.'.$request->file('file_attach_notify')->getClientOriginalExtension());
-        }
-        $notify->update();
-        return  ['message' => 'Thanh cong'];
+        return $this->notificationService->getOne($id);
     }
 
-    public function delete_list_notify(Request $request)
+    public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
-            'list_id_notify' =>'required|array'
-        ],[
-            'list_id_notify.required' => 'Không có danh sách ID',
-            'list_id_notify.array' => 'Danh sách không đúng định dạng'
-        ]);
-        $list_id = $request->list_id_notify;
-        $true = 0;
-        $false = 0;
-        foreach ($list_id as $id)
-        {
-            $notify = Notification::find($id);
-            if($notify)
-            {
-                Storage::delete($notify->file_attach_notify);
-                $notify->delete();
-                $true++;
-            }
-            else{
-                $false++;
-            }
-        }
-
-        if($true == 0)
-        {
-            return response()->json(['message' => 'Danh sach rong hoac toan bo du lieu khong hop le'],403);
-        }
-        if($false == 0)
-        {
-            return response()->json(['mesage' => 'Xoa thanh cong']);
-        }
-        return response()->json(['message' => "Đã xóa thành công $true bài viết, thất bại $false bài viết"]);
+        return $this->notificationService->update($request->all(),$id);
     }
 
-    public function notify($id)
+    public function destroy($id)
     {
-        return Notification::findOrFail($id);
+        return $this->notificationService->destroy($id);
+    }
+
+    public function delete(DeleteListRequest $request){
+
+        return $this->notificationService->delete($request->id_list);
+    }
+
+    public function importCsv(CsvRequest $request){
+        return $this->notificationService->csvStore($request->file('CsvFile')->getRealPath());
     }
 
 

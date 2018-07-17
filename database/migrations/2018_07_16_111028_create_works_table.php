@@ -17,8 +17,8 @@ class CreateWorksTable extends Migration
             $table->increments('id');
             $table->string('student_code');
             $table->integer('enterprise_id');
-            $table->integer('salary_id');
-
+            $table->integer('salary_id')->nullable();
+            $table->integer('rank_id');
             $table->timestamps();
         });
     }

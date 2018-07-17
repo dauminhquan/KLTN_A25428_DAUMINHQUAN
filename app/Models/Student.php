@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Student extends Model
 {
     protected $hidden = [
 
     ];
+//    protected $fillable = ['name',]
     public function branch()
     {
         return $this->belongsTo(Branch::class,'branch_code','code');
@@ -19,6 +19,14 @@ class Student extends Model
     }
     public function user()
     {
-        return $this->belongsTo('App\Models\User','id_user','id');
+        return $this->belongsTo(User::class,'id_user','id');
     }
+    public function works(){
+        return $this->hasMany(Work::class);
+    }
+
+    public function enterprises(){
+        return $this->hasManyThrough(Enterprise::class,Work::class);
+    }
+
 }

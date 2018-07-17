@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JobManageRequest extends FormRequest
+class NotificationManageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class JobManageRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -27,20 +27,10 @@ class JobManageRequest extends FormRequest
         {
             case ('POST'):
                 return [
-
-                    'title' => 'required',
-                    'location' =>'required',
-                    'time_start' => 'required|date',
-                    'time_end' => 'required|date',
+                    'content' =>'required',
                     'description' => 'required',
-                    'content' => 'required',
-                    'salary_id' => 'required',
-                    'skills' => 'required|array',
-                    'types' => 'required|array',
-                    'positions' => 'required|array',
-                    'introduce' => 'required',
-                    'attachment' => 'file'
-
+                    'title' =>'required',
+                    'attachment' => 'file',
                 ];
             case('GET'):
                 break;
@@ -54,5 +44,6 @@ class JobManageRequest extends FormRequest
             default:
                 return [];
         }
+
     }
 }

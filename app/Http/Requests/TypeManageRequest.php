@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JobManageRequest extends FormRequest
+class TypeManageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,24 +23,12 @@ class JobManageRequest extends FormRequest
      */
     public function rules()
     {
+
         switch ($this->method())
         {
             case ('POST'):
                 return [
-
-                    'title' => 'required',
-                    'location' =>'required',
-                    'time_start' => 'required|date',
-                    'time_end' => 'required|date',
-                    'description' => 'required',
-                    'content' => 'required',
-                    'salary_id' => 'required',
-                    'skills' => 'required|array',
-                    'types' => 'required|array',
-                    'positions' => 'required|array',
-                    'introduce' => 'required',
-                    'attachment' => 'file'
-
+                    'name' => 'required|string|unique:types,name'
                 ];
             case('GET'):
                 break;

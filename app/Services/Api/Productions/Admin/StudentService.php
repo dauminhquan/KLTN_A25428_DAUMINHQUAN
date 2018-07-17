@@ -9,35 +9,35 @@
 namespace App\Services\Api\Productions\Admin;
 
 
-use App\Models\Enterprise;
+use App\Models\Student;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
-class EnterpriseService implements ManageInterface
+class StudentService implements ManageInterface
 {
 
 
     public function getAll()
     {
-        return Enterprise::all();
+        return Student::all();
     }
 
     public function getOne($id)
     {
-        return Enterprise::findOrFail($id);
+        return Student::findOrFail($id);
     }
 
     public function getProfile($option)
     {
-        return Enterprise::select($option);
+        return Student::select($option);
     }
 
     public function save($inputs){
         try{
-            $enterprise = Enterprise::create($inputs);
-            return $enterprise;
+            $student = Student::create($inputs);
+            return $student;
         }catch (\Exception $exception)
         {
             return ['err' => $exception->getMessage()];
@@ -48,46 +48,47 @@ class EnterpriseService implements ManageInterface
     {
 
             try{
-                $columns = Schema::getColumnListing((new Enterprise())->getTableName());
-                $enterprise = Enterprise::findOrFail($id);
+                $columns = Schema::getColumnListing((new Student())->getTableName());
+                $student = Student::findOrFail($id);
                 foreach ($columns as $column)
                 {
                     if(isset($inputs[$column]))
                     {
-                        $enterprise->$column = $inputs[$column];
+                        $student->$column = $inputs[$column];
                     }
 
                 }
-                $enterprise->update();
-                return $enterprise;
+                $student->update();
+                return $student;
             }catch (\Exception $exception)
             {
                 return ['err' => $exception->getMessage()];
             }
     }
+
     public function destroy($id)
     {
-        $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar))
+        $student = Student::findOrFail($id);
+        if(Storage::exists($student->avatar))
         {
-            Storage::delete($enterprise->avatar);
+            Storage::delete($student->avatar);
         }
-        $enterprise->delete();
-        return $enterprise;
+        $student->delete();
+        return $student;
     }
 
     public function delete($array)
     {
         foreach ($array as $item)
         {
-            $enterprise = Enterprise::find($item);
-            if($enterprise)
+            $student = Student::find($item);
+            if($student)
             {
-                if(Storage::exists($enterprise->avatar))
+                if(Storage::exists($student->avatar))
                 {
-                    Storage::delete($enterprise->avatar);
+                    Storage::delete($student->avatar);
                 }
-                $enterprise->delete();
+                $student->delete();
             }
         }
         return $array;
@@ -103,7 +104,7 @@ class EnterpriseService implements ManageInterface
             {
 
                 try{
-                    Enterprise::create($item);
+                    Student::create($item);
                 }catch (\Exception $exception)
                 {
                     $list_err[] = [
@@ -127,25 +128,27 @@ class EnterpriseService implements ManageInterface
     }
 
     public function updateAvatar($id,$avatar){
-        $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar))
+        $student = Student::findOrFail($id);
+        if(Storage::exists($student->avatar))
         {
-            Storage::delete($enterprise->avatar);
+            Storage::delete($student->avatar);
         }
         $url = $avatar->store('/public/avatar');
-        $enterprise->avatar = $url;
-        $enterprise->update();
+        $student->avatar = $url;
+        $student->update();
         return [
             'url' => $url
         ];
     }
-    public function getListStudent($id)
+
+    public function getListEnterprise($id)
     {
-        $enterprise = Enterprise::findOrFail($id);
-        return $enterprise->students;
+        $student = Student::findOrFail($id);
+        return $student->enterprises;
     }
+
     public function getListJob($id){
-        $enterprise = Enterprise::findOrFail($id);
-        return $enterprise->jobs;
+        $student = Student::findOrFail($id);
+        return $student->jobs;
     }
 }

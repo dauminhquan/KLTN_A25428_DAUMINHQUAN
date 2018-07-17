@@ -23,74 +23,63 @@ Route::group(['namespace' => 'Api'],function(){
 //        api.check.admin
         Route::group(["prefix" => '/admin','namespace' =>'Admin' ],function (){
 
-           /* // quan ly sinh vien
-            Route::group(['prefix' => '/student-manage','name' => 'student.manage.'],function (){
-                //them sinh vien bang file excel
-                Route::post('/add-student-excel',['name' => 'add.student.excel','uses' => 'StudentManageController@add_student_excel']);
-                Route::post('/add-work-student-excel',['name' => 'add.work.student.excel','uses' => 'StudentManageController@add_work_student_excel']);
-
-                Route::post('/add-work-student',['name' => 'add.work.student.excel','uses' => 'StudentManageController@add_work_student']);
-
-
-
-                Route::get('/get-list-student',['name' => 'get.list.student','uses' => 'StudentManageController@get_list_student']);
-                Route::delete('/delete-list-student',['name' => 'delete.list.student','uses' => 'StudentManageController@delete_list_student']);
-                Route::delete('/delete-student',['name' => 'delete.student','uses' => 'StudentManageController@delete_student']);
-                Route::post('/add-student',['name' => 'add.student','uses' => 'StudentManageController@add_student']);
-                Route::put('/update-student',['name' => 'add.student','uses' => 'StudentManageController@update_student']);
-                Route::post('/update-avatar-student',['name' => 'update.avatar.student','uses' => 'StudentManageController@update_avatar_student']);
-
-                Route::get('/get-work-student',['name' => 'get.work.student','uses' => 'StudentManageController@get_work_student']);
-                Route::post('/update-work-student/{id}',['name' => 'update.work.student','uses' => 'StudentManageController@update_work_student']);
-                Route::delete('/delete-work-student/{id}',['name' => 'delete.work.student','uses' => 'StudentManageController@delete_work_student']);
-
-                Route::get('/get-list-enterprise',['name' => 'get.list.enterprise','uses' => 'StudentManageController@get_list_enterprise']);
-
-
+            // quan ly sinh vien
+            Route::group(['prefix' => '/manage-students'],function (){
+                Route::resource('/resource','StudentManageController')->except(['create','edit']);
+                Route::delete('delete-list','StudentManageController@delete');
+                Route::post('update-avatar/{id}','StudentManageController@updateAvatar');
+                Route::get('list-enterprise/{id}','StudentManageController@listenterprise');
+                Route::post('/import-csv','StudentManageController@importCsv');
+                Route::get('list-job/{id}','StudentManageController@listJob');
 
 
             });
-            // quan ly doanh nghiẹp*/
+            // quan ly doanh nghiẹp
 
             Route::group(['prefix' => '/manage-enterprises'],function (){
-                //them sinh vien bang file excel
-                /*Route::post('/add-enterprise-excel',['name' => 'add.enterprise.excel','uses' => 'EnterpriseManageController@add_enterprise_excel']);
-                Route::get('/get-list-enterprise',['name' => 'get.list.enterprise','uses' => 'EnterpriseManageController@get_list_enterprise']);
-                Route::delete('/delete-list-enterprise',['name' => 'delete.list.enterprise','uses' => 'EnterpriseManageController@delete_list_enterprise']);
-                Route::delete('/delete-enterprise',['name' => 'delete.enterprise','uses' => 'EnterpriseManageController@delete_enterprise']);
-                Route::post('/add-enterprise',['name' => 'add.enterprise','uses' => 'EnterpriseManageController@add_enterprise']);
-                Route::put('/update-enterprise',['name' => 'add.enterprise','uses' => 'EnterpriseManageController@update_enterprise']);
-                Route::post('/update-avatar-enterprise',['name' => 'update.avatar.enterprise','uses' => 'EnterpriseManageController@update_avatar_enterprise']);
-                Route::get('/get-employees-enterprise',['name' => 'get.employee.enterprise','uses' => 'EnterpriseManageController@get_employee_enterprise']);*/
-
                 Route::resource('/resource','EnterpriseManageController')->except(['create','edit']);
                 Route::delete('delete-list','EnterpriseManageController@delete');
                 Route::post('update-avatar/{id}','EnterpriseManageController@updateAvatar');
+                Route::get('list-student/{id}','EnterpriseManageController@listStudent');
+                Route::post('/import-csv','EnterpriseManageController@importCsv');
+                Route::get('list-job/{id}','EnterpriseManageController@listJob');
+            });
+
+            //job
+            Route::group(['prefix' => '/manage-jobs',],function (){
+                Route::resource('/resource','JobManageController')->except(['create','edit','store']);
+                Route::delete('delete-list','JobManageController@delete');
+            });
+
+
+            Route::group(['prefix' => '/manage-positions'],function (){
+                Route::resource('/resource','PositionManageController')->except(['create','edit']);
+                Route::delete('delete-list','PositionManageController@delete');
+                Route::post('/import-csv','PositionManageController@importCsv');
+            });
+
+            Route::group(['prefix' => '/manage-skills'],function (){
+                Route::resource('/resource','SkillManageController')->except(['create','edit']);
+                Route::delete('delete-list','SkillManageController@delete');
+                Route::post('/import-csv','SkillManageController@importCsv');
+            });
+
+            Route::group(['prefix' => '/manage-types'],function (){
+                Route::resource('/resource','TypeManageController')->except(['create','edit']);
+                Route::delete('delete-list','TypeManageController@delete');
+                Route::post('/import-csv','TypeManageController@importCsv');
+            });
+
+            Route::group(['prefix' => '/manage-works'],function (){
+                Route::resource('/resource','WorkManageController')->except(['create','edit']);
+                Route::delete('delete-list','WorkManageController@delete');
+                Route::post('/import-csv','WorkManageController@importCsv');
+
+
 
             });
 
-           /* //job
-            Route::group(['prefix' => '/job-manage','name' => 'job.manage.'],function (){
-                //
-                Route::get('/get-list-position',['name' => 'get.list.position','uses' => 'JobManageController@get_list_position']);
-                Route::post('/add-position',['name' => 'add.position','uses' => 'JobManageController@add_position']);
-                Route::delete('/delete-list-position',['name' => 'delete.list.position','uses' => 'JobManageController@delete_list_position']);
-                Route::delete('/delete-position',['name' => 'delete.position','uses' => 'JobManageController@delete_position']);
-                Route::put('/edit-position',['name' => 'edit.position','uses' => 'JobManageController@edit_position']);
-
-
-                //skill
-
-                Route::get('/get-list-skill',['name' => 'get.list.skill','uses' => 'JobManageController@get_list_skill']);
-                Route::post('/add-skill',['name' => 'add.skill','uses' => 'JobManageController@add_skill']);
-                Route::delete('/delete-list-skill',['name' => 'delete.list.skill','uses' => 'JobManageController@delete_list_skill']);
-                Route::delete('/delete-skill',['name' => 'delete.skill','uses' => 'JobManageController@delete_skill']);
-                Route::put('/edit-skill',['name' => 'edit.skill','uses' => 'JobManageController@edit_skill']);
-
-                Route::get('/get-list-post',['name' => 'get.list.post','uses' => 'JobManageController@get_list_post']);
-                Route::put('/accept-post/{id}',['name' => 'accept.post','uses'=> 'JobManageController@accept_post']);
-                Route::get('get-detail-post/{id}',['name' => 'get.detail.post','uses' => 'JobManageController@get_detail_post']);
-            });
+            /*
             //post course
             Route::group(['prefix' => '/post-course-manage','name' => 'post.course.manage.'],function (){
 
@@ -116,7 +105,19 @@ Route::group(['namespace' => 'Api'],function(){
 //        });
 
         });
+        Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise'],function (){
+            Route::group(['prefix' => '/manage-jobs',],function (){
+                Route::resource('/resource','JobManageController')->except(['create','edit']);
+                Route::delete('delete-list','JobManageController@delete');
 
+            });
+            Route::get('profile','ProfileManageController@getProfile');
+            Route::put('profile','ProfileManageController@updateProfile');
+            Route::post('profile/update-avatar','ProfileController@updateAvatar');
+        });
+        Route::group(['namespace' => 'Job'],function (){
+            Route::resource('/jobs','JobManageController')->only(['index','show']);
+        });
 
        /* Route::group(['prefix' => '/request-info','name' => 'get.info.'],function (){
             Route::get('get-courses','RequestInfoController@get_courses');
@@ -145,30 +146,7 @@ Route::group(['namespace' => 'Api'],function(){
 
         //enterprise
 
-        Route::group(['prefix' => '/enterprise','name' => 'enterprise','namespace' => 'Enterprise'],function (){
-            Route::group(['middleware' => ['api.check.enterprise.or.admin']],function(){
-                Route::resource('post','PostController')->except(['create','store','edit','update']);
-                Route::delete('post','PostController@delete_list_post');
-                Route::post('post/{id}','PostController@update');
-                Route::resource('post-course','PostCourseController')->except(['create','store','edit','update']);
-                Route::delete('post-course','PostCourseController@delete_list_post_course');
-                Route::post('post-course/{id}','PostCourseController@update');
 
-            });
-            Route::group(['middleware' => 'api.check.enterprise'],function (){
-                Route::post('post','PostController@store');
-                Route::post('post-course','PostCourseController@store');
-
-                Route::get('option-profile','ProfileManageController@option_profile_enterprise');
-                Route::get('info','ProfileManageController@info');
-                Route::get('/employees','ProfileManageController@employees');
-            });
-
-
-
-
-
-        });
 
         Route::group(['prefix' => '/job','name' => 'get.job.','namespace' => 'Job'],function (){
             Route::get('get-list-job','JobController@get_list_job')->name('list_job');

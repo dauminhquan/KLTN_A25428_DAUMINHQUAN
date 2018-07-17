@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Salary extends Model
 {
     protected $table='salaries';
+
     protected $hidden = ['created_at','updated_at'];
+
+    public function jobs(){
+        return $this->belongsToMany(Job::class,'job_position');
+    }
 }
