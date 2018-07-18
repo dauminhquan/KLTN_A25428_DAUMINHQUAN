@@ -115,7 +115,8 @@ class JobService implements ManageInterface
 
     public function delete($array)
     {
-        foreach ($array as $item)
+        $success = $array;
+        foreach ($array as $key => $item)
         {
             $job = Job::find($item);
             if($job)
@@ -128,6 +129,7 @@ class JobService implements ManageInterface
                     Storage::delete($job->attachment);
                 }
                 $job->delete();
+                unset($success[$key]);
             }
         }
         return $array;

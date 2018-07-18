@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\DeleteListRequest;
-use App\Http\Requests\JobManageRequest;
 use App\Services\Api\Productions\Admin\JobService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Position;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PositionService implements ManageInterface
@@ -46,7 +47,10 @@ class PositionService implements ManageInterface
             $position = Position::findOrFail($id);
             foreach ($columns as $column)
             {
-                $position->$column = $inputs[$column];
+                if(isset($inputs[$column]))
+                {
+                    $position->$column = $inputs[$column];
+                }
 
             }
             $position->update();
@@ -67,12 +71,15 @@ class PositionService implements ManageInterface
 
     public function delete($array)
     {
-        foreach ($array as $item)
+        $success = $array;
+
+        foreach ($array as $key => $item)
         {
             $position = Position::find($item);
             if($position)
             {
                 $position->delete();
+                unset($success[$key]);
             }
         }
         return $array;

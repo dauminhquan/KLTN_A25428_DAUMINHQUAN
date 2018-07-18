@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Skill;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SkillService implements ManageInterface
@@ -46,7 +47,10 @@ class SkillService implements ManageInterface
             $skill = Skill::findOrFail($id);
             foreach ($columns as $column)
             {
-                $skill->$column = $inputs[$column];
+                if(isset($inputs[$column]))
+                {
+                    $skill->$column = $inputs[$column];
+                }
 
             }
             $skill->update();
@@ -67,15 +71,17 @@ class SkillService implements ManageInterface
 
     public function delete($array)
     {
-        foreach ($array as $item)
+        $success = $array;
+        foreach ($array as $key => $item)
         {
             $skill = Skill::find($item);
             if($skill)
             {
                 $skill->delete();
+                unset($success[$key]);
             }
         }
-        return $array;
+        return $success;
     }
 
     public function csvStore($path){

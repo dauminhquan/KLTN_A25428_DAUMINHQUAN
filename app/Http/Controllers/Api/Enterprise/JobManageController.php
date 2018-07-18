@@ -12,7 +12,8 @@ class JobManageController extends Controller
     private $jobService;
     public function __construct()
     {
-        $this->jobService = new JobService(Auth::user()->id);
+//        Auth::user()->id
+        $this->jobService = new JobService(1);
     }
     public function index()
     {

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Api\Student;
 
-use App\Http\Requests\WorkManageRequest;
 use App\Services\Api\Productions\Student\WorkService;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class WorkManageController extends Controller

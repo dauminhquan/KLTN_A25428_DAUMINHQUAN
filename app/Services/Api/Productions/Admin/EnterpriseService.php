@@ -78,7 +78,8 @@ class EnterpriseService implements ManageInterface
 
     public function delete($array)
     {
-        foreach ($array as $item)
+        $success = $array;
+        foreach ($array as $key => $item)
         {
             $enterprise = Enterprise::find($item);
             if($enterprise)
@@ -88,9 +89,10 @@ class EnterpriseService implements ManageInterface
                     Storage::delete($enterprise->avatar);
                 }
                 $enterprise->delete();
+                unset($success[$key]);
             }
         }
-        return $array;
+        return $success;
     }
 
     public function csvStore($path){

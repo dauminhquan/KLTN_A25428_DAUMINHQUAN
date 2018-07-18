@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Type;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TypeService implements ManageInterface
@@ -46,7 +47,10 @@ class TypeService implements ManageInterface
             $type = Type::findOrFail($id);
             foreach ($columns as $column)
             {
-                $type->$column = $inputs[$column];
+                if(isset($inputs[$column]))
+                {
+                    $type->$column = $inputs[$column];
+                }
 
             }
             $type->update();
@@ -67,13 +71,16 @@ class TypeService implements ManageInterface
 
     public function delete($array)
     {
+        $success = $array;
         foreach ($array as $item)
         {
             $type = Type::find($item);
             if($type)
             {
                 $type->delete();
+                unset($success[$item]);
             }
+
         }
         return $array;
     }

@@ -4,19 +4,14 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
-use App\Http\Requests\ExcelFile;
-
+use App\Http\Requests\StudentManageRequest;
 use App\Http\Requests\UpdateAvatarRequest;
 use App\Models\Student;
 use App\Services\Api\Productions\Admin\StudentService;
-use App\Services\DeleteDataService;
-use App\Services\GetDataService;
-use App\Services\InsertDataFromExcelService;
-use App\Services\InsertDataService;
-use App\Services\UpdateDataService;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+
 
 
 class StudentManageController extends Controller
@@ -65,9 +60,9 @@ class StudentManageController extends Controller
         return $this->studentService->updateAvatar($id,$request->file('avatar'));
     }
 
-    public function listStudent($id)
+    public function listEnterprise($id)
     {
-        return $this->studentService->getListStudent($id);
+        return $this->studentService->getListEnterprise($id);
     }
 
     public function listJob($id){

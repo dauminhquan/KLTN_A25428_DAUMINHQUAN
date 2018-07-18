@@ -79,7 +79,8 @@ class StudentService implements ManageInterface
 
     public function delete($array)
     {
-        foreach ($array as $item)
+        $success = $array;
+        foreach ($array as $key => $item)
         {
             $student = Student::find($item);
             if($student)
@@ -89,6 +90,7 @@ class StudentService implements ManageInterface
                     Storage::delete($student->avatar);
                 }
                 $student->delete();
+                unset($success[$item]);
             }
         }
         return $array;

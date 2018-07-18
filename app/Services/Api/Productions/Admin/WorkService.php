@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Work;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Schema;
 
 class WorkService implements ManageInterface
 {
@@ -55,7 +56,10 @@ class WorkService implements ManageInterface
             $work = Work::findOrFail($id);
             foreach ($columns as $column)
             {
-                $work->$column = $inputs[$column];
+                if(isset($inputs[$column]))
+                {
+                    $work->$column = $inputs[$column];
+                }
 
             }
             $work->update();
@@ -76,12 +80,15 @@ class WorkService implements ManageInterface
 
     public function delete($array)
     {
+        $success = $array;
         foreach ($array as $item)
         {
+
             $work = Work::find($item);
             if($work)
             {
                 $work->delete();
+                unset($success[$item]);
             }
         }
         return $array;

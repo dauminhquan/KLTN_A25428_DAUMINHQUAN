@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Auth;
 class ProfileManageController extends Controller
 {
     public function index(){
-        $code_student = Auth::user()->user_name;
-        return view('student.profile',['code_student' => $code_student]);
+        $code = Auth::user()->student->code;
+        return view('student.profile.index',['code' => $code]);
+    }
+    public function update(){
+        return view('student.profile.update',['code' => Auth::user()->student->code]);
     }
 }

@@ -16,7 +16,7 @@ class ProfileManageController extends Controller
     public function index(){
         return view('enterprise.profile.index');
     }
-    public function edit(){
-        return view('enterprise.profile.edit',['id' => Auth::user()->id]);
+    public function update(){
+        return view('enterprise.profile.update',['id' => Auth::user()->id]);
     }
 }

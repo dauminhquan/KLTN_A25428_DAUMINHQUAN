@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers\Api\Student;
 
+use App\Http\Requests\StudentManageRequest;
 use App\Http\Requests\UpdateAvatarRequest;
-use App\Models\Employee;
-use App\Models\Enterprise;
-use App\Models\User;
-use App\Services\DeleteDataService;
-use App\Services\GetDataService;
-use App\Services\InsertDataFromExcelService;
-use App\Services\InsertDataService;
-use App\Services\UpdateDataService;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use App\Services\Api\Productions\Student\ProfileService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+
 
 class ProfileManageController extends Controller
 {
     private $profileService;
     public function __construct()
     {
+        Auth::user()->
         $this->profileService = new ProfileService();
     }
     public function getProfile()

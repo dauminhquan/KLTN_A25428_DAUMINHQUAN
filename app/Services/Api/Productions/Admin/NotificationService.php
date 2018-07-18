@@ -80,7 +80,8 @@ class NotificationService implements ManageInterface
 
     public function delete($array)
     {
-        foreach ($array as $item)
+        $success = $array;
+        foreach ($array as $key => $item)
         {
             $notification = Notification::find($item);
             if($notification)
@@ -90,6 +91,7 @@ class NotificationService implements ManageInterface
                     Storage::delete($notification->attachment);
                 }
                 $notification->delete();
+                unset($success[$key]);
             }
         }
         return $array;

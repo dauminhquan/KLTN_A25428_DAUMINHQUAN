@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\Job;
 
 use App\Models\Job;
-use App\Services\GetDataService;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class JobManageController extends Controller

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Http\Requests\CsvRequest;
+use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\TypeManageRequest;
 use App\Services\Api\Productions\Admin\TypeService;
 use Illuminate\Http\Request;
