@@ -72,6 +72,8 @@ class EnterpriseService implements ManageInterface
         {
             Storage::delete($enterprise->avatar);
         }
+        $enterprise->user()->detach();
+        $enterprise->jobs()->detach();
         $enterprise->delete();
         return $enterprise;
     }
@@ -84,10 +86,12 @@ class EnterpriseService implements ManageInterface
             $enterprise = Enterprise::find($item);
             if($enterprise)
             {
-                if(Storage::exists($enterprise->avatar))
-                {
+                if(Storage::exists($enterprise->avatar)) {
                     Storage::delete($enterprise->avatar);
                 }
+                    $enterprise->user()->detach();
+                    $enterprise->jobs()->detach();
+
                 $enterprise->delete();
                 unset($success[$key]);
             }

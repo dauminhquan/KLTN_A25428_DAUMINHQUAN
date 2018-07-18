@@ -19,9 +19,11 @@ class CreateStudentsTable extends Migration
 
             $table->primary('code');
 
-            $table->string('first_name');
+            $table->string('first_name')->nullable();
 
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
+
+            $table->string('full_name');
 
             $table->string('address');
 
@@ -35,10 +37,11 @@ class CreateStudentsTable extends Migration
 
             $table->string('province_id');
 
+            $table->integer('rating_id')->nullable();
 
-            $table->string('introduce');
+            $table->text('introduce')->nullable();
 
-            $table->string('user_id');
+            $table->string('user_id')->nullable();
 
             $table->boolean('graduated')->default(false);
 
@@ -46,7 +49,7 @@ class CreateStudentsTable extends Migration
 
             $table->date('date_graduated')->nullable();
 
-            $table->string('student_avatar',400);
+            $table->string('student_avatar',400)->nullable();
 
             // khóa học
             $table->string('course_code');
@@ -55,7 +58,7 @@ class CreateStudentsTable extends Migration
             $table->string('branch_code');
 
             // lop chinh
-            $table->string('main_class');
+            $table->string('main_class')->nullable();
 
 
             $table->timestamps();

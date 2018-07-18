@@ -8,9 +8,8 @@ use App\Model;
 
 class Branch extends Model
 {
-    protected $hidden = [
-      'id'
-    ];
+    protected $primaryKey = 'code';
+    protected $fillable = ['code','name','department_code'];
     public function students()
     {
         return $this->hasMany(Student::class,'branch_code','code');

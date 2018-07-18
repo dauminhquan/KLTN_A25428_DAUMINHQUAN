@@ -73,6 +73,7 @@ class StudentService implements ManageInterface
         {
             Storage::delete($student->avatar);
         }
+        $student->works()->detach();
         $student->delete();
         return $student;
     }

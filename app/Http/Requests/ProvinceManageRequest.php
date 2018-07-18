@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StudentManageRequest extends FormRequest
+class ProvinceManageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,14 +27,8 @@ class StudentManageRequest extends FormRequest
         {
             case ('POST'):
                 return [
-                    'address' =>'required',
-                    'branch_code' => 'required',
-                    'code' =>'required|unique:student,code',
-                    'course_code' => 'required',
-                    'email_address' => 'required|unique:student,email_address',
-                    'full_name' => 'required',
-                    'province_id' => 'required',
-                    'sex' => 'required'
+                    'name' => 'required|string|unique:provinces,name',
+                    'id' => 'required|string|unique:provinces,id'
                 ];
             case('GET'):
                 break;

@@ -39,10 +39,40 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::delete('delete-list','TypeManageController@delete')->name('delete.list');
         Route::post('/import-csv','TypeManageController@importCsv')->name('import.csv');
     });
+    Route::group(['prefix' => '/manage-salaries',],function (){
+        Route::resource('/resource','SalaryManageController')->except(['create','edit']);
+        Route::delete('delete-list','SalaryManageController@delete')->name('delete.list');
+        Route::post('/import-csv','SalaryManageController@importCsv')->name('import.csv');
+    });
     Route::group(['prefix' => '/manage-works'],function (){
         Route::resource('/resource','WorkManageController')->except(['create','edit']);
         Route::delete('delete-list','WorkManageController@delete')->name('delete.list');
         Route::post('/import-csv','WorkManageController@importCsv')->name('import.csv');
+    });
+    Route::group(['prefix' => '/manage-ranks'],function (){
+        Route::resource('/resource','RankManageController')->except(['create','edit']);
+        Route::delete('delete-list','RankManageController@delete')->name('delete.list');
+        Route::post('/import-csv','RankManageController@importCsv')->name('import.csv');
+    });
+    Route::group(['prefix' => '/manage-departments'],function (){
+        Route::resource('/resource','DepartmentManageController')->except(['create','edit']);
+        Route::delete('delete-list','DepartmentManageController@delete')->name('delete.list');
+        Route::post('/import-csv','DepartmentManageController@importCsv')->name('import.csv');
+    });
+    Route::group(['prefix' => '/manage-branches'],function (){
+        Route::resource('/resource','BranchManageController')->except(['create','edit']);
+        Route::delete('delete-list','BranchManageController@delete')->name('delete.list');
+        Route::post('/import-csv','BranchManageController@importCsv')->name('import.csv');
+    });
+    Route::group(['prefix' => '/manage-courses'],function (){
+        Route::resource('/resource','CourseManageController')->except(['create','edit']);
+        Route::delete('delete-list','CourseManageController@delete')->name('delete.list');
+        Route::post('/import-csv','CourseManageController@importCsv')->name('import.csv');
+    });
+    Route::group(['prefix' => '/manage-provinces'],function (){
+        Route::resource('/resource','ProvinceManageController')->except(['create','edit']);
+        Route::delete('delete-list','ProvinceManageController@delete')->name('delete.list');
+        Route::post('/import-csv','ProvinceManageController@importCsv')->name('import.csv');
     });
 });
 Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise','as' => 'enterprise.'],function (){

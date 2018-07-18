@@ -5,10 +5,10 @@ use App\Model;
 
 class Student extends Model
 {
-    protected $hidden = [
-
-    ];
-//    protected $fillable = ['name',]
+    protected $primaryKey = 'code';
+    protected $fillable = ['name','code','first_name','last_name','address','sex','phone_number','email_address',
+        'birth_day','province_id','introduce','user_id','graduated','medium_score','date_graduated','student_avatar'
+    ,'course_code','branch_code','main_class','full_name','rating_id'];
     public function branch()
     {
         return $this->belongsTo(Branch::class,'branch_code','code');
