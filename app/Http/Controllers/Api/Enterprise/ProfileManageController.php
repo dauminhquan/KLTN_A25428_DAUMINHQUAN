@@ -6,6 +6,7 @@ use App\Http\Requests\EnterpriseManageRequest;
 use App\Http\Requests\UpdateAvatarRequest;
 use App\Services\Api\Productions\Enterprise\ProfileService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProfileManageController extends Controller
@@ -13,7 +14,7 @@ class ProfileManageController extends Controller
     private $profileService;
     public function __construct()
     {
-        $this->profileService = new ProfileService();
+        $this->profileService = new ProfileService(Auth::user()->id);
     }
     public function getProfile()
     {

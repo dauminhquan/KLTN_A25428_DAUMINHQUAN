@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Storage;
 class ProfileService
 {
     private $enterprise;
-    public function __construct()
+    public function __construct($id)
     {
-        $this->enterprise = Enterprise::findOrFail(Auth::user()->enterprise);
+        $this->enterprise = Enterprise::findOrFail($id);
     }
 
     public function profile()

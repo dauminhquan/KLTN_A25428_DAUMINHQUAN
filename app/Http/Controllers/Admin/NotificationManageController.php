@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class StudentManageController extends Controller
+class NotificationManageController extends Controller
 {
     public function index()
     {

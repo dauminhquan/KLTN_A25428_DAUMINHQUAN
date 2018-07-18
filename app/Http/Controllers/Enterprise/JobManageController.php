@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Enterprise;
 
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 
 class JobManageController extends Controller
 {
     public function index()
     {
-        return view('admin.jobs.index');
+        return view('enterprise.jobs.index');
     }
 
     public function create()
     {
-        return view('admin.jobs.create');
+        return view('enterprise.jobs.create');
     }
 
     public function edit($id)
     {
-        return view('admin.jobs.edit',['id' => $id]);
+        return view('enterprise.jobs.edit',['id' => $id]);
     }
 }

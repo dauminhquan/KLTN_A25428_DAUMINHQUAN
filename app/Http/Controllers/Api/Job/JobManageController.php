@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 
 class JobManageController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $jobs = Job::where('accept',1)->select('id','title','description','enterprise_id')->get();
         foreach ($jobs as $job)
         {
@@ -19,7 +20,6 @@ class JobManageController extends Controller
             $job->positions = $job->positions;
         }
         return $jobs;
-
     }
 
     public function show($id)

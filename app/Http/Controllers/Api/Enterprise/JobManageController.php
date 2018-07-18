@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api\Enterprise;
 use App\Services\Api\Productions\Enterprise\JobService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class JobManageController extends Controller
 {
     private $jobService;
     public function __construct()
     {
-        $this->jobService = new JobService();
+        $this->jobService = new JobService(Auth::user()->id);
     }
     public function index()
     {

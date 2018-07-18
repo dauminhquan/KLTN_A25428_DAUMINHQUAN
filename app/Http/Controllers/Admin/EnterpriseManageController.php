@@ -10,21 +10,19 @@ class EnterpriseManageController extends Controller
 
     public function index()
     {
-        return view('admin.manageenterprises.index');
+        return view('admin.enterprises.index');
     }
-
 
     public function create()
     {
-        return view('admin.manageenterprises.create');
+        return view('admin.enterprises.create');
     }
-
-
 
     public function edit($id)
     {
-        return view('admin.manageenterprises.edit',['id' => $id]);
+        return view('admin.enterprises.edit',['id' => $id]);
     }
+
 
     public function get_excel_info_enterprise(){
         $info_enterprise = Enterprise::all();
@@ -34,20 +32,4 @@ class EnterpriseManageController extends Controller
             });
         })->export('csv'));
     }
-    /*public function get_excel_example_info_enterprise(){
-        return response()->download(Excel::create('example-enterprise-excel', function($excel) {
-            $excel->sheet('enterprise', function($sheet) {
-                $sheet->fromArray([
-                    'email_address_enterprise',
-                    'password',
-                    'name_enterprise',
-                    'address_enterprise',
-                    'name_president_enterprise',
-                    'phone_number_enterprise',
-                    'avatar_enterprise',
-                    'introduce_enterprise'
-                ]);
-            });
-        })->export('xls'));
-    }*/
 }
