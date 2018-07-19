@@ -69,4 +69,17 @@ class EnterpriseManageController extends Controller
     public function importCsv(CsvRequest $request){
         return $this->enterpriseService->csvStore($request->file('CsvFile')->getRealPath());
     }
+    public function getOptionsCsv(CsvRequest $request)
+    {
+        $data = $this->enterpriseService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);
+        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->export('csv'));
+
+    }
+    public function getUser($id){
+        return $this->enterpriseService->getUser($id);
+    }
 }

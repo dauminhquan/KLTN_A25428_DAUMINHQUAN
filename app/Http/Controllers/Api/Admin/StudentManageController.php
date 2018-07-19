@@ -11,7 +11,7 @@ use App\Services\Api\Productions\Admin\StudentService;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class StudentManageController extends Controller
@@ -71,5 +71,18 @@ class StudentManageController extends Controller
 
     public function importCsv(CsvRequest $request){
         return $this->studentService->csvStore($request->file('CsvFile')->getRealPath());
+    }
+    public function getOptionsCsv(CsvRequest $request)
+    {
+        $data = $this->studentService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);
+        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->export('csv'));
+
+    }
+    public function getUser($id){
+        return $this->studentService->getUser($id);
     }
 }

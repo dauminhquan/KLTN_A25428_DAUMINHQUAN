@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class SkillService implements ManageInterface
+class SkillService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Skill();
+    }
     public function getAll()
     {
         $skills = Skill::all();

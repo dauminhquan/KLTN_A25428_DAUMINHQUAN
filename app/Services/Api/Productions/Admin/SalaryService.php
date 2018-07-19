@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class SalaryService implements ManageInterface
+class SalaryService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Salary();
+    }
     public function getAll()
     {
         $salaries = Salary::all();

@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class DepartmentService implements ManageInterface
+class DepartmentService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Department();
+    }
     public function getAll()
     {
         $departments = Department::all();

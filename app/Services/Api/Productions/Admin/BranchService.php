@@ -14,8 +14,13 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class BranchService implements ManageInterface
+class BranchService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Branch();
+    }
+
     public function getAll()
     {
         $branches = Branch::all();
@@ -117,4 +122,5 @@ class BranchService implements ManageInterface
             'error' => $list_err
         ];
     }
+
 }

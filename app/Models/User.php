@@ -4,26 +4,19 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Schema;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
+    protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
+        'password'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -44,7 +37,20 @@ class User extends Authenticatable
 
     public function admin()
     {
-        return $this->hasOne(Admin::class,'id_user','id');
+        return $this->hasOne(Admin::class,'user_id','id');
     }
+    public function getOption($column,$queryValue,$selects)
+    {
 
+        $columns = Schema::getColumnListing(self::getTable());
+        if(in_array($column,$columns))
+        {
+
+            return $this->select($selects)->where($column,'like',$queryValue)->first();
+        }
+        return null;
+    }
+    public function getTableName(){
+        return $this->table;
+    }
 }

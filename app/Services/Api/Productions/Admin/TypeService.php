@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class TypeService implements ManageInterface
+class TypeService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Type();
+    }
     public function getAll()
     {
         $types = Type::all();

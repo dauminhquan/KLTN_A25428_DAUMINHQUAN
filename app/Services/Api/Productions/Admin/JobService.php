@@ -13,9 +13,12 @@ use App\Models\Job;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Storage;
 
-class JobService implements ManageInterface
+class JobService extends BaseService implements ManageInterface
 {
-
+    public function __construct()
+    {
+        $this->model = new Job();
+    }
     public function getAll()
     {
         $jobs = Job::all();

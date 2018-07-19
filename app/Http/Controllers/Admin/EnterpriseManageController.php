@@ -32,4 +32,5 @@ class EnterpriseManageController extends Controller
             });
         })->export('csv'));
     }
+
 }

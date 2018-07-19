@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
-class StudentService implements ManageInterface
+class StudentService extends BaseService implements ManageInterface
 {
-
+    public function __construct()
+    {
+        $this->model = new Student();
+    }
 
     public function getAll()
     {
@@ -153,5 +156,11 @@ class StudentService implements ManageInterface
     public function getListJob($id){
         $student = Student::findOrFail($id);
         return $student->jobs;
+    }
+    public function getUser($id)
+    {
+        $student = Student::findOrFail($id);
+
+        return $student->user;
     }
 }

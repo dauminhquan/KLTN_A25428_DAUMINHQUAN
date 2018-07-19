@@ -8,6 +8,7 @@ use App\Http\Requests\TypeManageRequest;
 use App\Services\Api\Productions\Admin\TypeService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TypeManageController extends Controller
 {
@@ -50,5 +51,16 @@ class TypeManageController extends Controller
 
     public function importCsv(CsvRequest $request){
         return $this->typeService->csvStore($request->file('CsvFile')->getRealPath());
+    }
+
+    public function getOptionsCsv(CsvRequest $request)
+    {
+        $data = $this->typeService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);
+        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->export('csv'));
+
     }
 }

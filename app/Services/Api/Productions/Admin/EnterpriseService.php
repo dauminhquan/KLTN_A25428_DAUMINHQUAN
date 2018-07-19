@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
-class EnterpriseService implements ManageInterface
+class EnterpriseService extends BaseService implements ManageInterface
 {
-
+    public function __construct()
+    {
+        $this->model = new Enterprise();
+    }
 
     public function getAll()
     {
@@ -153,5 +156,10 @@ class EnterpriseService implements ManageInterface
     public function getListJob($id){
         $enterprise = Enterprise::findOrFail($id);
         return $enterprise->jobs;
+    }
+    public function getUser($id)
+    {
+        $enterprise = Enterprise::findOrFail($id);
+        return $enterprise->user;
     }
 }

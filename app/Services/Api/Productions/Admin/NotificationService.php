@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
-class NotificationService implements ManageInterface
+class NotificationService extends BaseService implements ManageInterface
 {
-
+    public function __construct()
+    {
+        $this->model = new Notification();
+    }
 
     public function getAll()
     {

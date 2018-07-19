@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ProvinceService implements ManageInterface
+class ProvinceService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Province();
+    }
     public function getAll()
     {
         $provinces = Province::all();

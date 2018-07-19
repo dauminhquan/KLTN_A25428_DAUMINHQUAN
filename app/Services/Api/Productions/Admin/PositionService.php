@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class PositionService implements ManageInterface
+class PositionService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Position();
+    }
     public function getAll()
     {
         $positions = Position::all();

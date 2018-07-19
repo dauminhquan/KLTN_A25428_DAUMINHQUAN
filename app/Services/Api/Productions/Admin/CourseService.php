@@ -14,8 +14,12 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class CourseService implements ManageInterface
+class CourseService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Course();
+    }
     public function getAll()
     {
         $courses = Course::all();
@@ -117,4 +121,5 @@ class CourseService implements ManageInterface
             'error' => $list_err
         ];
     }
+
 }

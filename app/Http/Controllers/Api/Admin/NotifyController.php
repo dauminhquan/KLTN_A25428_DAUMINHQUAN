@@ -9,6 +9,7 @@ use App\Models\Notification;
 use App\Services\Api\Productions\Admin\NotificationService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NotifyController extends Controller
 {
@@ -52,6 +53,15 @@ class NotifyController extends Controller
     public function importCsv(CsvRequest $request){
         return $this->notificationService->csvStore($request->file('CsvFile')->getRealPath());
     }
+    public function getOptionsCsv(CsvRequest $request)
+    {
+        $data = $this->notificationService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);
+        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->export('csv'));
 
+    }
 
 }

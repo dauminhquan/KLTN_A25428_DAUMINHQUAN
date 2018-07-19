@@ -13,8 +13,12 @@ use App\Models\Work;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
 
-class WorkService implements ManageInterface
+class WorkService extends BaseService implements ManageInterface
 {
+    public function __construct()
+    {
+        $this->model = new Work();
+    }
     public function getAll()
     {
         $works = Work::all();
@@ -126,4 +130,5 @@ class WorkService implements ManageInterface
             'error' => $list_err
         ];
     }
+
 }

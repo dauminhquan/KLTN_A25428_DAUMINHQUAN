@@ -8,6 +8,7 @@ use App\Http\Requests\CourseManageRequest;
 use App\Services\Api\Productions\Admin\CourseService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseManageController extends Controller
 {
@@ -50,5 +51,16 @@ class CourseManageController extends Controller
 
     public function importCsv(CsvRequest $request){
         return $this->courseService->csvStore($request->file('CsvFile')->getRealPath());
+    }
+
+    public function getOptionsCsv(CsvRequest $request)
+    {
+        $data = $this->courseService->getOptionCsv($request->file('CsvFile')->getRealPath(),['code']);
+        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->export('csv'));
+
     }
 }
