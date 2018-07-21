@@ -1,7 +1,6 @@
 <?php
 
 Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],function (){
-
     Route::group(['prefix' => '/manage-users', 'as' => 'manage.users.'],function (){
         Route::resource('/resource','UserManageController')->except(['create','edit']);
         Route::delete('delete-list','UserManageController@delete')->name('delete.list');
@@ -12,7 +11,6 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::post('/get-options-csv','UserManageController@getOptionsCsv')->name('get.option.csv');
 
     });
-
     Route::group(['prefix' => '/manage-students', 'as' => 'manage.students.'],function (){
         Route::resource('/resource','StudentManageController')->except(['create','edit']);
         Route::get('/resource/{code}/user','StudentManageController@getUser');
@@ -123,5 +121,15 @@ Route::group(['prefix' => '/student','namespace' => 'Student','as' => 'student.'
 });
 Route::group(['namespace' => 'Job'],function (){
     Route::resource('/jobs','JobController')->only(['index','show']);
+});
+Route::group(['namespace' => 'Auth'],function (){
+    Route::post('login','AuthController@login');
+    Route::post('logout','AuthController@logout');
+    Route::get('get-token','AuthController@getToken');
+    Route::post('reset-password','AuthController@resetPassword');
+});
+Route::group(['prefix' => '/registration'],function(){
+    Route::post('student','Student\AuthController@registration');
+    Route::post('enterprise','Enterprise\AuthController@registration');
 });
 

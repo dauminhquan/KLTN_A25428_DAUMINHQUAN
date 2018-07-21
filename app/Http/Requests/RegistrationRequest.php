@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class AccountManageRequest extends FormRequest
+class RegistrationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,29 +24,9 @@ class AccountManageRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|string|unique:users,email',
+            'email' => 'required|unique:users,email',
             'password' => 'required|min:6|max:30',
             'rep_password' => 'required|same:password',
-            'type' => 'required|'.Rule::in([1,2,3])
         ];
-        /*switch ($this->method())
-    {
-        case ('POST'):
-
-        case('GET'):
-            break;
-        case('PATCH'):
-        case('PUT'):
-            return [
-
-            ];
-        case('DELETE'):
-            break;
-        default:
-            return [];
-    }
-        return [
-            //
-        ];*/
     }
 }

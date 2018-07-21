@@ -9,16 +9,16 @@ class StudentManageController extends Controller
 {
     public function index()
     {
-        return view('admin.notifications.index');
+        return view('admin.students.index');
     }
 
     public function create()
     {
-        return view('admin.notifications.create');
+        return view('admin.students.create');
     }
 
     public function edit($id)
     {
-        return view('admin.notifications.edit',['id' => $id]);
+        return view('admin.students.edit',['id' => $id]);
     }
 }

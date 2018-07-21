@@ -1,20 +1,3 @@
 {
-    "/assets/js/build/pages/job/list-job/job-detail.js": "/assets/js/build/pages/job/list-job/job-detail.js",
-    "/assets/js/build/pages/job/list-job/list-job.js": "/assets/js/build/pages/job/list-job/list-job.js",
-    "/assets/js/build/pages/student/profile.js": "/assets/js/build/pages/student/profile.js",
-    "/assets/js/build/pages/enterprise/post-manage/post-manage.js": "/assets/js/build/pages/enterprise/post-manage/post-manage.js",
-    "/assets/js/build/pages/enterprise/post-course-manage/post-course-manage.js": "/assets/js/build/pages/enterprise/post-course-manage/post-course-manage.js",
-    "/assets/js/build/pages/admin/student-manage/student-manage.js": "/assets/js/build/pages/admin/student-manage/student-manage.js",
-    "/assets/js/build/pages/admin/student-manage/info-student.js": "/assets/js/build/pages/admin/student-manage/info-student.js",
-    "/assets/js/build/pages/enterprise/profile.js": "/assets/js/build/pages/enterprise/profile.js",
-    "/assets/js/build/pages/enterprise/post-manage/update-post.js": "/assets/js/build/pages/enterprise/post-manage/update-post.js",
-    "/assets/js/build/pages/enterprise/post-manage/new-post.js": "/assets/js/build/pages/enterprise/post-manage/new-post.js",
-    "/assets/js/build/pages/enterprise/post-course-manage/update-post-course.js": "/assets/js/build/pages/enterprise/post-course-manage/update-post-course.js",
-    "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js",
-    "/assets/js/build/pages/admin/student-manage/add-student.js": "/assets/js/build/pages/admin/student-manage/add-student.js",
-    "/assets/js/build/pages/enterprise/post-course-manage/new-post-course.js": "/assets/js/build/pages/enterprise/post-course-manage/new-post-course.js",
-    "/assets/js/build/list-job-theme.js": "/assets/js/build/list-job-theme.js",
-    "/assets/js/build/datatable-theme.js": "/assets/js/build/datatable-theme.js",
-    "/assets/js/test/datatable/datatable.js": "/assets/js/test/datatable/datatable.js",
-    "/assets/js/core/index.js": "/assets/js/core/index.js"
+    "/assets/js/build/pages/admin/enterprises/index.js": "/assets/js/build/pages/admin/enterprises/index.js"
 }

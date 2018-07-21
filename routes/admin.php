@@ -7,3 +7,4 @@ Route::resource('/positions','PositionManageController')->only('index','create',
 Route::resource('/skills','SkillManageController')->only('index','create','edit');
 Route::resource('/types','TypeManageController')->only('index','create','edit');
 Route::resource('/works','WorkManageController')->only('index','create','edit');
+Route::get('/','IndexController@index')->name('dashboard');
