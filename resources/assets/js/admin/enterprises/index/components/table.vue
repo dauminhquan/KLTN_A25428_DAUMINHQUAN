@@ -3,23 +3,22 @@
         <div class="panel-heading">
             <h5 class="panel-title">{{title}}</h5>
         </div>
-        <table id="table-test" class="table datatable-basic">
+        <table id="data-table" class="table datatable-basic">
             <thead>
             <tr>
                 <th>
                     <div class="btn-group navbar-btn">
-                        <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
-                            <div class="checker"><span ><input type="checkbox"class="styled"></span></div>
+                        <button type="button" class="btn btn-default btn-icon btn-checkbox-all" @click="selectAll">
+                            <div class="checker"><span :class="checked"><input type="checkbox"class="styled"></span></div>
                         </button>
 
                         <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </button>
-
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0);">Chọn tất cả</a></li>
-                            <li><a href="javascript:void(0);">Bỏ chọn tất cả</a></li>
-                            <li><a href="javascript:void(0);">Xóa mục đã chọn</a></li>
+                            <li><a href="javascript:void(0);" v-if="!allChecked" @click="selectAll">Chọn tất cả</a></li>
+                            <li><a href="javascript:void(0);" v-if="allChecked" @click="unSelectAll">Bỏ chọn tất cả</a></li>
+                            <li><a href="javascript:void(0);" @click="deleteSelected">Xóa mục đã chọn</a></li>
                         </ul>
                     </div>
                 </th>
@@ -30,16 +29,10 @@
             <tbody>
             <tr v-for="item in data">
                 <td>
-                    <div class="checker">
-                        <span>
-                            <input type="checkbox" class="styled">
-                        </span>
-                    </div>
+                    <checkbox-item @setClicked="checkedItem(item[primaryKey])" :allChecked="allChecked"></checkbox-item>
+
                 </td>
-                <td><a href="#">Enright</a></td>
-                <td>Traffic Court Referee</td>
-                <td>22 Jun 1972</td>
-                <td><span class="label label-success">Active</span></td>
+                <td v-for="column in columns" :key="column.key" v-html="item[column.key]"></td>
                 <td class="text-center">
                     <ul class="icons-list">
                         <li class="dropdown">
@@ -48,9 +41,7 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-                                <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-                                <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+                                <li  v-for="li in menu" :key="li.action" v-html="li.html" @click="action(item[primaryKey],li.action)"></li>
                             </ul>
                         </li>
                     </ul>
@@ -61,21 +52,37 @@
     </div>
 </template>
 <script>
-    // import $ from 'jquery'
+    import checkboxItem from './checkboxItem'
     export default {
-        props: ['title','data','columns','showCheck'],
+
+        components:{
+          'checkbox-item':checkboxItem
+        },
+        props: ['title','data','columns','showCheck','targets','buttonConfig','primaryKey','menu'],
         data(){
             return {
-                selectAll: false,
                 table: null,
                 idSelected: [],
-                checked:false,
+                checked:'',
+                allChecked: false,
             }
         },
+        beforeUpdate(){
+            this.table.fnDestroy()
+        },
+        updated(){
+            this.$nextTick(function () {
+
+                this.Init()
+            })
+        },
         mounted(){
+            var vm = this
+
             this.Init()
         },
         methods: {
+
             Init()
             {
                 let vm = this
@@ -88,39 +95,28 @@
                         paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
                     }
                 });
-                this.table = $('#table-test').dataTable({
-                    // columnDefs: [ { orderable: false, targets: [0,1,7] }],
+                let length = vm.columns.length
+                var configted = false;
+                vm.buttonConfig.forEach(item => {
+                    if(item.extend == 'colvis')   {
+                        configted = true
+                    }
+                })
+                if(configted == false)
+                {
+                    vm.buttonConfig.push({
+                        extend: 'colvis',
+                        text: '<i class="icon-three-bars"></i> <span class="caret"></span>',
+                        className: 'btn bg-blue btn-icon'
+                    })
+                }
+
+                let targets = [0,length]
+                targets = targets.concat(vm.targets)
+                vm.table = $('#data-table').dataTable({
+                    columnDefs: [ { orderable: false, targets: targets }],
                     buttons: {
-                        buttons: [
-                            {
-                                extend: 'colvis',
-                                text: '<i class="icon-three-bars"></i> <span class="caret"></span>',
-                                className: 'btn bg-blue btn-icon'
-                            },
-                            {
-                                text: 'Thêm mới',
-                                className: 'btn bg-primary',
-                                action: function(e, dt, node, config) {
-
-
-                                }
-                            },
-                            {
-                                text: 'Thêm bằng Excel',
-                                className: 'btn bg-success',
-                                action: function(e, dt, node, config) {
-
-
-                                }
-                            },
-                            {
-                                text: 'Tải xuống Excel',
-                                className: 'btn bg-purple',
-                                action: function(e, dt, node, config) {
-
-                                }
-                            }
-                        ]
+                        buttons: vm.buttonConfig
                     }
                 });
 
@@ -132,7 +128,7 @@
                     minimumResultsForSearch: Infinity,
                     width: 'auto'
                 });
-                $('a.dt-button.buttons-collection.buttons-colvis.btn.bg-blue.btn-icon[tabindex="0"][aria-controls="table"]').click(function () {
+                $('a.dt-button.buttons-collection.buttons-colvis.btn.bg-blue.btn-icon[tabindex="0"][aria-controls="data-table"]').click(function () {
                     if($(this).attr('removed') == undefined)
                     {
                         $('a.dt-button.buttons-columnVisibility.active[tabindex="0"]')[0].remove()
@@ -140,7 +136,40 @@
                     }
 
                 })
+
             },
+            selectAll(){
+                this.doChecked()
+                this.allChecked = !this.allChecked
+                this.$emit('selectAll')
+            },
+            unSelectAll(){
+                this.doChecked()
+                this.allChecked = false
+                this.$emit('unSelectAll')
+            },
+            checkedItem(key)
+            {
+              this.$emit('clickedKeyItem',key)
+            },
+            doChecked(){
+                if(this.checked == '')
+                {
+                    this.checked = 'checked'
+                }
+                else{
+                    this.checked = ''
+                }
+            },
+
+            deleteSelected(){
+                this.$emit('deleteSelected')
+            },
+            action(key,action)
+            {
+
+                this.$emit('action',[key,action])
+            }
         },
     }
 </script>

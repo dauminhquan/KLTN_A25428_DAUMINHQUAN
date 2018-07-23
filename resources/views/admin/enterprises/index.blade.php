@@ -15,8 +15,10 @@
 @endsection
 @section('page-content')
 
-    <test-table></test-table>
+    {{--<test-table></test-table>--}}
+    <table-content></table-content>
 @endsection
+
 @section("js-page")
     <script type="text/javascript" src="{{asset("assets/js/build/pages/admin/enterprises/index.js")}}"></script>
 @endsection
