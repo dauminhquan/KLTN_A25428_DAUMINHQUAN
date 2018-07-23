@@ -12,7 +12,7 @@ class Enterprise extends Model
     protected $fillable = ['name','address','name_president','phone_number','email_address','introduce'];
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
     public function jobs(){
         return $this->hasMany(Job::class,'enterprise_id','id');

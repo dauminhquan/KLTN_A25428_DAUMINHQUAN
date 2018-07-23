@@ -9,8 +9,10 @@
 namespace App\Services\Api\Productions\Student;
 
 
+use App\Models\Student;
 use App\Models\Work;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Auth;
 
 class WorkService implements ManageInterface
 {

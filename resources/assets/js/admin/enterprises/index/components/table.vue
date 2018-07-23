@@ -49,7 +49,9 @@
             </tr>
             </tbody>
         </table>
+        <slot></slot>
     </div>
+
 </template>
 <script>
     import checkboxItem from './checkboxItem'

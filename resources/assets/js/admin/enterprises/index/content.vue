@@ -1,18 +1,54 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Xin chao cac ban" :columns="columns" :data="data" :targets="[]" :buttonConfig="[]"
-        @selectAll="selectAll" @unSelectAll="unSelectAll"
+        <data-table title="Xin chao cac ban"
+                    :columns="columns"
+                    :data="data"
+                    :targets="[]"
+                    :buttonConfig="[]"
+                    @selectAll="selectAll"
+                    @unSelectAll="unSelectAll"
+                    @deleteSelected="deleteSelected"
                     @action="action($event)"
                     @clickedKeyItem="clickedKeyItem"
                     :menu="menu"
                     :primaryKey="primaryKey"
+        >
 
-        />
+            <div id="modal_danger" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h6 class="modal-title"><i class="icon-warning"></i> Cảnh báo</h6>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <p> <i class="icon-warning"></i> Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
+                            <div style="border: snow" class="panel panel-body border-top-danger text-center">
+                                <div class="pace-demo" v-if="deleting == true">
+                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" @click="deleteItem">Xác định xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </data-table>
     </div>
 </template>
 <script>
     import table from './components/table.vue'
-    import axios from 'axios'
+    import axios from './../../../axios'
+    import config from './../../../config'
     export default {
         components: {
             'data-table' : table
@@ -29,44 +65,59 @@
                         text: 'Địa chỉ Email'
                     }
                 ],
+                deleting: false,
                 data :[],
                 menu: [
                     {
                         action :'view',
-                        html:'<a href="#"><i class="icon-file-excel"></i> Nhap Exel</a>'
+                        html:'<a href="#"><i class="icon-info3"></i> Thông tin chi tiết</a>'
+                    },
+                    {
+                        action :'delete',
+                        html:'<a href="#"><i class="icon-trash"></i> Xóa doanh nghiệp</a>'
                     }
                 ],
-                primaryKey: 'code',
+                primaryKey: 'id',
                 itemSelected: [],
+                primaryKeyDelete: -1,
+                config: new config()
             }
         },
         mounted(){
-          this.getData()
+            this.getData()
         },
         methods: {
+
             getData(){
-                axios.get('http://127.0.0.1:8000/api/admin/manage-courses/resource').then(data => {
-                    var vm = this
+                var vm = this
+                axios.get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE).then(data => {
                     vm.data = data.data
                     vm.columns = [
                         {
-                            key: 'code',
-                            text: 'Ma SV'
+                            key: 'id',
+                            text: 'ID doanh nghiệp'
                         },
                         {
                             key:'name',
-                            text: 'Ten'
-                        }
+                            text: 'Tên doanh nghiệp'
+                        },
+                        {
+                            key:'address',
+                            text: 'Địa chỉ'
+                        },
+                        {
+                            key:'email_address',
+                            text: 'Địa chỉ Email'
+                        },
+
                     ]
                 }).catch(err => {
-                    console.log(err)
+                    new PNotify({
+                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                        text: 'Đã có lỗi từ serve',
+                        addclass: 'bg-danger'
+                    });
                 })
-                this.data = [
-                    {
-                        name: 'Dau Minh quan',
-                        email: 'Địa chỉ email'
-                    }
-                ]
             },
             selectAll(){
                 let vm = this
@@ -79,18 +130,68 @@
                 this.itemSelected = []
             },
             action(event){
-
-
-                let indexOf = -1
                 let vm = this
-                vm.data.forEach((item,index) => {
-                    if(item[vm.primaryKey] == event[0])
-                    {
-                        indexOf = index
-                    }
-                })
-                vm.data.splice(indexOf,1)
+                if(event[1] == 'delete')
+                {
+                    vm.primaryKeyDelete = event[0]
+                    $('#modal_danger').modal('show')
+                }
+                if(event[1] == 'show')
+                {
+                    vm.showItem(event[0])
+                }
             },
+            deleteItem(){
+                let vm = this
+                vm.deleting = true
+
+                if(vm.primaryKeyDelete != -1)
+                {
+                    let indexOf = -1
+                    axios.delete(vm.config.API_ADMIN_ENTERPRISES_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
+                        vm.data.forEach((item,index) => {
+
+                            if(item[vm.primaryKey] == vm.primaryKeyDelete)
+                            {
+                                indexOf = index
+                            }
+                        })
+                        if(indexOf != -1)
+                        {
+                            vm.data.splice(indexOf,1)
+                            new PNotify({
+                                title: 'Ohh Yeah! Thành công!',
+                                text: 'Đã xóa thành công doanh nghiệp',
+                                addclass: 'bg-success'
+                            });
+                        }
+                        else
+                        {
+                            new PNotify({
+                                title: 'Ohh! Có lỗi xảy ra rồi!',
+                                text: 'Hình như có gì đó không đúng. Hãy load lại trang nhé',
+                                addclass: 'bg-warning'
+                            });
+                        }
+                        vm.deleting = false
+                        $('#modal_danger').modal('hide')
+                    }).catch(err => {
+                        console.log(err)
+                        new PNotify({
+                            title: 'Ohh! Có lỗi xảy ra rồi!',
+                            text: 'Đã có lỗi từ serve',
+                            addclass: 'bg-danger'
+                        });
+                        vm.deleting = false
+                        $('#modal_danger').modal('hide')
+                    })
+                }
+                else{
+                    vm.deleting = false
+                    $('#modal_danger').modal('hide')
+                }
+            }
+            ,
             clickedKeyItem(item)
             {
                 let vm =this
@@ -103,6 +204,10 @@
                 else{
                     vm.itemSelected.push(item)
                 }
+            },
+            deleteSelected(){
+                let vm = this
+                console.log(vm.itemSelected)
             }
         }
     }

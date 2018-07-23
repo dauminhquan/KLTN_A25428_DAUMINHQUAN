@@ -25,9 +25,8 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
     });
     Route::group(['prefix' => '/manage-enterprises' , 'name' => 'manage.enterprises.'],function (){
         Route::resource('/resource','EnterpriseManageController')->except(['create','edit']);
-        Route::get('/resource/{code}/user','EnterpriseManageController@getUser');
-        Route::delete('delete-list','EnterpriseManageController@delete')->name('delete.list');
         Route::get('/resource/{id}/user','EnterpriseManageController@getUser');
+        Route::delete('delete-list','EnterpriseManageController@delete')->name('delete.list');
         Route::post('update-avatar/{id}','EnterpriseManageController@updateAvatar')->name('update.avatar');
         Route::get('list-student/{id}','EnterpriseManageController@listStudent')->name('list.student');
         Route::post('/import-csv','EnterpriseManageController@importCsv')->name('import.csv');
