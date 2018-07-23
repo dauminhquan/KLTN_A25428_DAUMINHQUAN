@@ -41,6 +41,33 @@
                     </div>
                 </div>
             </div>
+            <div id="modal-danger-delete-list" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h6 class="modal-title"><i class="icon-warning"></i> Cảnh báo</h6>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều doanh nghiệp. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
+                            <div style="border: snow" class="panel panel-body border-top-danger text-center">
+                                <div class="pace-demo" v-if="deleting == true">
+                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" @click="deleteListItem">Xác định xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </data-table>
     </div>
@@ -65,6 +92,15 @@
                         text: 'Địa chỉ Email'
                     }
                 ],
+                buttonConfig: [
+                    {
+                        text: 'Thêm mới',
+                        className: 'btn bg-primary',
+                        action: function(e, dt, node, config) {
+                            console.log('Them moi')
+                        }
+                    }
+                ],
                 deleting: false,
                 data :[],
                 menu: [
@@ -80,7 +116,8 @@
                 primaryKey: 'id',
                 itemSelected: [],
                 primaryKeyDelete: -1,
-                config: new config()
+                config: new config(),
+
             }
         },
         mounted(){
@@ -175,6 +212,7 @@
                         }
                         vm.deleting = false
                         $('#modal_danger').modal('hide')
+                        $('div.checker>span').removeClass('checked')
                     }).catch(err => {
                         console.log(err)
                         new PNotify({
@@ -206,8 +244,53 @@
                 }
             },
             deleteSelected(){
+                $('#modal-danger-delete-list').modal('show')
+            },
+            deleteListItem()
+            {
+
+
                 let vm = this
-                console.log(vm.itemSelected)
+                vm.deleting = true
+                axios.delete(vm.config.API_ADMIN_ENTERPRISES_DELETE_LIST,{
+                    params:{
+                        id_list: vm.itemSelected
+                    }
+                }).then(data => {
+                    $('#modal-danger-delete-list').modal('hide')
+                    vm.deleting = false
+                    let list_id = vm.itemSelected
+                    let list_index = []
+                    list_id.forEach((item) => {
+                        vm.data.forEach((dt,index) => {
+                            if(dt[vm.primaryKey] == item)
+                            {
+                                list_index.push(index)
+                            }
+                        })
+                    })
+                    console.log(list_index)
+                    if(list_index.length > 0)
+                    {
+                        list_index.forEach(item => {
+                            vm.data.splice(item,1)
+                        })
+                    }
+                    new PNotify({
+                        title: 'Ohh Yeah! Thành công!',
+                        text: 'Đã xóa thành công danh sách doanh nghiệp',
+                        addclass: 'bg-success'
+                    });
+                }).catch(err => {
+                    $('#modal-danger-delete-list').modal('hide')
+                    vm.deleting = false
+                    console.log(err)
+                    new PNotify({
+                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                        text: 'Đã có lỗi từ serve',
+                        addclass: 'bg-danger'
+                    });
+                })
             }
         }
     }

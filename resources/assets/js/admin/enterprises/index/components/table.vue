@@ -82,7 +82,8 @@
             var vm = this
 
             this.Init()
-        },
+        }
+        ,
         methods: {
 
             Init()

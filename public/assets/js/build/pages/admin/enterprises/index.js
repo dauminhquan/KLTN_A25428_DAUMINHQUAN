@@ -12353,7 +12353,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\content.vue"
+Component.options.__file = "resources/assets/js/admin/enterprises/index/content.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12362,9 +12362,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-01f76c6e", Component.options)
+    hotAPI.createRecord("data-v-cb01ecc6", Component.options)
   } else {
-    hotAPI.reload("data-v-01f76c6e", Component.options)
+    hotAPI.reload("data-v-cb01ecc6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12431,6 +12431,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -12448,6 +12475,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 key: 'email',
                 text: 'Địa chỉ Email'
             }],
+            buttonConfig: [{
+                text: 'Thêm mới',
+                className: 'btn bg-primary',
+                action: function action(e, dt, node, config) {
+                    console.log('Them moi');
+                }
+            }],
             deleting: false,
             data: [],
             menu: [{
@@ -12461,6 +12495,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             itemSelected: [],
             primaryKeyDelete: -1,
             config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]()
+
         };
     },
     mounted: function mounted() {
@@ -12542,6 +12577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                     vm.deleting = false;
                     $('#modal_danger').modal('hide');
+                    $('div.checker>span').removeClass('checked');
                 }).catch(function (err) {
                     console.log(err);
                     new PNotify({
@@ -12569,8 +12605,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         deleteSelected: function deleteSelected() {
+            $('#modal-danger-delete-list').modal('show');
+        },
+        deleteListItem: function deleteListItem() {
+
             var vm = this;
-            console.log(vm.itemSelected);
+            vm.deleting = true;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_ENTERPRISES_DELETE_LIST, {
+                params: {
+                    id_list: vm.itemSelected
+                }
+            }).then(function (data) {
+                $('#modal-danger-delete-list').modal('hide');
+                vm.deleting = false;
+                var list_id = vm.itemSelected;
+                var list_index = [];
+                list_id.forEach(function (item) {
+                    vm.data.forEach(function (dt, index) {
+                        if (dt[vm.primaryKey] == item) {
+                            list_index.push(index);
+                        }
+                    });
+                });
+                console.log(list_index);
+                if (list_index.length > 0) {
+                    list_index.forEach(function (item) {
+                        vm.data.splice(item, 1);
+                    });
+                }
+                new PNotify({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: 'Đã xóa thành công danh sách doanh nghiệp',
+                    addclass: 'bg-success'
+                });
+            }).catch(function (err) {
+                $('#modal-danger-delete-list').modal('hide');
+                vm.deleting = false;
+                console.log(err);
+                new PNotify({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: 'Đã có lỗi từ serve',
+                    addclass: 'bg-danger'
+                });
+            });
         }
     }
 });
@@ -12601,7 +12678,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\components\\table.vue"
+Component.options.__file = "resources/assets/js/admin/enterprises/index/components/table.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12610,9 +12687,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4b4a75e8", Component.options)
+    hotAPI.createRecord("data-v-205f6221", Component.options)
   } else {
-    hotAPI.reload("data-v-4b4a75e8", Component.options)
+    hotAPI.reload("data-v-205f6221", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12821,7 +12898,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\components\\checkboxItem.vue"
+Component.options.__file = "resources/assets/js/admin/enterprises/index/components/checkboxItem.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12830,9 +12907,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3c3b3768", Component.options)
+    hotAPI.createRecord("data-v-b662141a", Component.options)
   } else {
-    hotAPI.reload("data-v-3c3b3768", Component.options)
+    hotAPI.reload("data-v-b662141a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12910,7 +12987,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3c3b3768", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-b662141a", module.exports)
   }
 }
 
@@ -13113,7 +13190,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4b4a75e8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-205f6221", module.exports)
   }
 }
 
@@ -14208,37 +14285,37 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Config = function Config() {
-        var _this = this;
+    var _this = this;
 
-        _classCallCheck(this, Config);
+    _classCallCheck(this, Config);
 
-        /*API*/
+    /*API*/
 
-        this.API = window.location.origin + '/api';
+    this.API = window.location.origin + '/api';
 
-        /*ADMIN*/
+    /*ADMIN*/
 
-        this.API_ADMIN = this.API + '/admin';
+    this.API_ADMIN = this.API + '/admin';
 
-        /*ENTERPRISES*/
-        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-                return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-        this.API_ADMIN_ENTERPRISES_LIST_STUDENT_ID = function (ID) {
-                return _this.API_ADMIN_ENTERPRISES + '/list-student' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-                return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-        };
-        /*ENTERPRISES*/
+    /*ENTERPRISES*/
+    this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+    this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+    this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+    };
+    this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+    this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+    this.API_ADMIN_ENTERPRISES_LIST_STUDENT_ID = function (ID) {
+        return _this.API_ADMIN_ENTERPRISES + '/list-student' + '/' + ID;
+    };
+    this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+    this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+    };
+    this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+    };
+    /*ENTERPRISES*/
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
@@ -14357,6 +14434,90 @@ var render = function() {
                 ])
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "modal fade",
+              attrs: { id: "modal-danger-delete-list" }
+            },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header bg-danger" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("×")]
+                    ),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "modal-title" }, [
+                      _c("i", { staticClass: "icon-warning" }),
+                      _vm._v(" Cảnh báo")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("p", [
+                      _c("i", { staticClass: "icon-warning" }),
+                      _vm._v(
+                        " Bạn đang xóa nhiều doanh nghiệp. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "panel panel-body border-top-danger text-center",
+                        staticStyle: { border: "snow" }
+                      },
+                      [
+                        _vm.deleting == true
+                          ? _c("div", { staticClass: "pace-demo" }, [
+                              _c("div", { staticClass: "theme_xbox_xs" }, [
+                                _c("div", {
+                                  staticClass: "pace_progress",
+                                  attrs: {
+                                    "data-progress-text": "60%",
+                                    "data-progress": "60"
+                                  }
+                                }),
+                                _c("div", { staticClass: "pace_activity" })
+                              ])
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-link",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Hủy")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button" },
+                        on: { click: _vm.deleteListItem }
+                      },
+                      [_vm._v("Xác định xóa")]
+                    )
+                  ])
+                ])
+              ])
+            ]
           )
         ]
       )
@@ -14370,7 +14531,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-01f76c6e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-cb01ecc6", module.exports)
   }
 }
 

@@ -94,9 +94,8 @@ class EnterpriseService extends BaseService implements ManageInterface
                     Storage::delete($enterprise->avatar);
                 }
 
-                    $enterprise->user()->detach();
-                    $enterprise->jobs()->detach();
-
+                $enterprise->user()->delete();
+                $enterprise->jobs()->delete();
                 $enterprise->delete();
                 unset($success[$key]);
             }
