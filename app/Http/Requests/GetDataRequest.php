@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CsvRequest extends FormRequest
+class GetDataRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,7 @@ class CsvRequest extends FormRequest
     public function rules()
     {
         return [
-            'CsvFile' => 'required|file',
+            'size' => 'integer|'.Rule::in([-1,50,100,200,500,1000,2000,5000])
         ];
     }
 }

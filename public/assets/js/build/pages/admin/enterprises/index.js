@@ -44242,6 +44242,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var $ = __webpack_require__(1);
@@ -44268,6 +44294,12 @@ var $ = __webpack_require__(1);
                 action: function action(e, dt, node, config) {
                     window.open(this.config.WEB_ADMIN_ENTERPRISE);
                 }
+            }, {
+                text: 'Thêm bằng Excel',
+                className: 'btn bg-info',
+                action: function action(e, dt, node, config) {
+                    $('#modal-push-excel').modal('show');
+                }
             }],
             deleting: false,
             data: [],
@@ -44279,11 +44311,19 @@ var $ = __webpack_require__(1);
                 html: '<a href="#"><i class="icon-trash"></i> Xóa doanh nghiệp</a>'
             }],
             primaryKey: 'id',
+            lengths: [50, 100, 200, 500, 1000, 2000, 5000],
             itemSelected: [],
             primaryKeyDelete: -1,
             deletedSelectItem: false,
-            config: new __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */](),
-            resetCheck: false
+            resetCheck: false,
+            uploading: false,
+            excelFile: null,
+            pages: [],
+            page: 1,
+            totalPage: 0,
+            perPage: 500,
+
+            config: new __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */]()
         };
     },
     mounted: function mounted() {
@@ -44292,9 +44332,14 @@ var $ = __webpack_require__(1);
 
     methods: {
         getData: function getData() {
+            var perPage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+            var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_3__axios__["a" /* default */].get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE).then(function (data) {
-                vm.data = data.data;
+            __WEBPACK_IMPORTED_MODULE_3__axios__["a" /* default */].get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE + '?size=' + perPage + '&page=' + page).then(function (data) {
+                vm.data = data.data.data;
+                vm.perPage = data.data.per_page;
+                vm.totalPage = data.data.total;
                 vm.columns = [{
                     key: 'id',
                     text: 'ID doanh nghiệp'
@@ -44396,7 +44441,6 @@ var $ = __webpack_require__(1);
             $('#modal-danger-delete-list').modal('show');
         },
         deleteListItem: function deleteListItem() {
-
             var vm = this;
             vm.deleting = true;
             __WEBPACK_IMPORTED_MODULE_3__axios__["a" /* default */].delete(vm.config.API_ADMIN_ENTERPRISES_DELETE_LIST, {
@@ -44446,6 +44490,53 @@ var $ = __webpack_require__(1);
         showItem: function showItem(id) {
             var vm = this;
             window.open(vm.config.WEB_ADMIN_ENTERPRISES + '/' + id + '/edit', '_blank');
+        },
+        setExcelFile: function setExcelFile(e) {
+            var vm = this;
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            vm.excelFile = files[0];
+        },
+        uploadExcelFile: function uploadExcelFile() {
+            var _this = this;
+
+            var vm = this;
+            vm.uploading = true;
+            var formData = new FormData();
+            formData.append('CsvFile', vm.excelFile);
+            __WEBPACK_IMPORTED_MODULE_3__axios__["a" /* default */].post(vm.config.API_ADMIN_ENTERPRISES_IMPORT_CSV, formData).then(function (data) {
+                vm.uploading = false;
+                $('#modal-push-excel').modal('hide');
+                if (data.data.message == []) {
+                    new __WEBPACK_IMPORTED_MODULE_2_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                        title: 'Ohh Yeah! Thành công!',
+                        text: 'Thêm danh sách doanh nghiệp thành công. Sẽ load lại trang trong giây lát!',
+                        addclass: 'bg-success'
+                    });
+                } else {
+                    new __WEBPACK_IMPORTED_MODULE_2_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                        title: 'Cảnh báo! Thêm thành công! Một số dữ liệu trong file bị lỗi',
+                        text: 'Vui lòng kiểm tra lại! Sẽ load lại trang trong giây lát!',
+                        addclass: 'bg-warning',
+                        hide: true
+                    });
+                }
+                vm.getData();
+            }).catch(function (err) {
+                _this.uploading = false;
+                console.dir(err);
+                new __WEBPACK_IMPORTED_MODULE_2_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: err.response.data.message,
+                    addclass: 'bg-danger'
+                });
+            });
+        },
+        changePerPage: function changePerPage(perPage) {
+            this.getData(perPage);
+        },
+        changePageSelect: function changePageSelect(page) {
+            this.getData(this.perPage, page);
         }
     }
 });
@@ -44568,6 +44659,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var $ = __webpack_require__(1);
@@ -44575,17 +44688,18 @@ var $ = __webpack_require__(1);
 
 __webpack_require__(42);
 /* harmony default export */ __webpack_exports__["default"] = ({
-
     components: {
         'checkbox-item': __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default.a
     },
-    props: ['title', 'data', 'columns', 'showCheck', 'targets', 'buttonConfig', 'primaryKey', 'menu', 'resetCheck'],
+    props: ['title', 'data', 'columns', 'showCheck', 'targets', 'buttonConfig', 'primaryKey', 'menu', 'resetCheck', 'pages', 'lengths'],
     data: function data() {
         return {
             table: null,
             idSelected: [],
             checked: '',
-            allChecked: false
+            allChecked: false,
+            perPage: 500,
+            pageSelect: 1
         };
     },
     beforeUpdate: function beforeUpdate() {
@@ -44603,6 +44717,17 @@ __webpack_require__(42);
         this.Init();
     },
 
+    watch: {
+        resetCheck: function resetCheck() {
+            this.checked = '';
+        },
+        perPage: function perPage(value) {
+            this.$emit('changePerPage', value);
+        },
+        pageSelect: function pageSelect(value) {
+            this.$emit('changePageSelect', value);
+        }
+    },
     methods: {
         Init: function Init() {
             var vm = this;
@@ -44681,6 +44806,25 @@ __webpack_require__(42);
         action: function action(key, _action) {
 
             this.$emit('action', [key, _action]);
+        }
+    },
+    computed: {
+        totalPage: function totalPage() {
+            if (typeof this.pages != "number") {
+                this.pages = 1;
+            }
+            var c = parseInt(this.pages / this.perPage);
+
+            var p = this.pages % this.perPage;
+            if (p > 0) {
+                c++;
+            }
+
+            var pages = [];
+            for (var i = 0; i < c; i++) {
+                pages.push(i + 1);
+            }
+            return pages;
         }
     }
 });
@@ -60144,7 +60288,100 @@ var render = function() {
     { staticClass: "panel panel-flat" },
     [
       _c("div", { staticClass: "panel-heading" }, [
-        _c("h5", { staticClass: "panel-title" }, [_vm._v(_vm._s(_vm.title))])
+        _c("h5", { staticClass: "panel-title" }, [_vm._v(_vm._s(_vm.title))]),
+        _vm._v(" "),
+        _c("div", { staticClass: "heading-elements" }, [
+          _c("ul", { staticClass: "icons-list" }, [
+            _c("li", [
+              _vm._v(
+                "\n                    Số item mỗi trang:\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.perPage,
+                      expression: "perPage"
+                    }
+                  ],
+                  staticClass: "right form-control length-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.perPage = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _vm._l(_vm.lengths, function(length) {
+                    return _c("option", { domProps: { value: length } }, [
+                      _vm._v(_vm._s(length))
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "-1" } }, [_vm._v("Tất cả")])
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v("\n                    Chọn trang:\n                ")
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pageSelect,
+                      expression: "pageSelect"
+                    }
+                  ],
+                  staticClass: "right form-control length-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.pageSelect = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.totalPage, function(page) {
+                  return _c("option", { domProps: { value: page } }, [
+                    _vm._v(_vm._s(page))
+                  ])
+                })
+              )
+            ])
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -67364,14 +67601,16 @@ var render = function() {
         "data-table",
         {
           attrs: {
-            title: "Xin chao cac ban",
+            title: "Quản lý doanh nghiệp",
             columns: _vm.columns,
             data: _vm.data,
             targets: [],
             buttonConfig: _vm.buttonConfig,
             resetCheck: _vm.resetCheck,
             menu: _vm.menu,
-            primaryKey: _vm.primaryKey
+            primaryKey: _vm.primaryKey,
+            pages: _vm.totalPage,
+            lengths: _vm.lengths
           },
           on: {
             selectAll: _vm.selectAll,
@@ -67380,7 +67619,9 @@ var render = function() {
             action: function($event) {
               _vm.action($event)
             },
-            clickedKeyItem: _vm.clickedKeyItem
+            clickedKeyItem: _vm.clickedKeyItem,
+            changePerPage: _vm.changePerPage,
+            changePageSelect: _vm.changePageSelect
           }
         },
         [
@@ -67544,6 +67785,97 @@ var render = function() {
                       [_vm._v("Xác định xóa")]
                     )
                   ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "modal fade", attrs: { id: "modal-push-excel" } },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content text-center" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Thêm doanh nghiệp bằng Excel")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      staticClass: "form-inline",
+                      attrs: { enctype: "multipart/form-data" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.uploadExcelFile($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file" },
+                          on: {
+                            change: function($event) {
+                              _vm.setExcelFile($event)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.uploading == true
+                          ? _c("div", { staticClass: "pace-demo" }, [
+                              _c("div", { staticClass: "theme_xbox_xs" }, [
+                                _c("div", {
+                                  staticClass: "pace_progress",
+                                  attrs: {
+                                    "data-progress-text": "60%",
+                                    "data-progress": "60"
+                                  }
+                                }),
+                                _c("div", { staticClass: "pace_activity" })
+                              ])
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-footer text-center" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [
+                            _vm._v("Tải file lên "),
+                            _c("i", { staticClass: "icon-plus22" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: {
+                              href:
+                                "/admin/student-manage/get-excel-example-student",
+                              target: "_blank",
+                              type: "button"
+                            }
+                          },
+                          [
+                            _vm._v("Tải Excel mẫu "),
+                            _c("i", {
+                              staticClass: "glyphicon glyphicon-info-sign"
+                            })
+                          ]
+                        )
+                      ])
+                    ]
+                  )
                 ])
               ])
             ]

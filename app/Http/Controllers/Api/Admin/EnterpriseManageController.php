@@ -6,10 +6,10 @@ use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\EnterpriseManageRequest;
 
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\UpdateAvatarRequest;
 use App\Models\Enterprise;
 use App\Services\Api\Productions\Admin\EnterpriseService;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
@@ -21,9 +21,10 @@ class EnterpriseManageController extends Controller
         $this->enterpriseService = new EnterpriseService();
     }
 
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->enterpriseService->getAll();
+
+        return $this->enterpriseService->getAll($request);
     }
 
     public function store(EnterpriseManageRequest $request)

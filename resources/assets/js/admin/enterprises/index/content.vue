@@ -1,6 +1,6 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Xin chao cac ban"
+        <data-table title="Quản lý doanh nghiệp"
                     :columns="columns"
                     :data="data"
                     :targets="[]"
@@ -8,11 +8,15 @@
                     :resetCheck="resetCheck"
                     :menu="menu"
                     :primaryKey="primaryKey"
+                    :pages="totalPage"
+                    :lengths="lengths"
                     @selectAll="selectAll"
                     @unSelectAll="unSelectAll"
                     @deleteSelected="deleteSelected"
                     @action="action($event)"
                     @clickedKeyItem="clickedKeyItem"
+                    @changePerPage="changePerPage"
+                    @changePageSelect="changePageSelect"
         >
 
             <div id="modal_danger" class="modal fade">
@@ -69,7 +73,29 @@
                     </div>
                 </div>
             </div>
+            <div id="modal-push-excel" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Thêm doanh nghiệp bằng Excel</h5>
+                        </div>
 
+                        <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
+
+                            <div class="modal-body">
+                                <input type="file"class="form-control" @change="setExcelFile($event)">
+                                <div class="pace-demo" v-if="uploading == true">
+                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
+                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </data-table>
     </div>
 </template>
@@ -103,6 +129,13 @@
                         action: function(e, dt, node, config) {
                             window.open(this.config.WEB_ADMIN_ENTERPRISE)
                         }
+                    },
+                    {
+                        text: 'Thêm bằng Excel',
+                        className: 'btn bg-info',
+                        action: function(e, dt, node, config) {
+                            $('#modal-push-excel').modal('show')
+                        }
                     }
                 ],
                 deleting: false,
@@ -118,11 +151,19 @@
                     }
                 ],
                 primaryKey: 'id',
+                lengths: [50,100,200,500,1000,2000,5000],
                 itemSelected: [],
                 primaryKeyDelete: -1,
                 deletedSelectItem: false,
+                resetCheck:false,
+                uploading: false,
+                excelFile: null,
+                pages: [],
+                page:1,
+                totalPage:0,
+                perPage:500,
+
                 config: new config(),
-                resetCheck:false
             }
         },
         mounted(){
@@ -130,10 +171,12 @@
         },
         methods: {
 
-            getData(){
+            getData(perPage=500,page=1){
                 var vm = this
-                axios.get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE).then(data => {
-                    vm.data = data.data
+                axios.get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
+                    vm.data = data.data.data
+                    vm.perPage = data.data.per_page
+                    vm.totalPage = data.data.total
                     vm.columns = [
                         {
                             key: 'id',
@@ -233,10 +276,8 @@
                     vm.deleting = false
                     $('#modal_danger').modal('hide')
                 }
-            }
-            ,
-            clickedKeyItem(item)
-            {
+            },
+            clickedKeyItem(item) {
                 let vm =this
 
                 let index = vm.itemSelected.indexOf(item)
@@ -251,10 +292,7 @@
             deleteSelected(){
                 $('#modal-danger-delete-list').modal('show')
             },
-            deleteListItem()
-            {
-
-
+            deleteListItem() {
                 let vm = this
                 vm.deleting = true
                 axios.delete(vm.config.API_ADMIN_ENTERPRISES_DELETE_LIST,{
@@ -304,10 +342,58 @@
                 })
                 return result
             },
-            showItem(id)
-            {
+            showItem(id) {
                 let vm = this
                 window.open(vm.config.WEB_ADMIN_ENTERPRISES+'/'+id+'/edit','_blank')
+            },
+            setExcelFile(e){
+                var vm = this
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                vm.excelFile = files[0]
+            },
+            uploadExcelFile(){
+                var vm = this
+                vm.uploading = true
+                var formData = new FormData()
+                formData.append('CsvFile',vm.excelFile)
+                axios.post(vm.config.API_ADMIN_ENTERPRISES_IMPORT_CSV,formData).then(data => {
+                    vm.uploading = false
+                    $('#modal-push-excel').modal('hide')
+                    if(data.data.message == [])
+                    {
+                        new PNotify({
+                            title: 'Ohh Yeah! Thành công!',
+                            text: 'Thêm danh sách doanh nghiệp thành công. Sẽ load lại trang trong giây lát!',
+                            addclass: 'bg-success'
+                        });
+                    }
+                    else{
+                        new PNotify({
+                            title: 'Cảnh báo! Thêm thành công! Một số dữ liệu trong file bị lỗi',
+                            text: 'Vui lòng kiểm tra lại! Sẽ load lại trang trong giây lát!',
+                            addclass: 'bg-warning',
+                            hide: true
+                        });
+                    }
+                    vm.getData()
+                }).catch(err => {
+                    this.uploading = false
+                    console.dir(err)
+                    new PNotify({
+                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                        text: err.response.data.message,
+                        addclass: 'bg-danger'
+                    });
+
+                })
+            },
+            changePerPage(perPage){
+                this.getData(perPage)
+            },
+            changePageSelect(page){
+                this.getData(this.perPage,page)
             }
         }
     }

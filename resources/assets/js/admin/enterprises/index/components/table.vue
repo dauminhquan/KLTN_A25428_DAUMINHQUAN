@@ -2,6 +2,28 @@
     <div class="panel panel-flat">
         <div class="panel-heading">
             <h5 class="panel-title">{{title}}</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li>
+                        Số item mỗi trang:
+                    </li>
+                    <li>
+                        <select class="right form-control length-select" v-model="perPage" >
+                            <option v-for="length in lengths" :value="length">{{length}}</option>
+                            <option value="-1">Tất cả</option>
+                        </select>
+                    </li>
+                    <li>
+                        Chọn trang:
+                    </li>
+                    <li>
+                        <select class="right form-control length-select" v-model="pageSelect" >
+                            <option v-for="page in totalPage" :value="page">{{page}}</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+
         </div>
         <table id="data-table" class="table datatable-basic">
             <thead>
@@ -64,17 +86,30 @@
     import 'datatables.net-buttons'
     require( 'datatables.net-buttons/js/buttons.colVis.min');
     export default {
-
         components:{
           'checkbox-item':checkboxItem
         },
-        props: ['title','data','columns','showCheck','targets','buttonConfig','primaryKey','menu','resetCheck'],
+        props: [
+            'title',
+            'data',
+            'columns',
+            'showCheck',
+            'targets',
+            'buttonConfig',
+            'primaryKey',
+            'menu',
+            'resetCheck',
+            'pages',
+            'lengths'
+        ],
         data(){
             return {
                 table: null,
                 idSelected: [],
                 checked:'',
                 allChecked: false,
+                perPage: 500,
+                pageSelect:1,
             }
         },
         beforeUpdate(){
@@ -90,10 +125,19 @@
             var vm = this
 
             this.Init()
-        }
-        ,
+        },
+        watch:{
+            resetCheck(){
+                this.checked = ''
+            },
+            perPage(value){
+                this.$emit('changePerPage',value)
+            },
+            pageSelect(value){
+                this.$emit('changePageSelect',value)
+            }
+        },
         methods: {
-
             Init()
             {
                 let vm = this
@@ -186,5 +230,27 @@
                 this.$emit('action',[key,action])
             }
         },
+        computed:{
+            totalPage(){
+                if(typeof this.pages != "number")
+                {
+                    this.pages = 1
+                }
+                let c = parseInt(this.pages / this.perPage)
+
+                let p = this.pages%this.perPage
+                if(p > 0)
+                {
+                    c++
+                }
+
+                let pages = []
+                for(let i = 0;i < c;i++)
+                {
+                    pages.push(i+1);
+                }
+                return pages
+            }
+        }
     }
 </script>

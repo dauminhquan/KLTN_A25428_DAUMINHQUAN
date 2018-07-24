@@ -9,6 +9,7 @@
 namespace App\Services\Api\Productions\Admin;
 
 
+use App\Http\Requests\GetDataRequest;
 use App\Models\Enterprise;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
@@ -22,9 +23,17 @@ class EnterpriseService extends BaseService implements ManageInterface
         $this->model = new Enterprise();
     }
 
-    public function getAll()
+    public function getAll(GetDataRequest $request)
     {
-        return Enterprise::all();
+        if($request->has('size'))
+        {
+            if('size' == -1)
+            {
+                return Enterprise::all();
+            }
+            return Enterprise::paginate($request->size);
+        }
+        return Enterprise::paginate(500);
     }
 
     public function getOne($id)
