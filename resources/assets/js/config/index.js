@@ -20,7 +20,19 @@ class Config{
         this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = (ID) => this.API_ADMIN_ENTERPRISES+'/get-option-csv'
         /*ENTERPRISES*/
 
+        /*API*/
 
+        /*WEB*/
+
+        this.WEB = window.location.origin
+
+        this.WEB_ADMIN = this.WEB+'/admin'
+
+        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN+'/enterprises'
+
+        this.WEB_ADMIN_ENTERPRISE = this.WEB_ADMIN+'/enterprise'
+
+        /*WEB*/
 
 
     }
