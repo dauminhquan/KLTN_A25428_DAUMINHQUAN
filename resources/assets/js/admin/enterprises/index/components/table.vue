@@ -29,7 +29,11 @@
             <tbody>
             <tr v-for="item in data">
                 <td>
-                    <checkbox-item @setClicked="checkedItem(item[primaryKey])" :allChecked="allChecked"></checkbox-item>
+                    <checkbox-item
+                            @setClicked="checkedItem(item[primaryKey])"
+                            :allChecked="allChecked"
+                            :resetCheck="resetCheck"
+                    ></checkbox-item>
 
                 </td>
                 <td v-for="column in columns" :key="column.key" v-html="item[column.key]"></td>
@@ -60,7 +64,7 @@
         components:{
           'checkbox-item':checkboxItem
         },
-        props: ['title','data','columns','showCheck','targets','buttonConfig','primaryKey','menu'],
+        props: ['title','data','columns','showCheck','targets','buttonConfig','primaryKey','menu','resetCheck'],
         data(){
             return {
                 table: null,
@@ -167,6 +171,10 @@
 
             deleteSelected(){
                 this.$emit('deleteSelected')
+
+            },
+            deletedSelect(){
+                this.unSelectAll()
             },
             action(key,action)
             {

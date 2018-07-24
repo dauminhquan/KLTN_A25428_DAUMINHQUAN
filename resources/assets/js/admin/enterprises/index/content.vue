@@ -4,14 +4,15 @@
                     :columns="columns"
                     :data="data"
                     :targets="[]"
-                    :buttonConfig="[]"
+                    :buttonConfig="buttonConfig"
+                    :resetCheck="resetCheck"
+                    :menu="menu"
+                    :primaryKey="primaryKey"
                     @selectAll="selectAll"
                     @unSelectAll="unSelectAll"
                     @deleteSelected="deleteSelected"
                     @action="action($event)"
                     @clickedKeyItem="clickedKeyItem"
-                    :menu="menu"
-                    :primaryKey="primaryKey"
         >
 
             <div id="modal_danger" class="modal fade">
@@ -97,7 +98,7 @@
                         text: 'Thêm mới',
                         className: 'btn bg-primary',
                         action: function(e, dt, node, config) {
-                            console.log('Them moi')
+                            window.open(this.config.WEB_ADMIN_ENTERPRISE)
                         }
                     }
                 ],
@@ -116,8 +117,9 @@
                 primaryKey: 'id',
                 itemSelected: [],
                 primaryKeyDelete: -1,
+                deletedSelectItem: false,
                 config: new config(),
-
+                resetCheck:false
             }
         },
         mounted(){
@@ -260,27 +262,24 @@
                     $('#modal-danger-delete-list').modal('hide')
                     vm.deleting = false
                     let list_id = vm.itemSelected
-                    let list_index = []
-                    list_id.forEach((item) => {
-                        vm.data.forEach((dt,index) => {
-                            if(dt[vm.primaryKey] == item)
+                    let newData = []
+                        vm.data.forEach((dt) => {
+                            if(!vm.existsItem(dt[vm.primaryKey],list_id))
                             {
-                                list_index.push(index)
+                                newData.push(dt)
                             }
                         })
-                    })
-                    console.log(list_index)
-                    if(list_index.length > 0)
-                    {
-                        list_index.forEach(item => {
-                            vm.data.splice(item,1)
-                        })
-                    }
+
+                    vm.data = newData
+
                     new PNotify({
                         title: 'Ohh Yeah! Thành công!',
                         text: 'Đã xóa thành công danh sách doanh nghiệp',
                         addclass: 'bg-success'
                     });
+                    vm.itemSelected = []
+                    vm.resetCheck = !vm.resetCheck
+
                 }).catch(err => {
                     $('#modal-danger-delete-list').modal('hide')
                     vm.deleting = false
@@ -291,7 +290,18 @@
                         addclass: 'bg-danger'
                     });
                 })
+            },
+            existsItem(item,Arry){
+                let result = false
+                Arry.forEach((i) => {
+                    if(item == i)
+                    {
+                        result = true
+                    }
+                })
+                return result
             }
+
         }
     }
 </script>

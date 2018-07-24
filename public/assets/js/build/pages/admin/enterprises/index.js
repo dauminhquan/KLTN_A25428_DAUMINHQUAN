@@ -12353,7 +12353,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/admin/enterprises/index/content.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\content.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12362,9 +12362,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-cb01ecc6", Component.options)
+    hotAPI.createRecord("data-v-01f76c6e", Component.options)
   } else {
-    hotAPI.reload("data-v-cb01ecc6", Component.options)
+    hotAPI.reload("data-v-01f76c6e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12384,6 +12384,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_table_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(44);
+//
 //
 //
 //
@@ -12479,7 +12480,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 text: 'Thêm mới',
                 className: 'btn bg-primary',
                 action: function action(e, dt, node, config) {
-                    console.log('Them moi');
+                    window.open(this.config.WEB_ADMIN_ENTERPRISE);
                 }
             }],
             deleting: false,
@@ -12494,8 +12495,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             primaryKey: 'id',
             itemSelected: [],
             primaryKeyDelete: -1,
-            config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]()
-
+            deletedSelectItem: false,
+            config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */](),
+            resetCheck: false
         };
     },
     mounted: function mounted() {
@@ -12619,25 +12621,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 $('#modal-danger-delete-list').modal('hide');
                 vm.deleting = false;
                 var list_id = vm.itemSelected;
-                var list_index = [];
-                list_id.forEach(function (item) {
-                    vm.data.forEach(function (dt, index) {
-                        if (dt[vm.primaryKey] == item) {
-                            list_index.push(index);
-                        }
-                    });
+                var newData = [];
+                vm.data.forEach(function (dt) {
+                    if (!vm.existsItem(dt[vm.primaryKey], list_id)) {
+                        newData.push(dt);
+                    }
                 });
-                console.log(list_index);
-                if (list_index.length > 0) {
-                    list_index.forEach(function (item) {
-                        vm.data.splice(item, 1);
-                    });
-                }
+
+                vm.data = newData;
+
                 new PNotify({
                     title: 'Ohh Yeah! Thành công!',
                     text: 'Đã xóa thành công danh sách doanh nghiệp',
                     addclass: 'bg-success'
                 });
+                vm.itemSelected = [];
+                vm.resetCheck = !vm.resetCheck;
             }).catch(function (err) {
                 $('#modal-danger-delete-list').modal('hide');
                 vm.deleting = false;
@@ -12648,6 +12647,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     addclass: 'bg-danger'
                 });
             });
+        },
+        existsItem: function existsItem(item, Arry) {
+            var result = false;
+            Arry.forEach(function (i) {
+                if (item == i) {
+                    result = true;
+                }
+            });
+            return result;
         }
     }
 });
@@ -12678,7 +12686,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/admin/enterprises/index/components/table.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\components\\table.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12687,9 +12695,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-205f6221", Component.options)
+    hotAPI.createRecord("data-v-4b4a75e8", Component.options)
   } else {
-    hotAPI.reload("data-v-205f6221", Component.options)
+    hotAPI.reload("data-v-4b4a75e8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12762,6 +12770,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12769,7 +12781,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         'checkbox-item': __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default.a
     },
-    props: ['title', 'data', 'columns', 'showCheck', 'targets', 'buttonConfig', 'primaryKey', 'menu'],
+    props: ['title', 'data', 'columns', 'showCheck', 'targets', 'buttonConfig', 'primaryKey', 'menu', 'resetCheck'],
     data: function data() {
         return {
             table: null,
@@ -12865,6 +12877,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteSelected: function deleteSelected() {
             this.$emit('deleteSelected');
         },
+        deletedSelect: function deletedSelect() {
+            this.unSelectAll();
+        },
         action: function action(key, _action) {
 
             this.$emit('action', [key, _action]);
@@ -12898,7 +12913,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/admin/enterprises/index/components/checkboxItem.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\components\\checkboxItem.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12907,9 +12922,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b662141a", Component.options)
+    hotAPI.createRecord("data-v-3c3b3768", Component.options)
   } else {
-    hotAPI.reload("data-v-b662141a", Component.options)
+    hotAPI.reload("data-v-3c3b3768", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12935,12 +12950,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['allChecked'],
+    props: ['allChecked', 'resetCheck'],
+    computed: {
+        getResetCheck: function getResetCheck() {
+            return this.resetCheck;
+        }
+    },
+
     data: function data() {
         return {
             classChecked: ''
         };
     },
+
 
     methods: {
         clicked: function clicked() {
@@ -12959,6 +12981,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 this.classChecked = '';
             }
+        },
+        getResetCheck: function getResetCheck(value) {
+
+            this.classChecked = '';
         }
     }
 });
@@ -12987,7 +13013,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b662141a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3c3b3768", module.exports)
   }
 }
 
@@ -13103,7 +13129,10 @@ var render = function() {
                     "td",
                     [
                       _c("checkbox-item", {
-                        attrs: { allChecked: _vm.allChecked },
+                        attrs: {
+                          allChecked: _vm.allChecked,
+                          resetCheck: _vm.resetCheck
+                        },
                         on: {
                           setClicked: function($event) {
                             _vm.checkedItem(item[_vm.primaryKey])
@@ -13190,7 +13219,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-205f6221", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4b4a75e8", module.exports)
   }
 }
 
@@ -14285,37 +14314,51 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Config = function Config() {
-    var _this = this;
+        var _this = this;
 
-    _classCallCheck(this, Config);
+        _classCallCheck(this, Config);
 
-    /*API*/
+        /*API*/
 
-    this.API = window.location.origin + '/api';
+        this.API = window.location.origin + '/api';
 
-    /*ADMIN*/
+        /*ADMIN*/
 
-    this.API_ADMIN = this.API + '/admin';
+        this.API_ADMIN = this.API + '/admin';
 
-    /*ENTERPRISES*/
-    this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-    this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-    this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-    };
-    this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-    this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-    this.API_ADMIN_ENTERPRISES_LIST_STUDENT_ID = function (ID) {
-        return _this.API_ADMIN_ENTERPRISES + '/list-student' + '/' + ID;
-    };
-    this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-    this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-    };
-    this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-    };
-    /*ENTERPRISES*/
+        /*ENTERPRISES*/
+        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+                return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+        this.API_ADMIN_ENTERPRISES_LIST_STUDENT_ID = function (ID) {
+                return _this.API_ADMIN_ENTERPRISES + '/list-student' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+                return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+                return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+        };
+        /*ENTERPRISES*/
+
+        /*API*/
+
+        /*WEB*/
+
+        this.WEB = window.location.origin;
+
+        this.WEB_ADMIN = this.WEB + '/admin';
+
+        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+
+        this.WEB_ADMIN_ENTERPRISE = this.WEB_ADMIN + '/enterprise';
+
+        /*WEB*/
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
@@ -14340,7 +14383,8 @@ var render = function() {
             columns: _vm.columns,
             data: _vm.data,
             targets: [],
-            buttonConfig: [],
+            buttonConfig: _vm.buttonConfig,
+            resetCheck: _vm.resetCheck,
             menu: _vm.menu,
             primaryKey: _vm.primaryKey
           },
@@ -14531,7 +14575,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-cb01ecc6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-01f76c6e", module.exports)
   }
 }
 

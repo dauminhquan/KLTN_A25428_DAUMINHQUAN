@@ -8,12 +8,19 @@
 </template>
 <script>
     export default {
-        props: ['allChecked'],
+        props: ['allChecked','resetCheck'],
+        computed:{
+            getResetCheck(){
+                return this.resetCheck
+            }
+        },
+
         data(){
           return {
               classChecked: ''
           }
         },
+
         methods:{
             clicked(){
                 if(this.classChecked == '')
@@ -35,6 +42,10 @@
                 else{
                     this.classChecked = ''
                 }
+            },
+            getResetCheck(value){
+
+                this.classChecked = ''
             }
         }
     }
