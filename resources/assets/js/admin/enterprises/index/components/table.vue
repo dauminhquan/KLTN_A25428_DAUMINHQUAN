@@ -59,6 +59,10 @@
 </template>
 <script>
     import checkboxItem from './checkboxItem'
+    var $ = require('jquery')
+    import 'datatables'
+    import 'datatables.net-buttons'
+    require( 'datatables.net-buttons/js/buttons.colVis.min');
     export default {
 
         components:{

@@ -1,7 +1,5 @@
 import Vue from 'vue'
-
-// import testTable from './components/table'
-// Vue.component('test-table',testTable);
+require('./../../../core/app')
 import content from './content'
 Vue.component('table-content',content)
 const app = new Vue({

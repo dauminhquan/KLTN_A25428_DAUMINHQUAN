@@ -75,6 +75,9 @@
 </template>
 <script>
     import table from './components/table.vue'
+    var $ = require('jquery')
+    import 'select2'
+    import PNotify from 'pnotify/dist/es/PNotifyCompat'
     import axios from './../../../axios'
     import config from './../../../config'
     export default {
@@ -175,7 +178,7 @@
                     vm.primaryKeyDelete = event[0]
                     $('#modal_danger').modal('show')
                 }
-                if(event[1] == 'show')
+                if(event[1] == 'view')
                 {
                     vm.showItem(event[0])
                 }
@@ -300,8 +303,12 @@
                     }
                 })
                 return result
+            },
+            showItem(id)
+            {
+                let vm = this
+                window.open(vm.config.WEB_ADMIN_ENTERPRISES+'/'+id+'/edit','_blank')
             }
-
         }
     }
 </script>

@@ -30,7 +30,6 @@ class Config{
 
         this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN+'/enterprises'
 
-        this.WEB_ADMIN_ENTERPRISE = this.WEB_ADMIN+'/enterprise'
 
         /*WEB*/
 

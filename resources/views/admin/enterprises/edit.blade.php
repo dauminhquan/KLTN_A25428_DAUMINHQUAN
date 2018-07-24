@@ -6,7 +6,7 @@
 
             <ul class="breadcrumb breadcrumb-caret position-right">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="{{route('admin.enterprise.manage.index')}}">Quản lý doanh nghiệp</a></li>
+                <li><a href="#">Quản lý doanh nghiệp</a></li>
                 <li class="active">Thông tin doanh nghiệp </li>
             </ul>
         </div>

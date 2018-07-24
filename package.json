@@ -12,14 +12,20 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
+        "jquery": "^3.3.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
+        "popper.js": "^1.12",
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "cookies-js": "^1.2.3"
+        "bootstrap3": "^3.3.5",
+        "cookies-js": "^1.2.3",
+        "datatables": "^1.10.18",
+        "datatables.net-buttons": "^1.5.3",
+        "install-peers": "^1.0.2",
+        "pnotify": "^4.0.0-alpha.4",
+        "select2": "^4.0.6-rc.1"
     }
 }
