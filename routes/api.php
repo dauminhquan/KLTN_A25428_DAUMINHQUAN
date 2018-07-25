@@ -28,7 +28,7 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::get('/resource/{id}/user','EnterpriseManageController@getUser');
         Route::delete('delete-list','EnterpriseManageController@delete')->name('delete.list');
         Route::post('update-avatar/{id}','EnterpriseManageController@updateAvatar')->name('update.avatar');
-        Route::get('list-student/{id}','EnterpriseManageController@listStudent')->name('list.student');
+        Route::get('list-work/{id}','EnterpriseManageController@listWork')->name('list.work');
         Route::post('/import-csv','EnterpriseManageController@importCsv')->name('import.csv');
         Route::get('list-job/{id}','EnterpriseManageController@listJob')->name('list.job');
         Route::post('/get-options-csv','EnterpriseManageController@getOptionsCsv')->name('get.option.csv');

@@ -2,7 +2,7 @@
 @section('header-content')
     <div class="page-header-content">
         <div class="page-title">
-            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý sinh viên</span></h4>
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý doanh nghiệp</span></h4>
 
             <ul class="breadcrumb breadcrumb-caret position-right">
                 <li><a href="index.html">Home</a></li>
@@ -14,9 +14,10 @@
     </div>
 @endsection
 @section('page-content')
+    <div class="page-content" id="page-content">
+        <table-content></table-content>
+    </div>
 
-    {{--<test-table></test-table>--}}
-    <table-content></table-content>
 @endsection
 
 @section("js-page")

@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateAvatarRequest;
 use App\Models\Enterprise;
 use App\Services\Api\Productions\Admin\EnterpriseService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class EnterpriseManageController extends Controller
@@ -38,7 +39,7 @@ class EnterpriseManageController extends Controller
         return $this->enterpriseService->getOne($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(EnterpriseManageRequest $request, $id)
     {
         return $this->enterpriseService->update($request->all(),$id);
     }
@@ -58,9 +59,9 @@ class EnterpriseManageController extends Controller
         return $this->enterpriseService->updateAvatar($id,$request->file('avatar'));
     }
 
-    public function listStudent($id)
+    public function listWork(GetDataRequest $request,$id)
     {
-        return $this->enterpriseService->getListStudent($id);
+        return $this->enterpriseService->getListWork($request->all(),$id);
     }
 
     public function listJob($id){

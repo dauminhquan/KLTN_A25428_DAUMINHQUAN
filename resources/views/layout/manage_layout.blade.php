@@ -5,14 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UEC ThangLong University | Thang Long University</title>
-
-
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{asset("css/common.css")}}" rel="stylesheet" type="text/css">
-
-
-
-
 </head>
 
 <body>
@@ -504,18 +498,13 @@
 
 
 <!-- Page container -->
-<div class="page-container">
+<div class="page-container" id="page-container">
 
     <!-- Page content -->
-    <div class="page-content" id="page-content">
-
         <!-- Main content -->
     @section("page-content")
-
     @show
     <!-- /main content -->
-
-    </div>
     <!-- /page content -->
 
 </div>
@@ -531,7 +520,7 @@
 
 @section('theme-asset')
 @show
-<script type="text/javascript" src="{{asset('assets/js/core/index.js')}}"></script>
+
 @section('js-page')
 @show
 </body>

@@ -1,20 +1,16 @@
 <template>
     <div class="sidebar sidebar-main sidebar-default sidebar-separate">
         <div class="sidebar-content">
-
-            <!-- User details -->
             <div class="content-group">
                 <div class="panel-body bg-indigo-400 border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain;">
                     <div class="content-group-sm">
                         <h6 class="text-semibold no-margin-bottom">
-                            {{user_name}}
+                            {{nameItem}}
                         </h6>
-
                     </div>
-
                     <a href="javascript:void(0)"  @click="ShowFormFileAvatar" class="display-inline-block content-group-sm">
 
-                        <img :src="GetAvatarWithUrlOrigin(avatar_user)" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+                        <img :src="urlAvatar" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
                     </a>
 
                     <ul class="list-inline list-inline-condensed no-margin-bottom">
@@ -25,12 +21,9 @@
                 <div class="panel no-border-top no-border-radius-top">
                     <ul class="navigation">
                         <li class="navigation-header">Navigation</li>
-                        <li class="active"><a href="#profile" data-toggle="tab"><i class=" icon-info3"></i> Thông tin doanh nghiệp</a></li>
-
-
-                        <li><a href="#employee" data-toggle="tab"><i class=" icon-office"></i> Danh sách nhân viên</a></li>
-                        <li><a href="#list_post" data-toggle="tab"><i class=" icon-list"></i> Danh sách bài đăng tuyển dụng</a></li>
-                        <li><a href="#post_course" data-toggle="tab"><i class=" icon-book2"></i> Danh sách khóa học</a></li>
+                        <li class="active" ><a :href="null" data-toggle="tab" @click="updateActive('profile')"><i class=" icon-info3"></i> Thông tin doanh nghiệp</a></li>
+                        <li><a :href="null" data-toggle="tab" @click="updateActive('students')"><i class=" icon-office"></i> Danh sách nhân viên</a></li>
+                        <li><a :href="null" data-toggle="tab" @click="updateActive('jobs')"><i class=" icon-list"></i> Danh sách bài đăng tuyển dụng</a></li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +40,7 @@
                 <div class="category-content">
                     <ul class="media-list">
                         <li class="media">
-                            <a href="#" class="media-left"><img :src="avatar_user" class="img-sm img-circle" alt=""></a>
+                            <a href="#" class="media-left"><img :src="urlAvatar" class="img-sm img-circle" alt=""></a>
                             <div class="media-body">
                                 <a href="#" class="media-heading text-semibold">James Alexander</a>
                                 <span class="text-size-mini text-muted display-block">Santa Ana, CA.</span>
@@ -103,60 +96,52 @@
                     </ul>
                 </div>
             </div>
-            <!-- /online-users -->
         </div>
     </div>
 </template>
 <script>
     import axios from './../../../../axios'
-    import configUrl from './../../../../config'
+    import config from './../../../../config'
     export default {
-        props : ['email_address_enterprise'],
-        mounted(){
-            this.getAvatarUser()
+        props : ['keyItem','avatar','nameItem'],
+        computed: {
+          urlAvatar(){
+              return window.location.origin+'/'+this.avatar.replace('public','storage')+'?'+new Date()
+          }
         },
         data(){
             return {
-                file_avatar: new FormData(),
-                avatar_user : '',
-                user_name: '',
-                configUrl: new configUrl()
+                formData: new FormData(),
+                config: new config()
             }
+        },
+        mounted(){
+          this.updateActive('profile')
         },
         methods:{
 
-            getAvatarUser(){
-                var vm = this
-                axios.get(vm.configUrl.API_REQUEST_INFO_GET_OPTION_ENTERPRISE+ '?email_address_enterprise='+vm.email_address_enterprise+'&option[]=avatar_enterprise&option[]=name_enterprise').then(data => {
-
-                    vm.avatar_user = data.data.avatar_enterprise
-                    vm.user_name = data.data.name_enterprise
-
-                }).catch(err => {
-
-                })
-            },
             ShowFormFileAvatar(){
                 this.$refs.inputFileAvatar.click()
-            },
-            GetAvatarWithUrlOrigin(avatar){
-                return window.location.origin+avatar;
             },
             uploadAvatarFile(e)
             {
                 var vm = this
-                vm.file_avatar.append('avatar',e.target.files[0])
-                vm.file_avatar.append('email_address_enterprise',vm.email_address_enterprise)
-                axios.post(vm.configUrl.API_ADMIN_ENTERPRISE_MANAGE_UPDATE_AVATAR_ENTERPRISE,vm.file_avatar).then(data => {
-                        vm.avatar_user = data.data.url+'?'+new Date()
+                vm.formData.append('avatar',e.target.files[0])
+                axios.post(vm.config.API_ADMIN_ENTERPRISES_UPDATE_AVATAR+'/'+vm.keyItem,vm.formData).then(data => {
+                        vm.avatar = data.data.url+'?'+new Date()
                 }).catch(err => {
-                    console.log(err)
-                    new PNotify({
-                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                        text: 'Đã có lỗi xảy ra từ server!',
-                        addclass: 'bg-danger'
-                    });
+                    if(err.response.status == 422)
+                    {
+                        let message = vm.config.getError(err.response.data)
+                        vm.config.notifyError(message)
+                    }
+                    else{
+                        vm.config.notifyError()
+                    }
                 })
+            },
+            updateActive(active){
+                this.$emit('updateActive',active)
             }
         }
     }

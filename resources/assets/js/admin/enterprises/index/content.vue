@@ -18,7 +18,6 @@
                     @changePerPage="changePerPage"
                     @changePageSelect="changePageSelect"
         >
-
             <div id="modal_danger" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -101,11 +100,12 @@
 </template>
 <script>
     import table from './components/table.vue'
-    var $ = require('jquery')
+    import $ from 'jquery'
     import 'select2'
-    import PNotify from 'pnotify/dist/es/PNotifyCompat'
     import axios from './../../../axios'
+
     import config from './../../../config'
+    window._config = new config()
     export default {
         components: {
             'data-table' : table
@@ -127,7 +127,8 @@
                         text: 'Thêm mới',
                         className: 'btn bg-primary',
                         action: function(e, dt, node, config) {
-                            window.open(this.config.WEB_ADMIN_ENTERPRISE)
+
+                            window.open(window._config.WEB_ADMIN_ENTERPRISES+'/create')
                         }
                     },
                     {
@@ -197,11 +198,8 @@
 
                     ]
                 }).catch(err => {
-                    new PNotify({
-                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                        text: 'Đã có lỗi từ serve',
-                        addclass: 'bg-danger'
-                    });
+                    console.log(err)
+                    vm.config.notifyError()
                 })
             },
             selectAll(){
@@ -244,30 +242,18 @@
                         if(indexOf != -1)
                         {
                             vm.data.splice(indexOf,1)
-                            new PNotify({
-                                title: 'Ohh Yeah! Thành công!',
-                                text: 'Đã xóa thành công doanh nghiệp',
-                                addclass: 'bg-success'
-                            });
+                            vm.config.notifySuccess()
                         }
                         else
                         {
-                            new PNotify({
-                                title: 'Ohh! Có lỗi xảy ra rồi!',
-                                text: 'Hình như có gì đó không đúng. Hãy load lại trang nhé',
-                                addclass: 'bg-warning'
-                            });
+                            vm.config.notifyWarning()
                         }
                         vm.deleting = false
                         $('#modal_danger').modal('hide')
                         $('div.checker>span').removeClass('checked')
                     }).catch(err => {
                         console.log(err)
-                        new PNotify({
-                            title: 'Ohh! Có lỗi xảy ra rồi!',
-                            text: 'Đã có lỗi từ serve',
-                            addclass: 'bg-danger'
-                        });
+                        vm.config.notifyError()
                         vm.deleting = false
                         $('#modal_danger').modal('hide')
                     })
@@ -313,11 +299,7 @@
 
                     vm.data = newData
 
-                    new PNotify({
-                        title: 'Ohh Yeah! Thành công!',
-                        text: 'Đã xóa thành công danh sách doanh nghiệp',
-                        addclass: 'bg-success'
-                    });
+                    vm.config.notifySuccess()
                     vm.itemSelected = []
                     vm.resetCheck = !vm.resetCheck
 
@@ -325,11 +307,7 @@
                     $('#modal-danger-delete-list').modal('hide')
                     vm.deleting = false
                     console.log(err)
-                    new PNotify({
-                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                        text: 'Đã có lỗi từ serve',
-                        addclass: 'bg-danger'
-                    });
+                    vm.config.notifyError()
                 })
             },
             existsItem(item,Arry){
@@ -363,29 +341,16 @@
                     $('#modal-push-excel').modal('hide')
                     if(data.data.message == [])
                     {
-                        new PNotify({
-                            title: 'Ohh Yeah! Thành công!',
-                            text: 'Thêm danh sách doanh nghiệp thành công. Sẽ load lại trang trong giây lát!',
-                            addclass: 'bg-success'
-                        });
+                       vm.config.notifySuccess()
                     }
                     else{
-                        new PNotify({
-                            title: 'Cảnh báo! Thêm thành công! Một số dữ liệu trong file bị lỗi',
-                            text: 'Vui lòng kiểm tra lại! Sẽ load lại trang trong giây lát!',
-                            addclass: 'bg-warning',
-                            hide: true
-                        });
+                        vm.config.notifyWarning()
                     }
                     vm.getData()
                 }).catch(err => {
                     this.uploading = false
                     console.dir(err)
-                    new PNotify({
-                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                        text: err.response.data.message,
-                        addclass: 'bg-danger'
-                    });
+                    vm.config.notifyError()
 
                 })
             },

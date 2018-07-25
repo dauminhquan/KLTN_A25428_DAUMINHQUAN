@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Enterprise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,7 +21,8 @@ class EnterpriseManageController extends Controller
 
     public function edit($id)
     {
-        return view('admin.enterprises.edit',['id' => $id]);
+        $enterprise = Enterprise::findOrFail($id);
+        return view('admin.enterprises.edit',['id' => $enterprise->getKey()]);
     }
 
 

@@ -49,7 +49,7 @@ class CreateStudentsTable extends Migration
 
             $table->date('date_graduated')->nullable();
 
-            $table->string('student_avatar',400)->nullable();
+            $table->string('avatar',400)->nullable();
 
             // khóa học
             $table->string('course_code');

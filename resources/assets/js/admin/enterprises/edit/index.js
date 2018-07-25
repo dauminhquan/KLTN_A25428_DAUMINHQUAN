@@ -1,11 +1,9 @@
 window.Vue = require('vue');
-import mainSidebar from './components/main-sidebar.vue'
-import mainContent from './components/main-content'
+import './../../../core/app'
+import content from './components/content'
 const app = new Vue({
-
     components: {
-        'main-sidebar' : mainSidebar,
-        'main-content': mainContent
+        'web-content' : content
     },
-    el: '#page-content',
+    el: '#page-container',
 })

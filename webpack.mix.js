@@ -24,10 +24,8 @@ mix.sass('resources/assets/sass/app.scss','public/css/common.css')
 
 // enterprise
 mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js/build/pages/admin/enterprises/index.js');
-
-// mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
-//
-// mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
+mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
+mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
 
 // //job
 // mix.js('resources/assets/js/admin/jobs/positionsmanage/positionsmanage.js', 'public/assets/js/build/pages/admin/post/position.js');
@@ -90,3 +88,7 @@ mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js
 //
 // mix.js('resources/assets/js/components/datatable', 'public/assets/js/test/datatable');
 
+
+
+mix.copyDirectory('resources/assets/images', 'public/assets/images');
+mix.copyDirectory('resources/plugin', 'public/assets/js/plugins');

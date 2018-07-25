@@ -20,5 +20,8 @@ class Enterprise extends Model
     public function students(){
         return $this->belongsToMany(Student::class,(new Work())->getTable(),'enterprise_id','student_code','id','code');
     }
+    public function works(){
+        return $this->hasMany(Work::class,'enterprise_id','id');
+    }
 
 }

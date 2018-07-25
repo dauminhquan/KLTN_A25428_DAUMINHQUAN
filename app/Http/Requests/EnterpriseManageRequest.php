@@ -27,8 +27,6 @@ class EnterpriseManageRequest extends FormRequest
         {
             case ('POST'):
                 return [
-
-
                     'name' =>'required',
                     'address' => 'required',
                     'name_president' =>'required',
@@ -40,9 +38,9 @@ class EnterpriseManageRequest extends FormRequest
                 break;
             case('PATCH'):
             case('PUT'):
-                return [
+            return [
 
-                ];
+            ];
             case('DELETE'):
                 break;
             default:

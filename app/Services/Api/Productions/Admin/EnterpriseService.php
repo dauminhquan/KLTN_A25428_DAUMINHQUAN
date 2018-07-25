@@ -68,7 +68,6 @@ class EnterpriseService extends BaseService implements ManageInterface
                     {
                         $enterprise->$column = $inputs[$column];
                     }
-
                 }
                 $enterprise->update();
                 return $enterprise;
@@ -158,10 +157,29 @@ class EnterpriseService extends BaseService implements ManageInterface
             'url' => $url
         ];
     }
-    public function getListStudent($id)
+    public function getListWork($inputs,$id)
     {
         $enterprise = Enterprise::findOrFail($id);
-        return $enterprise->students;
+
+        if(isset($inputs['size']))
+        {
+            if('size' == -1)
+            {
+                $works = $enterprise->works;
+            }
+            else{
+                $works = $enterprise->works()->paginate($inputs['size']);
+            }
+        }
+        $data = $works->data;
+        foreach ($data as $work)
+        {
+            $work->student = $work->student()->select(['code','full_name','avatar'])->first();
+            $work->salary = $work->salary;
+            $work->rank = $work->rank;
+        }
+        $works->data = $data;
+        return $works;
     }
     public function getListJob($id){
         $enterprise = Enterprise::findOrFail($id);

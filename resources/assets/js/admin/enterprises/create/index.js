@@ -1,7 +1,7 @@
 window.Vue = require('vue');
-import content_wrapper from './components/contentWrapper.vue'
-
-Vue.component('content-wrapper',content_wrapper)
+import './../../../core/app'
+import content from './components/content.vue'
+Vue.component('web-content',content)
 const app = new Vue({
     el: '#page-content',
 })
