@@ -19,7 +19,7 @@ class WorkService extends BaseService implements ManageInterface
     {
         $this->model = new Work();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
         $works = Work::all();
         foreach ($works as $work)

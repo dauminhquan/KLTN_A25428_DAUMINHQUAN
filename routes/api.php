@@ -37,6 +37,7 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::resource('/resource','JobManageController')->except(['create','edit','store']);
         Route::delete('delete-list','JobManageController@delete')->name('delete.list');
         Route::post('/get-options-csv','JobManageController@getOptionsCsv')->name('get.option.csv');
+        Route::post('/update-file-attach/{id}','JobManageController@updateFileAttach')->name('update.file.attach');
     });
     Route::group(['prefix' => '/manage-positions'],function (){
         Route::resource('/resource','PositionManageController')->except(['create','edit']);

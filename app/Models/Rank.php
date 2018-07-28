@@ -10,4 +10,5 @@ class Rank extends Model
 {
     protected $table = 'ranks';
     protected $fillable = ['name'];
+
 }

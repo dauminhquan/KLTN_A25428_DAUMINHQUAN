@@ -25,7 +25,6 @@ class Student extends Model
     public function works(){
         return $this->hasMany(Work::class);
     }
-
     public function enterprises(){
         return $this->hasManyThrough(Enterprise::class,Work::class);
     }

@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Job;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class JobService extends BaseService implements ManageInterface
@@ -19,17 +20,45 @@ class JobService extends BaseService implements ManageInterface
     {
         $this->model = new Job();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $jobs = Job::all();
+
+        if(isset($inputs['size']))
+        {
+            if('size' == -1)
+            {
+                $jobs = Job::get();
+                foreach ($jobs as $job)
+                {
+                    // tra ve ten doanh nghiep + avatar
+                    $job->enterprise = $job->enterprise()->select('name','avatar')->first();
+                    $job->skills = $job->skills;
+                    $job->salary = $job->salary;
+                    $job->positions = $job->positions;
+                    $job->types = $job->types;
+                }
+                return $jobs;
+            }
+            $jobs = Job::paginate($inputs['size']);
+            foreach ($jobs as $job)
+            {
+                // tra ve ten doanh nghiep + avatar
+                $job->enterprise = $job->enterprise()->select('name','avatar')->first();
+                $job->skills = $job->skills;
+                $job->salary = $job->salary;
+                $job->positions = $job->positions;
+                $job->types = $job->types;
+            }
+        }
+        $jobs = Job::paginate(500);
         foreach ($jobs as $job)
         {
             // tra ve ten doanh nghiep + avatar
             $job->enterprise = $job->enterprise()->select('name','avatar')->first();
-            $job->skills = $job->skills()->all();
-            $job->salary = $job->salary()->first();
-            $job->positions = $job->positions()->all();
-            $job->types = $job->types()->all();
+            $job->skills = $job->skills;
+            $job->salary = $job->salary;
+            $job->positions = $job->positions;
+            $job->types = $job->types;
         }
         return $jobs;
     }
@@ -37,11 +66,10 @@ class JobService extends BaseService implements ManageInterface
     public function getOne($id)
     {
         $job = Job::findOrFail($id);
-        $job->enterprise = $job->enterprise()->select('name','avatar')->first();
-        $job->skills = $job->skills()->all();
-        $job->salary = $job->salary()->first();
-        $job->positions = $job->positions()->all();
-        $job->types = $job->types()->all();
+        $job->skills = $job->skills;
+        $job->salary = $job->salary;
+        $job->positions = $job->positions;
+        $job->types = $job->types;
         return $job;
     }
 
@@ -69,29 +97,28 @@ class JobService extends BaseService implements ManageInterface
         try{
             $columns = Schema::getColumnListing((new Job())->getTableName());
             $job = Job::findOrFail($id);
+            if(isset($inputs['skills']))
+            {
+
+                $job->skills()->sync($inputs['skills']);
+
+            }
+            if(isset($inputs['types']))
+            {
+                $job->types()->sync($inputs['types']);
+
+            }
+            if(isset($inputs['positions']))
+            {
+                $job->positions()->sync($inputs['positions']);
+            }
             foreach ($columns as $column)
             {
-                if($column == 'skills')
-                {
-                    $job->skills()->sync($inputs[$column]);
-                    continue;
-                }
-                if($column == 'types')
-                {
-                    $job->types()->sync($inputs[$column]);
-                    continue;
-                }
-                if($column == 'positions')
-                {
-                    $job->positions()->sync($inputs[$column]);
-                    continue;
-                }
-                else if(isset($inputs[$column]))
+
+                if(isset($inputs[$column]) && $column != 'file_attach')
                 {
                     $job->$column = $inputs[$column];
                 }
-
-
             }
             $job->update();
             return $job;
@@ -99,6 +126,24 @@ class JobService extends BaseService implements ManageInterface
         {
             return ['err' => $exception->getMessage()];
         }
+    }
+
+    public function updateFileAttach($file,$id)
+    {
+        try{
+            $job = Job::findOrFail($id);
+            if(Storage::exists($job->attachment))
+            {
+                Storage::delete($job->attachment);
+            }
+            $job->attachment = $file->storeAs('/public/files','file-attach-'.$id.'.'.$file->getClientOriginalName());
+            $job->update();
+            return $job;
+        }catch (\Exception $exception)
+        {
+            return $exception->getMessage();
+        }
+
     }
 
     public function destroy($id)

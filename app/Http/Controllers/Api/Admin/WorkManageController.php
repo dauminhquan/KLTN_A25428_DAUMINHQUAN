@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\WorkManageRequest;
 use App\Services\Api\Productions\Admin\WorkService;
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class WorkManageController extends Controller
         $this->workService = new WorkService();
     }
 
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->workService->getAll();
+        return $this->workService->getAll($request->all());
     }
 
     public function store(WorkManageRequest $request)

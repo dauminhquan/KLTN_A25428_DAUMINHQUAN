@@ -106,11 +106,20 @@
         props : ['keyItem','avatar','nameItem'],
         computed: {
           urlAvatar(){
+              if((this.avatar == null || this.avatar == undefined) && (this.newAvatar ==null || this.newAvatar == undefined))
+              {
+                  return null
+              }
+              if(this.newAvatar != '' )
+              {
+                   return window.location.origin+'/'+this.newAvatar.replace('public','storage')+'?'+new Date()
+              }
               return window.location.origin+'/'+this.avatar.replace('public','storage')+'?'+new Date()
           }
         },
         data(){
             return {
+                newAvatar: '',
                 formData: new FormData(),
                 config: new config()
             }
@@ -122,13 +131,15 @@
 
             ShowFormFileAvatar(){
                 this.$refs.inputFileAvatar.click()
+                this.newAvatar = this.avatar
             },
             uploadAvatarFile(e)
             {
                 var vm = this
                 vm.formData.append('avatar',e.target.files[0])
                 axios.post(vm.config.API_ADMIN_ENTERPRISES_UPDATE_AVATAR+'/'+vm.keyItem,vm.formData).then(data => {
-                        vm.avatar = data.data.url+'?'+new Date()
+                    vm.config.notifySuccess('Update Avatar thành công')
+                    vm.newAvatar = data.data.url+'?'+new Date()
                 }).catch(err => {
                     if(err.response.status == 422)
                     {

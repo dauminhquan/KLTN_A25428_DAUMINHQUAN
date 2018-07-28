@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\FileAttach;
+use App\Http\Requests\GetDataRequest;
 use App\Services\Api\Productions\Admin\JobService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,9 +17,9 @@ class JobManageController extends Controller
     {
         $this->jobService = new JobService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->jobService->getAll();
+        return $this->jobService->getAll($request->all());
     }
 
     public function show($id)
@@ -48,6 +50,10 @@ class JobManageController extends Controller
             });
         })->export('csv'));
 
+    }
+    public function updateFileAttach(FileAttach $request,$id)
+    {
+        return $this->jobService->updateFileAttach($request->file('file_attach'),$id);
     }
 
 }

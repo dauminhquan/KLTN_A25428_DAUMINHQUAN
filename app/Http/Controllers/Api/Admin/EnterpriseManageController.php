@@ -25,7 +25,7 @@ class EnterpriseManageController extends Controller
     public function index(GetDataRequest $request)
     {
 
-        return $this->enterpriseService->getAll($request);
+        return $this->enterpriseService->getAll($request->all());
     }
 
     public function store(EnterpriseManageRequest $request)
@@ -59,13 +59,13 @@ class EnterpriseManageController extends Controller
         return $this->enterpriseService->updateAvatar($id,$request->file('avatar'));
     }
 
-    public function listWork(GetDataRequest $request,$id)
+    public function listWork($id)
     {
-        return $this->enterpriseService->getListWork($request->all(),$id);
+        return $this->enterpriseService->getListWork($id);
     }
 
-    public function listJob($id){
-        return $this->enterpriseService->getListJob($id);
+    public function listJob(GetDataRequest $request,$id){
+        return $this->enterpriseService->getListJob($request->all(),$id);
     }
 
     public function importCsv(CsvRequest $request){

@@ -20,10 +20,18 @@ class PositionService extends BaseService implements ManageInterface
     {
         $this->model = new Position();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $positions = Position::all();
-        return $positions;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Position::paginate(100000);
+            }
+            return Position::paginate($inputs['size']);
+        }
+        return Position::paginate(500);
+
     }
 
     public function getOne($id)
@@ -68,6 +76,7 @@ class PositionService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $position = Position::findOrFail($id);
+        $position->jobs()->detach();
         $position->delete();
         return $position;
 
@@ -82,11 +91,12 @@ class PositionService extends BaseService implements ManageInterface
             $position = Position::find($item);
             if($position)
             {
+                $position->jobs()->detach();
                 $position->delete();
                 unset($success[$key]);
             }
         }
-        return $array;
+        return $success;
     }
 
     public function csvStore($path){

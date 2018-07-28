@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\ProvinceManageRequest;
 use App\Services\Api\Productions\Admin\ProvinceService;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class ProvinceManageController extends Controller
     {
         $this->provinceService = new ProvinceService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->provinceService->getAll();
+        return $this->provinceService->getAll($request->all());
     }
 
     public function store(ProvinceManageRequest $request)

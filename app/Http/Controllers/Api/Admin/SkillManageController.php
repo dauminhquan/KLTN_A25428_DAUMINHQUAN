@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\SkillManageRequest;
 use App\Services\Api\Productions\Admin\SkillService;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class SkillManageController extends Controller
     {
         $this->skillService = new SkillService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->skillService->getAll();
+        return $this->skillService->getAll($request->all());
     }
 
     public function store(SkillManageRequest $request)

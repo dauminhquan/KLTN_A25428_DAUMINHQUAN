@@ -22,9 +22,17 @@ class StudentService extends BaseService implements ManageInterface
         $this->model = new Student();
     }
 
-    public function getAll()
+    public function getAll($inputs)
     {
-        return Student::all();
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Student::paginate(100000);
+            }
+            return Student::paginate($inputs['size']);
+        }
+        return Student::paginate(500);
     }
 
     public function getOne($id)
@@ -76,7 +84,8 @@ class StudentService extends BaseService implements ManageInterface
         {
             Storage::delete($student->avatar);
         }
-        $student->works()->detach();
+        $student->works()->delete();
+        $student->user()->delete();
         $student->delete();
         return $student;
     }
@@ -93,11 +102,13 @@ class StudentService extends BaseService implements ManageInterface
                 {
                     Storage::delete($student->avatar);
                 }
+                $student->works()->delete();
+                $student->user()->delete();
                 $student->delete();
                 unset($success[$item]);
             }
         }
-        return $array;
+        return $success;
     }
 
     public function csvStore($path){

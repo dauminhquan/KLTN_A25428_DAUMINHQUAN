@@ -108,6 +108,7 @@
           'data-table' : table
         },
         mounted(){
+            this.getData()
         },
         props: ['keyItem'],
         data(){

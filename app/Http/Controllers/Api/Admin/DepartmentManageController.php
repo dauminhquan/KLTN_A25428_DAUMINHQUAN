@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\DepartmentManageRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Services\Api\Productions\Admin\DepartmentService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,9 @@ class DepartmentManageController extends Controller
     {
         $this->departmentService = new DepartmentService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->departmentService->getAll();
+        return $this->departmentService->getAll($request->all());
     }
 
     public function store(DepartmentManageRequest $request)

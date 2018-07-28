@@ -20,10 +20,18 @@ class SkillService extends BaseService implements ManageInterface
     {
         $this->model = new Skill();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $skills = Skill::all();
-        return $skills;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Skill::paginate(100000);
+            }
+            return Skill::paginate($inputs['size']);
+        }
+        return Skill::paginate(500);
+
     }
 
     public function getOne($id)
@@ -68,6 +76,7 @@ class SkillService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $skill = Skill::findOrFail($id);
+        $skill->jobs()->detach();
         $skill->delete();
         return $skill;
 
@@ -81,6 +90,7 @@ class SkillService extends BaseService implements ManageInterface
             $skill = Skill::find($item);
             if($skill)
             {
+                $skill->jobs()->detach();
                 $skill->delete();
                 unset($success[$key]);
             }

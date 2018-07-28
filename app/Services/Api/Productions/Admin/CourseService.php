@@ -20,10 +20,18 @@ class CourseService extends BaseService implements ManageInterface
     {
         $this->model = new Course();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $courses = Course::all();
-        return $courses;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Course::paginate(100000);
+            }
+            return Course::paginate($inputs['size']);
+        }
+        return Course::paginate(500);
+
     }
 
     public function getOne($id)

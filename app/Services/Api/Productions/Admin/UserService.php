@@ -20,7 +20,7 @@ class UserService extends BaseService implements ManageInterface
     {
         $this->model = new User();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
         $users = User::all();
         foreach ($users as $user)

@@ -20,10 +20,18 @@ class RankService extends BaseService implements ManageInterface
     {
         $this->model = new Rank();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $ranks = Rank::all();
-        return $ranks;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Rank::paginate(100000);
+            }
+            return Rank::paginate($inputs['size']);
+        }
+        return Rank::paginate(500);
+
     }
 
     public function getOne($id)

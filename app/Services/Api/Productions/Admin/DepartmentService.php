@@ -20,10 +20,18 @@ class DepartmentService extends BaseService implements ManageInterface
     {
         $this->model = new Department();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $departments = Department::all();
-        return $departments;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Department::paginate(100000);
+            }
+            return Department::paginate($inputs['size']);
+        }
+        return Department::paginate(500);
+
     }
 
     public function getOne($id)

@@ -517,7 +517,7 @@
 </div>
 <!-- /footer -->
 <!-- Core JS files -->
-
+<script type="text/javascript" src="{{asset("assets/js/common.js")}}"></script>
 @section('theme-asset')
 @show
 

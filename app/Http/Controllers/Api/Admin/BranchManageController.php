@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\BranchManageRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Services\Api\Productions\Admin\BranchService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,9 @@ class BranchManageController extends Controller
     {
         $this->branchService = new BranchService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->branchService->getAll();
+        return $this->branchService->getAll($request->all());
     }
 
     public function store(BranchManageRequest $request)

@@ -15,14 +15,4 @@ class PositionManageController extends Controller
     {
         return view('admin.positions.index');
     }
-
-    public function create()
-    {
-        return view('admin.positions.create');
-    }
-
-    public function edit($id)
-    {
-        return view('admin.positions.edit',['id' => $id]);
-    }
 }

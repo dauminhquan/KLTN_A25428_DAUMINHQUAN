@@ -21,10 +21,18 @@ class BranchService extends BaseService implements ManageInterface
         $this->model = new Branch();
     }
 
-    public function getAll()
+    public function getAll($inputs)
     {
-        $branches = Branch::all();
-        return $branches;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Branch::paginate(100000);
+            }
+            return Branch::paginate($inputs['size']);
+        }
+        return Branch::paginate(500);
+
     }
 
     public function getOne($id)

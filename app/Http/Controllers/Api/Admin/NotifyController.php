@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\NotificationManageRequest;
 use App\Models\Notification;
 use App\Services\Api\Productions\Admin\NotificationService;
@@ -19,9 +20,9 @@ class NotifyController extends Controller
         $this->notificationService = new NotificationService();
     }
 
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->notificationService->getAll();
+        return $this->notificationService->getAll($request->all());
     }
 
     public function store(NotificationManageRequest $request)

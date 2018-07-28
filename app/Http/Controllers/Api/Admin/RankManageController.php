@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\RankManageRequest;
 use App\Services\Api\Productions\Admin\RankService;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class RankManageController extends Controller
     {
         $this->rankService = new RankService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->rankService->getAll();
+        return $this->rankService->getAll($request->all());
     }
 
     public function store(RankManageRequest $request)

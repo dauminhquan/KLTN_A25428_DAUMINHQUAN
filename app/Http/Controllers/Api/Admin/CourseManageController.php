@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\CourseManageRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Services\Api\Productions\Admin\CourseService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,9 @@ class CourseManageController extends Controller
     {
         $this->courseService = new CourseService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->courseService->getAll();
+        return $this->courseService->getAll($request->all());
     }
 
     public function store(CourseManageRequest $request)

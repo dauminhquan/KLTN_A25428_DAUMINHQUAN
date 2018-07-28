@@ -16,13 +16,4 @@ class SkillManageController extends Controller
         return view('admin.skills.index');
     }
 
-    public function create()
-    {
-        return view('admin.skills.create');
-    }
-
-    public function edit($id)
-    {
-        return view('admin.skills.edit',['id' => $id]);
-    }
 }

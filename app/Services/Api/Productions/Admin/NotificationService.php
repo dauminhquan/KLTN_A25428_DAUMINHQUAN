@@ -22,9 +22,18 @@ class NotificationService extends BaseService implements ManageInterface
         $this->model = new Notification();
     }
 
-    public function getAll()
+    public function getAll($inputs)
     {
-        return Notification::all();
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Notification::paginate(100000);
+            }
+            return Notification::paginate($inputs['size']);
+        }
+        return Notification::paginate(500);
+
     }
 
     public function getOne($id)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\SalaryManageRequest;
 use App\Services\Api\Productions\Admin\SalaryService;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class SalaryManageController extends Controller
     {
         $this->salaryService = new SalaryService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->salaryService->getAll();
+        return $this->salaryService->getAll($request->all());
     }
 
     public function store(SalaryManageRequest $request)
@@ -28,7 +29,6 @@ class SalaryManageController extends Controller
         return $this->salaryService->save($request);
 
     }
-
     public function show($id)
     {
         return $this->salaryService->getOne($id);

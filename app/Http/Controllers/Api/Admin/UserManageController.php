@@ -8,6 +8,7 @@ use App\Http\Requests\AccountManageRequest;
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 
+use App\Http\Requests\GetDataRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,10 +26,10 @@ class UserManageController extends Controller
         $this->userService = new UserService();
     }
 
-    public function index()
+    public function index(GetDataRequest $request)
     {
 
-        return $this->userService->getAll();
+        return $this->userService->getAll($request->all());
     }
 
     public function store(AccountManageRequest $request)

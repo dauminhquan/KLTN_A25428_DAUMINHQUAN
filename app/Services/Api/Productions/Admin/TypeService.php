@@ -20,10 +20,18 @@ class TypeService extends BaseService implements ManageInterface
     {
         $this->model = new Type();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $types = Type::all();
-        return $types;
+
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Type::paginate(100000);
+            }
+            return Type::paginate($inputs['size']);
+        }
+        return Type::paginate(500);
     }
 
     public function getOne($id)
@@ -68,6 +76,7 @@ class TypeService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $type = Type::findOrFail($id);
+        $type->jobs()->detach();
         $type->delete();
         return $type;
 
@@ -81,12 +90,13 @@ class TypeService extends BaseService implements ManageInterface
             $type = Type::find($item);
             if($type)
             {
+                $type->jobs()->detach();
                 $type->delete();
                 unset($success[$item]);
             }
 
         }
-        return $array;
+        return $success;
     }
 
     public function csvStore($path){

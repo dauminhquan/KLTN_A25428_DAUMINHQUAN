@@ -1,35 +1,28 @@
 let mix = require('laravel-mix');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
 
 mix.sass('resources/assets/sass/app.scss','public/css/common.css')
 
-// --admin
-
-// mix.js('resources/assets/js/admin/students/studentmanage/studentmanage.js', 'public/assets/js/build/pages/admin/student-manage/student-manage.js');
-//
-// mix.js('resources/assets/js/admin/students/addstudent/addstudent.js', 'public/assets/js/build/pages/admin/student-manage/add-student.js');
-//
-// mix.js('resources/assets/js/admin/students/infostudent/infostudent.js', 'public/assets/js/build/pages/admin/student-manage/info-student.js');
-//
+//common
+mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
 
 // enterprise
 mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js/build/pages/admin/enterprises/index.js');
 mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
 mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
+//student
+mix.js('resources/assets/js/admin/students/index/index.js', 'public/assets/js/build/pages/admin/students/index.js');
+
 
 // //job
-// mix.js('resources/assets/js/admin/jobs/positionsmanage/positionsmanage.js', 'public/assets/js/build/pages/admin/post/position.js');
+mix.js('resources/assets/js/admin/jobs/index/index.js', 'public/assets/js/build/pages/admin/jobs/index.js');
+mix.js('resources/assets/js/admin/jobs/edit/index.js', 'public/assets/js/build/pages/admin/jobs/edit.js');
 //
+mix.js('resources/assets/js/admin/positions/index/index.js', 'public/assets/js/build/pages/admin/positions/index.js');
+mix.js('resources/assets/js/admin/skills/index/index.js', 'public/assets/js/build/pages/admin/skills/index.js');
+mix.js('resources/assets/js/admin/types/index/index.js', 'public/assets/js/build/pages/admin/types/index.js');
+mix.js('resources/assets/js/admin/salaries/index/index.js', 'public/assets/js/build/pages/admin/salaries/index.js');
+
 // mix.js('resources/assets/js/admin/jobs/skillsmanage/positionsmanage.js', 'public/assets/js/build/pages/admin/post/skill.js');
 //
 // mix.js('resources/assets/js/admin/jobs/postsmanage/postmanage/postsmanage.js', 'public/assets/js/build/pages/admin/post/post.js');

@@ -20,10 +20,17 @@ class ProvinceService extends BaseService implements ManageInterface
     {
         $this->model = new Province();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $provinces = Province::all();
-        return $provinces;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Province::paginate(100000);
+            }
+            return Province::paginate($inputs['size']);
+        }
+        return Province::paginate(500);
     }
 
     public function getOne($id)

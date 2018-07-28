@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\StudentManageRequest;
 use App\Http\Requests\UpdateAvatarRequest;
 use App\Models\Student;
@@ -24,9 +25,9 @@ class StudentManageController extends Controller
         $this->studentService = new StudentService();
     }
 
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->studentService->getAll();
+        return $this->studentService->getAll($request->all());
     }
 
     public function store(StudentManageRequest $request)

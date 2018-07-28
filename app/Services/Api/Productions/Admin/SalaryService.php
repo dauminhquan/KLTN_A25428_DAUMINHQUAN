@@ -20,10 +20,17 @@ class SalaryService extends BaseService implements ManageInterface
     {
         $this->model = new Salary();
     }
-    public function getAll()
+    public function getAll($inputs)
     {
-        $salaries = Salary::all();
-        return $salaries;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                return Salary::paginate(100000);
+            }
+            return Salary::paginate($inputs['size']);
+        }
+        return Salary::paginate(500);
     }
 
     public function getOne($id)
@@ -68,6 +75,7 @@ class SalaryService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $salary = Salary::findOrFail($id);
+        $salary->jobs()->dissociate();
         $salary->delete();
         return $salary;
 
@@ -81,12 +89,13 @@ class SalaryService extends BaseService implements ManageInterface
             $salary = Salary::find($item);
             if($salary)
             {
+                $salary->jobs()->dissociate();
                 $salary->delete();
                 unset($success[$item]);
             }
 
         }
-        return $array;
+        return $success;
     }
 
     public function csvStore($path){

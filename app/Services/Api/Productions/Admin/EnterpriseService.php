@@ -7,7 +7,7 @@
  */
 
 namespace App\Services\Api\Productions\Admin;
-
+define('AVATAR_DEFAULT', 'public/storage/avatar/avatar-default.png');
 
 use App\Http\Requests\GetDataRequest;
 use App\Models\Enterprise;
@@ -18,20 +18,22 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class EnterpriseService extends BaseService implements ManageInterface
 {
+
     public function __construct()
     {
         $this->model = new Enterprise();
     }
 
-    public function getAll(GetDataRequest $request)
+    public function getAll($inputs)
     {
-        if($request->has('size'))
+        if(isset($inputs['size']))
         {
-            if('size' == -1)
+            if($inputs['size'] == -1)
             {
-                return Enterprise::all();
+
+                return Enterprise::paginate(10000);
             }
-            return Enterprise::paginate($request->size);
+            return Enterprise::paginate($inputs['size']);
         }
         return Enterprise::paginate(500);
     }
@@ -146,9 +148,10 @@ class EnterpriseService extends BaseService implements ManageInterface
 
     public function updateAvatar($id,$avatar){
         $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar))
+        if(Storage::exists($enterprise->avatar) && $enterprise->avatar != AVATAR_DEFAULT)
         {
             Storage::delete($enterprise->avatar);
+
         }
         $url = $avatar->store('/public/avatar');
         $enterprise->avatar = $url;
@@ -157,33 +160,39 @@ class EnterpriseService extends BaseService implements ManageInterface
             'url' => $url
         ];
     }
-    public function getListWork($inputs,$id)
+    public function getListWork($id)
     {
         $enterprise = Enterprise::findOrFail($id);
 
+        $works = $enterprise->works;
+
+        foreach ($works as $work)
+        {
+            $work->student = $work->student()->select('code','full_name','avatar')->first();
+            $work->salary = $work->salary()->first();
+            $work->rank = $work->rank()->first();
+        }
+        return $works;
+    }
+    public function getListJob($inputs,$id){
+        $enterprise = Enterprise::findOrFail($id);
         if(isset($inputs['size']))
         {
             if('size' == -1)
             {
-                $works = $enterprise->works;
+                $jobs = $enterprise->jobs;
             }
             else{
-                $works = $enterprise->works()->paginate($inputs['size']);
+                $jobs = $enterprise->jobs()->paginate($inputs['size']);
             }
         }
-        $data = $works->data;
-        foreach ($data as $work)
+        foreach ($jobs as $job)
         {
-            $work->student = $work->student()->select(['code','full_name','avatar'])->first();
-            $work->salary = $work->salary;
-            $work->rank = $work->rank;
+
+            $job->salary = $job->salary;
+            $job->rank = $job->rank;
         }
-        $works->data = $data;
-        return $works;
-    }
-    public function getListJob($id){
-        $enterprise = Enterprise::findOrFail($id);
-        return $enterprise->jobs;
+        return $jobs;
     }
     public function getUser($id)
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\PositionManageRequest;
 use App\Services\Api\Productions\Admin\PositionService;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class PositionManageController extends Controller
     {
         $this->positionService = new PositionService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->positionService->getAll();
+        return $this->positionService->getAll($request->all());
     }
 
     public function store(PositionManageRequest $request)

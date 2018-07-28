@@ -21,6 +21,42 @@ class Config{
         this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = (ID) => this.API_ADMIN_ENTERPRISES+'/get-option-csv'
         /*ENTERPRISES*/
 
+
+        /*STUDENTS*/
+        this.API_ADMIN_STUDENTS = this.API_ADMIN+'/manage-students'
+        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS+'/resource'
+        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = (ID) => {return this.API_ADMIN_STUDENTS_RESOURCE+'/'+ID+'/user'}
+        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS+'/delete-list'
+        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS+'/update-avatar'
+        this.API_ADMIN_STUDENTS_LIST_WORK_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-work'+'/'+ID}
+        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS+'/import-csv'
+        this.API_ADMIN_STUDENTS_LIST_JOB_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-job'+'/'+ID}
+        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = (ID) => this.API_ADMIN_STUDENTS+'/get-option-csv'
+        /*STUDENTS*/
+        
+        /*JOBS*/
+        this.API_ADMIN_JOBS = this.API_ADMIN+'/manage-jobs'
+        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS+'/resource'
+        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS+'/update-file-attach'
+        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS+'/delete-list'
+        this.API_ADMIN_JOBS_GET_OPTION_CSV = (ID) => this.API_ADMIN_JOBS+'/get-option-csv'
+        /*JOBS*/
+
+        this.API_ADMIN_TYPES = this.API_ADMIN+'/manage-types'
+        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES+'/resource'
+        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES+'/delete-list'
+
+        this.API_ADMIN_SKILLS = this.API_ADMIN+'/manage-skills'
+        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS+'/resource'
+        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS+'/delete-list'
+
+        this.API_ADMIN_POSITIONS = this.API_ADMIN+'/manage-positions'
+        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS+'/resource'
+        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS+'/delete-list'
+
+        this.API_ADMIN_SALARIES = this.API_ADMIN+'/manage-salaries'
+        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES+'/resource'
+        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES+'/delete-list'
         /*API*/
 
         /*WEB*/
@@ -31,7 +67,9 @@ class Config{
 
         this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN+'/enterprises'
 
+        this.WEB_ADMIN_JOBS = this.WEB_ADMIN+'/jobs'
 
+        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN+'/positions'
         /*WEB*/
 
     }

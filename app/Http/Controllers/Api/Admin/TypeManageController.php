@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\TypeManageRequest;
 use App\Services\Api\Productions\Admin\TypeService;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class TypeManageController extends Controller
     {
         $this->typeService = new TypeService();
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->typeService->getAll();
+        return $this->typeService->getAll($request->all());
     }
 
     public function store(TypeManageRequest $request)
