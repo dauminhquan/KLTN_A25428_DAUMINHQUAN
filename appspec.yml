@@ -66,22 +66,22 @@ hooks:
 # During the ApplicationStop deployment lifecycle event, run the commands 
 #   in the script specified in "location" starting from the root of the 
 #   revision's file bundle.
-  ApplicationStop:
-    - location: scripts/application-stop.sh
-# During the BeforeInstall deployment lifecycle event, run the commands 
-#   in the script specified in "location".
-  BeforeInstall:
-    - location: scripts/before-install.sh
-# During the AfterInstall deployment lifecycle event, run the commands 
-#   in the script specified in "location".
-  AfterInstall:
-    - location: scripts/after-install.sh
-      runas: user
-# During the ApplicationInstall deployment lifecycle event, run the commands 
-#   in the script specified in "location".
-  ApplicationStart:
-    - location: scripts/application-start.sh
-# During the ValidateService deployment lifecycle event, run the commands 
-#   in the script specified in "location".
-  ValidateService:
-    - location: scripts/validate-service.sh
+#   ApplicationStop:
+#     - location: scripts/application-stop.sh
+# # During the BeforeInstall deployment lifecycle event, run the commands 
+# #   in the script specified in "location".
+#   BeforeInstall:
+#     - location: scripts/before-install.sh
+# # During the AfterInstall deployment lifecycle event, run the commands 
+# #   in the script specified in "location".
+#   AfterInstall:
+#     - location: scripts/after-install.sh
+#       runas: user
+# # During the ApplicationInstall deployment lifecycle event, run the commands 
+# #   in the script specified in "location".
+#   ApplicationStart:
+#     - location: scripts/application-start.sh
+# # During the ValidateService deployment lifecycle event, run the commands 
+# #   in the script specified in "location".
+#   ValidateService:
+#     - location: scripts/validate-service.sh
