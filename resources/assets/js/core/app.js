@@ -11,7 +11,7 @@
 
 import $ from 'jquery'
 window.jQuery = $
-window.jquery= $
+window.$ = $
 require('bootstrap3')
 require('./plugin/drilldown')
 require('./plugin/nicescroll.min')
@@ -19,7 +19,6 @@ require('./plugin/nicescroll.min')
 $(window).on('load', function() {
     $('body').removeClass('no-transitions');
 });
-
 
 $(function() {
 

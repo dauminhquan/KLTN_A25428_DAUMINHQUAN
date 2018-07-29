@@ -98,7 +98,6 @@
 </template>
 
 <script>
-    import $ from 'jquery'
     import 'select2'
     import axios from './../../../../axios'
     import config  from './../../../../config'

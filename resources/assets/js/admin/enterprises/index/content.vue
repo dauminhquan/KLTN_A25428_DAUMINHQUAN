@@ -100,10 +100,7 @@
 </template>
 <script>
     import table from './components/table.vue'
-    import $ from 'jquery'
-    import 'select2'
     import axios from './../../../axios'
-
     import config from './../../../config'
     window._config = new config()
     export default {
@@ -127,7 +124,6 @@
                         text: 'Thêm mới',
                         className: 'btn bg-primary',
                         action: function(e, dt, node, config) {
-
                             window.open(window._config.WEB_ADMIN_ENTERPRISES+'/create')
                         }
                     },

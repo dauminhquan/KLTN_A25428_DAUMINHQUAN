@@ -138,7 +138,7 @@
 </template>
 <script>
     import vSelect from 'vue-select'
-    import $ from 'jquery'
+
     import axios from './../../../axios'
     import config from './../../../config'
     export default {

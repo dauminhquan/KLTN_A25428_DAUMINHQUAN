@@ -77,7 +77,6 @@
 </template>
 <script>
     import table from './components/table.vue'
-    import $ from 'jquery'
     import 'select2'
     import axios from './../../../axios'
 
