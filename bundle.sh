@@ -2,7 +2,7 @@
 
 HASH=`git rev-parse --short HEAD`
 BUNDLE=bundle-$HASH.tar.gz
-S3ENDPOINT="s3://XXX/bundles/"
+S3ENDPOINT="s3://eu-west-2/bundles/"
 
 echo "[!] Removing any previous bundles..."
 rm -rf bundle-*.tar.gz
