@@ -153,7 +153,7 @@ class EnterpriseService extends BaseService implements ManageInterface
             Storage::delete($enterprise->avatar);
 
         }
-        $url = $avatar->store('/public/avatar');
+        $url = Storage::url($avatar->store('/public/avatar'));
         $enterprise->avatar = $url;
         $enterprise->update();
         return [

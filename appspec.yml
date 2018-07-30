@@ -7,9 +7,5 @@ permissions:
    - object: /var/www/html/kltn
      mode: 755
 hooks:
-  
    AfterInstall:
     - location: scripts/composerInstall.sh
-
-    - location: scripts/restartApache.sh
-      runas: root

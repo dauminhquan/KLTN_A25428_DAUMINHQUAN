@@ -112,9 +112,9 @@
               }
               if(this.newAvatar != '' )
               {
-                   return window.location.origin+'/'+this.newAvatar.replace('public','storage')+'?'+new Date()
+                   return this.newAvatar+'?'+new Date()
               }
-              return window.location.origin+'/'+this.avatar.replace('public','storage')+'?'+new Date()
+              return this.avatar+'?'+new Date()
           }
         },
         data(){
