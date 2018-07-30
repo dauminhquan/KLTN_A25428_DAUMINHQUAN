@@ -7,7 +7,6 @@
  */
 
 namespace App\Services\Api\Productions\Admin;
-define('AVATAR_DEFAULT', 'public/storage/avatar/avatar-default.png');
 
 use App\Http\Requests\GetDataRequest;
 use App\Models\Enterprise;
@@ -81,7 +80,7 @@ class EnterpriseService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar))
+        if(Storage::exists($enterprise->avatar) && $enterprise->avatar != env('AVATAR_DEFAULT'))
         {
             Storage::delete($enterprise->avatar);
         }
@@ -100,7 +99,7 @@ class EnterpriseService extends BaseService implements ManageInterface
             $enterprise = Enterprise::find($item);
             if($enterprise)
             {
-                if(Storage::exists($enterprise->avatar)) {
+                if(Storage::exists($enterprise->avatar) && $enterprise->avatar != env('AVATAR_DEFAULT')) {
                     Storage::delete($enterprise->avatar);
                 }
 
@@ -148,7 +147,7 @@ class EnterpriseService extends BaseService implements ManageInterface
 
     public function updateAvatar($id,$avatar){
         $enterprise = Enterprise::findOrFail($id);
-        if(Storage::exists($enterprise->avatar) && $enterprise->avatar != AVATAR_DEFAULT)
+        if(Storage::exists($enterprise->avatar) && $enterprise->avatar != env('AVATAR_DEFAULT'))
         {
             Storage::delete($enterprise->avatar);
 

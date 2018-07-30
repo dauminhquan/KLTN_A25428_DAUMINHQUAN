@@ -80,7 +80,7 @@ class StudentService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
-        if(Storage::exists($student->avatar))
+        if(Storage::exists($student->avatar) && $student->avatar != env('AVATAR_DEFAULT'))
         {
             Storage::delete($student->avatar);
         }
@@ -98,7 +98,7 @@ class StudentService extends BaseService implements ManageInterface
             $student = Student::find($item);
             if($student)
             {
-                if(Storage::exists($student->avatar))
+                if(Storage::exists($student->avatar) && $student->avatar != env('AVATAR_DEFAULT'))
                 {
                     Storage::delete($student->avatar);
                 }
@@ -146,7 +146,7 @@ class StudentService extends BaseService implements ManageInterface
 
     public function updateAvatar($id,$avatar){
         $student = Student::findOrFail($id);
-        if(Storage::exists($student->avatar))
+        if(Storage::exists($student->avatar) && $student->avatar != env('AVATAR_DEFAULT'))
         {
             Storage::delete($student->avatar);
         }
