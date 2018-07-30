@@ -22,7 +22,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('phone_number');
             $table->string('email_address')->unique();
             $table->text('introduce')->nullable();
-            $table->string('avatar',400)->nullable()->default('public/avatar/avatar-default.png');
+            $table->string('avatar',400)->nullable()->default(env('AVATAR_DEFAULT','null'));
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });
