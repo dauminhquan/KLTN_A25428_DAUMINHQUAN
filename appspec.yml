@@ -2,15 +2,14 @@ version: 0.0
 os: linux
 files:
    - source: /
-     destination: /var/www/html
+     destination: /var/www/html/kltn
 permissions:
-   - object: /var/www/html
+   - object: /var/www/html/kltn
      mode: 755
 hooks:
   
    AfterInstall:
     - location: scripts/composerInstall.sh
-      runas: root
     - location: scripts/startApache.sh
       runas: root
     - location: scripts/restartapache.sh
