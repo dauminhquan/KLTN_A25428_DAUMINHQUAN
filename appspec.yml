@@ -10,7 +10,6 @@ hooks:
   
    AfterInstall:
     - location: scripts/composerInstall.sh
-    - location: scripts/startApache.sh
-      runas: root
-    - location: scripts/restartapache.sh
+
+    - location: scripts/restartApache.sh
       runas: root
