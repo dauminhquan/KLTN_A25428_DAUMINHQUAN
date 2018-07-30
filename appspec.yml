@@ -9,4 +9,3 @@ permissions:
 hooks:
    AfterInstall:
     - location: scripts/composerInstall.sh
-    - location: scripts/restartApache.sh
