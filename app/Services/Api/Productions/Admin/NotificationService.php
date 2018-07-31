@@ -28,9 +28,17 @@ class NotificationService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                return Notification::paginate(100000);
+                $notifies = Notification::paginate(100000);
+
             }
-            return Notification::paginate($inputs['size']);
+            else{
+                $notifies = Notification::paginate($inputs['size']);
+            }
+            foreach ($notifies as $notify)
+            {
+                $notify->admin = $notify->admin;
+            }
+            return $notifies;
         }
         return Notification::paginate(500);
 
@@ -38,7 +46,9 @@ class NotificationService extends BaseService implements ManageInterface
 
     public function getOne($id)
     {
-        return Notification::findOrFail($id);
+        $notify = Notification::findOrFail($id);
+        $notify->admin = $notify->admin;
+        return $notify;
     }
 
     public function getProfile($option)
@@ -137,7 +147,7 @@ class NotificationService extends BaseService implements ManageInterface
             ],406);
         }
         return [
-            'message' => 'Thêm danh sách doanh nghiệp thành công',
+            'message' => 'Thêm danh sách thông báo thành công',
             'error' => $list_err
         ];
     }

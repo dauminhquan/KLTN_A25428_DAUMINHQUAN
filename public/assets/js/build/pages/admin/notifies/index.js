@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 197);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -62760,21 +62760,153 @@ function(a,b){if("dt"===a.namespace){var c=b.oInit.buttons||i.defaults.buttons;c
 /* 62 */,
 /* 63 */,
 /* 64 */,
-/* 65 */
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(198);
 
 
 /***/ }),
-/* 66 */
+/* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__content__);
 
 
@@ -62784,15 +62916,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 });
 
 /***/ }),
-/* 67 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(68)
+var __vue_script__ = __webpack_require__(200)
 /* template */
-var __vue_template__ = __webpack_require__(77)
+var __vue_template__ = __webpack_require__(209)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62809,7 +62941,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\content.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\content.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -62818,9 +62950,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-01f76c6e", Component.options)
+    hotAPI.createRecord("data-v-5f1500b4", Component.options)
   } else {
-    hotAPI.reload("data-v-01f76c6e", Component.options)
+    hotAPI.reload("data-v-5f1500b4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -62831,38 +62963,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_table_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(14);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -62951,24 +63060,12 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
     },
     data: function data() {
         return {
-            columns: [{
-                key: 'name',
-                text: 'Tên'
-            }, {
-                key: 'email',
-                text: 'Địa chỉ Email'
-            }],
+            columns: [],
             buttonConfig: [{
                 text: 'Thêm mới',
                 className: 'btn bg-primary',
                 action: function action(e, dt, node, config) {
-                    window.open(window._config.WEB_ADMIN_ENTERPRISES + '/create');
-                }
-            }, {
-                text: 'Thêm bằng Excel',
-                className: 'btn bg-info',
-                action: function action(e, dt, node, config) {
-                    $('#modal-push-excel').modal('show');
+                    window.open(window._config.WEB_ADMIN_NOTIFIES + '/create');
                 }
             }],
             deleting: false,
@@ -62978,7 +63075,7 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
                 html: '<a href="#"><i class="icon-info3"></i> Thông tin chi tiết</a>'
             }, {
                 action: 'delete',
-                html: '<a href="#"><i class="icon-trash"></i> Xóa doanh nghiệp</a>'
+                html: '<a href="#"><i class="icon-trash"></i> Xóa thông báo</a>'
             }],
             primaryKey: 'id',
             lengths: [50, 100, 200, 500, 1000, 2000, 5000],
@@ -63006,22 +63103,26 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
             var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
 
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE + '?size=' + perPage + '&page=' + page).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '?size=' + perPage + '&page=' + page).then(function (data) {
                 vm.data = data.data.data;
                 vm.perPage = data.data.per_page;
                 vm.totalPage = data.data.total;
+                vm.data = vm.data.map(function (item) {
+                    item.adminName = item.admin.name;
+                    return item;
+                });
                 vm.columns = [{
                     key: 'id',
-                    text: 'ID doanh nghiệp'
+                    text: 'ID thông báo'
                 }, {
-                    key: 'name',
-                    text: 'Tên doanh nghiệp'
+                    key: 'title',
+                    text: 'Tiêu đề thông báo'
                 }, {
-                    key: 'address',
-                    text: 'Địa chỉ'
+                    key: 'adminName',
+                    text: 'Tên Admin'
                 }, {
-                    key: 'email_address',
-                    text: 'Địa chỉ Email'
+                    key: 'created_at',
+                    text: 'Thời gian tạo'
                 }];
             }).catch(function (err) {
                 console.log(err);
@@ -63054,7 +63155,7 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
 
             if (vm.primaryKeyDelete != -1) {
                 var indexOf = -1;
-                __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_ENTERPRISES_RESOURCE + '/' + vm.primaryKeyDelete).then(function (data) {
+                __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '/' + vm.primaryKeyDelete).then(function (data) {
                     vm.data.forEach(function (item, index) {
 
                         if (item[vm.primaryKey] == vm.primaryKeyDelete) {
@@ -63098,7 +63199,7 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
         deleteListItem: function deleteListItem() {
             var vm = this;
             vm.deleting = true;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_ENTERPRISES_DELETE_LIST, {
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_NOTIFIES_DELETE_LIST, {
                 params: {
                     id_list: vm.itemSelected
                 }
@@ -63136,35 +63237,13 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
         },
         showItem: function showItem(id) {
             var vm = this;
-            window.open(vm.config.WEB_ADMIN_ENTERPRISES + '/' + id + '/edit', '_blank');
+            window.open(vm.config.WEB_ADMIN_NOTIFIES + '/' + id + '/edit', '_blank');
         },
         setExcelFile: function setExcelFile(e) {
             var vm = this;
             var files = e.target.files || e.dataTransfer.files;
             if (!files.length) return;
             vm.excelFile = files[0];
-        },
-        uploadExcelFile: function uploadExcelFile() {
-            var _this = this;
-
-            var vm = this;
-            vm.uploading = true;
-            var formData = new FormData();
-            formData.append('CsvFile', vm.excelFile);
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].post(vm.config.API_ADMIN_ENTERPRISES_IMPORT_CSV, formData).then(function (data) {
-                vm.uploading = false;
-                $('#modal-push-excel').modal('hide');
-                if (data.data.message == []) {
-                    vm.config.notifySuccess();
-                } else {
-                    vm.config.notifyWarning();
-                }
-                vm.getData();
-            }).catch(function (err) {
-                _this.uploading = false;
-                console.dir(err);
-                vm.config.notifyError();
-            });
         },
         changePerPage: function changePerPage(perPage) {
             this.getData(perPage);
@@ -63176,19 +63255,19 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
 });
 
 /***/ }),
-/* 69 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(70)
+  __webpack_require__(202)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(72)
+var __vue_script__ = __webpack_require__(204)
 /* template */
-var __vue_template__ = __webpack_require__(76)
+var __vue_template__ = __webpack_require__(208)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63205,7 +63284,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\components\\table.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\table.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -63214,9 +63293,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4b4a75e8", Component.options)
+    hotAPI.createRecord("data-v-be68eeaa", Component.options)
   } else {
-    hotAPI.reload("data-v-4b4a75e8", Component.options)
+    hotAPI.reload("data-v-be68eeaa", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -63227,23 +63306,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(71);
+var content = __webpack_require__(203);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(41)("3f96da36", content, false, {});
+var update = __webpack_require__(41)("3b633967", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b4a75e8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b4a75e8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -63253,7 +63332,7 @@ if(false) {
 }
 
 /***/ }),
-/* 71 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(40)(false);
@@ -63267,12 +63346,12 @@ exports.push([module.i, "\n.dt-button-collection button{\n    width: 100% !impor
 
 
 /***/ }),
-/* 72 */
+/* 204 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__checkboxItem__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
@@ -63515,15 +63594,15 @@ __webpack_require__(46);
 });
 
 /***/ }),
-/* 73 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(74)
+var __vue_script__ = __webpack_require__(206)
 /* template */
-var __vue_template__ = __webpack_require__(75)
+var __vue_template__ = __webpack_require__(207)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63540,7 +63619,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\enterprises\\index\\components\\checkboxItem.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\checkboxItem.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -63549,9 +63628,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3c3b3768", Component.options)
+    hotAPI.createRecord("data-v-7eee4029", Component.options)
   } else {
-    hotAPI.reload("data-v-3c3b3768", Component.options)
+    hotAPI.reload("data-v-7eee4029", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -63562,7 +63641,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63617,7 +63696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 75 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63640,12 +63719,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3c3b3768", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7eee4029", module.exports)
   }
 }
 
 /***/ }),
-/* 76 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63939,12 +64018,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4b4a75e8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-be68eeaa", module.exports)
   }
 }
 
 /***/ }),
-/* 77 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63959,7 +64038,7 @@ var render = function() {
         "data-table",
         {
           attrs: {
-            title: "Quản lý doanh nghiệp",
+            title: "Quản lý thông báo",
             columns: _vm.columns,
             data: _vm.data,
             targets: [],
@@ -64093,7 +64172,7 @@ var render = function() {
                     _c("p", [
                       _c("i", { staticClass: "icon-warning" }),
                       _vm._v(
-                        " Bạn đang xóa nhiều doanh nghiệp. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
+                        " Bạn đang xóa nhiều thông báo. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
                       )
                     ]),
                     _vm._v(" "),
@@ -64146,97 +64225,6 @@ var render = function() {
                 ])
               ])
             ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "modal fade", attrs: { id: "modal-push-excel" } },
-            [
-              _c("div", { staticClass: "modal-dialog" }, [
-                _c("div", { staticClass: "modal-content text-center" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c("h5", { staticClass: "modal-title" }, [
-                      _vm._v("Thêm doanh nghiệp bằng Excel")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "form",
-                    {
-                      staticClass: "form-inline",
-                      attrs: { enctype: "multipart/form-data" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.uploadExcelFile($event)
-                        }
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "file" },
-                          on: {
-                            change: function($event) {
-                              _vm.setExcelFile($event)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.uploading == true
-                          ? _c("div", { staticClass: "pace-demo" }, [
-                              _c("div", { staticClass: "theme_xbox_xs" }, [
-                                _c("div", {
-                                  staticClass: "pace_progress",
-                                  attrs: {
-                                    "data-progress-text": "60%",
-                                    "data-progress": "60"
-                                  }
-                                }),
-                                _c("div", { staticClass: "pace_activity" })
-                              ])
-                            ])
-                          : _vm._e()
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-footer text-center" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v("Tải file lên "),
-                            _c("i", { staticClass: "icon-plus22" })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-info",
-                            attrs: {
-                              href:
-                                "/admin/student-manage/get-excel-example-student",
-                              target: "_blank",
-                              type: "button"
-                            }
-                          },
-                          [
-                            _vm._v("Tải Excel mẫu "),
-                            _c("i", {
-                              staticClass: "glyphicon glyphicon-info-sign"
-                            })
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ])
-              ])
-            ]
           )
         ]
       )
@@ -64250,7 +64238,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-01f76c6e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5f1500b4", module.exports)
   }
 }
 

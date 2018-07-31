@@ -99,6 +99,11 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::post('/import-csv','ProvinceManageController@importCsv')->name('import.csv');
         Route::post('/get-options-csv','ProvinceManageController@getOptionsCsv')->name('get.option.csv');
     });
+    Route::group(['prefix' => '/manage-notifies' , 'name' => 'manage.notifies.'],function (){
+        Route::resource('/resource','NotificationManageController')->except(['create','edit']);
+        Route::delete('delete-list','NotificationManageController@delete')->name('delete.list');
+        Route::post('/get-options-csv','NotificationManageController@getOptionsCsv')->name('get.option.csv');
+    });
 });
 Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise','as' => 'enterprise.'],function (){
     Route::group(['prefix' => '/manage-jobs',],function (){

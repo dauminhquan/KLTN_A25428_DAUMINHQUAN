@@ -23,6 +23,11 @@ mix.js('resources/assets/js/admin/skills/index/index.js', 'public/assets/js/buil
 mix.js('resources/assets/js/admin/types/index/index.js', 'public/assets/js/build/pages/admin/types/index.js');
 mix.js('resources/assets/js/admin/salaries/index/index.js', 'public/assets/js/build/pages/admin/salaries/index.js');
 
+//notifies
+mix.js('resources/assets/js/admin/notifies/index/index.js', 'public/assets/js/build/pages/admin/notifies/index.js');
+mix.js('resources/assets/js/admin/notifies/create/index.js', 'public/assets/js/build/pages/admin/notifies/create.js');
+// mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
+
 // mix.js('resources/assets/js/admin/jobs/skillsmanage/positionsmanage.js', 'public/assets/js/build/pages/admin/post/skill.js');
 //
 // mix.js('resources/assets/js/admin/jobs/postsmanage/postmanage/postsmanage.js', 'public/assets/js/build/pages/admin/post/post.js');

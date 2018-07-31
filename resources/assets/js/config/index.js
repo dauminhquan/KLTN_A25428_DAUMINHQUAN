@@ -57,6 +57,15 @@ class Config{
         this.API_ADMIN_SALARIES = this.API_ADMIN+'/manage-salaries'
         this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES+'/resource'
         this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES+'/delete-list'
+
+
+        /*NOTIFIES*/
+        this.API_ADMIN_NOTIFIES = this.API_ADMIN+'/manage-notifies'
+        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES+'/resource'
+        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES+'/delete-list'
+        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = (ID) => this.API_ADMIN_NOTIFIES+'/get-option-csv'
+        /*NOTIFIES*/
+        
         /*API*/
 
         /*WEB*/
@@ -70,6 +79,8 @@ class Config{
         this.WEB_ADMIN_JOBS = this.WEB_ADMIN+'/jobs'
 
         this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN+'/positions'
+
+        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN+'/notifies'
         /*WEB*/
 
     }

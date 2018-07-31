@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
-class NotifyController extends Controller
+class NotificationManageController extends Controller
 {
     private $notificationService;
     public function __construct()
