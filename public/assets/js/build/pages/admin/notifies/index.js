@@ -60,18 +60,19 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 197);
+/******/ 	return __webpack_require__(__webpack_require__.s = 247);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var bind = __webpack_require__(6);
-var isBuffer = __webpack_require__(20);
+var isBuffer = __webpack_require__(19);
 
 /*global toString:true*/
 
@@ -374,7 +375,8 @@ module.exports = {
 
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10745,679 +10747,8 @@ return jQuery;
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(22);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(7);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function bind(fn, thisArg) {
-  return function wrap() {
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return fn.apply(thisArg, args);
-  };
-};
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(0);
-var settle = __webpack_require__(23);
-var buildURL = __webpack_require__(25);
-var parseHeaders = __webpack_require__(26);
-var isURLSameOrigin = __webpack_require__(27);
-var createError = __webpack_require__(8);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
-
-module.exports = function xhrAdapter(config) {
-  return new Promise(function dispatchXhrRequest(resolve, reject) {
-    var requestData = config.data;
-    var requestHeaders = config.headers;
-
-    if (utils.isFormData(requestData)) {
-      delete requestHeaders['Content-Type']; // Let the browser set it
-    }
-
-    var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
-
-    // HTTP basic authentication
-    if (config.auth) {
-      var username = config.auth.username || '';
-      var password = config.auth.password || '';
-      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-    }
-
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
-
-    // Set the request timeout in MS
-    request.timeout = config.timeout;
-
-    // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
-        return;
-      }
-
-      // The request errored out and we didn't get a response, this will be
-      // handled by onerror instead
-      // With one exception: request that using file: protocol, most browsers
-      // will return status as 0 even though it's a successful request
-      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
-      }
-
-      // Prepare the response
-      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-      var response = {
-        data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
-        headers: responseHeaders,
-        config: config,
-        request: request
-      };
-
-      settle(resolve, reject, response);
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle low level network errors
-    request.onerror = function handleError() {
-      // Real errors are hidden from us by the browser
-      // onerror should only fire if it's a network error
-      reject(createError('Network Error', config, null, request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle timeout
-    request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
-        request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Add xsrf header
-    // This is only done if running in a standard browser environment.
-    // Specifically not if we're in a web worker, or react-native.
-    if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(29);
-
-      // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
-
-      if (xsrfValue) {
-        requestHeaders[config.xsrfHeaderName] = xsrfValue;
-      }
-    }
-
-    // Add headers to the request
-    if ('setRequestHeader' in request) {
-      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          // Remove Content-Type if data is undefined
-          delete requestHeaders[key];
-        } else {
-          // Otherwise add header to the request
-          request.setRequestHeader(key, val);
-        }
-      });
-    }
-
-    // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
-    }
-
-    // Add responseType to request if needed
-    if (config.responseType) {
-      try {
-        request.responseType = config.responseType;
-      } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-        if (config.responseType !== 'json') {
-          throw e;
-        }
-      }
-    }
-
-    // Handle progress if needed
-    if (typeof config.onDownloadProgress === 'function') {
-      request.addEventListener('progress', config.onDownloadProgress);
-    }
-
-    // Not all browsers support upload events
-    if (typeof config.onUploadProgress === 'function' && request.upload) {
-      request.upload.addEventListener('progress', config.onUploadProgress);
-    }
-
-    if (config.cancelToken) {
-      // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
-        if (!request) {
-          return;
-        }
-
-        request.abort();
-        reject(cancel);
-        // Clean up request
-        request = null;
-      });
-    }
-
-    if (requestData === undefined) {
-      requestData = null;
-    }
-
-    // Send the request
-    request.send(requestData);
-  });
-};
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var enhanceError = __webpack_require__(24);
-
-/**
- * Create an Error with the specified message, config, error code, request and response.
- *
- * @param {string} message The error message.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- * @returns {Error} The created error.
- */
-module.exports = function createError(message, config, code, request, response) {
-  var error = new Error(message);
-  return enhanceError(error, config, code, request, response);
-};
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isCancel(value) {
-  return !!(value && value.__CANCEL__);
-};
-
-
-/***/ }),
-/* 10 */
+/***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11443,7 +10774,8 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 11 */
+
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1.10.19
@@ -26746,15 +26078,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 
 
 /***/ }),
-/* 12 */
+
+/***/ 12:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
-window.Cookies = __webpack_require__(37);
+window.Cookies = __webpack_require__(36);
 
 var token = window.Cookies('token');
 var ax = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create();
@@ -26763,11 +26096,12 @@ ax.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 /* harmony default export */ __webpack_exports__["a"] = (ax);
 
 /***/ }),
-/* 13 */
+
+/***/ 13:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(37);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26775,2102 +26109,216 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-    function Config() {
-        var _this = this;
+        function Config() {
+                var _this = this;
 
-        _classCallCheck(this, Config);
+                _classCallCheck(this, Config);
 
-        /*API*/
+                /*API*/
 
-        this.API = window.location.origin + '/api';
+                this.API = window.location.origin + '/api';
 
-        /*ADMIN*/
+                /*ADMIN*/
 
-        this.API_ADMIN = this.API + '/admin';
+                this.API_ADMIN = this.API + '/admin';
 
-        /*ENTERPRISES*/
-        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-        };
-        /*ENTERPRISES*/
+                /*ENTERPRISES*/
+                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+                };
+                /*ENTERPRISES*/
 
-        /*STUDENTS*/
-        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-        };
-        /*STUDENTS*/
+                /*STUDENTS*/
+                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+                };
+                /*STUDENTS*/
 
-        /*JOBS*/
-        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_JOBS + '/get-option-csv';
-        };
-        /*JOBS*/
+                /*JOBS*/
+                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_JOBS + '/get-option-csv';
+                };
+                /*JOBS*/
 
-        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-        /*NOTIFIES*/
-        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-        };
-        /*NOTIFIES*/
+                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
 
-        /*API*/
+                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-        /*WEB*/
+                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-        this.WEB = window.location.origin;
+                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
 
-        this.WEB_ADMIN = this.WEB + '/admin';
+                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+                /*NOTIFIES*/
+                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+                };
+                /*NOTIFIES*/
 
-        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+                /*API*/
 
-        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+                /*WEB*/
 
-        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+                this.WEB = window.location.origin;
 
-        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
-        /*WEB*/
-    }
+                this.WEB_ADMIN = this.WEB + '/admin';
 
-    _createClass(Config, [{
-        key: 'notifySuccess',
-        value: function notifySuccess() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: message,
-                    addclass: 'bg-success'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: 'Thao tác thành công',
-                    addclass: 'bg-success'
-                });
-            }
+                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+
+                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+
+                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+
+                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+                /*WEB*/
         }
-    }, {
-        key: 'notifyWarning',
-        value: function notifyWarning() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: message,
-                    addclass: 'bg-warning'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                    addclass: 'bg-warning'
-                });
-            }
-        }
-    }, {
-        key: 'notifyError',
-        value: function notifyError() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        _createClass(Config, [{
+                key: 'notifySuccess',
+                value: function notifySuccess() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: message,
-                    addclass: 'bg-danger'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: 'Thao tác thất bại',
-                    addclass: 'bg-danger'
-                });
-            }
-        }
-    }, {
-        key: 'getError',
-        value: function getError(data) {
-            var message = '';
-            message = data.message;
-            message += '<br>';
-            var errors = data.errors;
-            var keys = Object.keys(errors);
-            keys.forEach(function (key) {
-                errors[key].forEach(function (item) {
-                    message += item + '<br>';
-                });
-            });
-            return message;
-        }
-    }]);
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: message,
+                                        addclass: 'bg-success'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: 'Thao tác thành công',
+                                        addclass: 'bg-success'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyWarning',
+                value: function notifyWarning() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-    return Config;
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: message,
+                                        addclass: 'bg-warning'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                                        addclass: 'bg-warning'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyError',
+                value: function notifyError() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: message,
+                                        addclass: 'bg-danger'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: 'Thao tác thất bại',
+                                        addclass: 'bg-danger'
+                                });
+                        }
+                }
+        }, {
+                key: 'getError',
+                value: function getError(data) {
+                        var message = '';
+                        message = data.message;
+                        message += '<br>';
+                        var errors = data.errors;
+                        var keys = Object.keys(errors);
+                        keys.forEach(function (key) {
+                                errors[key].forEach(function (item) {
+                                        message += item + '<br>';
+                                });
+                        });
+                        return message;
+                }
+        }]);
+
+        return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Buttons for DataTables 1.5.2
- * ©2016-2018 SpryMedia Ltd - datatables.net/license
- */
-
-(function( factory ){
-	if ( true ) {
-		// AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11)], __WEBPACK_AMD_DEFINE_RESULT__ = (function ( $ ) {
-			return factory( $, window, document );
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	}
-	else if ( typeof exports === 'object' ) {
-		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net')(root, $).$;
-			}
-
-			return factory( $, root, root.document );
-		};
-	}
-	else {
-		// Browser
-		factory( jQuery, window, document );
-	}
-}(function( $, window, document, undefined ) {
-'use strict';
-var DataTable = $.fn.dataTable;
-
-
-// Used for namespacing events added to the document by each instance, so they
-// can be removed on destroy
-var _instCounter = 0;
-
-// Button namespacing counter for namespacing events on individual buttons
-var _buttonCounter = 0;
-
-var _dtButtons = DataTable.ext.buttons;
-
-/**
- * [Buttons description]
- * @param {[type]}
- * @param {[type]}
- */
-var Buttons = function( dt, config )
-{
-	// If there is no config set it to an empty object
-	if ( typeof( config ) === 'undefined' ) {
-		config = {};	
-	}
-	
-	// Allow a boolean true for defaults
-	if ( config === true ) {
-		config = {};
-	}
-
-	// For easy configuration of buttons an array can be given
-	if ( $.isArray( config ) ) {
-		config = { buttons: config };
-	}
-
-	this.c = $.extend( true, {}, Buttons.defaults, config );
-
-	// Don't want a deep copy for the buttons
-	if ( config.buttons ) {
-		this.c.buttons = config.buttons;
-	}
-
-	this.s = {
-		dt: new DataTable.Api( dt ),
-		buttons: [],
-		listenKeys: '',
-		namespace: 'dtb'+(_instCounter++)
-	};
-
-	this.dom = {
-		container: $('<'+this.c.dom.container.tag+'/>')
-			.addClass( this.c.dom.container.className )
-	};
-
-	this._constructor();
-};
-
-
-$.extend( Buttons.prototype, {
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Public methods
-	 */
-
-	/**
-	 * Get the action of a button
-	 * @param  {int|string} Button index
-	 * @return {function}
-	 *//**
-	 * Set the action of a button
-	 * @param  {node} node Button element
-	 * @param  {function} action Function to set
-	 * @return {Buttons} Self for chaining
-	 */
-	action: function ( node, action )
-	{
-		var button = this._nodeToButton( node );
-
-		if ( action === undefined ) {
-			return button.conf.action;
-		}
-
-		button.conf.action = action;
-
-		return this;
-	},
-
-	/**
-	 * Add an active class to the button to make to look active or get current
-	 * active state.
-	 * @param  {node} node Button element
-	 * @param  {boolean} [flag] Enable / disable flag
-	 * @return {Buttons} Self for chaining or boolean for getter
-	 */
-	active: function ( node, flag ) {
-		var button = this._nodeToButton( node );
-		var klass = this.c.dom.button.active;
-		var jqNode = $(button.node);
-
-		if ( flag === undefined ) {
-			return jqNode.hasClass( klass );
-		}
-
-		jqNode.toggleClass( klass, flag === undefined ? true : flag );
-
-		return this;
-	},
-
-	/**
-	 * Add a new button
-	 * @param {object} config Button configuration object, base string name or function
-	 * @param {int|string} [idx] Button index for where to insert the button
-	 * @return {Buttons} Self for chaining
-	 */
-	add: function ( config, idx )
-	{
-		var buttons = this.s.buttons;
-
-		if ( typeof idx === 'string' ) {
-			var split = idx.split('-');
-			var base = this.s;
-
-			for ( var i=0, ien=split.length-1 ; i<ien ; i++ ) {
-				base = base.buttons[ split[i]*1 ];
-			}
-
-			buttons = base.buttons;
-			idx = split[ split.length-1 ]*1;
-		}
-
-		this._expandButton( buttons, config, false, idx );
-		this._draw();
-
-		return this;
-	},
-
-	/**
-	 * Get the container node for the buttons
-	 * @return {jQuery} Buttons node
-	 */
-	container: function ()
-	{
-		return this.dom.container;
-	},
-
-	/**
-	 * Disable a button
-	 * @param  {node} node Button node
-	 * @return {Buttons} Self for chaining
-	 */
-	disable: function ( node ) {
-		var button = this._nodeToButton( node );
-
-		$(button.node).addClass( this.c.dom.button.disabled );
-
-		return this;
-	},
-
-	/**
-	 * Destroy the instance, cleaning up event handlers and removing DOM
-	 * elements
-	 * @return {Buttons} Self for chaining
-	 */
-	destroy: function ()
-	{
-		// Key event listener
-		$('body').off( 'keyup.'+this.s.namespace );
-
-		// Individual button destroy (so they can remove their own events if
-		// needed). Take a copy as the array is modified by `remove`
-		var buttons = this.s.buttons.slice();
-		var i, ien;
-		
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-			this.remove( buttons[i].node );
-		}
-
-		// Container
-		this.dom.container.remove();
-
-		// Remove from the settings object collection
-		var buttonInsts = this.s.dt.settings()[0];
-
-		for ( i=0, ien=buttonInsts.length ; i<ien ; i++ ) {
-			if ( buttonInsts.inst === this ) {
-				buttonInsts.splice( i, 1 );
-				break;
-			}
-		}
-
-		return this;
-	},
-
-	/**
-	 * Enable / disable a button
-	 * @param  {node} node Button node
-	 * @param  {boolean} [flag=true] Enable / disable flag
-	 * @return {Buttons} Self for chaining
-	 */
-	enable: function ( node, flag )
-	{
-		if ( flag === false ) {
-			return this.disable( node );
-		}
-
-		var button = this._nodeToButton( node );
-		$(button.node).removeClass( this.c.dom.button.disabled );
-
-		return this;
-	},
-
-	/**
-	 * Get the instance name for the button set selector
-	 * @return {string} Instance name
-	 */
-	name: function ()
-	{
-		return this.c.name;
-	},
-
-	/**
-	 * Get a button's node
-	 * @param  {node} node Button node
-	 * @return {jQuery} Button element
-	 */
-	node: function ( node )
-	{
-		var button = this._nodeToButton( node );
-		return $(button.node);
-	},
-
-	/**
-	 * Set / get a processing class on the selected button
-	 * @param  {boolean} flag true to add, false to remove, undefined to get
-	 * @return {boolean|Buttons} Getter value or this if a setter.
-	 */
-	processing: function ( node, flag )
-	{
-		var button = this._nodeToButton( node );
-
-		if ( flag === undefined ) {
-			return $(button.node).hasClass( 'processing' );
-		}
-
-		$(button.node).toggleClass( 'processing', flag );
-
-		return this;
-	},
-
-	/**
-	 * Remove a button.
-	 * @param  {node} node Button node
-	 * @return {Buttons} Self for chaining
-	 */
-	remove: function ( node )
-	{
-		var button = this._nodeToButton( node );
-		var host = this._nodeToHost( node );
-		var dt = this.s.dt;
-
-		// Remove any child buttons first
-		if ( button.buttons.length ) {
-			for ( var i=button.buttons.length-1 ; i>=0 ; i-- ) {
-				this.remove( button.buttons[i].node );
-			}
-		}
-
-		// Allow the button to remove event handlers, etc
-		if ( button.conf.destroy ) {
-			button.conf.destroy.call( dt.button(node), dt, $(node), button.conf );
-		}
-
-		this._removeKey( button.conf );
-
-		$(button.node).remove();
-
-		var idx = $.inArray( button, host );
-		host.splice( idx, 1 );
-
-		return this;
-	},
-
-	/**
-	 * Get the text for a button
-	 * @param  {int|string} node Button index
-	 * @return {string} Button text
-	 *//**
-	 * Set the text for a button
-	 * @param  {int|string|function} node Button index
-	 * @param  {string} label Text
-	 * @return {Buttons} Self for chaining
-	 */
-	text: function ( node, label )
-	{
-		var button = this._nodeToButton( node );
-		var buttonLiner = this.c.dom.collection.buttonLiner;
-		var linerTag = button.inCollection && buttonLiner && buttonLiner.tag ?
-			buttonLiner.tag :
-			this.c.dom.buttonLiner.tag;
-		var dt = this.s.dt;
-		var jqNode = $(button.node);
-		var text = function ( opt ) {
-			return typeof opt === 'function' ?
-				opt( dt, jqNode, button.conf ) :
-				opt;
-		};
-
-		if ( label === undefined ) {
-			return text( button.conf.text );
-		}
-
-		button.conf.text = label;
-
-		if ( linerTag ) {
-			jqNode.children( linerTag ).html( text(label) );
-		}
-		else {
-			jqNode.html( text(label) );
-		}
-
-		return this;
-	},
-
-
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Constructor
-	 */
-
-	/**
-	 * Buttons constructor
-	 * @private
-	 */
-	_constructor: function ()
-	{
-		var that = this;
-		var dt = this.s.dt;
-		var dtSettings = dt.settings()[0];
-		var buttons =  this.c.buttons;
-
-		if ( ! dtSettings._buttons ) {
-			dtSettings._buttons = [];
-		}
-
-		dtSettings._buttons.push( {
-			inst: this,
-			name: this.c.name
-		} );
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			this.add( buttons[i] );
-		}
-
-		dt.on( 'destroy', function ( e, settings ) {
-			if ( settings === dtSettings ) {
-				that.destroy();
-			}
-		} );
-
-		// Global key event binding to listen for button keys
-		$('body').on( 'keyup.'+this.s.namespace, function ( e ) {
-			if ( ! document.activeElement || document.activeElement === document.body ) {
-				// SUse a string of characters for fast lookup of if we need to
-				// handle this
-				var character = String.fromCharCode(e.keyCode).toLowerCase();
-
-				if ( that.s.listenKeys.toLowerCase().indexOf( character ) !== -1 ) {
-					that._keypress( character, e );
-				}
-			}
-		} );
-	},
-
-
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Private methods
-	 */
-
-	/**
-	 * Add a new button to the key press listener
-	 * @param {object} conf Resolved button configuration object
-	 * @private
-	 */
-	_addKey: function ( conf )
-	{
-		if ( conf.key ) {
-			this.s.listenKeys += $.isPlainObject( conf.key ) ?
-				conf.key.key :
-				conf.key;
-		}
-	},
-
-	/**
-	 * Insert the buttons into the container. Call without parameters!
-	 * @param  {node} [container] Recursive only - Insert point
-	 * @param  {array} [buttons] Recursive only - Buttons array
-	 * @private
-	 */
-	_draw: function ( container, buttons )
-	{
-		if ( ! container ) {
-			container = this.dom.container;
-			buttons = this.s.buttons;
-		}
-
-		container.children().detach();
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			container.append( buttons[i].inserter );
-			container.append( ' ' );
-
-			if ( buttons[i].buttons && buttons[i].buttons.length ) {
-				this._draw( buttons[i].collection, buttons[i].buttons );
-			}
-		}
-	},
-
-	/**
-	 * Create buttons from an array of buttons
-	 * @param  {array} attachTo Buttons array to attach to
-	 * @param  {object} button Button definition
-	 * @param  {boolean} inCollection true if the button is in a collection
-	 * @private
-	 */
-	_expandButton: function ( attachTo, button, inCollection, attachPoint )
-	{
-		var dt = this.s.dt;
-		var buttonCounter = 0;
-		var buttons = ! $.isArray( button ) ?
-			[ button ] :
-			button;
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			var conf = this._resolveExtends( buttons[i] );
-
-			if ( ! conf ) {
-				continue;
-			}
-
-			// If the configuration is an array, then expand the buttons at this
-			// point
-			if ( $.isArray( conf ) ) {
-				this._expandButton( attachTo, conf, inCollection, attachPoint );
-				continue;
-			}
-
-			var built = this._buildButton( conf, inCollection );
-			if ( ! built ) {
-				continue;
-			}
-
-			if ( attachPoint !== undefined ) {
-				attachTo.splice( attachPoint, 0, built );
-				attachPoint++;
-			}
-			else {
-				attachTo.push( built );
-			}
-
-			if ( built.conf.buttons ) {
-				var collectionDom = this.c.dom.collection;
-				built.collection = $('<'+collectionDom.tag+'/>')
-					.addClass( collectionDom.className )
-					.attr( 'role', 'menu') ;
-				built.conf._collection = built.collection;
-
-				this._expandButton( built.buttons, built.conf.buttons, true, attachPoint );
-			}
-
-			// init call is made here, rather than buildButton as it needs to
-			// be selectable, and for that it needs to be in the buttons array
-			if ( conf.init ) {
-				conf.init.call( dt.button( built.node ), dt, $(built.node), conf );
-			}
-
-			buttonCounter++;
-		}
-	},
-
-	/**
-	 * Create an individual button
-	 * @param  {object} config            Resolved button configuration
-	 * @param  {boolean} inCollection `true` if a collection button
-	 * @return {jQuery} Created button node (jQuery)
-	 * @private
-	 */
-	_buildButton: function ( config, inCollection )
-	{
-		var buttonDom = this.c.dom.button;
-		var linerDom = this.c.dom.buttonLiner;
-		var collectionDom = this.c.dom.collection;
-		var dt = this.s.dt;
-		var text = function ( opt ) {
-			return typeof opt === 'function' ?
-				opt( dt, button, config ) :
-				opt;
-		};
-
-		if ( inCollection && collectionDom.button ) {
-			buttonDom = collectionDom.button;
-		}
-
-		if ( inCollection && collectionDom.buttonLiner ) {
-			linerDom = collectionDom.buttonLiner;
-		}
-
-		// Make sure that the button is available based on whatever requirements
-		// it has. For example, Flash buttons require Flash
-		if ( config.available && ! config.available( dt, config ) ) {
-			return false;
-		}
-
-		var action = function ( e, dt, button, config ) {
-			config.action.call( dt.button( button ), e, dt, button, config );
-
-			$(dt.table().node()).triggerHandler( 'buttons-action.dt', [
-				dt.button( button ), dt, button, config 
-			] );
-		};
-
-		var tag = config.tag || buttonDom.tag;
-		var button = $('<'+tag+'/>')
-			.addClass( buttonDom.className )
-			.attr( 'tabindex', this.s.dt.settings()[0].iTabIndex )
-			.attr( 'aria-controls', this.s.dt.table().node().id )
-			.on( 'click.dtb', function (e) {
-				e.preventDefault();
-
-				if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
-					action( e, dt, button, config );
-				}
-
-				button.blur();
-			} )
-			.on( 'keyup.dtb', function (e) {
-				if ( e.keyCode === 13 ) {
-					if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
-						action( e, dt, button, config );
-					}
-				}
-			} );
-
-		// Make `a` tags act like a link
-		if ( tag.toLowerCase() === 'a' ) {
-			button.attr( 'href', '#' );
-		}
-
-		// Button tags should have `type=button` so they don't have any default behaviour
-		if ( tag.toLowerCase() === 'button' ) {
-			button.attr( 'type', 'button' );
-		}
-
-		if ( linerDom.tag ) {
-			var liner = $('<'+linerDom.tag+'/>')
-				.html( text( config.text ) )
-				.addClass( linerDom.className );
-
-			if ( linerDom.tag.toLowerCase() === 'a' ) {
-				liner.attr( 'href', '#' );
-			}
-
-			button.append( liner );
-		}
-		else {
-			button.html( text( config.text ) );
-		}
-
-		if ( config.enabled === false ) {
-			button.addClass( buttonDom.disabled );
-		}
-
-		if ( config.className ) {
-			button.addClass( config.className );
-		}
-
-		if ( config.titleAttr ) {
-			button.attr( 'title', text( config.titleAttr ) );
-		}
-
-		if ( config.attr ) {
-			button.attr( config.attr );
-		}
-
-		if ( ! config.namespace ) {
-			config.namespace = '.dt-button-'+(_buttonCounter++);
-		}
-
-		var buttonContainer = this.c.dom.buttonContainer;
-		var inserter;
-		if ( buttonContainer && buttonContainer.tag ) {
-			inserter = $('<'+buttonContainer.tag+'/>')
-				.addClass( buttonContainer.className )
-				.append( button );
-		}
-		else {
-			inserter = button;
-		}
-
-		this._addKey( config );
-
-		return {
-			conf:         config,
-			node:         button.get(0),
-			inserter:     inserter,
-			buttons:      [],
-			inCollection: inCollection,
-			collection:   null
-		};
-	},
-
-	/**
-	 * Get the button object from a node (recursive)
-	 * @param  {node} node Button node
-	 * @param  {array} [buttons] Button array, uses base if not defined
-	 * @return {object} Button object
-	 * @private
-	 */
-	_nodeToButton: function ( node, buttons )
-	{
-		if ( ! buttons ) {
-			buttons = this.s.buttons;
-		}
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			if ( buttons[i].node === node ) {
-				return buttons[i];
-			}
-
-			if ( buttons[i].buttons.length ) {
-				var ret = this._nodeToButton( node, buttons[i].buttons );
-
-				if ( ret ) {
-					return ret;
-				}
-			}
-		}
-	},
-
-	/**
-	 * Get container array for a button from a button node (recursive)
-	 * @param  {node} node Button node
-	 * @param  {array} [buttons] Button array, uses base if not defined
-	 * @return {array} Button's host array
-	 * @private
-	 */
-	_nodeToHost: function ( node, buttons )
-	{
-		if ( ! buttons ) {
-			buttons = this.s.buttons;
-		}
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			if ( buttons[i].node === node ) {
-				return buttons;
-			}
-
-			if ( buttons[i].buttons.length ) {
-				var ret = this._nodeToHost( node, buttons[i].buttons );
-
-				if ( ret ) {
-					return ret;
-				}
-			}
-		}
-	},
-
-	/**
-	 * Handle a key press - determine if any button's key configured matches
-	 * what was typed and trigger the action if so.
-	 * @param  {string} character The character pressed
-	 * @param  {object} e Key event that triggered this call
-	 * @private
-	 */
-	_keypress: function ( character, e )
-	{
-		// Check if this button press already activated on another instance of Buttons
-		if ( e._buttonsHandled ) {
-			return;
-		}
-
-		var run = function ( conf, node ) {
-			if ( ! conf.key ) {
-				return;
-			}
-
-			if ( conf.key === character ) {
-				e._buttonsHandled = true;
-				$(node).click();
-			}
-			else if ( $.isPlainObject( conf.key ) ) {
-				if ( conf.key.key !== character ) {
-					return;
-				}
-
-				if ( conf.key.shiftKey && ! e.shiftKey ) {
-					return;
-				}
-
-				if ( conf.key.altKey && ! e.altKey ) {
-					return;
-				}
-
-				if ( conf.key.ctrlKey && ! e.ctrlKey ) {
-					return;
-				}
-
-				if ( conf.key.metaKey && ! e.metaKey ) {
-					return;
-				}
-
-				// Made it this far - it is good
-				e._buttonsHandled = true;
-				$(node).click();
-			}
-		};
-
-		var recurse = function ( a ) {
-			for ( var i=0, ien=a.length ; i<ien ; i++ ) {
-				run( a[i].conf, a[i].node );
-
-				if ( a[i].buttons.length ) {
-					recurse( a[i].buttons );
-				}
-			}
-		};
-
-		recurse( this.s.buttons );
-	},
-
-	/**
-	 * Remove a key from the key listener for this instance (to be used when a
-	 * button is removed)
-	 * @param  {object} conf Button configuration
-	 * @private
-	 */
-	_removeKey: function ( conf )
-	{
-		if ( conf.key ) {
-			var character = $.isPlainObject( conf.key ) ?
-				conf.key.key :
-				conf.key;
-
-			// Remove only one character, as multiple buttons could have the
-			// same listening key
-			var a = this.s.listenKeys.split('');
-			var idx = $.inArray( character, a );
-			a.splice( idx, 1 );
-			this.s.listenKeys = a.join('');
-		}
-	},
-
-	/**
-	 * Resolve a button configuration
-	 * @param  {string|function|object} conf Button config to resolve
-	 * @return {object} Button configuration
-	 * @private
-	 */
-	_resolveExtends: function ( conf )
-	{
-		var dt = this.s.dt;
-		var i, ien;
-		var toConfObject = function ( base ) {
-			var loop = 0;
-
-			// Loop until we have resolved to a button configuration, or an
-			// array of button configurations (which will be iterated
-			// separately)
-			while ( ! $.isPlainObject(base) && ! $.isArray(base) ) {
-				if ( base === undefined ) {
-					return;
-				}
-
-				if ( typeof base === 'function' ) {
-					base = base( dt, conf );
-
-					if ( ! base ) {
-						return false;
-					}
-				}
-				else if ( typeof base === 'string' ) {
-					if ( ! _dtButtons[ base ] ) {
-						throw 'Unknown button type: '+base;
-					}
-
-					base = _dtButtons[ base ];
-				}
-
-				loop++;
-				if ( loop > 30 ) {
-					// Protect against misconfiguration killing the browser
-					throw 'Buttons: Too many iterations';
-				}
-			}
-
-			return $.isArray( base ) ?
-				base :
-				$.extend( {}, base );
-		};
-
-		conf = toConfObject( conf );
-
-		while ( conf && conf.extend ) {
-			// Use `toConfObject` in case the button definition being extended
-			// is itself a string or a function
-			if ( ! _dtButtons[ conf.extend ] ) {
-				throw 'Cannot extend unknown button type: '+conf.extend;
-			}
-
-			var objArray = toConfObject( _dtButtons[ conf.extend ] );
-			if ( $.isArray( objArray ) ) {
-				return objArray;
-			}
-			else if ( ! objArray ) {
-				// This is a little brutal as it might be possible to have a
-				// valid button without the extend, but if there is no extend
-				// then the host button would be acting in an undefined state
-				return false;
-			}
-
-			// Stash the current class name
-			var originalClassName = objArray.className;
-
-			conf = $.extend( {}, objArray, conf );
-
-			// The extend will have overwritten the original class name if the
-			// `conf` object also assigned a class, but we want to concatenate
-			// them so they are list that is combined from all extended buttons
-			if ( originalClassName && conf.className !== originalClassName ) {
-				conf.className = originalClassName+' '+conf.className;
-			}
-
-			// Buttons to be added to a collection  -gives the ability to define
-			// if buttons should be added to the start or end of a collection
-			var postfixButtons = conf.postfixButtons;
-			if ( postfixButtons ) {
-				if ( ! conf.buttons ) {
-					conf.buttons = [];
-				}
-
-				for ( i=0, ien=postfixButtons.length ; i<ien ; i++ ) {
-					conf.buttons.push( postfixButtons[i] );
-				}
-
-				conf.postfixButtons = null;
-			}
-
-			var prefixButtons = conf.prefixButtons;
-			if ( prefixButtons ) {
-				if ( ! conf.buttons ) {
-					conf.buttons = [];
-				}
-
-				for ( i=0, ien=prefixButtons.length ; i<ien ; i++ ) {
-					conf.buttons.splice( i, 0, prefixButtons[i] );
-				}
-
-				conf.prefixButtons = null;
-			}
-
-			// Although we want the `conf` object to overwrite almost all of
-			// the properties of the object being extended, the `extend`
-			// property should come from the object being extended
-			conf.extend = objArray.extend;
-		}
-
-		return conf;
-	}
-} );
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Statics
- */
-
-/**
- * Show / hide a background layer behind a collection
- * @param  {boolean} Flag to indicate if the background should be shown or
- *   hidden 
- * @param  {string} Class to assign to the background
- * @static
- */
-Buttons.background = function ( show, className, fade ) {
-	if ( fade === undefined ) {
-		fade = 400;
-	}
-
-	if ( show ) {
-		$('<div/>')
-			.addClass( className )
-			.css( 'display', 'none' )
-			.appendTo( 'body' )
-			.fadeIn( fade );
-	}
-	else {
-		$('body > div.'+className)
-			.fadeOut( fade, function () {
-				$(this)
-					.removeClass( className )
-					.remove();
-			} );
-	}
-};
-
-/**
- * Instance selector - select Buttons instances based on an instance selector
- * value from the buttons assigned to a DataTable. This is only useful if
- * multiple instances are attached to a DataTable.
- * @param  {string|int|array} Instance selector - see `instance-selector`
- *   documentation on the DataTables site
- * @param  {array} Button instance array that was attached to the DataTables
- *   settings object
- * @return {array} Buttons instances
- * @static
- */
-Buttons.instanceSelector = function ( group, buttons )
-{
-	if ( ! group ) {
-		return $.map( buttons, function ( v ) {
-			return v.inst;
-		} );
-	}
-
-	var ret = [];
-	var names = $.map( buttons, function ( v ) {
-		return v.name;
-	} );
-
-	// Flatten the group selector into an array of single options
-	var process = function ( input ) {
-		if ( $.isArray( input ) ) {
-			for ( var i=0, ien=input.length ; i<ien ; i++ ) {
-				process( input[i] );
-			}
-			return;
-		}
-
-		if ( typeof input === 'string' ) {
-			if ( input.indexOf( ',' ) !== -1 ) {
-				// String selector, list of names
-				process( input.split(',') );
-			}
-			else {
-				// String selector individual name
-				var idx = $.inArray( $.trim(input), names );
-
-				if ( idx !== -1 ) {
-					ret.push( buttons[ idx ].inst );
-				}
-			}
-		}
-		else if ( typeof input === 'number' ) {
-			// Index selector
-			ret.push( buttons[ input ].inst );
-		}
-	};
-	
-	process( group );
-
-	return ret;
-};
-
-/**
- * Button selector - select one or more buttons from a selector input so some
- * operation can be performed on them.
- * @param  {array} Button instances array that the selector should operate on
- * @param  {string|int|node|jQuery|array} Button selector - see
- *   `button-selector` documentation on the DataTables site
- * @return {array} Array of objects containing `inst` and `idx` properties of
- *   the selected buttons so you know which instance each button belongs to.
- * @static
- */
-Buttons.buttonSelector = function ( insts, selector )
-{
-	var ret = [];
-	var nodeBuilder = function ( a, buttons, baseIdx ) {
-		var button;
-		var idx;
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			button = buttons[i];
-
-			if ( button ) {
-				idx = baseIdx !== undefined ?
-					baseIdx+i :
-					i+'';
-
-				a.push( {
-					node: button.node,
-					name: button.conf.name,
-					idx:  idx
-				} );
-
-				if ( button.buttons ) {
-					nodeBuilder( a, button.buttons, idx+'-' );
-				}
-			}
-		}
-	};
-
-	var run = function ( selector, inst ) {
-		var i, ien;
-		var buttons = [];
-		nodeBuilder( buttons, inst.s.buttons );
-
-		var nodes = $.map( buttons, function (v) {
-			return v.node;
-		} );
-
-		if ( $.isArray( selector ) || selector instanceof $ ) {
-			for ( i=0, ien=selector.length ; i<ien ; i++ ) {
-				run( selector[i], inst );
-			}
-			return;
-		}
-
-		if ( selector === null || selector === undefined || selector === '*' ) {
-			// Select all
-			for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-				ret.push( {
-					inst: inst,
-					node: buttons[i].node
-				} );
-			}
-		}
-		else if ( typeof selector === 'number' ) {
-			// Main button index selector
-			ret.push( {
-				inst: inst,
-				node: inst.s.buttons[ selector ].node
-			} );
-		}
-		else if ( typeof selector === 'string' ) {
-			if ( selector.indexOf( ',' ) !== -1 ) {
-				// Split
-				var a = selector.split(',');
-
-				for ( i=0, ien=a.length ; i<ien ; i++ ) {
-					run( $.trim(a[i]), inst );
-				}
-			}
-			else if ( selector.match( /^\d+(\-\d+)*$/ ) ) {
-				// Sub-button index selector
-				var indexes = $.map( buttons, function (v) {
-					return v.idx;
-				} );
-
-				ret.push( {
-					inst: inst,
-					node: buttons[ $.inArray( selector, indexes ) ].node
-				} );
-			}
-			else if ( selector.indexOf( ':name' ) !== -1 ) {
-				// Button name selector
-				var name = selector.replace( ':name', '' );
-
-				for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-					if ( buttons[i].name === name ) {
-						ret.push( {
-							inst: inst,
-							node: buttons[i].node
-						} );
-					}
-				}
-			}
-			else {
-				// jQuery selector on the nodes
-				$( nodes ).filter( selector ).each( function () {
-					ret.push( {
-						inst: inst,
-						node: this
-					} );
-				} );
-			}
-		}
-		else if ( typeof selector === 'object' && selector.nodeName ) {
-			// Node selector
-			var idx = $.inArray( selector, nodes );
-
-			if ( idx !== -1 ) {
-				ret.push( {
-					inst: inst,
-					node: nodes[ idx ]
-				} );
-			}
-		}
-	};
-
-
-	for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
-		var inst = insts[i];
-
-		run( selector, inst );
-	}
-
-	return ret;
-};
-
-
-/**
- * Buttons defaults. For full documentation, please refer to the docs/option
- * directory or the DataTables site.
- * @type {Object}
- * @static
- */
-Buttons.defaults = {
-	buttons: [ 'copy', 'excel', 'csv', 'pdf', 'print' ],
-	name: 'main',
-	tabIndex: 0,
-	dom: {
-		container: {
-			tag: 'div',
-			className: 'dt-buttons'
-		},
-		collection: {
-			tag: 'div',
-			className: 'dt-button-collection'
-		},
-		button: {
-			tag: 'button',
-			className: 'dt-button',
-			active: 'active',
-			disabled: 'disabled'
-		},
-		buttonLiner: {
-			tag: 'span',
-			className: ''
-		}
-	}
-};
-
-/**
- * Version information
- * @type {string}
- * @static
- */
-Buttons.version = '1.5.2';
-
-
-$.extend( _dtButtons, {
-	collection: {
-		text: function ( dt ) {
-			return dt.i18n( 'buttons.collection', 'Collection' );
-		},
-		className: 'buttons-collection',
-		action: function ( e, dt, button, config ) {
-			var host = button;
-			var collectionParent = $(button).parents('div.dt-button-collection');
-			var hostPosition = host.position();
-			var tableContainer = $( dt.table().container() );
-			var multiLevel = false;
-			var insertPoint = host;
-
-			// Remove any old collection
-			if ( collectionParent.length ) {
-				multiLevel = $('.dt-button-collection').position();
-				insertPoint = collectionParent;
-				$('body').trigger( 'click.dtb-collection' );
-			}
-
-			if ( insertPoint.parents('body')[0] !== document.body ) {
-				insertPoint = document.body.lastChild;
-			}
-
-			config._collection
-				.addClass( config.collectionLayout )
-				.css( 'display', 'none' )
-				.insertAfter( insertPoint )
-				.fadeIn( config.fade );
-			
-
-			var position = config._collection.css( 'position' );
-
-			if ( multiLevel && position === 'absolute' ) {
-				config._collection.css( {
-					top: multiLevel.top,
-					left: multiLevel.left
-				} );
-			}
-			else if ( position === 'absolute' ) {
-				config._collection.css( {
-					top: hostPosition.top + host.outerHeight(),
-					left: hostPosition.left
-				} );
-
-				// calculate overflow when positioned beneath
-				var tableBottom = tableContainer.offset().top + tableContainer.height();
-				var listBottom = hostPosition.top + host.outerHeight() + config._collection.outerHeight();
-				var bottomOverflow = listBottom - tableBottom;
-				
-				// calculate overflow when positioned above
-				var listTop = hostPosition.top - config._collection.outerHeight();
-				var tableTop = tableContainer.offset().top;
-				var topOverflow = tableTop - listTop;
-				
-				// if bottom overflow is larger, move to the top because it fits better, or if dropup is requested
-				if (bottomOverflow > topOverflow || config.dropup) {
-					config._collection.css( 'top', hostPosition.top - config._collection.outerHeight() - 5);
-				}
-
-				// Right alignment in table container
-				var listRight = hostPosition.left + config._collection.outerWidth();
-				var tableRight = tableContainer.offset().left + tableContainer.width();
-				if ( listRight > tableRight ) {
-					config._collection.css( 'left', hostPosition.left - ( listRight - tableRight ) );
-				}
-
-				// Right alignment to window
-				var listOffsetRight = host.offset().left + config._collection.outerWidth();
-				if ( listOffsetRight > $(window).width() ) {
-					config._collection.css( 'left', hostPosition.left - (listOffsetRight-$(window).width()) );
-				}
-			}
-			else {
-				// Fix position - centre on screen
-				var top = config._collection.height() / 2;
-				if ( top > $(window).height() / 2 ) {
-					top = $(window).height() / 2;
-				}
-
-				config._collection.css( 'marginTop', top*-1 );
-			}
-
-			if ( config.background ) {
-				Buttons.background( true, config.backgroundClassName, config.fade );
-			}
-
-			var close = function () {
-				config._collection
-				.fadeOut( config.fade, function () {
-					config._collection.detach();
-				} );
-
-				$('div.dt-button-background').off( 'click.dtb-collection' );
-				Buttons.background( false, config.backgroundClassName, config.fade );
-
-				$('body').off( '.dtb-collection' );
-				dt.off( 'buttons-action.b-internal' );
-			};
-
-			// Need to break the 'thread' for the collection button being
-			// activated by a click - it would also trigger this event
-			setTimeout( function () {
-				// This is bonkers, but if we don't have a click listener on the
-				// background element, iOS Safari will ignore the body click
-				// listener below. An empty function here is all that is
-				// required to make it work...
-				$('div.dt-button-background').on( 'click.dtb-collection', function () {} );
-
-				$('body')
-					.on( 'click.dtb-collection', function (e) {
-						// andSelf is deprecated in jQ1.8, but we want 1.7 compat
-						var back = $.fn.addBack ? 'addBack' : 'andSelf';
-
-						if ( ! $(e.target).parents()[back]().filter( config._collection ).length ) {
-							close();
-						}
-					} )
-					.on( 'keyup.dtb-collection', function (e) {
-						if ( e.keyCode === 27 ) {
-							close();
-						}
-					} );
-
-				if ( config.autoClose ) {
-					dt.on( 'buttons-action.b-internal', function () {
-						close();
-					} );
-				}
-			}, 10 );
-		},
-		background: true,
-		collectionLayout: '',
-		backgroundClassName: 'dt-button-background',
-		autoClose: false,
-		fade: 400,
-		attr: {
-			'aria-haspopup': true
-		}
-	},
-	copy: function ( dt, conf ) {
-		if ( _dtButtons.copyHtml5 ) {
-			return 'copyHtml5';
-		}
-		if ( _dtButtons.copyFlash && _dtButtons.copyFlash.available( dt, conf ) ) {
-			return 'copyFlash';
-		}
-	},
-	csv: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
-		if ( _dtButtons.csvHtml5 && _dtButtons.csvHtml5.available( dt, conf ) ) {
-			return 'csvHtml5';
-		}
-		if ( _dtButtons.csvFlash && _dtButtons.csvFlash.available( dt, conf ) ) {
-			return 'csvFlash';
-		}
-	},
-	excel: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
-		if ( _dtButtons.excelHtml5 && _dtButtons.excelHtml5.available( dt, conf ) ) {
-			return 'excelHtml5';
-		}
-		if ( _dtButtons.excelFlash && _dtButtons.excelFlash.available( dt, conf ) ) {
-			return 'excelFlash';
-		}
-	},
-	pdf: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
-		if ( _dtButtons.pdfHtml5 && _dtButtons.pdfHtml5.available( dt, conf ) ) {
-			return 'pdfHtml5';
-		}
-		if ( _dtButtons.pdfFlash && _dtButtons.pdfFlash.available( dt, conf ) ) {
-			return 'pdfFlash';
-		}
-	},
-	pageLength: function ( dt ) {
-		var lengthMenu = dt.settings()[0].aLengthMenu;
-		var vals = $.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
-		var lang = $.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
-		var text = function ( dt ) {
-			return dt.i18n( 'buttons.pageLength', {
-				"-1": 'Show all rows',
-				_:    'Show %d rows'
-			}, dt.page.len() );
-		};
-
-		return {
-			extend: 'collection',
-			text: text,
-			className: 'buttons-page-length',
-			autoClose: true,
-			buttons: $.map( vals, function ( val, i ) {
-				return {
-					text: lang[i],
-					className: 'button-page-length',
-					action: function ( e, dt ) {
-						dt.page.len( val ).draw();
-					},
-					init: function ( dt, node, conf ) {
-						var that = this;
-						var fn = function () {
-							that.active( dt.page.len() === val );
-						};
-
-						dt.on( 'length.dt'+conf.namespace, fn );
-						fn();
-					},
-					destroy: function ( dt, node, conf ) {
-						dt.off( 'length.dt'+conf.namespace );
-					}
-				};
-			} ),
-			init: function ( dt, node, conf ) {
-				var that = this;
-				dt.on( 'length.dt'+conf.namespace, function () {
-					that.text( text( dt ) );
-				} );
-			},
-			destroy: function ( dt, node, conf ) {
-				dt.off( 'length.dt'+conf.namespace );
-			}
-		};
-	}
-} );
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables API
- *
- * For complete documentation, please refer to the docs/api directory or the
- * DataTables site
- */
-
-// Buttons group and individual button selector
-DataTable.Api.register( 'buttons()', function ( group, selector ) {
-	// Argument shifting
-	if ( selector === undefined ) {
-		selector = group;
-		group = undefined;
-	}
-
-	this.selector.buttonGroup = group;
-
-	var res = this.iterator( true, 'table', function ( ctx ) {
-		if ( ctx._buttons ) {
-			return Buttons.buttonSelector(
-				Buttons.instanceSelector( group, ctx._buttons ),
-				selector
-			);
-		}
-	}, true );
-
-	res._groupSelector = group;
-	return res;
-} );
-
-// Individual button selector
-DataTable.Api.register( 'button()', function ( group, selector ) {
-	// just run buttons() and truncate
-	var buttons = this.buttons( group, selector );
-
-	if ( buttons.length > 1 ) {
-		buttons.splice( 1, buttons.length );
-	}
-
-	return buttons;
-} );
-
-// Active buttons
-DataTable.Api.registerPlural( 'buttons().active()', 'button().active()', function ( flag ) {
-	if ( flag === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.active( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.active( set.node, flag );
-	} );
-} );
-
-// Get / set button action
-DataTable.Api.registerPlural( 'buttons().action()', 'button().action()', function ( action ) {
-	if ( action === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.action( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.action( set.node, action );
-	} );
-} );
-
-// Enable / disable buttons
-DataTable.Api.register( ['buttons().enable()', 'button().enable()'], function ( flag ) {
-	return this.each( function ( set ) {
-		set.inst.enable( set.node, flag );
-	} );
-} );
-
-// Disable buttons
-DataTable.Api.register( ['buttons().disable()', 'button().disable()'], function () {
-	return this.each( function ( set ) {
-		set.inst.disable( set.node );
-	} );
-} );
-
-// Get button nodes
-DataTable.Api.registerPlural( 'buttons().nodes()', 'button().node()', function () {
-	var jq = $();
-
-	// jQuery will automatically reduce duplicates to a single entry
-	$( this.each( function ( set ) {
-		jq = jq.add( set.inst.node( set.node ) );
-	} ) );
-
-	return jq;
-} );
-
-// Get / set button processing state
-DataTable.Api.registerPlural( 'buttons().processing()', 'button().processing()', function ( flag ) {
-	if ( flag === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.processing( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.processing( set.node, flag );
-	} );
-} );
-
-// Get / set button text (i.e. the button labels)
-DataTable.Api.registerPlural( 'buttons().text()', 'button().text()', function ( label ) {
-	if ( label === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.text( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.text( set.node, label );
-	} );
-} );
-
-// Trigger a button's action
-DataTable.Api.registerPlural( 'buttons().trigger()', 'button().trigger()', function () {
-	return this.each( function ( set ) {
-		set.inst.node( set.node ).trigger( 'click' );
-	} );
-} );
-
-// Get the container elements
-DataTable.Api.registerPlural( 'buttons().containers()', 'buttons().container()', function () {
-	var jq = $();
-	var groupSelector = this._groupSelector;
-
-	// We need to use the group selector directly, since if there are no buttons
-	// the result set will be empty
-	this.iterator( true, 'table', function ( ctx ) {
-		if ( ctx._buttons ) {
-			var insts = Buttons.instanceSelector( groupSelector, ctx._buttons );
-
-			for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
-				jq = jq.add( insts[i].container() );
-			}
-		}
-	} );
-
-	return jq;
-} );
-
-// Add a new button
-DataTable.Api.register( 'button().add()', function ( idx, conf ) {
-	var ctx = this.context;
-
-	// Don't use `this` as it could be empty - select the instances directly
-	if ( ctx.length ) {
-		var inst = Buttons.instanceSelector( this._groupSelector, ctx[0]._buttons );
-
-		if ( inst.length ) {
-			inst[0].add( conf, idx );
-		}
-	}
-
-	return this.button( this._groupSelector, idx );
-} );
-
-// Destroy the button sets selected
-DataTable.Api.register( 'buttons().destroy()', function () {
-	this.pluck( 'inst' ).unique().each( function ( inst ) {
-		inst.destroy();
-	} );
-
-	return this;
-} );
-
-// Remove a button
-DataTable.Api.registerPlural( 'buttons().remove()', 'buttons().remove()', function () {
-	this.each( function ( set ) {
-		set.inst.remove( set.node );
-	} );
-
-	return this;
-} );
-
-// Information box that can be used by buttons
-var _infoTimer;
-DataTable.Api.register( 'buttons.info()', function ( title, message, time ) {
-	var that = this;
-
-	if ( title === false ) {
-		$('#datatables_buttons_info').fadeOut( function () {
-			$(this).remove();
-		} );
-		clearTimeout( _infoTimer );
-		_infoTimer = null;
-
-		return this;
-	}
-
-	if ( _infoTimer ) {
-		clearTimeout( _infoTimer );
-	}
-
-	if ( $('#datatables_buttons_info').length ) {
-		$('#datatables_buttons_info').remove();
-	}
-
-	title = title ? '<h2>'+title+'</h2>' : '';
-
-	$('<div id="datatables_buttons_info" class="dt-button-info"/>')
-		.html( title )
-		.append( $('<div/>')[ typeof message === 'string' ? 'html' : 'append' ]( message ) )
-		.css( 'display', 'none' )
-		.appendTo( 'body' )
-		.fadeIn();
-
-	if ( time !== undefined && time !== 0 ) {
-		_infoTimer = setTimeout( function () {
-			that.buttons.info( false );
-		}, time );
-	}
-
-	return this;
-} );
-
-// Get data from the table for export - this is common to a number of plug-in
-// buttons so it is included in the Buttons core library
-DataTable.Api.register( 'buttons.exportData()', function ( options ) {
-	if ( this.context.length ) {
-		return _exportData( new DataTable.Api( this.context[0] ), options );
-	}
-} );
-
-// Get information about the export that is common to many of the export data
-// types (DRY)
-DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
-	if ( ! conf ) {
-		conf = {};
-	}
-
-	return {
-		filename: _filename( conf ),
-		title: _title( conf ),
-		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
-		messageBottom: _message(this, conf.messageBottom, 'bottom')
-	};
-} );
-
-
-
-/**
- * Get the file name for an exported file.
- *
- * @param {object}	config Button configuration
- * @param {boolean} incExtension Include the file name extension
- */
-var _filename = function ( config )
-{
-	// Backwards compatibility
-	var filename = config.filename === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
-		config.title :
-		config.filename;
-
-	if ( typeof filename === 'function' ) {
-		filename = filename();
-	}
-
-	if ( filename === undefined || filename === null ) {
-		return null;
-	}
-
-	if ( filename.indexOf( '*' ) !== -1 ) {
-		filename = $.trim( filename.replace( '*', $('head > title').text() ) );
-	}
-
-	// Strip characters which the OS will object to
-	filename = filename.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
-
-	var extension = _stringOrFunction( config.extension );
-	if ( ! extension ) {
-		extension = '';
-	}
-
-	return filename + extension;
-};
-
-/**
- * Simply utility method to allow parameters to be given as a function
- *
- * @param {undefined|string|function} option Option
- * @return {null|string} Resolved value
- */
-var _stringOrFunction = function ( option )
-{
-	if ( option === null || option === undefined ) {
-		return null;
-	}
-	else if ( typeof option === 'function' ) {
-		return option();
-	}
-	return option;
-};
-
-/**
- * Get the title for an exported file.
- *
- * @param {object} config	Button configuration
- */
-var _title = function ( config )
-{
-	var title = _stringOrFunction( config.title );
-
-	return title === null ?
-		null : title.indexOf( '*' ) !== -1 ?
-			title.replace( '*', $('head > title').text() || 'Exported data' ) :
-			title;
-};
-
-var _message = function ( dt, option, position )
-{
-	var message = _stringOrFunction( option );
-	if ( message === null ) {
-		return null;
-	}
-
-	var caption = $('caption', dt.table().container()).eq(0);
-	if ( message === '*' ) {
-		var side = caption.css( 'caption-side' );
-		if ( side !== position ) {
-			return null;
-		}
-
-		return caption.length ?
-			caption.text() :
-			'';
-	}
-
-	return message;
-};
-
-
-
-
-
-
-
-var _exportTextarea = $('<textarea/>')[0];
-var _exportData = function ( dt, inOpts )
-{
-	var config = $.extend( true, {}, {
-		rows:           null,
-		columns:        '',
-		modifier:       {
-			search: 'applied',
-			order:  'applied'
-		},
-		orthogonal:     'display',
-		stripHtml:      true,
-		stripNewlines:  true,
-		decodeEntities: true,
-		trim:           true,
-		format:         {
-			header: function ( d ) {
-				return strip( d );
-			},
-			footer: function ( d ) {
-				return strip( d );
-			},
-			body: function ( d ) {
-				return strip( d );
-			}
-		},
-		customizeData: null
-	}, inOpts );
-
-	var strip = function ( str ) {
-		if ( typeof str !== 'string' ) {
-			return str;
-		}
-
-		// Always remove script tags
-		str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
-
-		// Always remove comments
-		str = str.replace( /<!\-\-.*?\-\->/g, '' );
-
-		if ( config.stripHtml ) {
-			str = str.replace( /<[^>]*>/g, '' );
-		}
-
-		if ( config.trim ) {
-			str = str.replace( /^\s+|\s+$/g, '' );
-		}
-
-		if ( config.stripNewlines ) {
-			str = str.replace( /\n/g, ' ' );
-		}
-
-		if ( config.decodeEntities ) {
-			_exportTextarea.innerHTML = str;
-			str = _exportTextarea.value;
-		}
-
-		return str;
-	};
-
-
-	var header = dt.columns( config.columns ).indexes().map( function (idx) {
-		var el = dt.column( idx ).header();
-		return config.format.header( el.innerHTML, idx, el );
-	} ).toArray();
-
-	var footer = dt.table().footer() ?
-		dt.columns( config.columns ).indexes().map( function (idx) {
-			var el = dt.column( idx ).footer();
-			return config.format.footer( el ? el.innerHTML : '', idx, el );
-		} ).toArray() :
-		null;
-	
-	// If Select is available on this table, and any rows are selected, limit the export
-	// to the selected rows. If no rows are selected, all rows will be exported. Specify
-	// a `selected` modifier to control directly.
-	var modifier = $.extend( {}, config.modifier );
-	if ( dt.select && typeof dt.select.info === 'function' && modifier.selected === undefined ) {
-		if ( dt.rows( config.rows, $.extend( { selected: true }, modifier ) ).any() ) {
-			$.extend( modifier, { selected: true } )
-		}
-	}
-
-	var rowIndexes = dt.rows( config.rows, modifier ).indexes().toArray();
-	var selectedCells = dt.cells( rowIndexes, config.columns );
-	var cells = selectedCells
-		.render( config.orthogonal )
-		.toArray();
-	var cellNodes = selectedCells
-		.nodes()
-		.toArray();
-
-	var columns = header.length;
-	var rows = columns > 0 ? cells.length / columns : 0;
-	var body = [];
-	var cellCounter = 0;
-
-	for ( var i=0, ien=rows ; i<ien ; i++ ) {
-		var row = [ columns ];
-
-		for ( var j=0 ; j<columns ; j++ ) {
-			row[j] = config.format.body( cells[ cellCounter ], i, j, cellNodes[ cellCounter ] );
-			cellCounter++;
-		}
-
-		body[i] = row;
-	}
-
-	var data = {
-		header: header,
-		footer: footer,
-		body:   body
-	};
-
-	if ( config.customizeData ) {
-		config.customizeData( data );
-	}
-
-	return data;
-};
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables interface
- */
-
-// Attach to DataTables objects for global access
-$.fn.dataTable.Buttons = Buttons;
-$.fn.DataTable.Buttons = Buttons;
-
-
-
-// DataTables creation - check if the buttons have been defined for this table,
-// they will have been if the `B` option was used in `dom`, otherwise we should
-// create the buttons instance here so they can be inserted into the document
-// using the API. Listen for `init` for compatibility with pre 1.10.10, but to
-// be removed in future.
-$(document).on( 'init.dt plugin-init.dt', function (e, settings) {
-	if ( e.namespace !== 'dt' ) {
-		return;
-	}
-
-	var opts = settings.oInit.buttons || DataTable.defaults.buttons;
-
-	if ( opts && ! settings._buttons ) {
-		new Buttons( settings, opts ).container();
-	}
-} );
-
-// DataTables `dom` feature option
-DataTable.ext.feature.push( {
-	fnInit: function( settings ) {
-		var api = new DataTable.Api( settings );
-		var opts = api.init().buttons || DataTable.defaults.buttons;
-
-		return new Buttons( api, opts ).container();
-	},
-	cFeature: "B"
-} );
-
-
-return Buttons;
-}));
-
-
-/***/ }),
-/* 15 */
+/***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39833,10 +37281,11 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(16).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(15).setImmediate))
 
 /***/ }),
-/* 16 */
+
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -39892,7 +37341,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(17);
+__webpack_require__(16);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -39906,7 +37355,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 17 */
+
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -40099,13 +37549,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
-/* 18 */
+
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(18);
 
 /***/ }),
-/* 19 */
+
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40113,7 +37565,7 @@ module.exports = __webpack_require__(19);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(6);
-var Axios = __webpack_require__(21);
+var Axios = __webpack_require__(20);
 var defaults = __webpack_require__(3);
 
 /**
@@ -40148,14 +37600,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(10);
-axios.CancelToken = __webpack_require__(35);
+axios.CancelToken = __webpack_require__(34);
 axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(36);
+axios.spread = __webpack_require__(35);
 
 module.exports = axios;
 
@@ -40164,7 +37616,8 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 20 */
+
+/***/ 19:
 /***/ (function(module, exports) {
 
 /*!
@@ -40191,7 +37644,36 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 21 */
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40199,8 +37681,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(30);
-var dispatchRequest = __webpack_require__(31);
+var InterceptorManager = __webpack_require__(29);
+var dispatchRequest = __webpack_require__(30);
 
 /**
  * Create a new instance of Axios
@@ -40277,7 +37759,8 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 22 */
+
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40296,7 +37779,8 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 23 */
+
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40329,7 +37813,8 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 24 */
+
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40357,7 +37842,8 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 25 */
+
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40430,7 +37916,82 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 26 */
+
+/***/ 247:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(248);
+
+
+/***/ }),
+
+/***/ 248:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__content__);
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('table-content', __WEBPACK_IMPORTED_MODULE_1__content___default.a);
+var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+    el: '#page-content'
+});
+
+/***/ }),
+
+/***/ 249:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(250)
+/* template */
+var __vue_template__ = __webpack_require__(259)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\content.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5f1500b4", Component.options)
+  } else {
+    hotAPI.reload("data-v-5f1500b4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40490,7 +38051,1298 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 27 */
+
+/***/ 250:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_table_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(13);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'data-table': __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default.a
+    },
+    data: function data() {
+        return {
+            columns: [],
+            buttonConfig: [{
+                text: 'Thêm mới',
+                className: 'btn bg-primary',
+                action: function action(e, dt, node, config) {
+                    window.open(window._config.WEB_ADMIN_NOTIFIES + '/create');
+                }
+            }],
+            deleting: false,
+            data: [],
+            menu: [{
+                action: 'view',
+                html: '<a href="#"><i class="icon-info3"></i> Thông tin chi tiết</a>'
+            }, {
+                action: 'delete',
+                html: '<a href="#"><i class="icon-trash"></i> Xóa thông báo</a>'
+            }],
+            primaryKey: 'id',
+            lengths: [50, 100, 200, 500, 1000, 2000, 5000],
+            itemSelected: [],
+            primaryKeyDelete: -1,
+            deletedSelectItem: false,
+            resetCheck: false,
+            uploading: false,
+            excelFile: null,
+            pages: [],
+            page: 1,
+            totalPage: 0,
+            perPage: 500,
+
+            config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]()
+        };
+    },
+    mounted: function mounted() {
+        this.getData();
+    },
+
+    methods: {
+        getData: function getData() {
+            var perPage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+            var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '?size=' + perPage + '&page=' + page).then(function (data) {
+                vm.data = data.data.data;
+                vm.perPage = data.data.per_page;
+                vm.totalPage = data.data.total;
+                vm.data = vm.data.map(function (item) {
+                    item.adminName = item.admin.name;
+                    return item;
+                });
+                vm.columns = [{
+                    key: 'id',
+                    text: 'ID thông báo'
+                }, {
+                    key: 'title',
+                    text: 'Tiêu đề thông báo'
+                }, {
+                    key: 'adminName',
+                    text: 'Tên Admin'
+                }, {
+                    key: 'created_at',
+                    text: 'Thời gian tạo'
+                }];
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError();
+            });
+        },
+        selectAll: function selectAll() {
+            var vm = this;
+            vm.itemSelected = [];
+            vm.data.forEach(function (item) {
+                vm.itemSelected.push(item[vm.primaryKey]);
+            });
+        },
+        unSelectAll: function unSelectAll() {
+            this.itemSelected = [];
+        },
+        action: function action(event) {
+            var vm = this;
+            if (event[1] == 'delete') {
+                vm.primaryKeyDelete = event[0];
+                $('#modal_danger').modal('show');
+            }
+            if (event[1] == 'view') {
+                vm.showItem(event[0]);
+            }
+        },
+        deleteItem: function deleteItem() {
+            var vm = this;
+            vm.deleting = true;
+
+            if (vm.primaryKeyDelete != -1) {
+                var indexOf = -1;
+                __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '/' + vm.primaryKeyDelete).then(function (data) {
+                    vm.data.forEach(function (item, index) {
+
+                        if (item[vm.primaryKey] == vm.primaryKeyDelete) {
+                            indexOf = index;
+                        }
+                    });
+                    if (indexOf != -1) {
+                        vm.data.splice(indexOf, 1);
+                        vm.config.notifySuccess();
+                    } else {
+                        vm.config.notifyWarning();
+                    }
+                    vm.deleting = false;
+                    $('#modal_danger').modal('hide');
+                    $('div.checker>span').removeClass('checked');
+                }).catch(function (err) {
+                    console.log(err);
+                    vm.config.notifyError();
+                    vm.deleting = false;
+                    $('#modal_danger').modal('hide');
+                });
+            } else {
+                vm.deleting = false;
+                $('#modal_danger').modal('hide');
+            }
+        },
+        clickedKeyItem: function clickedKeyItem(item) {
+            var vm = this;
+
+            var index = vm.itemSelected.indexOf(item);
+
+            if (index > -1) {
+                vm.itemSelected.splice(index, 1);
+            } else {
+                vm.itemSelected.push(item);
+            }
+        },
+        deleteSelected: function deleteSelected() {
+            $('#modal-danger-delete-list').modal('show');
+        },
+        deleteListItem: function deleteListItem() {
+            var vm = this;
+            vm.deleting = true;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_NOTIFIES_DELETE_LIST, {
+                params: {
+                    id_list: vm.itemSelected
+                }
+            }).then(function (data) {
+                $('#modal-danger-delete-list').modal('hide');
+                vm.deleting = false;
+                var list_id = vm.itemSelected;
+                var newData = [];
+                vm.data.forEach(function (dt) {
+                    if (!vm.existsItem(dt[vm.primaryKey], list_id)) {
+                        newData.push(dt);
+                    }
+                });
+
+                vm.data = newData;
+
+                vm.config.notifySuccess();
+                vm.itemSelected = [];
+                vm.resetCheck = !vm.resetCheck;
+            }).catch(function (err) {
+                $('#modal-danger-delete-list').modal('hide');
+                vm.deleting = false;
+                console.log(err);
+                vm.config.notifyError();
+            });
+        },
+        existsItem: function existsItem(item, Arry) {
+            var result = false;
+            Arry.forEach(function (i) {
+                if (item == i) {
+                    result = true;
+                }
+            });
+            return result;
+        },
+        showItem: function showItem(id) {
+            var vm = this;
+            window.open(vm.config.WEB_ADMIN_NOTIFIES + '/' + id + '/edit', '_blank');
+        },
+        setExcelFile: function setExcelFile(e) {
+            var vm = this;
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            vm.excelFile = files[0];
+        },
+        changePerPage: function changePerPage(perPage) {
+            this.getData(perPage);
+        },
+        changePageSelect: function changePageSelect(page) {
+            this.getData(this.perPage, page);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(252)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(254)
+/* template */
+var __vue_template__ = __webpack_require__(258)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\table.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-be68eeaa", Component.options)
+  } else {
+    hotAPI.reload("data-v-be68eeaa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(253);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(41)("3b633967", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 253:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(40)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dt-button-collection button{\n    width: 100% !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 254:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__checkboxItem__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_select2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_datatables__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_datatables___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_datatables__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_datatables_net_buttons__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_datatables_net_buttons___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_datatables_net_buttons__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+__webpack_require__(45);
+__webpack_require__(46);
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'checkbox-item': __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default.a
+    },
+    props: ['title', 'data', 'columns', 'showCheck', 'targets', 'buttonConfig', 'primaryKey', 'menu', 'resetCheck', 'pages', 'lengths'],
+    data: function data() {
+        return {
+            table: null,
+            idSelected: [],
+            checked: '',
+            allChecked: false,
+            perPage: 500,
+            pageSelect: 1
+        };
+    },
+    beforeUpdate: function beforeUpdate() {
+        this.table.fnDestroy();
+    },
+    updated: function updated() {
+        this.$nextTick(function () {
+
+            this.Init();
+        });
+    },
+    mounted: function mounted() {
+        var vm = this;
+
+        this.Init();
+    },
+
+    watch: {
+        resetCheck: function resetCheck() {
+            this.checked = '';
+        },
+        perPage: function perPage(value) {
+            this.$emit('changePerPage', value);
+        },
+        pageSelect: function pageSelect(value) {
+            this.$emit('changePageSelect', value);
+        }
+    },
+    methods: {
+        Init: function Init() {
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default.a.extend(__WEBPACK_IMPORTED_MODULE_1_jquery___default.a.fn.dataTable.defaults, {
+                autoWidth: false,
+                dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+                language: {
+                    search: '<span>Tìm kiếm:</span> _INPUT_',
+                    lengthMenu: '<span>Hiển thị:</span> _MENU_',
+                    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+                }
+            });
+            var length = vm.columns.length;
+            var configted = false;
+            vm.buttonConfig.forEach(function (item) {
+                if (item.extend == 'colvis') {
+                    configted = true;
+                }
+            });
+            if (configted == false) {
+                vm.buttonConfig.push({
+                    extend: 'colvis',
+                    text: '<i class="icon-three-bars"></i> <span class="caret"></span>',
+                    className: 'btn bg-blue btn-icon'
+                });
+            }
+
+            var targets = [0, length + 1];
+            targets = targets.concat(vm.targets);
+            vm.table = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#data-table').dataTable({
+                columnDefs: [{ orderable: false, targets: targets }],
+                buttons: {
+                    buttons: vm.buttonConfig
+                }
+            });
+
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.dataTables_filter input[type=search]').attr('placeholder', 'Nhập từ khóa');
+
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.dataTables_length select').select2({
+                minimumResultsForSearch: Infinity,
+                width: 'auto'
+            });
+
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('button.dt-button.buttons-collection.buttons-colvis.btn.bg-blue.btn-icon[tabindex="0"][aria-controls="data-table"]').click(function () {
+                if (__WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr('removed') == undefined) {
+                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('button.dt-button.buttons-columnVisibility.active[tabindex="0"]')[0].remove();
+                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr('removed', 1);
+                }
+            });
+        },
+        selectAll: function selectAll() {
+            this.doChecked();
+            this.allChecked = !this.allChecked;
+            this.$emit('selectAll');
+        },
+        unSelectAll: function unSelectAll() {
+            this.doChecked();
+            this.allChecked = false;
+            this.$emit('unSelectAll');
+        },
+        checkedItem: function checkedItem(key) {
+            this.$emit('clickedKeyItem', key);
+        },
+        doChecked: function doChecked() {
+            if (this.checked == '') {
+                this.checked = 'checked';
+            } else {
+                this.checked = '';
+            }
+        },
+        deleteSelected: function deleteSelected() {
+            this.$emit('deleteSelected');
+        },
+        deletedSelect: function deletedSelect() {
+            this.unSelectAll();
+        },
+        action: function action(key, _action) {
+
+            this.$emit('action', [key, _action]);
+        }
+    },
+    computed: {
+        totalPage: function totalPage() {
+            if (typeof this.pages != "number") {
+                this.pages = 1;
+            }
+            var c = parseInt(this.pages / this.perPage);
+
+            var p = this.pages % this.perPage;
+            if (p > 0) {
+                c++;
+            }
+
+            var pages = [];
+            for (var i = 0; i < c; i++) {
+                pages.push(i + 1);
+            }
+            return pages;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 255:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(256)
+/* template */
+var __vue_template__ = __webpack_require__(257)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\checkboxItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7eee4029", Component.options)
+  } else {
+    hotAPI.reload("data-v-7eee4029", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 256:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['allChecked', 'resetCheck'],
+    computed: {
+        getResetCheck: function getResetCheck() {
+            return this.resetCheck;
+        }
+    },
+
+    data: function data() {
+        return {
+            classChecked: ''
+        };
+    },
+
+
+    methods: {
+        clicked: function clicked() {
+            if (this.classChecked == '') {
+                this.classChecked = 'checked';
+            } else {
+                this.classChecked = '';
+            }
+            this.$emit('setClicked');
+        }
+    },
+    watch: {
+        allChecked: function allChecked(value) {
+            if (value == true) {
+                this.classChecked = 'checked';
+            } else {
+                this.classChecked = '';
+            }
+        },
+        getResetCheck: function getResetCheck(value) {
+
+            this.classChecked = '';
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 257:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "checker" }, [
+    _c("span", { class: _vm.classChecked }, [
+      _c("input", {
+        staticClass: "styled",
+        attrs: { type: "checkbox" },
+        on: { click: _vm.clicked }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7eee4029", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 258:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "panel panel-flat" },
+    [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("h5", { staticClass: "panel-title" }, [_vm._v(_vm._s(_vm.title))]),
+        _vm._v(" "),
+        _c("div", { staticClass: "heading-elements" }, [
+          _c("ul", { staticClass: "icons-list" }, [
+            _c("li", [
+              _vm._v(
+                "\n                    Số item mỗi trang:\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.perPage,
+                      expression: "perPage"
+                    }
+                  ],
+                  staticClass: "right form-control length-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.perPage = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _vm._l(_vm.lengths, function(length) {
+                    return _c("option", { domProps: { value: length } }, [
+                      _vm._v(_vm._s(length))
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "-1" } }, [_vm._v("Tất cả")])
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v("\n                    Chọn trang:\n                ")
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pageSelect,
+                      expression: "pageSelect"
+                    }
+                  ],
+                  staticClass: "right form-control length-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.pageSelect = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.totalPage, function(page) {
+                  return _c("option", { domProps: { value: page } }, [
+                    _vm._v(_vm._s(page))
+                  ])
+                })
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        { staticClass: "table datatable-basic", attrs: { id: "data-table" } },
+        [
+          _c("thead", [
+            _c(
+              "tr",
+              [
+                _c("th", [
+                  _c("div", { staticClass: "btn-group navbar-btn" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-default btn-icon btn-checkbox-all",
+                        attrs: { type: "button" },
+                        on: { click: _vm.selectAll }
+                      },
+                      [
+                        _c("div", { staticClass: "checker" }, [
+                          _c("span", { class: _vm.checked }, [
+                            _c("input", {
+                              staticClass: "styled",
+                              attrs: { type: "checkbox" }
+                            })
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "dropdown-menu" }, [
+                      _c("li", [
+                        !_vm.allChecked
+                          ? _c(
+                              "a",
+                              {
+                                attrs: { href: "javascript:void(0);" },
+                                on: { click: _vm.selectAll }
+                              },
+                              [_vm._v("Chọn tất cả")]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm.allChecked
+                          ? _c(
+                              "a",
+                              {
+                                attrs: { href: "javascript:void(0);" },
+                                on: { click: _vm.unSelectAll }
+                              },
+                              [_vm._v("Bỏ chọn tất cả")]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:void(0);" },
+                            on: { click: _vm.deleteSelected }
+                          },
+                          [_vm._v("Xóa mục đã chọn")]
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.columns, function(column) {
+                  return _c("th", {
+                    key: column.key,
+                    domProps: { innerHTML: _vm._s(column.text) }
+                  })
+                }),
+                _vm._v(" "),
+                _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.data, function(item) {
+              return _c(
+                "tr",
+                [
+                  _c(
+                    "td",
+                    [
+                      _c("checkbox-item", {
+                        attrs: {
+                          allChecked: _vm.allChecked,
+                          resetCheck: _vm.resetCheck
+                        },
+                        on: {
+                          setClicked: function($event) {
+                            _vm.checkedItem(item[_vm.primaryKey])
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.columns, function(column) {
+                    return _c("td", {
+                      key: column.key,
+                      domProps: { innerHTML: _vm._s(item[column.key]) }
+                    })
+                  }),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _c("ul", { staticClass: "icons-list" }, [
+                      _c("li", { staticClass: "dropdown" }, [
+                        _vm._m(1, true),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          { staticClass: "dropdown-menu dropdown-menu-right" },
+                          _vm._l(_vm.menu, function(li) {
+                            return _c("li", {
+                              key: li.action,
+                              domProps: { innerHTML: _vm._s(li.html) },
+                              on: {
+                                click: function($event) {
+                                  _vm.action(item[_vm.primaryKey], li.action)
+                                }
+                              }
+                            })
+                          })
+                        )
+                      ])
+                    ])
+                  ])
+                ],
+                2
+              )
+            })
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default btn-icon dropdown-toggle",
+        attrs: { type: "button", "data-toggle": "dropdown" }
+      },
+      [_c("span", { staticClass: "caret" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [_c("i", { staticClass: "icon-menu9" })]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-be68eeaa", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 259:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper", attrs: { id: "content-wrapper" } },
+    [
+      _c(
+        "data-table",
+        {
+          attrs: {
+            title: "Quản lý thông báo",
+            columns: _vm.columns,
+            data: _vm.data,
+            targets: [],
+            buttonConfig: _vm.buttonConfig,
+            resetCheck: _vm.resetCheck,
+            menu: _vm.menu,
+            primaryKey: _vm.primaryKey,
+            pages: _vm.totalPage,
+            lengths: _vm.lengths
+          },
+          on: {
+            selectAll: _vm.selectAll,
+            unSelectAll: _vm.unSelectAll,
+            deleteSelected: _vm.deleteSelected,
+            action: function($event) {
+              _vm.action($event)
+            },
+            clickedKeyItem: _vm.clickedKeyItem,
+            changePerPage: _vm.changePerPage,
+            changePageSelect: _vm.changePageSelect
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal fade", attrs: { id: "modal_danger" } },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header bg-danger" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("×")]
+                    ),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "modal-title" }, [
+                      _c("i", { staticClass: "icon-warning" }),
+                      _vm._v(" Cảnh báo")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("p", [
+                      _c("i", { staticClass: "icon-warning" }),
+                      _vm._v(
+                        " Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "panel panel-body border-top-danger text-center",
+                        staticStyle: { border: "snow" }
+                      },
+                      [
+                        _vm.deleting == true
+                          ? _c("div", { staticClass: "pace-demo" }, [
+                              _c("div", { staticClass: "theme_xbox_xs" }, [
+                                _c("div", {
+                                  staticClass: "pace_progress",
+                                  attrs: {
+                                    "data-progress-text": "60%",
+                                    "data-progress": "60"
+                                  }
+                                }),
+                                _c("div", { staticClass: "pace_activity" })
+                              ])
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-link",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Hủy")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button" },
+                        on: { click: _vm.deleteItem }
+                      },
+                      [_vm._v("Xác định xóa")]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "modal fade",
+              attrs: { id: "modal-danger-delete-list" }
+            },
+            [
+              _c("div", { staticClass: "modal-dialog" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header bg-danger" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("×")]
+                    ),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "modal-title" }, [
+                      _c("i", { staticClass: "icon-warning" }),
+                      _vm._v(" Cảnh báo")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("p", [
+                      _c("i", { staticClass: "icon-warning" }),
+                      _vm._v(
+                        " Bạn đang xóa nhiều thông báo. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "panel panel-body border-top-danger text-center",
+                        staticStyle: { border: "snow" }
+                      },
+                      [
+                        _vm.deleting == true
+                          ? _c("div", { staticClass: "pace-demo" }, [
+                              _c("div", { staticClass: "theme_xbox_xs" }, [
+                                _c("div", {
+                                  staticClass: "pace_progress",
+                                  attrs: {
+                                    "data-progress-text": "60%",
+                                    "data-progress": "60"
+                                  }
+                                }),
+                                _c("div", { staticClass: "pace_activity" })
+                              ])
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-link",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Hủy")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button" },
+                        on: { click: _vm.deleteListItem }
+                      },
+                      [_vm._v("Xác định xóa")]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5f1500b4", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40565,7 +39417,8 @@ module.exports = (
 
 
 /***/ }),
-/* 28 */
+
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40608,7 +39461,8 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 29 */
+
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40668,7 +39522,8 @@ module.exports = (
 
 
 /***/ }),
-/* 30 */
+
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40727,18 +39582,124 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 31 */
+
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(21);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(7);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(7);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ }),
+
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(32);
+var transformData = __webpack_require__(31);
 var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(3);
-var isAbsoluteURL = __webpack_require__(33);
-var combineURLs = __webpack_require__(34);
+var isAbsoluteURL = __webpack_require__(32);
+var combineURLs = __webpack_require__(33);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -40820,7 +39781,8 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 32 */
+
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40847,7 +39809,8 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 33 */
+
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40868,7 +39831,8 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 34 */
+
+/***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40889,7 +39853,8 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 35 */
+
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40953,7 +39918,8 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 36 */
+
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40987,7 +39953,8 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 37 */
+
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -41165,16 +40132,18 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 })(typeof window === 'undefined' ? this : window);
 
 /***/ }),
-/* 38 */
+
+/***/ 37:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(38);
 const translateOptions=(e,t,o)=>{const s=t?Object.assign({},o?PNotifyCompat.prototype.options[o]:{},e):Object.assign({},PNotifyCompat.prototype.options,e),l=e=>{let t,o=e;for(;-1!==(t=o.indexOf("_"));)o=o.slice(0,t)+o.slice(t+1,t+2).toUpperCase()+o.slice(t+2);return o};for(let e in s)if(s.hasOwnProperty(e)&&-1!==e.indexOf("_")){s[l(e)]=s[e],delete s[e]}return t||(s.hasOwnProperty("addclass")&&(s.addClass=s.addclass,delete s.addclass),s.hasOwnProperty("cornerclass")&&(s.cornerClass=s.cornerclass,delete s.cornerClass),s.hasOwnProperty("textEscape")&&(s.textTrusted=!s.textEscape,delete s.textEscape),s.hasOwnProperty("titleEscape")&&(s.titleTrusted=!s.titleEscape,delete s.titleEscape),s.hasOwnProperty("styling")&&("bootstrap3"===s.styling?s.icons="bootstrap3":"fontawesome"===s.styling&&(s.styling="bootstrap3",s.icons="fontawesome4")),s.hasOwnProperty("stack")&&s.stack.overlay_close&&(s.stack.overlayClose=s.stack.overlay_close),s.modules={},s.hasOwnProperty("animate")&&(s.modules.Animate=translateOptions(s.animate,!0,"animate"),delete s.animate),s.hasOwnProperty("buttons")&&(s.modules.Buttons=translateOptions(s.buttons,!0,"buttons"),delete s.buttons,s.modules.Buttons.classes&&(s.modules.Buttons.classes=translateOptions(s.modules.Buttons.classes,!0))),s.hasOwnProperty("confirm")&&(s.modules.Confirm=translateOptions(s.confirm,!0,"confirm"),s.modules.Confirm.promptDefault&&(s.modules.Confirm.promptValue=s.modules.Confirm.promptDefault,delete s.modules.Confirm.promptDefault),delete s.confirm),s.hasOwnProperty("desktop")&&(s.modules.Desktop=translateOptions(s.desktop,!0,"desktop"),delete s.desktop),s.hasOwnProperty("history")&&(s.modules.History=translateOptions(s.history,!0,"history"),delete s.history),s.hasOwnProperty("mobile")&&(s.modules.Mobile=translateOptions(s.mobile,!0,"mobile"),delete s.mobile),s.hasOwnProperty("nonblock")&&(s.modules.NonBlock=translateOptions(s.nonblock,!0,"nonblock"),delete s.nonblock),s.hasOwnProperty("reference")&&(s.modules.Reference=translateOptions(s.reference,!0,"reference"),delete s.reference),s.hasOwnProperty("beforeInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeInit=s.beforeInit,delete s.beforeInit),s.hasOwnProperty("afterInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterInit=s.afterInit,delete s.afterInit),s.hasOwnProperty("beforeOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeOpen=s.beforeOpen,delete s.beforeOpen),s.hasOwnProperty("afterOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterOpen=s.afterOpen,delete s.afterOpen),s.hasOwnProperty("beforeClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeClose=s.beforeClose,delete s.beforeClose),s.hasOwnProperty("afterClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterClose=s.afterClose,delete s.afterClose)),s};class PNotifyCompat extends __WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */]{constructor(e){"object"!=typeof e&&(e={text:e}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&e.before_init&&e.before_init(e),e=translateOptions(e),super({target:document.body,data:e});const t=this.get;this.get=function(e){return void 0===e?Object.assign(window.jQuery?window.jQuery(this.refs.elem):this.refs.elem,t.call(this)):t.call(this,e)},this.on("pnotify.confirm",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.confirm",[this,e.value])}),this.on("pnotify.cancel",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.cancel",this)}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks.getCallbacks(this,null,"afterInit")(this)}update(e){return e=translateOptions(e),super.update(e)}}PNotifyCompat.prototype.options={text_escape:!1,title_escape:!1},PNotifyCompat.reload=(()=>PNotifyCompat),PNotifyCompat.removeAll=(()=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeAll()),PNotifyCompat.removeStack=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeStack(e)),PNotifyCompat.positionAll=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].positionAll(e)),PNotifyCompat.desktop={permission:()=>{__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Desktop.permission()}},window.jQuery&&window.jQuery(()=>{window.jQuery(document.body).on("pnotify.history-last",function(){__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.History.showLast()})});/* harmony default export */ __webpack_exports__["a"] = (PNotifyCompat);
 //# sourceMappingURL=PNotifyCompat.js.map
 
 /***/ }),
-/* 39 */
+
+/***/ 38:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41182,7 +40151,2026 @@ let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document
 //# sourceMappingURL=PNotify.js.map
 
 /***/ }),
-/* 40 */
+
+/***/ 39:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Buttons for DataTables 1.5.2
+ * ©2016-2018 SpryMedia Ltd - datatables.net/license
+ */
+
+(function( factory ){
+	if ( true ) {
+		// AMD
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11)], __WEBPACK_AMD_DEFINE_RESULT__ = (function ( $ ) {
+			return factory( $, window, document );
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}
+	else if ( typeof exports === 'object' ) {
+		// CommonJS
+		module.exports = function (root, $) {
+			if ( ! root ) {
+				root = window;
+			}
+
+			if ( ! $ || ! $.fn.dataTable ) {
+				$ = require('datatables.net')(root, $).$;
+			}
+
+			return factory( $, root, root.document );
+		};
+	}
+	else {
+		// Browser
+		factory( jQuery, window, document );
+	}
+}(function( $, window, document, undefined ) {
+'use strict';
+var DataTable = $.fn.dataTable;
+
+
+// Used for namespacing events added to the document by each instance, so they
+// can be removed on destroy
+var _instCounter = 0;
+
+// Button namespacing counter for namespacing events on individual buttons
+var _buttonCounter = 0;
+
+var _dtButtons = DataTable.ext.buttons;
+
+/**
+ * [Buttons description]
+ * @param {[type]}
+ * @param {[type]}
+ */
+var Buttons = function( dt, config )
+{
+	// If there is no config set it to an empty object
+	if ( typeof( config ) === 'undefined' ) {
+		config = {};	
+	}
+	
+	// Allow a boolean true for defaults
+	if ( config === true ) {
+		config = {};
+	}
+
+	// For easy configuration of buttons an array can be given
+	if ( $.isArray( config ) ) {
+		config = { buttons: config };
+	}
+
+	this.c = $.extend( true, {}, Buttons.defaults, config );
+
+	// Don't want a deep copy for the buttons
+	if ( config.buttons ) {
+		this.c.buttons = config.buttons;
+	}
+
+	this.s = {
+		dt: new DataTable.Api( dt ),
+		buttons: [],
+		listenKeys: '',
+		namespace: 'dtb'+(_instCounter++)
+	};
+
+	this.dom = {
+		container: $('<'+this.c.dom.container.tag+'/>')
+			.addClass( this.c.dom.container.className )
+	};
+
+	this._constructor();
+};
+
+
+$.extend( Buttons.prototype, {
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Public methods
+	 */
+
+	/**
+	 * Get the action of a button
+	 * @param  {int|string} Button index
+	 * @return {function}
+	 *//**
+	 * Set the action of a button
+	 * @param  {node} node Button element
+	 * @param  {function} action Function to set
+	 * @return {Buttons} Self for chaining
+	 */
+	action: function ( node, action )
+	{
+		var button = this._nodeToButton( node );
+
+		if ( action === undefined ) {
+			return button.conf.action;
+		}
+
+		button.conf.action = action;
+
+		return this;
+	},
+
+	/**
+	 * Add an active class to the button to make to look active or get current
+	 * active state.
+	 * @param  {node} node Button element
+	 * @param  {boolean} [flag] Enable / disable flag
+	 * @return {Buttons} Self for chaining or boolean for getter
+	 */
+	active: function ( node, flag ) {
+		var button = this._nodeToButton( node );
+		var klass = this.c.dom.button.active;
+		var jqNode = $(button.node);
+
+		if ( flag === undefined ) {
+			return jqNode.hasClass( klass );
+		}
+
+		jqNode.toggleClass( klass, flag === undefined ? true : flag );
+
+		return this;
+	},
+
+	/**
+	 * Add a new button
+	 * @param {object} config Button configuration object, base string name or function
+	 * @param {int|string} [idx] Button index for where to insert the button
+	 * @return {Buttons} Self for chaining
+	 */
+	add: function ( config, idx )
+	{
+		var buttons = this.s.buttons;
+
+		if ( typeof idx === 'string' ) {
+			var split = idx.split('-');
+			var base = this.s;
+
+			for ( var i=0, ien=split.length-1 ; i<ien ; i++ ) {
+				base = base.buttons[ split[i]*1 ];
+			}
+
+			buttons = base.buttons;
+			idx = split[ split.length-1 ]*1;
+		}
+
+		this._expandButton( buttons, config, false, idx );
+		this._draw();
+
+		return this;
+	},
+
+	/**
+	 * Get the container node for the buttons
+	 * @return {jQuery} Buttons node
+	 */
+	container: function ()
+	{
+		return this.dom.container;
+	},
+
+	/**
+	 * Disable a button
+	 * @param  {node} node Button node
+	 * @return {Buttons} Self for chaining
+	 */
+	disable: function ( node ) {
+		var button = this._nodeToButton( node );
+
+		$(button.node).addClass( this.c.dom.button.disabled );
+
+		return this;
+	},
+
+	/**
+	 * Destroy the instance, cleaning up event handlers and removing DOM
+	 * elements
+	 * @return {Buttons} Self for chaining
+	 */
+	destroy: function ()
+	{
+		// Key event listener
+		$('body').off( 'keyup.'+this.s.namespace );
+
+		// Individual button destroy (so they can remove their own events if
+		// needed). Take a copy as the array is modified by `remove`
+		var buttons = this.s.buttons.slice();
+		var i, ien;
+		
+		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+			this.remove( buttons[i].node );
+		}
+
+		// Container
+		this.dom.container.remove();
+
+		// Remove from the settings object collection
+		var buttonInsts = this.s.dt.settings()[0];
+
+		for ( i=0, ien=buttonInsts.length ; i<ien ; i++ ) {
+			if ( buttonInsts.inst === this ) {
+				buttonInsts.splice( i, 1 );
+				break;
+			}
+		}
+
+		return this;
+	},
+
+	/**
+	 * Enable / disable a button
+	 * @param  {node} node Button node
+	 * @param  {boolean} [flag=true] Enable / disable flag
+	 * @return {Buttons} Self for chaining
+	 */
+	enable: function ( node, flag )
+	{
+		if ( flag === false ) {
+			return this.disable( node );
+		}
+
+		var button = this._nodeToButton( node );
+		$(button.node).removeClass( this.c.dom.button.disabled );
+
+		return this;
+	},
+
+	/**
+	 * Get the instance name for the button set selector
+	 * @return {string} Instance name
+	 */
+	name: function ()
+	{
+		return this.c.name;
+	},
+
+	/**
+	 * Get a button's node
+	 * @param  {node} node Button node
+	 * @return {jQuery} Button element
+	 */
+	node: function ( node )
+	{
+		var button = this._nodeToButton( node );
+		return $(button.node);
+	},
+
+	/**
+	 * Set / get a processing class on the selected button
+	 * @param  {boolean} flag true to add, false to remove, undefined to get
+	 * @return {boolean|Buttons} Getter value or this if a setter.
+	 */
+	processing: function ( node, flag )
+	{
+		var button = this._nodeToButton( node );
+
+		if ( flag === undefined ) {
+			return $(button.node).hasClass( 'processing' );
+		}
+
+		$(button.node).toggleClass( 'processing', flag );
+
+		return this;
+	},
+
+	/**
+	 * Remove a button.
+	 * @param  {node} node Button node
+	 * @return {Buttons} Self for chaining
+	 */
+	remove: function ( node )
+	{
+		var button = this._nodeToButton( node );
+		var host = this._nodeToHost( node );
+		var dt = this.s.dt;
+
+		// Remove any child buttons first
+		if ( button.buttons.length ) {
+			for ( var i=button.buttons.length-1 ; i>=0 ; i-- ) {
+				this.remove( button.buttons[i].node );
+			}
+		}
+
+		// Allow the button to remove event handlers, etc
+		if ( button.conf.destroy ) {
+			button.conf.destroy.call( dt.button(node), dt, $(node), button.conf );
+		}
+
+		this._removeKey( button.conf );
+
+		$(button.node).remove();
+
+		var idx = $.inArray( button, host );
+		host.splice( idx, 1 );
+
+		return this;
+	},
+
+	/**
+	 * Get the text for a button
+	 * @param  {int|string} node Button index
+	 * @return {string} Button text
+	 *//**
+	 * Set the text for a button
+	 * @param  {int|string|function} node Button index
+	 * @param  {string} label Text
+	 * @return {Buttons} Self for chaining
+	 */
+	text: function ( node, label )
+	{
+		var button = this._nodeToButton( node );
+		var buttonLiner = this.c.dom.collection.buttonLiner;
+		var linerTag = button.inCollection && buttonLiner && buttonLiner.tag ?
+			buttonLiner.tag :
+			this.c.dom.buttonLiner.tag;
+		var dt = this.s.dt;
+		var jqNode = $(button.node);
+		var text = function ( opt ) {
+			return typeof opt === 'function' ?
+				opt( dt, jqNode, button.conf ) :
+				opt;
+		};
+
+		if ( label === undefined ) {
+			return text( button.conf.text );
+		}
+
+		button.conf.text = label;
+
+		if ( linerTag ) {
+			jqNode.children( linerTag ).html( text(label) );
+		}
+		else {
+			jqNode.html( text(label) );
+		}
+
+		return this;
+	},
+
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Constructor
+	 */
+
+	/**
+	 * Buttons constructor
+	 * @private
+	 */
+	_constructor: function ()
+	{
+		var that = this;
+		var dt = this.s.dt;
+		var dtSettings = dt.settings()[0];
+		var buttons =  this.c.buttons;
+
+		if ( ! dtSettings._buttons ) {
+			dtSettings._buttons = [];
+		}
+
+		dtSettings._buttons.push( {
+			inst: this,
+			name: this.c.name
+		} );
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			this.add( buttons[i] );
+		}
+
+		dt.on( 'destroy', function ( e, settings ) {
+			if ( settings === dtSettings ) {
+				that.destroy();
+			}
+		} );
+
+		// Global key event binding to listen for button keys
+		$('body').on( 'keyup.'+this.s.namespace, function ( e ) {
+			if ( ! document.activeElement || document.activeElement === document.body ) {
+				// SUse a string of characters for fast lookup of if we need to
+				// handle this
+				var character = String.fromCharCode(e.keyCode).toLowerCase();
+
+				if ( that.s.listenKeys.toLowerCase().indexOf( character ) !== -1 ) {
+					that._keypress( character, e );
+				}
+			}
+		} );
+	},
+
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Private methods
+	 */
+
+	/**
+	 * Add a new button to the key press listener
+	 * @param {object} conf Resolved button configuration object
+	 * @private
+	 */
+	_addKey: function ( conf )
+	{
+		if ( conf.key ) {
+			this.s.listenKeys += $.isPlainObject( conf.key ) ?
+				conf.key.key :
+				conf.key;
+		}
+	},
+
+	/**
+	 * Insert the buttons into the container. Call without parameters!
+	 * @param  {node} [container] Recursive only - Insert point
+	 * @param  {array} [buttons] Recursive only - Buttons array
+	 * @private
+	 */
+	_draw: function ( container, buttons )
+	{
+		if ( ! container ) {
+			container = this.dom.container;
+			buttons = this.s.buttons;
+		}
+
+		container.children().detach();
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			container.append( buttons[i].inserter );
+			container.append( ' ' );
+
+			if ( buttons[i].buttons && buttons[i].buttons.length ) {
+				this._draw( buttons[i].collection, buttons[i].buttons );
+			}
+		}
+	},
+
+	/**
+	 * Create buttons from an array of buttons
+	 * @param  {array} attachTo Buttons array to attach to
+	 * @param  {object} button Button definition
+	 * @param  {boolean} inCollection true if the button is in a collection
+	 * @private
+	 */
+	_expandButton: function ( attachTo, button, inCollection, attachPoint )
+	{
+		var dt = this.s.dt;
+		var buttonCounter = 0;
+		var buttons = ! $.isArray( button ) ?
+			[ button ] :
+			button;
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			var conf = this._resolveExtends( buttons[i] );
+
+			if ( ! conf ) {
+				continue;
+			}
+
+			// If the configuration is an array, then expand the buttons at this
+			// point
+			if ( $.isArray( conf ) ) {
+				this._expandButton( attachTo, conf, inCollection, attachPoint );
+				continue;
+			}
+
+			var built = this._buildButton( conf, inCollection );
+			if ( ! built ) {
+				continue;
+			}
+
+			if ( attachPoint !== undefined ) {
+				attachTo.splice( attachPoint, 0, built );
+				attachPoint++;
+			}
+			else {
+				attachTo.push( built );
+			}
+
+			if ( built.conf.buttons ) {
+				var collectionDom = this.c.dom.collection;
+				built.collection = $('<'+collectionDom.tag+'/>')
+					.addClass( collectionDom.className )
+					.attr( 'role', 'menu') ;
+				built.conf._collection = built.collection;
+
+				this._expandButton( built.buttons, built.conf.buttons, true, attachPoint );
+			}
+
+			// init call is made here, rather than buildButton as it needs to
+			// be selectable, and for that it needs to be in the buttons array
+			if ( conf.init ) {
+				conf.init.call( dt.button( built.node ), dt, $(built.node), conf );
+			}
+
+			buttonCounter++;
+		}
+	},
+
+	/**
+	 * Create an individual button
+	 * @param  {object} config            Resolved button configuration
+	 * @param  {boolean} inCollection `true` if a collection button
+	 * @return {jQuery} Created button node (jQuery)
+	 * @private
+	 */
+	_buildButton: function ( config, inCollection )
+	{
+		var buttonDom = this.c.dom.button;
+		var linerDom = this.c.dom.buttonLiner;
+		var collectionDom = this.c.dom.collection;
+		var dt = this.s.dt;
+		var text = function ( opt ) {
+			return typeof opt === 'function' ?
+				opt( dt, button, config ) :
+				opt;
+		};
+
+		if ( inCollection && collectionDom.button ) {
+			buttonDom = collectionDom.button;
+		}
+
+		if ( inCollection && collectionDom.buttonLiner ) {
+			linerDom = collectionDom.buttonLiner;
+		}
+
+		// Make sure that the button is available based on whatever requirements
+		// it has. For example, Flash buttons require Flash
+		if ( config.available && ! config.available( dt, config ) ) {
+			return false;
+		}
+
+		var action = function ( e, dt, button, config ) {
+			config.action.call( dt.button( button ), e, dt, button, config );
+
+			$(dt.table().node()).triggerHandler( 'buttons-action.dt', [
+				dt.button( button ), dt, button, config 
+			] );
+		};
+
+		var tag = config.tag || buttonDom.tag;
+		var button = $('<'+tag+'/>')
+			.addClass( buttonDom.className )
+			.attr( 'tabindex', this.s.dt.settings()[0].iTabIndex )
+			.attr( 'aria-controls', this.s.dt.table().node().id )
+			.on( 'click.dtb', function (e) {
+				e.preventDefault();
+
+				if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
+					action( e, dt, button, config );
+				}
+
+				button.blur();
+			} )
+			.on( 'keyup.dtb', function (e) {
+				if ( e.keyCode === 13 ) {
+					if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
+						action( e, dt, button, config );
+					}
+				}
+			} );
+
+		// Make `a` tags act like a link
+		if ( tag.toLowerCase() === 'a' ) {
+			button.attr( 'href', '#' );
+		}
+
+		// Button tags should have `type=button` so they don't have any default behaviour
+		if ( tag.toLowerCase() === 'button' ) {
+			button.attr( 'type', 'button' );
+		}
+
+		if ( linerDom.tag ) {
+			var liner = $('<'+linerDom.tag+'/>')
+				.html( text( config.text ) )
+				.addClass( linerDom.className );
+
+			if ( linerDom.tag.toLowerCase() === 'a' ) {
+				liner.attr( 'href', '#' );
+			}
+
+			button.append( liner );
+		}
+		else {
+			button.html( text( config.text ) );
+		}
+
+		if ( config.enabled === false ) {
+			button.addClass( buttonDom.disabled );
+		}
+
+		if ( config.className ) {
+			button.addClass( config.className );
+		}
+
+		if ( config.titleAttr ) {
+			button.attr( 'title', text( config.titleAttr ) );
+		}
+
+		if ( config.attr ) {
+			button.attr( config.attr );
+		}
+
+		if ( ! config.namespace ) {
+			config.namespace = '.dt-button-'+(_buttonCounter++);
+		}
+
+		var buttonContainer = this.c.dom.buttonContainer;
+		var inserter;
+		if ( buttonContainer && buttonContainer.tag ) {
+			inserter = $('<'+buttonContainer.tag+'/>')
+				.addClass( buttonContainer.className )
+				.append( button );
+		}
+		else {
+			inserter = button;
+		}
+
+		this._addKey( config );
+
+		return {
+			conf:         config,
+			node:         button.get(0),
+			inserter:     inserter,
+			buttons:      [],
+			inCollection: inCollection,
+			collection:   null
+		};
+	},
+
+	/**
+	 * Get the button object from a node (recursive)
+	 * @param  {node} node Button node
+	 * @param  {array} [buttons] Button array, uses base if not defined
+	 * @return {object} Button object
+	 * @private
+	 */
+	_nodeToButton: function ( node, buttons )
+	{
+		if ( ! buttons ) {
+			buttons = this.s.buttons;
+		}
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			if ( buttons[i].node === node ) {
+				return buttons[i];
+			}
+
+			if ( buttons[i].buttons.length ) {
+				var ret = this._nodeToButton( node, buttons[i].buttons );
+
+				if ( ret ) {
+					return ret;
+				}
+			}
+		}
+	},
+
+	/**
+	 * Get container array for a button from a button node (recursive)
+	 * @param  {node} node Button node
+	 * @param  {array} [buttons] Button array, uses base if not defined
+	 * @return {array} Button's host array
+	 * @private
+	 */
+	_nodeToHost: function ( node, buttons )
+	{
+		if ( ! buttons ) {
+			buttons = this.s.buttons;
+		}
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			if ( buttons[i].node === node ) {
+				return buttons;
+			}
+
+			if ( buttons[i].buttons.length ) {
+				var ret = this._nodeToHost( node, buttons[i].buttons );
+
+				if ( ret ) {
+					return ret;
+				}
+			}
+		}
+	},
+
+	/**
+	 * Handle a key press - determine if any button's key configured matches
+	 * what was typed and trigger the action if so.
+	 * @param  {string} character The character pressed
+	 * @param  {object} e Key event that triggered this call
+	 * @private
+	 */
+	_keypress: function ( character, e )
+	{
+		// Check if this button press already activated on another instance of Buttons
+		if ( e._buttonsHandled ) {
+			return;
+		}
+
+		var run = function ( conf, node ) {
+			if ( ! conf.key ) {
+				return;
+			}
+
+			if ( conf.key === character ) {
+				e._buttonsHandled = true;
+				$(node).click();
+			}
+			else if ( $.isPlainObject( conf.key ) ) {
+				if ( conf.key.key !== character ) {
+					return;
+				}
+
+				if ( conf.key.shiftKey && ! e.shiftKey ) {
+					return;
+				}
+
+				if ( conf.key.altKey && ! e.altKey ) {
+					return;
+				}
+
+				if ( conf.key.ctrlKey && ! e.ctrlKey ) {
+					return;
+				}
+
+				if ( conf.key.metaKey && ! e.metaKey ) {
+					return;
+				}
+
+				// Made it this far - it is good
+				e._buttonsHandled = true;
+				$(node).click();
+			}
+		};
+
+		var recurse = function ( a ) {
+			for ( var i=0, ien=a.length ; i<ien ; i++ ) {
+				run( a[i].conf, a[i].node );
+
+				if ( a[i].buttons.length ) {
+					recurse( a[i].buttons );
+				}
+			}
+		};
+
+		recurse( this.s.buttons );
+	},
+
+	/**
+	 * Remove a key from the key listener for this instance (to be used when a
+	 * button is removed)
+	 * @param  {object} conf Button configuration
+	 * @private
+	 */
+	_removeKey: function ( conf )
+	{
+		if ( conf.key ) {
+			var character = $.isPlainObject( conf.key ) ?
+				conf.key.key :
+				conf.key;
+
+			// Remove only one character, as multiple buttons could have the
+			// same listening key
+			var a = this.s.listenKeys.split('');
+			var idx = $.inArray( character, a );
+			a.splice( idx, 1 );
+			this.s.listenKeys = a.join('');
+		}
+	},
+
+	/**
+	 * Resolve a button configuration
+	 * @param  {string|function|object} conf Button config to resolve
+	 * @return {object} Button configuration
+	 * @private
+	 */
+	_resolveExtends: function ( conf )
+	{
+		var dt = this.s.dt;
+		var i, ien;
+		var toConfObject = function ( base ) {
+			var loop = 0;
+
+			// Loop until we have resolved to a button configuration, or an
+			// array of button configurations (which will be iterated
+			// separately)
+			while ( ! $.isPlainObject(base) && ! $.isArray(base) ) {
+				if ( base === undefined ) {
+					return;
+				}
+
+				if ( typeof base === 'function' ) {
+					base = base( dt, conf );
+
+					if ( ! base ) {
+						return false;
+					}
+				}
+				else if ( typeof base === 'string' ) {
+					if ( ! _dtButtons[ base ] ) {
+						throw 'Unknown button type: '+base;
+					}
+
+					base = _dtButtons[ base ];
+				}
+
+				loop++;
+				if ( loop > 30 ) {
+					// Protect against misconfiguration killing the browser
+					throw 'Buttons: Too many iterations';
+				}
+			}
+
+			return $.isArray( base ) ?
+				base :
+				$.extend( {}, base );
+		};
+
+		conf = toConfObject( conf );
+
+		while ( conf && conf.extend ) {
+			// Use `toConfObject` in case the button definition being extended
+			// is itself a string or a function
+			if ( ! _dtButtons[ conf.extend ] ) {
+				throw 'Cannot extend unknown button type: '+conf.extend;
+			}
+
+			var objArray = toConfObject( _dtButtons[ conf.extend ] );
+			if ( $.isArray( objArray ) ) {
+				return objArray;
+			}
+			else if ( ! objArray ) {
+				// This is a little brutal as it might be possible to have a
+				// valid button without the extend, but if there is no extend
+				// then the host button would be acting in an undefined state
+				return false;
+			}
+
+			// Stash the current class name
+			var originalClassName = objArray.className;
+
+			conf = $.extend( {}, objArray, conf );
+
+			// The extend will have overwritten the original class name if the
+			// `conf` object also assigned a class, but we want to concatenate
+			// them so they are list that is combined from all extended buttons
+			if ( originalClassName && conf.className !== originalClassName ) {
+				conf.className = originalClassName+' '+conf.className;
+			}
+
+			// Buttons to be added to a collection  -gives the ability to define
+			// if buttons should be added to the start or end of a collection
+			var postfixButtons = conf.postfixButtons;
+			if ( postfixButtons ) {
+				if ( ! conf.buttons ) {
+					conf.buttons = [];
+				}
+
+				for ( i=0, ien=postfixButtons.length ; i<ien ; i++ ) {
+					conf.buttons.push( postfixButtons[i] );
+				}
+
+				conf.postfixButtons = null;
+			}
+
+			var prefixButtons = conf.prefixButtons;
+			if ( prefixButtons ) {
+				if ( ! conf.buttons ) {
+					conf.buttons = [];
+				}
+
+				for ( i=0, ien=prefixButtons.length ; i<ien ; i++ ) {
+					conf.buttons.splice( i, 0, prefixButtons[i] );
+				}
+
+				conf.prefixButtons = null;
+			}
+
+			// Although we want the `conf` object to overwrite almost all of
+			// the properties of the object being extended, the `extend`
+			// property should come from the object being extended
+			conf.extend = objArray.extend;
+		}
+
+		return conf;
+	}
+} );
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Statics
+ */
+
+/**
+ * Show / hide a background layer behind a collection
+ * @param  {boolean} Flag to indicate if the background should be shown or
+ *   hidden 
+ * @param  {string} Class to assign to the background
+ * @static
+ */
+Buttons.background = function ( show, className, fade ) {
+	if ( fade === undefined ) {
+		fade = 400;
+	}
+
+	if ( show ) {
+		$('<div/>')
+			.addClass( className )
+			.css( 'display', 'none' )
+			.appendTo( 'body' )
+			.fadeIn( fade );
+	}
+	else {
+		$('body > div.'+className)
+			.fadeOut( fade, function () {
+				$(this)
+					.removeClass( className )
+					.remove();
+			} );
+	}
+};
+
+/**
+ * Instance selector - select Buttons instances based on an instance selector
+ * value from the buttons assigned to a DataTable. This is only useful if
+ * multiple instances are attached to a DataTable.
+ * @param  {string|int|array} Instance selector - see `instance-selector`
+ *   documentation on the DataTables site
+ * @param  {array} Button instance array that was attached to the DataTables
+ *   settings object
+ * @return {array} Buttons instances
+ * @static
+ */
+Buttons.instanceSelector = function ( group, buttons )
+{
+	if ( ! group ) {
+		return $.map( buttons, function ( v ) {
+			return v.inst;
+		} );
+	}
+
+	var ret = [];
+	var names = $.map( buttons, function ( v ) {
+		return v.name;
+	} );
+
+	// Flatten the group selector into an array of single options
+	var process = function ( input ) {
+		if ( $.isArray( input ) ) {
+			for ( var i=0, ien=input.length ; i<ien ; i++ ) {
+				process( input[i] );
+			}
+			return;
+		}
+
+		if ( typeof input === 'string' ) {
+			if ( input.indexOf( ',' ) !== -1 ) {
+				// String selector, list of names
+				process( input.split(',') );
+			}
+			else {
+				// String selector individual name
+				var idx = $.inArray( $.trim(input), names );
+
+				if ( idx !== -1 ) {
+					ret.push( buttons[ idx ].inst );
+				}
+			}
+		}
+		else if ( typeof input === 'number' ) {
+			// Index selector
+			ret.push( buttons[ input ].inst );
+		}
+	};
+	
+	process( group );
+
+	return ret;
+};
+
+/**
+ * Button selector - select one or more buttons from a selector input so some
+ * operation can be performed on them.
+ * @param  {array} Button instances array that the selector should operate on
+ * @param  {string|int|node|jQuery|array} Button selector - see
+ *   `button-selector` documentation on the DataTables site
+ * @return {array} Array of objects containing `inst` and `idx` properties of
+ *   the selected buttons so you know which instance each button belongs to.
+ * @static
+ */
+Buttons.buttonSelector = function ( insts, selector )
+{
+	var ret = [];
+	var nodeBuilder = function ( a, buttons, baseIdx ) {
+		var button;
+		var idx;
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			button = buttons[i];
+
+			if ( button ) {
+				idx = baseIdx !== undefined ?
+					baseIdx+i :
+					i+'';
+
+				a.push( {
+					node: button.node,
+					name: button.conf.name,
+					idx:  idx
+				} );
+
+				if ( button.buttons ) {
+					nodeBuilder( a, button.buttons, idx+'-' );
+				}
+			}
+		}
+	};
+
+	var run = function ( selector, inst ) {
+		var i, ien;
+		var buttons = [];
+		nodeBuilder( buttons, inst.s.buttons );
+
+		var nodes = $.map( buttons, function (v) {
+			return v.node;
+		} );
+
+		if ( $.isArray( selector ) || selector instanceof $ ) {
+			for ( i=0, ien=selector.length ; i<ien ; i++ ) {
+				run( selector[i], inst );
+			}
+			return;
+		}
+
+		if ( selector === null || selector === undefined || selector === '*' ) {
+			// Select all
+			for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+				ret.push( {
+					inst: inst,
+					node: buttons[i].node
+				} );
+			}
+		}
+		else if ( typeof selector === 'number' ) {
+			// Main button index selector
+			ret.push( {
+				inst: inst,
+				node: inst.s.buttons[ selector ].node
+			} );
+		}
+		else if ( typeof selector === 'string' ) {
+			if ( selector.indexOf( ',' ) !== -1 ) {
+				// Split
+				var a = selector.split(',');
+
+				for ( i=0, ien=a.length ; i<ien ; i++ ) {
+					run( $.trim(a[i]), inst );
+				}
+			}
+			else if ( selector.match( /^\d+(\-\d+)*$/ ) ) {
+				// Sub-button index selector
+				var indexes = $.map( buttons, function (v) {
+					return v.idx;
+				} );
+
+				ret.push( {
+					inst: inst,
+					node: buttons[ $.inArray( selector, indexes ) ].node
+				} );
+			}
+			else if ( selector.indexOf( ':name' ) !== -1 ) {
+				// Button name selector
+				var name = selector.replace( ':name', '' );
+
+				for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+					if ( buttons[i].name === name ) {
+						ret.push( {
+							inst: inst,
+							node: buttons[i].node
+						} );
+					}
+				}
+			}
+			else {
+				// jQuery selector on the nodes
+				$( nodes ).filter( selector ).each( function () {
+					ret.push( {
+						inst: inst,
+						node: this
+					} );
+				} );
+			}
+		}
+		else if ( typeof selector === 'object' && selector.nodeName ) {
+			// Node selector
+			var idx = $.inArray( selector, nodes );
+
+			if ( idx !== -1 ) {
+				ret.push( {
+					inst: inst,
+					node: nodes[ idx ]
+				} );
+			}
+		}
+	};
+
+
+	for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
+		var inst = insts[i];
+
+		run( selector, inst );
+	}
+
+	return ret;
+};
+
+
+/**
+ * Buttons defaults. For full documentation, please refer to the docs/option
+ * directory or the DataTables site.
+ * @type {Object}
+ * @static
+ */
+Buttons.defaults = {
+	buttons: [ 'copy', 'excel', 'csv', 'pdf', 'print' ],
+	name: 'main',
+	tabIndex: 0,
+	dom: {
+		container: {
+			tag: 'div',
+			className: 'dt-buttons'
+		},
+		collection: {
+			tag: 'div',
+			className: 'dt-button-collection'
+		},
+		button: {
+			tag: 'button',
+			className: 'dt-button',
+			active: 'active',
+			disabled: 'disabled'
+		},
+		buttonLiner: {
+			tag: 'span',
+			className: ''
+		}
+	}
+};
+
+/**
+ * Version information
+ * @type {string}
+ * @static
+ */
+Buttons.version = '1.5.2';
+
+
+$.extend( _dtButtons, {
+	collection: {
+		text: function ( dt ) {
+			return dt.i18n( 'buttons.collection', 'Collection' );
+		},
+		className: 'buttons-collection',
+		action: function ( e, dt, button, config ) {
+			var host = button;
+			var collectionParent = $(button).parents('div.dt-button-collection');
+			var hostPosition = host.position();
+			var tableContainer = $( dt.table().container() );
+			var multiLevel = false;
+			var insertPoint = host;
+
+			// Remove any old collection
+			if ( collectionParent.length ) {
+				multiLevel = $('.dt-button-collection').position();
+				insertPoint = collectionParent;
+				$('body').trigger( 'click.dtb-collection' );
+			}
+
+			if ( insertPoint.parents('body')[0] !== document.body ) {
+				insertPoint = document.body.lastChild;
+			}
+
+			config._collection
+				.addClass( config.collectionLayout )
+				.css( 'display', 'none' )
+				.insertAfter( insertPoint )
+				.fadeIn( config.fade );
+			
+
+			var position = config._collection.css( 'position' );
+
+			if ( multiLevel && position === 'absolute' ) {
+				config._collection.css( {
+					top: multiLevel.top,
+					left: multiLevel.left
+				} );
+			}
+			else if ( position === 'absolute' ) {
+				config._collection.css( {
+					top: hostPosition.top + host.outerHeight(),
+					left: hostPosition.left
+				} );
+
+				// calculate overflow when positioned beneath
+				var tableBottom = tableContainer.offset().top + tableContainer.height();
+				var listBottom = hostPosition.top + host.outerHeight() + config._collection.outerHeight();
+				var bottomOverflow = listBottom - tableBottom;
+				
+				// calculate overflow when positioned above
+				var listTop = hostPosition.top - config._collection.outerHeight();
+				var tableTop = tableContainer.offset().top;
+				var topOverflow = tableTop - listTop;
+				
+				// if bottom overflow is larger, move to the top because it fits better, or if dropup is requested
+				if (bottomOverflow > topOverflow || config.dropup) {
+					config._collection.css( 'top', hostPosition.top - config._collection.outerHeight() - 5);
+				}
+
+				// Right alignment in table container
+				var listRight = hostPosition.left + config._collection.outerWidth();
+				var tableRight = tableContainer.offset().left + tableContainer.width();
+				if ( listRight > tableRight ) {
+					config._collection.css( 'left', hostPosition.left - ( listRight - tableRight ) );
+				}
+
+				// Right alignment to window
+				var listOffsetRight = host.offset().left + config._collection.outerWidth();
+				if ( listOffsetRight > $(window).width() ) {
+					config._collection.css( 'left', hostPosition.left - (listOffsetRight-$(window).width()) );
+				}
+			}
+			else {
+				// Fix position - centre on screen
+				var top = config._collection.height() / 2;
+				if ( top > $(window).height() / 2 ) {
+					top = $(window).height() / 2;
+				}
+
+				config._collection.css( 'marginTop', top*-1 );
+			}
+
+			if ( config.background ) {
+				Buttons.background( true, config.backgroundClassName, config.fade );
+			}
+
+			var close = function () {
+				config._collection
+				.fadeOut( config.fade, function () {
+					config._collection.detach();
+				} );
+
+				$('div.dt-button-background').off( 'click.dtb-collection' );
+				Buttons.background( false, config.backgroundClassName, config.fade );
+
+				$('body').off( '.dtb-collection' );
+				dt.off( 'buttons-action.b-internal' );
+			};
+
+			// Need to break the 'thread' for the collection button being
+			// activated by a click - it would also trigger this event
+			setTimeout( function () {
+				// This is bonkers, but if we don't have a click listener on the
+				// background element, iOS Safari will ignore the body click
+				// listener below. An empty function here is all that is
+				// required to make it work...
+				$('div.dt-button-background').on( 'click.dtb-collection', function () {} );
+
+				$('body')
+					.on( 'click.dtb-collection', function (e) {
+						// andSelf is deprecated in jQ1.8, but we want 1.7 compat
+						var back = $.fn.addBack ? 'addBack' : 'andSelf';
+
+						if ( ! $(e.target).parents()[back]().filter( config._collection ).length ) {
+							close();
+						}
+					} )
+					.on( 'keyup.dtb-collection', function (e) {
+						if ( e.keyCode === 27 ) {
+							close();
+						}
+					} );
+
+				if ( config.autoClose ) {
+					dt.on( 'buttons-action.b-internal', function () {
+						close();
+					} );
+				}
+			}, 10 );
+		},
+		background: true,
+		collectionLayout: '',
+		backgroundClassName: 'dt-button-background',
+		autoClose: false,
+		fade: 400,
+		attr: {
+			'aria-haspopup': true
+		}
+	},
+	copy: function ( dt, conf ) {
+		if ( _dtButtons.copyHtml5 ) {
+			return 'copyHtml5';
+		}
+		if ( _dtButtons.copyFlash && _dtButtons.copyFlash.available( dt, conf ) ) {
+			return 'copyFlash';
+		}
+	},
+	csv: function ( dt, conf ) {
+		// Common option that will use the HTML5 or Flash export buttons
+		if ( _dtButtons.csvHtml5 && _dtButtons.csvHtml5.available( dt, conf ) ) {
+			return 'csvHtml5';
+		}
+		if ( _dtButtons.csvFlash && _dtButtons.csvFlash.available( dt, conf ) ) {
+			return 'csvFlash';
+		}
+	},
+	excel: function ( dt, conf ) {
+		// Common option that will use the HTML5 or Flash export buttons
+		if ( _dtButtons.excelHtml5 && _dtButtons.excelHtml5.available( dt, conf ) ) {
+			return 'excelHtml5';
+		}
+		if ( _dtButtons.excelFlash && _dtButtons.excelFlash.available( dt, conf ) ) {
+			return 'excelFlash';
+		}
+	},
+	pdf: function ( dt, conf ) {
+		// Common option that will use the HTML5 or Flash export buttons
+		if ( _dtButtons.pdfHtml5 && _dtButtons.pdfHtml5.available( dt, conf ) ) {
+			return 'pdfHtml5';
+		}
+		if ( _dtButtons.pdfFlash && _dtButtons.pdfFlash.available( dt, conf ) ) {
+			return 'pdfFlash';
+		}
+	},
+	pageLength: function ( dt ) {
+		var lengthMenu = dt.settings()[0].aLengthMenu;
+		var vals = $.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
+		var lang = $.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
+		var text = function ( dt ) {
+			return dt.i18n( 'buttons.pageLength', {
+				"-1": 'Show all rows',
+				_:    'Show %d rows'
+			}, dt.page.len() );
+		};
+
+		return {
+			extend: 'collection',
+			text: text,
+			className: 'buttons-page-length',
+			autoClose: true,
+			buttons: $.map( vals, function ( val, i ) {
+				return {
+					text: lang[i],
+					className: 'button-page-length',
+					action: function ( e, dt ) {
+						dt.page.len( val ).draw();
+					},
+					init: function ( dt, node, conf ) {
+						var that = this;
+						var fn = function () {
+							that.active( dt.page.len() === val );
+						};
+
+						dt.on( 'length.dt'+conf.namespace, fn );
+						fn();
+					},
+					destroy: function ( dt, node, conf ) {
+						dt.off( 'length.dt'+conf.namespace );
+					}
+				};
+			} ),
+			init: function ( dt, node, conf ) {
+				var that = this;
+				dt.on( 'length.dt'+conf.namespace, function () {
+					that.text( text( dt ) );
+				} );
+			},
+			destroy: function ( dt, node, conf ) {
+				dt.off( 'length.dt'+conf.namespace );
+			}
+		};
+	}
+} );
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables API
+ *
+ * For complete documentation, please refer to the docs/api directory or the
+ * DataTables site
+ */
+
+// Buttons group and individual button selector
+DataTable.Api.register( 'buttons()', function ( group, selector ) {
+	// Argument shifting
+	if ( selector === undefined ) {
+		selector = group;
+		group = undefined;
+	}
+
+	this.selector.buttonGroup = group;
+
+	var res = this.iterator( true, 'table', function ( ctx ) {
+		if ( ctx._buttons ) {
+			return Buttons.buttonSelector(
+				Buttons.instanceSelector( group, ctx._buttons ),
+				selector
+			);
+		}
+	}, true );
+
+	res._groupSelector = group;
+	return res;
+} );
+
+// Individual button selector
+DataTable.Api.register( 'button()', function ( group, selector ) {
+	// just run buttons() and truncate
+	var buttons = this.buttons( group, selector );
+
+	if ( buttons.length > 1 ) {
+		buttons.splice( 1, buttons.length );
+	}
+
+	return buttons;
+} );
+
+// Active buttons
+DataTable.Api.registerPlural( 'buttons().active()', 'button().active()', function ( flag ) {
+	if ( flag === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.active( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.active( set.node, flag );
+	} );
+} );
+
+// Get / set button action
+DataTable.Api.registerPlural( 'buttons().action()', 'button().action()', function ( action ) {
+	if ( action === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.action( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.action( set.node, action );
+	} );
+} );
+
+// Enable / disable buttons
+DataTable.Api.register( ['buttons().enable()', 'button().enable()'], function ( flag ) {
+	return this.each( function ( set ) {
+		set.inst.enable( set.node, flag );
+	} );
+} );
+
+// Disable buttons
+DataTable.Api.register( ['buttons().disable()', 'button().disable()'], function () {
+	return this.each( function ( set ) {
+		set.inst.disable( set.node );
+	} );
+} );
+
+// Get button nodes
+DataTable.Api.registerPlural( 'buttons().nodes()', 'button().node()', function () {
+	var jq = $();
+
+	// jQuery will automatically reduce duplicates to a single entry
+	$( this.each( function ( set ) {
+		jq = jq.add( set.inst.node( set.node ) );
+	} ) );
+
+	return jq;
+} );
+
+// Get / set button processing state
+DataTable.Api.registerPlural( 'buttons().processing()', 'button().processing()', function ( flag ) {
+	if ( flag === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.processing( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.processing( set.node, flag );
+	} );
+} );
+
+// Get / set button text (i.e. the button labels)
+DataTable.Api.registerPlural( 'buttons().text()', 'button().text()', function ( label ) {
+	if ( label === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.text( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.text( set.node, label );
+	} );
+} );
+
+// Trigger a button's action
+DataTable.Api.registerPlural( 'buttons().trigger()', 'button().trigger()', function () {
+	return this.each( function ( set ) {
+		set.inst.node( set.node ).trigger( 'click' );
+	} );
+} );
+
+// Get the container elements
+DataTable.Api.registerPlural( 'buttons().containers()', 'buttons().container()', function () {
+	var jq = $();
+	var groupSelector = this._groupSelector;
+
+	// We need to use the group selector directly, since if there are no buttons
+	// the result set will be empty
+	this.iterator( true, 'table', function ( ctx ) {
+		if ( ctx._buttons ) {
+			var insts = Buttons.instanceSelector( groupSelector, ctx._buttons );
+
+			for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
+				jq = jq.add( insts[i].container() );
+			}
+		}
+	} );
+
+	return jq;
+} );
+
+// Add a new button
+DataTable.Api.register( 'button().add()', function ( idx, conf ) {
+	var ctx = this.context;
+
+	// Don't use `this` as it could be empty - select the instances directly
+	if ( ctx.length ) {
+		var inst = Buttons.instanceSelector( this._groupSelector, ctx[0]._buttons );
+
+		if ( inst.length ) {
+			inst[0].add( conf, idx );
+		}
+	}
+
+	return this.button( this._groupSelector, idx );
+} );
+
+// Destroy the button sets selected
+DataTable.Api.register( 'buttons().destroy()', function () {
+	this.pluck( 'inst' ).unique().each( function ( inst ) {
+		inst.destroy();
+	} );
+
+	return this;
+} );
+
+// Remove a button
+DataTable.Api.registerPlural( 'buttons().remove()', 'buttons().remove()', function () {
+	this.each( function ( set ) {
+		set.inst.remove( set.node );
+	} );
+
+	return this;
+} );
+
+// Information box that can be used by buttons
+var _infoTimer;
+DataTable.Api.register( 'buttons.info()', function ( title, message, time ) {
+	var that = this;
+
+	if ( title === false ) {
+		$('#datatables_buttons_info').fadeOut( function () {
+			$(this).remove();
+		} );
+		clearTimeout( _infoTimer );
+		_infoTimer = null;
+
+		return this;
+	}
+
+	if ( _infoTimer ) {
+		clearTimeout( _infoTimer );
+	}
+
+	if ( $('#datatables_buttons_info').length ) {
+		$('#datatables_buttons_info').remove();
+	}
+
+	title = title ? '<h2>'+title+'</h2>' : '';
+
+	$('<div id="datatables_buttons_info" class="dt-button-info"/>')
+		.html( title )
+		.append( $('<div/>')[ typeof message === 'string' ? 'html' : 'append' ]( message ) )
+		.css( 'display', 'none' )
+		.appendTo( 'body' )
+		.fadeIn();
+
+	if ( time !== undefined && time !== 0 ) {
+		_infoTimer = setTimeout( function () {
+			that.buttons.info( false );
+		}, time );
+	}
+
+	return this;
+} );
+
+// Get data from the table for export - this is common to a number of plug-in
+// buttons so it is included in the Buttons core library
+DataTable.Api.register( 'buttons.exportData()', function ( options ) {
+	if ( this.context.length ) {
+		return _exportData( new DataTable.Api( this.context[0] ), options );
+	}
+} );
+
+// Get information about the export that is common to many of the export data
+// types (DRY)
+DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
+	if ( ! conf ) {
+		conf = {};
+	}
+
+	return {
+		filename: _filename( conf ),
+		title: _title( conf ),
+		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
+		messageBottom: _message(this, conf.messageBottom, 'bottom')
+	};
+} );
+
+
+
+/**
+ * Get the file name for an exported file.
+ *
+ * @param {object}	config Button configuration
+ * @param {boolean} incExtension Include the file name extension
+ */
+var _filename = function ( config )
+{
+	// Backwards compatibility
+	var filename = config.filename === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
+		config.title :
+		config.filename;
+
+	if ( typeof filename === 'function' ) {
+		filename = filename();
+	}
+
+	if ( filename === undefined || filename === null ) {
+		return null;
+	}
+
+	if ( filename.indexOf( '*' ) !== -1 ) {
+		filename = $.trim( filename.replace( '*', $('head > title').text() ) );
+	}
+
+	// Strip characters which the OS will object to
+	filename = filename.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
+
+	var extension = _stringOrFunction( config.extension );
+	if ( ! extension ) {
+		extension = '';
+	}
+
+	return filename + extension;
+};
+
+/**
+ * Simply utility method to allow parameters to be given as a function
+ *
+ * @param {undefined|string|function} option Option
+ * @return {null|string} Resolved value
+ */
+var _stringOrFunction = function ( option )
+{
+	if ( option === null || option === undefined ) {
+		return null;
+	}
+	else if ( typeof option === 'function' ) {
+		return option();
+	}
+	return option;
+};
+
+/**
+ * Get the title for an exported file.
+ *
+ * @param {object} config	Button configuration
+ */
+var _title = function ( config )
+{
+	var title = _stringOrFunction( config.title );
+
+	return title === null ?
+		null : title.indexOf( '*' ) !== -1 ?
+			title.replace( '*', $('head > title').text() || 'Exported data' ) :
+			title;
+};
+
+var _message = function ( dt, option, position )
+{
+	var message = _stringOrFunction( option );
+	if ( message === null ) {
+		return null;
+	}
+
+	var caption = $('caption', dt.table().container()).eq(0);
+	if ( message === '*' ) {
+		var side = caption.css( 'caption-side' );
+		if ( side !== position ) {
+			return null;
+		}
+
+		return caption.length ?
+			caption.text() :
+			'';
+	}
+
+	return message;
+};
+
+
+
+
+
+
+
+var _exportTextarea = $('<textarea/>')[0];
+var _exportData = function ( dt, inOpts )
+{
+	var config = $.extend( true, {}, {
+		rows:           null,
+		columns:        '',
+		modifier:       {
+			search: 'applied',
+			order:  'applied'
+		},
+		orthogonal:     'display',
+		stripHtml:      true,
+		stripNewlines:  true,
+		decodeEntities: true,
+		trim:           true,
+		format:         {
+			header: function ( d ) {
+				return strip( d );
+			},
+			footer: function ( d ) {
+				return strip( d );
+			},
+			body: function ( d ) {
+				return strip( d );
+			}
+		},
+		customizeData: null
+	}, inOpts );
+
+	var strip = function ( str ) {
+		if ( typeof str !== 'string' ) {
+			return str;
+		}
+
+		// Always remove script tags
+		str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
+
+		// Always remove comments
+		str = str.replace( /<!\-\-.*?\-\->/g, '' );
+
+		if ( config.stripHtml ) {
+			str = str.replace( /<[^>]*>/g, '' );
+		}
+
+		if ( config.trim ) {
+			str = str.replace( /^\s+|\s+$/g, '' );
+		}
+
+		if ( config.stripNewlines ) {
+			str = str.replace( /\n/g, ' ' );
+		}
+
+		if ( config.decodeEntities ) {
+			_exportTextarea.innerHTML = str;
+			str = _exportTextarea.value;
+		}
+
+		return str;
+	};
+
+
+	var header = dt.columns( config.columns ).indexes().map( function (idx) {
+		var el = dt.column( idx ).header();
+		return config.format.header( el.innerHTML, idx, el );
+	} ).toArray();
+
+	var footer = dt.table().footer() ?
+		dt.columns( config.columns ).indexes().map( function (idx) {
+			var el = dt.column( idx ).footer();
+			return config.format.footer( el ? el.innerHTML : '', idx, el );
+		} ).toArray() :
+		null;
+	
+	// If Select is available on this table, and any rows are selected, limit the export
+	// to the selected rows. If no rows are selected, all rows will be exported. Specify
+	// a `selected` modifier to control directly.
+	var modifier = $.extend( {}, config.modifier );
+	if ( dt.select && typeof dt.select.info === 'function' && modifier.selected === undefined ) {
+		if ( dt.rows( config.rows, $.extend( { selected: true }, modifier ) ).any() ) {
+			$.extend( modifier, { selected: true } )
+		}
+	}
+
+	var rowIndexes = dt.rows( config.rows, modifier ).indexes().toArray();
+	var selectedCells = dt.cells( rowIndexes, config.columns );
+	var cells = selectedCells
+		.render( config.orthogonal )
+		.toArray();
+	var cellNodes = selectedCells
+		.nodes()
+		.toArray();
+
+	var columns = header.length;
+	var rows = columns > 0 ? cells.length / columns : 0;
+	var body = [];
+	var cellCounter = 0;
+
+	for ( var i=0, ien=rows ; i<ien ; i++ ) {
+		var row = [ columns ];
+
+		for ( var j=0 ; j<columns ; j++ ) {
+			row[j] = config.format.body( cells[ cellCounter ], i, j, cellNodes[ cellCounter ] );
+			cellCounter++;
+		}
+
+		body[i] = row;
+	}
+
+	var data = {
+		header: header,
+		footer: footer,
+		body:   body
+	};
+
+	if ( config.customizeData ) {
+		config.customizeData( data );
+	}
+
+	return data;
+};
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables interface
+ */
+
+// Attach to DataTables objects for global access
+$.fn.dataTable.Buttons = Buttons;
+$.fn.DataTable.Buttons = Buttons;
+
+
+
+// DataTables creation - check if the buttons have been defined for this table,
+// they will have been if the `B` option was used in `dom`, otherwise we should
+// create the buttons instance here so they can be inserted into the document
+// using the API. Listen for `init` for compatibility with pre 1.10.10, but to
+// be removed in future.
+$(document).on( 'init.dt plugin-init.dt', function (e, settings) {
+	if ( e.namespace !== 'dt' ) {
+		return;
+	}
+
+	var opts = settings.oInit.buttons || DataTable.defaults.buttons;
+
+	if ( opts && ! settings._buttons ) {
+		new Buttons( settings, opts ).container();
+	}
+} );
+
+// DataTables `dom` feature option
+DataTable.ext.feature.push( {
+	fnInit: function( settings ) {
+		var api = new DataTable.Api( settings );
+		var opts = api.init().buttons || DataTable.defaults.buttons;
+
+		return new Buttons( api, opts ).container();
+	},
+	cFeature: "B"
+} );
+
+
+return Buttons;
+}));
+
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 40:
 /***/ (function(module, exports) {
 
 /*
@@ -41264,7 +42252,8 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 41 */
+
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -41492,7 +42481,8 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 42 */
+
+/***/ 42:
 /***/ (function(module, exports) {
 
 /**
@@ -41525,7 +42515,8 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 43 */
+
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -47381,7 +48372,8 @@ S2.define('jquery.select2',[
 
 
 /***/ }),
-/* 44 */
+
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1.10.18
@@ -62684,10 +63676,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 
 
 /***/ }),
-/* 45 */
+
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(g){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(11),__webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(d){return g(d,window,document)}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(g){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(11),__webpack_require__(39)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(d){return g(d,window,document)}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"===typeof exports?module.exports=function(d,f){d||(d=window);if(!f||!f.fn.dataTable)f=require("datatables.net")(d,f).$;f.fn.dataTable.Buttons||require("datatables.net-buttons")(d,f);return g(f,d,d.document)}:g(jQuery,window,document)})(function(g,d,f,h){d=g.fn.dataTable;g.extend(d.ext.buttons,{colvis:function(a,b){return{extend:"collection",
 text:function(b){return b.i18n("buttons.colvis","Column visibility")},className:"buttons-colvis",buttons:[{extend:"columnsToggle",columns:b.columns,columnText:b.columnText}]}},columnsToggle:function(a,b){return a.columns(b.columns).indexes().map(function(a){return{extend:"columnToggle",columns:a,columnText:b.columnText}}).toArray()},columnToggle:function(a,b){return{extend:"columnVisibility",columns:b.columns,columnText:b.columnText}},columnsVisibility:function(a,b){return a.columns(b.columns).indexes().map(function(a){return{extend:"columnVisibility",
 columns:a,visibility:b.visibility,columnText:b.columnText}}).toArray()},columnVisibility:{columns:h,text:function(a,b,c){return c._columnText(a,c)},className:"buttons-columnVisibility",action:function(a,b,c,e){a=b.columns(e.columns);b=a.visible();a.visible(e.visibility!==h?e.visibility:!(b.length&&b[0]))},init:function(a,b,c){var e=this;a.on("column-visibility.dt"+c.namespace,function(b,d){!d.bDestroying&&d.nTable==a.settings()[0].nTable&&e.active(a.column(c.columns).visible())}).on("column-reorder.dt"+
@@ -62697,7 +63690,8 @@ action:function(a,b,c,d){b.columns(d.show).visible(!0,!1);b.columns(d.hide).visi
 
 
 /***/ }),
-/* 46 */
+
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -62744,1505 +63738,442 @@ function(a,b){if("dt"===a.namespace){var c=b.oInit.buttons||i.defaults.buttons;c
 
 
 /***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */
-/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(198);
+/***/ 5:
+/***/ (function(module, exports) {
 
+// shim for using process in browser
+var process = module.exports = {};
 
-/***/ }),
-/* 198 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__content__);
+var cachedSetTimeout;
+var cachedClearTimeout;
 
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('table-content', __WEBPACK_IMPORTED_MODULE_1__content___default.a);
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#page-content'
-});
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(200)
-/* template */
-var __vue_template__ = __webpack_require__(209)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\content.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5f1500b4", Component.options)
-  } else {
-    hotAPI.reload("data-v-5f1500b4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 200 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_table_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(13);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        'data-table': __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default.a
-    },
-    data: function data() {
-        return {
-            columns: [],
-            buttonConfig: [{
-                text: 'Thêm mới',
-                className: 'btn bg-primary',
-                action: function action(e, dt, node, config) {
-                    window.open(window._config.WEB_ADMIN_NOTIFIES + '/create');
-                }
-            }],
-            deleting: false,
-            data: [],
-            menu: [{
-                action: 'view',
-                html: '<a href="#"><i class="icon-info3"></i> Thông tin chi tiết</a>'
-            }, {
-                action: 'delete',
-                html: '<a href="#"><i class="icon-trash"></i> Xóa thông báo</a>'
-            }],
-            primaryKey: 'id',
-            lengths: [50, 100, 200, 500, 1000, 2000, 5000],
-            itemSelected: [],
-            primaryKeyDelete: -1,
-            deletedSelectItem: false,
-            resetCheck: false,
-            uploading: false,
-            excelFile: null,
-            pages: [],
-            page: 1,
-            totalPage: 0,
-            perPage: 500,
-
-            config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]()
-        };
-    },
-    mounted: function mounted() {
-        this.getData();
-    },
-
-    methods: {
-        getData: function getData() {
-            var perPage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
-            var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '?size=' + perPage + '&page=' + page).then(function (data) {
-                vm.data = data.data.data;
-                vm.perPage = data.data.per_page;
-                vm.totalPage = data.data.total;
-                vm.data = vm.data.map(function (item) {
-                    item.adminName = item.admin.name;
-                    return item;
-                });
-                vm.columns = [{
-                    key: 'id',
-                    text: 'ID thông báo'
-                }, {
-                    key: 'title',
-                    text: 'Tiêu đề thông báo'
-                }, {
-                    key: 'adminName',
-                    text: 'Tên Admin'
-                }, {
-                    key: 'created_at',
-                    text: 'Thời gian tạo'
-                }];
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError();
-            });
-        },
-        selectAll: function selectAll() {
-            var vm = this;
-            vm.itemSelected = [];
-            vm.data.forEach(function (item) {
-                vm.itemSelected.push(item[vm.primaryKey]);
-            });
-        },
-        unSelectAll: function unSelectAll() {
-            this.itemSelected = [];
-        },
-        action: function action(event) {
-            var vm = this;
-            if (event[1] == 'delete') {
-                vm.primaryKeyDelete = event[0];
-                $('#modal_danger').modal('show');
-            }
-            if (event[1] == 'view') {
-                vm.showItem(event[0]);
-            }
-        },
-        deleteItem: function deleteItem() {
-            var vm = this;
-            vm.deleting = true;
-
-            if (vm.primaryKeyDelete != -1) {
-                var indexOf = -1;
-                __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '/' + vm.primaryKeyDelete).then(function (data) {
-                    vm.data.forEach(function (item, index) {
-
-                        if (item[vm.primaryKey] == vm.primaryKeyDelete) {
-                            indexOf = index;
-                        }
-                    });
-                    if (indexOf != -1) {
-                        vm.data.splice(indexOf, 1);
-                        vm.config.notifySuccess();
-                    } else {
-                        vm.config.notifyWarning();
-                    }
-                    vm.deleting = false;
-                    $('#modal_danger').modal('hide');
-                    $('div.checker>span').removeClass('checked');
-                }).catch(function (err) {
-                    console.log(err);
-                    vm.config.notifyError();
-                    vm.deleting = false;
-                    $('#modal_danger').modal('hide');
-                });
-            } else {
-                vm.deleting = false;
-                $('#modal_danger').modal('hide');
-            }
-        },
-        clickedKeyItem: function clickedKeyItem(item) {
-            var vm = this;
-
-            var index = vm.itemSelected.indexOf(item);
-
-            if (index > -1) {
-                vm.itemSelected.splice(index, 1);
-            } else {
-                vm.itemSelected.push(item);
-            }
-        },
-        deleteSelected: function deleteSelected() {
-            $('#modal-danger-delete-list').modal('show');
-        },
-        deleteListItem: function deleteListItem() {
-            var vm = this;
-            vm.deleting = true;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ADMIN_NOTIFIES_DELETE_LIST, {
-                params: {
-                    id_list: vm.itemSelected
-                }
-            }).then(function (data) {
-                $('#modal-danger-delete-list').modal('hide');
-                vm.deleting = false;
-                var list_id = vm.itemSelected;
-                var newData = [];
-                vm.data.forEach(function (dt) {
-                    if (!vm.existsItem(dt[vm.primaryKey], list_id)) {
-                        newData.push(dt);
-                    }
-                });
-
-                vm.data = newData;
-
-                vm.config.notifySuccess();
-                vm.itemSelected = [];
-                vm.resetCheck = !vm.resetCheck;
-            }).catch(function (err) {
-                $('#modal-danger-delete-list').modal('hide');
-                vm.deleting = false;
-                console.log(err);
-                vm.config.notifyError();
-            });
-        },
-        existsItem: function existsItem(item, Arry) {
-            var result = false;
-            Arry.forEach(function (i) {
-                if (item == i) {
-                    result = true;
-                }
-            });
-            return result;
-        },
-        showItem: function showItem(id) {
-            var vm = this;
-            window.open(vm.config.WEB_ADMIN_NOTIFIES + '/' + id + '/edit', '_blank');
-        },
-        setExcelFile: function setExcelFile(e) {
-            var vm = this;
-            var files = e.target.files || e.dataTransfer.files;
-            if (!files.length) return;
-            vm.excelFile = files[0];
-        },
-        changePerPage: function changePerPage(perPage) {
-            this.getData(perPage);
-        },
-        changePageSelect: function changePageSelect(page) {
-            this.getData(this.perPage, page);
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
         }
     }
-});
 
-/***/ }),
-/* 201 */
-/***/ (function(module, exports, __webpack_require__) {
 
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(202)
 }
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(204)
-/* template */
-var __vue_template__ = __webpack_require__(208)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\table.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-be68eeaa", Component.options)
-  } else {
-    hotAPI.reload("data-v-be68eeaa", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(203);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(41)("3b633967", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(40)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.dt-button-collection button{\n    width: 100% !important;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 204 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__checkboxItem__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_select2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_datatables__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_datatables___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_datatables__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_datatables_net_buttons__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_datatables_net_buttons___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_datatables_net_buttons__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-__webpack_require__(45);
-__webpack_require__(46);
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        'checkbox-item': __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default.a
-    },
-    props: ['title', 'data', 'columns', 'showCheck', 'targets', 'buttonConfig', 'primaryKey', 'menu', 'resetCheck', 'pages', 'lengths'],
-    data: function data() {
-        return {
-            table: null,
-            idSelected: [],
-            checked: '',
-            allChecked: false,
-            perPage: 500,
-            pageSelect: 1
-        };
-    },
-    beforeUpdate: function beforeUpdate() {
-        this.table.fnDestroy();
-    },
-    updated: function updated() {
-        this.$nextTick(function () {
-
-            this.Init();
-        });
-    },
-    mounted: function mounted() {
-        var vm = this;
-
-        this.Init();
-    },
-
-    watch: {
-        resetCheck: function resetCheck() {
-            this.checked = '';
-        },
-        perPage: function perPage(value) {
-            this.$emit('changePerPage', value);
-        },
-        pageSelect: function pageSelect(value) {
-            this.$emit('changePageSelect', value);
-        }
-    },
-    methods: {
-        Init: function Init() {
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default.a.extend(__WEBPACK_IMPORTED_MODULE_1_jquery___default.a.fn.dataTable.defaults, {
-                autoWidth: false,
-                dom: '<"datatable-header"fBl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
-                language: {
-                    search: '<span>Tìm kiếm:</span> _INPUT_',
-                    lengthMenu: '<span>Hiển thị:</span> _MENU_',
-                    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
-                }
-            });
-            var length = vm.columns.length;
-            var configted = false;
-            vm.buttonConfig.forEach(function (item) {
-                if (item.extend == 'colvis') {
-                    configted = true;
-                }
-            });
-            if (configted == false) {
-                vm.buttonConfig.push({
-                    extend: 'colvis',
-                    text: '<i class="icon-three-bars"></i> <span class="caret"></span>',
-                    className: 'btn bg-blue btn-icon'
-                });
-            }
-
-            var targets = [0, length + 1];
-            targets = targets.concat(vm.targets);
-            vm.table = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#data-table').dataTable({
-                columnDefs: [{ orderable: false, targets: targets }],
-                buttons: {
-                    buttons: vm.buttonConfig
-                }
-            });
-
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.dataTables_filter input[type=search]').attr('placeholder', 'Nhập từ khóa');
-
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.dataTables_length select').select2({
-                minimumResultsForSearch: Infinity,
-                width: 'auto'
-            });
-
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('button.dt-button.buttons-collection.buttons-colvis.btn.bg-blue.btn-icon[tabindex="0"][aria-controls="data-table"]').click(function () {
-                if (__WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr('removed') == undefined) {
-                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('button.dt-button.buttons-columnVisibility.active[tabindex="0"]')[0].remove();
-                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr('removed', 1);
-                }
-            });
-        },
-        selectAll: function selectAll() {
-            this.doChecked();
-            this.allChecked = !this.allChecked;
-            this.$emit('selectAll');
-        },
-        unSelectAll: function unSelectAll() {
-            this.doChecked();
-            this.allChecked = false;
-            this.$emit('unSelectAll');
-        },
-        checkedItem: function checkedItem(key) {
-            this.$emit('clickedKeyItem', key);
-        },
-        doChecked: function doChecked() {
-            if (this.checked == '') {
-                this.checked = 'checked';
-            } else {
-                this.checked = '';
-            }
-        },
-        deleteSelected: function deleteSelected() {
-            this.$emit('deleteSelected');
-        },
-        deletedSelect: function deletedSelect() {
-            this.unSelectAll();
-        },
-        action: function action(key, _action) {
-
-            this.$emit('action', [key, _action]);
-        }
-    },
-    computed: {
-        totalPage: function totalPage() {
-            if (typeof this.pages != "number") {
-                this.pages = 1;
-            }
-            var c = parseInt(this.pages / this.perPage);
-
-            var p = this.pages % this.perPage;
-            if (p > 0) {
-                c++;
-            }
-
-            var pages = [];
-            for (var i = 0; i < c; i++) {
-                pages.push(i + 1);
-            }
-            return pages;
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
         }
     }
-});
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(206)
-/* template */
-var __vue_template__ = __webpack_require__(207)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\checkboxItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7eee4029", Component.options)
-  } else {
-    hotAPI.reload("data-v-7eee4029", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
 
 
-/***/ }),
-/* 206 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['allChecked', 'resetCheck'],
-    computed: {
-        getResetCheck: function getResetCheck() {
-            return this.resetCheck;
-        }
-    },
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
 
-    data: function data() {
-        return {
-            classChecked: ''
-        };
-    },
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
 
-
-    methods: {
-        clicked: function clicked() {
-            if (this.classChecked == '') {
-                this.classChecked = 'checked';
-            } else {
-                this.classChecked = '';
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
             }
-            this.$emit('setClicked');
         }
-    },
-    watch: {
-        allChecked: function allChecked(value) {
-            if (value == true) {
-                this.classChecked = 'checked';
-            } else {
-                this.classChecked = '';
-            }
-        },
-        getResetCheck: function getResetCheck(value) {
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
 
-            this.classChecked = '';
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
         }
     }
-});
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
 
 /***/ }),
-/* 207 */
+
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "checker" }, [
-    _c("span", { class: _vm.classChecked }, [
-      _c("input", {
-        staticClass: "styled",
-        attrs: { type: "checkbox" },
-        on: { click: _vm.clicked }
-      })
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7eee4029", module.exports)
-  }
-}
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
 
 /***/ }),
-/* 208 */
+
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "panel panel-flat" },
-    [
-      _c("div", { staticClass: "panel-heading" }, [
-        _c("h5", { staticClass: "panel-title" }, [_vm._v(_vm._s(_vm.title))]),
-        _vm._v(" "),
-        _c("div", { staticClass: "heading-elements" }, [
-          _c("ul", { staticClass: "icons-list" }, [
-            _c("li", [
-              _vm._v(
-                "\n                    Số item mỗi trang:\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.perPage,
-                      expression: "perPage"
-                    }
-                  ],
-                  staticClass: "right form-control length-select",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.perPage = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _vm._l(_vm.lengths, function(length) {
-                    return _c("option", { domProps: { value: length } }, [
-                      _vm._v(_vm._s(length))
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "-1" } }, [_vm._v("Tất cả")])
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("\n                    Chọn trang:\n                ")
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.pageSelect,
-                      expression: "pageSelect"
-                    }
-                  ],
-                  staticClass: "right form-control length-select",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.pageSelect = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                _vm._l(_vm.totalPage, function(page) {
-                  return _c("option", { domProps: { value: page } }, [
-                    _vm._v(_vm._s(page))
-                  ])
-                })
-              )
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "table",
-        { staticClass: "table datatable-basic", attrs: { id: "data-table" } },
-        [
-          _c("thead", [
-            _c(
-              "tr",
-              [
-                _c("th", [
-                  _c("div", { staticClass: "btn-group navbar-btn" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "btn btn-default btn-icon btn-checkbox-all",
-                        attrs: { type: "button" },
-                        on: { click: _vm.selectAll }
-                      },
-                      [
-                        _c("div", { staticClass: "checker" }, [
-                          _c("span", { class: _vm.checked }, [
-                            _c("input", {
-                              staticClass: "styled",
-                              attrs: { type: "checkbox" }
-                            })
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "dropdown-menu" }, [
-                      _c("li", [
-                        !_vm.allChecked
-                          ? _c(
-                              "a",
-                              {
-                                attrs: { href: "javascript:void(0);" },
-                                on: { click: _vm.selectAll }
-                              },
-                              [_vm._v("Chọn tất cả")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _vm.allChecked
-                          ? _c(
-                              "a",
-                              {
-                                attrs: { href: "javascript:void(0);" },
-                                on: { click: _vm.unSelectAll }
-                              },
-                              [_vm._v("Bỏ chọn tất cả")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "javascript:void(0);" },
-                            on: { click: _vm.deleteSelected }
-                          },
-                          [_vm._v("Xóa mục đã chọn")]
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.columns, function(column) {
-                  return _c("th", {
-                    key: column.key,
-                    domProps: { innerHTML: _vm._s(column.text) }
-                  })
-                }),
-                _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
-              ],
-              2
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.data, function(item) {
-              return _c(
-                "tr",
-                [
-                  _c(
-                    "td",
-                    [
-                      _c("checkbox-item", {
-                        attrs: {
-                          allChecked: _vm.allChecked,
-                          resetCheck: _vm.resetCheck
-                        },
-                        on: {
-                          setClicked: function($event) {
-                            _vm.checkedItem(item[_vm.primaryKey])
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.columns, function(column) {
-                    return _c("td", {
-                      key: column.key,
-                      domProps: { innerHTML: _vm._s(item[column.key]) }
-                    })
-                  }),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _c("ul", { staticClass: "icons-list" }, [
-                      _c("li", { staticClass: "dropdown" }, [
-                        _vm._m(1, true),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          { staticClass: "dropdown-menu dropdown-menu-right" },
-                          _vm._l(_vm.menu, function(li) {
-                            return _c("li", {
-                              key: li.action,
-                              domProps: { innerHTML: _vm._s(li.html) },
-                              on: {
-                                click: function($event) {
-                                  _vm.action(item[_vm.primaryKey], li.action)
-                                }
-                              }
-                            })
-                          })
-                        )
-                      ])
-                    ])
-                  ])
-                ],
-                2
-              )
-            })
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-default btn-icon dropdown-toggle",
-        attrs: { type: "button", "data-toggle": "dropdown" }
-      },
-      [_c("span", { staticClass: "caret" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "dropdown-toggle",
-        attrs: { href: "#", "data-toggle": "dropdown" }
-      },
-      [_c("i", { staticClass: "icon-menu9" })]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-be68eeaa", module.exports)
-  }
-}
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var settle = __webpack_require__(22);
+var buildURL = __webpack_require__(24);
+var parseHeaders = __webpack_require__(25);
+var isURLSameOrigin = __webpack_require__(26);
+var createError = __webpack_require__(8);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if ("development" !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(28);
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
 
 /***/ }),
-/* 209 */
+
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "content-wrapper", attrs: { id: "content-wrapper" } },
-    [
-      _c(
-        "data-table",
-        {
-          attrs: {
-            title: "Quản lý thông báo",
-            columns: _vm.columns,
-            data: _vm.data,
-            targets: [],
-            buttonConfig: _vm.buttonConfig,
-            resetCheck: _vm.resetCheck,
-            menu: _vm.menu,
-            primaryKey: _vm.primaryKey,
-            pages: _vm.totalPage,
-            lengths: _vm.lengths
-          },
-          on: {
-            selectAll: _vm.selectAll,
-            unSelectAll: _vm.unSelectAll,
-            deleteSelected: _vm.deleteSelected,
-            action: function($event) {
-              _vm.action($event)
-            },
-            clickedKeyItem: _vm.clickedKeyItem,
-            changePerPage: _vm.changePerPage,
-            changePageSelect: _vm.changePageSelect
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "modal fade", attrs: { id: "modal_danger" } },
-            [
-              _c("div", { staticClass: "modal-dialog" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header bg-danger" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("×")]
-                    ),
-                    _vm._v(" "),
-                    _c("h6", { staticClass: "modal-title" }, [
-                      _c("i", { staticClass: "icon-warning" }),
-                      _vm._v(" Cảnh báo")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("p", [
-                      _c("i", { staticClass: "icon-warning" }),
-                      _vm._v(
-                        " Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "panel panel-body border-top-danger text-center",
-                        staticStyle: { border: "snow" }
-                      },
-                      [
-                        _vm.deleting == true
-                          ? _c("div", { staticClass: "pace-demo" }, [
-                              _c("div", { staticClass: "theme_xbox_xs" }, [
-                                _c("div", {
-                                  staticClass: "pace_progress",
-                                  attrs: {
-                                    "data-progress-text": "60%",
-                                    "data-progress": "60"
-                                  }
-                                }),
-                                _c("div", { staticClass: "pace_activity" })
-                              ])
-                            ])
-                          : _vm._e()
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-link",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("Hủy")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: { click: _vm.deleteItem }
-                      },
-                      [_vm._v("Xác định xóa")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "modal fade",
-              attrs: { id: "modal-danger-delete-list" }
-            },
-            [
-              _c("div", { staticClass: "modal-dialog" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header bg-danger" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("×")]
-                    ),
-                    _vm._v(" "),
-                    _c("h6", { staticClass: "modal-title" }, [
-                      _c("i", { staticClass: "icon-warning" }),
-                      _vm._v(" Cảnh báo")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("p", [
-                      _c("i", { staticClass: "icon-warning" }),
-                      _vm._v(
-                        " Bạn đang xóa nhiều thông báo. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "panel panel-body border-top-danger text-center",
-                        staticStyle: { border: "snow" }
-                      },
-                      [
-                        _vm.deleting == true
-                          ? _c("div", { staticClass: "pace-demo" }, [
-                              _c("div", { staticClass: "theme_xbox_xs" }, [
-                                _c("div", {
-                                  staticClass: "pace_progress",
-                                  attrs: {
-                                    "data-progress-text": "60%",
-                                    "data-progress": "60"
-                                  }
-                                }),
-                                _c("div", { staticClass: "pace_activity" })
-                              ])
-                            ])
-                          : _vm._e()
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-link",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("Hủy")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: { click: _vm.deleteListItem }
-                      },
-                      [_vm._v("Xác định xóa")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5f1500b4", module.exports)
-  }
-}
+"use strict";
+
+
+var enhanceError = __webpack_require__(23);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
 
 /***/ })
-/******/ ]);
+
+/******/ });

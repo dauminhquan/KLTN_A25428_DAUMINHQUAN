@@ -32,8 +32,7 @@ class StudentManageController extends Controller
 
     public function store(StudentManageRequest $request)
     {
-        $student = Student::create($request->all());
-        return $student;
+        return $this->studentService->save($request->all());
     }
 
     public function show($id)

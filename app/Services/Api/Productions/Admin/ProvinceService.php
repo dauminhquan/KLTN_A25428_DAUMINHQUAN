@@ -26,7 +26,8 @@ class ProvinceService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                return Province::paginate(100000);
+                $provinces = Province::paginate(100000);
+                return $provinces;
             }
             return Province::paginate($inputs['size']);
         }

@@ -26,17 +26,30 @@ class DepartmentService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                return Department::paginate(100000);
+                $departments =  Department::paginate(100000);
             }
-            return Department::paginate($inputs['size']);
+           else{
+               $departments = Department::paginate($inputs['size']);
+           }
+            foreach ($departments as $department)
+            {
+                $department->branches = $department->branches;
+            }
+            return $departments;
         }
-        return Department::paginate(500);
+        $departments = Department::paginate(500);
+        foreach ($departments as $department)
+        {
+            $department->branches = $department->branches;
+        }
+        return $departments;
 
     }
 
     public function getOne($id)
     {
         $department = Department::findOrFail($id);
+        $department->branches = $department->branches;
         return $department;
     }
 
@@ -48,7 +61,6 @@ class DepartmentService extends BaseService implements ManageInterface
     public function save($inputs)
     {
         $department = Department::create($inputs->all());
-
         return $department;
     }
 

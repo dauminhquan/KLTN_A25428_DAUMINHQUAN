@@ -1,0 +1,11 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - composer install --working-dir=./laravel
+artifacts:
+  files:
+    - '**/*'
+cache:
+  paths:
+    - laravel/vendor/**/*

@@ -58,6 +58,25 @@ class Config{
         this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES+'/resource'
         this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES+'/delete-list'
 
+        this.API_ADMIN_PROVINCES = this.API_ADMIN+'/manage-provinces'
+        this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES+'/resource'
+        this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES+'/delete-list'
+
+        this.API_ADMIN_RATINGS = this.API_ADMIN+'/manage-ratings'
+        this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS+'/resource'
+        this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS+'/delete-list'
+
+        this.API_ADMIN_RANKS = this.API_ADMIN+'/manage-ranks'
+        this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS+'/resource'
+        this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS+'/delete-list'
+
+        this.API_ADMIN_DEPARTMENTS = this.API_ADMIN+'/manage-departments'
+        this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS+'/resource'
+        this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS+'/delete-list'
+
+        this.API_ADMIN_COURSES = this.API_ADMIN+'/manage-courses'
+        this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES+'/resource'
+        this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES+'/delete-list'
 
         /*NOTIFIES*/
         this.API_ADMIN_NOTIFIES = this.API_ADMIN+'/manage-notifies'

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 184);
+/******/ 	return __webpack_require__(__webpack_require__.s = 208);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(6);
-var isBuffer = __webpack_require__(20);
+var isBuffer = __webpack_require__(19);
 
 /*global toString:true*/
 
@@ -10779,7 +10779,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(22);
+var normalizeHeaderName = __webpack_require__(21);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -11200,12 +11200,12 @@ module.exports = function bind(fn, thisArg) {
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(23);
-var buildURL = __webpack_require__(25);
-var parseHeaders = __webpack_require__(26);
-var isURLSameOrigin = __webpack_require__(27);
+var settle = __webpack_require__(22);
+var buildURL = __webpack_require__(24);
+var parseHeaders = __webpack_require__(25);
+var isURLSameOrigin = __webpack_require__(26);
 var createError = __webpack_require__(8);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -11302,7 +11302,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(29);
+      var cookies = __webpack_require__(28);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -11386,7 +11386,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(24);
+var enhanceError = __webpack_require__(23);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -26750,11 +26750,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
-window.Cookies = __webpack_require__(37);
+window.Cookies = __webpack_require__(36);
 
 var token = window.Cookies('token');
 var ax = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create();
@@ -26767,7 +26767,7 @@ ax.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(37);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26775,2102 +26775,215 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-    function Config() {
-        var _this = this;
+        function Config() {
+                var _this = this;
 
-        _classCallCheck(this, Config);
+                _classCallCheck(this, Config);
 
-        /*API*/
+                /*API*/
 
-        this.API = window.location.origin + '/api';
+                this.API = window.location.origin + '/api';
 
-        /*ADMIN*/
+                /*ADMIN*/
 
-        this.API_ADMIN = this.API + '/admin';
+                this.API_ADMIN = this.API + '/admin';
 
-        /*ENTERPRISES*/
-        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-        };
-        /*ENTERPRISES*/
+                /*ENTERPRISES*/
+                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+                };
+                /*ENTERPRISES*/
 
-        /*STUDENTS*/
-        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-        };
-        /*STUDENTS*/
+                /*STUDENTS*/
+                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+                };
+                /*STUDENTS*/
 
-        /*JOBS*/
-        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_JOBS + '/get-option-csv';
-        };
-        /*JOBS*/
+                /*JOBS*/
+                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_JOBS + '/get-option-csv';
+                };
+                /*JOBS*/
 
-        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-        /*NOTIFIES*/
-        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-        };
-        /*NOTIFIES*/
+                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
 
-        /*API*/
+                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-        /*WEB*/
+                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-        this.WEB = window.location.origin;
+                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
 
-        this.WEB_ADMIN = this.WEB + '/admin';
+                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+                /*NOTIFIES*/
+                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+                };
+                /*NOTIFIES*/
 
-        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+                /*API*/
 
-        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+                /*WEB*/
 
-        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+                this.WEB = window.location.origin;
 
-        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
-        /*WEB*/
-    }
+                this.WEB_ADMIN = this.WEB + '/admin';
 
-    _createClass(Config, [{
-        key: 'notifySuccess',
-        value: function notifySuccess() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: message,
-                    addclass: 'bg-success'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: 'Thao tác thành công',
-                    addclass: 'bg-success'
-                });
-            }
+                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+
+                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+
+                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+
+                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+                /*WEB*/
         }
-    }, {
-        key: 'notifyWarning',
-        value: function notifyWarning() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: message,
-                    addclass: 'bg-warning'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                    addclass: 'bg-warning'
-                });
-            }
-        }
-    }, {
-        key: 'notifyError',
-        value: function notifyError() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        _createClass(Config, [{
+                key: 'notifySuccess',
+                value: function notifySuccess() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: message,
-                    addclass: 'bg-danger'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: 'Thao tác thất bại',
-                    addclass: 'bg-danger'
-                });
-            }
-        }
-    }, {
-        key: 'getError',
-        value: function getError(data) {
-            var message = '';
-            message = data.message;
-            message += '<br>';
-            var errors = data.errors;
-            var keys = Object.keys(errors);
-            keys.forEach(function (key) {
-                errors[key].forEach(function (item) {
-                    message += item + '<br>';
-                });
-            });
-            return message;
-        }
-    }]);
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: message,
+                                        addclass: 'bg-success'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: 'Thao tác thành công',
+                                        addclass: 'bg-success'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyWarning',
+                value: function notifyWarning() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-    return Config;
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: message,
+                                        addclass: 'bg-warning'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                                        addclass: 'bg-warning'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyError',
+                value: function notifyError() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: message,
+                                        addclass: 'bg-danger'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: 'Thao tác thất bại',
+                                        addclass: 'bg-danger'
+                                });
+                        }
+                }
+        }, {
+                key: 'getError',
+                value: function getError(data) {
+                        var message = '';
+                        message = data.message;
+                        message += '<br>';
+                        var errors = data.errors;
+                        var keys = Object.keys(errors);
+                        keys.forEach(function (key) {
+                                errors[key].forEach(function (item) {
+                                        message += item + '<br>';
+                                });
+                        });
+                        return message;
+                }
+        }]);
+
+        return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Buttons for DataTables 1.5.2
- * ©2016-2018 SpryMedia Ltd - datatables.net/license
- */
-
-(function( factory ){
-	if ( true ) {
-		// AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11)], __WEBPACK_AMD_DEFINE_RESULT__ = (function ( $ ) {
-			return factory( $, window, document );
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	}
-	else if ( typeof exports === 'object' ) {
-		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net')(root, $).$;
-			}
-
-			return factory( $, root, root.document );
-		};
-	}
-	else {
-		// Browser
-		factory( jQuery, window, document );
-	}
-}(function( $, window, document, undefined ) {
-'use strict';
-var DataTable = $.fn.dataTable;
-
-
-// Used for namespacing events added to the document by each instance, so they
-// can be removed on destroy
-var _instCounter = 0;
-
-// Button namespacing counter for namespacing events on individual buttons
-var _buttonCounter = 0;
-
-var _dtButtons = DataTable.ext.buttons;
-
-/**
- * [Buttons description]
- * @param {[type]}
- * @param {[type]}
- */
-var Buttons = function( dt, config )
-{
-	// If there is no config set it to an empty object
-	if ( typeof( config ) === 'undefined' ) {
-		config = {};	
-	}
-	
-	// Allow a boolean true for defaults
-	if ( config === true ) {
-		config = {};
-	}
-
-	// For easy configuration of buttons an array can be given
-	if ( $.isArray( config ) ) {
-		config = { buttons: config };
-	}
-
-	this.c = $.extend( true, {}, Buttons.defaults, config );
-
-	// Don't want a deep copy for the buttons
-	if ( config.buttons ) {
-		this.c.buttons = config.buttons;
-	}
-
-	this.s = {
-		dt: new DataTable.Api( dt ),
-		buttons: [],
-		listenKeys: '',
-		namespace: 'dtb'+(_instCounter++)
-	};
-
-	this.dom = {
-		container: $('<'+this.c.dom.container.tag+'/>')
-			.addClass( this.c.dom.container.className )
-	};
-
-	this._constructor();
-};
-
-
-$.extend( Buttons.prototype, {
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Public methods
-	 */
-
-	/**
-	 * Get the action of a button
-	 * @param  {int|string} Button index
-	 * @return {function}
-	 *//**
-	 * Set the action of a button
-	 * @param  {node} node Button element
-	 * @param  {function} action Function to set
-	 * @return {Buttons} Self for chaining
-	 */
-	action: function ( node, action )
-	{
-		var button = this._nodeToButton( node );
-
-		if ( action === undefined ) {
-			return button.conf.action;
-		}
-
-		button.conf.action = action;
-
-		return this;
-	},
-
-	/**
-	 * Add an active class to the button to make to look active or get current
-	 * active state.
-	 * @param  {node} node Button element
-	 * @param  {boolean} [flag] Enable / disable flag
-	 * @return {Buttons} Self for chaining or boolean for getter
-	 */
-	active: function ( node, flag ) {
-		var button = this._nodeToButton( node );
-		var klass = this.c.dom.button.active;
-		var jqNode = $(button.node);
-
-		if ( flag === undefined ) {
-			return jqNode.hasClass( klass );
-		}
-
-		jqNode.toggleClass( klass, flag === undefined ? true : flag );
-
-		return this;
-	},
-
-	/**
-	 * Add a new button
-	 * @param {object} config Button configuration object, base string name or function
-	 * @param {int|string} [idx] Button index for where to insert the button
-	 * @return {Buttons} Self for chaining
-	 */
-	add: function ( config, idx )
-	{
-		var buttons = this.s.buttons;
-
-		if ( typeof idx === 'string' ) {
-			var split = idx.split('-');
-			var base = this.s;
-
-			for ( var i=0, ien=split.length-1 ; i<ien ; i++ ) {
-				base = base.buttons[ split[i]*1 ];
-			}
-
-			buttons = base.buttons;
-			idx = split[ split.length-1 ]*1;
-		}
-
-		this._expandButton( buttons, config, false, idx );
-		this._draw();
-
-		return this;
-	},
-
-	/**
-	 * Get the container node for the buttons
-	 * @return {jQuery} Buttons node
-	 */
-	container: function ()
-	{
-		return this.dom.container;
-	},
-
-	/**
-	 * Disable a button
-	 * @param  {node} node Button node
-	 * @return {Buttons} Self for chaining
-	 */
-	disable: function ( node ) {
-		var button = this._nodeToButton( node );
-
-		$(button.node).addClass( this.c.dom.button.disabled );
-
-		return this;
-	},
-
-	/**
-	 * Destroy the instance, cleaning up event handlers and removing DOM
-	 * elements
-	 * @return {Buttons} Self for chaining
-	 */
-	destroy: function ()
-	{
-		// Key event listener
-		$('body').off( 'keyup.'+this.s.namespace );
-
-		// Individual button destroy (so they can remove their own events if
-		// needed). Take a copy as the array is modified by `remove`
-		var buttons = this.s.buttons.slice();
-		var i, ien;
-		
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-			this.remove( buttons[i].node );
-		}
-
-		// Container
-		this.dom.container.remove();
-
-		// Remove from the settings object collection
-		var buttonInsts = this.s.dt.settings()[0];
-
-		for ( i=0, ien=buttonInsts.length ; i<ien ; i++ ) {
-			if ( buttonInsts.inst === this ) {
-				buttonInsts.splice( i, 1 );
-				break;
-			}
-		}
-
-		return this;
-	},
-
-	/**
-	 * Enable / disable a button
-	 * @param  {node} node Button node
-	 * @param  {boolean} [flag=true] Enable / disable flag
-	 * @return {Buttons} Self for chaining
-	 */
-	enable: function ( node, flag )
-	{
-		if ( flag === false ) {
-			return this.disable( node );
-		}
-
-		var button = this._nodeToButton( node );
-		$(button.node).removeClass( this.c.dom.button.disabled );
-
-		return this;
-	},
-
-	/**
-	 * Get the instance name for the button set selector
-	 * @return {string} Instance name
-	 */
-	name: function ()
-	{
-		return this.c.name;
-	},
-
-	/**
-	 * Get a button's node
-	 * @param  {node} node Button node
-	 * @return {jQuery} Button element
-	 */
-	node: function ( node )
-	{
-		var button = this._nodeToButton( node );
-		return $(button.node);
-	},
-
-	/**
-	 * Set / get a processing class on the selected button
-	 * @param  {boolean} flag true to add, false to remove, undefined to get
-	 * @return {boolean|Buttons} Getter value or this if a setter.
-	 */
-	processing: function ( node, flag )
-	{
-		var button = this._nodeToButton( node );
-
-		if ( flag === undefined ) {
-			return $(button.node).hasClass( 'processing' );
-		}
-
-		$(button.node).toggleClass( 'processing', flag );
-
-		return this;
-	},
-
-	/**
-	 * Remove a button.
-	 * @param  {node} node Button node
-	 * @return {Buttons} Self for chaining
-	 */
-	remove: function ( node )
-	{
-		var button = this._nodeToButton( node );
-		var host = this._nodeToHost( node );
-		var dt = this.s.dt;
-
-		// Remove any child buttons first
-		if ( button.buttons.length ) {
-			for ( var i=button.buttons.length-1 ; i>=0 ; i-- ) {
-				this.remove( button.buttons[i].node );
-			}
-		}
-
-		// Allow the button to remove event handlers, etc
-		if ( button.conf.destroy ) {
-			button.conf.destroy.call( dt.button(node), dt, $(node), button.conf );
-		}
-
-		this._removeKey( button.conf );
-
-		$(button.node).remove();
-
-		var idx = $.inArray( button, host );
-		host.splice( idx, 1 );
-
-		return this;
-	},
-
-	/**
-	 * Get the text for a button
-	 * @param  {int|string} node Button index
-	 * @return {string} Button text
-	 *//**
-	 * Set the text for a button
-	 * @param  {int|string|function} node Button index
-	 * @param  {string} label Text
-	 * @return {Buttons} Self for chaining
-	 */
-	text: function ( node, label )
-	{
-		var button = this._nodeToButton( node );
-		var buttonLiner = this.c.dom.collection.buttonLiner;
-		var linerTag = button.inCollection && buttonLiner && buttonLiner.tag ?
-			buttonLiner.tag :
-			this.c.dom.buttonLiner.tag;
-		var dt = this.s.dt;
-		var jqNode = $(button.node);
-		var text = function ( opt ) {
-			return typeof opt === 'function' ?
-				opt( dt, jqNode, button.conf ) :
-				opt;
-		};
-
-		if ( label === undefined ) {
-			return text( button.conf.text );
-		}
-
-		button.conf.text = label;
-
-		if ( linerTag ) {
-			jqNode.children( linerTag ).html( text(label) );
-		}
-		else {
-			jqNode.html( text(label) );
-		}
-
-		return this;
-	},
-
-
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Constructor
-	 */
-
-	/**
-	 * Buttons constructor
-	 * @private
-	 */
-	_constructor: function ()
-	{
-		var that = this;
-		var dt = this.s.dt;
-		var dtSettings = dt.settings()[0];
-		var buttons =  this.c.buttons;
-
-		if ( ! dtSettings._buttons ) {
-			dtSettings._buttons = [];
-		}
-
-		dtSettings._buttons.push( {
-			inst: this,
-			name: this.c.name
-		} );
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			this.add( buttons[i] );
-		}
-
-		dt.on( 'destroy', function ( e, settings ) {
-			if ( settings === dtSettings ) {
-				that.destroy();
-			}
-		} );
-
-		// Global key event binding to listen for button keys
-		$('body').on( 'keyup.'+this.s.namespace, function ( e ) {
-			if ( ! document.activeElement || document.activeElement === document.body ) {
-				// SUse a string of characters for fast lookup of if we need to
-				// handle this
-				var character = String.fromCharCode(e.keyCode).toLowerCase();
-
-				if ( that.s.listenKeys.toLowerCase().indexOf( character ) !== -1 ) {
-					that._keypress( character, e );
-				}
-			}
-		} );
-	},
-
-
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Private methods
-	 */
-
-	/**
-	 * Add a new button to the key press listener
-	 * @param {object} conf Resolved button configuration object
-	 * @private
-	 */
-	_addKey: function ( conf )
-	{
-		if ( conf.key ) {
-			this.s.listenKeys += $.isPlainObject( conf.key ) ?
-				conf.key.key :
-				conf.key;
-		}
-	},
-
-	/**
-	 * Insert the buttons into the container. Call without parameters!
-	 * @param  {node} [container] Recursive only - Insert point
-	 * @param  {array} [buttons] Recursive only - Buttons array
-	 * @private
-	 */
-	_draw: function ( container, buttons )
-	{
-		if ( ! container ) {
-			container = this.dom.container;
-			buttons = this.s.buttons;
-		}
-
-		container.children().detach();
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			container.append( buttons[i].inserter );
-			container.append( ' ' );
-
-			if ( buttons[i].buttons && buttons[i].buttons.length ) {
-				this._draw( buttons[i].collection, buttons[i].buttons );
-			}
-		}
-	},
-
-	/**
-	 * Create buttons from an array of buttons
-	 * @param  {array} attachTo Buttons array to attach to
-	 * @param  {object} button Button definition
-	 * @param  {boolean} inCollection true if the button is in a collection
-	 * @private
-	 */
-	_expandButton: function ( attachTo, button, inCollection, attachPoint )
-	{
-		var dt = this.s.dt;
-		var buttonCounter = 0;
-		var buttons = ! $.isArray( button ) ?
-			[ button ] :
-			button;
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			var conf = this._resolveExtends( buttons[i] );
-
-			if ( ! conf ) {
-				continue;
-			}
-
-			// If the configuration is an array, then expand the buttons at this
-			// point
-			if ( $.isArray( conf ) ) {
-				this._expandButton( attachTo, conf, inCollection, attachPoint );
-				continue;
-			}
-
-			var built = this._buildButton( conf, inCollection );
-			if ( ! built ) {
-				continue;
-			}
-
-			if ( attachPoint !== undefined ) {
-				attachTo.splice( attachPoint, 0, built );
-				attachPoint++;
-			}
-			else {
-				attachTo.push( built );
-			}
-
-			if ( built.conf.buttons ) {
-				var collectionDom = this.c.dom.collection;
-				built.collection = $('<'+collectionDom.tag+'/>')
-					.addClass( collectionDom.className )
-					.attr( 'role', 'menu') ;
-				built.conf._collection = built.collection;
-
-				this._expandButton( built.buttons, built.conf.buttons, true, attachPoint );
-			}
-
-			// init call is made here, rather than buildButton as it needs to
-			// be selectable, and for that it needs to be in the buttons array
-			if ( conf.init ) {
-				conf.init.call( dt.button( built.node ), dt, $(built.node), conf );
-			}
-
-			buttonCounter++;
-		}
-	},
-
-	/**
-	 * Create an individual button
-	 * @param  {object} config            Resolved button configuration
-	 * @param  {boolean} inCollection `true` if a collection button
-	 * @return {jQuery} Created button node (jQuery)
-	 * @private
-	 */
-	_buildButton: function ( config, inCollection )
-	{
-		var buttonDom = this.c.dom.button;
-		var linerDom = this.c.dom.buttonLiner;
-		var collectionDom = this.c.dom.collection;
-		var dt = this.s.dt;
-		var text = function ( opt ) {
-			return typeof opt === 'function' ?
-				opt( dt, button, config ) :
-				opt;
-		};
-
-		if ( inCollection && collectionDom.button ) {
-			buttonDom = collectionDom.button;
-		}
-
-		if ( inCollection && collectionDom.buttonLiner ) {
-			linerDom = collectionDom.buttonLiner;
-		}
-
-		// Make sure that the button is available based on whatever requirements
-		// it has. For example, Flash buttons require Flash
-		if ( config.available && ! config.available( dt, config ) ) {
-			return false;
-		}
-
-		var action = function ( e, dt, button, config ) {
-			config.action.call( dt.button( button ), e, dt, button, config );
-
-			$(dt.table().node()).triggerHandler( 'buttons-action.dt', [
-				dt.button( button ), dt, button, config 
-			] );
-		};
-
-		var tag = config.tag || buttonDom.tag;
-		var button = $('<'+tag+'/>')
-			.addClass( buttonDom.className )
-			.attr( 'tabindex', this.s.dt.settings()[0].iTabIndex )
-			.attr( 'aria-controls', this.s.dt.table().node().id )
-			.on( 'click.dtb', function (e) {
-				e.preventDefault();
-
-				if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
-					action( e, dt, button, config );
-				}
-
-				button.blur();
-			} )
-			.on( 'keyup.dtb', function (e) {
-				if ( e.keyCode === 13 ) {
-					if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
-						action( e, dt, button, config );
-					}
-				}
-			} );
-
-		// Make `a` tags act like a link
-		if ( tag.toLowerCase() === 'a' ) {
-			button.attr( 'href', '#' );
-		}
-
-		// Button tags should have `type=button` so they don't have any default behaviour
-		if ( tag.toLowerCase() === 'button' ) {
-			button.attr( 'type', 'button' );
-		}
-
-		if ( linerDom.tag ) {
-			var liner = $('<'+linerDom.tag+'/>')
-				.html( text( config.text ) )
-				.addClass( linerDom.className );
-
-			if ( linerDom.tag.toLowerCase() === 'a' ) {
-				liner.attr( 'href', '#' );
-			}
-
-			button.append( liner );
-		}
-		else {
-			button.html( text( config.text ) );
-		}
-
-		if ( config.enabled === false ) {
-			button.addClass( buttonDom.disabled );
-		}
-
-		if ( config.className ) {
-			button.addClass( config.className );
-		}
-
-		if ( config.titleAttr ) {
-			button.attr( 'title', text( config.titleAttr ) );
-		}
-
-		if ( config.attr ) {
-			button.attr( config.attr );
-		}
-
-		if ( ! config.namespace ) {
-			config.namespace = '.dt-button-'+(_buttonCounter++);
-		}
-
-		var buttonContainer = this.c.dom.buttonContainer;
-		var inserter;
-		if ( buttonContainer && buttonContainer.tag ) {
-			inserter = $('<'+buttonContainer.tag+'/>')
-				.addClass( buttonContainer.className )
-				.append( button );
-		}
-		else {
-			inserter = button;
-		}
-
-		this._addKey( config );
-
-		return {
-			conf:         config,
-			node:         button.get(0),
-			inserter:     inserter,
-			buttons:      [],
-			inCollection: inCollection,
-			collection:   null
-		};
-	},
-
-	/**
-	 * Get the button object from a node (recursive)
-	 * @param  {node} node Button node
-	 * @param  {array} [buttons] Button array, uses base if not defined
-	 * @return {object} Button object
-	 * @private
-	 */
-	_nodeToButton: function ( node, buttons )
-	{
-		if ( ! buttons ) {
-			buttons = this.s.buttons;
-		}
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			if ( buttons[i].node === node ) {
-				return buttons[i];
-			}
-
-			if ( buttons[i].buttons.length ) {
-				var ret = this._nodeToButton( node, buttons[i].buttons );
-
-				if ( ret ) {
-					return ret;
-				}
-			}
-		}
-	},
-
-	/**
-	 * Get container array for a button from a button node (recursive)
-	 * @param  {node} node Button node
-	 * @param  {array} [buttons] Button array, uses base if not defined
-	 * @return {array} Button's host array
-	 * @private
-	 */
-	_nodeToHost: function ( node, buttons )
-	{
-		if ( ! buttons ) {
-			buttons = this.s.buttons;
-		}
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			if ( buttons[i].node === node ) {
-				return buttons;
-			}
-
-			if ( buttons[i].buttons.length ) {
-				var ret = this._nodeToHost( node, buttons[i].buttons );
-
-				if ( ret ) {
-					return ret;
-				}
-			}
-		}
-	},
-
-	/**
-	 * Handle a key press - determine if any button's key configured matches
-	 * what was typed and trigger the action if so.
-	 * @param  {string} character The character pressed
-	 * @param  {object} e Key event that triggered this call
-	 * @private
-	 */
-	_keypress: function ( character, e )
-	{
-		// Check if this button press already activated on another instance of Buttons
-		if ( e._buttonsHandled ) {
-			return;
-		}
-
-		var run = function ( conf, node ) {
-			if ( ! conf.key ) {
-				return;
-			}
-
-			if ( conf.key === character ) {
-				e._buttonsHandled = true;
-				$(node).click();
-			}
-			else if ( $.isPlainObject( conf.key ) ) {
-				if ( conf.key.key !== character ) {
-					return;
-				}
-
-				if ( conf.key.shiftKey && ! e.shiftKey ) {
-					return;
-				}
-
-				if ( conf.key.altKey && ! e.altKey ) {
-					return;
-				}
-
-				if ( conf.key.ctrlKey && ! e.ctrlKey ) {
-					return;
-				}
-
-				if ( conf.key.metaKey && ! e.metaKey ) {
-					return;
-				}
-
-				// Made it this far - it is good
-				e._buttonsHandled = true;
-				$(node).click();
-			}
-		};
-
-		var recurse = function ( a ) {
-			for ( var i=0, ien=a.length ; i<ien ; i++ ) {
-				run( a[i].conf, a[i].node );
-
-				if ( a[i].buttons.length ) {
-					recurse( a[i].buttons );
-				}
-			}
-		};
-
-		recurse( this.s.buttons );
-	},
-
-	/**
-	 * Remove a key from the key listener for this instance (to be used when a
-	 * button is removed)
-	 * @param  {object} conf Button configuration
-	 * @private
-	 */
-	_removeKey: function ( conf )
-	{
-		if ( conf.key ) {
-			var character = $.isPlainObject( conf.key ) ?
-				conf.key.key :
-				conf.key;
-
-			// Remove only one character, as multiple buttons could have the
-			// same listening key
-			var a = this.s.listenKeys.split('');
-			var idx = $.inArray( character, a );
-			a.splice( idx, 1 );
-			this.s.listenKeys = a.join('');
-		}
-	},
-
-	/**
-	 * Resolve a button configuration
-	 * @param  {string|function|object} conf Button config to resolve
-	 * @return {object} Button configuration
-	 * @private
-	 */
-	_resolveExtends: function ( conf )
-	{
-		var dt = this.s.dt;
-		var i, ien;
-		var toConfObject = function ( base ) {
-			var loop = 0;
-
-			// Loop until we have resolved to a button configuration, or an
-			// array of button configurations (which will be iterated
-			// separately)
-			while ( ! $.isPlainObject(base) && ! $.isArray(base) ) {
-				if ( base === undefined ) {
-					return;
-				}
-
-				if ( typeof base === 'function' ) {
-					base = base( dt, conf );
-
-					if ( ! base ) {
-						return false;
-					}
-				}
-				else if ( typeof base === 'string' ) {
-					if ( ! _dtButtons[ base ] ) {
-						throw 'Unknown button type: '+base;
-					}
-
-					base = _dtButtons[ base ];
-				}
-
-				loop++;
-				if ( loop > 30 ) {
-					// Protect against misconfiguration killing the browser
-					throw 'Buttons: Too many iterations';
-				}
-			}
-
-			return $.isArray( base ) ?
-				base :
-				$.extend( {}, base );
-		};
-
-		conf = toConfObject( conf );
-
-		while ( conf && conf.extend ) {
-			// Use `toConfObject` in case the button definition being extended
-			// is itself a string or a function
-			if ( ! _dtButtons[ conf.extend ] ) {
-				throw 'Cannot extend unknown button type: '+conf.extend;
-			}
-
-			var objArray = toConfObject( _dtButtons[ conf.extend ] );
-			if ( $.isArray( objArray ) ) {
-				return objArray;
-			}
-			else if ( ! objArray ) {
-				// This is a little brutal as it might be possible to have a
-				// valid button without the extend, but if there is no extend
-				// then the host button would be acting in an undefined state
-				return false;
-			}
-
-			// Stash the current class name
-			var originalClassName = objArray.className;
-
-			conf = $.extend( {}, objArray, conf );
-
-			// The extend will have overwritten the original class name if the
-			// `conf` object also assigned a class, but we want to concatenate
-			// them so they are list that is combined from all extended buttons
-			if ( originalClassName && conf.className !== originalClassName ) {
-				conf.className = originalClassName+' '+conf.className;
-			}
-
-			// Buttons to be added to a collection  -gives the ability to define
-			// if buttons should be added to the start or end of a collection
-			var postfixButtons = conf.postfixButtons;
-			if ( postfixButtons ) {
-				if ( ! conf.buttons ) {
-					conf.buttons = [];
-				}
-
-				for ( i=0, ien=postfixButtons.length ; i<ien ; i++ ) {
-					conf.buttons.push( postfixButtons[i] );
-				}
-
-				conf.postfixButtons = null;
-			}
-
-			var prefixButtons = conf.prefixButtons;
-			if ( prefixButtons ) {
-				if ( ! conf.buttons ) {
-					conf.buttons = [];
-				}
-
-				for ( i=0, ien=prefixButtons.length ; i<ien ; i++ ) {
-					conf.buttons.splice( i, 0, prefixButtons[i] );
-				}
-
-				conf.prefixButtons = null;
-			}
-
-			// Although we want the `conf` object to overwrite almost all of
-			// the properties of the object being extended, the `extend`
-			// property should come from the object being extended
-			conf.extend = objArray.extend;
-		}
-
-		return conf;
-	}
-} );
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Statics
- */
-
-/**
- * Show / hide a background layer behind a collection
- * @param  {boolean} Flag to indicate if the background should be shown or
- *   hidden 
- * @param  {string} Class to assign to the background
- * @static
- */
-Buttons.background = function ( show, className, fade ) {
-	if ( fade === undefined ) {
-		fade = 400;
-	}
-
-	if ( show ) {
-		$('<div/>')
-			.addClass( className )
-			.css( 'display', 'none' )
-			.appendTo( 'body' )
-			.fadeIn( fade );
-	}
-	else {
-		$('body > div.'+className)
-			.fadeOut( fade, function () {
-				$(this)
-					.removeClass( className )
-					.remove();
-			} );
-	}
-};
-
-/**
- * Instance selector - select Buttons instances based on an instance selector
- * value from the buttons assigned to a DataTable. This is only useful if
- * multiple instances are attached to a DataTable.
- * @param  {string|int|array} Instance selector - see `instance-selector`
- *   documentation on the DataTables site
- * @param  {array} Button instance array that was attached to the DataTables
- *   settings object
- * @return {array} Buttons instances
- * @static
- */
-Buttons.instanceSelector = function ( group, buttons )
-{
-	if ( ! group ) {
-		return $.map( buttons, function ( v ) {
-			return v.inst;
-		} );
-	}
-
-	var ret = [];
-	var names = $.map( buttons, function ( v ) {
-		return v.name;
-	} );
-
-	// Flatten the group selector into an array of single options
-	var process = function ( input ) {
-		if ( $.isArray( input ) ) {
-			for ( var i=0, ien=input.length ; i<ien ; i++ ) {
-				process( input[i] );
-			}
-			return;
-		}
-
-		if ( typeof input === 'string' ) {
-			if ( input.indexOf( ',' ) !== -1 ) {
-				// String selector, list of names
-				process( input.split(',') );
-			}
-			else {
-				// String selector individual name
-				var idx = $.inArray( $.trim(input), names );
-
-				if ( idx !== -1 ) {
-					ret.push( buttons[ idx ].inst );
-				}
-			}
-		}
-		else if ( typeof input === 'number' ) {
-			// Index selector
-			ret.push( buttons[ input ].inst );
-		}
-	};
-	
-	process( group );
-
-	return ret;
-};
-
-/**
- * Button selector - select one or more buttons from a selector input so some
- * operation can be performed on them.
- * @param  {array} Button instances array that the selector should operate on
- * @param  {string|int|node|jQuery|array} Button selector - see
- *   `button-selector` documentation on the DataTables site
- * @return {array} Array of objects containing `inst` and `idx` properties of
- *   the selected buttons so you know which instance each button belongs to.
- * @static
- */
-Buttons.buttonSelector = function ( insts, selector )
-{
-	var ret = [];
-	var nodeBuilder = function ( a, buttons, baseIdx ) {
-		var button;
-		var idx;
-
-		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
-			button = buttons[i];
-
-			if ( button ) {
-				idx = baseIdx !== undefined ?
-					baseIdx+i :
-					i+'';
-
-				a.push( {
-					node: button.node,
-					name: button.conf.name,
-					idx:  idx
-				} );
-
-				if ( button.buttons ) {
-					nodeBuilder( a, button.buttons, idx+'-' );
-				}
-			}
-		}
-	};
-
-	var run = function ( selector, inst ) {
-		var i, ien;
-		var buttons = [];
-		nodeBuilder( buttons, inst.s.buttons );
-
-		var nodes = $.map( buttons, function (v) {
-			return v.node;
-		} );
-
-		if ( $.isArray( selector ) || selector instanceof $ ) {
-			for ( i=0, ien=selector.length ; i<ien ; i++ ) {
-				run( selector[i], inst );
-			}
-			return;
-		}
-
-		if ( selector === null || selector === undefined || selector === '*' ) {
-			// Select all
-			for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-				ret.push( {
-					inst: inst,
-					node: buttons[i].node
-				} );
-			}
-		}
-		else if ( typeof selector === 'number' ) {
-			// Main button index selector
-			ret.push( {
-				inst: inst,
-				node: inst.s.buttons[ selector ].node
-			} );
-		}
-		else if ( typeof selector === 'string' ) {
-			if ( selector.indexOf( ',' ) !== -1 ) {
-				// Split
-				var a = selector.split(',');
-
-				for ( i=0, ien=a.length ; i<ien ; i++ ) {
-					run( $.trim(a[i]), inst );
-				}
-			}
-			else if ( selector.match( /^\d+(\-\d+)*$/ ) ) {
-				// Sub-button index selector
-				var indexes = $.map( buttons, function (v) {
-					return v.idx;
-				} );
-
-				ret.push( {
-					inst: inst,
-					node: buttons[ $.inArray( selector, indexes ) ].node
-				} );
-			}
-			else if ( selector.indexOf( ':name' ) !== -1 ) {
-				// Button name selector
-				var name = selector.replace( ':name', '' );
-
-				for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-					if ( buttons[i].name === name ) {
-						ret.push( {
-							inst: inst,
-							node: buttons[i].node
-						} );
-					}
-				}
-			}
-			else {
-				// jQuery selector on the nodes
-				$( nodes ).filter( selector ).each( function () {
-					ret.push( {
-						inst: inst,
-						node: this
-					} );
-				} );
-			}
-		}
-		else if ( typeof selector === 'object' && selector.nodeName ) {
-			// Node selector
-			var idx = $.inArray( selector, nodes );
-
-			if ( idx !== -1 ) {
-				ret.push( {
-					inst: inst,
-					node: nodes[ idx ]
-				} );
-			}
-		}
-	};
-
-
-	for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
-		var inst = insts[i];
-
-		run( selector, inst );
-	}
-
-	return ret;
-};
-
-
-/**
- * Buttons defaults. For full documentation, please refer to the docs/option
- * directory or the DataTables site.
- * @type {Object}
- * @static
- */
-Buttons.defaults = {
-	buttons: [ 'copy', 'excel', 'csv', 'pdf', 'print' ],
-	name: 'main',
-	tabIndex: 0,
-	dom: {
-		container: {
-			tag: 'div',
-			className: 'dt-buttons'
-		},
-		collection: {
-			tag: 'div',
-			className: 'dt-button-collection'
-		},
-		button: {
-			tag: 'button',
-			className: 'dt-button',
-			active: 'active',
-			disabled: 'disabled'
-		},
-		buttonLiner: {
-			tag: 'span',
-			className: ''
-		}
-	}
-};
-
-/**
- * Version information
- * @type {string}
- * @static
- */
-Buttons.version = '1.5.2';
-
-
-$.extend( _dtButtons, {
-	collection: {
-		text: function ( dt ) {
-			return dt.i18n( 'buttons.collection', 'Collection' );
-		},
-		className: 'buttons-collection',
-		action: function ( e, dt, button, config ) {
-			var host = button;
-			var collectionParent = $(button).parents('div.dt-button-collection');
-			var hostPosition = host.position();
-			var tableContainer = $( dt.table().container() );
-			var multiLevel = false;
-			var insertPoint = host;
-
-			// Remove any old collection
-			if ( collectionParent.length ) {
-				multiLevel = $('.dt-button-collection').position();
-				insertPoint = collectionParent;
-				$('body').trigger( 'click.dtb-collection' );
-			}
-
-			if ( insertPoint.parents('body')[0] !== document.body ) {
-				insertPoint = document.body.lastChild;
-			}
-
-			config._collection
-				.addClass( config.collectionLayout )
-				.css( 'display', 'none' )
-				.insertAfter( insertPoint )
-				.fadeIn( config.fade );
-			
-
-			var position = config._collection.css( 'position' );
-
-			if ( multiLevel && position === 'absolute' ) {
-				config._collection.css( {
-					top: multiLevel.top,
-					left: multiLevel.left
-				} );
-			}
-			else if ( position === 'absolute' ) {
-				config._collection.css( {
-					top: hostPosition.top + host.outerHeight(),
-					left: hostPosition.left
-				} );
-
-				// calculate overflow when positioned beneath
-				var tableBottom = tableContainer.offset().top + tableContainer.height();
-				var listBottom = hostPosition.top + host.outerHeight() + config._collection.outerHeight();
-				var bottomOverflow = listBottom - tableBottom;
-				
-				// calculate overflow when positioned above
-				var listTop = hostPosition.top - config._collection.outerHeight();
-				var tableTop = tableContainer.offset().top;
-				var topOverflow = tableTop - listTop;
-				
-				// if bottom overflow is larger, move to the top because it fits better, or if dropup is requested
-				if (bottomOverflow > topOverflow || config.dropup) {
-					config._collection.css( 'top', hostPosition.top - config._collection.outerHeight() - 5);
-				}
-
-				// Right alignment in table container
-				var listRight = hostPosition.left + config._collection.outerWidth();
-				var tableRight = tableContainer.offset().left + tableContainer.width();
-				if ( listRight > tableRight ) {
-					config._collection.css( 'left', hostPosition.left - ( listRight - tableRight ) );
-				}
-
-				// Right alignment to window
-				var listOffsetRight = host.offset().left + config._collection.outerWidth();
-				if ( listOffsetRight > $(window).width() ) {
-					config._collection.css( 'left', hostPosition.left - (listOffsetRight-$(window).width()) );
-				}
-			}
-			else {
-				// Fix position - centre on screen
-				var top = config._collection.height() / 2;
-				if ( top > $(window).height() / 2 ) {
-					top = $(window).height() / 2;
-				}
-
-				config._collection.css( 'marginTop', top*-1 );
-			}
-
-			if ( config.background ) {
-				Buttons.background( true, config.backgroundClassName, config.fade );
-			}
-
-			var close = function () {
-				config._collection
-				.fadeOut( config.fade, function () {
-					config._collection.detach();
-				} );
-
-				$('div.dt-button-background').off( 'click.dtb-collection' );
-				Buttons.background( false, config.backgroundClassName, config.fade );
-
-				$('body').off( '.dtb-collection' );
-				dt.off( 'buttons-action.b-internal' );
-			};
-
-			// Need to break the 'thread' for the collection button being
-			// activated by a click - it would also trigger this event
-			setTimeout( function () {
-				// This is bonkers, but if we don't have a click listener on the
-				// background element, iOS Safari will ignore the body click
-				// listener below. An empty function here is all that is
-				// required to make it work...
-				$('div.dt-button-background').on( 'click.dtb-collection', function () {} );
-
-				$('body')
-					.on( 'click.dtb-collection', function (e) {
-						// andSelf is deprecated in jQ1.8, but we want 1.7 compat
-						var back = $.fn.addBack ? 'addBack' : 'andSelf';
-
-						if ( ! $(e.target).parents()[back]().filter( config._collection ).length ) {
-							close();
-						}
-					} )
-					.on( 'keyup.dtb-collection', function (e) {
-						if ( e.keyCode === 27 ) {
-							close();
-						}
-					} );
-
-				if ( config.autoClose ) {
-					dt.on( 'buttons-action.b-internal', function () {
-						close();
-					} );
-				}
-			}, 10 );
-		},
-		background: true,
-		collectionLayout: '',
-		backgroundClassName: 'dt-button-background',
-		autoClose: false,
-		fade: 400,
-		attr: {
-			'aria-haspopup': true
-		}
-	},
-	copy: function ( dt, conf ) {
-		if ( _dtButtons.copyHtml5 ) {
-			return 'copyHtml5';
-		}
-		if ( _dtButtons.copyFlash && _dtButtons.copyFlash.available( dt, conf ) ) {
-			return 'copyFlash';
-		}
-	},
-	csv: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
-		if ( _dtButtons.csvHtml5 && _dtButtons.csvHtml5.available( dt, conf ) ) {
-			return 'csvHtml5';
-		}
-		if ( _dtButtons.csvFlash && _dtButtons.csvFlash.available( dt, conf ) ) {
-			return 'csvFlash';
-		}
-	},
-	excel: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
-		if ( _dtButtons.excelHtml5 && _dtButtons.excelHtml5.available( dt, conf ) ) {
-			return 'excelHtml5';
-		}
-		if ( _dtButtons.excelFlash && _dtButtons.excelFlash.available( dt, conf ) ) {
-			return 'excelFlash';
-		}
-	},
-	pdf: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
-		if ( _dtButtons.pdfHtml5 && _dtButtons.pdfHtml5.available( dt, conf ) ) {
-			return 'pdfHtml5';
-		}
-		if ( _dtButtons.pdfFlash && _dtButtons.pdfFlash.available( dt, conf ) ) {
-			return 'pdfFlash';
-		}
-	},
-	pageLength: function ( dt ) {
-		var lengthMenu = dt.settings()[0].aLengthMenu;
-		var vals = $.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
-		var lang = $.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
-		var text = function ( dt ) {
-			return dt.i18n( 'buttons.pageLength', {
-				"-1": 'Show all rows',
-				_:    'Show %d rows'
-			}, dt.page.len() );
-		};
-
-		return {
-			extend: 'collection',
-			text: text,
-			className: 'buttons-page-length',
-			autoClose: true,
-			buttons: $.map( vals, function ( val, i ) {
-				return {
-					text: lang[i],
-					className: 'button-page-length',
-					action: function ( e, dt ) {
-						dt.page.len( val ).draw();
-					},
-					init: function ( dt, node, conf ) {
-						var that = this;
-						var fn = function () {
-							that.active( dt.page.len() === val );
-						};
-
-						dt.on( 'length.dt'+conf.namespace, fn );
-						fn();
-					},
-					destroy: function ( dt, node, conf ) {
-						dt.off( 'length.dt'+conf.namespace );
-					}
-				};
-			} ),
-			init: function ( dt, node, conf ) {
-				var that = this;
-				dt.on( 'length.dt'+conf.namespace, function () {
-					that.text( text( dt ) );
-				} );
-			},
-			destroy: function ( dt, node, conf ) {
-				dt.off( 'length.dt'+conf.namespace );
-			}
-		};
-	}
-} );
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables API
- *
- * For complete documentation, please refer to the docs/api directory or the
- * DataTables site
- */
-
-// Buttons group and individual button selector
-DataTable.Api.register( 'buttons()', function ( group, selector ) {
-	// Argument shifting
-	if ( selector === undefined ) {
-		selector = group;
-		group = undefined;
-	}
-
-	this.selector.buttonGroup = group;
-
-	var res = this.iterator( true, 'table', function ( ctx ) {
-		if ( ctx._buttons ) {
-			return Buttons.buttonSelector(
-				Buttons.instanceSelector( group, ctx._buttons ),
-				selector
-			);
-		}
-	}, true );
-
-	res._groupSelector = group;
-	return res;
-} );
-
-// Individual button selector
-DataTable.Api.register( 'button()', function ( group, selector ) {
-	// just run buttons() and truncate
-	var buttons = this.buttons( group, selector );
-
-	if ( buttons.length > 1 ) {
-		buttons.splice( 1, buttons.length );
-	}
-
-	return buttons;
-} );
-
-// Active buttons
-DataTable.Api.registerPlural( 'buttons().active()', 'button().active()', function ( flag ) {
-	if ( flag === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.active( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.active( set.node, flag );
-	} );
-} );
-
-// Get / set button action
-DataTable.Api.registerPlural( 'buttons().action()', 'button().action()', function ( action ) {
-	if ( action === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.action( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.action( set.node, action );
-	} );
-} );
-
-// Enable / disable buttons
-DataTable.Api.register( ['buttons().enable()', 'button().enable()'], function ( flag ) {
-	return this.each( function ( set ) {
-		set.inst.enable( set.node, flag );
-	} );
-} );
-
-// Disable buttons
-DataTable.Api.register( ['buttons().disable()', 'button().disable()'], function () {
-	return this.each( function ( set ) {
-		set.inst.disable( set.node );
-	} );
-} );
-
-// Get button nodes
-DataTable.Api.registerPlural( 'buttons().nodes()', 'button().node()', function () {
-	var jq = $();
-
-	// jQuery will automatically reduce duplicates to a single entry
-	$( this.each( function ( set ) {
-		jq = jq.add( set.inst.node( set.node ) );
-	} ) );
-
-	return jq;
-} );
-
-// Get / set button processing state
-DataTable.Api.registerPlural( 'buttons().processing()', 'button().processing()', function ( flag ) {
-	if ( flag === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.processing( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.processing( set.node, flag );
-	} );
-} );
-
-// Get / set button text (i.e. the button labels)
-DataTable.Api.registerPlural( 'buttons().text()', 'button().text()', function ( label ) {
-	if ( label === undefined ) {
-		return this.map( function ( set ) {
-			return set.inst.text( set.node );
-		} );
-	}
-
-	return this.each( function ( set ) {
-		set.inst.text( set.node, label );
-	} );
-} );
-
-// Trigger a button's action
-DataTable.Api.registerPlural( 'buttons().trigger()', 'button().trigger()', function () {
-	return this.each( function ( set ) {
-		set.inst.node( set.node ).trigger( 'click' );
-	} );
-} );
-
-// Get the container elements
-DataTable.Api.registerPlural( 'buttons().containers()', 'buttons().container()', function () {
-	var jq = $();
-	var groupSelector = this._groupSelector;
-
-	// We need to use the group selector directly, since if there are no buttons
-	// the result set will be empty
-	this.iterator( true, 'table', function ( ctx ) {
-		if ( ctx._buttons ) {
-			var insts = Buttons.instanceSelector( groupSelector, ctx._buttons );
-
-			for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
-				jq = jq.add( insts[i].container() );
-			}
-		}
-	} );
-
-	return jq;
-} );
-
-// Add a new button
-DataTable.Api.register( 'button().add()', function ( idx, conf ) {
-	var ctx = this.context;
-
-	// Don't use `this` as it could be empty - select the instances directly
-	if ( ctx.length ) {
-		var inst = Buttons.instanceSelector( this._groupSelector, ctx[0]._buttons );
-
-		if ( inst.length ) {
-			inst[0].add( conf, idx );
-		}
-	}
-
-	return this.button( this._groupSelector, idx );
-} );
-
-// Destroy the button sets selected
-DataTable.Api.register( 'buttons().destroy()', function () {
-	this.pluck( 'inst' ).unique().each( function ( inst ) {
-		inst.destroy();
-	} );
-
-	return this;
-} );
-
-// Remove a button
-DataTable.Api.registerPlural( 'buttons().remove()', 'buttons().remove()', function () {
-	this.each( function ( set ) {
-		set.inst.remove( set.node );
-	} );
-
-	return this;
-} );
-
-// Information box that can be used by buttons
-var _infoTimer;
-DataTable.Api.register( 'buttons.info()', function ( title, message, time ) {
-	var that = this;
-
-	if ( title === false ) {
-		$('#datatables_buttons_info').fadeOut( function () {
-			$(this).remove();
-		} );
-		clearTimeout( _infoTimer );
-		_infoTimer = null;
-
-		return this;
-	}
-
-	if ( _infoTimer ) {
-		clearTimeout( _infoTimer );
-	}
-
-	if ( $('#datatables_buttons_info').length ) {
-		$('#datatables_buttons_info').remove();
-	}
-
-	title = title ? '<h2>'+title+'</h2>' : '';
-
-	$('<div id="datatables_buttons_info" class="dt-button-info"/>')
-		.html( title )
-		.append( $('<div/>')[ typeof message === 'string' ? 'html' : 'append' ]( message ) )
-		.css( 'display', 'none' )
-		.appendTo( 'body' )
-		.fadeIn();
-
-	if ( time !== undefined && time !== 0 ) {
-		_infoTimer = setTimeout( function () {
-			that.buttons.info( false );
-		}, time );
-	}
-
-	return this;
-} );
-
-// Get data from the table for export - this is common to a number of plug-in
-// buttons so it is included in the Buttons core library
-DataTable.Api.register( 'buttons.exportData()', function ( options ) {
-	if ( this.context.length ) {
-		return _exportData( new DataTable.Api( this.context[0] ), options );
-	}
-} );
-
-// Get information about the export that is common to many of the export data
-// types (DRY)
-DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
-	if ( ! conf ) {
-		conf = {};
-	}
-
-	return {
-		filename: _filename( conf ),
-		title: _title( conf ),
-		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
-		messageBottom: _message(this, conf.messageBottom, 'bottom')
-	};
-} );
-
-
-
-/**
- * Get the file name for an exported file.
- *
- * @param {object}	config Button configuration
- * @param {boolean} incExtension Include the file name extension
- */
-var _filename = function ( config )
-{
-	// Backwards compatibility
-	var filename = config.filename === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
-		config.title :
-		config.filename;
-
-	if ( typeof filename === 'function' ) {
-		filename = filename();
-	}
-
-	if ( filename === undefined || filename === null ) {
-		return null;
-	}
-
-	if ( filename.indexOf( '*' ) !== -1 ) {
-		filename = $.trim( filename.replace( '*', $('head > title').text() ) );
-	}
-
-	// Strip characters which the OS will object to
-	filename = filename.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
-
-	var extension = _stringOrFunction( config.extension );
-	if ( ! extension ) {
-		extension = '';
-	}
-
-	return filename + extension;
-};
-
-/**
- * Simply utility method to allow parameters to be given as a function
- *
- * @param {undefined|string|function} option Option
- * @return {null|string} Resolved value
- */
-var _stringOrFunction = function ( option )
-{
-	if ( option === null || option === undefined ) {
-		return null;
-	}
-	else if ( typeof option === 'function' ) {
-		return option();
-	}
-	return option;
-};
-
-/**
- * Get the title for an exported file.
- *
- * @param {object} config	Button configuration
- */
-var _title = function ( config )
-{
-	var title = _stringOrFunction( config.title );
-
-	return title === null ?
-		null : title.indexOf( '*' ) !== -1 ?
-			title.replace( '*', $('head > title').text() || 'Exported data' ) :
-			title;
-};
-
-var _message = function ( dt, option, position )
-{
-	var message = _stringOrFunction( option );
-	if ( message === null ) {
-		return null;
-	}
-
-	var caption = $('caption', dt.table().container()).eq(0);
-	if ( message === '*' ) {
-		var side = caption.css( 'caption-side' );
-		if ( side !== position ) {
-			return null;
-		}
-
-		return caption.length ?
-			caption.text() :
-			'';
-	}
-
-	return message;
-};
-
-
-
-
-
-
-
-var _exportTextarea = $('<textarea/>')[0];
-var _exportData = function ( dt, inOpts )
-{
-	var config = $.extend( true, {}, {
-		rows:           null,
-		columns:        '',
-		modifier:       {
-			search: 'applied',
-			order:  'applied'
-		},
-		orthogonal:     'display',
-		stripHtml:      true,
-		stripNewlines:  true,
-		decodeEntities: true,
-		trim:           true,
-		format:         {
-			header: function ( d ) {
-				return strip( d );
-			},
-			footer: function ( d ) {
-				return strip( d );
-			},
-			body: function ( d ) {
-				return strip( d );
-			}
-		},
-		customizeData: null
-	}, inOpts );
-
-	var strip = function ( str ) {
-		if ( typeof str !== 'string' ) {
-			return str;
-		}
-
-		// Always remove script tags
-		str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
-
-		// Always remove comments
-		str = str.replace( /<!\-\-.*?\-\->/g, '' );
-
-		if ( config.stripHtml ) {
-			str = str.replace( /<[^>]*>/g, '' );
-		}
-
-		if ( config.trim ) {
-			str = str.replace( /^\s+|\s+$/g, '' );
-		}
-
-		if ( config.stripNewlines ) {
-			str = str.replace( /\n/g, ' ' );
-		}
-
-		if ( config.decodeEntities ) {
-			_exportTextarea.innerHTML = str;
-			str = _exportTextarea.value;
-		}
-
-		return str;
-	};
-
-
-	var header = dt.columns( config.columns ).indexes().map( function (idx) {
-		var el = dt.column( idx ).header();
-		return config.format.header( el.innerHTML, idx, el );
-	} ).toArray();
-
-	var footer = dt.table().footer() ?
-		dt.columns( config.columns ).indexes().map( function (idx) {
-			var el = dt.column( idx ).footer();
-			return config.format.footer( el ? el.innerHTML : '', idx, el );
-		} ).toArray() :
-		null;
-	
-	// If Select is available on this table, and any rows are selected, limit the export
-	// to the selected rows. If no rows are selected, all rows will be exported. Specify
-	// a `selected` modifier to control directly.
-	var modifier = $.extend( {}, config.modifier );
-	if ( dt.select && typeof dt.select.info === 'function' && modifier.selected === undefined ) {
-		if ( dt.rows( config.rows, $.extend( { selected: true }, modifier ) ).any() ) {
-			$.extend( modifier, { selected: true } )
-		}
-	}
-
-	var rowIndexes = dt.rows( config.rows, modifier ).indexes().toArray();
-	var selectedCells = dt.cells( rowIndexes, config.columns );
-	var cells = selectedCells
-		.render( config.orthogonal )
-		.toArray();
-	var cellNodes = selectedCells
-		.nodes()
-		.toArray();
-
-	var columns = header.length;
-	var rows = columns > 0 ? cells.length / columns : 0;
-	var body = [];
-	var cellCounter = 0;
-
-	for ( var i=0, ien=rows ; i<ien ; i++ ) {
-		var row = [ columns ];
-
-		for ( var j=0 ; j<columns ; j++ ) {
-			row[j] = config.format.body( cells[ cellCounter ], i, j, cellNodes[ cellCounter ] );
-			cellCounter++;
-		}
-
-		body[i] = row;
-	}
-
-	var data = {
-		header: header,
-		footer: footer,
-		body:   body
-	};
-
-	if ( config.customizeData ) {
-		config.customizeData( data );
-	}
-
-	return data;
-};
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables interface
- */
-
-// Attach to DataTables objects for global access
-$.fn.dataTable.Buttons = Buttons;
-$.fn.DataTable.Buttons = Buttons;
-
-
-
-// DataTables creation - check if the buttons have been defined for this table,
-// they will have been if the `B` option was used in `dom`, otherwise we should
-// create the buttons instance here so they can be inserted into the document
-// using the API. Listen for `init` for compatibility with pre 1.10.10, but to
-// be removed in future.
-$(document).on( 'init.dt plugin-init.dt', function (e, settings) {
-	if ( e.namespace !== 'dt' ) {
-		return;
-	}
-
-	var opts = settings.oInit.buttons || DataTable.defaults.buttons;
-
-	if ( opts && ! settings._buttons ) {
-		new Buttons( settings, opts ).container();
-	}
-} );
-
-// DataTables `dom` feature option
-DataTable.ext.feature.push( {
-	fnInit: function( settings ) {
-		var api = new DataTable.Api( settings );
-		var opts = api.init().buttons || DataTable.defaults.buttons;
-
-		return new Buttons( api, opts ).container();
-	},
-	cFeature: "B"
-} );
-
-
-return Buttons;
-}));
-
-
-/***/ }),
-/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39833,10 +37946,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(16).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(15).setImmediate))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -39892,7 +38005,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(17);
+__webpack_require__(16);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -39906,7 +38019,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -40099,13 +38212,13 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(18);
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40113,7 +38226,7 @@ module.exports = __webpack_require__(19);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(6);
-var Axios = __webpack_require__(21);
+var Axios = __webpack_require__(20);
 var defaults = __webpack_require__(3);
 
 /**
@@ -40148,14 +38261,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(10);
-axios.CancelToken = __webpack_require__(35);
+axios.CancelToken = __webpack_require__(34);
 axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(36);
+axios.spread = __webpack_require__(35);
 
 module.exports = axios;
 
@@ -40164,7 +38277,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /*!
@@ -40191,7 +38304,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40199,8 +38312,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(30);
-var dispatchRequest = __webpack_require__(31);
+var InterceptorManager = __webpack_require__(29);
+var dispatchRequest = __webpack_require__(30);
 
 /**
  * Create a new instance of Axios
@@ -40277,7 +38390,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40296,7 +38409,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40329,7 +38442,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40357,7 +38470,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40430,7 +38543,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40490,7 +38603,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40565,7 +38678,7 @@ module.exports = (
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40608,7 +38721,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40668,7 +38781,7 @@ module.exports = (
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40727,18 +38840,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(32);
+var transformData = __webpack_require__(31);
 var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(3);
-var isAbsoluteURL = __webpack_require__(33);
-var combineURLs = __webpack_require__(34);
+var isAbsoluteURL = __webpack_require__(32);
+var combineURLs = __webpack_require__(33);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -40820,7 +38933,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40847,7 +38960,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40868,7 +38981,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40889,7 +39002,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40953,7 +39066,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40987,7 +39100,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -41165,21 +39278,1928 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 })(typeof window === 'undefined' ? this : window);
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(38);
 const translateOptions=(e,t,o)=>{const s=t?Object.assign({},o?PNotifyCompat.prototype.options[o]:{},e):Object.assign({},PNotifyCompat.prototype.options,e),l=e=>{let t,o=e;for(;-1!==(t=o.indexOf("_"));)o=o.slice(0,t)+o.slice(t+1,t+2).toUpperCase()+o.slice(t+2);return o};for(let e in s)if(s.hasOwnProperty(e)&&-1!==e.indexOf("_")){s[l(e)]=s[e],delete s[e]}return t||(s.hasOwnProperty("addclass")&&(s.addClass=s.addclass,delete s.addclass),s.hasOwnProperty("cornerclass")&&(s.cornerClass=s.cornerclass,delete s.cornerClass),s.hasOwnProperty("textEscape")&&(s.textTrusted=!s.textEscape,delete s.textEscape),s.hasOwnProperty("titleEscape")&&(s.titleTrusted=!s.titleEscape,delete s.titleEscape),s.hasOwnProperty("styling")&&("bootstrap3"===s.styling?s.icons="bootstrap3":"fontawesome"===s.styling&&(s.styling="bootstrap3",s.icons="fontawesome4")),s.hasOwnProperty("stack")&&s.stack.overlay_close&&(s.stack.overlayClose=s.stack.overlay_close),s.modules={},s.hasOwnProperty("animate")&&(s.modules.Animate=translateOptions(s.animate,!0,"animate"),delete s.animate),s.hasOwnProperty("buttons")&&(s.modules.Buttons=translateOptions(s.buttons,!0,"buttons"),delete s.buttons,s.modules.Buttons.classes&&(s.modules.Buttons.classes=translateOptions(s.modules.Buttons.classes,!0))),s.hasOwnProperty("confirm")&&(s.modules.Confirm=translateOptions(s.confirm,!0,"confirm"),s.modules.Confirm.promptDefault&&(s.modules.Confirm.promptValue=s.modules.Confirm.promptDefault,delete s.modules.Confirm.promptDefault),delete s.confirm),s.hasOwnProperty("desktop")&&(s.modules.Desktop=translateOptions(s.desktop,!0,"desktop"),delete s.desktop),s.hasOwnProperty("history")&&(s.modules.History=translateOptions(s.history,!0,"history"),delete s.history),s.hasOwnProperty("mobile")&&(s.modules.Mobile=translateOptions(s.mobile,!0,"mobile"),delete s.mobile),s.hasOwnProperty("nonblock")&&(s.modules.NonBlock=translateOptions(s.nonblock,!0,"nonblock"),delete s.nonblock),s.hasOwnProperty("reference")&&(s.modules.Reference=translateOptions(s.reference,!0,"reference"),delete s.reference),s.hasOwnProperty("beforeInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeInit=s.beforeInit,delete s.beforeInit),s.hasOwnProperty("afterInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterInit=s.afterInit,delete s.afterInit),s.hasOwnProperty("beforeOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeOpen=s.beforeOpen,delete s.beforeOpen),s.hasOwnProperty("afterOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterOpen=s.afterOpen,delete s.afterOpen),s.hasOwnProperty("beforeClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeClose=s.beforeClose,delete s.beforeClose),s.hasOwnProperty("afterClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterClose=s.afterClose,delete s.afterClose)),s};class PNotifyCompat extends __WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */]{constructor(e){"object"!=typeof e&&(e={text:e}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&e.before_init&&e.before_init(e),e=translateOptions(e),super({target:document.body,data:e});const t=this.get;this.get=function(e){return void 0===e?Object.assign(window.jQuery?window.jQuery(this.refs.elem):this.refs.elem,t.call(this)):t.call(this,e)},this.on("pnotify.confirm",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.confirm",[this,e.value])}),this.on("pnotify.cancel",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.cancel",this)}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks.getCallbacks(this,null,"afterInit")(this)}update(e){return e=translateOptions(e),super.update(e)}}PNotifyCompat.prototype.options={text_escape:!1,title_escape:!1},PNotifyCompat.reload=(()=>PNotifyCompat),PNotifyCompat.removeAll=(()=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeAll()),PNotifyCompat.removeStack=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeStack(e)),PNotifyCompat.positionAll=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].positionAll(e)),PNotifyCompat.desktop={permission:()=>{__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Desktop.permission()}},window.jQuery&&window.jQuery(()=>{window.jQuery(document.body).on("pnotify.history-last",function(){__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.History.showLast()})});/* harmony default export */ __webpack_exports__["a"] = (PNotifyCompat);
 //# sourceMappingURL=PNotifyCompat.js.map
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document.body,window.addEventListener("resize",()=>{posTimer&&clearTimeout(posTimer),posTimer=setTimeout(()=>{PNotify.positionAll()},10)})},createStackOverlay=e=>{const t=document.createElement("div");t.classList.add("ui-pnotify-modal-overlay"),e.context!==document.body&&(t.style.height=e.context.scrollHeight+"px",t.style.width=e.context.scrollWidth+"px"),t.addEventListener("click",()=>{e.overlayClose&&PNotify.closeStack(e)}),e.overlay=t},insertStackOverlay=e=>{e.overlay.parentNode!==e.context&&(e.overlay=e.context.insertBefore(e.overlay,e.context.firstChild))},removeStackOverlay=e=>{e.overlay.parentNode&&e.overlay.parentNode.removeChild(e.overlay)};const getDefaultArgs=(e,t)=>("object"!=typeof e&&(e={text:e}),t&&(e.type=t),{target:document.body,data:e});function _styles({styling:e}){return"object"==typeof e?e:PNotify.styling[e]}function _icons({icons:e}){return"object"==typeof e?e:PNotify.icons[e]}function _widthStyle({width:e}){return"string"==typeof e?"width: "+e+";":""}function _minHeightStyle({minHeight:e}){return"string"==typeof e?"min-height: "+e+";":""}function data(){const e=Object.assign({_state:"initializing",_timer:null,_animTimer:null,_animating:!1,_animatingClass:"",_moveClass:"",_timerHide:!1,_moduleClasses:[],_moduleIsNoticeOpen:!1,_modules:{},_modulesPrependContainer:PNotify.modulesPrependContainer,_modulesAppendContainer:PNotify.modulesAppendContainer},PNotify.defaults);return e.modules=Object.assign({},PNotify.defaults.modules),e}var methods={runModules(e){if("init"===e){for(let e in PNotify.modules)if(PNotify.modules.hasOwnProperty(e)&&"function"==typeof PNotify.modules[e].init){const t=PNotify.modules[e].init(this);this.initModule(t)}}else{const{_modules:t}=this.get();for(let i in t){if(!t.hasOwnProperty(i))continue;const o=Object.assign({_notice:this,_options:this.get()},this.get().modules[i]);t[i].set(o),"function"==typeof t[i][e]&&t[i][e]()}}},initModule(e){const{modules:t}=this.get();t.hasOwnProperty(e.constructor.key)||(t[e.constructor.key]={});const i=Object.assign({_notice:this,_options:this.get()},t[e.constructor.key]);e.initModule(i);const{_modules:o}=this.get();o[e.constructor.key]=e},update(e){const t=this.get().hide,i=this.get().icon;this.set(e),this.runModules("update"),this.get().hide?t||this.queueClose():this.cancelClose(),this.queuePosition();const{icon:o}=this.get();return o!==i&&(!0===o&&"fontawesome5"===this.get().icons||"string"==typeof o&&o.match(/(^| )fa[srlb]($| )/))&&(this.set({icon:!1}),this.set({icon:o})),this},open(){const{_state:e,hide:t}=this.get();if("opening"===e)return;if("open"===e)return void(t&&this.queueClose());this.set({_state:"opening",_animatingClass:"ui-pnotify-initial-hidden"}),this.runModules("beforeOpen");let{stack:i}=this.get();if(!this.refs.elem.parentNode||i&&i.context&&i.context!==this.refs.elem.parentNode)if(i&&i.context)i.context.appendChild(this.refs.elem);else{if(!document.body)throw new Error("No context to open this notice in.");document.body.appendChild(this.refs.elem)}return setTimeout(()=>{i&&(i.animation=!1,PNotify.positionAll(),i.animation=!0),this.animateIn(()=>{this.get().hide&&this.queueClose(),this.set({_state:"open"}),this.runModules("afterOpen")})},0),this},remove(e){return this.close(e)},close(e){const{_state:t}=this.get();if("closing"===t||"closed"===t)return;this.set({_state:"closing",_timerHide:!!e}),this.runModules("beforeClose");const{_timer:i}=this.get();return i&&clearTimeout&&(clearTimeout(i),this.set({_timer:null})),this.animateOut(()=>{if(this.set({_state:"closed"}),this.runModules("afterClose"),this.queuePosition(),this.get().remove&&this.refs.elem.parentNode.removeChild(this.refs.elem),this.runModules("beforeDestroy"),this.get().destroy&&null!==PNotify.notices){const e=PNotify.notices.indexOf(this);-1!==e&&PNotify.notices.splice(e,1)}this.runModules("afterDestroy")}),this},animateIn(e){this.set({_animating:"in"});const t=()=>{this.refs.elem.removeEventListener("transitionend",t);const{_animTimer:i,_animating:o,_moduleIsNoticeOpen:n}=this.get();if(i&&clearTimeout(i),"in"!==o)return;let s=n;if(!s){const e=this.refs.elem.getBoundingClientRect();for(let t in e)if(e[t]>0){s=!0;break}}s?(e&&e.call(),this.set({_animating:!1})):this.set({_animTimer:setTimeout(t,40)})};"fade"===this.get().animation?(this.refs.elem.addEventListener("transitionend",t),this.set({_animatingClass:"ui-pnotify-in"}),this.refs.elem.style.opacity,this.set({_animatingClass:"ui-pnotify-in ui-pnotify-fade-in"}),this.set({_animTimer:setTimeout(t,650)})):(this.set({_animatingClass:"ui-pnotify-in"}),t())},animateOut(e){this.set({_animating:"out"});const t=()=>{this.refs.elem.removeEventListener("transitionend",t);const{_animTimer:i,_animating:o,_moduleIsNoticeOpen:n}=this.get();if(i&&clearTimeout(i),"out"!==o)return;let s=n;if(!s){const e=this.refs.elem.getBoundingClientRect();for(let t in e)if(e[t]>0){s=!0;break}}if(this.refs.elem.style.opacity&&"0"!==this.refs.elem.style.opacity&&s)this.set({_animTimer:setTimeout(t,40)});else{this.set({_animatingClass:""});const{stack:t}=this.get();if(t&&t.overlay){let e=!1;for(let i=0;i<PNotify.notices.length;i++){const o=PNotify.notices[i];if(o!==this&&o.get().stack===t&&"closed"!==o.get()._state){e=!0;break}}e||removeStackOverlay(t)}e&&e.call(),this.set({_animating:!1})}};"fade"===this.get().animation?(this.refs.elem.addEventListener("transitionend",t),this.set({_animatingClass:"ui-pnotify-in"}),this.set({_animTimer:setTimeout(t,650)})):(this.set({_animatingClass:""}),t())},position(){let{stack:e}=this.get(),t=this.refs.elem;if(!e)return;if(e.context||(e.context=document.body),"number"!=typeof e.nextpos1&&(e.nextpos1=e.firstpos1),"number"!=typeof e.nextpos2&&(e.nextpos2=e.firstpos2),"number"!=typeof e.addpos2&&(e.addpos2=0),!t.classList.contains("ui-pnotify-in")&&!t.classList.contains("ui-pnotify-initial-hidden"))return this;e.modal&&(e.overlay||createStackOverlay(e),insertStackOverlay(e)),t.getBoundingClientRect(),e.animation&&this.set({_moveClass:"ui-pnotify-move"});let i,o=e.context===document.body?window.innerHeight:e.context.scrollHeight,n=e.context===document.body?window.innerWidth:e.context.scrollWidth;if(e.dir1){let s;switch(i={down:"top",up:"bottom",left:"right",right:"left"}[e.dir1],e.dir1){case"down":s=t.offsetTop;break;case"up":s=o-t.scrollHeight-t.offsetTop;break;case"left":s=n-t.scrollWidth-t.offsetLeft;break;case"right":s=t.offsetLeft}void 0===e.firstpos1&&(e.firstpos1=s,e.nextpos1=e.firstpos1)}if(e.dir1&&e.dir2){let i,s={down:"top",up:"bottom",left:"right",right:"left"}[e.dir2];switch(e.dir2){case"down":i=t.offsetTop;break;case"up":i=o-t.scrollHeight-t.offsetTop;break;case"left":i=n-t.scrollWidth-t.offsetLeft;break;case"right":i=t.offsetLeft}void 0===e.firstpos2&&(e.firstpos2=i,e.nextpos2=e.firstpos2);const r=e.nextpos1+t.offsetHeight+(void 0===e.spacing1?25:e.spacing1),a=e.nextpos1+t.offsetWidth+(void 0===e.spacing1?25:e.spacing1);switch((("down"===e.dir1||"up"===e.dir1)&&r>o||("left"===e.dir1||"right"===e.dir1)&&a>n)&&(e.nextpos1=e.firstpos1,e.nextpos2+=e.addpos2+(void 0===e.spacing2?25:e.spacing2),e.addpos2=0),"number"==typeof e.nextpos2&&(t.style[s]=e.nextpos2+"px",e.animation||t.style[s]),e.dir2){case"down":case"up":t.offsetHeight+(parseFloat(t.style.marginTop,10)||0)+(parseFloat(t.style.marginBottom,10)||0)>e.addpos2&&(e.addpos2=t.offsetHeight);break;case"left":case"right":t.offsetWidth+(parseFloat(t.style.marginLeft,10)||0)+(parseFloat(t.style.marginRight,10)||0)>e.addpos2&&(e.addpos2=t.offsetWidth)}}else if(e.dir1){let i,n;switch(e.dir1){case"down":case"up":n=["left","right"],i=e.context.scrollWidth/2-t.offsetWidth/2;break;case"left":case"right":n=["top","bottom"],i=o/2-t.offsetHeight/2}t.style[n[0]]=i+"px",t.style[n[1]]="auto",e.animation||t.style[n[0]]}if(e.dir1)switch("number"==typeof e.nextpos1&&(t.style[i]=e.nextpos1+"px",e.animation||t.style[i]),e.dir1){case"down":case"up":e.nextpos1+=t.offsetHeight+(void 0===e.spacing1?25:e.spacing1);break;case"left":case"right":e.nextpos1+=t.offsetWidth+(void 0===e.spacing1?25:e.spacing1)}else{let i=n/2-t.offsetWidth/2,s=o/2-t.offsetHeight/2;t.style.left=i+"px",t.style.top=s+"px",e.animation||t.style.left}return this},queuePosition(e){return posTimer&&clearTimeout(posTimer),e||(e=10),posTimer=setTimeout(()=>{PNotify.positionAll()},e),this},cancelRemove(){return this.cancelClose()},cancelClose(){const{_timer:e,_animTimer:t,_state:i,animation:o}=this.get();return e&&clearTimeout(e),t&&clearTimeout(t),"closing"===i&&this.set({_state:"open",_animating:!1,_animatingClass:"fade"===o?"ui-pnotify-in ui-pnotify-fade-in":"ui-pnotify-in"}),this},queueRemove(){return this.queueClose()},queueClose(){return this.cancelClose(),this.set({_timer:setTimeout(()=>this.close(!0),isNaN(this.get().delay)?0:this.get().delay)}),this},addModuleClass(...e){const{_moduleClasses:t}=this.get();for(let i=0;i<e.length;i++){let o=e[i];-1===t.indexOf(o)&&t.push(o)}this.set({_moduleClasses:t})},removeModuleClass(...e){const{_moduleClasses:t}=this.get();for(let i=0;i<e.length;i++){let o=e[i];const n=t.indexOf(o);-1!==n&&t.splice(n,1)}this.set({_moduleClasses:t})},hasModuleClass(...e){const{_moduleClasses:t}=this.get();for(let i=0;i<e.length;i++){let o=e[i];if(-1===t.indexOf(o))return!1}return!0}};function oncreate(){this.on("mouseenter",e=>{if(this.get().mouseReset&&"out"===this.get()._animating){if(!this.get()._timerHide)return;this.cancelClose()}this.get().hide&&this.get().mouseReset&&this.cancelClose()}),this.on("mouseleave",e=>{this.get().hide&&this.get().mouseReset&&"out"!==this.get()._animating&&this.queueClose(),PNotify.positionAll()});let{stack:e}=this.get();e&&"top"===e.push?PNotify.notices.splice(0,0,this):PNotify.notices.push(this),this.runModules("init"),this.set({_state:"closed"}),this.get().autoDisplay&&this.open()}function setup(e){(PNotify=e).VERSION="4.0.0-alpha.3",PNotify.defaultStack={dir1:"down",dir2:"left",firstpos1:25,firstpos2:25,spacing1:36,spacing2:36,push:"bottom",context:window&&document.body},PNotify.defaults={title:!1,titleTrusted:!1,text:!1,textTrusted:!1,styling:"brighttheme",icons:"brighttheme",addClass:"",cornerClass:"",autoDisplay:!0,width:"360px",minHeight:"16px",type:"notice",icon:!0,animation:"fade",animateSpeed:"normal",shadow:!0,hide:!0,delay:8e3,mouseReset:!0,remove:!0,destroy:!0,stack:PNotify.defaultStack,modules:{}},PNotify.notices=[],PNotify.modules={},PNotify.modulesPrependContainer=[],PNotify.modulesAppendContainer=[],PNotify.alert=(e=>new PNotify(getDefaultArgs(e))),PNotify.notice=(e=>new PNotify(getDefaultArgs(e,"notice"))),PNotify.info=(e=>new PNotify(getDefaultArgs(e,"info"))),PNotify.success=(e=>new PNotify(getDefaultArgs(e,"success"))),PNotify.error=(e=>new PNotify(getDefaultArgs(e,"error"))),PNotify.removeAll=(()=>{PNotify.closeAll()}),PNotify.closeAll=(()=>{for(let e=0;e<PNotify.notices.length;e++)PNotify.notices[e].close&&PNotify.notices[e].close(!1)}),PNotify.removeStack=(e=>{PNotify.closeStack(e)}),PNotify.closeStack=(e=>{if(!1!==e)for(let t=0;t<PNotify.notices.length;t++)PNotify.notices[t].close&&PNotify.notices[t].get().stack===e&&PNotify.notices[t].close(!1)}),PNotify.positionAll=(()=>{if(posTimer&&clearTimeout(posTimer),posTimer=null,PNotify.notices.length>0){for(let e=0;e<PNotify.notices.length;e++){let t=PNotify.notices[e],{stack:i}=t.get();i&&(i.overlay&&removeStackOverlay(i),i.nextpos1=i.firstpos1,i.nextpos2=i.firstpos2,i.addpos2=0)}for(let e=0;e<PNotify.notices.length;e++)PNotify.notices[e].position()}else delete PNotify.defaultStack.nextpos1,delete PNotify.defaultStack.nextpos2}),PNotify.styling={brighttheme:{container:"brighttheme",notice:"brighttheme-notice",info:"brighttheme-info",success:"brighttheme-success",error:"brighttheme-error"},bootstrap3:{container:"alert",notice:"alert-warning",info:"alert-info",success:"alert-success",error:"alert-danger",icon:"ui-pnotify-icon-bs3"},bootstrap4:{container:"alert",notice:"alert-warning",info:"alert-info",success:"alert-success",error:"alert-danger",icon:"ui-pnotify-icon-bs4",title:"ui-pnotify-title-bs4"}},PNotify.icons={brighttheme:{notice:"brighttheme-icon-notice",info:"brighttheme-icon-info",success:"brighttheme-icon-success",error:"brighttheme-icon-error"},bootstrap3:{notice:"glyphicon glyphicon-exclamation-sign",info:"glyphicon glyphicon-info-sign",success:"glyphicon glyphicon-ok-sign",error:"glyphicon glyphicon-warning-sign"},fontawesome4:{notice:"fa fa-exclamation-circle",info:"fa fa-info-circle",success:"fa fa-check-circle",error:"fa fa-exclamation-triangle"},fontawesome5:{notice:"fas fa-exclamation-circle",info:"fas fa-info-circle",success:"fas fa-check-circle",error:"fas fa-exclamation-triangle"}},window&&document.body?onDocumentLoaded():document.addEventListener("DOMContentLoaded",onDocumentLoaded)}function add_css(){var e=createElement("style");e.id="svelte-1eldsjg-style",e.textContent='body > .ui-pnotify{position:fixed;z-index:100040}body > .ui-pnotify.ui-pnotify-modal{z-index:100042}.ui-pnotify{position:absolute;height:auto;z-index:1;display:none}.ui-pnotify.ui-pnotify-modal{z-index:3}.ui-pnotify.ui-pnotify-in{display:block}.ui-pnotify.ui-pnotify-initial-hidden{display:block;visibility:hidden}.ui-pnotify.ui-pnotify-move{transition:left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-slow{transition:opacity .4s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-slow.ui-pnotify.ui-pnotify-move{transition:opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-normal{transition:opacity .25s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-normal.ui-pnotify.ui-pnotify-move{transition:opacity .25s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-fast{transition:opacity .1s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-fast.ui-pnotify.ui-pnotify-move{transition:opacity .1s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-in{opacity:1}.ui-pnotify .ui-pnotify-shadow{-webkit-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);-moz-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1)}.ui-pnotify-container{background-position:0 0;padding:.8em;height:100%;margin:0}.ui-pnotify-container:after{content:" ";visibility:hidden;display:block;height:0;clear:both}.ui-pnotify-container.ui-pnotify-sharp{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.ui-pnotify-title{display:block;white-space:pre-line;margin-bottom:.4em;margin-top:0}.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-left:24px}[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-right:24px;margin-left:0}.ui-pnotify-title-bs4{font-size:1.2rem}.ui-pnotify-text{display:block;white-space:pre-line}.ui-pnotify-icon,.ui-pnotify-icon span{display:block;float:left}[dir=rtl] .ui-pnotify-icon,[dir=rtl] .ui-pnotify-icon span{float:right}.ui-pnotify-icon-bs3 > span{position:relative;top:2px}.ui-pnotify-icon-bs4 > span{position:relative;top:4px}.ui-pnotify-modal-overlay{background-color:rgba(0, 0, 0, .4);top:0;left:0;position:absolute;height:100%;width:100%;z-index:2}body > .ui-pnotify-modal-overlay{position:fixed;z-index:100041}',appendNode(e,document.head)}function create_main_fragment(e,t){var i,o,n,s,r,a,c,l,f,d=[],u=blankObject(),h=[],m=blankObject(),p=t._modulesPrependContainer;const y=e=>e.module.key;for(var _=0;_<p.length;_+=1){let i=get_each_context(t,p,_),o=y(i);d[_]=u[o]=create_each_block(e,o,i)}var g=!1!==t.icon&&create_if_block(e,t),b=!1!==t.title&&create_if_block_1(e,t),v=!1!==t.text&&create_if_block_4(e,t),N=t._modulesAppendContainer;const x=e=>e.module.key;for(_=0;_<N.length;_+=1){let i=get_each_1_context(t,N,_),o=x(i);h[_]=m[o]=create_each_block_1(e,o,i)}function k(t){e.fire("mouseover",t)}function C(t){e.fire("mouseout",t)}function w(t){e.fire("mouseenter",t)}function P(t){e.fire("mouseleave",t)}function T(t){e.fire("mousemove",t)}function L(t){e.fire("mousedown",t)}function S(t){e.fire("mouseup",t)}function A(t){e.fire("click",t)}function O(t){e.fire("dblclick",t)}function H(t){e.fire("focus",t)}function E(t){e.fire("blur",t)}function j(t){e.fire("touchstart",t)}function M(t){e.fire("touchmove",t)}function B(t){e.fire("touchend",t)}function D(t){e.fire("touchcancel",t)}return{c(){for(i=createElement("div"),o=createElement("div"),_=0;_<d.length;_+=1)d[_].c();for(n=createText("\n    "),g&&g.c(),s=createText("\n    "),b&&b.c(),r=createText("\n    "),v&&v.c(),a=createText("\n    "),_=0;_<h.length;_+=1)h[_].c();o.className=c="\n        ui-pnotify-container\n        "+(t._styles.container?t._styles.container:"")+"\n        "+(t._styles[t.type]?t._styles[t.type]:"")+"\n        "+t.cornerClass+"\n        "+(t.shadow?"ui-pnotify-shadow":"")+"\n      ",o.style.cssText=l=t._widthStyle+" "+t._minHeightStyle,setAttribute(o,"role","alert"),addListener(i,"mouseover",k),addListener(i,"mouseout",C),addListener(i,"mouseenter",w),addListener(i,"mouseleave",P),addListener(i,"mousemove",T),addListener(i,"mousedown",L),addListener(i,"mouseup",S),addListener(i,"click",A),addListener(i,"dblclick",O),addListener(i,"focus",H),addListener(i,"blur",E),addListener(i,"touchstart",j),addListener(i,"touchmove",M),addListener(i,"touchend",B),addListener(i,"touchcancel",D),i.className=f="\n      ui-pnotify\n      "+(!1!==t.icon?"ui-pnotify-with-icon":"")+"\n      "+(t._styles.element?t._styles.element:"")+"\n      "+t.addClass+"\n      "+t._animatingClass+"\n      "+t._moveClass+"\n      "+("fade"===t.animation?"ui-pnotify-fade-"+t.animateSpeed:"")+"\n      "+(t.stack&&t.stack.modal?"ui-pnotify-modal":"")+"\n      "+t._moduleClasses.join(" ")+"\n    ",setAttribute(i,"aria-live","assertive"),setAttribute(i,"role","alertdialog"),setAttribute(i,"ui-pnotify",!0)},m(t,c){for(insertNode(i,t,c),appendNode(o,i),_=0;_<d.length;_+=1)d[_].m(o,null);for(appendNode(n,o),g&&g.m(o,null),appendNode(s,o),b&&b.m(o,null),appendNode(r,o),v&&v.m(o,null),appendNode(a,o),_=0;_<h.length;_+=1)h[_].m(o,null);e.refs.container=o,e.refs.elem=i},p(t,p){const _=p._modulesPrependContainer;d=updateKeyedEach(d,e,t,y,0,p,_,u,o,destroyBlock,create_each_block,"m",n,get_each_context),!1!==p.icon?g?g.p(t,p):((g=create_if_block(e,p)).c(),g.m(o,s)):g&&(g.d(1),g=null),!1!==p.title?b?b.p(t,p):((b=create_if_block_1(e,p)).c(),b.m(o,r)):b&&(b.d(1),b=null),!1!==p.text?v?v.p(t,p):((v=create_if_block_4(e,p)).c(),v.m(o,a)):v&&(v.d(1),v=null);const N=p._modulesAppendContainer;h=updateKeyedEach(h,e,t,x,0,p,N,m,o,destroyBlock,create_each_block_1,"m",null,get_each_1_context),(t._styles||t.type||t.cornerClass||t.shadow)&&c!==(c="\n        ui-pnotify-container\n        "+(p._styles.container?p._styles.container:"")+"\n        "+(p._styles[p.type]?p._styles[p.type]:"")+"\n        "+p.cornerClass+"\n        "+(p.shadow?"ui-pnotify-shadow":"")+"\n      ")&&(o.className=c),(t._widthStyle||t._minHeightStyle)&&l!==(l=p._widthStyle+" "+p._minHeightStyle)&&(o.style.cssText=l),(t.icon||t._styles||t.addClass||t._animatingClass||t._moveClass||t.animation||t.animateSpeed||t.stack||t._moduleClasses)&&f!==(f="\n      ui-pnotify\n      "+(!1!==p.icon?"ui-pnotify-with-icon":"")+"\n      "+(p._styles.element?p._styles.element:"")+"\n      "+p.addClass+"\n      "+p._animatingClass+"\n      "+p._moveClass+"\n      "+("fade"===p.animation?"ui-pnotify-fade-"+p.animateSpeed:"")+"\n      "+(p.stack&&p.stack.modal?"ui-pnotify-modal":"")+"\n      "+p._moduleClasses.join(" ")+"\n    ")&&(i.className=f)},d(t){for(t&&detachNode(i),_=0;_<d.length;_+=1)d[_].d();for(g&&g.d(),b&&b.d(),v&&v.d(),_=0;_<h.length;_+=1)h[_].d();e.refs.container===o&&(e.refs.container=null),removeListener(i,"mouseover",k),removeListener(i,"mouseout",C),removeListener(i,"mouseenter",w),removeListener(i,"mouseleave",P),removeListener(i,"mousemove",T),removeListener(i,"mousedown",L),removeListener(i,"mouseup",S),removeListener(i,"click",A),removeListener(i,"dblclick",O),removeListener(i,"focus",H),removeListener(i,"blur",E),removeListener(i,"touchstart",j),removeListener(i,"touchmove",M),removeListener(i,"touchend",B),removeListener(i,"touchcancel",D),e.refs.elem===i&&(e.refs.elem=null)}}}function create_each_block(e,t,i){var o,n,s=i.module;if(s)var r=new s({root:e.root});return r&&r.on("init",function(t){e.initModule(t.module)}),{key:t,first:null,c(){o=createComment(),n=createComment(),r&&r._fragment.c(),this.first=o},m(e,t){insertNode(o,e,t),insertNode(n,e,t),r&&r._mount(e,t)},d(e){e&&(detachNode(o),detachNode(n)),r&&r.destroy(e)}}}function create_if_block(e,t){var i,o,n,s;return{c(){i=createElement("div"),(o=createElement("span")).className=n=!0===t.icon?t._icons[t.type]?t._icons[t.type]:"":t.icon,i.className=s="ui-pnotify-icon "+(t._styles.icon?t._styles.icon:"")},m(t,n){insertNode(i,t,n),appendNode(o,i),e.refs.iconContainer=i},p(e,t){(e.icon||e._icons||e.type)&&n!==(n=!0===t.icon?t._icons[t.type]?t._icons[t.type]:"":t.icon)&&(o.className=n),e._styles&&s!==(s="ui-pnotify-icon "+(t._styles.icon?t._styles.icon:""))&&(i.className=s)},d(t){t&&detachNode(i),e.refs.iconContainer===i&&(e.refs.iconContainer=null)}}}function create_if_block_2(e,t){var i,o;return{c(){i=createElement("noscript"),o=createElement("noscript")},m(e,n){insertNode(i,e,n),i.insertAdjacentHTML("afterend",t.title),insertNode(o,e,n)},p(e,t){e.title&&(detachBetween(i,o),i.insertAdjacentHTML("afterend",t.title))},d(e){e&&(detachBetween(i,o),detachNode(i),detachNode(o))}}}function create_if_block_3(e,t){var i;return{c(){i=createText(t.title)},m(e,t){insertNode(i,e,t)},p(e,t){e.title&&(i.data=t.title)},d(e){e&&detachNode(i)}}}function create_if_block_1(e,t){var i,o;function n(e){return e.titleTrusted?create_if_block_2:create_if_block_3}var s=n(t),r=s(e,t);return{c(){i=createElement("h4"),r.c(),i.className=o="ui-pnotify-title "+(t._styles.title?t._styles.title:"")},m(t,o){insertNode(i,t,o),r.m(i,null),e.refs.titleContainer=i},p(t,a){s===(s=n(a))&&r?r.p(t,a):(r.d(1),(r=s(e,a)).c(),r.m(i,null)),t._styles&&o!==(o="ui-pnotify-title "+(a._styles.title?a._styles.title:""))&&(i.className=o)},d(t){t&&detachNode(i),r.d(),e.refs.titleContainer===i&&(e.refs.titleContainer=null)}}}function create_if_block_5(e,t){var i,o;return{c(){i=createElement("noscript"),o=createElement("noscript")},m(e,n){insertNode(i,e,n),i.insertAdjacentHTML("afterend",t.text),insertNode(o,e,n)},p(e,t){e.text&&(detachBetween(i,o),i.insertAdjacentHTML("afterend",t.text))},d(e){e&&(detachBetween(i,o),detachNode(i),detachNode(o))}}}function create_if_block_6(e,t){var i;return{c(){i=createText(t.text)},m(e,t){insertNode(i,e,t)},p(e,t){e.text&&(i.data=t.text)},d(e){e&&detachNode(i)}}}function create_if_block_4(e,t){var i,o;function n(e){return e.textTrusted?create_if_block_5:create_if_block_6}var s=n(t),r=s(e,t);return{c(){i=createElement("div"),r.c(),i.className=o="ui-pnotify-text "+(t._styles.text?t._styles.text:""),setAttribute(i,"role","alert")},m(t,o){insertNode(i,t,o),r.m(i,null),e.refs.textContainer=i},p(t,a){s===(s=n(a))&&r?r.p(t,a):(r.d(1),(r=s(e,a)).c(),r.m(i,null)),t._styles&&o!==(o="ui-pnotify-text "+(a._styles.text?a._styles.text:""))&&(i.className=o)},d(t){t&&detachNode(i),r.d(),e.refs.textContainer===i&&(e.refs.textContainer=null)}}}function create_each_block_1(e,t,i){var o,n,s=i.module;if(s)var r=new s({root:e.root});return r&&r.on("init",function(t){e.initModule(t.module)}),{key:t,first:null,c(){o=createComment(),n=createComment(),r&&r._fragment.c(),this.first=o},m(e,t){insertNode(o,e,t),insertNode(n,e,t),r&&r._mount(e,t)},d(e){e&&(detachNode(o),detachNode(n)),r&&r.destroy(e)}}}function get_each_context(e,t,i){const o=Object.create(e);return o.module=t[i],o.each_value=t,o.module_index=i,o}function get_each_1_context(e,t,i){const o=Object.create(e);return o.module=t[i],o.each_value_1=t,o.module_index_1=i,o}function PNotify_1(e){init(this,e),this.refs={},this._state=assign(data(),e.data),this._recompute({styling:1,icons:1,width:1,minHeight:1},this._state),this._intro=!0,document.getElementById("svelte-1eldsjg-style")||add_css(),e.root||(this._oncreate=[],this._beforecreate=[],this._aftercreate=[]),this._fragment=create_main_fragment(this,this._state),this.root._oncreate.push(()=>{oncreate.call(this),this.fire("update",{changed:assignTrue({},this._state),current:this._state})}),e.target&&(this._fragment.c(),this._mount(e.target,e.anchor),this._lock=!0,callAll(this._beforecreate),callAll(this._oncreate),callAll(this._aftercreate),this._lock=!1)}function createElement(e){return document.createElement(e)}function appendNode(e,t){t.appendChild(e)}function blankObject(){return Object.create(null)}function createText(e){return document.createTextNode(e)}function setAttribute(e,t,i){e.setAttribute(t,i)}function addListener(e,t,i){e.addEventListener(t,i,!1)}function insertNode(e,t,i){t.insertBefore(e,i)}function updateKeyedEach(e,t,i,o,n,s,r,a,c,l,f,d,u,h){for(var m=e.length,p=r.length,y=m,_={};y--;)_[e[y].key]=y;var g=[],b={},v={};for(y=p;y--;){var N=h(s,r,y),x=o(N),k=a[x];k?n&&k.p(i,N):(k=f(t,x,N)).c(),g[y]=b[x]=k,x in _&&(v[x]=Math.abs(y-_[x]))}var C={},w={};function P(e){e[d](c,u),a[e.key]=e,u=e.first,p--}for(;m&&p;){var T=g[p-1],L=e[m-1],S=T.key,A=L.key;T===L?(u=T.first,m--,p--):b[A]?!a[S]||C[S]?P(T):w[A]?m--:v[S]>v[A]?(w[S]=!0,P(T)):(C[A]=!0,m--):(l(L,a),m--)}for(;m--;){b[(L=e[m]).key]||l(L,a)}for(;p;)P(g[p-1]);return g}function destroyBlock(e,t){e.d(1),t[e.key]=null}function detachNode(e){e.parentNode.removeChild(e)}function removeListener(e,t,i){e.removeEventListener(t,i,!1)}function createComment(){return document.createComment("")}function detachBetween(e,t){for(;e.nextSibling&&e.nextSibling!==t;)e.parentNode.removeChild(e.nextSibling)}function init(e,t){e._handlers=blankObject(),e._bind=t._bind,e.options=t,e.root=t.root||e,e.store=e.root.store||t.store}function assign(e,t){for(var i in t)e[i]=t[i];return e}function assignTrue(e,t){for(var i in t)e[i]=1;return e}function callAll(e){for(;e&&e.length;)e.shift()()}function destroy(e){this.destroy=noop,this.fire("destroy"),this.set=noop,this._fragment.d(!1!==e),this._fragment=null,this._state={}}function get(){return this._state}function fire(e,t){var i=e in this._handlers&&this._handlers[e].slice();if(i)for(var o=0;o<i.length;o+=1){var n=i[o];n.__calling||(n.__calling=!0,n.call(this,t),n.__calling=!1)}}function on(e,t){var i=this._handlers[e]||(this._handlers[e]=[]);return i.push(t),{cancel:function(){var e=i.indexOf(t);~e&&i.splice(e,1)}}}function set(e){this._set(assign({},e)),this.root._lock||(this.root._lock=!0,callAll(this.root._beforecreate),callAll(this.root._oncreate),callAll(this.root._aftercreate),this.root._lock=!1)}function _set(e){var t=this._state,i={},o=!1;for(var n in e)this._differs(e[n],t[n])&&(i[n]=o=!0);o&&(this._state=assign(assign({},t),e),this._recompute(i,this._state),this._bind&&this._bind(i,this._state),this._fragment&&(this.fire("state",{changed:i,current:this._state,previous:t}),this._fragment.p(i,this._state),this.fire("update",{changed:i,current:this._state,previous:t})))}function _mount(e,t){this._fragment[this._fragment.i?"i":"m"](e,t||null)}function _differs(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}function noop(){}assign(PNotify_1.prototype,{destroy:destroy,get:get,fire:fire,on:on,set:set,_set:_set,_mount:_mount,_differs:_differs}),assign(PNotify_1.prototype,methods),PNotify_1.prototype._recompute=function(e,t){e.styling&&this._differs(t._styles,t._styles=_styles(t))&&(e._styles=!0),e.icons&&this._differs(t._icons,t._icons=_icons(t))&&(e._icons=!0),e.width&&this._differs(t._widthStyle,t._widthStyle=_widthStyle(t))&&(e._widthStyle=!0),e.minHeight&&this._differs(t._minHeightStyle,t._minHeightStyle=_minHeightStyle(t))&&(e._minHeightStyle=!0)},setup(PNotify_1);/* harmony default export */ __webpack_exports__["a"] = (PNotify_1);
 //# sourceMappingURL=PNotify.js.map
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Buttons for DataTables 1.5.2
+ * ©2016-2018 SpryMedia Ltd - datatables.net/license
+ */
+
+(function( factory ){
+	if ( true ) {
+		// AMD
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11)], __WEBPACK_AMD_DEFINE_RESULT__ = (function ( $ ) {
+			return factory( $, window, document );
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}
+	else if ( typeof exports === 'object' ) {
+		// CommonJS
+		module.exports = function (root, $) {
+			if ( ! root ) {
+				root = window;
+			}
+
+			if ( ! $ || ! $.fn.dataTable ) {
+				$ = require('datatables.net')(root, $).$;
+			}
+
+			return factory( $, root, root.document );
+		};
+	}
+	else {
+		// Browser
+		factory( jQuery, window, document );
+	}
+}(function( $, window, document, undefined ) {
+'use strict';
+var DataTable = $.fn.dataTable;
+
+
+// Used for namespacing events added to the document by each instance, so they
+// can be removed on destroy
+var _instCounter = 0;
+
+// Button namespacing counter for namespacing events on individual buttons
+var _buttonCounter = 0;
+
+var _dtButtons = DataTable.ext.buttons;
+
+/**
+ * [Buttons description]
+ * @param {[type]}
+ * @param {[type]}
+ */
+var Buttons = function( dt, config )
+{
+	// If there is no config set it to an empty object
+	if ( typeof( config ) === 'undefined' ) {
+		config = {};	
+	}
+	
+	// Allow a boolean true for defaults
+	if ( config === true ) {
+		config = {};
+	}
+
+	// For easy configuration of buttons an array can be given
+	if ( $.isArray( config ) ) {
+		config = { buttons: config };
+	}
+
+	this.c = $.extend( true, {}, Buttons.defaults, config );
+
+	// Don't want a deep copy for the buttons
+	if ( config.buttons ) {
+		this.c.buttons = config.buttons;
+	}
+
+	this.s = {
+		dt: new DataTable.Api( dt ),
+		buttons: [],
+		listenKeys: '',
+		namespace: 'dtb'+(_instCounter++)
+	};
+
+	this.dom = {
+		container: $('<'+this.c.dom.container.tag+'/>')
+			.addClass( this.c.dom.container.className )
+	};
+
+	this._constructor();
+};
+
+
+$.extend( Buttons.prototype, {
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Public methods
+	 */
+
+	/**
+	 * Get the action of a button
+	 * @param  {int|string} Button index
+	 * @return {function}
+	 *//**
+	 * Set the action of a button
+	 * @param  {node} node Button element
+	 * @param  {function} action Function to set
+	 * @return {Buttons} Self for chaining
+	 */
+	action: function ( node, action )
+	{
+		var button = this._nodeToButton( node );
+
+		if ( action === undefined ) {
+			return button.conf.action;
+		}
+
+		button.conf.action = action;
+
+		return this;
+	},
+
+	/**
+	 * Add an active class to the button to make to look active or get current
+	 * active state.
+	 * @param  {node} node Button element
+	 * @param  {boolean} [flag] Enable / disable flag
+	 * @return {Buttons} Self for chaining or boolean for getter
+	 */
+	active: function ( node, flag ) {
+		var button = this._nodeToButton( node );
+		var klass = this.c.dom.button.active;
+		var jqNode = $(button.node);
+
+		if ( flag === undefined ) {
+			return jqNode.hasClass( klass );
+		}
+
+		jqNode.toggleClass( klass, flag === undefined ? true : flag );
+
+		return this;
+	},
+
+	/**
+	 * Add a new button
+	 * @param {object} config Button configuration object, base string name or function
+	 * @param {int|string} [idx] Button index for where to insert the button
+	 * @return {Buttons} Self for chaining
+	 */
+	add: function ( config, idx )
+	{
+		var buttons = this.s.buttons;
+
+		if ( typeof idx === 'string' ) {
+			var split = idx.split('-');
+			var base = this.s;
+
+			for ( var i=0, ien=split.length-1 ; i<ien ; i++ ) {
+				base = base.buttons[ split[i]*1 ];
+			}
+
+			buttons = base.buttons;
+			idx = split[ split.length-1 ]*1;
+		}
+
+		this._expandButton( buttons, config, false, idx );
+		this._draw();
+
+		return this;
+	},
+
+	/**
+	 * Get the container node for the buttons
+	 * @return {jQuery} Buttons node
+	 */
+	container: function ()
+	{
+		return this.dom.container;
+	},
+
+	/**
+	 * Disable a button
+	 * @param  {node} node Button node
+	 * @return {Buttons} Self for chaining
+	 */
+	disable: function ( node ) {
+		var button = this._nodeToButton( node );
+
+		$(button.node).addClass( this.c.dom.button.disabled );
+
+		return this;
+	},
+
+	/**
+	 * Destroy the instance, cleaning up event handlers and removing DOM
+	 * elements
+	 * @return {Buttons} Self for chaining
+	 */
+	destroy: function ()
+	{
+		// Key event listener
+		$('body').off( 'keyup.'+this.s.namespace );
+
+		// Individual button destroy (so they can remove their own events if
+		// needed). Take a copy as the array is modified by `remove`
+		var buttons = this.s.buttons.slice();
+		var i, ien;
+		
+		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+			this.remove( buttons[i].node );
+		}
+
+		// Container
+		this.dom.container.remove();
+
+		// Remove from the settings object collection
+		var buttonInsts = this.s.dt.settings()[0];
+
+		for ( i=0, ien=buttonInsts.length ; i<ien ; i++ ) {
+			if ( buttonInsts.inst === this ) {
+				buttonInsts.splice( i, 1 );
+				break;
+			}
+		}
+
+		return this;
+	},
+
+	/**
+	 * Enable / disable a button
+	 * @param  {node} node Button node
+	 * @param  {boolean} [flag=true] Enable / disable flag
+	 * @return {Buttons} Self for chaining
+	 */
+	enable: function ( node, flag )
+	{
+		if ( flag === false ) {
+			return this.disable( node );
+		}
+
+		var button = this._nodeToButton( node );
+		$(button.node).removeClass( this.c.dom.button.disabled );
+
+		return this;
+	},
+
+	/**
+	 * Get the instance name for the button set selector
+	 * @return {string} Instance name
+	 */
+	name: function ()
+	{
+		return this.c.name;
+	},
+
+	/**
+	 * Get a button's node
+	 * @param  {node} node Button node
+	 * @return {jQuery} Button element
+	 */
+	node: function ( node )
+	{
+		var button = this._nodeToButton( node );
+		return $(button.node);
+	},
+
+	/**
+	 * Set / get a processing class on the selected button
+	 * @param  {boolean} flag true to add, false to remove, undefined to get
+	 * @return {boolean|Buttons} Getter value or this if a setter.
+	 */
+	processing: function ( node, flag )
+	{
+		var button = this._nodeToButton( node );
+
+		if ( flag === undefined ) {
+			return $(button.node).hasClass( 'processing' );
+		}
+
+		$(button.node).toggleClass( 'processing', flag );
+
+		return this;
+	},
+
+	/**
+	 * Remove a button.
+	 * @param  {node} node Button node
+	 * @return {Buttons} Self for chaining
+	 */
+	remove: function ( node )
+	{
+		var button = this._nodeToButton( node );
+		var host = this._nodeToHost( node );
+		var dt = this.s.dt;
+
+		// Remove any child buttons first
+		if ( button.buttons.length ) {
+			for ( var i=button.buttons.length-1 ; i>=0 ; i-- ) {
+				this.remove( button.buttons[i].node );
+			}
+		}
+
+		// Allow the button to remove event handlers, etc
+		if ( button.conf.destroy ) {
+			button.conf.destroy.call( dt.button(node), dt, $(node), button.conf );
+		}
+
+		this._removeKey( button.conf );
+
+		$(button.node).remove();
+
+		var idx = $.inArray( button, host );
+		host.splice( idx, 1 );
+
+		return this;
+	},
+
+	/**
+	 * Get the text for a button
+	 * @param  {int|string} node Button index
+	 * @return {string} Button text
+	 *//**
+	 * Set the text for a button
+	 * @param  {int|string|function} node Button index
+	 * @param  {string} label Text
+	 * @return {Buttons} Self for chaining
+	 */
+	text: function ( node, label )
+	{
+		var button = this._nodeToButton( node );
+		var buttonLiner = this.c.dom.collection.buttonLiner;
+		var linerTag = button.inCollection && buttonLiner && buttonLiner.tag ?
+			buttonLiner.tag :
+			this.c.dom.buttonLiner.tag;
+		var dt = this.s.dt;
+		var jqNode = $(button.node);
+		var text = function ( opt ) {
+			return typeof opt === 'function' ?
+				opt( dt, jqNode, button.conf ) :
+				opt;
+		};
+
+		if ( label === undefined ) {
+			return text( button.conf.text );
+		}
+
+		button.conf.text = label;
+
+		if ( linerTag ) {
+			jqNode.children( linerTag ).html( text(label) );
+		}
+		else {
+			jqNode.html( text(label) );
+		}
+
+		return this;
+	},
+
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Constructor
+	 */
+
+	/**
+	 * Buttons constructor
+	 * @private
+	 */
+	_constructor: function ()
+	{
+		var that = this;
+		var dt = this.s.dt;
+		var dtSettings = dt.settings()[0];
+		var buttons =  this.c.buttons;
+
+		if ( ! dtSettings._buttons ) {
+			dtSettings._buttons = [];
+		}
+
+		dtSettings._buttons.push( {
+			inst: this,
+			name: this.c.name
+		} );
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			this.add( buttons[i] );
+		}
+
+		dt.on( 'destroy', function ( e, settings ) {
+			if ( settings === dtSettings ) {
+				that.destroy();
+			}
+		} );
+
+		// Global key event binding to listen for button keys
+		$('body').on( 'keyup.'+this.s.namespace, function ( e ) {
+			if ( ! document.activeElement || document.activeElement === document.body ) {
+				// SUse a string of characters for fast lookup of if we need to
+				// handle this
+				var character = String.fromCharCode(e.keyCode).toLowerCase();
+
+				if ( that.s.listenKeys.toLowerCase().indexOf( character ) !== -1 ) {
+					that._keypress( character, e );
+				}
+			}
+		} );
+	},
+
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Private methods
+	 */
+
+	/**
+	 * Add a new button to the key press listener
+	 * @param {object} conf Resolved button configuration object
+	 * @private
+	 */
+	_addKey: function ( conf )
+	{
+		if ( conf.key ) {
+			this.s.listenKeys += $.isPlainObject( conf.key ) ?
+				conf.key.key :
+				conf.key;
+		}
+	},
+
+	/**
+	 * Insert the buttons into the container. Call without parameters!
+	 * @param  {node} [container] Recursive only - Insert point
+	 * @param  {array} [buttons] Recursive only - Buttons array
+	 * @private
+	 */
+	_draw: function ( container, buttons )
+	{
+		if ( ! container ) {
+			container = this.dom.container;
+			buttons = this.s.buttons;
+		}
+
+		container.children().detach();
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			container.append( buttons[i].inserter );
+			container.append( ' ' );
+
+			if ( buttons[i].buttons && buttons[i].buttons.length ) {
+				this._draw( buttons[i].collection, buttons[i].buttons );
+			}
+		}
+	},
+
+	/**
+	 * Create buttons from an array of buttons
+	 * @param  {array} attachTo Buttons array to attach to
+	 * @param  {object} button Button definition
+	 * @param  {boolean} inCollection true if the button is in a collection
+	 * @private
+	 */
+	_expandButton: function ( attachTo, button, inCollection, attachPoint )
+	{
+		var dt = this.s.dt;
+		var buttonCounter = 0;
+		var buttons = ! $.isArray( button ) ?
+			[ button ] :
+			button;
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			var conf = this._resolveExtends( buttons[i] );
+
+			if ( ! conf ) {
+				continue;
+			}
+
+			// If the configuration is an array, then expand the buttons at this
+			// point
+			if ( $.isArray( conf ) ) {
+				this._expandButton( attachTo, conf, inCollection, attachPoint );
+				continue;
+			}
+
+			var built = this._buildButton( conf, inCollection );
+			if ( ! built ) {
+				continue;
+			}
+
+			if ( attachPoint !== undefined ) {
+				attachTo.splice( attachPoint, 0, built );
+				attachPoint++;
+			}
+			else {
+				attachTo.push( built );
+			}
+
+			if ( built.conf.buttons ) {
+				var collectionDom = this.c.dom.collection;
+				built.collection = $('<'+collectionDom.tag+'/>')
+					.addClass( collectionDom.className )
+					.attr( 'role', 'menu') ;
+				built.conf._collection = built.collection;
+
+				this._expandButton( built.buttons, built.conf.buttons, true, attachPoint );
+			}
+
+			// init call is made here, rather than buildButton as it needs to
+			// be selectable, and for that it needs to be in the buttons array
+			if ( conf.init ) {
+				conf.init.call( dt.button( built.node ), dt, $(built.node), conf );
+			}
+
+			buttonCounter++;
+		}
+	},
+
+	/**
+	 * Create an individual button
+	 * @param  {object} config            Resolved button configuration
+	 * @param  {boolean} inCollection `true` if a collection button
+	 * @return {jQuery} Created button node (jQuery)
+	 * @private
+	 */
+	_buildButton: function ( config, inCollection )
+	{
+		var buttonDom = this.c.dom.button;
+		var linerDom = this.c.dom.buttonLiner;
+		var collectionDom = this.c.dom.collection;
+		var dt = this.s.dt;
+		var text = function ( opt ) {
+			return typeof opt === 'function' ?
+				opt( dt, button, config ) :
+				opt;
+		};
+
+		if ( inCollection && collectionDom.button ) {
+			buttonDom = collectionDom.button;
+		}
+
+		if ( inCollection && collectionDom.buttonLiner ) {
+			linerDom = collectionDom.buttonLiner;
+		}
+
+		// Make sure that the button is available based on whatever requirements
+		// it has. For example, Flash buttons require Flash
+		if ( config.available && ! config.available( dt, config ) ) {
+			return false;
+		}
+
+		var action = function ( e, dt, button, config ) {
+			config.action.call( dt.button( button ), e, dt, button, config );
+
+			$(dt.table().node()).triggerHandler( 'buttons-action.dt', [
+				dt.button( button ), dt, button, config 
+			] );
+		};
+
+		var tag = config.tag || buttonDom.tag;
+		var button = $('<'+tag+'/>')
+			.addClass( buttonDom.className )
+			.attr( 'tabindex', this.s.dt.settings()[0].iTabIndex )
+			.attr( 'aria-controls', this.s.dt.table().node().id )
+			.on( 'click.dtb', function (e) {
+				e.preventDefault();
+
+				if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
+					action( e, dt, button, config );
+				}
+
+				button.blur();
+			} )
+			.on( 'keyup.dtb', function (e) {
+				if ( e.keyCode === 13 ) {
+					if ( ! button.hasClass( buttonDom.disabled ) && config.action ) {
+						action( e, dt, button, config );
+					}
+				}
+			} );
+
+		// Make `a` tags act like a link
+		if ( tag.toLowerCase() === 'a' ) {
+			button.attr( 'href', '#' );
+		}
+
+		// Button tags should have `type=button` so they don't have any default behaviour
+		if ( tag.toLowerCase() === 'button' ) {
+			button.attr( 'type', 'button' );
+		}
+
+		if ( linerDom.tag ) {
+			var liner = $('<'+linerDom.tag+'/>')
+				.html( text( config.text ) )
+				.addClass( linerDom.className );
+
+			if ( linerDom.tag.toLowerCase() === 'a' ) {
+				liner.attr( 'href', '#' );
+			}
+
+			button.append( liner );
+		}
+		else {
+			button.html( text( config.text ) );
+		}
+
+		if ( config.enabled === false ) {
+			button.addClass( buttonDom.disabled );
+		}
+
+		if ( config.className ) {
+			button.addClass( config.className );
+		}
+
+		if ( config.titleAttr ) {
+			button.attr( 'title', text( config.titleAttr ) );
+		}
+
+		if ( config.attr ) {
+			button.attr( config.attr );
+		}
+
+		if ( ! config.namespace ) {
+			config.namespace = '.dt-button-'+(_buttonCounter++);
+		}
+
+		var buttonContainer = this.c.dom.buttonContainer;
+		var inserter;
+		if ( buttonContainer && buttonContainer.tag ) {
+			inserter = $('<'+buttonContainer.tag+'/>')
+				.addClass( buttonContainer.className )
+				.append( button );
+		}
+		else {
+			inserter = button;
+		}
+
+		this._addKey( config );
+
+		return {
+			conf:         config,
+			node:         button.get(0),
+			inserter:     inserter,
+			buttons:      [],
+			inCollection: inCollection,
+			collection:   null
+		};
+	},
+
+	/**
+	 * Get the button object from a node (recursive)
+	 * @param  {node} node Button node
+	 * @param  {array} [buttons] Button array, uses base if not defined
+	 * @return {object} Button object
+	 * @private
+	 */
+	_nodeToButton: function ( node, buttons )
+	{
+		if ( ! buttons ) {
+			buttons = this.s.buttons;
+		}
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			if ( buttons[i].node === node ) {
+				return buttons[i];
+			}
+
+			if ( buttons[i].buttons.length ) {
+				var ret = this._nodeToButton( node, buttons[i].buttons );
+
+				if ( ret ) {
+					return ret;
+				}
+			}
+		}
+	},
+
+	/**
+	 * Get container array for a button from a button node (recursive)
+	 * @param  {node} node Button node
+	 * @param  {array} [buttons] Button array, uses base if not defined
+	 * @return {array} Button's host array
+	 * @private
+	 */
+	_nodeToHost: function ( node, buttons )
+	{
+		if ( ! buttons ) {
+			buttons = this.s.buttons;
+		}
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			if ( buttons[i].node === node ) {
+				return buttons;
+			}
+
+			if ( buttons[i].buttons.length ) {
+				var ret = this._nodeToHost( node, buttons[i].buttons );
+
+				if ( ret ) {
+					return ret;
+				}
+			}
+		}
+	},
+
+	/**
+	 * Handle a key press - determine if any button's key configured matches
+	 * what was typed and trigger the action if so.
+	 * @param  {string} character The character pressed
+	 * @param  {object} e Key event that triggered this call
+	 * @private
+	 */
+	_keypress: function ( character, e )
+	{
+		// Check if this button press already activated on another instance of Buttons
+		if ( e._buttonsHandled ) {
+			return;
+		}
+
+		var run = function ( conf, node ) {
+			if ( ! conf.key ) {
+				return;
+			}
+
+			if ( conf.key === character ) {
+				e._buttonsHandled = true;
+				$(node).click();
+			}
+			else if ( $.isPlainObject( conf.key ) ) {
+				if ( conf.key.key !== character ) {
+					return;
+				}
+
+				if ( conf.key.shiftKey && ! e.shiftKey ) {
+					return;
+				}
+
+				if ( conf.key.altKey && ! e.altKey ) {
+					return;
+				}
+
+				if ( conf.key.ctrlKey && ! e.ctrlKey ) {
+					return;
+				}
+
+				if ( conf.key.metaKey && ! e.metaKey ) {
+					return;
+				}
+
+				// Made it this far - it is good
+				e._buttonsHandled = true;
+				$(node).click();
+			}
+		};
+
+		var recurse = function ( a ) {
+			for ( var i=0, ien=a.length ; i<ien ; i++ ) {
+				run( a[i].conf, a[i].node );
+
+				if ( a[i].buttons.length ) {
+					recurse( a[i].buttons );
+				}
+			}
+		};
+
+		recurse( this.s.buttons );
+	},
+
+	/**
+	 * Remove a key from the key listener for this instance (to be used when a
+	 * button is removed)
+	 * @param  {object} conf Button configuration
+	 * @private
+	 */
+	_removeKey: function ( conf )
+	{
+		if ( conf.key ) {
+			var character = $.isPlainObject( conf.key ) ?
+				conf.key.key :
+				conf.key;
+
+			// Remove only one character, as multiple buttons could have the
+			// same listening key
+			var a = this.s.listenKeys.split('');
+			var idx = $.inArray( character, a );
+			a.splice( idx, 1 );
+			this.s.listenKeys = a.join('');
+		}
+	},
+
+	/**
+	 * Resolve a button configuration
+	 * @param  {string|function|object} conf Button config to resolve
+	 * @return {object} Button configuration
+	 * @private
+	 */
+	_resolveExtends: function ( conf )
+	{
+		var dt = this.s.dt;
+		var i, ien;
+		var toConfObject = function ( base ) {
+			var loop = 0;
+
+			// Loop until we have resolved to a button configuration, or an
+			// array of button configurations (which will be iterated
+			// separately)
+			while ( ! $.isPlainObject(base) && ! $.isArray(base) ) {
+				if ( base === undefined ) {
+					return;
+				}
+
+				if ( typeof base === 'function' ) {
+					base = base( dt, conf );
+
+					if ( ! base ) {
+						return false;
+					}
+				}
+				else if ( typeof base === 'string' ) {
+					if ( ! _dtButtons[ base ] ) {
+						throw 'Unknown button type: '+base;
+					}
+
+					base = _dtButtons[ base ];
+				}
+
+				loop++;
+				if ( loop > 30 ) {
+					// Protect against misconfiguration killing the browser
+					throw 'Buttons: Too many iterations';
+				}
+			}
+
+			return $.isArray( base ) ?
+				base :
+				$.extend( {}, base );
+		};
+
+		conf = toConfObject( conf );
+
+		while ( conf && conf.extend ) {
+			// Use `toConfObject` in case the button definition being extended
+			// is itself a string or a function
+			if ( ! _dtButtons[ conf.extend ] ) {
+				throw 'Cannot extend unknown button type: '+conf.extend;
+			}
+
+			var objArray = toConfObject( _dtButtons[ conf.extend ] );
+			if ( $.isArray( objArray ) ) {
+				return objArray;
+			}
+			else if ( ! objArray ) {
+				// This is a little brutal as it might be possible to have a
+				// valid button without the extend, but if there is no extend
+				// then the host button would be acting in an undefined state
+				return false;
+			}
+
+			// Stash the current class name
+			var originalClassName = objArray.className;
+
+			conf = $.extend( {}, objArray, conf );
+
+			// The extend will have overwritten the original class name if the
+			// `conf` object also assigned a class, but we want to concatenate
+			// them so they are list that is combined from all extended buttons
+			if ( originalClassName && conf.className !== originalClassName ) {
+				conf.className = originalClassName+' '+conf.className;
+			}
+
+			// Buttons to be added to a collection  -gives the ability to define
+			// if buttons should be added to the start or end of a collection
+			var postfixButtons = conf.postfixButtons;
+			if ( postfixButtons ) {
+				if ( ! conf.buttons ) {
+					conf.buttons = [];
+				}
+
+				for ( i=0, ien=postfixButtons.length ; i<ien ; i++ ) {
+					conf.buttons.push( postfixButtons[i] );
+				}
+
+				conf.postfixButtons = null;
+			}
+
+			var prefixButtons = conf.prefixButtons;
+			if ( prefixButtons ) {
+				if ( ! conf.buttons ) {
+					conf.buttons = [];
+				}
+
+				for ( i=0, ien=prefixButtons.length ; i<ien ; i++ ) {
+					conf.buttons.splice( i, 0, prefixButtons[i] );
+				}
+
+				conf.prefixButtons = null;
+			}
+
+			// Although we want the `conf` object to overwrite almost all of
+			// the properties of the object being extended, the `extend`
+			// property should come from the object being extended
+			conf.extend = objArray.extend;
+		}
+
+		return conf;
+	}
+} );
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Statics
+ */
+
+/**
+ * Show / hide a background layer behind a collection
+ * @param  {boolean} Flag to indicate if the background should be shown or
+ *   hidden 
+ * @param  {string} Class to assign to the background
+ * @static
+ */
+Buttons.background = function ( show, className, fade ) {
+	if ( fade === undefined ) {
+		fade = 400;
+	}
+
+	if ( show ) {
+		$('<div/>')
+			.addClass( className )
+			.css( 'display', 'none' )
+			.appendTo( 'body' )
+			.fadeIn( fade );
+	}
+	else {
+		$('body > div.'+className)
+			.fadeOut( fade, function () {
+				$(this)
+					.removeClass( className )
+					.remove();
+			} );
+	}
+};
+
+/**
+ * Instance selector - select Buttons instances based on an instance selector
+ * value from the buttons assigned to a DataTable. This is only useful if
+ * multiple instances are attached to a DataTable.
+ * @param  {string|int|array} Instance selector - see `instance-selector`
+ *   documentation on the DataTables site
+ * @param  {array} Button instance array that was attached to the DataTables
+ *   settings object
+ * @return {array} Buttons instances
+ * @static
+ */
+Buttons.instanceSelector = function ( group, buttons )
+{
+	if ( ! group ) {
+		return $.map( buttons, function ( v ) {
+			return v.inst;
+		} );
+	}
+
+	var ret = [];
+	var names = $.map( buttons, function ( v ) {
+		return v.name;
+	} );
+
+	// Flatten the group selector into an array of single options
+	var process = function ( input ) {
+		if ( $.isArray( input ) ) {
+			for ( var i=0, ien=input.length ; i<ien ; i++ ) {
+				process( input[i] );
+			}
+			return;
+		}
+
+		if ( typeof input === 'string' ) {
+			if ( input.indexOf( ',' ) !== -1 ) {
+				// String selector, list of names
+				process( input.split(',') );
+			}
+			else {
+				// String selector individual name
+				var idx = $.inArray( $.trim(input), names );
+
+				if ( idx !== -1 ) {
+					ret.push( buttons[ idx ].inst );
+				}
+			}
+		}
+		else if ( typeof input === 'number' ) {
+			// Index selector
+			ret.push( buttons[ input ].inst );
+		}
+	};
+	
+	process( group );
+
+	return ret;
+};
+
+/**
+ * Button selector - select one or more buttons from a selector input so some
+ * operation can be performed on them.
+ * @param  {array} Button instances array that the selector should operate on
+ * @param  {string|int|node|jQuery|array} Button selector - see
+ *   `button-selector` documentation on the DataTables site
+ * @return {array} Array of objects containing `inst` and `idx` properties of
+ *   the selected buttons so you know which instance each button belongs to.
+ * @static
+ */
+Buttons.buttonSelector = function ( insts, selector )
+{
+	var ret = [];
+	var nodeBuilder = function ( a, buttons, baseIdx ) {
+		var button;
+		var idx;
+
+		for ( var i=0, ien=buttons.length ; i<ien ; i++ ) {
+			button = buttons[i];
+
+			if ( button ) {
+				idx = baseIdx !== undefined ?
+					baseIdx+i :
+					i+'';
+
+				a.push( {
+					node: button.node,
+					name: button.conf.name,
+					idx:  idx
+				} );
+
+				if ( button.buttons ) {
+					nodeBuilder( a, button.buttons, idx+'-' );
+				}
+			}
+		}
+	};
+
+	var run = function ( selector, inst ) {
+		var i, ien;
+		var buttons = [];
+		nodeBuilder( buttons, inst.s.buttons );
+
+		var nodes = $.map( buttons, function (v) {
+			return v.node;
+		} );
+
+		if ( $.isArray( selector ) || selector instanceof $ ) {
+			for ( i=0, ien=selector.length ; i<ien ; i++ ) {
+				run( selector[i], inst );
+			}
+			return;
+		}
+
+		if ( selector === null || selector === undefined || selector === '*' ) {
+			// Select all
+			for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+				ret.push( {
+					inst: inst,
+					node: buttons[i].node
+				} );
+			}
+		}
+		else if ( typeof selector === 'number' ) {
+			// Main button index selector
+			ret.push( {
+				inst: inst,
+				node: inst.s.buttons[ selector ].node
+			} );
+		}
+		else if ( typeof selector === 'string' ) {
+			if ( selector.indexOf( ',' ) !== -1 ) {
+				// Split
+				var a = selector.split(',');
+
+				for ( i=0, ien=a.length ; i<ien ; i++ ) {
+					run( $.trim(a[i]), inst );
+				}
+			}
+			else if ( selector.match( /^\d+(\-\d+)*$/ ) ) {
+				// Sub-button index selector
+				var indexes = $.map( buttons, function (v) {
+					return v.idx;
+				} );
+
+				ret.push( {
+					inst: inst,
+					node: buttons[ $.inArray( selector, indexes ) ].node
+				} );
+			}
+			else if ( selector.indexOf( ':name' ) !== -1 ) {
+				// Button name selector
+				var name = selector.replace( ':name', '' );
+
+				for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+					if ( buttons[i].name === name ) {
+						ret.push( {
+							inst: inst,
+							node: buttons[i].node
+						} );
+					}
+				}
+			}
+			else {
+				// jQuery selector on the nodes
+				$( nodes ).filter( selector ).each( function () {
+					ret.push( {
+						inst: inst,
+						node: this
+					} );
+				} );
+			}
+		}
+		else if ( typeof selector === 'object' && selector.nodeName ) {
+			// Node selector
+			var idx = $.inArray( selector, nodes );
+
+			if ( idx !== -1 ) {
+				ret.push( {
+					inst: inst,
+					node: nodes[ idx ]
+				} );
+			}
+		}
+	};
+
+
+	for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
+		var inst = insts[i];
+
+		run( selector, inst );
+	}
+
+	return ret;
+};
+
+
+/**
+ * Buttons defaults. For full documentation, please refer to the docs/option
+ * directory or the DataTables site.
+ * @type {Object}
+ * @static
+ */
+Buttons.defaults = {
+	buttons: [ 'copy', 'excel', 'csv', 'pdf', 'print' ],
+	name: 'main',
+	tabIndex: 0,
+	dom: {
+		container: {
+			tag: 'div',
+			className: 'dt-buttons'
+		},
+		collection: {
+			tag: 'div',
+			className: 'dt-button-collection'
+		},
+		button: {
+			tag: 'button',
+			className: 'dt-button',
+			active: 'active',
+			disabled: 'disabled'
+		},
+		buttonLiner: {
+			tag: 'span',
+			className: ''
+		}
+	}
+};
+
+/**
+ * Version information
+ * @type {string}
+ * @static
+ */
+Buttons.version = '1.5.2';
+
+
+$.extend( _dtButtons, {
+	collection: {
+		text: function ( dt ) {
+			return dt.i18n( 'buttons.collection', 'Collection' );
+		},
+		className: 'buttons-collection',
+		action: function ( e, dt, button, config ) {
+			var host = button;
+			var collectionParent = $(button).parents('div.dt-button-collection');
+			var hostPosition = host.position();
+			var tableContainer = $( dt.table().container() );
+			var multiLevel = false;
+			var insertPoint = host;
+
+			// Remove any old collection
+			if ( collectionParent.length ) {
+				multiLevel = $('.dt-button-collection').position();
+				insertPoint = collectionParent;
+				$('body').trigger( 'click.dtb-collection' );
+			}
+
+			if ( insertPoint.parents('body')[0] !== document.body ) {
+				insertPoint = document.body.lastChild;
+			}
+
+			config._collection
+				.addClass( config.collectionLayout )
+				.css( 'display', 'none' )
+				.insertAfter( insertPoint )
+				.fadeIn( config.fade );
+			
+
+			var position = config._collection.css( 'position' );
+
+			if ( multiLevel && position === 'absolute' ) {
+				config._collection.css( {
+					top: multiLevel.top,
+					left: multiLevel.left
+				} );
+			}
+			else if ( position === 'absolute' ) {
+				config._collection.css( {
+					top: hostPosition.top + host.outerHeight(),
+					left: hostPosition.left
+				} );
+
+				// calculate overflow when positioned beneath
+				var tableBottom = tableContainer.offset().top + tableContainer.height();
+				var listBottom = hostPosition.top + host.outerHeight() + config._collection.outerHeight();
+				var bottomOverflow = listBottom - tableBottom;
+				
+				// calculate overflow when positioned above
+				var listTop = hostPosition.top - config._collection.outerHeight();
+				var tableTop = tableContainer.offset().top;
+				var topOverflow = tableTop - listTop;
+				
+				// if bottom overflow is larger, move to the top because it fits better, or if dropup is requested
+				if (bottomOverflow > topOverflow || config.dropup) {
+					config._collection.css( 'top', hostPosition.top - config._collection.outerHeight() - 5);
+				}
+
+				// Right alignment in table container
+				var listRight = hostPosition.left + config._collection.outerWidth();
+				var tableRight = tableContainer.offset().left + tableContainer.width();
+				if ( listRight > tableRight ) {
+					config._collection.css( 'left', hostPosition.left - ( listRight - tableRight ) );
+				}
+
+				// Right alignment to window
+				var listOffsetRight = host.offset().left + config._collection.outerWidth();
+				if ( listOffsetRight > $(window).width() ) {
+					config._collection.css( 'left', hostPosition.left - (listOffsetRight-$(window).width()) );
+				}
+			}
+			else {
+				// Fix position - centre on screen
+				var top = config._collection.height() / 2;
+				if ( top > $(window).height() / 2 ) {
+					top = $(window).height() / 2;
+				}
+
+				config._collection.css( 'marginTop', top*-1 );
+			}
+
+			if ( config.background ) {
+				Buttons.background( true, config.backgroundClassName, config.fade );
+			}
+
+			var close = function () {
+				config._collection
+				.fadeOut( config.fade, function () {
+					config._collection.detach();
+				} );
+
+				$('div.dt-button-background').off( 'click.dtb-collection' );
+				Buttons.background( false, config.backgroundClassName, config.fade );
+
+				$('body').off( '.dtb-collection' );
+				dt.off( 'buttons-action.b-internal' );
+			};
+
+			// Need to break the 'thread' for the collection button being
+			// activated by a click - it would also trigger this event
+			setTimeout( function () {
+				// This is bonkers, but if we don't have a click listener on the
+				// background element, iOS Safari will ignore the body click
+				// listener below. An empty function here is all that is
+				// required to make it work...
+				$('div.dt-button-background').on( 'click.dtb-collection', function () {} );
+
+				$('body')
+					.on( 'click.dtb-collection', function (e) {
+						// andSelf is deprecated in jQ1.8, but we want 1.7 compat
+						var back = $.fn.addBack ? 'addBack' : 'andSelf';
+
+						if ( ! $(e.target).parents()[back]().filter( config._collection ).length ) {
+							close();
+						}
+					} )
+					.on( 'keyup.dtb-collection', function (e) {
+						if ( e.keyCode === 27 ) {
+							close();
+						}
+					} );
+
+				if ( config.autoClose ) {
+					dt.on( 'buttons-action.b-internal', function () {
+						close();
+					} );
+				}
+			}, 10 );
+		},
+		background: true,
+		collectionLayout: '',
+		backgroundClassName: 'dt-button-background',
+		autoClose: false,
+		fade: 400,
+		attr: {
+			'aria-haspopup': true
+		}
+	},
+	copy: function ( dt, conf ) {
+		if ( _dtButtons.copyHtml5 ) {
+			return 'copyHtml5';
+		}
+		if ( _dtButtons.copyFlash && _dtButtons.copyFlash.available( dt, conf ) ) {
+			return 'copyFlash';
+		}
+	},
+	csv: function ( dt, conf ) {
+		// Common option that will use the HTML5 or Flash export buttons
+		if ( _dtButtons.csvHtml5 && _dtButtons.csvHtml5.available( dt, conf ) ) {
+			return 'csvHtml5';
+		}
+		if ( _dtButtons.csvFlash && _dtButtons.csvFlash.available( dt, conf ) ) {
+			return 'csvFlash';
+		}
+	},
+	excel: function ( dt, conf ) {
+		// Common option that will use the HTML5 or Flash export buttons
+		if ( _dtButtons.excelHtml5 && _dtButtons.excelHtml5.available( dt, conf ) ) {
+			return 'excelHtml5';
+		}
+		if ( _dtButtons.excelFlash && _dtButtons.excelFlash.available( dt, conf ) ) {
+			return 'excelFlash';
+		}
+	},
+	pdf: function ( dt, conf ) {
+		// Common option that will use the HTML5 or Flash export buttons
+		if ( _dtButtons.pdfHtml5 && _dtButtons.pdfHtml5.available( dt, conf ) ) {
+			return 'pdfHtml5';
+		}
+		if ( _dtButtons.pdfFlash && _dtButtons.pdfFlash.available( dt, conf ) ) {
+			return 'pdfFlash';
+		}
+	},
+	pageLength: function ( dt ) {
+		var lengthMenu = dt.settings()[0].aLengthMenu;
+		var vals = $.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
+		var lang = $.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
+		var text = function ( dt ) {
+			return dt.i18n( 'buttons.pageLength', {
+				"-1": 'Show all rows',
+				_:    'Show %d rows'
+			}, dt.page.len() );
+		};
+
+		return {
+			extend: 'collection',
+			text: text,
+			className: 'buttons-page-length',
+			autoClose: true,
+			buttons: $.map( vals, function ( val, i ) {
+				return {
+					text: lang[i],
+					className: 'button-page-length',
+					action: function ( e, dt ) {
+						dt.page.len( val ).draw();
+					},
+					init: function ( dt, node, conf ) {
+						var that = this;
+						var fn = function () {
+							that.active( dt.page.len() === val );
+						};
+
+						dt.on( 'length.dt'+conf.namespace, fn );
+						fn();
+					},
+					destroy: function ( dt, node, conf ) {
+						dt.off( 'length.dt'+conf.namespace );
+					}
+				};
+			} ),
+			init: function ( dt, node, conf ) {
+				var that = this;
+				dt.on( 'length.dt'+conf.namespace, function () {
+					that.text( text( dt ) );
+				} );
+			},
+			destroy: function ( dt, node, conf ) {
+				dt.off( 'length.dt'+conf.namespace );
+			}
+		};
+	}
+} );
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables API
+ *
+ * For complete documentation, please refer to the docs/api directory or the
+ * DataTables site
+ */
+
+// Buttons group and individual button selector
+DataTable.Api.register( 'buttons()', function ( group, selector ) {
+	// Argument shifting
+	if ( selector === undefined ) {
+		selector = group;
+		group = undefined;
+	}
+
+	this.selector.buttonGroup = group;
+
+	var res = this.iterator( true, 'table', function ( ctx ) {
+		if ( ctx._buttons ) {
+			return Buttons.buttonSelector(
+				Buttons.instanceSelector( group, ctx._buttons ),
+				selector
+			);
+		}
+	}, true );
+
+	res._groupSelector = group;
+	return res;
+} );
+
+// Individual button selector
+DataTable.Api.register( 'button()', function ( group, selector ) {
+	// just run buttons() and truncate
+	var buttons = this.buttons( group, selector );
+
+	if ( buttons.length > 1 ) {
+		buttons.splice( 1, buttons.length );
+	}
+
+	return buttons;
+} );
+
+// Active buttons
+DataTable.Api.registerPlural( 'buttons().active()', 'button().active()', function ( flag ) {
+	if ( flag === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.active( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.active( set.node, flag );
+	} );
+} );
+
+// Get / set button action
+DataTable.Api.registerPlural( 'buttons().action()', 'button().action()', function ( action ) {
+	if ( action === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.action( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.action( set.node, action );
+	} );
+} );
+
+// Enable / disable buttons
+DataTable.Api.register( ['buttons().enable()', 'button().enable()'], function ( flag ) {
+	return this.each( function ( set ) {
+		set.inst.enable( set.node, flag );
+	} );
+} );
+
+// Disable buttons
+DataTable.Api.register( ['buttons().disable()', 'button().disable()'], function () {
+	return this.each( function ( set ) {
+		set.inst.disable( set.node );
+	} );
+} );
+
+// Get button nodes
+DataTable.Api.registerPlural( 'buttons().nodes()', 'button().node()', function () {
+	var jq = $();
+
+	// jQuery will automatically reduce duplicates to a single entry
+	$( this.each( function ( set ) {
+		jq = jq.add( set.inst.node( set.node ) );
+	} ) );
+
+	return jq;
+} );
+
+// Get / set button processing state
+DataTable.Api.registerPlural( 'buttons().processing()', 'button().processing()', function ( flag ) {
+	if ( flag === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.processing( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.processing( set.node, flag );
+	} );
+} );
+
+// Get / set button text (i.e. the button labels)
+DataTable.Api.registerPlural( 'buttons().text()', 'button().text()', function ( label ) {
+	if ( label === undefined ) {
+		return this.map( function ( set ) {
+			return set.inst.text( set.node );
+		} );
+	}
+
+	return this.each( function ( set ) {
+		set.inst.text( set.node, label );
+	} );
+} );
+
+// Trigger a button's action
+DataTable.Api.registerPlural( 'buttons().trigger()', 'button().trigger()', function () {
+	return this.each( function ( set ) {
+		set.inst.node( set.node ).trigger( 'click' );
+	} );
+} );
+
+// Get the container elements
+DataTable.Api.registerPlural( 'buttons().containers()', 'buttons().container()', function () {
+	var jq = $();
+	var groupSelector = this._groupSelector;
+
+	// We need to use the group selector directly, since if there are no buttons
+	// the result set will be empty
+	this.iterator( true, 'table', function ( ctx ) {
+		if ( ctx._buttons ) {
+			var insts = Buttons.instanceSelector( groupSelector, ctx._buttons );
+
+			for ( var i=0, ien=insts.length ; i<ien ; i++ ) {
+				jq = jq.add( insts[i].container() );
+			}
+		}
+	} );
+
+	return jq;
+} );
+
+// Add a new button
+DataTable.Api.register( 'button().add()', function ( idx, conf ) {
+	var ctx = this.context;
+
+	// Don't use `this` as it could be empty - select the instances directly
+	if ( ctx.length ) {
+		var inst = Buttons.instanceSelector( this._groupSelector, ctx[0]._buttons );
+
+		if ( inst.length ) {
+			inst[0].add( conf, idx );
+		}
+	}
+
+	return this.button( this._groupSelector, idx );
+} );
+
+// Destroy the button sets selected
+DataTable.Api.register( 'buttons().destroy()', function () {
+	this.pluck( 'inst' ).unique().each( function ( inst ) {
+		inst.destroy();
+	} );
+
+	return this;
+} );
+
+// Remove a button
+DataTable.Api.registerPlural( 'buttons().remove()', 'buttons().remove()', function () {
+	this.each( function ( set ) {
+		set.inst.remove( set.node );
+	} );
+
+	return this;
+} );
+
+// Information box that can be used by buttons
+var _infoTimer;
+DataTable.Api.register( 'buttons.info()', function ( title, message, time ) {
+	var that = this;
+
+	if ( title === false ) {
+		$('#datatables_buttons_info').fadeOut( function () {
+			$(this).remove();
+		} );
+		clearTimeout( _infoTimer );
+		_infoTimer = null;
+
+		return this;
+	}
+
+	if ( _infoTimer ) {
+		clearTimeout( _infoTimer );
+	}
+
+	if ( $('#datatables_buttons_info').length ) {
+		$('#datatables_buttons_info').remove();
+	}
+
+	title = title ? '<h2>'+title+'</h2>' : '';
+
+	$('<div id="datatables_buttons_info" class="dt-button-info"/>')
+		.html( title )
+		.append( $('<div/>')[ typeof message === 'string' ? 'html' : 'append' ]( message ) )
+		.css( 'display', 'none' )
+		.appendTo( 'body' )
+		.fadeIn();
+
+	if ( time !== undefined && time !== 0 ) {
+		_infoTimer = setTimeout( function () {
+			that.buttons.info( false );
+		}, time );
+	}
+
+	return this;
+} );
+
+// Get data from the table for export - this is common to a number of plug-in
+// buttons so it is included in the Buttons core library
+DataTable.Api.register( 'buttons.exportData()', function ( options ) {
+	if ( this.context.length ) {
+		return _exportData( new DataTable.Api( this.context[0] ), options );
+	}
+} );
+
+// Get information about the export that is common to many of the export data
+// types (DRY)
+DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
+	if ( ! conf ) {
+		conf = {};
+	}
+
+	return {
+		filename: _filename( conf ),
+		title: _title( conf ),
+		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
+		messageBottom: _message(this, conf.messageBottom, 'bottom')
+	};
+} );
+
+
+
+/**
+ * Get the file name for an exported file.
+ *
+ * @param {object}	config Button configuration
+ * @param {boolean} incExtension Include the file name extension
+ */
+var _filename = function ( config )
+{
+	// Backwards compatibility
+	var filename = config.filename === '*' && config.title !== '*' && config.title !== undefined && config.title !== null && config.title !== '' ?
+		config.title :
+		config.filename;
+
+	if ( typeof filename === 'function' ) {
+		filename = filename();
+	}
+
+	if ( filename === undefined || filename === null ) {
+		return null;
+	}
+
+	if ( filename.indexOf( '*' ) !== -1 ) {
+		filename = $.trim( filename.replace( '*', $('head > title').text() ) );
+	}
+
+	// Strip characters which the OS will object to
+	filename = filename.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g, "");
+
+	var extension = _stringOrFunction( config.extension );
+	if ( ! extension ) {
+		extension = '';
+	}
+
+	return filename + extension;
+};
+
+/**
+ * Simply utility method to allow parameters to be given as a function
+ *
+ * @param {undefined|string|function} option Option
+ * @return {null|string} Resolved value
+ */
+var _stringOrFunction = function ( option )
+{
+	if ( option === null || option === undefined ) {
+		return null;
+	}
+	else if ( typeof option === 'function' ) {
+		return option();
+	}
+	return option;
+};
+
+/**
+ * Get the title for an exported file.
+ *
+ * @param {object} config	Button configuration
+ */
+var _title = function ( config )
+{
+	var title = _stringOrFunction( config.title );
+
+	return title === null ?
+		null : title.indexOf( '*' ) !== -1 ?
+			title.replace( '*', $('head > title').text() || 'Exported data' ) :
+			title;
+};
+
+var _message = function ( dt, option, position )
+{
+	var message = _stringOrFunction( option );
+	if ( message === null ) {
+		return null;
+	}
+
+	var caption = $('caption', dt.table().container()).eq(0);
+	if ( message === '*' ) {
+		var side = caption.css( 'caption-side' );
+		if ( side !== position ) {
+			return null;
+		}
+
+		return caption.length ?
+			caption.text() :
+			'';
+	}
+
+	return message;
+};
+
+
+
+
+
+
+
+var _exportTextarea = $('<textarea/>')[0];
+var _exportData = function ( dt, inOpts )
+{
+	var config = $.extend( true, {}, {
+		rows:           null,
+		columns:        '',
+		modifier:       {
+			search: 'applied',
+			order:  'applied'
+		},
+		orthogonal:     'display',
+		stripHtml:      true,
+		stripNewlines:  true,
+		decodeEntities: true,
+		trim:           true,
+		format:         {
+			header: function ( d ) {
+				return strip( d );
+			},
+			footer: function ( d ) {
+				return strip( d );
+			},
+			body: function ( d ) {
+				return strip( d );
+			}
+		},
+		customizeData: null
+	}, inOpts );
+
+	var strip = function ( str ) {
+		if ( typeof str !== 'string' ) {
+			return str;
+		}
+
+		// Always remove script tags
+		str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
+
+		// Always remove comments
+		str = str.replace( /<!\-\-.*?\-\->/g, '' );
+
+		if ( config.stripHtml ) {
+			str = str.replace( /<[^>]*>/g, '' );
+		}
+
+		if ( config.trim ) {
+			str = str.replace( /^\s+|\s+$/g, '' );
+		}
+
+		if ( config.stripNewlines ) {
+			str = str.replace( /\n/g, ' ' );
+		}
+
+		if ( config.decodeEntities ) {
+			_exportTextarea.innerHTML = str;
+			str = _exportTextarea.value;
+		}
+
+		return str;
+	};
+
+
+	var header = dt.columns( config.columns ).indexes().map( function (idx) {
+		var el = dt.column( idx ).header();
+		return config.format.header( el.innerHTML, idx, el );
+	} ).toArray();
+
+	var footer = dt.table().footer() ?
+		dt.columns( config.columns ).indexes().map( function (idx) {
+			var el = dt.column( idx ).footer();
+			return config.format.footer( el ? el.innerHTML : '', idx, el );
+		} ).toArray() :
+		null;
+	
+	// If Select is available on this table, and any rows are selected, limit the export
+	// to the selected rows. If no rows are selected, all rows will be exported. Specify
+	// a `selected` modifier to control directly.
+	var modifier = $.extend( {}, config.modifier );
+	if ( dt.select && typeof dt.select.info === 'function' && modifier.selected === undefined ) {
+		if ( dt.rows( config.rows, $.extend( { selected: true }, modifier ) ).any() ) {
+			$.extend( modifier, { selected: true } )
+		}
+	}
+
+	var rowIndexes = dt.rows( config.rows, modifier ).indexes().toArray();
+	var selectedCells = dt.cells( rowIndexes, config.columns );
+	var cells = selectedCells
+		.render( config.orthogonal )
+		.toArray();
+	var cellNodes = selectedCells
+		.nodes()
+		.toArray();
+
+	var columns = header.length;
+	var rows = columns > 0 ? cells.length / columns : 0;
+	var body = [];
+	var cellCounter = 0;
+
+	for ( var i=0, ien=rows ; i<ien ; i++ ) {
+		var row = [ columns ];
+
+		for ( var j=0 ; j<columns ; j++ ) {
+			row[j] = config.format.body( cells[ cellCounter ], i, j, cellNodes[ cellCounter ] );
+			cellCounter++;
+		}
+
+		body[i] = row;
+	}
+
+	var data = {
+		header: header,
+		footer: footer,
+		body:   body
+	};
+
+	if ( config.customizeData ) {
+		config.customizeData( data );
+	}
+
+	return data;
+};
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables interface
+ */
+
+// Attach to DataTables objects for global access
+$.fn.dataTable.Buttons = Buttons;
+$.fn.DataTable.Buttons = Buttons;
+
+
+
+// DataTables creation - check if the buttons have been defined for this table,
+// they will have been if the `B` option was used in `dom`, otherwise we should
+// create the buttons instance here so they can be inserted into the document
+// using the API. Listen for `init` for compatibility with pre 1.10.10, but to
+// be removed in future.
+$(document).on( 'init.dt plugin-init.dt', function (e, settings) {
+	if ( e.namespace !== 'dt' ) {
+		return;
+	}
+
+	var opts = settings.oInit.buttons || DataTable.defaults.buttons;
+
+	if ( opts && ! settings._buttons ) {
+		new Buttons( settings, opts ).container();
+	}
+} );
+
+// DataTables `dom` feature option
+DataTable.ext.feature.push( {
+	fnInit: function( settings ) {
+		var api = new DataTable.Api( settings );
+		var opts = api.init().buttons || DataTable.defaults.buttons;
+
+		return new Buttons( api, opts ).container();
+	},
+	cFeature: "B"
+} );
+
+
+return Buttons;
+}));
+
 
 /***/ }),
 /* 40 */
@@ -62687,7 +62707,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(g){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(11),__webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(d){return g(d,window,document)}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(g){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(11),__webpack_require__(39)], __WEBPACK_AMD_DEFINE_RESULT__ = (function(d){return g(d,window,document)}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"===typeof exports?module.exports=function(d,f){d||(d=window);if(!f||!f.fn.dataTable)f=require("datatables.net")(d,f).$;f.fn.dataTable.Buttons||require("datatables.net-buttons")(d,f);return g(f,d,d.document)}:g(jQuery,window,document)})(function(g,d,f,h){d=g.fn.dataTable;g.extend(d.ext.buttons,{colvis:function(a,b){return{extend:"collection",
 text:function(b){return b.i18n("buttons.colvis","Column visibility")},className:"buttons-colvis",buttons:[{extend:"columnsToggle",columns:b.columns,columnText:b.columnText}]}},columnsToggle:function(a,b){return a.columns(b.columns).indexes().map(function(a){return{extend:"columnToggle",columns:a,columnText:b.columnText}}).toArray()},columnToggle:function(a,b){return{extend:"columnVisibility",columns:b.columns,columnText:b.columnText}},columnsVisibility:function(a,b){return a.columns(b.columns).indexes().map(function(a){return{extend:"columnVisibility",
 columns:a,visibility:b.visibility,columnText:b.columnText}}).toArray()},columnVisibility:{columns:h,text:function(a,b,c){return c._columnText(a,c)},className:"buttons-columnVisibility",action:function(a,b,c,e){a=b.columns(e.columns);b=a.visible();a.visible(e.visibility!==h?e.visibility:!(b.length&&b[0]))},init:function(a,b,c){var e=this;a.on("column-visibility.dt"+c.namespace,function(b,d){!d.bDestroying&&d.nTable==a.settings()[0].nTable&&e.active(a.column(c.columns).visible())}).on("column-reorder.dt"+
@@ -62881,21 +62901,45 @@ function(a,b){if("dt"===a.namespace){var c=b.oInit.buttons||i.defaults.buttons;c
 /* 181 */,
 /* 182 */,
 /* 183 */,
-/* 184 */
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(185);
+module.exports = __webpack_require__(209);
 
 
 /***/ }),
-/* 185 */
+/* 209 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__content__);
 
 
@@ -62905,15 +62949,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 });
 
 /***/ }),
-/* 186 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(187)
+var __vue_script__ = __webpack_require__(211)
 /* template */
-var __vue_template__ = __webpack_require__(196)
+var __vue_template__ = __webpack_require__(220)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -62952,12 +62996,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 187 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_table_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_select2__);
@@ -63333,19 +63377,19 @@ window._config = new __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */]();
 });
 
 /***/ }),
-/* 188 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(189)
+  __webpack_require__(213)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(191)
+var __vue_script__ = __webpack_require__(215)
 /* template */
-var __vue_template__ = __webpack_require__(195)
+var __vue_template__ = __webpack_require__(219)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63384,13 +63428,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 189 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(190);
+var content = __webpack_require__(214);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -63410,7 +63454,7 @@ if(false) {
 }
 
 /***/ }),
-/* 190 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(40)(false);
@@ -63424,16 +63468,16 @@ exports.push([module.i, "\n.dt-button-collection button{\n    width: 100% !impor
 
 
 /***/ }),
-/* 191 */
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__checkboxItem__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_datatables__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_datatables___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_datatables__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_datatables_net_buttons__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_datatables_net_buttons__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_datatables_net_buttons___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_datatables_net_buttons__);
 //
 //
@@ -63667,15 +63711,15 @@ __webpack_require__(46);
 });
 
 /***/ }),
-/* 192 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(193)
+var __vue_script__ = __webpack_require__(217)
 /* template */
-var __vue_template__ = __webpack_require__(194)
+var __vue_template__ = __webpack_require__(218)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -63714,7 +63758,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 193 */
+/* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63769,7 +63813,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 194 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -63797,7 +63841,7 @@ if (false) {
 }
 
 /***/ }),
-/* 195 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -64096,7 +64140,7 @@ if (false) {
 }
 
 /***/ }),
-/* 196 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

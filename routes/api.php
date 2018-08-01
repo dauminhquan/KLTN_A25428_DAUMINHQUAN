@@ -75,6 +75,12 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::post('/import-csv','RankManageController@importCsv')->name('import.csv');
         Route::post('/get-options-csv','RankManageController@getOptionsCsv')->name('get.option.csv');
     });
+    Route::group(['prefix' => '/manage-ratings'],function (){
+        Route::resource('/resource','RatingManageController')->except(['create','edit']);
+        Route::delete('delete-list','RatingManageController@delete')->name('delete.list');
+        Route::post('/import-csv','RatingManageController@importCsv')->name('import.csv');
+        Route::post('/get-options-csv','RatingManageController@getOptionsCsv')->name('get.option.csv');
+    });
     Route::group(['prefix' => '/manage-departments'],function (){
         Route::resource('/resource','DepartmentManageController')->except(['create','edit']);
         Route::delete('delete-list','DepartmentManageController@delete')->name('delete.list');

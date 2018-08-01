@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 78);
+/******/ 	return __webpack_require__(__webpack_require__.s = 79);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(6);
-var isBuffer = __webpack_require__(20);
+var isBuffer = __webpack_require__(19);
 
 /*global toString:true*/
 
@@ -409,7 +409,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(22);
+var normalizeHeaderName = __webpack_require__(21);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -830,12 +830,12 @@ module.exports = function bind(fn, thisArg) {
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(23);
-var buildURL = __webpack_require__(25);
-var parseHeaders = __webpack_require__(26);
-var isURLSameOrigin = __webpack_require__(27);
+var settle = __webpack_require__(22);
+var buildURL = __webpack_require__(24);
+var parseHeaders = __webpack_require__(25);
+var isURLSameOrigin = __webpack_require__(26);
 var createError = __webpack_require__(8);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -932,7 +932,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(29);
+      var cookies = __webpack_require__(28);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -1016,7 +1016,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(24);
+var enhanceError = __webpack_require__(23);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -1078,11 +1078,11 @@ module.exports = Cancel;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
-window.Cookies = __webpack_require__(37);
+window.Cookies = __webpack_require__(36);
 
 var token = window.Cookies('token');
 var ax = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create();
@@ -1095,7 +1095,7 @@ ax.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(37);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1103,196 +1103,215 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-    function Config() {
-        var _this = this;
+        function Config() {
+                var _this = this;
 
-        _classCallCheck(this, Config);
+                _classCallCheck(this, Config);
 
-        /*API*/
+                /*API*/
 
-        this.API = window.location.origin + '/api';
+                this.API = window.location.origin + '/api';
 
-        /*ADMIN*/
+                /*ADMIN*/
 
-        this.API_ADMIN = this.API + '/admin';
+                this.API_ADMIN = this.API + '/admin';
 
-        /*ENTERPRISES*/
-        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-        };
-        /*ENTERPRISES*/
+                /*ENTERPRISES*/
+                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+                };
+                /*ENTERPRISES*/
 
-        /*STUDENTS*/
-        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-        };
-        /*STUDENTS*/
+                /*STUDENTS*/
+                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+                };
+                /*STUDENTS*/
 
-        /*JOBS*/
-        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_JOBS + '/get-option-csv';
-        };
-        /*JOBS*/
+                /*JOBS*/
+                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_JOBS + '/get-option-csv';
+                };
+                /*JOBS*/
 
-        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-        /*NOTIFIES*/
-        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-        };
-        /*NOTIFIES*/
+                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
 
-        /*API*/
+                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-        /*WEB*/
+                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-        this.WEB = window.location.origin;
+                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
 
-        this.WEB_ADMIN = this.WEB + '/admin';
+                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+                /*NOTIFIES*/
+                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+                };
+                /*NOTIFIES*/
 
-        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+                /*API*/
 
-        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+                /*WEB*/
 
-        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+                this.WEB = window.location.origin;
 
-        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
-        /*WEB*/
-    }
+                this.WEB_ADMIN = this.WEB + '/admin';
 
-    _createClass(Config, [{
-        key: 'notifySuccess',
-        value: function notifySuccess() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: message,
-                    addclass: 'bg-success'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: 'Thao tác thành công',
-                    addclass: 'bg-success'
-                });
-            }
+                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+
+                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+
+                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+
+                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+                /*WEB*/
         }
-    }, {
-        key: 'notifyWarning',
-        value: function notifyWarning() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: message,
-                    addclass: 'bg-warning'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                    addclass: 'bg-warning'
-                });
-            }
-        }
-    }, {
-        key: 'notifyError',
-        value: function notifyError() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        _createClass(Config, [{
+                key: 'notifySuccess',
+                value: function notifySuccess() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: message,
-                    addclass: 'bg-danger'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: 'Thao tác thất bại',
-                    addclass: 'bg-danger'
-                });
-            }
-        }
-    }, {
-        key: 'getError',
-        value: function getError(data) {
-            var message = '';
-            message = data.message;
-            message += '<br>';
-            var errors = data.errors;
-            var keys = Object.keys(errors);
-            keys.forEach(function (key) {
-                errors[key].forEach(function (item) {
-                    message += item + '<br>';
-                });
-            });
-            return message;
-        }
-    }]);
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: message,
+                                        addclass: 'bg-success'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: 'Thao tác thành công',
+                                        addclass: 'bg-success'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyWarning',
+                value: function notifyWarning() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-    return Config;
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: message,
+                                        addclass: 'bg-warning'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                                        addclass: 'bg-warning'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyError',
+                value: function notifyError() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: message,
+                                        addclass: 'bg-danger'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: 'Thao tác thất bại',
+                                        addclass: 'bg-danger'
+                                });
+                        }
+                }
+        }, {
+                key: 'getError',
+                value: function getError(data) {
+                        var message = '';
+                        message = data.message;
+                        message += '<br>';
+                        var errors = data.errors;
+                        var keys = Object.keys(errors);
+                        keys.forEach(function (key) {
+                                errors[key].forEach(function (item) {
+                                        message += item + '<br>';
+                                });
+                        });
+                        return message;
+                }
+        }]);
+
+        return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
-/* 14 */,
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12255,10 +12274,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(16).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(15).setImmediate))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -12314,7 +12333,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(17);
+__webpack_require__(16);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -12328,7 +12347,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -12521,13 +12540,13 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(18);
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12535,7 +12554,7 @@ module.exports = __webpack_require__(19);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(6);
-var Axios = __webpack_require__(21);
+var Axios = __webpack_require__(20);
 var defaults = __webpack_require__(3);
 
 /**
@@ -12570,14 +12589,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(10);
-axios.CancelToken = __webpack_require__(35);
+axios.CancelToken = __webpack_require__(34);
 axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(36);
+axios.spread = __webpack_require__(35);
 
 module.exports = axios;
 
@@ -12586,7 +12605,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /*!
@@ -12613,7 +12632,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12621,8 +12640,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(30);
-var dispatchRequest = __webpack_require__(31);
+var InterceptorManager = __webpack_require__(29);
+var dispatchRequest = __webpack_require__(30);
 
 /**
  * Create a new instance of Axios
@@ -12699,7 +12718,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12718,7 +12737,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12751,7 +12770,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12779,7 +12798,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12852,7 +12871,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12912,7 +12931,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12987,7 +13006,7 @@ module.exports = (
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13030,7 +13049,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13090,7 +13109,7 @@ module.exports = (
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13149,18 +13168,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(32);
+var transformData = __webpack_require__(31);
 var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(3);
-var isAbsoluteURL = __webpack_require__(33);
-var combineURLs = __webpack_require__(34);
+var isAbsoluteURL = __webpack_require__(32);
+var combineURLs = __webpack_require__(33);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -13242,7 +13261,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13269,7 +13288,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13290,7 +13309,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13311,7 +13330,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13375,7 +13394,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13409,7 +13428,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -13587,16 +13606,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 })(typeof window === 'undefined' ? this : window);
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(38);
 const translateOptions=(e,t,o)=>{const s=t?Object.assign({},o?PNotifyCompat.prototype.options[o]:{},e):Object.assign({},PNotifyCompat.prototype.options,e),l=e=>{let t,o=e;for(;-1!==(t=o.indexOf("_"));)o=o.slice(0,t)+o.slice(t+1,t+2).toUpperCase()+o.slice(t+2);return o};for(let e in s)if(s.hasOwnProperty(e)&&-1!==e.indexOf("_")){s[l(e)]=s[e],delete s[e]}return t||(s.hasOwnProperty("addclass")&&(s.addClass=s.addclass,delete s.addclass),s.hasOwnProperty("cornerclass")&&(s.cornerClass=s.cornerclass,delete s.cornerClass),s.hasOwnProperty("textEscape")&&(s.textTrusted=!s.textEscape,delete s.textEscape),s.hasOwnProperty("titleEscape")&&(s.titleTrusted=!s.titleEscape,delete s.titleEscape),s.hasOwnProperty("styling")&&("bootstrap3"===s.styling?s.icons="bootstrap3":"fontawesome"===s.styling&&(s.styling="bootstrap3",s.icons="fontawesome4")),s.hasOwnProperty("stack")&&s.stack.overlay_close&&(s.stack.overlayClose=s.stack.overlay_close),s.modules={},s.hasOwnProperty("animate")&&(s.modules.Animate=translateOptions(s.animate,!0,"animate"),delete s.animate),s.hasOwnProperty("buttons")&&(s.modules.Buttons=translateOptions(s.buttons,!0,"buttons"),delete s.buttons,s.modules.Buttons.classes&&(s.modules.Buttons.classes=translateOptions(s.modules.Buttons.classes,!0))),s.hasOwnProperty("confirm")&&(s.modules.Confirm=translateOptions(s.confirm,!0,"confirm"),s.modules.Confirm.promptDefault&&(s.modules.Confirm.promptValue=s.modules.Confirm.promptDefault,delete s.modules.Confirm.promptDefault),delete s.confirm),s.hasOwnProperty("desktop")&&(s.modules.Desktop=translateOptions(s.desktop,!0,"desktop"),delete s.desktop),s.hasOwnProperty("history")&&(s.modules.History=translateOptions(s.history,!0,"history"),delete s.history),s.hasOwnProperty("mobile")&&(s.modules.Mobile=translateOptions(s.mobile,!0,"mobile"),delete s.mobile),s.hasOwnProperty("nonblock")&&(s.modules.NonBlock=translateOptions(s.nonblock,!0,"nonblock"),delete s.nonblock),s.hasOwnProperty("reference")&&(s.modules.Reference=translateOptions(s.reference,!0,"reference"),delete s.reference),s.hasOwnProperty("beforeInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeInit=s.beforeInit,delete s.beforeInit),s.hasOwnProperty("afterInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterInit=s.afterInit,delete s.afterInit),s.hasOwnProperty("beforeOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeOpen=s.beforeOpen,delete s.beforeOpen),s.hasOwnProperty("afterOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterOpen=s.afterOpen,delete s.afterOpen),s.hasOwnProperty("beforeClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeClose=s.beforeClose,delete s.beforeClose),s.hasOwnProperty("afterClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterClose=s.afterClose,delete s.afterClose)),s};class PNotifyCompat extends __WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */]{constructor(e){"object"!=typeof e&&(e={text:e}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&e.before_init&&e.before_init(e),e=translateOptions(e),super({target:document.body,data:e});const t=this.get;this.get=function(e){return void 0===e?Object.assign(window.jQuery?window.jQuery(this.refs.elem):this.refs.elem,t.call(this)):t.call(this,e)},this.on("pnotify.confirm",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.confirm",[this,e.value])}),this.on("pnotify.cancel",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.cancel",this)}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks.getCallbacks(this,null,"afterInit")(this)}update(e){return e=translateOptions(e),super.update(e)}}PNotifyCompat.prototype.options={text_escape:!1,title_escape:!1},PNotifyCompat.reload=(()=>PNotifyCompat),PNotifyCompat.removeAll=(()=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeAll()),PNotifyCompat.removeStack=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeStack(e)),PNotifyCompat.positionAll=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].positionAll(e)),PNotifyCompat.desktop={permission:()=>{__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Desktop.permission()}},window.jQuery&&window.jQuery(()=>{window.jQuery(document.body).on("pnotify.history-last",function(){__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.History.showLast()})});/* harmony default export */ __webpack_exports__["a"] = (PNotifyCompat);
 //# sourceMappingURL=PNotifyCompat.js.map
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13604,6 +13623,7 @@ let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document
 //# sourceMappingURL=PNotify.js.map
 
 /***/ }),
+/* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
@@ -13642,21 +13662,22 @@ let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document
 /* 75 */,
 /* 76 */,
 /* 77 */,
-/* 78 */
+/* 78 */,
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(79);
+module.exports = __webpack_require__(80);
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_content_vue__);
-window.Vue = __webpack_require__(15);
+window.Vue = __webpack_require__(14);
 
 Vue.component('web-content', __WEBPACK_IMPORTED_MODULE_0__components_content_vue___default.a);
 var app = new Vue({
@@ -13664,15 +13685,15 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(81)
+var __vue_script__ = __webpack_require__(82)
 /* template */
-var __vue_template__ = __webpack_require__(82)
+var __vue_template__ = __webpack_require__(83)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13711,7 +13732,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13830,7 +13851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

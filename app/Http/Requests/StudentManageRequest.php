@@ -29,9 +29,9 @@ class StudentManageRequest extends FormRequest
                 return [
                     'address' =>'required',
                     'branch_code' => 'required',
-                    'code' =>'required|unique:student,code',
+                    'code' =>'required|unique:students,code',
                     'course_code' => 'required',
-                    'email_address' => 'required|unique:student,email_address',
+                    'email_address' => 'required|unique:students,email_address',
                     'full_name' => 'required',
                     'province_id' => 'required',
                     'sex' => 'required'

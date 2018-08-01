@@ -24,7 +24,6 @@
         },
         methods:{
             updateNameItem(nameItem){
-
                 this.nameItem = nameItem
             },
             updateAvatar(avatar){

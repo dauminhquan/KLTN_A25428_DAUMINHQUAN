@@ -37,7 +37,12 @@ class StudentService extends BaseService implements ManageInterface
 
     public function getOne($id)
     {
-        return Student::findOrFail($id);
+        $student = Student::findOrFail($id);
+        $department = $student->branch->department;
+        return response()->json([
+            'student' => $student,
+            'department' => $department
+        ]);
     }
 
     public function getProfile($option)
@@ -59,7 +64,7 @@ class StudentService extends BaseService implements ManageInterface
     {
 
             try{
-                $columns = Schema::getColumnListing((new Student())->getTableName());
+                $columns = Schema::getColumnListing((new Student())->getTable());
                 $student = Student::findOrFail($id);
                 foreach ($columns as $column)
                 {
@@ -67,7 +72,6 @@ class StudentService extends BaseService implements ManageInterface
                     {
                         $student->$column = $inputs[$column];
                     }
-
                 }
                 $student->update();
                 return $student;

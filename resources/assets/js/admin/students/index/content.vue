@@ -112,14 +112,6 @@
         data(){
             return {
                 columns : [
-                    {
-                        key: 'name',
-                        text: 'Tên'
-                    },
-                    {
-                        key: 'email',
-                        text: 'Địa chỉ Email'
-                    }
                 ],
                 buttonConfig: [
                     {
@@ -183,7 +175,7 @@
                             text: 'Mã sinh viên'
                         },
                         {
-                            key:'name',
+                            key:'full_name',
                             text: 'Tên sinh viên'
                         },
                         {
