@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /var/www/html/kltn && sudo cp .env.example .env && sudo rm .env.example && sudo composer install && sudo /etc/init.d/mysql start > /var/log/install.out 2>&1 && sudo /etc/init.d/apache2 restart
+cd /var/www/html/kltn && sudo cp .env.example .env && sudo rm .env.example && sudo composer install && sudo /etc/init.d/mysql start > /var/log/install.out 2>&1 && sudo /etc/init.d/apache2 restart && sudo chmod 775 -R /var/www/html/kltn && sudo chmod 777 -R /var/www/html/kltn/storage
