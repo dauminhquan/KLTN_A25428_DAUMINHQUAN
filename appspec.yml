@@ -8,6 +8,6 @@ permissions:
      mode: 755
 hooks:
   BeforeInstall:
- - location: scripts/removeProject.sh
-   AfterInstall:
+    - location: scripts/removeProject.sh
+  AfterInstall:
     - location: scripts/composerInstall.sh
