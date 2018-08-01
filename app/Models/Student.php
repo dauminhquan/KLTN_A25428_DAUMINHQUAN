@@ -25,6 +25,12 @@ class Student extends Model
     public function works(){
         return $this->hasMany(Work::class);
     }
+    public function rating(){
+        return $this->belongsTo(Rating::class);
+    }
+    public function province(){
+        return $this->belongsTo(Province::class);
+    }
     public function enterprises(){
         return $this->hasManyThrough(Enterprise::class,Work::class);
     }

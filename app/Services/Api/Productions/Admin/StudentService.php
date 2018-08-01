@@ -38,6 +38,10 @@ class StudentService extends BaseService implements ManageInterface
     public function getOne($id)
     {
         $student = Student::findOrFail($id);
+        $student->branch = $student->branch;
+        $student->province = $student->province;
+        $student->rating = $student->rating;
+        $student->course = $student->course;
         $department = $student->branch->department;
         return response()->json([
             'student' => $student,

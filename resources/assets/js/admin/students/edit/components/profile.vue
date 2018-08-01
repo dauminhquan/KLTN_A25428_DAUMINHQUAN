@@ -59,13 +59,13 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Khóa học</label>
-                                    <v-select :options="courses" :disabled="departmentSelect == null" label="name" v-model="info.course_code" required="true"></v-select>
+                                    <v-select :options="courses" :disabled="departmentSelect == null" label="name" v-model="info.course" required="true"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Ngành học</label>
-                                    <v-select :options="branches" :disabled="departmentSelect == null" label="name" v-model="info.branch_code" required="true"></v-select>
+                                    <v-select :options="branches" :disabled="departmentSelect == null" label="name" v-model="info.branch" required="true"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -97,7 +97,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Thành phố:</label>
-                                    <v-select :options="provinces" label="name" v-model="info.province_id" required="true"></v-select>
+                                    <v-select :options="provinces" label="name" v-model="info.province" required="true"></v-select>
                                 </div>
                             </div>
                         </div>
@@ -230,22 +230,6 @@
         methods:{
             submitUpdate(){
                 let vm =this
-                if(typeof vm.info.branch_code == 'object')
-                {
-                    vm.info.branch_code = vm.info.branch_code.code
-                }
-                if(typeof vm.info.course_code == 'object')
-                {
-                    vm.info.course_code = vm.info.course_code.code
-                }
-                if(typeof vm.info.province_id == 'object')
-                {
-                    vm.info.province_id = vm.info.province_id.code
-                }
-                if(vm.rating_id != null)
-                {
-                    vm.rating_id = vm.rating_id.id
-                }
                 axios.put(vm.config.API_ADMIN_STUDENTS_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
                     vm.config.notifySuccess()
                     setTimeout(function () {
