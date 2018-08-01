@@ -26,7 +26,7 @@ mix.js('resources/assets/js/admin/salaries/index/index.js', 'public/assets/js/bu
 //notifies
 mix.js('resources/assets/js/admin/notifies/index/index.js', 'public/assets/js/build/pages/admin/notifies/index.js');
 mix.js('resources/assets/js/admin/notifies/create/index.js', 'public/assets/js/build/pages/admin/notifies/create.js');
-// mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
+mix.js('resources/assets/js/admin/notifies/edit/index.js', 'public/assets/js/build/pages/admin/notifies/edit.js');
 
 // mix.js('resources/assets/js/admin/jobs/skillsmanage/positionsmanage.js', 'public/assets/js/build/pages/admin/post/skill.js');
 //

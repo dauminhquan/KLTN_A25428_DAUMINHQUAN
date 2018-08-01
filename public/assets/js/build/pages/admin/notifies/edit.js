@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 210);
+/******/ 	return __webpack_require__(__webpack_require__.s = 215);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -12064,39 +12064,41 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 210:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(211);
+module.exports = __webpack_require__(216);
 
 
 /***/ }),
 
-/***/ 211:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_content_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_content__);
 window.Vue = __webpack_require__(15);
 
-Vue.component('web-content', __WEBPACK_IMPORTED_MODULE_0__components_content_vue___default.a);
 var app = new Vue({
-    el: '#page-content'
+    components: {
+        'web-content': __WEBPACK_IMPORTED_MODULE_0__components_content___default.a
+    },
+    el: '#page-container'
 });
 
 /***/ }),
 
-/***/ 212:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(213)
+var __vue_script__ = __webpack_require__(218)
 /* template */
-var __vue_template__ = __webpack_require__(214)
+var __vue_template__ = __webpack_require__(219)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12113,7 +12115,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\create\\components\\content.vue"
+Component.options.__file = "resources\\assets\\js\\admin\\notifies\\edit\\components\\content.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12122,9 +12124,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5ed8176c", Component.options)
+    hotAPI.createRecord("data-v-2f0d733c", Component.options)
   } else {
-    hotAPI.reload("data-v-5ed8176c", Component.options)
+    hotAPI.reload("data-v-2f0d733c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12136,7 +12138,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 213:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12183,6 +12185,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['key-item'],
     data: function data() {
         return {
             info: {
@@ -12195,15 +12198,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var vm = this;
+        vm.getInfo();
         CKEDITOR.replace('textarea-info').on('change', function () {
             vm.info.content = this.getData();
         });
     },
 
     methods: {
-        submitInsert: function submitInsert() {
+        submitUpdate: function submitUpdate() {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_0__axios__["a" /* default */].post(vm.config.API_ADMIN_NOTIFIES_RESOURCE, vm.info).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_0__axios__["a" /* default */].put(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '/' + vm.keyItem, vm.info).then(function (data) {
                 vm.config.notifySuccess();
                 setTimeout(function () {
                     window.location.href = vm.config.WEB_ADMIN_NOTIFIES;
@@ -12226,13 +12230,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     vm.config.notifyError();
                 }
             });
+        },
+        getInfo: function getInfo() {
+            var vm = this;
+            if (vm.keyItem !== undefined) {
+                __WEBPACK_IMPORTED_MODULE_0__axios__["a" /* default */].get(vm.config.API_ADMIN_NOTIFIES_RESOURCE + '/' + vm.keyItem).then(function (data) {
+                    vm.info = data.data;
+                }).catch(function (err) {
+                    console.dir(err);
+                    if (err.response.status == 422) {
+                        var message = vm.config.getError(err.response.data);
+                        vm.config.notifyError(message);
+                    } else {
+                        vm.config.notifyError();
+                    }
+                });
+            }
         }
     }
 });
 
 /***/ }),
 
-/***/ 214:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12246,7 +12266,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.submitInsert($event)
+            return _vm.submitUpdate($event)
           }
         }
       },
@@ -12386,7 +12406,7 @@ var staticRenderFns = [
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
         [
-          _vm._v("Thêm mới thông báo "),
+          _vm._v("Update thông báo "),
           _c("i", { staticClass: "icon-arrow-right14 position-right" })
         ]
       )
@@ -12398,7 +12418,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5ed8176c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2f0d733c", module.exports)
   }
 }
 

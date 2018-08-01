@@ -16,7 +16,7 @@
         <web-content key-item="{{$id}}"></web-content>
 @endsection
 @section("js-page")
-    <script type="text/javascript" src="{{asset("assets/js/build/pages/admin/enterprises/edit.js")}}"></script>
+    <script type="text/javascript" src="{{asset("assets/js/build/pages/admin/notifies/edit.js")}}"></script>
 @endsection
 @section('theme-asset')
     <script type="text/javascript" src="{{asset('assets/js/plugins/ckeditor/ckeditor.js')}}"></script>

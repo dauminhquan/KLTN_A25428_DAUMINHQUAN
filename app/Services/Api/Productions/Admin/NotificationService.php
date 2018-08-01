@@ -40,7 +40,12 @@ class NotificationService extends BaseService implements ManageInterface
             }
             return $notifies;
         }
-        return Notification::paginate(500);
+        $notifies = Notification::paginate(500);
+        foreach ($notifies as $notify)
+        {
+            $notify->admin = $notify->admin;
+        }
+        return $notifies;
 
     }
 
@@ -57,7 +62,9 @@ class NotificationService extends BaseService implements ManageInterface
     }
 
     public function save($inputs){
+
         try{
+            $inputs['admin_id'] = 1;
             $notification = Notification::create($inputs);
             return $notification;
         }catch (\Exception $exception)
@@ -68,7 +75,6 @@ class NotificationService extends BaseService implements ManageInterface
 
     public function update($inputs,$id)
     {
-
             try{
                 $columns = Schema::getColumnListing((new Notification())->getTableName());
                 $notification = Notification::findOrFail($id);

@@ -6,7 +6,6 @@ use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\NotificationManageRequest;
-use App\Models\Notification;
 use App\Services\Api\Productions\Admin\NotificationService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

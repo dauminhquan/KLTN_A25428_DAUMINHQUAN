@@ -76,6 +76,8 @@ class Config{
 
         this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN+'/enterprises'
 
+        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN+'/students'
+
         this.WEB_ADMIN_JOBS = this.WEB_ADMIN+'/jobs'
 
         this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN+'/positions'

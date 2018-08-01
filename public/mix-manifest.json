@@ -9,6 +9,7 @@
     "/assets/js/build/pages/admin/jobs/index.js": "/assets/js/build/pages/admin/jobs/index.js",
     "/assets/js/build/pages/admin/enterprises/index.js": "/assets/js/build/pages/admin/enterprises/index.js",
     "/assets/js/build/pages/admin/jobs/edit.js": "/assets/js/build/pages/admin/jobs/edit.js",
+    "/assets/js/build/pages/admin/notifies/edit.js": "/assets/js/build/pages/admin/notifies/edit.js",
     "/assets/js/build/pages/admin/notifies/create.js": "/assets/js/build/pages/admin/notifies/create.js",
     "/assets/js/build/pages/admin/enterprises/create.js": "/assets/js/build/pages/admin/enterprises/create.js",
     "/assets/js/common.js": "/assets/js/common.js",

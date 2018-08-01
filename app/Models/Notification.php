@@ -7,7 +7,8 @@ use App\Model;
 class Notification extends Model
 {
     protected $table = 'notifications';
+    protected $fillable = ['title','content','description','admin_id'];
     public function admin(){
-        return $this->hasOne(Admin::class,'id','admin_id');
+        return $this->belongsTo(Admin::class);
     }
 }

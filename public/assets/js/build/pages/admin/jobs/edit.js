@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(7);
+var bind = __webpack_require__(6);
 var isBuffer = __webpack_require__(20);
 
 /*global toString:true*/
@@ -425,10 +425,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(7);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(7);
   }
   return adapter;
 }
@@ -805,8 +805,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */,
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -824,7 +823,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -835,7 +834,7 @@ var settle = __webpack_require__(23);
 var buildURL = __webpack_require__(25);
 var parseHeaders = __webpack_require__(26);
 var isURLSameOrigin = __webpack_require__(27);
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(8);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
 
 module.exports = function xhrAdapter(config) {
@@ -1011,7 +1010,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1036,7 +1035,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1048,7 +1047,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1074,8 +1073,8 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 12 */,
-/* 13 */
+/* 11 */,
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1092,7 +1091,7 @@ ax.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 /* harmony default export */ __webpack_exports__["a"] = (ax);
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1202,6 +1201,8 @@ var Config = function () {
 
         this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
+        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+
         this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
 
         this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
@@ -1290,6 +1291,7 @@ var Config = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
+/* 14 */,
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12532,7 +12534,7 @@ module.exports = __webpack_require__(19);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(7);
+var bind = __webpack_require__(6);
 var Axios = __webpack_require__(21);
 var defaults = __webpack_require__(3);
 
@@ -12567,9 +12569,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(11);
+axios.Cancel = __webpack_require__(10);
 axios.CancelToken = __webpack_require__(35);
-axios.isCancel = __webpack_require__(10);
+axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -12722,7 +12724,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(8);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -13155,7 +13157,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(32);
-var isCancel = __webpack_require__(10);
+var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(33);
 var combineURLs = __webpack_require__(34);
@@ -13315,7 +13317,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(11);
+var Cancel = __webpack_require__(10);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -13779,8 +13781,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(13);
 //
 //
 //

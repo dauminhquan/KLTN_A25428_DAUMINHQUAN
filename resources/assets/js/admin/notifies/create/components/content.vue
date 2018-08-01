@@ -41,7 +41,6 @@
         data(){
             return {
                 info:{
-                    name:'',
                     title: '',
                     description: '',
                     content: '',
