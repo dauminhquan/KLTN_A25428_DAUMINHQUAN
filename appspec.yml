@@ -7,5 +7,7 @@ permissions:
    - object: /var/www/html/kltn
      mode: 755
 hooks:
+  BeforeInstall:
+ - location: scripts/removeProject.sh
    AfterInstall:
     - location: scripts/composerInstall.sh
