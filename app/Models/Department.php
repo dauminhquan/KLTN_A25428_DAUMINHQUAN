@@ -9,10 +9,11 @@ class Department extends Model
     protected $primaryKey = 'code';
     protected $fillable = ['code','name'];
     protected $keyType = 'String';
+    protected $table='departments';
 
     public function branches()
     {
-        return $this->hasMany(Branch::class,'department_code','code');
+        return $this->hasMany(Branch::class);
     }
 
 }

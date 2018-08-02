@@ -25,7 +25,8 @@ mix.js('resources/assets/js/admin/types/index/index.js', 'public/assets/js/build
 mix.js('resources/assets/js/admin/salaries/index/index.js', 'public/assets/js/build/pages/admin/salaries/index.js');
 mix.js('resources/assets/js/admin/ratings/index/index.js', 'public/assets/js/build/pages/admin/ratings/index.js');
 mix.js('resources/assets/js/admin/ranks/index/index.js', 'public/assets/js/build/pages/admin/ranks/index.js');
-
+mix.js('resources/assets/js/admin/departments/index/index.js', 'public/assets/js/build/pages/admin/departments/index.js');
+mix.js('resources/assets/js/admin/branches/index/index.js', 'public/assets/js/build/pages/admin/branches/index.js');
 //notifies
 mix.js('resources/assets/js/admin/notifies/index/index.js', 'public/assets/js/build/pages/admin/notifies/index.js');
 mix.js('resources/assets/js/admin/notifies/create/index.js', 'public/assets/js/build/pages/admin/notifies/create.js');

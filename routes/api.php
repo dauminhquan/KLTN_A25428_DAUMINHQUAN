@@ -17,9 +17,8 @@ Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.'],funct
         Route::delete('delete-list','StudentManageController@delete')->name('delete.list');
         Route::post('update-avatar/{id}','StudentManageController@updateAvatar')->name('update.avatar');
         Route::get('list-enterprise/{id}','StudentManageController@listenterprise')->name('list.enterprise');
-
         Route::post('/import-csv','StudentManageController@importCsv')->name('import.csv');
-        Route::get('list-job/{id}','StudentManageController@listJob')->name('list.job');
+        Route::get('list-work/{id}','StudentManageController@listWork')->name('list.work');
         Route::post('/get-options-csv','StudentManageController@getOptionsCsv')->name('get.option.csv');
 
     });

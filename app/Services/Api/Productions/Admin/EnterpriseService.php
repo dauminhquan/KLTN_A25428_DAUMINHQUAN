@@ -61,7 +61,7 @@ class EnterpriseService extends BaseService implements ManageInterface
     {
 
             try{
-                $columns = Schema::getColumnListing((new Enterprise())->getTableName());
+                $columns = Schema::getColumnListing((new Enterprise())->getTable());
                 $enterprise = Enterprise::findOrFail($id);
                 foreach ($columns as $column)
                 {

@@ -55,7 +55,7 @@ class PositionService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Position())->getTableName());
+            $columns = Schema::getColumnListing((new Position())->getTable());
             $position = Position::findOrFail($id);
             foreach ($columns as $column)
             {

@@ -55,7 +55,7 @@ class SkillService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Skill())->getTableName());
+            $columns = Schema::getColumnListing((new Skill())->getTable());
             $skill = Skill::findOrFail($id);
             foreach ($columns as $column)
             {

@@ -76,7 +76,7 @@ class NotificationService extends BaseService implements ManageInterface
     public function update($inputs,$id)
     {
             try{
-                $columns = Schema::getColumnListing((new Notification())->getTableName());
+                $columns = Schema::getColumnListing((new Notification())->getTable());
                 $notification = Notification::findOrFail($id);
                 foreach ($columns as $column)
                 {

@@ -65,8 +65,8 @@ class StudentManageController extends Controller
         return $this->studentService->getListEnterprise($id);
     }
 
-    public function listJob($id){
-        return $this->studentService->getListJob($id);
+    public function listWork($id){
+        return $this->studentService->getListWork($id);
     }
 
     public function importCsv(CsvRequest $request){

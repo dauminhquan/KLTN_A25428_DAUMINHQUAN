@@ -110,14 +110,6 @@
         data(){
             return {
                 columns : [
-                    {
-                        key: 'name',
-                        text: 'Tên'
-                    },
-                    {
-                        key: 'email',
-                        text: 'Địa chỉ Email'
-                    }
                 ],
                 buttonConfig: [
                     {

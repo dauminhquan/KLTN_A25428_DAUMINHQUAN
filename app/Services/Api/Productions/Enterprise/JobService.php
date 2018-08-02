@@ -77,7 +77,7 @@ class JobService implements ManageInterface
             {
                 abort_unless(false,404);
             }
-            $columns = Schema::getColumnListing((new Job())->getTableName());
+            $columns = Schema::getColumnListing((new Job())->getTable());
 
             foreach ($columns as $column)
             {

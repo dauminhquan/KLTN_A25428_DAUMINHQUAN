@@ -55,7 +55,7 @@ class RatingService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Rating())->getTableName());
+            $columns = Schema::getColumnListing((new Rating())->getTable());
             $rating = Rating::findOrFail($id);
             foreach ($columns as $column)
             {

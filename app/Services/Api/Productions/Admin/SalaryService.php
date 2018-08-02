@@ -54,7 +54,7 @@ class SalaryService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Salary())->getTableName());
+            $columns = Schema::getColumnListing((new Salary())->getTable());
             $salary = Salary::findOrFail($id);
             foreach ($columns as $column)
             {

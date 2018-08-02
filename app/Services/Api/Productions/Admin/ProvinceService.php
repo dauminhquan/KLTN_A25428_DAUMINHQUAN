@@ -55,7 +55,7 @@ class ProvinceService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Province())->getTableName());
+            $columns = Schema::getColumnListing((new Province())->getTable());
             $province = Province::findOrFail($id);
             foreach ($columns as $column)
             {

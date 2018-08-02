@@ -66,29 +66,35 @@ class DepartmentService extends BaseService implements ManageInterface
 
     public function update($inputs, $id)
     {
-        try{
-            $columns = Schema::getColumnListing((new Department())->getTableName());
-            $department = Department::findOrFail($id);
-            foreach ($columns as $column)
-            {
-                if(isset($inputs[$column]))
-                {
-                    $department->$column = $inputs[$column];
-                }
+        $columns = Schema::getColumnListing((new Department())->getTable());
+        $department = Department::findOrFail($id);
 
-            }
-            $department->update();
-            return $department;
-        }catch (\Exception $exception)
+        foreach ($columns as $column)
         {
-            return ['err' => $exception->getMessage()];
+
+            if(isset($inputs[$column]))
+            {
+                if($column == $department->getKeyName())
+                {
+                    $branches =  $department->branches;
+                    foreach ($branches as $branch)
+                    {
+                        $branch->department_code = $inputs[$column];
+                        $branch->update();
+                    }
+                }
+                $department->$column = $inputs[$column];
+            }
+
         }
+        $department->update();
+        return $department;
     }
 
     public function destroy($id)
     {
         $department = Department::findOrFail($id);
-        $department->branches()->detach();
+        $department->branches()->delete();
         $department->delete();
         return $department;
 
@@ -102,7 +108,7 @@ class DepartmentService extends BaseService implements ManageInterface
             $department = Department::find($item);
             if($department)
             {
-                $department->branches()->detach();
+                $department->branches()->delete();
                 $department->delete();
                 unset($success[$item]);
             }

@@ -28,11 +28,19 @@ class StudentService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                return Student::paginate(100000);
+                $students = Student::paginate(100000);
             }
-            return Student::paginate($inputs['size']);
+            $students = Student::paginate($inputs['size']);
         }
-        return Student::paginate(500);
+        else {
+            $students = Student::paginate(500);
+        }
+        foreach ($students as $student)
+        {
+            $student->branch = $student->branch;
+            $student->department = $student->branch == null? null : $student->branch->department;
+        }
+        return $students;
     }
 
     public function getOne($id)
@@ -42,7 +50,7 @@ class StudentService extends BaseService implements ManageInterface
         $student->province = $student->province;
         $student->rating = $student->rating;
         $student->course = $student->course;
-        $department = $student->branch->department;
+        $department = $student->branch != null ?  $student->branch->department: null;
         return response()->json([
             'student' => $student,
             'department' => $department
@@ -172,9 +180,16 @@ class StudentService extends BaseService implements ManageInterface
         return $student->enterprises;
     }
 
-    public function getListJob($id){
+    public function getListWork($id){
         $student = Student::findOrFail($id);
-        return $student->jobs;
+        $works = $student->works;
+        foreach ($works as $work)
+        {
+            $work->enterprise = $work->enterprise;
+            $work->rank = $work->rank;
+            $work->salary = $work->salary;
+        }
+        return $works;
     }
     public function getUser($id)
     {

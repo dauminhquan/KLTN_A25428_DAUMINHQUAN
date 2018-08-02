@@ -32,7 +32,7 @@ class ProfileService
     {
         try{
 
-            $columns = Schema::getColumnListing((new Enterprise())->getTableName());
+            $columns = Schema::getColumnListing((new Enterprise())->getTable());
             foreach ($columns as $column)
             {
                 if(isset($inputs[$column]))

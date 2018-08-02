@@ -27,17 +27,23 @@ class BranchService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                return Branch::paginate(100000);
+                $branches = Branch::paginate(100000);
             }
-            return Branch::paginate($inputs['size']);
+            $branches = Branch::paginate($inputs['size']);
+        }else{
+            $branches = Branch::paginate(500);
         }
-        return Branch::paginate(500);
-
+       foreach ($branches as $branch)
+       {
+           $branch->department = $branch->department;
+       }
+        return $branches;
     }
 
     public function getOne($id)
     {
         $branch = Branch::findOrFail($id);
+        $branch->department = $branch->department;
         return $branch;
     }
 
@@ -56,7 +62,7 @@ class BranchService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Branch())->getTableName());
+            $columns = Schema::getColumnListing((new Branch())->getTable());
             $branch = Branch::findOrFail($id);
             foreach ($columns as $column)
             {

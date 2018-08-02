@@ -55,7 +55,7 @@ class RankService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Rank())->getTableName());
+            $columns = Schema::getColumnListing((new Rank())->getTable());
             $rank = Rank::findOrFail($id);
             foreach ($columns as $column)
             {

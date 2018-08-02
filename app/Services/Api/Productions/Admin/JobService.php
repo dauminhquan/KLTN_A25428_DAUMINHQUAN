@@ -95,7 +95,7 @@ class JobService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Job())->getTableName());
+            $columns = Schema::getColumnListing((new Job())->getTable());
             $job = Job::findOrFail($id);
             if(isset($inputs['skills']))
             {

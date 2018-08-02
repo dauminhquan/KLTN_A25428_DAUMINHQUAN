@@ -2,12 +2,12 @@
 @section('header-content')
     <div class="page-header-content">
         <div class="page-title">
-            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý hình thức việc làm</span></h4>
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý xếp hạng</span></h4>
 
             <ul class="breadcrumb breadcrumb-caret position-right">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">Quản lý hình thức việc làm</a></li>
-                <li class="active">Danh sách hình thức việc làm</li>
+                <li><a href="#">Quản lý xếp hạng</a></li>
+                <li class="active">Danh sách xếp hạng</li>
             </ul>
         </div>
 

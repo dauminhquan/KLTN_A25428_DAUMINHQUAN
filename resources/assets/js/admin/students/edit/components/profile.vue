@@ -120,7 +120,7 @@
                             <div class="col-md-3"  v-if="info.graduated ==1 ">
                                 <div class="form-group">
                                     <label>Tốt nghiệp hạng:</label>
-                                    <v-select :options="ratings" label="name"  v-model="info.rating_id"></v-select>
+                                    <v-select :options="ratings" label="name"  v-model="info.rating"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3"  v-if="info.graduated ==1 ">
@@ -186,25 +186,29 @@
         data(){
             return {
                 info:{
-                    "code": null,
-                    "first_name": null,
-                    "last_name": null,
-                    "full_name": null,
-                    "address": null,
-                    "sex": null,
-                    "phone_number": null,
-                    "email_address": null,
-                    "birth_day": null,
-                    "province_id": null,
-                    "rating_id": null,
-                    "introduce": null,
-                    "graduated": null,
-                    "medium_score": null,
-                    "date_graduated": null,
-                    "avatar":null,
-                    "course_code": null,
-                    "branch_code": null,
-                    "main_class": null,
+                    code: null,
+                    first_name: null,
+                    last_name: null,
+                    full_name: null,
+                    address: null,
+                    sex: null,
+                    phone_number: null,
+                    email_address: null,
+                    birth_day: null,
+                    province_id: null,
+                    rating_id: null,
+                    introduce: null,
+                    graduated: null,
+                    medium_score: null,
+                    date_graduated: null,
+                    avatar:null,
+                    course_code: null,
+                    branch_code: null,
+                    main_class: null,
+                    branch: null,
+                    province: null,
+                    rating: null,
+                    course:null
                 },
                 provinces: [],
                 ratings: [],

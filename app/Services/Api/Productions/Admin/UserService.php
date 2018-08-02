@@ -51,7 +51,7 @@ class UserService extends BaseService implements ManageInterface
     {
 
         $user = new User();
-        $columns = Schema::getColumnListing((new User())->getTableName());
+        $columns = Schema::getColumnListing((new User())->getTable());
         foreach ($columns as $column)
         {
             if(isset($inputs[$column]))
@@ -75,7 +75,7 @@ class UserService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new User())->getTableName());
+            $columns = Schema::getColumnListing((new User())->getTable());
             $user = User::findOrFail($id);
             foreach ($columns as $column)
             {

@@ -55,7 +55,7 @@ class TypeService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Type())->getTableName());
+            $columns = Schema::getColumnListing((new Type())->getTable());
             $type = Type::findOrFail($id);
             foreach ($columns as $column)
             {

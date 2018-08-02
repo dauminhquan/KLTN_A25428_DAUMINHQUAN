@@ -55,7 +55,7 @@ class CourseService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Course())->getTableName());
+            $columns = Schema::getColumnListing((new Course())->getTable());
             $course = Course::findOrFail($id);
             foreach ($columns as $column)
             {

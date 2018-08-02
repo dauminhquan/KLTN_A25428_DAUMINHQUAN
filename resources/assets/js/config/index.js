@@ -73,6 +73,12 @@ class Config{
         this.API_ADMIN_DEPARTMENTS = this.API_ADMIN+'/manage-departments'
         this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS+'/resource'
         this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS+'/delete-list'
+        this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS+'/import-csv'
+
+        this.API_ADMIN_BRANCHES = this.API_ADMIN+'/manage-branches'
+        this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES+'/resource'
+        this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES+'/delete-list'
+        this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES+'/import-csv'
 
         this.API_ADMIN_COURSES = this.API_ADMIN+'/manage-courses'
         this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES+'/resource'

@@ -56,7 +56,7 @@ class WorkService extends BaseService implements ManageInterface
     public function update($inputs, $id)
     {
         try{
-            $columns = Schema::getColumnListing((new Work())->getTableName());
+            $columns = Schema::getColumnListing((new Work())->getTable());
             $work = Work::findOrFail($id);
             foreach ($columns as $column)
             {
