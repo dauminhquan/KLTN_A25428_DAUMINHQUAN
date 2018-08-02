@@ -125,7 +125,7 @@
 
             getData(perPage=500,page=1){
                 var vm = this
-                axios.get(vm.config.API_ENTERPRISES_JOBS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
+                axios.get(vm.config.API_ADMIN_JOBS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
                     vm.data = data.data.data
                     vm.data = vm.data.map(item => {
                         item.enterpriseName = item.enterprise.name
@@ -203,7 +203,7 @@
                 if(vm.primaryKeyDelete != -1)
                 {
                     let indexOf = -1
-                    axios.delete(vm.config.API_ENTERPRISES_JOBS_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
+                    axios.delete(vm.config.API_ADMIN_JOBS_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
                         vm.data.forEach((item,index) => {
 
                             if(item[vm.primaryKey] == vm.primaryKeyDelete)
@@ -253,7 +253,7 @@
             deleteListItem() {
                 let vm = this
                 vm.deleting = true
-                axios.delete(vm.config.API_ENTERPRISES_JOBS_DELETE_LIST,{
+                axios.delete(vm.config.API_ADMIN_JOBS_DELETE_LIST,{
                     params:{
                         id_list: vm.itemSelected
                     }
@@ -294,7 +294,7 @@
             },
             showItem(id) {
                 let vm = this
-                window.open(vm.config.WEB_ENTERPRISES_JOBS+'/'+id+'/edit','_blank')
+                window.open(vm.config.WEB_ADMIN_JOBS+'/'+id+'/edit','_blank')
             },
             changePerPage(perPage){
                 this.getData(perPage)
