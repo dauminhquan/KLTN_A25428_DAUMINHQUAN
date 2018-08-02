@@ -114,7 +114,8 @@ Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise','as' => 'ent
     Route::group(['prefix' => '/manage-jobs',],function (){
         Route::resource('/resource','JobManageController')->except(['create','edit']);
         Route::delete('delete-list','JobManageController@delete')->name('delete.list');
-
+        Route::post('/get-options-csv','JobManageController@getOptionsCsv')->name('get.option.csv');
+        Route::post('/update-file-attach/{id}','JobManageController@updateFileAttach')->name('update.file.attach');
 
     });
     Route::get('profile','ProfileManageController@getProfile')->name('profile');

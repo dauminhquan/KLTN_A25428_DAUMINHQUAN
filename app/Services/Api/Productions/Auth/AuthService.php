@@ -11,7 +11,6 @@ namespace App\Services\Api\Productions\Auth;
 
 use App\Mail\GetTokenResetPassword;
 use App\Models\User;
-use App\Services\Api\Interfaces\ManageInterface;
 use App\Services\Api\Productions\Admin\BaseService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,8 +24,10 @@ class AuthService extends BaseService /*implements ManageInterface*/
         if(Auth::attempt($inputs))
         {
             $user = Auth::user();
-
-            return $user->createToken('QuanDau');
+            return response()->json([
+                'token' => $user->createToken('QuanDau')->accessToken,
+                'user' => $user
+            ]);
         }
     }
     public function logout()

@@ -91,11 +91,25 @@ class Config{
         this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = (ID) => this.API_ADMIN_NOTIFIES+'/get-option-csv'
         /*NOTIFIES*/
         
+        /*ENTERPRISES*/
+
+        this.API_ENTERPRISES= this.API+'/enterprise'
+
+        this.API_ENTERPRISES_JOBS = this.API_ENTERPRISES+'/manage-jobs'
+        this.API_ENTERPRISES_JOBS_RESOURCE = this.API_ENTERPRISES_JOBS+'/resource'
+        this.API_ENTERPRISES_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISES_JOBS+'/update-file-attach'
+        this.API_ENTERPRISES_JOBS_DELETE_LIST = this.API_ENTERPRISES_JOBS+'/delete-list'
+        this.API_ENTERPRISES_JOBS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISES_JOBS+'/get-option-csv'
+
+
+        this.API_AUTH_LOGIN = this.API+'/login'
         /*API*/
 
         /*WEB*/
 
         this.WEB = window.location.origin
+
+        this.WEB_HOME = this.WEB
 
         this.WEB_ADMIN = this.WEB+'/admin'
 

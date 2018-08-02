@@ -11,7 +11,7 @@
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input type="text" class="form-control" v-model="infoLogin.user_name" placeholder="Username">
+                <input type="text" class="form-control" v-model="infoLogin.email" placeholder="Username">
                 <div class="form-control-feedback">
                     <i class="icon-user text-muted"></i>
                 </div>
@@ -37,6 +37,7 @@
 </template>
 <script>
     import axios from 'axios'
+    import config from './../../config'
     window.Cookies = require('cookies-js');
 
     export default {
@@ -51,21 +52,22 @@
             login(){
                 var vm = this
                     vm.processing = true
-                    axios.post('/api/login',vm.infoLogin).then(data => {
+                    axios.post( vm.config.API_AUTH_LOGIN,vm.infoLogin).then(data => {
+                        console.log(data);
+
                         let index = vm.styleText.findIndex(element => {
                             return 'text-danger' == element
                         })
                         vm.styleText.splice(index,1)
-                        window.Cookies.set('token',data.data.token,{
+                        window.Cookies.set('token',data.data.token.original.token,{
+                            expires: 6000
+                        })
+                        window.Cookies.set('user',data.data.token.original.user,{
                             expires: 6000
                         })
                         vm.Text = ''
-                        axios.post('/login',vm.infoLogin).then(data => {
-                            window.location= window.location.origin
-                        }).catch(err =>{
-                            alert(err)
-                        })
                         vm.processing = false
+                        // window.location = vm.config.WEB_HOME
                     }).catch(err => {
                         console.log(err)
                         vm.styleText.push('text-danger');
@@ -93,12 +95,13 @@
         data(){
             return {
                 infoLogin: {
-                    user_name:'',
+                    email:'',
                     password: ''
                 },
                 styleText: ['display-block'],
                 Text: 'Điền tài khoản và mật khẩu của bạn',
-                processing: false
+                processing: false,
+                config: new config()
             }
         }
     }

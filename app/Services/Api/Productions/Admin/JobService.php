@@ -25,32 +25,18 @@ class JobService extends BaseService implements ManageInterface
 
         if(isset($inputs['size']))
         {
-            if('size' == -1)
+            if($inputs['size'] == -1)
             {
-                $jobs = Job::get();
-                foreach ($jobs as $job)
-                {
-                    // tra ve ten doanh nghiep + avatar
-                    $job->enterprise = $job->enterprise()->select('name','avatar')->first();
-                    $job->skills = $job->skills;
-                    $job->salary = $job->salary;
-                    $job->positions = $job->positions;
-                    $job->types = $job->types;
-                }
-                return $jobs;
+                $jobs = Job::paginate(1000000);
+
             }
-            $jobs = Job::paginate($inputs['size']);
-            foreach ($jobs as $job)
-            {
-                // tra ve ten doanh nghiep + avatar
-                $job->enterprise = $job->enterprise()->select('name','avatar')->first();
-                $job->skills = $job->skills;
-                $job->salary = $job->salary;
-                $job->positions = $job->positions;
-                $job->types = $job->types;
+            else{
+                $jobs = Job::paginate($inputs['size']);
             }
         }
-        $jobs = Job::paginate(500);
+        else{
+            $jobs = Job::paginate(500);
+        }
         foreach ($jobs as $job)
         {
             // tra ve ten doanh nghiep + avatar

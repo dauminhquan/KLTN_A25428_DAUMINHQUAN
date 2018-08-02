@@ -6,16 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
 
-
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="{{asset("assets/css/icons/icomoon/styles.css")}}" rel="stylesheet" type="text/css">
-    <link href="{{asset("assets/css/bootstrap.css")}}" rel="stylesheet" type="text/css">
-    <link href="{{asset("assets/css/core.css")}}" rel="stylesheet" type="text/css">
-    <link href="{{asset("assets/css/components.css")}}" rel="stylesheet" type="text/css">
-    <link href="{{asset("assets/css/colors.css")}}" rel="stylesheet" type="text/css">
-
-
-
+    <link href="{{asset("css/common.css")}}" rel="stylesheet" type="text/css">
 </head>
 
 <body class="login-container">
@@ -90,12 +82,8 @@
 
 </div>
 
+<script type="text/javascript" src="{{asset("js/common.js")}}"></script>
 <script type="text/javascript" src="{{asset("assets/js/build/pages/auth/login.js")}}"></script>
-<script type="text/javascript" src="{{asset("assets/js/plugins/loaders/pace.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("assets/js/core/libraries/jquery.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("assets/js/core/libraries/bootstrap.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("assets/js/plugins/loaders/blockui.min.js")}}"></script>
-
 
 </body>
 </html>

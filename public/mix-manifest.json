@@ -18,6 +18,7 @@
     "/assets/js/build/pages/admin/notifies/edit.js": "/assets/js/build/pages/admin/notifies/edit.js",
     "/assets/js/build/pages/admin/notifies/create.js": "/assets/js/build/pages/admin/notifies/create.js",
     "/assets/js/build/pages/admin/enterprises/create.js": "/assets/js/build/pages/admin/enterprises/create.js",
+    "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js",
     "/assets/js/common.js": "/assets/js/common.js",
     "/css/common.css": "/css/common.css"
 }

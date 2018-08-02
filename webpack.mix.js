@@ -80,7 +80,7 @@ mix.js('resources/assets/js/admin/notifies/edit/index.js', 'public/assets/js/bui
 //
 //
 // //auth
-// mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
+mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
 //
 //
 //

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Api\Enterprise;
 
+use App\Http\Requests\CsvRequest;
+use App\Http\Requests\DeleteListRequest;
+use App\Http\Requests\FileAttach;
+use App\Http\Requests\GetDataRequest;
 use App\Services\Api\Productions\Enterprise\JobService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,12 +16,11 @@ class JobManageController extends Controller
     private $jobService;
     public function __construct()
     {
-//        Auth::user()->id
-        $this->jobService = new JobService(1);
+        $this->jobService = new JobService(Auth::user()->id);
     }
-    public function index()
+    public function index(GetDataRequest $request)
     {
-        return $this->jobService->getAll();
+        return $this->jobService->getAll($request->all());
     }
 
     public function show($id)
@@ -38,5 +41,20 @@ class JobManageController extends Controller
     public function delete(DeleteListRequest $request){
 
         return $this->jobService->delete($request->id_list);
+    }
+
+    public function getOptionsCsv(CsvRequest $request)
+    {
+        $data = $this->jobService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);
+        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+            $excel->sheet('Sheet1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->export('csv'));
+
+    }
+    public function updateFileAttach(FileAttach $request,$id)
+    {
+        return $this->jobService->updateFileAttach($request->file('file_attach'),$id);
     }
 }
