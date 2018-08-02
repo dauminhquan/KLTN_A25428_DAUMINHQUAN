@@ -1,7 +1,7 @@
 <template>
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h6 class="panel-title">Thông tin về công việc</h6>
+            <h6 class="panel-title">Danh sách nhân viên đã làm việc tại doanh nghiệp</h6>
 
         </div>
         <div class="table-responsive">
@@ -14,7 +14,6 @@
                 </tr>
                 </thead>
                 <tbody>
-
                   <tr v-for=" work in works" :key="work.id">
                       <td class="no-padding-right avatar-user" style="width: 45px;">
                           <a :href="null" target="_blank">

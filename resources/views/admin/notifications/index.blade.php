@@ -5,8 +5,8 @@
             <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý thông báo</span></h4>
 
             <ul class="breadcrumb breadcrumb-caret position-right">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Quản lý thông báo</a></li>
+                <li><a href="{{route('admin.dashboard')}}">Home</a></li>
+                <li><a href="{{route('admin.notifies.index')}}">Quản lý thông báo</a></li>
                 <li class="active">Danh sách thông báo</li>
             </ul>
         </div>

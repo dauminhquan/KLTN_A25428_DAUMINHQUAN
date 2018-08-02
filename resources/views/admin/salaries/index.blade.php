@@ -5,8 +5,8 @@
             <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý mức lương</span></h4>
 
             <ul class="breadcrumb breadcrumb-caret position-right">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Quản lý mức lương</a></li>
+                <li><a href="{{route('admin.dashboard')}}">Home</a></li>
+                <li><a href="{{route('admin.salaries.index')}}">Quản lý mức lương</a></li>
                 <li class="active">Danh sách mức lương</li>
             </ul>
         </div>

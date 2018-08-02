@@ -172,6 +172,13 @@
                     vm.data = vm.data.map(item => {
                         item.department_name = item.department == null ? null : item.department.name
                         item.branch_name = item.branch == null ? null : item.branch.name
+                        if(item.graduated == 1)
+                        {
+                            item.graduated = '<span class="label bg-success-400">Đã tốt nghiệp</span>'
+                        }
+                        else{
+                            item.graduated = '<span class="label bg-grey-400">Chưa tốt nghiệp</span>'
+                        }
                         return item
                     })
                     vm.columns = [
@@ -182,10 +189,6 @@
                         {
                             key:'full_name',
                             text: 'Tên sinh viên'
-                        },
-                        {
-                            key:'address',
-                            text: 'Địa chỉ'
                         },
                         {
                             key:'branch_name',
@@ -199,6 +202,10 @@
                             key:'email_address',
                             text: 'Địa chỉ Email'
                         },
+                        {
+                            key: 'graduated',
+                            text: 'Tốt nghiệp'
+                        }
 
                     ]
                 }).catch(err => {

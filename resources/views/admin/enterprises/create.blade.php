@@ -4,8 +4,8 @@
         <div class="page-title">
             <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Thêm một doanh nghiệp</span></h4>
             <ul class="breadcrumb breadcrumb-caret position-right">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="form_inputs_basic.html">Quản lý doanh nghiệp</a></li>
+                 <li><a href="{{route('admin.dashboard')}}">Home</a></li>
+                <li><a href="{{route('admin.enterprises.index')}}">Quản lý doanh nghiệp</a></li>
                 <li class="active">Thêm một doanh nghiệp</li>
             </ul>
         </div>

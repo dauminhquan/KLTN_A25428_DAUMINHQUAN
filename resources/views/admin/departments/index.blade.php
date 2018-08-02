@@ -5,8 +5,8 @@
             <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Quản lý khoa</span></h4>
 
             <ul class="breadcrumb breadcrumb-caret position-right">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Quản lý khoa</a></li>
+                <li><a href="{{route('admin.dashboard')}}">Home</a></li>
+                <li><a href="{{route('admin.departments.index')}}">Quản lý khoa</a></li>
                 <li class="active">Danh sách khoa</li>
             </ul>
         </div>

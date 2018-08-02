@@ -1,5 +1,5 @@
 <template>
-    <data-table title="Quản lý tin tuyển dụng"
+    <data-table title="Quản lý tin tuyển dụng của doanh nghiệp"
                 :columns="columns"
                 :data="data"
                 :targets="[]"
@@ -154,10 +154,6 @@
                         {
                             key: 'id',
                             text: 'ID bài đăng'
-                        },
-                        {
-                            key:'name',
-                            text: 'Tên doanh nghiệp'
                         },
                         {
                             key:'title',
