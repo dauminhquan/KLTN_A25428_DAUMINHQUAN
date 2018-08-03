@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Request;
 
-Route::get('/',function(\Illuminate\Http\Request $request){
-   return $request->cookie('auth');
-});
+
+Route::get('/',['uses' => 'HomeController@index']);
 
 Route::group(['namespace' => 'Auth'],function(){
    Route::get('login',['uses' => 'LoginController@login']);

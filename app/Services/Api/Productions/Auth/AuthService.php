@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 class AuthService extends BaseService /*implements ManageInterface*/
 {
@@ -24,6 +25,7 @@ class AuthService extends BaseService /*implements ManageInterface*/
         if(Auth::attempt($inputs))
         {
             $user = Auth::user();
+            session(['user'=>$user]);
             return response()->json([
                 'token' => $user->createToken('QuanDau')->accessToken,
                 'user' => $user

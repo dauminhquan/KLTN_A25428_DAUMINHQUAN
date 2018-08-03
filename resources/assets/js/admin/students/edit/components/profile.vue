@@ -35,7 +35,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Giới tính</label>
-                                    <select name="" id="" class="form-control" v-model="info.sex">
+                                    <select required name="" id="" class="form-control" v-model="info.sex">
                                         <option :value="1">Nam</option>
                                         <option :value="0">Nữ</option>
                                     </select>
@@ -44,7 +44,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Ngày tháng năm sinh:</label>
-                                    <input type="date" v-model="info.birth_day" required placeholder="Ngày tháng năm sinh" class="form-control">
+                                    <input type="date" v-model="info.birth_day" required required placeholder="Ngày tháng năm sinh" class="form-control">
                                 </div>
                             </div>
 
@@ -53,19 +53,19 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Khoa học</label>
-                                    <v-select :options="departments" label="name" v-model="departmentSelect" required="true"></v-select>
+                                    <v-select :options="departments" label="name" v-model="departmentSelect" :required="true"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Khóa học</label>
-                                    <v-select :options="courses" :disabled="departmentSelect == null" label="name" v-model="info.course" required="true"></v-select>
+                                    <v-select :options="courses" :disabled="departmentSelect == null" label="name" v-model="info.course" :required="true"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Ngành học</label>
-                                    <v-select :options="branches" :disabled="departmentSelect == null" label="name" v-model="info.branch" required="true"></v-select>
+                                    <v-select :options="branches" :disabled="departmentSelect == null" label="name" v-model="info.branch" :required="true"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -97,7 +97,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Thành phố:</label>
-                                    <v-select :options="provinces" label="name" v-model="info.province" required="true"></v-select>
+                                    <v-select :options="provinces" label="name" v-model="info.province" :required="true"></v-select>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                             <div class="col-md-3"  v-if="info.graduated ==1 ">
                                 <div class="form-group">
                                     <label>Tốt nghiệp hạng:</label>
-                                    <v-select :options="ratings" label="name"  v-model="info.rating"></v-select>
+                                    <v-select :options="ratings" label="name" :required="true"  v-model="info.rating"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-3"  v-if="info.graduated ==1 ">
@@ -234,6 +234,32 @@
         methods:{
             submitUpdate(){
                 let vm =this
+                let errorMessage = ''
+                if(vm.info.province == null)
+                {
+                    errorMessage+='Vui lòng chọn thành phố<br>'
+                }
+                if(vm.info.rating == null && vm.info.graduated == 1)
+                {
+                   errorMessage+='Vui lòng chọn hạng tốt nghiệp<br>'
+                }
+                if(vm.info.branch == null)
+                {
+                    errorMessage+='Vui lòng chọn ngành<br>'
+                }
+                if(vm.info.course == null)
+                {
+                    errorMessage+='Vui lòng chọn khóa học<br>'
+                }
+                if(errorMessage != '')
+                {
+                    vm.config.notifyError(errorMessage)
+                    return false;
+                }
+                vm.info.province_id = vm.info.province.id
+                vm.info.rating_id = vm.info.rating== null? null:vm.info.rating.id
+                vm.info.branch_code = vm.info.branch.code
+                vm.info.course_code = vm.info.course.code
                 axios.put(vm.config.API_ADMIN_STUDENTS_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
                     vm.config.notifySuccess()
                     setTimeout(function () {
