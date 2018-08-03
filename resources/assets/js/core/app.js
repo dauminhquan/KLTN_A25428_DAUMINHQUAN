@@ -10,16 +10,15 @@
 * ---------------------------------------------------------------------------- */
 
 import $ from 'jquery'
+import axios from './../axios'
 window.jQuery = $
 window.$ = $
 require('bootstrap3')
 require('./plugin/drilldown')
 require('./plugin/nicescroll.min')
-// Allow CSS transitions when page is loaded
 $(window).on('load', function() {
     $('body').removeClass('no-transitions');
 });
-
 $(function() {
 
     // Disable CSS transitions on page load
@@ -637,5 +636,13 @@ $(function() {
 
     // Tooltip
     $('[data-popup="tooltip"]').tooltip();
+
+    $('#logout').click(function () {
+        axios.post('/api/logout').then(data => {
+            window.location = '/login'
+        }).catch(err => {
+            alert("Đã xảy ra lỗi. Vui lòng kiểm tra lại");
+        })
+    })
 
 });

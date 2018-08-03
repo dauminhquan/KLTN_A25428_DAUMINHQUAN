@@ -59,34 +59,28 @@
                             return 'text-danger' == element
                         })
                         vm.styleText.splice(index,1)
-                        window.Cookies.set('token',data.data.token.original.token,{
-                            expires: 6000
-                        })
-                        window.Cookies.set('user',data.data.token.original.user,{
-                            expires: 6000
+                        window.Cookies.set('token',data.data.token,{
+                            expires: 600000
                         })
                         vm.Text = ''
                         vm.processing = false
-                        // window.location = vm.config.WEB_HOME
+                        window.location = vm.config.WEB_HOME
                     }).catch(err => {
-                        console.log(err)
+                        console.dir(err)
                         vm.styleText.push('text-danger');
-                        if(err.response.data.user_name !== undefined)
+                        if(err.response.status == 422)
                         {
                             let html = ''
-                            err.response.data.user_name.forEach(item => {
+                            err.response.data.errors.email.forEach(item => {
                                 html+=item
                                 html+='<br>'
                             })
                             vm.Text = html
+
                         }
-                        else if(err.response.data.message !== undefined)
+                        else if(err.response.status == 406)
                         {
-                            vm.Text = err.response.data.message
-                        }
-                        else{
-                            alert('Đã xảy ra lỗi. Vui lòng kiếm tra lại')
-                            console.dir(err)
+                            vm.Text = err.response.data.password
                         }
                         vm.processing = false
                     })
@@ -99,7 +93,7 @@
                     password: ''
                 },
                 styleText: ['display-block'],
-                Text: 'Điền tài khoản và mật khẩu của bạn',
+                Text: '<br>Điền tài khoản và mật khẩu của bạn',
                 processing: false,
                 config: new config()
             }

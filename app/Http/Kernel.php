@@ -6,6 +6,7 @@ use App\Http\Middleware\ApiCheckAdmin;
 use App\Http\Middleware\ApiCheckEnterprise;
 use App\Http\Middleware\ApiCheckEnterpriseOrAdmin;
 use App\Http\Middleware\ApiCheckStudent;
+use App\Http\Middleware\CheckAuthentication;
 use App\Http\Middleware\WebCheckAdmin;
 use App\Http\Middleware\WebCheckEnterprise;
 use App\Http\Middleware\WebCheckLogin;
@@ -52,6 +53,7 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
     ];
 
     /**
@@ -72,16 +74,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'api.check.admin' => ApiCheckAdmin::class,
         'api.check.enterprise' => ApiCheckEnterprise::class,
-        'api.check.enterprise.or.admin' => ApiCheckEnterpriseOrAdmin::class,
-
         'api.check.student' => ApiCheckStudent::class,
-
-
         'web.check.admin' => WebCheckAdmin::class,
         'web.check.enterprise' => WebCheckEnterprise::class,
         'web.check.student' => WebCheckStudent::class,
         'web.check.login' => WebCheckLogin::class,
-
-
+        'web.check.auth' => CheckAuthentication::class
     ];
 }

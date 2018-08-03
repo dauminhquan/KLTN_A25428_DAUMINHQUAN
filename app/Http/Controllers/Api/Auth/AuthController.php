@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Services\Api\Productions\Auth\AuthService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class AuthController extends Controller
@@ -16,16 +17,16 @@ class AuthController extends Controller
         $this->authService = new AuthService();
     }
     public function login(LoginRequest $request){
-        return ['token' => $this->authService->login($request->all())];
+        return $this->authService->login($request->all());
     }
-    public function logout()
+    public function logout(Request $request)
     {
-        $this->authService->logout();
+        $this->authService->logout($request);
         return ['message' => 'logouted'];
     }
     public function getToken(ResetPasswordRequest $request){
         $timeLimit = $this->authService->getTokenResetPassword($request);
-        return ['message' => 'token da duoc gui vao email cua ban. Thời gian hết hạn của token là '.$timeLimit];
+        return ['message' => 'Mã đã được gửi vào Email của bạn, vui lòng kiểm tra Email. Thời gian hết hạn của mã là '.$timeLimit];
     }
     public function resetPassword(ResetPasswordRequest $request)
     {

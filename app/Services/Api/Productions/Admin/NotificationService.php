@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Notification;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -64,7 +65,7 @@ class NotificationService extends BaseService implements ManageInterface
     public function save($inputs){
 
         try{
-            $inputs['admin_id'] = 1;
+            $inputs['admin_id'] = Auth::user()->id;
             $notification = Notification::create($inputs);
             return $notification;
         }catch (\Exception $exception)

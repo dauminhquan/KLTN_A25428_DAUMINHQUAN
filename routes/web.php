@@ -1,11 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-
-
-Route::get('/',['uses' => 'HomeController@index']);
+Route::get('/',['uses' => 'HomeController@index','as' => 'home']);
 
 Route::group(['namespace' => 'Auth'],function(){
-   Route::get('login',['uses' => 'LoginController@login']);
+   Route::get('login',['uses' => 'AuthController@login','as' => 'login']);
 });
 

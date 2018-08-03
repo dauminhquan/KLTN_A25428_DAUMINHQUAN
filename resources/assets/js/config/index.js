@@ -93,16 +93,25 @@ class Config{
         
         /*ENTERPRISES*/
 
-        this.API_ENTERPRISES= this.API+'/enterprise'
+        this.API_ENTERPRISE= this.API+'/enterprise'
 
-        this.API_ENTERPRISES_JOBS = this.API_ENTERPRISES+'/manage-jobs'
-        this.API_ENTERPRISES_JOBS_RESOURCE = this.API_ENTERPRISES_JOBS+'/resource'
-        this.API_ENTERPRISES_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISES_JOBS+'/update-file-attach'
-        this.API_ENTERPRISES_JOBS_DELETE_LIST = this.API_ENTERPRISES_JOBS+'/delete-list'
-        this.API_ENTERPRISES_JOBS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISES_JOBS+'/get-option-csv'
+        this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE+'/manage-jobs'
+        this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS+'/resource'
+        this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS+'/update-file-attach'
+        this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS+'/delete-list'
+        this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISE_JOBS+'/get-option-csv'
 
 
         this.API_AUTH_LOGIN = this.API+'/login'
+        this.API_GET_TOKEN = this.API+'/get-token'
+        this.API_RESET_PASSWORD = this.API+'/reset-password'
+
+        this.API_NOTIFIES = this.API +'/notifies'
+        this.API_POSITIONS = this.API +'/positions'
+        this.API_SKILLS = this.API +'/skills'
+        this.API_TYPES = this.API +'/types'
+        this.API_SALARIES = this.API +'/salaries'
+        this.API_PROVINCES = this.API +'/provinces'
         /*API*/
 
         /*WEB*/
@@ -122,6 +131,11 @@ class Config{
         this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN+'/positions'
 
         this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN+'/notifies'
+
+
+        this.WEB_ENTERPRISE = this.WEB+'/enterprise'
+
+        this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE+'/jobs'
         /*WEB*/
 
     }

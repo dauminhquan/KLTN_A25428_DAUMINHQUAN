@@ -16,7 +16,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Session;
 
 class AuthService extends BaseService /*implements ManageInterface*/
 {
@@ -28,15 +27,15 @@ class AuthService extends BaseService /*implements ManageInterface*/
             session(['user'=>$user]);
             return response()->json([
                 'token' => $user->createToken('QuanDau')->accessToken,
-                'user' => $user
             ]);
         }
+        return response()->json(['password' => 'password không chính xác'],406);
     }
-    public function logout()
+    public function logout($request)
     {
-        $user = Auth::user();
-        $user->token()->revoke();
-        Auth::logout();
+        $request->user()->token()->revoke();
+        session()->remove('user');
+        return ['message' => 'logouted'];
 
     }
     public function getTokenResetPassword($inputs)
@@ -52,7 +51,6 @@ class AuthService extends BaseService /*implements ManageInterface*/
     public function registration($inputs)
     {
         $user = User::create($inputs);
-//        $token = str_random(8);
         return $user;
     }
     public function resetPassword($inputs) :bool

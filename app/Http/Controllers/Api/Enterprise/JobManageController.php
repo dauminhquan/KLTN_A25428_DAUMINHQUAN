@@ -6,23 +6,28 @@ use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\FileAttach;
 use App\Http\Requests\GetDataRequest;
+use App\Http\Requests\JobManageRequest;
 use App\Services\Api\Productions\Enterprise\JobService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class JobManageController extends Controller
 {
     private $jobService;
     public function __construct()
     {
-        $this->jobService = new JobService(Auth::user()->id);
+
+        $this->jobService = new JobService();
     }
     public function index(GetDataRequest $request)
     {
         return $this->jobService->getAll($request->all());
     }
 
+    public function store(JobManageRequest $request)
+    {
+        return $this->jobService->save($request);
+    }
     public function show($id)
     {
         return $this->jobService->getOne($id);

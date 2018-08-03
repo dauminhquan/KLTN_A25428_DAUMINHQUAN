@@ -82,7 +82,6 @@
 
 </div>
 
-<script type="text/javascript" src="{{asset("js/common.js")}}"></script>
 <script type="text/javascript" src="{{asset("assets/js/build/pages/auth/login.js")}}"></script>
 
 </body>

@@ -31,7 +31,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Chọn các vị trí tuyển dụng</label>
-                                    <v-select :options="Positions" label="name" v-model="positions" required="true" :data-placeholder="'Chọn các vị trí'" :multiple="true">
+                                    <v-select :options="Positions" label="name" v-model="info.positions" required="true" :data-placeholder="'Chọn các vị trí'" :multiple="true">
                                         <span slot="no-options">Không có mục nào để hiển thị!</span>
                                     </v-select>
                                 </div>
@@ -41,20 +41,20 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Chọn các kỹ năng</label>
-                                    <v-select :options="Skills" label="name" v-model="skills"  required="true" :multiple="true"></v-select>
+                                    <v-select :options="Skills" label="name" v-model="info.skills"  required="true" :multiple="true"></v-select>
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Chọn các hình thức tuyển dụng</label>
-                                    <v-select :options="Types" label="name" v-model="types" required="true" value="name" :multiple="true"></v-select>
+                                    <v-select :options="Types" label="name" v-model="info.types" required="true" value="name" :multiple="true"></v-select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Chọn mức lương</label>
-                                    <v-select :options="Salaries" label="about" v-model="salary" required="true" value="name"></v-select>
+                                    <v-select :options="Salaries" label="about" v-model="info.salary" required="true" value="name"></v-select>
                                 </div>
                             </div>
                         </div>
@@ -98,8 +98,6 @@
                         <div class="pace-demo" v-if="uploading == true">
                             <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
                         </div>
-                        <button type="button" v-if="info.accept == 1 || info.accept == 3" @click="updateAccept(2)" class="btn btn-success">Cho phép đăng <i class="icon-check2 position-right"></i></button>
-                        <button type="button" v-if="info.accept == 2" @click="updateAccept(3)" class="btn btn-danger">Dừng đăng <i class="icon-stop2 position-right"></i></button>
                         <button type="button" @click="requestDeleteItem" class="btn btn-danger">Xóa bài viết <i class="icon-trash-alt position-right"></i></button>
                         <button type="submit" class="btn btn-primary">Lưu chỉnh sửa <i class="icon-arrow-right14 position-right"></i></button>
                     </div>
@@ -153,10 +151,6 @@
                 Positions: [],
                 Skills: [],
                 Salaries: [],
-                salary:'',
-                skills: [],
-                positions: [],
-                types: [],
                 info:{
                     title: '',
                     time_start: '',
@@ -176,11 +170,11 @@
         },
         mounted(){
             let vm = this
-            vm.getJob()
             vm.getTypes()
             vm.getSalaries()
             vm.getPositions()
             vm.getSkills()
+            vm.getJob()
             CKEDITOR.replace( 'content-post' ).on('change',function () {
                 vm.info.content = this.getData()
             });
@@ -188,12 +182,8 @@
         methods:{
             getJob(){
                 let vm = this
-                axios.get(vm.config.API_ADMIN_JOBS_RESOURCE+'/'+vm.keyItem).then(data => {
+                axios.get(vm.config.API_ENTERPRISE_JOBS_RESOURCE+'/'+vm.keyItem).then(data => {
                     vm.info = data.data
-                    vm.salary = vm.info.salary
-                    vm.positions = vm.info.positions
-                    vm.types = vm.info.types
-                    vm.skills = vm.info.skills
                 }).catch(err => {
                     console.log(err)
                     vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại')
@@ -201,7 +191,7 @@
             },
             getTypes(){
                 let vm = this
-                axios.get(vm.config.API_ADMIN_TYPES_RESOURCE+'?size=-1').then(data => {
+                axios.get(vm.config.API_TYPES+'?size=-1').then(data => {
                     vm.Types = data.data.data
                 }).catch(err => {
                     console.log(err)
@@ -210,7 +200,7 @@
             },
             getSkills(){
                 let vm = this
-                axios.get(vm.config.API_ADMIN_SKILLS_RESOURCE+'?size=-1').then(data => {
+                axios.get(vm.config.API_SKILLS+'?size=-1').then(data => {
                     vm.Skills = data.data.data
                 }).catch(err => {
                     console.log(err)
@@ -219,7 +209,7 @@
             },
             getPositions(){
                 let vm = this
-                axios.get(vm.config.API_ADMIN_POSITIONS_RESOURCE+'?size=-1').then(data => {
+                axios.get(vm.config.API_POSITIONS+'?size=-1').then(data => {
                     vm.Positions = data.data.data
                 }).catch(err => {
                     console.log(err)
@@ -228,7 +218,7 @@
             },
             getSalaries(){
                 let vm = this
-                axios.get(vm.config.API_ADMIN_SALARIES_RESOURCE+'?size=-1').then(data => {
+                axios.get(vm.config.API_SALARIES+'?size=-1').then(data => {
                     vm.Salaries = data.data.data
                 }).catch(err => {
                     console.log(err)
@@ -238,9 +228,33 @@
             updateJob(){
                 let vm = this
                 vm.uploading = true
-                axios.put(vm.config.API_ADMIN_JOBS_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
+                if(typeof vm.info.salary =='object')
+                {
+                    vm.info.salary =  vm.info.salary.id
+                }
+                if(typeof vm.info.skills =='object')
+                {
+                    vm.info.skills =  vm.info.skills.map(item => {
+                        return item.id
+                    })
+                }
+                if(typeof vm.info.positions =='object')
+                {
+                    vm.info.positions =  vm.info.positions.map(item => {
+                        return item.id
+                    })
+                }
+                if(typeof vm.info.types =='object')
+                {
+                    vm.info.types =  vm.info.types.map(item => {
+                        return item.id
+                    })
+                }
+
+                axios.put(vm.config.API_ENTERPRISE_JOBS_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
                     vm.uploading = false
                     vm.config.notifySuccess('Update việc làm thành công')
+                    window.location = vm.config.WEB_ENTERPRISE_JOBS
                 }).catch(err => {
                     vm.config.notifyError('Lỗi trong quá trình update')
                 })
@@ -253,7 +267,7 @@
                 vm.file = e.target.files[0]
                 let formData = new FormData()
                 formData.append('file_attach',vm.file)
-                axios.post(vm.config.API_ADMIN_JOBS_UPDATE_FILE_ATTACH+'/'+vm.keyItem,formData).then(data => {
+                axios.post(vm.config.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH+'/'+vm.keyItem,formData).then(data => {
                     vm.config.notifySuccess('Update file thành công')
                 })
                     .catch(err => {
@@ -261,27 +275,13 @@
                         vm.config.notifyError('Lỗi upload file')
                     })
             },
-            updateAccept(accept) {
-                let vm = this
-                vm.uploading = true
-                axios.put(vm.config.API_ADMIN_JOBS_RESOURCE+'/'+vm.keyItem,{
-
-                    accept: accept
-                }).then(data => {
-                    vm.info.accept = accept
-                    vm.uploading = false
-                    vm.config.notifySuccess('Update tình trạng bài viết thành công')
-                }).catch(err => {
-                    vm.config.notifyError('Lỗi trong quá trình update')
-                })
-            },
             requestDeleteItem(){
                 $('#modal_danger').modal('show')
             },
             deleteItem(){
                 let vm = this
                 vm.deleting = true
-                axios.delete(vm.config.API_ADMIN_JOBS_RESOURCE+'/'+vm.keyItem).then(data => {
+                axios.delete(vm.config.API_ENTERPRISE_JOBS_RESOURCE+'/'+vm.keyItem).then(data => {
                     $('#modal_danger').modal('hide')
                     vm.config.notifySuccess('Xóa thành công')
                     window.location = vm.config.WEB_ADMIN_JOBS
@@ -293,29 +293,5 @@
                 })
             }
         },
-        watch:{
-            salary(value){
-                let vm = this
-                vm.info.salary_id = value.id
-            },
-            skills(value){
-                let vm = this
-                vm.info.skills = value.map(item => {
-                    return item.id
-                })
-            },
-            positions(value){
-                let vm = this
-                vm.info.positions = value.map(item => {
-                    return item.id
-                })
-            },
-            types(value){
-                let vm = this
-                vm.info.types = value.map(item => {
-                    return item.id
-                })
-            }
-        }
     }
 </script>

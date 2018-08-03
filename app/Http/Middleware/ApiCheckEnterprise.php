@@ -16,7 +16,8 @@ class ApiCheckEnterprise
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->type == 2)
+        $user = Auth::user();
+        if($user->type == 2 && $user->authentication == 1)
         {
             return $next($request);
         }

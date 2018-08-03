@@ -5,7 +5,7 @@ mix.sass('resources/assets/sass/app.scss','public/css/common.css')
 
 //common
 mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
-
+//admin
 // enterprise
 mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js/build/pages/admin/enterprises/index.js');
 mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
@@ -32,6 +32,15 @@ mix.js('resources/assets/js/admin/notifies/index/index.js', 'public/assets/js/bu
 mix.js('resources/assets/js/admin/notifies/create/index.js', 'public/assets/js/build/pages/admin/notifies/create.js');
 mix.js('resources/assets/js/admin/notifies/edit/index.js', 'public/assets/js/build/pages/admin/notifies/edit.js');
 
+//admin
+
+mix.js('resources/assets/js/enterprise/jobs/index/index.js', 'public/assets/js/build/pages/enterprise/jobs/index.js');
+mix.js('resources/assets/js/enterprise/jobs/edit/index.js', 'public/assets/js/build/pages/enterprise/jobs/edit.js');
+mix.js('resources/assets/js/enterprise/jobs/create/index.js', 'public/assets/js/build/pages/enterprise/jobs/create.js');
+//enterprise
+
+
+//enterprise
 // mix.js('resources/assets/js/admin/jobs/skillsmanage/positionsmanage.js', 'public/assets/js/build/pages/admin/post/skill.js');
 //
 // mix.js('resources/assets/js/admin/jobs/postsmanage/postmanage/postsmanage.js', 'public/assets/js/build/pages/admin/post/post.js');

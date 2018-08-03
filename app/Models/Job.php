@@ -9,6 +9,8 @@ class Job extends Model
     //
     protected $table = 'jobs';
 
+    protected $fillable = ['enterprise_id','title','location','time_start','time_end','description','attachment','content','salary_id'];
+
     public function enterprise(){
         return $this->belongsTo(Enterprise::class,'enterprise_id','id');
     }

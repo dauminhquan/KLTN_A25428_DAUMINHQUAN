@@ -16,7 +16,7 @@ const app = new Vue({
     methods: {
         forget_password(){
            this.forgetPassword = true
-        }
+        },
     },
     data(){
         return {

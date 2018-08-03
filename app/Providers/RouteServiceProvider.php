@@ -54,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-            ->name('web')
+            ->name('web.')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
@@ -77,7 +77,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapAdminRoutes(){
         Route::prefix('admin')
-            ->middleware('web')
+            ->middleware(['web','web.check.auth','web.check.admin'])
             ->name('admin.')
             ->namespace($this->namespace.'\Admin')
             ->group(base_path('routes/admin.php'));
@@ -86,7 +86,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapEnterpriseRoutes(){
         Route::prefix('enterprise')
             ->name('enterprise.')
-            ->middleware('web.check.enterprise')
+            ->middleware(['web','web.check.auth','web.check.enterprise'])
             ->namespace($this->namespace.'\Enterprise')
             ->group(base_path('routes/enterprise.php'));
     }
@@ -94,7 +94,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapStudentRoutes(){
         Route::prefix('student')
             ->name('student.')
-            ->middleware('web')
+            ->middleware(['web','web.check.auth','web.check.student'])
             ->namespace($this->namespace.'\Student')
             ->group(base_path('routes/student.php'));
     }

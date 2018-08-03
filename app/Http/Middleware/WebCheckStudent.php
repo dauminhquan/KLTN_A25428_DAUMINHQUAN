@@ -15,10 +15,14 @@ class WebCheckStudent
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guard('web')->user()->type == 3)
+        if(session()->has('user'))
         {
-            return $next($request);
+            $user = session('user');
+            if($user->type == 3)
+            {
+                return $next($request);
+            }
         }
-        return response()->redirectToRoute('home');
+        return response()->redirectToRoute('web.home');
     }
 }

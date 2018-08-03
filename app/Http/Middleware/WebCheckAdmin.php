@@ -16,11 +16,15 @@ class WebCheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guard('web')->user()->type == 1)
+        $user = session('user');
+        if(session()->has('user'))
         {
-            return $next($request);
+            $user = session('user');
+            if($user->type == 1)
+            {
+                return $next($request);
+            }
         }
-        return response()->redirectToRoute('home');
-//        return $next($request);
+        return response()->redirectToRoute('web.home');
     }
 }

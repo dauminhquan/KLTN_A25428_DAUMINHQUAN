@@ -26,18 +26,15 @@ class ResetPasswordRequest extends FormRequest
         switch ($this->method())
         {
             case ('POST'):
+                return [ 'email' => 'required|email|exists:users,email'];
+            case('GET'):
+            case('PATCH'):
+            case('PUT'):
                 return [
                     'email' => 'required|email|exists:users,email',
                     'password' => 'required|min:6|max:30',
                     'rep_password' => 'required|same:password',
                     'token' => 'required|exists:users,reset_token'
-                ];
-            case('GET'):
-                return [ 'email' => 'required|email|exists:users,email'];
-            case('PATCH'):
-            case('PUT'):
-                return [
-
                 ];
             case('DELETE'):
                 break;

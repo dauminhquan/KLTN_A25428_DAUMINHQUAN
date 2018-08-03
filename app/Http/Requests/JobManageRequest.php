@@ -27,7 +27,6 @@ class JobManageRequest extends FormRequest
         {
             case ('POST'):
                 return [
-
                     'title' => 'required',
                     'location' =>'required',
                     'time_start' => 'required|date',
@@ -38,7 +37,6 @@ class JobManageRequest extends FormRequest
                     'skills' => 'required|array',
                     'types' => 'required|array',
                     'positions' => 'required|array',
-                    'introduce' => 'required',
                     'attachment' => 'file'
 
                 ];

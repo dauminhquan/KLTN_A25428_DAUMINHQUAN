@@ -1,6 +1,7 @@
 {
     "/assets/js/build/pages/admin/enterprises/edit.js": "/assets/js/build/pages/admin/enterprises/edit.js",
     "/assets/js/build/pages/admin/branches/index.js": "/assets/js/build/pages/admin/branches/index.js",
+    "/assets/js/build/pages/enterprise/jobs/index.js": "/assets/js/build/pages/enterprise/jobs/index.js",
     "/assets/js/build/pages/admin/types/index.js": "/assets/js/build/pages/admin/types/index.js",
     "/assets/js/build/pages/admin/students/index.js": "/assets/js/build/pages/admin/students/index.js",
     "/assets/js/build/pages/admin/students/edit.js": "/assets/js/build/pages/admin/students/edit.js",
@@ -13,12 +14,14 @@
     "/assets/js/build/pages/admin/jobs/index.js": "/assets/js/build/pages/admin/jobs/index.js",
     "/assets/js/build/pages/admin/enterprises/index.js": "/assets/js/build/pages/admin/enterprises/index.js",
     "/assets/js/build/pages/admin/departments/index.js": "/assets/js/build/pages/admin/departments/index.js",
+    "/assets/js/common.js": "/assets/js/common.js",
+    "/css/common.css": "/css/common.css",
     "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js",
+    "/assets/js/build/pages/enterprise/jobs/edit.js": "/assets/js/build/pages/enterprise/jobs/edit.js",
+    "/assets/js/build/pages/enterprise/jobs/create.js": "/assets/js/build/pages/enterprise/jobs/create.js",
     "/assets/js/build/pages/admin/students/create.js": "/assets/js/build/pages/admin/students/create.js",
     "/assets/js/build/pages/admin/jobs/edit.js": "/assets/js/build/pages/admin/jobs/edit.js",
     "/assets/js/build/pages/admin/notifies/edit.js": "/assets/js/build/pages/admin/notifies/edit.js",
     "/assets/js/build/pages/admin/notifies/create.js": "/assets/js/build/pages/admin/notifies/create.js",
-    "/assets/js/build/pages/admin/enterprises/create.js": "/assets/js/build/pages/admin/enterprises/create.js",
-    "/assets/js/common.js": "/assets/js/common.js",
-    "/css/common.css": "/css/common.css"
+    "/assets/js/build/pages/admin/enterprises/create.js": "/assets/js/build/pages/admin/enterprises/create.js"
 }

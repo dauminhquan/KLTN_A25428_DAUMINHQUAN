@@ -16,10 +16,15 @@ class WebCheckEnterprise
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guard('web')->user()->type == 2)
+        if(session()->has('user'))
         {
-            return $next($request);
+            $user = session('user');
+            if($user->type == 2)
+            {
+                return $next($request);
+            }
         }
-        return response()->redirectToRoute('home');
+        return response()->redirectToRoute('web.home');
+
     }
 }
