@@ -10,7 +10,7 @@ class ProfileManageController extends Controller
 {
     public function index(){
         $code = Auth::user()->student->code;
-        return view('student.profile.index',['code' => $code]);
+        return view('student.profile',['code' => $code]);
     }
     public function update(){
         return view('student.profile.update',['code' => Auth::user()->student->code]);

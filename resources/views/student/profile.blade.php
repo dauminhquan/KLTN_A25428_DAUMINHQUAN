@@ -6,23 +6,20 @@
 
             <ul class="breadcrumb breadcrumb-caret position-right">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="{{route('admin.student.manage.index')}}">Quản lý sinh viên</a></li>
-                <li class="active">Thông tin sinh viên </li>
+                    <li class="active">Thông tin sinh viên </li>
             </ul>
         </div>
     </div>
 @endsection
 @section('page-content')
 
-    <main-sidebar code_student="{{$code_student}}"></main-sidebar>
-    <main-content code_student="{{$code_student}}"></main-content>
+    <web-content></web-content>
 @endsection
 @section("js-page")
-    <script type="text/javascript" src="{{asset("assets/js/build/pages/student/profile.js")}}"></script>
+    <script type="text/javascript" src="{{asset("assets/js/build/pages/student/profile/index.js")}}"></script>
 @endsection
 @section('theme-asset')
-    <script type="text/javascript" src="{{asset("assets/js/plugins/uploaders/dropzone.min.js")}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/selects/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/plugins/ckeditor/ckeditor.js')}}"></script>
 @endsection
 @section("mobile-panel-left")
 

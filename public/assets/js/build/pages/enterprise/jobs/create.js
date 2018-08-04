@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 314);
+/******/ 	return __webpack_require__(__webpack_require__.s = 327);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -579,243 +579,251 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-        function Config() {
-                var _this = this;
+    function Config() {
+        var _this = this;
 
-                _classCallCheck(this, Config);
+        _classCallCheck(this, Config);
 
-                /*API*/
+        /*API*/
 
-                this.API = window.location.origin + '/api';
+        this.API = window.location.origin + '/api';
 
-                /*ADMIN*/
+        /*ADMIN*/
 
-                this.API_ADMIN = this.API + '/admin';
+        this.API_ADMIN = this.API + '/admin';
 
-                /*ENTERPRISES*/
-                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-                };
-                /*ENTERPRISES*/
+        /*ENTERPRISES*/
+        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+        };
+        /*ENTERPRISES*/
 
-                /*STUDENTS*/
-                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-                };
-                /*STUDENTS*/
+        /*STUDENTS*/
+        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+        };
+        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+        };
+        /*STUDENTS*/
 
-                /*JOBS*/
-                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_JOBS + '/get-option-csv';
-                };
-                /*JOBS*/
+        /*JOBS*/
+        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_JOBS + '/get-option-csv';
+        };
+        /*JOBS*/
 
-                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
-                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
-                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+        this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+        this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+        this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+        this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
 
-                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
-                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
-                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
+        this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+        this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+        this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
-                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
-                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
+        this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+        this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+        this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
-                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
-                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
-                this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
+        this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+        this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+        this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
+        this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
 
-                this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
-                this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
-                this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
-                this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
+        this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
+        this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
+        this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
+        this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
 
-                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
-                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
-                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
+        this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+        this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+        this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-                /*NOTIFIES*/
-                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-                };
-                /*NOTIFIES*/
+        /*NOTIFIES*/
+        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+        };
+        /*NOTIFIES*/
 
-                /*ENTERPRISES*/
+        /*ENTERPRISES*/
 
-                this.API_ENTERPRISE = this.API + '/enterprise';
+        this.API_ENTERPRISE = this.API + '/enterprise';
 
-                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
-                };
+        this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
+        this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
+        this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
+        this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
+        this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
+        };
 
-                this.API_AUTH_LOGIN = this.API + '/login';
-                this.API_GET_TOKEN = this.API + '/get-token';
-                this.API_RESET_PASSWORD = this.API + '/reset-password';
+        this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
+        this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
 
-                this.API_NOTIFIES = this.API + '/notifies';
-                this.API_POSITIONS = this.API + '/positions';
-                this.API_SKILLS = this.API + '/skills';
-                this.API_TYPES = this.API + '/types';
-                this.API_SALARIES = this.API + '/salaries';
-                this.API_PROVINCES = this.API + '/provinces';
-                /*API*/
+        this.API_STUDENT = this.API + '/student';
+        this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
+        this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
 
-                /*WEB*/
+        this.API_AUTH_LOGIN = this.API + '/login';
+        this.API_GET_TOKEN = this.API + '/get-token';
+        this.API_RESET_PASSWORD = this.API + '/reset-password';
 
-                this.WEB = window.location.origin;
+        this.API_NOTIFIES = this.API + '/notifies';
+        this.API_POSITIONS = this.API + '/positions';
+        this.API_SKILLS = this.API + '/skills';
+        this.API_TYPES = this.API + '/types';
+        this.API_SALARIES = this.API + '/salaries';
+        this.API_PROVINCES = this.API + '/provinces';
+        /*API*/
 
-                this.WEB_HOME = this.WEB;
+        /*WEB*/
 
-                this.WEB_ADMIN = this.WEB + '/admin';
+        this.WEB = window.location.origin;
 
-                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+        this.WEB_HOME = this.WEB;
 
-                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+        this.WEB_ADMIN = this.WEB + '/admin';
 
-                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
 
-                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
 
-                this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
 
-                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
-                /*WEB*/
+        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+
+        this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+
+        this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+        /*WEB*/
+    }
+
+    _createClass(Config, [{
+        key: 'notifySuccess',
+        value: function notifySuccess() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: message,
+                    addclass: 'bg-success'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: 'Thao tác thành công',
+                    addclass: 'bg-success'
+                });
+            }
         }
+    }, {
+        key: 'notifyWarning',
+        value: function notifyWarning() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-        _createClass(Config, [{
-                key: 'notifySuccess',
-                value: function notifySuccess() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có gì đó sai sai!',
+                    text: message,
+                    addclass: 'bg-warning'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có gì đó sai sai!',
+                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                    addclass: 'bg-warning'
+                });
+            }
+        }
+    }, {
+        key: 'notifyError',
+        value: function notifyError() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: message,
-                                        addclass: 'bg-success'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: 'Thao tác thành công',
-                                        addclass: 'bg-success'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyWarning',
-                value: function notifyWarning() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: message,
+                    addclass: 'bg-danger'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: 'Thao tác thất bại',
+                    addclass: 'bg-danger'
+                });
+            }
+        }
+    }, {
+        key: 'getError',
+        value: function getError(data) {
+            var message = '';
+            message = data.message;
+            message += '<br>';
+            var errors = data.errors;
+            var keys = Object.keys(errors);
+            keys.forEach(function (key) {
+                errors[key].forEach(function (item) {
+                    message += item + '<br>';
+                });
+            });
+            return message;
+        }
+    }]);
 
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: message,
-                                        addclass: 'bg-warning'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                                        addclass: 'bg-warning'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyError',
-                value: function notifyError() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: message,
-                                        addclass: 'bg-danger'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: 'Thao tác thất bại',
-                                        addclass: 'bg-danger'
-                                });
-                        }
-                }
-        }, {
-                key: 'getError',
-                value: function getError(data) {
-                        var message = '';
-                        message = data.message;
-                        message += '<br>';
-                        var errors = data.errors;
-                        var keys = Object.keys(errors);
-                        keys.forEach(function (key) {
-                                errors[key].forEach(function (item) {
-                                        message += item + '<br>';
-                                });
-                        });
-                        return message;
-                }
-        }]);
-
-        return Config;
+    return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
@@ -1845,20 +1853,55 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 314:
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(315);
+"use strict";
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
 
 
 /***/ }),
 
-/***/ 315:
+/***/ 327:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(328);
+
+
+/***/ }),
+
+/***/ 328:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__content__);
 window.Vue = __webpack_require__(34);
 
@@ -1871,15 +1914,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 316:
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(317)
+var __vue_script__ = __webpack_require__(330)
 /* template */
-var __vue_template__ = __webpack_require__(318)
+var __vue_template__ = __webpack_require__(331)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1896,7 +1939,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\enterprise\\jobs\\create\\content.vue"
+Component.options.__file = "resources/assets/js/enterprise/jobs/create/content.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1905,9 +1948,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6f5b39ba", Component.options)
+    hotAPI.createRecord("data-v-c604d07a", Component.options)
   } else {
-    hotAPI.reload("data-v-6f5b39ba", Component.options)
+    hotAPI.reload("data-v-c604d07a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1919,7 +1962,186 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 317:
+/***/ 33:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * Cookies.js - 1.2.3
+ * https://github.com/ScottHamper/Cookies
+ *
+ * This is free and unencumbered software released into the public domain.
+ */
+(function (global, undefined) {
+    'use strict';
+
+    var factory = function (window) {
+        if (typeof window.document !== 'object') {
+            throw new Error('Cookies.js requires a `window` with a `document` object');
+        }
+
+        var Cookies = function (key, value, options) {
+            return arguments.length === 1 ?
+                Cookies.get(key) : Cookies.set(key, value, options);
+        };
+
+        // Allows for setter injection in unit tests
+        Cookies._document = window.document;
+
+        // Used to ensure cookie keys do not collide with
+        // built-in `Object` properties
+        Cookies._cacheKeyPrefix = 'cookey.'; // Hurr hurr, :)
+        
+        Cookies._maxExpireDate = new Date('Fri, 31 Dec 9999 23:59:59 UTC');
+
+        Cookies.defaults = {
+            path: '/',
+            secure: false
+        };
+
+        Cookies.get = function (key) {
+            if (Cookies._cachedDocumentCookie !== Cookies._document.cookie) {
+                Cookies._renewCache();
+            }
+            
+            var value = Cookies._cache[Cookies._cacheKeyPrefix + key];
+
+            return value === undefined ? undefined : decodeURIComponent(value);
+        };
+
+        Cookies.set = function (key, value, options) {
+            options = Cookies._getExtendedOptions(options);
+            options.expires = Cookies._getExpiresDate(value === undefined ? -1 : options.expires);
+
+            Cookies._document.cookie = Cookies._generateCookieString(key, value, options);
+
+            return Cookies;
+        };
+
+        Cookies.expire = function (key, options) {
+            return Cookies.set(key, undefined, options);
+        };
+
+        Cookies._getExtendedOptions = function (options) {
+            return {
+                path: options && options.path || Cookies.defaults.path,
+                domain: options && options.domain || Cookies.defaults.domain,
+                expires: options && options.expires || Cookies.defaults.expires,
+                secure: options && options.secure !== undefined ?  options.secure : Cookies.defaults.secure
+            };
+        };
+
+        Cookies._isValidDate = function (date) {
+            return Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date.getTime());
+        };
+
+        Cookies._getExpiresDate = function (expires, now) {
+            now = now || new Date();
+
+            if (typeof expires === 'number') {
+                expires = expires === Infinity ?
+                    Cookies._maxExpireDate : new Date(now.getTime() + expires * 1000);
+            } else if (typeof expires === 'string') {
+                expires = new Date(expires);
+            }
+
+            if (expires && !Cookies._isValidDate(expires)) {
+                throw new Error('`expires` parameter cannot be converted to a valid Date instance');
+            }
+
+            return expires;
+        };
+
+        Cookies._generateCookieString = function (key, value, options) {
+            key = key.replace(/[^#$&+\^`|]/g, encodeURIComponent);
+            key = key.replace(/\(/g, '%28').replace(/\)/g, '%29');
+            value = (value + '').replace(/[^!#$&-+\--:<-\[\]-~]/g, encodeURIComponent);
+            options = options || {};
+
+            var cookieString = key + '=' + value;
+            cookieString += options.path ? ';path=' + options.path : '';
+            cookieString += options.domain ? ';domain=' + options.domain : '';
+            cookieString += options.expires ? ';expires=' + options.expires.toUTCString() : '';
+            cookieString += options.secure ? ';secure' : '';
+
+            return cookieString;
+        };
+
+        Cookies._getCacheFromString = function (documentCookie) {
+            var cookieCache = {};
+            var cookiesArray = documentCookie ? documentCookie.split('; ') : [];
+
+            for (var i = 0; i < cookiesArray.length; i++) {
+                var cookieKvp = Cookies._getKeyValuePairFromCookieString(cookiesArray[i]);
+
+                if (cookieCache[Cookies._cacheKeyPrefix + cookieKvp.key] === undefined) {
+                    cookieCache[Cookies._cacheKeyPrefix + cookieKvp.key] = cookieKvp.value;
+                }
+            }
+
+            return cookieCache;
+        };
+
+        Cookies._getKeyValuePairFromCookieString = function (cookieString) {
+            // "=" is a valid character in a cookie value according to RFC6265, so cannot `split('=')`
+            var separatorIndex = cookieString.indexOf('=');
+
+            // IE omits the "=" when the cookie value is an empty string
+            separatorIndex = separatorIndex < 0 ? cookieString.length : separatorIndex;
+
+            var key = cookieString.substr(0, separatorIndex);
+            var decodedKey;
+            try {
+                decodedKey = decodeURIComponent(key);
+            } catch (e) {
+                if (console && typeof console.error === 'function') {
+                    console.error('Could not decode cookie with key "' + key + '"', e);
+                }
+            }
+            
+            return {
+                key: decodedKey,
+                value: cookieString.substr(separatorIndex + 1) // Defer decoding value until accessed
+            };
+        };
+
+        Cookies._renewCache = function () {
+            Cookies._cache = Cookies._getCacheFromString(Cookies._document.cookie);
+            Cookies._cachedDocumentCookie = Cookies._document.cookie;
+        };
+
+        Cookies._areEnabled = function () {
+            var testKey = 'cookies.js';
+            var areEnabled = Cookies.set(testKey, 1).get(testKey) === '1';
+            Cookies.expire(testKey);
+            return areEnabled;
+        };
+
+        Cookies.enabled = Cookies._areEnabled();
+
+        return Cookies;
+    };
+    var cookiesExport = (global && typeof global.document === 'object') ? factory(global) : factory;
+
+    // AMD support
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () { return cookiesExport; }).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    // CommonJS/Node.js support
+    } else if (typeof exports === 'object') {
+        // Support Node.js specific `module.exports` (which can be a function)
+        if (typeof module === 'object' && typeof module.exports === 'object') {
+            exports = module.exports = cookiesExport;
+        }
+        // But always support CommonJS module 1.1.1 spec (`exports` cannot be a function)
+        exports.Cookies = cookiesExport;
+    } else {
+        global.Cookies = cookiesExport;
+    }
+})(typeof window === 'undefined' ? this : window);
+
+/***/ }),
+
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2157,7 +2379,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         formData.append(key + '[]', item);
                     });
                 } else {
-                    console.log(key);
                     if (key == 'salary') {
                         formData.append('salary_id', vm.info[key]);
                     } else {
@@ -2191,7 +2412,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 318:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2631,223 +2852,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6f5b39ba", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c604d07a", module.exports)
   }
 }
-
-/***/ }),
-
-/***/ 32:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Syntactic sugar for invoking a function and expanding an array for arguments.
- *
- * Common use case would be to use `Function.prototype.apply`.
- *
- *  ```js
- *  function f(x, y, z) {}
- *  var args = [1, 2, 3];
- *  f.apply(null, args);
- *  ```
- *
- * With `spread` this example can be re-written.
- *
- *  ```js
- *  spread(function(x, y, z) {})([1, 2, 3]);
- *  ```
- *
- * @param {Function} callback
- * @returns {Function}
- */
-module.exports = function spread(callback) {
-  return function wrap(arr) {
-    return callback.apply(null, arr);
-  };
-};
-
-
-/***/ }),
-
-/***/ 33:
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_RESULT__;/*
- * Cookies.js - 1.2.3
- * https://github.com/ScottHamper/Cookies
- *
- * This is free and unencumbered software released into the public domain.
- */
-(function (global, undefined) {
-    'use strict';
-
-    var factory = function (window) {
-        if (typeof window.document !== 'object') {
-            throw new Error('Cookies.js requires a `window` with a `document` object');
-        }
-
-        var Cookies = function (key, value, options) {
-            return arguments.length === 1 ?
-                Cookies.get(key) : Cookies.set(key, value, options);
-        };
-
-        // Allows for setter injection in unit tests
-        Cookies._document = window.document;
-
-        // Used to ensure cookie keys do not collide with
-        // built-in `Object` properties
-        Cookies._cacheKeyPrefix = 'cookey.'; // Hurr hurr, :)
-        
-        Cookies._maxExpireDate = new Date('Fri, 31 Dec 9999 23:59:59 UTC');
-
-        Cookies.defaults = {
-            path: '/',
-            secure: false
-        };
-
-        Cookies.get = function (key) {
-            if (Cookies._cachedDocumentCookie !== Cookies._document.cookie) {
-                Cookies._renewCache();
-            }
-            
-            var value = Cookies._cache[Cookies._cacheKeyPrefix + key];
-
-            return value === undefined ? undefined : decodeURIComponent(value);
-        };
-
-        Cookies.set = function (key, value, options) {
-            options = Cookies._getExtendedOptions(options);
-            options.expires = Cookies._getExpiresDate(value === undefined ? -1 : options.expires);
-
-            Cookies._document.cookie = Cookies._generateCookieString(key, value, options);
-
-            return Cookies;
-        };
-
-        Cookies.expire = function (key, options) {
-            return Cookies.set(key, undefined, options);
-        };
-
-        Cookies._getExtendedOptions = function (options) {
-            return {
-                path: options && options.path || Cookies.defaults.path,
-                domain: options && options.domain || Cookies.defaults.domain,
-                expires: options && options.expires || Cookies.defaults.expires,
-                secure: options && options.secure !== undefined ?  options.secure : Cookies.defaults.secure
-            };
-        };
-
-        Cookies._isValidDate = function (date) {
-            return Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date.getTime());
-        };
-
-        Cookies._getExpiresDate = function (expires, now) {
-            now = now || new Date();
-
-            if (typeof expires === 'number') {
-                expires = expires === Infinity ?
-                    Cookies._maxExpireDate : new Date(now.getTime() + expires * 1000);
-            } else if (typeof expires === 'string') {
-                expires = new Date(expires);
-            }
-
-            if (expires && !Cookies._isValidDate(expires)) {
-                throw new Error('`expires` parameter cannot be converted to a valid Date instance');
-            }
-
-            return expires;
-        };
-
-        Cookies._generateCookieString = function (key, value, options) {
-            key = key.replace(/[^#$&+\^`|]/g, encodeURIComponent);
-            key = key.replace(/\(/g, '%28').replace(/\)/g, '%29');
-            value = (value + '').replace(/[^!#$&-+\--:<-\[\]-~]/g, encodeURIComponent);
-            options = options || {};
-
-            var cookieString = key + '=' + value;
-            cookieString += options.path ? ';path=' + options.path : '';
-            cookieString += options.domain ? ';domain=' + options.domain : '';
-            cookieString += options.expires ? ';expires=' + options.expires.toUTCString() : '';
-            cookieString += options.secure ? ';secure' : '';
-
-            return cookieString;
-        };
-
-        Cookies._getCacheFromString = function (documentCookie) {
-            var cookieCache = {};
-            var cookiesArray = documentCookie ? documentCookie.split('; ') : [];
-
-            for (var i = 0; i < cookiesArray.length; i++) {
-                var cookieKvp = Cookies._getKeyValuePairFromCookieString(cookiesArray[i]);
-
-                if (cookieCache[Cookies._cacheKeyPrefix + cookieKvp.key] === undefined) {
-                    cookieCache[Cookies._cacheKeyPrefix + cookieKvp.key] = cookieKvp.value;
-                }
-            }
-
-            return cookieCache;
-        };
-
-        Cookies._getKeyValuePairFromCookieString = function (cookieString) {
-            // "=" is a valid character in a cookie value according to RFC6265, so cannot `split('=')`
-            var separatorIndex = cookieString.indexOf('=');
-
-            // IE omits the "=" when the cookie value is an empty string
-            separatorIndex = separatorIndex < 0 ? cookieString.length : separatorIndex;
-
-            var key = cookieString.substr(0, separatorIndex);
-            var decodedKey;
-            try {
-                decodedKey = decodeURIComponent(key);
-            } catch (e) {
-                if (console && typeof console.error === 'function') {
-                    console.error('Could not decode cookie with key "' + key + '"', e);
-                }
-            }
-            
-            return {
-                key: decodedKey,
-                value: cookieString.substr(separatorIndex + 1) // Defer decoding value until accessed
-            };
-        };
-
-        Cookies._renewCache = function () {
-            Cookies._cache = Cookies._getCacheFromString(Cookies._document.cookie);
-            Cookies._cachedDocumentCookie = Cookies._document.cookie;
-        };
-
-        Cookies._areEnabled = function () {
-            var testKey = 'cookies.js';
-            var areEnabled = Cookies.set(testKey, 1).get(testKey) === '1';
-            Cookies.expire(testKey);
-            return areEnabled;
-        };
-
-        Cookies.enabled = Cookies._areEnabled();
-
-        return Cookies;
-    };
-    var cookiesExport = (global && typeof global.document === 'object') ? factory(global) : factory;
-
-    // AMD support
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () { return cookiesExport; }).call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    // CommonJS/Node.js support
-    } else if (typeof exports === 'object') {
-        // Support Node.js specific `module.exports` (which can be a function)
-        if (typeof module === 'object' && typeof module.exports === 'object') {
-            exports = module.exports = cookiesExport;
-        }
-        // But always support CommonJS module 1.1.1 spec (`exports` cannot be a function)
-        exports.Cookies = cookiesExport;
-    } else {
-        global.Cookies = cookiesExport;
-    }
-})(typeof window === 'undefined' ? this : window);
 
 /***/ }),
 

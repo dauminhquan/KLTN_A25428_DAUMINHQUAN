@@ -3,7 +3,7 @@
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?ad579ff1278c3d4388d15fc27b40b67e);
-  src: url(/fonts/icomoon.eot?ad579ff1278c3d4388d15fc27b40b67e) format("embedded-opentype"), url(/fonts/icomoon.woff?c068d37f3b072da2ecefcf5369f219ad) format("woff"), url(/fonts/icomoon.ttf?34fdc4136a7e7e129a6e1897b4c50ee1) format("truetype"), url(/fonts/icomoon.svg?71b250a34b8b3711fe404676f1c2a3ed) format("svg");
+  src: url(/fonts/icomoon.eot?ad579ff1278c3d4388d15fc27b40b67e) format("embedded-opentype"), url(/fonts/icomoon.woff?c068d37f3b072da2ecefcf5369f219ad) format("woff"), url(/fonts/icomoon.ttf?34fdc4136a7e7e129a6e1897b4c50ee1) format("truetype"), url(/fonts/icomoon.svg?9fc4031c3e96973f418ed77f0ff3b0f3) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -13382,7 +13382,7 @@ a.bg-danger:focus {
 }
 
 .page-header-inverse.has-cover {
-  background: url(/images/login_cover.jpg?282bcdd423c349b7e2daf6f59a1f4ac8);
+  background: url(/images/login_cover.jpg?82752a9cac965bf45e58e19b9c2ae89f);
   background-size: cover;
 }
 
@@ -33459,11 +33459,11 @@ body.stop-scrolling {
 }
 
 .ui-selectmenu-images .demo-img-amazon {
-  background: url(/images/amazon.png?ed9f2a52fe5051d86dbcc8ca2f268eb7) no-repeat;
+  background: url(/images/amazon.png?fbf0806d74c1df212f555d10246c1fbb) no-repeat;
 }
 
 .ui-selectmenu-images .demo-img-youtube {
-  background: url(/images/youtube.png?aab2bfa3a93d9f71cdb1ad3a46e12061) no-repeat;
+  background: url(/images/youtube.png?de532d66f3b9a1d71a5e04f7a8eb6ff5) no-repeat;
 }
 
 .ui-selectmenu-images .demo-img-twitter {
@@ -33475,7 +33475,7 @@ body.stop-scrolling {
 }
 
 .ui-selectmenu-images .demo-img-spotify {
-  background: url(/images/spotify.png?8d124711faabfcb21d216312cce8464d) no-repeat;
+  background: url(/images/spotify.png?6c9451d6feab68a72681f0377f0b60af) no-repeat;
 }
 
 .ui-slider {
@@ -42044,7 +42044,7 @@ thead .htCollapseButton:after {
  * ---------------------------------------------------------------------------- */
 
 .login-cover {
-  background: url(/images/login_cover.jpg?282bcdd423c349b7e2daf6f59a1f4ac8) no-repeat;
+  background: url(/images/login_cover.jpg?82752a9cac965bf45e58e19b9c2ae89f) no-repeat;
   background-size: cover;
 }
 

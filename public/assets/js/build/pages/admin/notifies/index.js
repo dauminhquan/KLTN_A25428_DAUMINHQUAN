@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 273);
+/******/ 	return __webpack_require__(__webpack_require__.s = 286);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -26255,243 +26255,251 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-        function Config() {
-                var _this = this;
+    function Config() {
+        var _this = this;
 
-                _classCallCheck(this, Config);
+        _classCallCheck(this, Config);
 
-                /*API*/
+        /*API*/
 
-                this.API = window.location.origin + '/api';
+        this.API = window.location.origin + '/api';
 
-                /*ADMIN*/
+        /*ADMIN*/
 
-                this.API_ADMIN = this.API + '/admin';
+        this.API_ADMIN = this.API + '/admin';
 
-                /*ENTERPRISES*/
-                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-                };
-                /*ENTERPRISES*/
+        /*ENTERPRISES*/
+        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+        };
+        /*ENTERPRISES*/
 
-                /*STUDENTS*/
-                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-                };
-                /*STUDENTS*/
+        /*STUDENTS*/
+        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+        };
+        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+        };
+        /*STUDENTS*/
 
-                /*JOBS*/
-                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_JOBS + '/get-option-csv';
-                };
-                /*JOBS*/
+        /*JOBS*/
+        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_JOBS + '/get-option-csv';
+        };
+        /*JOBS*/
 
-                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
-                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
-                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+        this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+        this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+        this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+        this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
 
-                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
-                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
-                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
+        this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+        this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+        this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
-                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
-                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
+        this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+        this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+        this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
-                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
-                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
-                this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
+        this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+        this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+        this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
+        this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
 
-                this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
-                this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
-                this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
-                this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
+        this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
+        this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
+        this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
+        this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
 
-                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
-                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
-                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
+        this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+        this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+        this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-                /*NOTIFIES*/
-                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-                };
-                /*NOTIFIES*/
+        /*NOTIFIES*/
+        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+        };
+        /*NOTIFIES*/
 
-                /*ENTERPRISES*/
+        /*ENTERPRISES*/
 
-                this.API_ENTERPRISE = this.API + '/enterprise';
+        this.API_ENTERPRISE = this.API + '/enterprise';
 
-                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
-                };
+        this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
+        this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
+        this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
+        this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
+        this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
+        };
 
-                this.API_AUTH_LOGIN = this.API + '/login';
-                this.API_GET_TOKEN = this.API + '/get-token';
-                this.API_RESET_PASSWORD = this.API + '/reset-password';
+        this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
+        this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
 
-                this.API_NOTIFIES = this.API + '/notifies';
-                this.API_POSITIONS = this.API + '/positions';
-                this.API_SKILLS = this.API + '/skills';
-                this.API_TYPES = this.API + '/types';
-                this.API_SALARIES = this.API + '/salaries';
-                this.API_PROVINCES = this.API + '/provinces';
-                /*API*/
+        this.API_STUDENT = this.API + '/student';
+        this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
+        this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
 
-                /*WEB*/
+        this.API_AUTH_LOGIN = this.API + '/login';
+        this.API_GET_TOKEN = this.API + '/get-token';
+        this.API_RESET_PASSWORD = this.API + '/reset-password';
 
-                this.WEB = window.location.origin;
+        this.API_NOTIFIES = this.API + '/notifies';
+        this.API_POSITIONS = this.API + '/positions';
+        this.API_SKILLS = this.API + '/skills';
+        this.API_TYPES = this.API + '/types';
+        this.API_SALARIES = this.API + '/salaries';
+        this.API_PROVINCES = this.API + '/provinces';
+        /*API*/
 
-                this.WEB_HOME = this.WEB;
+        /*WEB*/
 
-                this.WEB_ADMIN = this.WEB + '/admin';
+        this.WEB = window.location.origin;
 
-                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+        this.WEB_HOME = this.WEB;
 
-                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+        this.WEB_ADMIN = this.WEB + '/admin';
 
-                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
 
-                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
 
-                this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
 
-                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
-                /*WEB*/
+        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+
+        this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+
+        this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+        /*WEB*/
+    }
+
+    _createClass(Config, [{
+        key: 'notifySuccess',
+        value: function notifySuccess() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: message,
+                    addclass: 'bg-success'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: 'Thao tác thành công',
+                    addclass: 'bg-success'
+                });
+            }
         }
+    }, {
+        key: 'notifyWarning',
+        value: function notifyWarning() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-        _createClass(Config, [{
-                key: 'notifySuccess',
-                value: function notifySuccess() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có gì đó sai sai!',
+                    text: message,
+                    addclass: 'bg-warning'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có gì đó sai sai!',
+                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                    addclass: 'bg-warning'
+                });
+            }
+        }
+    }, {
+        key: 'notifyError',
+        value: function notifyError() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: message,
-                                        addclass: 'bg-success'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: 'Thao tác thành công',
-                                        addclass: 'bg-success'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyWarning',
-                value: function notifyWarning() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: message,
+                    addclass: 'bg-danger'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: 'Thao tác thất bại',
+                    addclass: 'bg-danger'
+                });
+            }
+        }
+    }, {
+        key: 'getError',
+        value: function getError(data) {
+            var message = '';
+            message = data.message;
+            message += '<br>';
+            var errors = data.errors;
+            var keys = Object.keys(errors);
+            keys.forEach(function (key) {
+                errors[key].forEach(function (item) {
+                    message += item + '<br>';
+                });
+            });
+            return message;
+        }
+    }]);
 
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: message,
-                                        addclass: 'bg-warning'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                                        addclass: 'bg-warning'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyError',
-                value: function notifyError() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: message,
-                                        addclass: 'bg-danger'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: 'Thao tác thất bại',
-                                        addclass: 'bg-danger'
-                                });
-                        }
-                }
-        }, {
-                key: 'getError',
-                value: function getError(data) {
-                        var message = '';
-                        message = data.message;
-                        message += '<br>';
-                        var errors = data.errors;
-                        var keys = Object.keys(errors);
-                        keys.forEach(function (key) {
-                                errors[key].forEach(function (item) {
-                                        message += item + '<br>';
-                                });
-                        });
-                        return message;
-                }
-        }]);
-
-        return Config;
+    return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
@@ -27356,22 +27364,50 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 273:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(274);
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
 
 
 /***/ }),
 
-/***/ 274:
+/***/ 286:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(287);
+
+
+/***/ }),
+
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__content__);
 
 
@@ -27382,15 +27418,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 /***/ }),
 
-/***/ 275:
+/***/ 288:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(276)
+var __vue_script__ = __webpack_require__(289)
 /* template */
-var __vue_template__ = __webpack_require__(285)
+var __vue_template__ = __webpack_require__(298)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -27407,7 +27443,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\content.vue"
+Component.options.__file = "resources/assets/js/admin/notifies/index/content.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -27416,9 +27452,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5f1500b4", Component.options)
+    hotAPI.createRecord("data-v-0a656074", Component.options)
   } else {
-    hotAPI.reload("data-v-5f1500b4", Component.options)
+    hotAPI.reload("data-v-0a656074", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -27430,12 +27466,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 276:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_table_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(12);
@@ -27723,19 +27759,41 @@ window._config = new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]();
 
 /***/ }),
 
-/***/ 277:
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(278)
+  __webpack_require__(291)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(280)
+var __vue_script__ = __webpack_require__(293)
 /* template */
-var __vue_template__ = __webpack_require__(284)
+var __vue_template__ = __webpack_require__(297)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -27752,7 +27810,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\table.vue"
+Component.options.__file = "resources/assets/js/admin/notifies/index/components/table.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -27761,9 +27819,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-be68eeaa", Component.options)
+    hotAPI.createRecord("data-v-6c82fa18", Component.options)
   } else {
-    hotAPI.reload("data-v-be68eeaa", Component.options)
+    hotAPI.reload("data-v-6c82fa18", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -27775,23 +27833,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 278:
+/***/ 291:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(279);
+var content = __webpack_require__(292);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(41)("3b633967", content, false, {});
+var update = __webpack_require__(41)("7e467910", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-be68eeaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c82fa18\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c82fa18\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./table.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -27802,7 +27860,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 279:
+/***/ 292:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(40)(false);
@@ -27817,40 +27875,12 @@ exports.push([module.i, "\n.dt-button-collection button{\n    width: 100% !impor
 
 /***/ }),
 
-/***/ 28:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(0);
-
-/**
- * Transform the data for a request or a response
- *
- * @param {Object|String} data The data to be transformed
- * @param {Array} headers The headers for the request or response
- * @param {Array|Function} fns A single function or Array of functions
- * @returns {*} The resulting transformed data
- */
-module.exports = function transformData(data, headers, fns) {
-  /*eslint no-param-reassign:0*/
-  utils.forEach(fns, function transform(fn) {
-    data = fn(data, headers);
-  });
-
-  return data;
-};
-
-
-/***/ }),
-
-/***/ 280:
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkboxItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__checkboxItem__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
@@ -28094,15 +28124,15 @@ __webpack_require__(46);
 
 /***/ }),
 
-/***/ 281:
+/***/ 294:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(282)
+var __vue_script__ = __webpack_require__(295)
 /* template */
-var __vue_template__ = __webpack_require__(283)
+var __vue_template__ = __webpack_require__(296)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -28119,7 +28149,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\admin\\notifies\\index\\components\\checkboxItem.vue"
+Component.options.__file = "resources/assets/js/admin/notifies/index/components/checkboxItem.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -28128,9 +28158,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7eee4029", Component.options)
+    hotAPI.createRecord("data-v-0705ca1c", Component.options)
   } else {
-    hotAPI.reload("data-v-7eee4029", Component.options)
+    hotAPI.reload("data-v-0705ca1c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -28142,7 +28172,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 282:
+/***/ 295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28198,7 +28228,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 283:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -28221,13 +28251,13 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7eee4029", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0705ca1c", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 284:
+/***/ 297:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -28521,13 +28551,13 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-be68eeaa", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-6c82fa18", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 285:
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -28742,31 +28772,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5f1500b4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0a656074", module.exports)
   }
 }
-
-/***/ }),
-
-/***/ 29:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Determines whether the specified URL is absolute
- *
- * @param {string} url The URL to test
- * @returns {boolean} True if the specified URL is absolute, otherwise false
- */
-module.exports = function isAbsoluteURL(url) {
-  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
-  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
-  // by any combination of letters, digits, plus, period, or hyphen.
-  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-};
-
 
 /***/ }),
 

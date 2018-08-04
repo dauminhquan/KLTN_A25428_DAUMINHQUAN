@@ -14,19 +14,27 @@ class ProfileManageController extends Controller
     private $profileService;
     public function __construct()
     {
-//        Auth::user()->id
-        $this->profileService = new ProfileService(1);
+
     }
     public function getProfile()
     {
+        $user = session('user');
+        $enterprise = $user->enterprise;
+        $this->profileService = new ProfileService($enterprise->id);
         return $this->profileService->profile();
     }
     public function updateProfile(EnterpriseManageRequest $request)
     {
+        $user = session('user');
+        $enterprise = $user->enterprise;
+        $this->profileService = new ProfileService($enterprise->id);
         return $this->profileService->updateProfile($request->all());
     }
     public function updateAvatar(UpdateAvatarRequest $request)
     {
+        $user = session('user');
+        $enterprise = $user->enterprise;
+        $this->profileService = new ProfileService($enterprise->id);
         return $this->profileService->updateAvatar($request->avatar);
     }
 }

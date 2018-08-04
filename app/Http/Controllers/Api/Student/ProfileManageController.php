@@ -15,7 +15,6 @@ class ProfileManageController extends Controller
     private $profileService;
     public function __construct()
     {
-        Auth::user()->
         $this->profileService = new ProfileService();
     }
     public function getProfile()

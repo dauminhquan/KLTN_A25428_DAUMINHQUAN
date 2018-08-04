@@ -61,6 +61,7 @@ class Config{
         this.API_ADMIN_PROVINCES = this.API_ADMIN+'/manage-provinces'
         this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES+'/resource'
         this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES+'/delete-list'
+        this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES+'/import-csv'
 
         this.API_ADMIN_RATINGS = this.API_ADMIN+'/manage-ratings'
         this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS+'/resource'
@@ -100,6 +101,14 @@ class Config{
         this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS+'/update-file-attach'
         this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS+'/delete-list'
         this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISE_JOBS+'/get-option-csv'
+
+        this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE+'/profile'
+        this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE+'/update-avatar'
+
+
+        this.API_STUDENT= this.API+'/student'
+        this.API_STUDENT_PROFILE = this.API_STUDENT+'/profile'
+        this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT+'/update-avatar'
 
 
         this.API_AUTH_LOGIN = this.API+'/login'

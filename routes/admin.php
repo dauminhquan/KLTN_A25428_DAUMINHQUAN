@@ -12,5 +12,6 @@ Route::resource('/departments','DepartmentManageController')->only('index');
 Route::resource('/branches','BranchManageController')->only('index');
 Route::resource('/ratings','RatingManageController')->only('index');
 Route::resource('/salaries','SalaryManageController')->only('index');
+Route::resource('/provinces','ProvinceManageController')->only('index');
 Route::resource('/works','WorkManageController')->only('index','create','edit');
 Route::get('/','IndexController@index')->name('dashboard');

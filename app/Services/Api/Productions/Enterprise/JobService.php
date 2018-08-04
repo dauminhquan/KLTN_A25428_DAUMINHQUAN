@@ -103,7 +103,7 @@ class JobService implements ManageInterface
             $array = $inputs->all();
             $array['enterprise_id']= $this->enterprise->id;
             unset($array['attachment']);
-
+            unset($array['accept']);
             $job = Job::create($array);
 
             if($inputs->hasFile('attachment'))
@@ -146,6 +146,7 @@ class JobService implements ManageInterface
                     $job->positions()->sync($inputs['positions']);
 
                 }
+                unset($inputs['attachment']);
                 unset($inputs['accept']);
                 foreach ($columns as $column)
                 {

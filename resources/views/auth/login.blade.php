@@ -11,17 +11,13 @@
 </head>
 
 <body class="login-container">
-
-
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
-
+        <a class="navbar-brand" href="http://thanglong.edu.vn"><img src="assets/images/logo_light.png" alt=""></a>
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
         </ul>
     </div>
-
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav navbar-right">
             <li>
@@ -45,19 +41,15 @@
         </ul>
     </div>
 </div>
-
-
-
-
 <div class="page-container">
-
 
     <div class="page-content" id="login">
 
-
         <div class="content-wrapper">
 
-
+            @if($errors->any())
+                <h6 class="text-danger text-center">{{$errors->first()}}</h6>
+            @endif
             <div class="content" >
 
 
@@ -70,15 +62,11 @@
                     &copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
                 </div>
 
-
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </div>
 

@@ -1,5 +1,5 @@
 <?php
-Route::group(['middleware' => 'auth:api'],function (){
+Route::group(['middleware' => ['auth:api']],function (){
     Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.','middleware' => ['api.check.admin']],function (){
         Route::group(['prefix' => '/manage-users', 'as' => 'manage.users.'],function (){
             Route::resource('/resource','UserManageController')->except(['create','edit']);

@@ -33,6 +33,7 @@ class ProfileService
         try{
 
             $columns = Schema::getColumnListing((new Enterprise())->getTable());
+            unset($inputs['authentication']);
             foreach ($columns as $column)
             {
                 if(isset($inputs[$column]))

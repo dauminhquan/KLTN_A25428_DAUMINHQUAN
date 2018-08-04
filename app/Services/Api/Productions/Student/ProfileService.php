@@ -20,19 +20,35 @@ class ProfileService
     private $student;
     public function __construct()
     {
-        $this->student = Student::findOrFail(Auth::user()->student);
+
     }
 
     public function profile()
     {
+
+        $this->student = session('user')->student;
+        $this->student->province = $this->student->province;
         return $this->student;
     }
 
     public function updateProfile($inputs)
     {
+        $this->student = session('user');
+        $this->student = Student::find($this->student->student->code);
+        unset($inputs['code']);
+        unset($inputs['rating_id']);
+        unset($inputs['sex']);
+        unset($inputs['user_id']);
+        unset($inputs['graduated']);
+        unset($inputs['medium_score']);
+        unset($inputs['date_graduated']);
+        unset($inputs['course_code']);
+        unset($inputs['branch_code']);
+        unset($inputs['main_class']);
         try{
 
             $columns = Schema::getColumnListing((new Student())->getTable());
+
             foreach ($columns as $column)
             {
                 if(isset($inputs[$column]))
@@ -40,7 +56,7 @@ class ProfileService
                     $this->student->$column = $inputs[$column];
                 }
             }
-            $this->student->save();
+            $this->student->update();
             return $this->student;
 
         }catch (\Exception $exception)
@@ -49,6 +65,7 @@ class ProfileService
         }
     }
     public function updateAvatar($avatar){
+        $this->student = session('user')->student;
         if(Storage::exists($this->student->avatar))
         {
             Storage::delete($this->student->avatar);

@@ -4,7 +4,6 @@ namespace App\Http;
 
 use App\Http\Middleware\ApiCheckAdmin;
 use App\Http\Middleware\ApiCheckEnterprise;
-use App\Http\Middleware\ApiCheckEnterpriseOrAdmin;
 use App\Http\Middleware\ApiCheckStudent;
 use App\Http\Middleware\CheckAuthentication;
 use App\Http\Middleware\WebCheckAdmin;
@@ -48,7 +47,6 @@ class Kernel extends HttpKernel
 
         'api' => [
             \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             'throttle:60,1',
             'bindings',

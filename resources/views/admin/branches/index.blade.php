@@ -24,5 +24,5 @@
     <script type="text/javascript" src="{{asset("assets/js/build/pages/admin/branches/index.js")}}"></script>
 @endsection
 @section('theme-asset')
-    {{--<script type="text/javascript" src="{{asset('assets/js/plugins/forms/selects/select2.min.js')}}"></script>--}}
+
 @endsection

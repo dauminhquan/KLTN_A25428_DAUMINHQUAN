@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 319);
+/******/ 	return __webpack_require__(__webpack_require__.s = 360);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -579,243 +579,251 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-        function Config() {
-                var _this = this;
+    function Config() {
+        var _this = this;
 
-                _classCallCheck(this, Config);
+        _classCallCheck(this, Config);
 
-                /*API*/
+        /*API*/
 
-                this.API = window.location.origin + '/api';
+        this.API = window.location.origin + '/api';
 
-                /*ADMIN*/
+        /*ADMIN*/
 
-                this.API_ADMIN = this.API + '/admin';
+        this.API_ADMIN = this.API + '/admin';
 
-                /*ENTERPRISES*/
-                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-                };
-                /*ENTERPRISES*/
+        /*ENTERPRISES*/
+        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+        };
+        /*ENTERPRISES*/
 
-                /*STUDENTS*/
-                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-                };
-                /*STUDENTS*/
+        /*STUDENTS*/
+        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+        };
+        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+        };
+        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+        };
+        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+        };
+        /*STUDENTS*/
 
-                /*JOBS*/
-                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_JOBS + '/get-option-csv';
-                };
-                /*JOBS*/
+        /*JOBS*/
+        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_JOBS + '/get-option-csv';
+        };
+        /*JOBS*/
 
-                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
-                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
-                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+        this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+        this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+        this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+        this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
 
-                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
-                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
-                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
+        this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+        this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+        this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
-                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
-                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
+        this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+        this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+        this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
-                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
-                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
-                this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
+        this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+        this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+        this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
+        this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
 
-                this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
-                this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
-                this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
-                this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
+        this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
+        this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
+        this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
+        this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
 
-                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
-                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
-                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
+        this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+        this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+        this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-                /*NOTIFIES*/
-                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-                };
-                /*NOTIFIES*/
+        /*NOTIFIES*/
+        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+        };
+        /*NOTIFIES*/
 
-                /*ENTERPRISES*/
+        /*ENTERPRISES*/
 
-                this.API_ENTERPRISE = this.API + '/enterprise';
+        this.API_ENTERPRISE = this.API + '/enterprise';
 
-                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
-                };
+        this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
+        this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
+        this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
+        this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
+        this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
+            return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
+        };
 
-                this.API_AUTH_LOGIN = this.API + '/login';
-                this.API_GET_TOKEN = this.API + '/get-token';
-                this.API_RESET_PASSWORD = this.API + '/reset-password';
+        this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
+        this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
 
-                this.API_NOTIFIES = this.API + '/notifies';
-                this.API_POSITIONS = this.API + '/positions';
-                this.API_SKILLS = this.API + '/skills';
-                this.API_TYPES = this.API + '/types';
-                this.API_SALARIES = this.API + '/salaries';
-                this.API_PROVINCES = this.API + '/provinces';
-                /*API*/
+        this.API_STUDENT = this.API + '/student';
+        this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
+        this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
 
-                /*WEB*/
+        this.API_AUTH_LOGIN = this.API + '/login';
+        this.API_GET_TOKEN = this.API + '/get-token';
+        this.API_RESET_PASSWORD = this.API + '/reset-password';
 
-                this.WEB = window.location.origin;
+        this.API_NOTIFIES = this.API + '/notifies';
+        this.API_POSITIONS = this.API + '/positions';
+        this.API_SKILLS = this.API + '/skills';
+        this.API_TYPES = this.API + '/types';
+        this.API_SALARIES = this.API + '/salaries';
+        this.API_PROVINCES = this.API + '/provinces';
+        /*API*/
 
-                this.WEB_HOME = this.WEB;
+        /*WEB*/
 
-                this.WEB_ADMIN = this.WEB + '/admin';
+        this.WEB = window.location.origin;
 
-                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+        this.WEB_HOME = this.WEB;
 
-                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+        this.WEB_ADMIN = this.WEB + '/admin';
 
-                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
 
-                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
 
-                this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
 
-                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
-                /*WEB*/
+        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+
+        this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+
+        this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+        /*WEB*/
+    }
+
+    _createClass(Config, [{
+        key: 'notifySuccess',
+        value: function notifySuccess() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: message,
+                    addclass: 'bg-success'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh Yeah! Thành công!',
+                    text: 'Thao tác thành công',
+                    addclass: 'bg-success'
+                });
+            }
         }
+    }, {
+        key: 'notifyWarning',
+        value: function notifyWarning() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-        _createClass(Config, [{
-                key: 'notifySuccess',
-                value: function notifySuccess() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có gì đó sai sai!',
+                    text: message,
+                    addclass: 'bg-warning'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có gì đó sai sai!',
+                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                    addclass: 'bg-warning'
+                });
+            }
+        }
+    }, {
+        key: 'notifyError',
+        value: function notifyError() {
+            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: message,
-                                        addclass: 'bg-success'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: 'Thao tác thành công',
-                                        addclass: 'bg-success'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyWarning',
-                value: function notifyWarning() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            if (message != '') {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: message,
+                    addclass: 'bg-danger'
+                });
+            } else {
+                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                    title: 'Ohh! Có lỗi xảy ra rồi!',
+                    text: 'Thao tác thất bại',
+                    addclass: 'bg-danger'
+                });
+            }
+        }
+    }, {
+        key: 'getError',
+        value: function getError(data) {
+            var message = '';
+            message = data.message;
+            message += '<br>';
+            var errors = data.errors;
+            var keys = Object.keys(errors);
+            keys.forEach(function (key) {
+                errors[key].forEach(function (item) {
+                    message += item + '<br>';
+                });
+            });
+            return message;
+        }
+    }]);
 
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: message,
-                                        addclass: 'bg-warning'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                                        addclass: 'bg-warning'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyError',
-                value: function notifyError() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: message,
-                                        addclass: 'bg-danger'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: 'Thao tác thất bại',
-                                        addclass: 'bg-danger'
-                                });
-                        }
-                }
-        }, {
-                key: 'getError',
-                value: function getError(data) {
-                        var message = '';
-                        message = data.message;
-                        message += '<br>';
-                        var errors = data.errors;
-                        var keys = Object.keys(errors);
-                        keys.forEach(function (key) {
-                                errors[key].forEach(function (item) {
-                                        message += item + '<br>';
-                                });
-                        });
-                        return message;
-                }
-        }]);
-
-        return Config;
+    return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
@@ -1827,14 +1835,6 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 319:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(320);
-
-
-/***/ }),
-
 /***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1867,853 +1867,6 @@ module.exports = function spread(callback) {
   };
 };
 
-
-/***/ }),
-
-/***/ 320:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__ = __webpack_require__(324);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__);
-window.Vue = __webpack_require__(34);
-
-
-var app = new Vue({
-    el: '#login',
-    components: {
-        'form-login': __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue___default.a,
-        'form-forgot-password': __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue___default.a
-    },
-    mounted: function mounted() {},
-    updated: function updated() {},
-
-    methods: {
-        forget_password: function forget_password() {
-            this.forgetPassword = true;
-        }
-    },
-    data: function data() {
-        return {
-            forgetPassword: false
-        };
-    }
-});
-
-/***/ }),
-
-/***/ 321:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(322)
-/* template */
-var __vue_template__ = __webpack_require__(323)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\auth\\components\\form_login.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-11a6d53f", Component.options)
-  } else {
-    hotAPI.reload("data-v-11a6d53f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 322:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-window.Cookies = __webpack_require__(33);
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
-
-    methods: {
-        forgotPassword: function forgotPassword() {
-            this.$emit('forget_password');
-        },
-        login: function login() {
-            var vm = this;
-            vm.processing = true;
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vm.config.API_AUTH_LOGIN, vm.infoLogin).then(function (data) {
-                console.log(data);
-
-                var index = vm.styleText.findIndex(function (element) {
-                    return 'text-danger' == element;
-                });
-                vm.styleText.splice(index, 1);
-                window.Cookies.set('token', data.data.token, {
-                    expires: 600000
-                });
-                vm.Text = '';
-                vm.processing = false;
-                window.location = vm.config.WEB_HOME;
-            }).catch(function (err) {
-                console.dir(err);
-                vm.styleText.push('text-danger');
-                if (err.response.status == 422) {
-                    var html = '';
-                    err.response.data.errors.email.forEach(function (item) {
-                        html += item;
-                        html += '<br>';
-                    });
-                    vm.Text = html;
-                } else if (err.response.status == 406) {
-                    vm.Text = err.response.data.password;
-                }
-                vm.processing = false;
-            });
-        }
-    },
-    data: function data() {
-        return {
-            infoLogin: {
-                email: '',
-                password: ''
-            },
-            styleText: ['display-block'],
-            Text: '<br>Điền tài khoản và mật khẩu của bạn',
-            processing: false,
-            config: new __WEBPACK_IMPORTED_MODULE_1__config__["a" /* default */]()
-        };
-    }
-});
-
-/***/ }),
-
-/***/ 323:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.login($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "panel panel-body login-form" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm.processing == false
-            ? _c(
-                "div",
-                { staticClass: "icon-object border-slate-300 text-slate-300" },
-                [_c("i", { staticClass: "icon-reading" })]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.processing == true
-            ? _c("div", { staticClass: "pace-demo" }, [_vm._m(0)])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("h5", { staticClass: "content-group" }, [
-            _vm._v("Đăng nhập "),
-            _c("small", {
-              class: _vm.styleText,
-              domProps: { innerHTML: _vm._s(_vm.Text) }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group has-feedback has-feedback-left" },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.infoLogin.email,
-                  expression: "infoLogin.email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Username" },
-              domProps: { value: _vm.infoLogin.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.infoLogin, "email", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(1)
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group has-feedback has-feedback-left" },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.infoLogin.password,
-                  expression: "infoLogin.password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password", placeholder: "Password" },
-              domProps: { value: _vm.infoLogin.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.infoLogin, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(2)
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(3),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-center" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "javascript:void(0)" },
-              on: { click: _vm.forgotPassword }
-            },
-            [_vm._v("Quên mật khẩu?")]
-          )
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "theme_xbox_xs" }, [
-      _c("div", {
-        staticClass: "pace_progress",
-        attrs: { "data-progress-text": "60%", "data-progress": "60" }
-      }),
-      _c("div", { staticClass: "pace_activity" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
-      _c("i", { staticClass: "icon-user text-muted" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
-      _c("i", { staticClass: "icon-lock2 text-muted" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [
-          _vm._v("Login"),
-          _c("i", { staticClass: "icon-circle-right2 position-right" })
-        ]
-      )
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-11a6d53f", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 324:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(325)
-/* template */
-var __vue_template__ = __webpack_require__(326)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\auth\\components\\forgot_password.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-051df576", Component.options)
-  } else {
-    hotAPI.reload("data-v-051df576", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 325:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            config: new __WEBPACK_IMPORTED_MODULE_1__config__["a" /* default */](),
-            email: '',
-            sended: false,
-            password: '',
-            rep_password: '',
-            token: '',
-            processing: false
-        };
-    },
-
-    methods: {
-        getToken: function getToken() {
-            var vm = this;
-            vm.processing = true;
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vm.config.API_GET_TOKEN, {
-                email: vm.email
-            }).then(function (data) {
-                vm.config.notifySuccess(data.data.message);
-                vm.processing = false;
-                vm.sended = true;
-            }).catch(function (err) {
-                console.dir(err);
-                if (err.response.status == 422) {
-                    vm.config.notifyError(err.response.data.errors.email[0]);
-                } else {
-                    vm.config.notifyError();
-                }
-                vm.processing = false;
-            });
-        },
-        resetPassword: function resetPassword() {
-            var vm = this;
-            if (vm.password == vm.rep_password) {
-                vm.processing = true;
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put(vm.config.API_RESET_PASSWORD, {
-                    email: vm.email,
-                    password: vm.password,
-                    rep_password: vm.rep_password,
-                    token: vm.token
-
-                }).then(function (data) {
-                    vm.config.notifySuccess(data.data.message);
-                    window.location = '/login';
-                    vm.processing = false;
-                }).catch(function (err) {
-                    console.dir(err);
-                    if (err.response.status == 422) {
-
-                        vm.config.notifyError('Đã có lỗi xảy ra. Vui lòng kiểm tra lại');
-                    } else {
-                        vm.config.notifyError();
-                    }
-                    vm.processing = false;
-                });
-            } else {
-                vm.config.notifyError('Mật khẩu nhập lại không khớp nhau');
-            }
-        }
-    }
-});
-
-/***/ }),
-
-/***/ 326:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    !_vm.sended
-      ? _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.getToken($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "panel panel-body login-form" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group has-feedback" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.email,
-                      expression: "email"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "email", placeholder: "Your email" },
-                  domProps: { value: _vm.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.email = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(1)
-              ]),
-              _vm._v(" "),
-              _vm.processing == true
-                ? _c("div", { staticClass: "pace-demo" }, [_vm._m(2)])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._m(3)
-            ])
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.sended
-      ? _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.resetPassword($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "panel panel-body login-form" }, [
-              _vm._m(4),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group has-feedback" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "password",
-                    placeholder: "Nhập mật khẩu của bạn"
-                  },
-                  domProps: { value: _vm.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(5)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group has-feedback" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.rep_password,
-                      expression: "rep_password"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "password", placeholder: "Nhập lại mật khẩu" },
-                  domProps: { value: _vm.rep_password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.rep_password = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(6),
-                _vm._v(" "),
-                _vm.password != _vm.rep_password || _vm.password.length < 6
-                  ? _c("h5", { staticClass: "content-group" }, [
-                      _c(
-                        "small",
-                        { staticClass: "display-block wysiwyg-color-red" },
-                        [_vm._v("Mật khẩu không giống nhau hoặc quá ngắn")]
-                      )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group has-feedback" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.token,
-                      expression: "token"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Nhập mã bạn nhận được" },
-                  domProps: { value: _vm.token },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.token = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(7)
-              ]),
-              _vm._v(" "),
-              _vm.processing == true
-                ? _c("div", { staticClass: "pace-demo" }, [_vm._m(8)])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._m(9)
-            ])
-          ]
-        )
-      : _vm._e()
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("div", { staticClass: "icon-object border-warning text-warning" }, [
-        _c("i", { staticClass: "icon-spinner11" })
-      ]),
-      _vm._v(" "),
-      _c("h5", { staticClass: "content-group" }, [
-        _vm._v("Quên mật khẩu "),
-        _c("small", { staticClass: "display-block" }, [
-          _vm._v("Chúng tôi sẽ gửi mã xác nhận về email của bạn")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
-      _c("i", { staticClass: "icon-mail5 text-muted" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "theme_xbox_xs" }, [
-      _c("div", {
-        staticClass: "pace_progress",
-        attrs: { "data-progress-text": "60%", "data-progress": "60" }
-      }),
-      _c("div", { staticClass: "pace_activity" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn bg-blue btn-block", attrs: { type: "submit" } },
-      [
-        _vm._v("Lấy mã "),
-        _c("i", { staticClass: "icon-arrow-right14 position-right" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("div", { staticClass: "icon-object border-warning text-warning" }, [
-        _c("i", { staticClass: "icon-spinner11" })
-      ]),
-      _vm._v(" "),
-      _c("h5", { staticClass: "content-group" }, [
-        _vm._v("Quên mật khẩu "),
-        _c("small", { staticClass: "display-block" }, [
-          _vm._v("Điền mật khẩu mới của bạn. Ít nhất 6 ký tự")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
-      _c("i", { staticClass: "icon-lock text-muted" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
-      _c("i", { staticClass: "icon-lock text-muted" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-control-feedback" }, [
-      _c("i", { staticClass: "icon-mail5 text-muted" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "theme_xbox_xs" }, [
-      _c("div", {
-        staticClass: "pace_progress",
-        attrs: { "data-progress-text": "60%", "data-progress": "60" }
-      }),
-      _c("div", { staticClass: "pace_activity" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn bg-blue btn-block", attrs: { type: "submit" } },
-      [
-        _vm._v("Đổi mật khẩu "),
-        _c("i", { staticClass: "icon-arrow-right14 position-right" })
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-051df576", module.exports)
-  }
-}
 
 /***/ }),
 
@@ -14125,6 +13278,861 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(10)))
+
+/***/ }),
+
+/***/ 360:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(361);
+
+
+/***/ }),
+
+/***/ 361:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__);
+window.Vue = __webpack_require__(34);
+
+
+var app = new Vue({
+    el: '#login',
+    components: {
+        'form-login': __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue___default.a,
+        'form-forgot-password': __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue___default.a
+    },
+    mounted: function mounted() {},
+    updated: function updated() {},
+
+    methods: {
+        forget_password: function forget_password() {
+            this.forgetPassword = true;
+        }
+    },
+    data: function data() {
+        return {
+            forgetPassword: false
+        };
+    }
+});
+
+/***/ }),
+
+/***/ 362:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(363)
+/* template */
+var __vue_template__ = __webpack_require__(364)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/auth/components/form_login.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-618d615c", Component.options)
+  } else {
+    hotAPI.reload("data-v-618d615c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 363:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+window.Cookies = __webpack_require__(33);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {},
+
+    methods: {
+        forgotPassword: function forgotPassword() {
+            this.$emit('forget_password');
+        },
+        login: function login() {
+            var vm = this;
+            vm.processing = true;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vm.config.API_AUTH_LOGIN, vm.infoLogin).then(function (data) {
+                console.log(data);
+
+                var index = vm.styleText.findIndex(function (element) {
+                    return 'text-danger' == element;
+                });
+                vm.styleText.splice(index, 1);
+                window.Cookies.set('token', data.data.token, {
+                    expires: 600000
+                });
+                vm.Text = '';
+                vm.processing = false;
+                window.location = vm.config.WEB_HOME;
+            }).catch(function (err) {
+                console.dir(err);
+                vm.styleText.push('text-danger');
+                if (err.response.status == 422) {
+                    var html = '';
+                    err.response.data.errors.email.forEach(function (item) {
+                        html += item;
+                        html += '<br>';
+                    });
+                    vm.Text = html;
+                } else if (err.response.status == 406) {
+                    vm.Text = err.response.data.password;
+                }
+                vm.processing = false;
+            });
+        }
+    },
+    data: function data() {
+        return {
+            infoLogin: {
+                email: '',
+                password: ''
+            },
+            styleText: ['display-block'],
+            Text: '<br>Điền tài khoản và mật khẩu của bạn',
+            processing: false,
+            config: new __WEBPACK_IMPORTED_MODULE_1__config__["a" /* default */]()
+        };
+    }
+});
+
+/***/ }),
+
+/***/ 364:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.login($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "panel panel-body login-form" }, [
+        _c("div", { staticClass: "text-center" }, [
+          _vm.processing == false
+            ? _c(
+                "div",
+                { staticClass: "icon-object border-slate-300 text-slate-300" },
+                [_c("i", { staticClass: "icon-reading" })]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.processing == true
+            ? _c("div", { staticClass: "pace-demo" }, [_vm._m(0)])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("h5", { staticClass: "content-group" }, [
+            _vm._v("Đăng nhập "),
+            _c("small", {
+              class: _vm.styleText,
+              domProps: { innerHTML: _vm._s(_vm.Text) }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group has-feedback has-feedback-left" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.infoLogin.email,
+                  expression: "infoLogin.email"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Username" },
+              domProps: { value: _vm.infoLogin.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.infoLogin, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._m(1)
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group has-feedback has-feedback-left" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.infoLogin.password,
+                  expression: "infoLogin.password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Password" },
+              domProps: { value: _vm.infoLogin.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.infoLogin, "password", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._m(2)
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "javascript:void(0)" },
+              on: { click: _vm.forgotPassword }
+            },
+            [_vm._v("Quên mật khẩu?")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "theme_xbox_xs" }, [
+      _c("div", {
+        staticClass: "pace_progress",
+        attrs: { "data-progress-text": "60%", "data-progress": "60" }
+      }),
+      _c("div", { staticClass: "pace_activity" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control-feedback" }, [
+      _c("i", { staticClass: "icon-user text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control-feedback" }, [
+      _c("i", { staticClass: "icon-lock2 text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
+        [
+          _vm._v("Login"),
+          _c("i", { staticClass: "icon-circle-right2 position-right" })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-618d615c", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 365:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(366)
+/* template */
+var __vue_template__ = __webpack_require__(367)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/auth/components/forgot_password.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4273cf43", Component.options)
+  } else {
+    hotAPI.reload("data-v-4273cf43", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 366:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            config: new __WEBPACK_IMPORTED_MODULE_1__config__["a" /* default */](),
+            email: '',
+            sended: false,
+            password: '',
+            rep_password: '',
+            token: '',
+            processing: false
+        };
+    },
+
+    methods: {
+        getToken: function getToken() {
+            var vm = this;
+            vm.processing = true;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vm.config.API_GET_TOKEN, {
+                email: vm.email
+            }).then(function (data) {
+                vm.config.notifySuccess(data.data.message);
+                vm.processing = false;
+                vm.sended = true;
+            }).catch(function (err) {
+                console.dir(err);
+                if (err.response.status == 422) {
+                    vm.config.notifyError(err.response.data.errors.email[0]);
+                } else {
+                    vm.config.notifyError();
+                }
+                vm.processing = false;
+            });
+        },
+        resetPassword: function resetPassword() {
+            var vm = this;
+            if (vm.password == vm.rep_password) {
+                vm.processing = true;
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put(vm.config.API_RESET_PASSWORD, {
+                    email: vm.email,
+                    password: vm.password,
+                    rep_password: vm.rep_password,
+                    token: vm.token
+
+                }).then(function (data) {
+                    vm.config.notifySuccess(data.data.message);
+                    window.location = '/login';
+                    vm.processing = false;
+                }).catch(function (err) {
+                    console.dir(err);
+                    if (err.response.status == 422) {
+
+                        vm.config.notifyError('Đã có lỗi xảy ra. Vui lòng kiểm tra lại');
+                    } else {
+                        vm.config.notifyError();
+                    }
+                    vm.processing = false;
+                });
+            } else {
+                vm.config.notifyError('Mật khẩu nhập lại không khớp nhau');
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 367:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    !_vm.sended
+      ? _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.getToken($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "panel panel-body login-form" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group has-feedback" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", placeholder: "Your email" },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _vm.processing == true
+                ? _c("div", { staticClass: "pace-demo" }, [_vm._m(2)])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.sended
+      ? _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.resetPassword($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "panel panel-body login-form" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group has-feedback" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.password,
+                      expression: "password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "password",
+                    placeholder: "Nhập mật khẩu của bạn"
+                  },
+                  domProps: { value: _vm.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.password = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(5)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group has-feedback" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.rep_password,
+                      expression: "rep_password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "password", placeholder: "Nhập lại mật khẩu" },
+                  domProps: { value: _vm.rep_password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.rep_password = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(6),
+                _vm._v(" "),
+                _vm.password != _vm.rep_password || _vm.password.length < 6
+                  ? _c("h5", { staticClass: "content-group" }, [
+                      _c(
+                        "small",
+                        { staticClass: "display-block wysiwyg-color-red" },
+                        [_vm._v("Mật khẩu không giống nhau hoặc quá ngắn")]
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group has-feedback" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.token,
+                      expression: "token"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Nhập mã bạn nhận được" },
+                  domProps: { value: _vm.token },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.token = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(7)
+              ]),
+              _vm._v(" "),
+              _vm.processing == true
+                ? _c("div", { staticClass: "pace-demo" }, [_vm._m(8)])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._m(9)
+            ])
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "icon-object border-warning text-warning" }, [
+        _c("i", { staticClass: "icon-spinner11" })
+      ]),
+      _vm._v(" "),
+      _c("h5", { staticClass: "content-group" }, [
+        _vm._v("Quên mật khẩu "),
+        _c("small", { staticClass: "display-block" }, [
+          _vm._v("Chúng tôi sẽ gửi mã xác nhận về email của bạn")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control-feedback" }, [
+      _c("i", { staticClass: "icon-mail5 text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "theme_xbox_xs" }, [
+      _c("div", {
+        staticClass: "pace_progress",
+        attrs: { "data-progress-text": "60%", "data-progress": "60" }
+      }),
+      _c("div", { staticClass: "pace_activity" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn bg-blue btn-block", attrs: { type: "submit" } },
+      [
+        _vm._v("Lấy mã "),
+        _c("i", { staticClass: "icon-arrow-right14 position-right" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "icon-object border-warning text-warning" }, [
+        _c("i", { staticClass: "icon-spinner11" })
+      ]),
+      _vm._v(" "),
+      _c("h5", { staticClass: "content-group" }, [
+        _vm._v("Quên mật khẩu "),
+        _c("small", { staticClass: "display-block" }, [
+          _vm._v("Điền mật khẩu mới của bạn. Ít nhất 6 ký tự")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control-feedback" }, [
+      _c("i", { staticClass: "icon-lock text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control-feedback" }, [
+      _c("i", { staticClass: "icon-lock text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control-feedback" }, [
+      _c("i", { staticClass: "icon-mail5 text-muted" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "theme_xbox_xs" }, [
+      _c("div", {
+        staticClass: "pace_progress",
+        attrs: { "data-progress-text": "60%", "data-progress": "60" }
+      }),
+      _c("div", { staticClass: "pace_activity" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn bg-blue btn-block", attrs: { type: "submit" } },
+      [
+        _vm._v("Đổi mật khẩu "),
+        _c("i", { staticClass: "icon-arrow-right14 position-right" })
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4273cf43", module.exports)
+  }
+}
 
 /***/ }),
 

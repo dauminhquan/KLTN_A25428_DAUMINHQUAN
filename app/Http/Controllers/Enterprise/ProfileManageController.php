@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class ProfileManageController extends Controller
 {
     public function index(){
-        return view('enterprise.profile.index');
-    }
-    public function update(){
-        return view('enterprise.profile.update',['id' => Auth::user()->id]);
+        return view('enterprise.profile');
     }
 }

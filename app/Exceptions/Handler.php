@@ -34,6 +34,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if($exception->getTrace()[0]['args'][0] == 'Access token has been revoked')
+        {
+            session()->remove('user');
+        }
         parent::report($exception);
     }
 

@@ -1,33 +1,25 @@
 <template>
     <div class="content-wrapper">
-
-
         <div class="tab-content">
-            <profile :active="true" :code_student="code_student" ></profile>
-
-            <work :code_student="code_student"></work>
+            <profile @updateNameItem="updateNameItem" @updateAvatar="updateAvatar"></profile>
         </div>
-
     </div>
 </template>
 <script>
     import profile from './profile.vue'
-    import work from './work.vue'
     export default {
         components: {
             'profile' : profile,
-            'work': work
         },
-        data(){
-            return {
-
+        methods: {
+            updateNameItem(nameItem){
+                let vm =this
+                vm.$emit('updateNameItem',nameItem)
+            },
+            updateAvatar(avatar){
+                let vm =this
+                vm.$emit('updateAvatar',avatar)
             }
-        },
-        mounted(){
-
-
-
-        },
-        props:["code_student"]
+        }
     }
 </script>

@@ -6,6 +6,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return session('user');
+        return view('layout.manage_layout');
     }
 }
