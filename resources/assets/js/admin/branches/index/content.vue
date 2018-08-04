@@ -502,7 +502,7 @@
                 axios.post(vm.config.API_ADMIN_BRANCHES_IMPORT_CSV,formData).then(data => {
                     vm.uploading = false
                     $('#modal-push-excel').modal('hide')
-                    if(data.data.message == [])
+                    if(data.data.message == [] || data.data.error.length == 0)
                     {
                         vm.config.notifySuccess()
                     }

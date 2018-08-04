@@ -34,5 +34,7 @@ class Student extends Model
     public function enterprises(){
         return $this->hasManyThrough(Enterprise::class,Work::class);
     }
-
+    public function events(){
+        return $this->belongsToMany(Event::class,'event_student');
+    }
 }

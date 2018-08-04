@@ -42,6 +42,16 @@ class Config{
         this.API_ADMIN_JOBS_GET_OPTION_CSV = (ID) => this.API_ADMIN_JOBS+'/get-option-csv'
         /*JOBS*/
 
+
+        /*WORKS*/
+        this.API_ADMIN_WORKS = this.API_ADMIN+'/manage-works'
+        this.API_ADMIN_WORKS_RESOURCE = this.API_ADMIN_WORKS+'/resource'
+        this.API_ADMIN_WORKS_UPDATE_FILE_ATTACH = this.API_ADMIN_WORKS+'/update-file-attach'
+        this.API_ADMIN_WORKS_DELETE_LIST = this.API_ADMIN_WORKS+'/delete-list'
+        this.API_ADMIN_WORKS_IMPORT_CSV = this.API_ADMIN_WORKS+'/import-csv'
+        this.API_ADMIN_WORKS_GET_OPTION_CSV = (ID) => this.API_ADMIN_WORKS+'/get-option-csv'
+        /*WORKS*/
+
         this.API_ADMIN_TYPES = this.API_ADMIN+'/manage-types'
         this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES+'/resource'
         this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES+'/delete-list'
@@ -49,6 +59,17 @@ class Config{
         this.API_ADMIN_SKILLS = this.API_ADMIN+'/manage-skills'
         this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS+'/resource'
         this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS+'/delete-list'
+
+        this.API_ADMIN_EVENTS = this.API_ADMIN+'/manage-events'
+        this.API_ADMIN_EVENTS_RESOURCE = this.API_ADMIN_EVENTS+'/resource'
+        this.API_ADMIN_EVENTS_DELETE_LIST = this.API_ADMIN_EVENTS+'/delete-list'
+
+        this.API_ADMIN_EVENT_STUDENT = this.API_ADMIN+'/manage-event-student'
+        this.API_ADMIN_EVENT_STUDENT_RESOURCE = this.API_ADMIN_EVENT_STUDENT+'/resource'
+        this.API_ADMIN_EVENT_STUDENT_DELETE_LIST = this.API_ADMIN_EVENT_STUDENT+'/delete-list'
+        this.API_ADMIN_EVENT_STUDENT_IMPORT_CSV = this.API_ADMIN_EVENT_STUDENT+'/import-csv'
+        this.API_ADMIN_EVENT_STUDENT_UPDATE_CSV = this.API_ADMIN_EVENT_STUDENT+'/update-csv'
+
 
         this.API_ADMIN_POSITIONS = this.API_ADMIN+'/manage-positions'
         this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS+'/resource'
@@ -141,6 +162,7 @@ class Config{
 
         this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN+'/notifies'
 
+        this.WEB_ADMIN_EVENTS = this.WEB_ADMIN+'/events'
 
         this.WEB_ENTERPRISE = this.WEB+'/enterprise'
 

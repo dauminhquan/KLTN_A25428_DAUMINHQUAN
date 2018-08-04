@@ -106,8 +106,16 @@ Route::group(['middleware' => ['auth:api']],function (){
         Route::group(['prefix' => '/manage-provinces'],function (){
             Route::resource('/resource','ProvinceManageController')->except(['create','edit']);
             Route::delete('delete-list','ProvinceManageController@delete')->name('delete.list');
-            Route::post('/import-csv','ProvinceManageController@importCsv')->name('import.csv');
-            Route::post('/get-options-csv','ProvinceManageController@getOptionsCsv')->name('get.option.csv');
+        });
+        Route::group(['prefix' => '/manage-events' , 'name' => 'manage.events.'],function (){
+            Route::resource('/resource','EventManageController')->except(['create','edit']);
+            Route::delete('delete-list','EventManageController@delete')->name('delete.list');
+        });
+        Route::group(['prefix' => '/manage-event-student' , 'name' => 'manage.event.student.'],function (){
+            Route::resource('/resource','EventStudentManageController')->except(['create','edit']);
+            Route::delete('delete-list','EventStudentManageController@delete')->name('delete.list');
+            Route::post('import-csv','EventStudentManageController@importCsv')->name('import.csv');
+            Route::post('update-csv','EventStudentManageController@updateCsv')->name('update.csv');
         });
     });
     Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise','as' => 'enterprise.','middleware' => ['api.check.enterprise']],function (){
@@ -144,7 +152,7 @@ Route::group(['middleware' => ['auth:api']],function (){
 
 Route::group(['namespace' => 'Auth'],function (){
     Route::post('login','AuthController@login');
-    Route::post('logout','AuthController@logout')->middleware('auth:api');
+    Route::post('logout','AuthController@logout')->middleware(['remove-session','auth:api']);
     Route::post('get-token','AuthController@getToken');
     Route::put('reset-password','AuthController@resetPassword');
 });

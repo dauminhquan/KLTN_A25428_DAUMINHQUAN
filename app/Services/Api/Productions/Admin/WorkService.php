@@ -12,6 +12,7 @@ namespace App\Services\Api\Productions\Admin;
 use App\Models\Work;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkService extends BaseService implements ManageInterface
 {
@@ -21,15 +22,29 @@ class WorkService extends BaseService implements ManageInterface
     }
     public function getAll($inputs)
     {
-        $works = Work::all();
+
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                $works = Work::paginate(100000);
+            }
+            else{
+                $works = Work::paginate($inputs['size']);
+            }
+        }
+        else {
+            $works = Work::paginate(500);
+        }
         foreach ($works as $work)
         {
-            // tra ve ten doanh nghiep + avatar
             $work->enterprise = $work->enterprise;
             $work->student = $work->student;
             $work->salary = $work->salary;
+            $work->rank = $work->rank;
         }
         return $works;
+
     }
 
     public function getOne($id)
@@ -106,7 +121,6 @@ class WorkService extends BaseService implements ManageInterface
         {
             foreach ($data as $item)
             {
-
                 try{
                     Work::create($item);
                 }catch (\Exception $exception)
@@ -126,7 +140,7 @@ class WorkService extends BaseService implements ManageInterface
             ],406);
         }
         return [
-            'message' => 'Thêm danh sách doanh nghiệp thành công',
+            'message' => 'Thêm danh sách việc làm của sinh viên thành công',
             'error' => $list_err
         ];
     }

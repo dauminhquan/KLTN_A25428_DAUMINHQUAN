@@ -30,7 +30,9 @@ class StudentService extends BaseService implements ManageInterface
             {
                 $students = Student::paginate(100000);
             }
-            $students = Student::paginate($inputs['size']);
+            else{
+                $students = Student::paginate($inputs['size']);
+            }
         }
         else {
             $students = Student::paginate(500);
@@ -155,7 +157,7 @@ class StudentService extends BaseService implements ManageInterface
             ],406);
         }
         return [
-            'message' => 'Thêm danh sách doanh nghiệp thành công',
+            'message' => 'Thêm danh sách sinh viên thành công',
             'error' => $list_err
         ];
     }

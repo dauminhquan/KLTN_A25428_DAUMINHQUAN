@@ -6,6 +6,7 @@ use App\Http\Middleware\ApiCheckAdmin;
 use App\Http\Middleware\ApiCheckEnterprise;
 use App\Http\Middleware\ApiCheckStudent;
 use App\Http\Middleware\CheckAuthentication;
+use App\Http\Middleware\RemoveSession;
 use App\Http\Middleware\WebCheckAdmin;
 use App\Http\Middleware\WebCheckEnterprise;
 use App\Http\Middleware\WebCheckLogin;
@@ -77,6 +78,7 @@ class Kernel extends HttpKernel
         'web.check.enterprise' => WebCheckEnterprise::class,
         'web.check.student' => WebCheckStudent::class,
         'web.check.login' => WebCheckLogin::class,
-        'web.check.auth' => CheckAuthentication::class
+        'web.check.auth' => CheckAuthentication::class,
+        'remove-session' => RemoveSession::class
     ];
 }

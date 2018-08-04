@@ -1,6 +1,6 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Quản lý hạng"
+        <data-table title="Quản lý chức vụ trong công việc"
                     :columns="columns"
                     :data="data"
                     :targets="[]"
@@ -77,14 +77,14 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin hạng</h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin chức vụ trong công việc</h6>
                         </div>
 
                         <div class="modal-body">
 
                            <div class="row">
                                <div class="form-group">
-                                   <label><b>Tên hạng</b></label>
+                                   <label><b>Tên chức vụ</b></label>
                                    <input type="text" v-model="info.name" class="form-control">
                                </div>
                            </div>
@@ -109,14 +109,14 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin hạng</h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin chức vụ trong công việc</h6>
                         </div>
 
                         <div class="modal-body">
 
                             <div class="row">
                                 <div class="form-group">
-                                    <label><b>Tên hạng</b></label>
+                                    <label><b>Tên chức vụ trong công việc</b></label>
                                     <input type="text" v-model="nameCreate" class="form-control">
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                     },
                     {
                         action :'delete',
-                        html:'<a href="#"><i class="icon-trash"></i> Xóa hạng</a>'
+                        html:'<a href="#"><i class="icon-trash"></i> Xóa chức vụ trong công việc</a>'
                     }
                 ],
                 primaryKey: 'id',
@@ -211,11 +211,11 @@
                     vm.columns = [
                         {
                             key: 'id',
-                            text: 'ID hạng'
+                            text: 'ID'
                         },
                         {
                             key:'name',
-                            text:'Tên hạng'
+                            text:'Tên chức vụ'
                         }
                         ,
                         {

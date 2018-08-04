@@ -28,11 +28,17 @@ mix.js('resources/assets/js/admin/ranks/index/index.js', 'public/assets/js/build
 mix.js('resources/assets/js/admin/departments/index/index.js', 'public/assets/js/build/pages/admin/departments/index.js');
 mix.js('resources/assets/js/admin/branches/index/index.js', 'public/assets/js/build/pages/admin/branches/index.js');
 mix.js('resources/assets/js/admin/provinces/index/index.js', 'public/assets/js/build/pages/admin/provinces/index.js');
-
+mix.js('resources/assets/js/admin/works/index.js', 'public/assets/js/build/pages/admin/works/index.js');
 //notifies
 mix.js('resources/assets/js/admin/notifies/index/index.js', 'public/assets/js/build/pages/admin/notifies/index.js');
 mix.js('resources/assets/js/admin/notifies/create/index.js', 'public/assets/js/build/pages/admin/notifies/create.js');
 mix.js('resources/assets/js/admin/notifies/edit/index.js', 'public/assets/js/build/pages/admin/notifies/edit.js');
+
+
+//event
+mix.js('resources/assets/js/admin/events/index/index.js', 'public/assets/js/build/pages/admin/events/index.js');
+mix.js('resources/assets/js/admin/events/edit/index.js', 'public/assets/js/build/pages/admin/events/edit.js');
+
 
 //admin
 

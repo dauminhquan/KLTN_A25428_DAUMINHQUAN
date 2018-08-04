@@ -30,7 +30,6 @@ class NotificationService extends BaseService implements ManageInterface
             if($inputs['size'] == -1)
             {
                 $notifies = Notification::paginate(100000);
-
             }
             else{
                 $notifies = Notification::paginate($inputs['size']);

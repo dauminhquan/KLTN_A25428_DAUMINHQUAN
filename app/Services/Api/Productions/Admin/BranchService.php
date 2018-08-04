@@ -29,7 +29,9 @@ class BranchService extends BaseService implements ManageInterface
             {
                 $branches = Branch::paginate(100000);
             }
-            $branches = Branch::paginate($inputs['size']);
+            else{
+                $branches = Branch::paginate($inputs['size']);
+            }
         }else{
             $branches = Branch::paginate(500);
         }

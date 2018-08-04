@@ -6,6 +6,7 @@ use App\Http\Requests\CsvRequest;
 use App\Http\Requests\DeleteListRequest;
 use App\Http\Requests\GetDataRequest;
 use App\Http\Requests\WorkManageRequest;
+use App\Models\Work;
 use App\Services\Api\Productions\Admin\WorkService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

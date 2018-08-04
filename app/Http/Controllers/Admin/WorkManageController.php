@@ -14,14 +14,13 @@ class WorkManageController extends Controller
 {
     public function index()
     {
-        return view('admin.types.index');
+        return view('admin.works.index');
     }
 
     public function create()
     {
         return view('admin.types.create');
     }
-
     public function edit($id)
     {
         return view('admin.types.edit',['id' => $id]);

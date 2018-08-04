@@ -1,5 +1,6 @@
 {
     "/assets/js/build/pages/admin/enterprises/edit.js": "/assets/js/build/pages/admin/enterprises/edit.js",
+    "/assets/js/build/pages/admin/works/index.js": "/assets/js/build/pages/admin/works/index.js",
     "/assets/js/build/pages/admin/branches/index.js": "/assets/js/build/pages/admin/branches/index.js",
     "/assets/js/build/pages/enterprise/jobs/index.js": "/assets/js/build/pages/enterprise/jobs/index.js",
     "/assets/js/build/pages/admin/types/index.js": "/assets/js/build/pages/admin/types/index.js",
@@ -13,6 +14,8 @@
     "/assets/js/build/pages/admin/positions/index.js": "/assets/js/build/pages/admin/positions/index.js",
     "/assets/js/build/pages/admin/notifies/index.js": "/assets/js/build/pages/admin/notifies/index.js",
     "/assets/js/build/pages/admin/jobs/index.js": "/assets/js/build/pages/admin/jobs/index.js",
+    "/assets/js/build/pages/admin/events/index.js": "/assets/js/build/pages/admin/events/index.js",
+    "/assets/js/build/pages/admin/events/edit.js": "/assets/js/build/pages/admin/events/edit.js",
     "/assets/js/build/pages/admin/enterprises/index.js": "/assets/js/build/pages/admin/enterprises/index.js",
     "/assets/js/build/pages/admin/departments/index.js": "/assets/js/build/pages/admin/departments/index.js",
     "/assets/js/build/pages/student/profile/index.js": "/assets/js/build/pages/student/profile/index.js",

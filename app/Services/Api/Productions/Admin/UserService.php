@@ -22,7 +22,19 @@ class UserService extends BaseService implements ManageInterface
     }
     public function getAll($inputs)
     {
-        $users = User::all();
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                $users = User::paginate(100000);
+            }
+            else{
+                $users = User::paginate($inputs['size']);
+            }
+        }
+        else {
+            $users = User::paginate(500);
+        }
         foreach ($users as $user)
         {
             $user->student = $user->student;
@@ -30,6 +42,7 @@ class UserService extends BaseService implements ManageInterface
             $user->admin = $user->admin;
         }
         return $users;
+
     }
 
     public function getOne($id)

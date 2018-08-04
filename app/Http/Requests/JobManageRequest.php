@@ -45,7 +45,9 @@ class JobManageRequest extends FormRequest
             case('PATCH'):
             case('PUT'):
                 return [
-
+                    'time_start' => 'date',
+                    'time_end' => 'date',
+                    'positions' => 'array',
                 ];
             case('DELETE'):
                 break;

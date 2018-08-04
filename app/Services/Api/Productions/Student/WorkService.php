@@ -119,7 +119,7 @@ class WorkService implements ManageInterface
             ],406);
         }
         return [
-            'message' => 'Thêm danh sách doanh nghiệp thành công',
+            'message' => 'Thêm danh sách việc làm của bạn thành công',
             'error' => $list_err
         ];
     }

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 322);
+/******/ 	return __webpack_require__(__webpack_require__.s = 361);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -579,251 +579,274 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 var Config = function () {
-    function Config() {
-        var _this = this;
+        function Config() {
+                var _this = this;
 
-        _classCallCheck(this, Config);
+                _classCallCheck(this, Config);
 
-        /*API*/
+                /*API*/
 
-        this.API = window.location.origin + '/api';
+                this.API = window.location.origin + '/api';
 
-        /*ADMIN*/
+                /*ADMIN*/
 
-        this.API_ADMIN = this.API + '/admin';
+                this.API_ADMIN = this.API + '/admin';
 
-        /*ENTERPRISES*/
-        this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-        this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-        this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-        this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-        this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-        };
-        /*ENTERPRISES*/
+                /*ENTERPRISES*/
+                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+                };
+                /*ENTERPRISES*/
 
-        /*STUDENTS*/
-        this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-        this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-        this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-            return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-        };
-        this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-        this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-        this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-        this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-        };
-        this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-        };
-        /*STUDENTS*/
+                /*STUDENTS*/
+                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+                };
+                /*STUDENTS*/
 
-        /*JOBS*/
-        this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-        this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_JOBS + '/get-option-csv';
-        };
-        /*JOBS*/
+                /*JOBS*/
+                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
+                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
+                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
+                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
+                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_JOBS + '/get-option-csv';
+                };
+                /*JOBS*/
 
-        this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-        this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-        this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+                /*WORKS*/
+                this.API_ADMIN_WORKS = this.API_ADMIN + '/manage-works';
+                this.API_ADMIN_WORKS_RESOURCE = this.API_ADMIN_WORKS + '/resource';
+                this.API_ADMIN_WORKS_UPDATE_FILE_ATTACH = this.API_ADMIN_WORKS + '/update-file-attach';
+                this.API_ADMIN_WORKS_DELETE_LIST = this.API_ADMIN_WORKS + '/delete-list';
+                this.API_ADMIN_WORKS_IMPORT_CSV = this.API_ADMIN_WORKS + '/import-csv';
+                this.API_ADMIN_WORKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_WORKS + '/get-option-csv';
+                };
+                /*WORKS*/
 
-        this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-        this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-        this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
 
-        this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-        this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-        this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
 
-        this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-        this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-        this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+                this.API_ADMIN_EVENTS = this.API_ADMIN + '/manage-events';
+                this.API_ADMIN_EVENTS_RESOURCE = this.API_ADMIN_EVENTS + '/resource';
+                this.API_ADMIN_EVENTS_DELETE_LIST = this.API_ADMIN_EVENTS + '/delete-list';
 
-        this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
-        this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
-        this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
-        this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
+                this.API_ADMIN_EVENT_STUDENT = this.API_ADMIN + '/manage-event-student';
+                this.API_ADMIN_EVENT_STUDENT_RESOURCE = this.API_ADMIN_EVENT_STUDENT + '/resource';
+                this.API_ADMIN_EVENT_STUDENT_DELETE_LIST = this.API_ADMIN_EVENT_STUDENT + '/delete-list';
+                this.API_ADMIN_EVENT_STUDENT_IMPORT_CSV = this.API_ADMIN_EVENT_STUDENT + '/import-csv';
+                this.API_ADMIN_EVENT_STUDENT_UPDATE_CSV = this.API_ADMIN_EVENT_STUDENT + '/update-csv';
 
-        this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
-        this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
-        this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
+                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
 
-        this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
-        this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
-        this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
+                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
 
-        this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
-        this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
-        this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
-        this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
+                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+                this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
 
-        this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
-        this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
-        this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
-        this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
+                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
 
-        this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
-        this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
-        this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
+                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
 
-        /*NOTIFIES*/
-        this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-        this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-        this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-        this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-            return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-        };
-        /*NOTIFIES*/
+                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
+                this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
 
-        /*ENTERPRISES*/
+                this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
+                this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
+                this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
+                this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
 
-        this.API_ENTERPRISE = this.API + '/enterprise';
+                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
 
-        this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-        this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-        this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-        this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-        this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-            return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
-        };
+                /*NOTIFIES*/
+                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+                };
+                /*NOTIFIES*/
 
-        this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
-        this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
+                /*ENTERPRISES*/
 
-        this.API_STUDENT = this.API + '/student';
-        this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
-        this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
+                this.API_ENTERPRISE = this.API + '/enterprise';
 
-        this.API_AUTH_LOGIN = this.API + '/login';
-        this.API_GET_TOKEN = this.API + '/get-token';
-        this.API_RESET_PASSWORD = this.API + '/reset-password';
+                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
+                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
+                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
+                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
+                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
+                };
 
-        this.API_NOTIFIES = this.API + '/notifies';
-        this.API_POSITIONS = this.API + '/positions';
-        this.API_SKILLS = this.API + '/skills';
-        this.API_TYPES = this.API + '/types';
-        this.API_SALARIES = this.API + '/salaries';
-        this.API_PROVINCES = this.API + '/provinces';
-        /*API*/
+                this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
+                this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
 
-        /*WEB*/
+                this.API_STUDENT = this.API + '/student';
+                this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
+                this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
 
-        this.WEB = window.location.origin;
+                this.API_AUTH_LOGIN = this.API + '/login';
+                this.API_GET_TOKEN = this.API + '/get-token';
+                this.API_RESET_PASSWORD = this.API + '/reset-password';
 
-        this.WEB_HOME = this.WEB;
+                this.API_NOTIFIES = this.API + '/notifies';
+                this.API_POSITIONS = this.API + '/positions';
+                this.API_SKILLS = this.API + '/skills';
+                this.API_TYPES = this.API + '/types';
+                this.API_SALARIES = this.API + '/salaries';
+                this.API_PROVINCES = this.API + '/provinces';
+                /*API*/
 
-        this.WEB_ADMIN = this.WEB + '/admin';
+                /*WEB*/
 
-        this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+                this.WEB = window.location.origin;
 
-        this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+                this.WEB_HOME = this.WEB;
 
-        this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+                this.WEB_ADMIN = this.WEB + '/admin';
 
-        this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
 
-        this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
 
-        this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
 
-        this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
-        /*WEB*/
-    }
+                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
 
-    _createClass(Config, [{
-        key: 'notifySuccess',
-        value: function notifySuccess() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: message,
-                    addclass: 'bg-success'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh Yeah! Thành công!',
-                    text: 'Thao tác thành công',
-                    addclass: 'bg-success'
-                });
-            }
+                this.WEB_ADMIN_EVENTS = this.WEB_ADMIN + '/events';
+
+                this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+
+                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+                /*WEB*/
         }
-    }, {
-        key: 'notifyWarning',
-        value: function notifyWarning() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: message,
-                    addclass: 'bg-warning'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có gì đó sai sai!',
-                    text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                    addclass: 'bg-warning'
-                });
-            }
-        }
-    }, {
-        key: 'notifyError',
-        value: function notifyError() {
-            var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        _createClass(Config, [{
+                key: 'notifySuccess',
+                value: function notifySuccess() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-            if (message != '') {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: message,
-                    addclass: 'bg-danger'
-                });
-            } else {
-                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                    title: 'Ohh! Có lỗi xảy ra rồi!',
-                    text: 'Thao tác thất bại',
-                    addclass: 'bg-danger'
-                });
-            }
-        }
-    }, {
-        key: 'getError',
-        value: function getError(data) {
-            var message = '';
-            message = data.message;
-            message += '<br>';
-            var errors = data.errors;
-            var keys = Object.keys(errors);
-            keys.forEach(function (key) {
-                errors[key].forEach(function (item) {
-                    message += item + '<br>';
-                });
-            });
-            return message;
-        }
-    }]);
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: message,
+                                        addclass: 'bg-success'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: 'Thao tác thành công',
+                                        addclass: 'bg-success'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyWarning',
+                value: function notifyWarning() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-    return Config;
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: message,
+                                        addclass: 'bg-warning'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                                        addclass: 'bg-warning'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyError',
+                value: function notifyError() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: message,
+                                        addclass: 'bg-danger'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: 'Thao tác thất bại',
+                                        addclass: 'bg-danger'
+                                });
+                        }
+                }
+        }, {
+                key: 'getError',
+                value: function getError(data) {
+                        var message = '';
+                        message = data.message;
+                        message += '<br>';
+                        var errors = data.errors;
+                        var keys = Object.keys(errors);
+                        keys.forEach(function (key) {
+                                errors[key].forEach(function (item) {
+                                        message += item + '<br>';
+                                });
+                        });
+                        return message;
+                }
+        }]);
+
+        return Config;
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Config);
@@ -1885,934 +1908,6 @@ module.exports = function spread(callback) {
   };
 };
 
-
-/***/ }),
-
-/***/ 322:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(323);
-
-
-/***/ }),
-
-/***/ 323:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(324);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__content__);
-window.Vue = __webpack_require__(34);
-
-var app = new Vue({
-    components: {
-        'web-content': __WEBPACK_IMPORTED_MODULE_0__content___default.a
-    },
-    el: '#page-container'
-});
-
-/***/ }),
-
-/***/ 324:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(325)
-/* template */
-var __vue_template__ = __webpack_require__(326)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/enterprise/jobs/edit/content.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-803c25de", Component.options)
-  } else {
-    hotAPI.reload("data-v-803c25de", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 325:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(12);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        'v-select': __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
-    },
-    props: ['keyItem'],
-    data: function data() {
-        return {
-            uploading: false,
-            Types: [],
-            Positions: [],
-            Skills: [],
-            Salaries: [],
-            info: {
-                title: '',
-                time_start: '',
-                time_end: '',
-                location: '',
-                description: '',
-                content: '',
-                salary_id: '',
-                positions: [],
-                types: [],
-                skills: []
-            },
-            deleting: false,
-            file_attach: '',
-            config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]()
-        };
-    },
-    mounted: function mounted() {
-        var vm = this;
-        vm.getTypes();
-        vm.getSalaries();
-        vm.getPositions();
-        vm.getSkills();
-        vm.getJob();
-        CKEDITOR.replace('content-post').on('change', function () {
-            vm.info.content = this.getData();
-        });
-    },
-
-    methods: {
-        getJob: function getJob() {
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '/' + vm.keyItem).then(function (data) {
-                vm.info = data.data;
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại');
-            });
-        },
-        getTypes: function getTypes() {
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_TYPES + '?size=-1').then(function (data) {
-                vm.Types = data.data.data;
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError('Lỗi tải thông tin các loại công việc. Vui lòng kiềm tra lại');
-            });
-        },
-        getSkills: function getSkills() {
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_SKILLS + '?size=-1').then(function (data) {
-                vm.Skills = data.data.data;
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError('Lỗi tải thông tin các kỹ năng. Vui lòng kiềm tra lại');
-            });
-        },
-        getPositions: function getPositions() {
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_POSITIONS + '?size=-1').then(function (data) {
-                vm.Positions = data.data.data;
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại');
-            });
-        },
-        getSalaries: function getSalaries() {
-            var vm = this;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_SALARIES + '?size=-1').then(function (data) {
-                vm.Salaries = data.data.data;
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError('Lỗi tải thông tin các mức lương. Vui lòng kiềm tra lại');
-            });
-        },
-        updateJob: function updateJob() {
-            var vm = this;
-            vm.uploading = true;
-            if (_typeof(vm.info.salary) == 'object') {
-                vm.info.salary = vm.info.salary.id;
-            }
-            if (_typeof(vm.info.skills) == 'object') {
-                vm.info.skills = vm.info.skills.map(function (item) {
-                    return item.id;
-                });
-            }
-            if (_typeof(vm.info.positions) == 'object') {
-                vm.info.positions = vm.info.positions.map(function (item) {
-                    return item.id;
-                });
-            }
-            if (_typeof(vm.info.types) == 'object') {
-                vm.info.types = vm.info.types.map(function (item) {
-                    return item.id;
-                });
-            }
-
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].put(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '/' + vm.keyItem, vm.info).then(function (data) {
-                vm.uploading = false;
-                vm.config.notifySuccess('Update việc làm thành công');
-                window.location = vm.config.WEB_ENTERPRISE_JOBS;
-            }).catch(function (err) {
-                vm.config.notifyError('Lỗi trong quá trình update');
-            });
-        },
-        setFile: function setFile() {
-            this.$refs.inputFile.click();
-        },
-        uploadFile: function uploadFile(e) {
-            var vm = this;
-            vm.file = e.target.files[0];
-            var formData = new FormData();
-            formData.append('file_attach', vm.file);
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].post(vm.config.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH + '/' + vm.keyItem, formData).then(function (data) {
-                vm.config.notifySuccess('Update file thành công');
-            }).catch(function (err) {
-                console.log(err);
-                vm.config.notifyError('Lỗi upload file');
-            });
-        },
-        requestDeleteItem: function requestDeleteItem() {
-            $('#modal_danger').modal('show');
-        },
-        deleteItem: function deleteItem() {
-            var vm = this;
-            vm.deleting = true;
-            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '/' + vm.keyItem).then(function (data) {
-                $('#modal_danger').modal('hide');
-                vm.config.notifySuccess('Xóa thành công');
-                window.location = vm.config.WEB_ADMIN_JOBS;
-                vm.deleting = false;
-            }).catch(function (err) {
-                $('#modal_danger').modal('hide');
-                vm.config.notifyError();
-                vm.deleting = false;
-            });
-        }
-    }
-});
-
-/***/ }),
-
-/***/ 326:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
-    _c("div", { staticClass: "panel panel-flat" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.updateJob($event)
-              }
-            }
-          },
-          [
-            _c("fieldset", { staticClass: "content-group" }, [
-              _c("legend", { staticClass: "text-bold" }, [
-                _vm._v("Chọn các mục")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Nhập tiêu đề")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.title,
-                          expression: "info.title"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", required: "" },
-                      domProps: { value: _vm.info.title },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "title", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Mô tả ngắn gọn")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.description,
-                          expression: "info.description"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", required: "" },
-                      domProps: { value: _vm.info.description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "description", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { staticClass: "control-label" }, [
-                        _vm._v("Chọn các vị trí tuyển dụng")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-select",
-                        {
-                          attrs: {
-                            options: _vm.Positions,
-                            label: "name",
-                            required: "true",
-                            "data-placeholder": "Chọn các vị trí",
-                            multiple: true
-                          },
-                          model: {
-                            value: _vm.info.positions,
-                            callback: function($$v) {
-                              _vm.$set(_vm.info, "positions", $$v)
-                            },
-                            expression: "info.positions"
-                          }
-                        },
-                        [
-                          _c(
-                            "span",
-                            {
-                              attrs: { slot: "no-options" },
-                              slot: "no-options"
-                            },
-                            [_vm._v("Không có mục nào để hiển thị!")]
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { staticClass: "control-label" }, [
-                        _vm._v("Chọn các kỹ năng")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: {
-                          options: _vm.Skills,
-                          label: "name",
-                          required: "true",
-                          multiple: true
-                        },
-                        model: {
-                          value: _vm.info.skills,
-                          callback: function($$v) {
-                            _vm.$set(_vm.info, "skills", $$v)
-                          },
-                          expression: "info.skills"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { staticClass: "control-label" }, [
-                        _vm._v("Chọn các hình thức tuyển dụng")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: {
-                          options: _vm.Types,
-                          label: "name",
-                          required: "true",
-                          value: "name",
-                          multiple: true
-                        },
-                        model: {
-                          value: _vm.info.types,
-                          callback: function($$v) {
-                            _vm.$set(_vm.info, "types", $$v)
-                          },
-                          expression: "info.types"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { staticClass: "control-label" }, [
-                        _vm._v("Chọn mức lương")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: {
-                          options: _vm.Salaries,
-                          label: "about",
-                          required: "true",
-                          value: "name"
-                        },
-                        model: {
-                          value: _vm.info.salary,
-                          callback: function($$v) {
-                            _vm.$set(_vm.info, "salary", $$v)
-                          },
-                          expression: "info.salary"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Nhập địa điểm")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.location,
-                          expression: "info.location"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", required: "" },
-                      domProps: { value: _vm.info.location },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "location", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Thời gian bắt đầu nhận hồ sơ")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.time_start,
-                          expression: "info.time_start"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "date", required: "" },
-                      domProps: { value: _vm.info.time_start },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "time_start", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Thời gian kết thúc nhận hồ sơ")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.time_end,
-                          expression: "info.time_end"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "date", required: "" },
-                      domProps: { value: _vm.info.time_end },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "time_end", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Chọn file đính kèm")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success form-control",
-                        attrs: { type: "button" },
-                        on: { click: _vm.setFile }
-                      },
-                      [
-                        _c("i", { staticClass: "icon icon-file-plus2" }),
-                        _vm._v("Chọn 1 file")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      ref: "inputFile",
-                      staticClass: "form-control",
-                      staticStyle: { display: "none" },
-                      attrs: { type: "file" },
-                      on: { change: _vm.uploadFile }
-                    })
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("fieldset", { staticClass: "content-group" }, [
-              _c("legend", { staticClass: "text-bold" }, [
-                _vm._v("Nội dung tin")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.info.content,
-                      expression: "info.content"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "content-post", required: "" },
-                  domProps: { value: _vm.info.content },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.info, "content", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-right" }, [
-              _vm.uploading == true
-                ? _c("div", { staticClass: "pace-demo" }, [_vm._m(1)])
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  attrs: { type: "button" },
-                  on: { click: _vm.requestDeleteItem }
-                },
-                [
-                  _vm._v("Xóa bài viết "),
-                  _c("i", { staticClass: "icon-trash-alt position-right" })
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(2)
-            ])
-          ]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal fade", attrs: { id: "modal_danger" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _vm._m(4),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "panel panel-body border-top-danger text-center",
-                staticStyle: { border: "snow" }
-              },
-              [
-                _vm.deleting == true
-                  ? _c("div", { staticClass: "pace-demo" }, [_vm._m(5)])
-                  : _vm._e()
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-link",
-                attrs: { type: "button", "data-dismiss": "modal" }
-              },
-              [_vm._v("Hủy")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                attrs: { type: "button" },
-                on: { click: _vm.deleteItem }
-              },
-              [_vm._v("Xác định xóa")]
-            )
-          ])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel-heading" }, [
-      _c("h5", { staticClass: "panel-title" }, [
-        _vm._v("Update thông tin tuyển dụng")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "heading-elements" }, [
-        _c("ul", { staticClass: "icons-list" }, [
-          _c("li", [_c("a", { attrs: { "data-action": "collapse" } })]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { "data-action": "close" } })])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "theme_xbox_xs" }, [
-      _c("div", {
-        staticClass: "pace_progress",
-        attrs: { "data-progress-text": "60%", "data-progress": "60" }
-      }),
-      _c("div", { staticClass: "pace_activity" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-      [
-        _vm._v("Lưu chỉnh sửa "),
-        _c("i", { staticClass: "icon-arrow-right14 position-right" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header bg-danger" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
-      ),
-      _vm._v(" "),
-      _c("h6", { staticClass: "modal-title" }, [
-        _c("i", { staticClass: "icon-warning" }),
-        _vm._v(" Cảnh báo")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("i", { staticClass: "icon-warning" }),
-      _vm._v(
-        " Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "theme_xbox_xs" }, [
-      _c("div", {
-        staticClass: "pace_progress",
-        attrs: { "data-progress-text": "60%", "data-progress": "60" }
-      }),
-      _c("div", { staticClass: "pace_activity" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-803c25de", module.exports)
-  }
-}
 
 /***/ }),
 
@@ -14224,6 +13319,934 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(10)))
+
+/***/ }),
+
+/***/ 361:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(362);
+
+
+/***/ }),
+
+/***/ 362:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__content__);
+window.Vue = __webpack_require__(34);
+
+var app = new Vue({
+    components: {
+        'web-content': __WEBPACK_IMPORTED_MODULE_0__content___default.a
+    },
+    el: '#page-container'
+});
+
+/***/ }),
+
+/***/ 363:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(364)
+/* template */
+var __vue_template__ = __webpack_require__(365)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\enterprise\\jobs\\edit\\content.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6ff9809e", Component.options)
+  } else {
+    hotAPI.reload("data-v-6ff9809e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 364:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(12);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'v-select': __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
+    props: ['keyItem'],
+    data: function data() {
+        return {
+            uploading: false,
+            Types: [],
+            Positions: [],
+            Skills: [],
+            Salaries: [],
+            info: {
+                title: '',
+                time_start: '',
+                time_end: '',
+                location: '',
+                description: '',
+                content: '',
+                salary_id: '',
+                positions: [],
+                types: [],
+                skills: []
+            },
+            deleting: false,
+            file_attach: '',
+            config: new __WEBPACK_IMPORTED_MODULE_2__config__["a" /* default */]()
+        };
+    },
+    mounted: function mounted() {
+        var vm = this;
+        vm.getTypes();
+        vm.getSalaries();
+        vm.getPositions();
+        vm.getSkills();
+        vm.getJob();
+        CKEDITOR.replace('content-post').on('change', function () {
+            vm.info.content = this.getData();
+        });
+    },
+
+    methods: {
+        getJob: function getJob() {
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '/' + vm.keyItem).then(function (data) {
+                vm.info = data.data;
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại');
+            });
+        },
+        getTypes: function getTypes() {
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_TYPES + '?size=-1').then(function (data) {
+                vm.Types = data.data.data;
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError('Lỗi tải thông tin các loại công việc. Vui lòng kiềm tra lại');
+            });
+        },
+        getSkills: function getSkills() {
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_SKILLS + '?size=-1').then(function (data) {
+                vm.Skills = data.data.data;
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError('Lỗi tải thông tin các kỹ năng. Vui lòng kiềm tra lại');
+            });
+        },
+        getPositions: function getPositions() {
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_POSITIONS + '?size=-1').then(function (data) {
+                vm.Positions = data.data.data;
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại');
+            });
+        },
+        getSalaries: function getSalaries() {
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].get(vm.config.API_SALARIES + '?size=-1').then(function (data) {
+                vm.Salaries = data.data.data;
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError('Lỗi tải thông tin các mức lương. Vui lòng kiềm tra lại');
+            });
+        },
+        updateJob: function updateJob() {
+            var vm = this;
+            vm.uploading = true;
+            if (_typeof(vm.info.salary) == 'object') {
+                vm.info.salary = vm.info.salary.id;
+            }
+            if (_typeof(vm.info.skills) == 'object') {
+                vm.info.skills = vm.info.skills.map(function (item) {
+                    return item.id;
+                });
+            }
+            if (_typeof(vm.info.positions) == 'object') {
+                vm.info.positions = vm.info.positions.map(function (item) {
+                    return item.id;
+                });
+            }
+            if (_typeof(vm.info.types) == 'object') {
+                vm.info.types = vm.info.types.map(function (item) {
+                    return item.id;
+                });
+            }
+
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].put(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '/' + vm.keyItem, vm.info).then(function (data) {
+                vm.uploading = false;
+                vm.config.notifySuccess('Update việc làm thành công');
+                window.location = vm.config.WEB_ENTERPRISE_JOBS;
+            }).catch(function (err) {
+                vm.config.notifyError('Lỗi trong quá trình update');
+            });
+        },
+        setFile: function setFile() {
+            this.$refs.inputFile.click();
+        },
+        uploadFile: function uploadFile(e) {
+            var vm = this;
+            vm.file = e.target.files[0];
+            var formData = new FormData();
+            formData.append('file_attach', vm.file);
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].post(vm.config.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH + '/' + vm.keyItem, formData).then(function (data) {
+                vm.config.notifySuccess('Update file thành công');
+            }).catch(function (err) {
+                console.log(err);
+                vm.config.notifyError('Lỗi upload file');
+            });
+        },
+        requestDeleteItem: function requestDeleteItem() {
+            $('#modal_danger').modal('show');
+        },
+        deleteItem: function deleteItem() {
+            var vm = this;
+            vm.deleting = true;
+            __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].delete(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '/' + vm.keyItem).then(function (data) {
+                $('#modal_danger').modal('hide');
+                vm.config.notifySuccess('Xóa thành công');
+                window.location = vm.config.WEB_ADMIN_JOBS;
+                vm.deleting = false;
+            }).catch(function (err) {
+                $('#modal_danger').modal('hide');
+                vm.config.notifyError();
+                vm.deleting = false;
+            });
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 365:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "content-wrapper" }, [
+    _c("div", { staticClass: "panel panel-flat" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.updateJob($event)
+              }
+            }
+          },
+          [
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c("legend", { staticClass: "text-bold" }, [
+                _vm._v("Chọn các mục")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Nhập tiêu đề")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.info.title,
+                          expression: "info.title"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.info.title },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.info, "title", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Mô tả ngắn gọn")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.info.description,
+                          expression: "info.description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.info.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.info, "description", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Chọn các vị trí tuyển dụng")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-select",
+                        {
+                          attrs: {
+                            options: _vm.Positions,
+                            label: "name",
+                            required: "true",
+                            "data-placeholder": "Chọn các vị trí",
+                            multiple: true
+                          },
+                          model: {
+                            value: _vm.info.positions,
+                            callback: function($$v) {
+                              _vm.$set(_vm.info, "positions", $$v)
+                            },
+                            expression: "info.positions"
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              attrs: { slot: "no-options" },
+                              slot: "no-options"
+                            },
+                            [_vm._v("Không có mục nào để hiển thị!")]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Chọn các kỹ năng")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          options: _vm.Skills,
+                          label: "name",
+                          required: "true",
+                          multiple: true
+                        },
+                        model: {
+                          value: _vm.info.skills,
+                          callback: function($$v) {
+                            _vm.$set(_vm.info, "skills", $$v)
+                          },
+                          expression: "info.skills"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Chọn các hình thức tuyển dụng")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          options: _vm.Types,
+                          label: "name",
+                          required: "true",
+                          value: "name",
+                          multiple: true
+                        },
+                        model: {
+                          value: _vm.info.types,
+                          callback: function($$v) {
+                            _vm.$set(_vm.info, "types", $$v)
+                          },
+                          expression: "info.types"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Chọn mức lương")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          options: _vm.Salaries,
+                          label: "about",
+                          required: "true",
+                          value: "name"
+                        },
+                        model: {
+                          value: _vm.info.salary,
+                          callback: function($$v) {
+                            _vm.$set(_vm.info, "salary", $$v)
+                          },
+                          expression: "info.salary"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Nhập địa điểm")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.info.location,
+                          expression: "info.location"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.info.location },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.info, "location", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Thời gian bắt đầu nhận hồ sơ")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.info.time_start,
+                          expression: "info.time_start"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "date", required: "" },
+                      domProps: { value: _vm.info.time_start },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.info, "time_start", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Thời gian kết thúc nhận hồ sơ")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.info.time_end,
+                          expression: "info.time_end"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "date", required: "" },
+                      domProps: { value: _vm.info.time_end },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.info, "time_end", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Chọn file đính kèm")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success form-control",
+                        attrs: { type: "button" },
+                        on: { click: _vm.setFile }
+                      },
+                      [
+                        _c("i", { staticClass: "icon icon-file-plus2" }),
+                        _vm._v("Chọn 1 file")
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      ref: "inputFile",
+                      staticClass: "form-control",
+                      staticStyle: { display: "none" },
+                      attrs: { type: "file" },
+                      on: { change: _vm.uploadFile }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c("legend", { staticClass: "text-bold" }, [
+                _vm._v("Nội dung tin")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.info.content,
+                      expression: "info.content"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "content-post", required: "" },
+                  domProps: { value: _vm.info.content },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.info, "content", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-right" }, [
+              _vm.uploading == true
+                ? _c("div", { staticClass: "pace-demo" }, [_vm._m(1)])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: { click: _vm.requestDeleteItem }
+                },
+                [
+                  _vm._v("Xóa bài viết "),
+                  _c("i", { staticClass: "icon-trash-alt position-right" })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal fade", attrs: { id: "modal_danger" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "panel panel-body border-top-danger text-center",
+                staticStyle: { border: "snow" }
+              },
+              [
+                _vm.deleting == true
+                  ? _c("div", { staticClass: "pace-demo" }, [_vm._m(5)])
+                  : _vm._e()
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-link",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Hủy")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                attrs: { type: "button" },
+                on: { click: _vm.deleteItem }
+              },
+              [_vm._v("Xác định xóa")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading" }, [
+      _c("h5", { staticClass: "panel-title" }, [
+        _vm._v("Update thông tin tuyển dụng")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "heading-elements" }, [
+        _c("ul", { staticClass: "icons-list" }, [
+          _c("li", [_c("a", { attrs: { "data-action": "collapse" } })]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "theme_xbox_xs" }, [
+      _c("div", {
+        staticClass: "pace_progress",
+        attrs: { "data-progress-text": "60%", "data-progress": "60" }
+      }),
+      _c("div", { staticClass: "pace_activity" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+      [
+        _vm._v("Lưu chỉnh sửa "),
+        _c("i", { staticClass: "icon-arrow-right14 position-right" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header bg-danger" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _c("h6", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "icon-warning" }),
+        _vm._v(" Cảnh báo")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "icon-warning" }),
+      _vm._v(
+        " Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "theme_xbox_xs" }, [
+      _c("div", {
+        staticClass: "pace_progress",
+        attrs: { "data-progress-text": "60%", "data-progress": "60" }
+      }),
+      _c("div", { staticClass: "pace_activity" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6ff9809e", module.exports)
+  }
+}
 
 /***/ }),
 

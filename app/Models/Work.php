@@ -10,6 +10,8 @@ class Work extends Model
 {
     protected $table = 'works';
 
+    protected $fillable =['student_code','enterprise_id','salary_id','rank_id'];
+
     public function student(){
 
         return $this->belongsTo(Student::class);
