@@ -25,7 +25,7 @@ class GetDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'size' => 'integer|'.Rule::in([-1,50,100,200,500,1000,2000,5000])
+            'size' => 'integer|'.Rule::in([-1,10,50,100,200,500,1000,2000,5000])
         ];
     }
 }

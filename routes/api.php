@@ -139,14 +139,14 @@ Route::group(['middleware' => ['auth:api']],function (){
         Route::post('profile/update-avatar','ProfileManageController@updateAvatar')->name('update.avatar');
     });
     Route::group(['namespace' => 'Job'],function (){
-        Route::resource('/jobs','JobController')->only(['index','show']);
+        Route::resource('/jobs','JobManageController')->only(['index','show']);
     });
-
     Route::get('notifies','NotifyController@index');
     Route::get('positions','PositionController@index');
     Route::get('skills','SkillController@index');
     Route::get('types','TypeController@index');
     Route::get('salaries','SalaryController@index');
+    Route::get('enterprises','EnterpriseController@index');
     Route::get('provinces','Provincetroller@index');
 });
 

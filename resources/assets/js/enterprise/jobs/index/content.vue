@@ -135,15 +135,15 @@
                 axios.get(vm.config.API_ENTERPRISE_JOBS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
                     vm.data = data.data.data
                     vm.data = vm.data.map(item => {
-                        if(item.accept == 1)
+                        if(item.accept == 0)
                         {
                             item.accept = '<span class="label bg-brown-400">Đang đợi</span>'
                         }
-                        if(item.accept == 2)
+                        if(item.accept == 1)
                         {
                             item.accept = '<span class="label bg-success-400">Đã được đăng</span>'
                         }
-                        if(item.accept == 3)
+                        if(item.accept == 2)
                         {
                             item.accept = '<span class="label bg-danger-400">Đã chặn</span>'
                         }

@@ -24,7 +24,6 @@ class CreateJobsTable extends Migration
             $table->string('description',400);
             $table->string('attachment',300)->nullable();
             $table->text('content');
-            $table->string('file_attach');
             $table->integer('salary_id')->nullable();
             $table->boolean('accept')->default(1);
             $table->timestamps();

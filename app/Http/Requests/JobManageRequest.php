@@ -41,6 +41,12 @@ class JobManageRequest extends FormRequest
 
                 ];
             case('GET'):
+                return [
+
+                    'skills' => 'array',
+                    'types' => 'array',
+                    'positions' => 'array',
+                ];
                 break;
             case('PATCH'):
             case('PUT'):

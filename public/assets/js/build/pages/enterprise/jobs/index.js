@@ -26416,10 +26416,12 @@ var Config = function () {
 
                 this.API_NOTIFIES = this.API + '/notifies';
                 this.API_POSITIONS = this.API + '/positions';
+                this.API_ENTERPRISES = this.API + '/enterprises';
                 this.API_SKILLS = this.API + '/skills';
                 this.API_TYPES = this.API + '/types';
                 this.API_SALARIES = this.API + '/salaries';
                 this.API_PROVINCES = this.API + '/provinces';
+                this.API_JOBS = this.API + '/jobs';
                 /*API*/
 
                 /*WEB*/
@@ -26445,6 +26447,8 @@ var Config = function () {
                 this.WEB_ENTERPRISE = this.WEB + '/enterprise';
 
                 this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+
+                this.WEB_JOBS = this.WEB + '/jobs';
                 /*WEB*/
         }
 
@@ -39023,13 +39027,13 @@ window._config = new __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */]();
             __WEBPACK_IMPORTED_MODULE_2__axios__["a" /* default */].get(vm.config.API_ENTERPRISE_JOBS_RESOURCE + '?size=' + perPage + '&page=' + page).then(function (data) {
                 vm.data = data.data.data;
                 vm.data = vm.data.map(function (item) {
-                    if (item.accept == 1) {
+                    if (item.accept == 0) {
                         item.accept = '<span class="label bg-brown-400">Đang đợi</span>';
                     }
-                    if (item.accept == 2) {
+                    if (item.accept == 1) {
                         item.accept = '<span class="label bg-success-400">Đã được đăng</span>';
                     }
-                    if (item.accept == 3) {
+                    if (item.accept == 2) {
                         item.accept = '<span class="label bg-danger-400">Đã chặn</span>';
                     }
                     return item;

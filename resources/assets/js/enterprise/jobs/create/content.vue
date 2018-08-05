@@ -189,7 +189,7 @@
             },
             createJob(){
                 let vm = this
-
+                let formData = new FormData();
                 if(vm.info.salary == null || vm.info.salary == null || vm.info.salary == null || vm.info.salary == null)
                 {
                     vm.config.notifyError('Vui lòng chọn các trường còn thiếu')
@@ -203,45 +203,28 @@
                 vm.uploading = true
                 if(typeof vm.info.salary =='object')
                 {
-                    vm.info.salary =  vm.info.salary.id
+                    formData.append('salary_id',vm.info.salary.id)
                 }
                 if(typeof vm.info.skills =='object')
                 {
-                    vm.info.skills =  vm.info.skills.map(item => {
-                        return item.id
+                    vm.info.skills.forEach(item => {
+                        formData.append('skills[]',item.id)
                     })
                 }
                 if(typeof vm.info.positions =='object')
                 {
-                    vm.info.positions =  vm.info.positions.map(item => {
-                        return item.id
+                    vm.info.positions.forEach(item => {
+                        formData.append('positions[]',item.id)
                     })
                 }
                 if(typeof vm.info.types =='object')
                 {
-                    vm.info.types =  vm.info.types.map(item => {
-                        return item.id
+                    vm.info.types.forEach(item => {
+                        formData.append('types[]',item.id)
                     })
                 }
-                let keys = Object.keys(vm.info)
-                let formData = new FormData();
-                keys.forEach(key => {
-                    if(typeof vm.info[key] == 'object' && vm.info[key] != null && vm.info[key] != undefined && key!= 'attachment')
-                    {
-                        vm.info[key].forEach(item => {
-                            formData.append(key+'[]',item)
-                        })
-                    }
-                   else{
-                        if(key == 'salary')
-                        {
-                            formData.append('salary_id',vm.info[key])
-                        }
-                       else{
-                            formData.append(key,vm.info[key])
-                        }
-                    }
-                })
+                formData.append('attachment',vm.info.attachment)
+
                 axios.post(vm.config.API_ENTERPRISE_JOBS_RESOURCE,formData).then(data => {
                     vm.uploading = false
                     vm.config.notifySuccess('Thêm việc làm thành công')
@@ -249,7 +232,7 @@
                         window.location = vm.config.WEB_ENTERPRISE_JOBS
                     },1500);
                 }).catch(err => {
-                    vm.config.notifyError('Lỗi trong quá trình update')
+                    vm.config.notifyError()
                 })
             },
             setFile(){

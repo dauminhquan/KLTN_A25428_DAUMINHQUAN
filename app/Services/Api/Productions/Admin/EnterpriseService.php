@@ -29,7 +29,6 @@ class EnterpriseService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-
                 return Enterprise::paginate(10000);
             }
             return Enterprise::paginate($inputs['size']);

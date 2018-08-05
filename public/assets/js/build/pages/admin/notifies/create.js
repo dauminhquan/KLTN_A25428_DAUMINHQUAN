@@ -740,10 +740,12 @@ var Config = function () {
 
                 this.API_NOTIFIES = this.API + '/notifies';
                 this.API_POSITIONS = this.API + '/positions';
+                this.API_ENTERPRISES = this.API + '/enterprises';
                 this.API_SKILLS = this.API + '/skills';
                 this.API_TYPES = this.API + '/types';
                 this.API_SALARIES = this.API + '/salaries';
                 this.API_PROVINCES = this.API + '/provinces';
+                this.API_JOBS = this.API + '/jobs';
                 /*API*/
 
                 /*WEB*/
@@ -769,6 +771,8 @@ var Config = function () {
                 this.WEB_ENTERPRISE = this.WEB + '/enterprise';
 
                 this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+
+                this.WEB_JOBS = this.WEB + '/jobs';
                 /*WEB*/
         }
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 399);
+/******/ 	return __webpack_require__(__webpack_require__.s = 407);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -740,10 +740,12 @@ var Config = function () {
 
                 this.API_NOTIFIES = this.API + '/notifies';
                 this.API_POSITIONS = this.API + '/positions';
+                this.API_ENTERPRISES = this.API + '/enterprises';
                 this.API_SKILLS = this.API + '/skills';
                 this.API_TYPES = this.API + '/types';
                 this.API_SALARIES = this.API + '/salaries';
                 this.API_PROVINCES = this.API + '/provinces';
+                this.API_JOBS = this.API + '/jobs';
                 /*API*/
 
                 /*WEB*/
@@ -769,6 +771,8 @@ var Config = function () {
                 this.WEB_ENTERPRISE = this.WEB + '/enterprise';
 
                 this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+
+                this.WEB_JOBS = this.WEB + '/jobs';
                 /*WEB*/
         }
 
@@ -13323,14 +13327,6 @@ let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document
 
 /***/ }),
 
-/***/ 399:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(400);
-
-
-/***/ }),
-
 /***/ 4:
 /***/ (function(module, exports) {
 
@@ -13441,14 +13437,22 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 400:
+/***/ 407:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(408);
+
+
+/***/ }),
+
+/***/ 408:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__ = __webpack_require__(401);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__ = __webpack_require__(404);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__ = __webpack_require__(412);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__);
 window.Vue = __webpack_require__(34);
 
@@ -13476,15 +13480,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 401:
+/***/ 409:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(402)
+var __vue_script__ = __webpack_require__(410)
 /* template */
-var __vue_template__ = __webpack_require__(403)
+var __vue_template__ = __webpack_require__(411)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13524,7 +13528,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 402:
+/***/ 410:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13630,7 +13634,7 @@ window.Cookies = __webpack_require__(33);
 
 /***/ }),
 
-/***/ 403:
+/***/ 411:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -13803,15 +13807,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 404:
+/***/ 412:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(405)
+var __vue_script__ = __webpack_require__(413)
 /* template */
-var __vue_template__ = __webpack_require__(406)
+var __vue_template__ = __webpack_require__(414)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13851,7 +13855,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 405:
+/***/ 413:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13983,7 +13987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 406:
+/***/ 414:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

@@ -740,10 +740,12 @@ var Config = function () {
 
                 this.API_NOTIFIES = this.API + '/notifies';
                 this.API_POSITIONS = this.API + '/positions';
+                this.API_ENTERPRISES = this.API + '/enterprises';
                 this.API_SKILLS = this.API + '/skills';
                 this.API_TYPES = this.API + '/types';
                 this.API_SALARIES = this.API + '/salaries';
                 this.API_PROVINCES = this.API + '/provinces';
+                this.API_JOBS = this.API + '/jobs';
                 /*API*/
 
                 /*WEB*/
@@ -769,6 +771,8 @@ var Config = function () {
                 this.WEB_ENTERPRISE = this.WEB + '/enterprise';
 
                 this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+
+                this.WEB_JOBS = this.WEB + '/jobs';
                 /*WEB*/
         }
 
@@ -13598,7 +13602,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         },
         createJob: function createJob() {
             var vm = this;
-
+            var formData = new FormData();
             if (vm.info.salary == null || vm.info.salary == null || vm.info.salary == null || vm.info.salary == null) {
                 vm.config.notifyError('Vui lòng chọn các trường còn thiếu');
                 return false;
@@ -13609,38 +13613,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
             vm.uploading = true;
             if (_typeof(vm.info.salary) == 'object') {
-                vm.info.salary = vm.info.salary.id;
+                formData.append('salary_id', vm.info.salary.id);
             }
             if (_typeof(vm.info.skills) == 'object') {
-                vm.info.skills = vm.info.skills.map(function (item) {
-                    return item.id;
+                vm.info.skills.forEach(function (item) {
+                    formData.append('skills[]', item.id);
                 });
             }
             if (_typeof(vm.info.positions) == 'object') {
-                vm.info.positions = vm.info.positions.map(function (item) {
-                    return item.id;
+                vm.info.positions.forEach(function (item) {
+                    formData.append('positions[]', item.id);
                 });
             }
             if (_typeof(vm.info.types) == 'object') {
-                vm.info.types = vm.info.types.map(function (item) {
-                    return item.id;
+                vm.info.types.forEach(function (item) {
+                    formData.append('types[]', item.id);
                 });
             }
-            var keys = Object.keys(vm.info);
-            var formData = new FormData();
-            keys.forEach(function (key) {
-                if (_typeof(vm.info[key]) == 'object' && vm.info[key] != null && vm.info[key] != undefined && key != 'attachment') {
-                    vm.info[key].forEach(function (item) {
-                        formData.append(key + '[]', item);
-                    });
-                } else {
-                    if (key == 'salary') {
-                        formData.append('salary_id', vm.info[key]);
-                    } else {
-                        formData.append(key, vm.info[key]);
-                    }
-                }
-            });
+            formData.append('attachment', vm.info.attachment);
+
             __WEBPACK_IMPORTED_MODULE_1__axios__["a" /* default */].post(vm.config.API_ENTERPRISE_JOBS_RESOURCE, formData).then(function (data) {
                 vm.uploading = false;
                 vm.config.notifySuccess('Thêm việc làm thành công');
@@ -13648,7 +13639,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     window.location = vm.config.WEB_ENTERPRISE_JOBS;
                 }, 1500);
             }).catch(function (err) {
-                vm.config.notifyError('Lỗi trong quá trình update');
+                vm.config.notifyError();
             });
         },
         setFile: function setFile() {

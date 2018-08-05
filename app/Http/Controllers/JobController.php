@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Job;
+namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,18 +11,19 @@ use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
 {
-    public function list_job(Request $request)
+    public function index()
     {
-        return view('job.list_job');
+        return view('jobs.index');
     }
-    public function job_detail($id)
+    public function info($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Job::findOrFail($id);
+
         if($post->accept == 1)
         {
-            return view('job.job_detail',['id' => $id]);
+            return view('jobs.info',['id' => $id]);
         }
-        return response()->redirectToRoute('home');
+        return response()->redirectToRoute('web.home');
     }
     public function file($id)
     {

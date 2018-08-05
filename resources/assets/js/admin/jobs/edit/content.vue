@@ -98,8 +98,8 @@
                         <div class="pace-demo" v-if="uploading == true">
                             <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
                         </div>
-                        <button type="button" v-if="info.accept == 1 || info.accept == 3" @click="updateAccept(2)" class="btn btn-success">Cho phép đăng <i class="icon-check2 position-right"></i></button>
-                        <button type="button" v-if="info.accept == 2" @click="updateAccept(3)" class="btn btn-danger">Dừng đăng <i class="icon-stop2 position-right"></i></button>
+                        <button type="button" v-if="info.accept == 0 || info.accept == 2" @click="updateAccept(1)" class="btn btn-success">Cho phép đăng <i class="icon-check2 position-right"></i></button>
+                        <button type="button" v-if="info.accept == 1" @click="updateAccept(2)" class="btn btn-danger">Dừng đăng <i class="icon-stop2 position-right"></i></button>
                         <button type="button" @click="requestDeleteItem" class="btn btn-danger">Xóa bài viết <i class="icon-trash-alt position-right"></i></button>
                         <button type="submit" class="btn btn-primary">Lưu chỉnh sửa <i class="icon-arrow-right14 position-right"></i></button>
                     </div>
