@@ -60,19 +60,18 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 412);
+/******/ 	return __webpack_require__(__webpack_require__.s = 103);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__(5);
-var isBuffer = __webpack_require__(16);
+var bind = __webpack_require__(3);
+var isBuffer = __webpack_require__(12);
 
 /*global toString:true*/
 
@@ -375,8 +374,406 @@ module.exports = {
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 10:
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(14);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(4);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(4);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var settle = __webpack_require__(15);
+var buildURL = __webpack_require__(17);
+var parseHeaders = __webpack_require__(18);
+var isURLSameOrigin = __webpack_require__(19);
+var createError = __webpack_require__(5);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(20);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if ("development" !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(21);
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(16);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -566,316 +963,131 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports) {
 
-/***/ 12:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* globals __VUE_SSR_CONTEXT__ */
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(37);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
 
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
 
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
 
-var Config = function () {
-        function Config() {
-                var _this = this;
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
 
-                _classCallCheck(this, Config);
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
 
-                /*API*/
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
 
-                this.API = window.location.origin + '/api';
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
 
-                /*ADMIN*/
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
 
-                this.API_ADMIN = this.API + '/admin';
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
 
-                /*ENTERPRISES*/
-                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
-                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
-                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
-                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
-                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
-                };
-                /*ENTERPRISES*/
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
 
-                /*STUDENTS*/
-                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
-                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
-                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
-                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
-                };
-                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
-                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
-                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
-                };
-                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
-                };
-                /*STUDENTS*/
-
-                /*JOBS*/
-                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_JOBS + '/get-option-csv';
-                };
-                /*JOBS*/
-
-                /*WORKS*/
-                this.API_ADMIN_WORKS = this.API_ADMIN + '/manage-works';
-                this.API_ADMIN_WORKS_RESOURCE = this.API_ADMIN_WORKS + '/resource';
-                this.API_ADMIN_WORKS_UPDATE_FILE_ATTACH = this.API_ADMIN_WORKS + '/update-file-attach';
-                this.API_ADMIN_WORKS_DELETE_LIST = this.API_ADMIN_WORKS + '/delete-list';
-                this.API_ADMIN_WORKS_IMPORT_CSV = this.API_ADMIN_WORKS + '/import-csv';
-                this.API_ADMIN_WORKS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_WORKS + '/get-option-csv';
-                };
-                /*WORKS*/
-
-                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
-                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
-                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
-
-                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
-                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
-                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
-
-                this.API_ADMIN_EVENTS = this.API_ADMIN + '/manage-events';
-                this.API_ADMIN_EVENTS_RESOURCE = this.API_ADMIN_EVENTS + '/resource';
-                this.API_ADMIN_EVENTS_DELETE_LIST = this.API_ADMIN_EVENTS + '/delete-list';
-
-                this.API_ADMIN_EVENT_STUDENT = this.API_ADMIN + '/manage-event-student';
-                this.API_ADMIN_EVENT_STUDENT_RESOURCE = this.API_ADMIN_EVENT_STUDENT + '/resource';
-                this.API_ADMIN_EVENT_STUDENT_DELETE_LIST = this.API_ADMIN_EVENT_STUDENT + '/delete-list';
-                this.API_ADMIN_EVENT_STUDENT_IMPORT_CSV = this.API_ADMIN_EVENT_STUDENT + '/import-csv';
-                this.API_ADMIN_EVENT_STUDENT_UPDATE_CSV = this.API_ADMIN_EVENT_STUDENT + '/update-csv';
-
-                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
-                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
-                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
-
-                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
-                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
-                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
-
-                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
-                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
-                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
-                this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
-
-                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
-                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
-                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
-
-                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
-                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
-                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
-
-                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
-                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
-                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
-                this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
-
-                this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
-                this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
-                this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
-                this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
-
-                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
-                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
-                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
-
-                /*NOTIFIES*/
-                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
-                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
-                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
-                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
-                };
-                /*NOTIFIES*/
-
-                /*ENTERPRISES*/
-
-                this.API_ENTERPRISE = this.API + '/enterprise';
-
-                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
-                };
-
-                this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
-                this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
-
-                this.API_STUDENT = this.API + '/student';
-                this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
-                this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
-
-                this.API_AUTH_LOGIN = this.API + '/login';
-                this.API_GET_TOKEN = this.API + '/get-token';
-                this.API_RESET_PASSWORD = this.API + '/reset-password';
-
-                this.API_NOTIFIES = this.API + '/notifies';
-                this.API_POSITIONS = this.API + '/positions';
-                this.API_ENTERPRISES = this.API + '/enterprises';
-                this.API_SKILLS = this.API + '/skills';
-                this.API_TYPES = this.API + '/types';
-                this.API_SALARIES = this.API + '/salaries';
-                this.API_PROVINCES = this.API + '/provinces';
-                this.API_JOBS = this.API + '/jobs';
-                /*API*/
-
-                /*WEB*/
-
-                this.WEB = window.location.origin;
-
-                this.WEB_HOME = this.WEB;
-
-                this.WEB_ADMIN = this.WEB + '/admin';
-
-                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
-
-                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
-
-                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
-
-                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
-
-                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
-
-                this.WEB_ADMIN_EVENTS = this.WEB_ADMIN + '/events';
-
-                this.WEB_ENTERPRISE = this.WEB + '/enterprise';
-
-                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
-
-                this.WEB_JOBS = this.WEB + '/jobs';
-
-                this.WEB_NOTIFIES = this.WEB + '/notifies';
-                /*WEB*/
-        }
-
-        _createClass(Config, [{
-                key: 'notifySuccess',
-                value: function notifySuccess() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: message,
-                                        addclass: 'bg-success'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh Yeah! Thành công!',
-                                        text: 'Thao tác thành công',
-                                        addclass: 'bg-success'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyWarning',
-                value: function notifyWarning() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: message,
-                                        addclass: 'bg-warning'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có gì đó sai sai!',
-                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                                        addclass: 'bg-warning'
-                                });
-                        }
-                }
-        }, {
-                key: 'notifyError',
-                value: function notifyError() {
-                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-                        if (message != '') {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: message,
-                                        addclass: 'bg-danger'
-                                });
-                        } else {
-                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
-                                        title: 'Ohh! Có lỗi xảy ra rồi!',
-                                        text: 'Thao tác thất bại',
-                                        addclass: 'bg-danger'
-                                });
-                        }
-                }
-        }, {
-                key: 'getError',
-                value: function getError(data) {
-                        var message = '';
-                        message = data.message;
-                        message += '<br>';
-                        var errors = data.errors;
-                        var keys = Object.keys(errors);
-                        keys.forEach(function (key) {
-                                errors[key].forEach(function (item) {
-                                        message += item + '<br>';
-                                });
-                        });
-                        return message;
-                }
-        }]);
-
-        return Config;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
-
-/***/ 14:
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(11);
 
 /***/ }),
-
-/***/ 15:
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(5);
-var Axios = __webpack_require__(17);
-var defaults = __webpack_require__(2);
+var bind = __webpack_require__(3);
+var Axios = __webpack_require__(13);
+var defaults = __webpack_require__(1);
 
 /**
  * Create an instance of Axios
@@ -908,15 +1120,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(9);
-axios.CancelToken = __webpack_require__(31);
-axios.isCancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(7);
+axios.CancelToken = __webpack_require__(27);
+axios.isCancel = __webpack_require__(6);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(32);
+axios.spread = __webpack_require__(28);
 
 module.exports = axios;
 
@@ -925,8 +1137,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-
-/***/ 16:
+/* 12 */
 /***/ (function(module, exports) {
 
 /*!
@@ -953,17 +1164,16 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-
-/***/ 17:
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(1);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(26);
-var dispatchRequest = __webpack_require__(27);
+var InterceptorManager = __webpack_require__(22);
+var dispatchRequest = __webpack_require__(23);
 
 /**
  * Create a new instance of Axios
@@ -1040,8 +1250,7 @@ module.exports = Axios;
 
 
 /***/ }),
-
-/***/ 18:
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1060,14 +1269,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-
-/***/ 19:
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(7);
+var createError = __webpack_require__(5);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -1094,113 +1302,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(18);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(6);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
-
-/***/ }),
-
-/***/ 20:
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1228,8 +1330,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-
-/***/ 21:
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1302,8 +1403,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-
-/***/ 22:
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1363,8 +1463,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-
-/***/ 23:
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1439,8 +1538,7 @@ module.exports = (
 
 
 /***/ }),
-
-/***/ 24:
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1483,8 +1581,7 @@ module.exports = btoa;
 
 
 /***/ }),
-
-/***/ 25:
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1544,8 +1641,7 @@ module.exports = (
 
 
 /***/ }),
-
-/***/ 26:
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1604,19 +1700,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-
-/***/ 27:
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(28);
-var isCancel = __webpack_require__(8);
-var defaults = __webpack_require__(2);
-var isAbsoluteURL = __webpack_require__(29);
-var combineURLs = __webpack_require__(30);
+var transformData = __webpack_require__(24);
+var isCancel = __webpack_require__(6);
+var defaults = __webpack_require__(1);
+var isAbsoluteURL = __webpack_require__(25);
+var combineURLs = __webpack_require__(26);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -1698,8 +1793,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-
-/***/ 28:
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1726,8 +1820,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-
-/***/ 29:
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1748,36 +1841,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 30:
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1798,14 +1862,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-
-/***/ 31:
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(9);
+var Cancel = __webpack_require__(7);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -1863,8 +1926,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-
-/***/ 32:
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1898,8 +1960,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-
-/***/ 33:
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -2077,8 +2138,300 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 })(typeof window === 'undefined' ? this : window);
 
 /***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/***/ 34:
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__ = __webpack_require__(36);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Config = function () {
+        function Config() {
+                var _this = this;
+
+                _classCallCheck(this, Config);
+
+                /*API*/
+
+                this.API = window.location.origin + '/api';
+
+                /*ADMIN*/
+
+                this.API_ADMIN = this.API + '/admin';
+
+                /*ENTERPRISES*/
+                this.API_ADMIN_ENTERPRISES = this.API_ADMIN + '/manage-enterprises';
+                this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES + '/resource';
+                this.API_ADMIN_ENTERPRISES_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_ENTERPRISES_DELETE_LIST = this.API_ADMIN_ENTERPRISES + '/delete-list';
+                this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES + '/update-avatar';
+                this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
+                this.API_ADMIN_ENTERPRISES_LIST_TASK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-task' + '/' + ID;
+                };
+                this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
+                };
+                /*ENTERPRISES*/
+
+                /*STUDENTS*/
+                this.API_ADMIN_STUDENTS = this.API_ADMIN + '/manage-students';
+                this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS + '/resource';
+                this.API_ADMIN_STUDENTS_RESOURCE_ID_USER = function (ID) {
+                        return _this.API_ADMIN_STUDENTS_RESOURCE + '/' + ID + '/user';
+                };
+                this.API_ADMIN_STUDENTS_DELETE_LIST = this.API_ADMIN_STUDENTS + '/delete-list';
+                this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS + '/update-avatar';
+                this.API_ADMIN_STUDENTS_LIST_WORK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
+                this.API_ADMIN_STUDENTS_LIST_TASK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-task' + '/' + ID;
+                };
+                this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/get-option-csv';
+                };
+                /*STUDENTS*/
+
+                /*TASKS*/
+                this.API_ADMIN_TASKS = this.API_ADMIN + '/manage-tasks';
+                this.API_ADMIN_TASKS_RESOURCE = this.API_ADMIN_TASKS + '/resource';
+                this.API_ADMIN_TASKS_UPDATE_FILE_ATTACH = this.API_ADMIN_TASKS + '/update-file-attach';
+                this.API_ADMIN_TASKS_DELETE_LIST = this.API_ADMIN_TASKS + '/delete-list';
+                this.API_ADMIN_TASKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_TASKS + '/get-option-csv';
+                };
+                /*TASKS*/
+
+                /*WORKS*/
+                this.API_ADMIN_WORKS = this.API_ADMIN + '/manage-works';
+                this.API_ADMIN_WORKS_RESOURCE = this.API_ADMIN_WORKS + '/resource';
+                this.API_ADMIN_WORKS_UPDATE_FILE_ATTACH = this.API_ADMIN_WORKS + '/update-file-attach';
+                this.API_ADMIN_WORKS_DELETE_LIST = this.API_ADMIN_WORKS + '/delete-list';
+                this.API_ADMIN_WORKS_IMPORT_CSV = this.API_ADMIN_WORKS + '/import-csv';
+                this.API_ADMIN_WORKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_WORKS + '/get-option-csv';
+                };
+                /*WORKS*/
+
+                this.API_ADMIN_TYPES = this.API_ADMIN + '/manage-types';
+                this.API_ADMIN_TYPES_RESOURCE = this.API_ADMIN_TYPES + '/resource';
+                this.API_ADMIN_TYPES_DELETE_LIST = this.API_ADMIN_TYPES + '/delete-list';
+
+                this.API_ADMIN_SKILLS = this.API_ADMIN + '/manage-skills';
+                this.API_ADMIN_SKILLS_RESOURCE = this.API_ADMIN_SKILLS + '/resource';
+                this.API_ADMIN_SKILLS_DELETE_LIST = this.API_ADMIN_SKILLS + '/delete-list';
+
+                this.API_ADMIN_EVENTS = this.API_ADMIN + '/manage-events';
+                this.API_ADMIN_EVENTS_RESOURCE = this.API_ADMIN_EVENTS + '/resource';
+                this.API_ADMIN_EVENTS_DELETE_LIST = this.API_ADMIN_EVENTS + '/delete-list';
+
+                this.API_ADMIN_EVENT_STUDENT = this.API_ADMIN + '/manage-event-student';
+                this.API_ADMIN_EVENT_STUDENT_RESOURCE = this.API_ADMIN_EVENT_STUDENT + '/resource';
+                this.API_ADMIN_EVENT_STUDENT_DELETE_LIST = this.API_ADMIN_EVENT_STUDENT + '/delete-list';
+                this.API_ADMIN_EVENT_STUDENT_IMPORT_CSV = this.API_ADMIN_EVENT_STUDENT + '/import-csv';
+                this.API_ADMIN_EVENT_STUDENT_UPDATE_CSV = this.API_ADMIN_EVENT_STUDENT + '/update-csv';
+
+                this.API_ADMIN_POSITIONS = this.API_ADMIN + '/manage-positions';
+                this.API_ADMIN_POSITIONS_RESOURCE = this.API_ADMIN_POSITIONS + '/resource';
+                this.API_ADMIN_POSITIONS_DELETE_LIST = this.API_ADMIN_POSITIONS + '/delete-list';
+
+                this.API_ADMIN_SALARIES = this.API_ADMIN + '/manage-salaries';
+                this.API_ADMIN_SALARIES_RESOURCE = this.API_ADMIN_SALARIES + '/resource';
+                this.API_ADMIN_SALARIES_DELETE_LIST = this.API_ADMIN_SALARIES + '/delete-list';
+
+                this.API_ADMIN_PROVINCES = this.API_ADMIN + '/manage-provinces';
+                this.API_ADMIN_PROVINCES_RESOURCE = this.API_ADMIN_PROVINCES + '/resource';
+                this.API_ADMIN_PROVINCES_DELETE_LIST = this.API_ADMIN_PROVINCES + '/delete-list';
+                this.API_ADMIN_PROVINCES_IMPORT_CSV = this.API_ADMIN_PROVINCES + '/import-csv';
+
+                this.API_ADMIN_RATINGS = this.API_ADMIN + '/manage-ratings';
+                this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS + '/resource';
+                this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS + '/delete-list';
+
+                this.API_ADMIN_RANKS = this.API_ADMIN + '/manage-ranks';
+                this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS + '/resource';
+                this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS + '/delete-list';
+
+                this.API_ADMIN_DEPARTMENTS = this.API_ADMIN + '/manage-departments';
+                this.API_ADMIN_DEPARTMENTS_RESOURCE = this.API_ADMIN_DEPARTMENTS + '/resource';
+                this.API_ADMIN_DEPARTMENTS_DELETE_LIST = this.API_ADMIN_DEPARTMENTS + '/delete-list';
+                this.API_ADMIN_DEPARTMENTS_IMPORT_CSV = this.API_ADMIN_DEPARTMENTS + '/import-csv';
+
+                this.API_ADMIN_BRANCHES = this.API_ADMIN + '/manage-branches';
+                this.API_ADMIN_BRANCHES_RESOURCE = this.API_ADMIN_BRANCHES + '/resource';
+                this.API_ADMIN_BRANCHES_DELETE_LIST = this.API_ADMIN_BRANCHES + '/delete-list';
+                this.API_ADMIN_BRANCHES_IMPORT_CSV = this.API_ADMIN_BRANCHES + '/import-csv';
+
+                this.API_ADMIN_COURSES = this.API_ADMIN + '/manage-courses';
+                this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES + '/resource';
+                this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES + '/delete-list';
+
+                /*NOTIFIES*/
+                this.API_ADMIN_NOTIFIES = this.API_ADMIN + '/manage-notifies';
+                this.API_ADMIN_NOTIFIES_RESOURCE = this.API_ADMIN_NOTIFIES + '/resource';
+                this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES + '/delete-list';
+                this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_NOTIFIES + '/get-option-csv';
+                };
+                /*NOTIFIES*/
+
+                /*ENTERPRISES*/
+
+                this.API_ENTERPRISE = this.API + '/enterprise';
+
+                this.API_ENTERPRISE_TASKS = this.API_ENTERPRISE + '/manage-tasks';
+                this.API_ENTERPRISE_TASKS_RESOURCE = this.API_ENTERPRISE_TASKS + '/resource';
+                this.API_ENTERPRISE_TASKS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_TASKS + '/update-file-attach';
+                this.API_ENTERPRISE_TASKS_DELETE_LIST = this.API_ENTERPRISE_TASKS + '/delete-list';
+                this.API_ENTERPRISE_TASKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ENTERPRISE_TASKS + '/get-option-csv';
+                };
+
+                this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
+                this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE + '/update-avatar';
+
+                this.API_STUDENT = this.API + '/student';
+                this.API_STUDENT_PROFILE = this.API_STUDENT + '/profile';
+                this.API_STUDENT_UPDATE_AVATAR = this.API_STUDENT + '/update-avatar';
+
+                this.API_AUTH_LOGIN = this.API + '/login';
+                this.API_GET_TOKEN = this.API + '/get-token';
+                this.API_RESET_PASSWORD = this.API + '/reset-password';
+
+                this.API_NOTIFIES = this.API + '/notifies';
+                this.API_POSITIONS = this.API + '/positions';
+                this.API_ENTERPRISES = this.API + '/enterprises';
+                this.API_SKILLS = this.API + '/skills';
+                this.API_TYPES = this.API + '/types';
+                this.API_SALARIES = this.API + '/salaries';
+                this.API_PROVINCES = this.API + '/provinces';
+                this.API_TASKS = this.API + '/tasks';
+                /*API*/
+
+                /*WEB*/
+
+                this.WEB = window.location.origin;
+
+                this.WEB_HOME = this.WEB;
+
+                this.WEB_ADMIN = this.WEB + '/admin';
+
+                this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN + '/enterprises';
+
+                this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
+
+                this.WEB_ADMIN_TASKS = this.WEB_ADMIN + '/tasks';
+
+                this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
+
+                this.WEB_ADMIN_NOTIFIES = this.WEB_ADMIN + '/notifies';
+
+                this.WEB_ADMIN_EVENTS = this.WEB_ADMIN + '/events';
+
+                this.WEB_ENTERPRISE = this.WEB + '/enterprise';
+
+                this.WEB_ENTERPRISE_TASKS = this.WEB_ENTERPRISE + '/tasks';
+
+                this.WEB_TASKS = this.WEB + '/tasks';
+
+                this.WEB_NOTIFIES = this.WEB + '/notifies';
+                /*WEB*/
+        }
+
+        _createClass(Config, [{
+                key: 'notifySuccess',
+                value: function notifySuccess() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: message,
+                                        addclass: 'bg-success'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh Yeah! Thành công!',
+                                        text: 'Thao tác thành công',
+                                        addclass: 'bg-success'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyWarning',
+                value: function notifyWarning() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: message,
+                                        addclass: 'bg-warning'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có gì đó sai sai!',
+                                        text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
+                                        addclass: 'bg-warning'
+                                });
+                        }
+                }
+        }, {
+                key: 'notifyError',
+                value: function notifyError() {
+                        var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+                        if (message != '') {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: message,
+                                        addclass: 'bg-danger'
+                                });
+                        } else {
+                                new __WEBPACK_IMPORTED_MODULE_0_pnotify_dist_es_PNotifyCompat__["a" /* default */]({
+                                        title: 'Ohh! Có lỗi xảy ra rồi!',
+                                        text: 'Thao tác thất bại',
+                                        addclass: 'bg-danger'
+                                });
+                        }
+                }
+        }, {
+                key: 'getError',
+                value: function getError(data) {
+                        var message = '';
+                        message = data.message;
+                        message += '<br>';
+                        var errors = data.errors;
+                        var keys = Object.keys(errors);
+                        keys.forEach(function (key) {
+                                errors[key].forEach(function (item) {
+                                        message += item + '<br>';
+                                });
+                        });
+                        return message;
+                }
+        }]);
+
+        return Config;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Config);
+
+/***/ }),
+/* 31 */,
+/* 32 */,
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13041,11 +13394,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(35).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(34).setImmediate))
 
 /***/ }),
-
-/***/ 35:
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -13101,7 +13453,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(36);
+__webpack_require__(35);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -13112,11 +13464,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-
-/***/ 36:
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -13306,21 +13657,19 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(8)))
 
 /***/ }),
-
-/***/ 37:
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PNotify_js__ = __webpack_require__(37);
 const translateOptions=(e,t,o)=>{const s=t?Object.assign({},o?PNotifyCompat.prototype.options[o]:{},e):Object.assign({},PNotifyCompat.prototype.options,e),l=e=>{let t,o=e;for(;-1!==(t=o.indexOf("_"));)o=o.slice(0,t)+o.slice(t+1,t+2).toUpperCase()+o.slice(t+2);return o};for(let e in s)if(s.hasOwnProperty(e)&&-1!==e.indexOf("_")){s[l(e)]=s[e],delete s[e]}return t||(s.hasOwnProperty("addclass")&&(s.addClass=s.addclass,delete s.addclass),s.hasOwnProperty("cornerclass")&&(s.cornerClass=s.cornerclass,delete s.cornerClass),s.hasOwnProperty("textEscape")&&(s.textTrusted=!s.textEscape,delete s.textEscape),s.hasOwnProperty("titleEscape")&&(s.titleTrusted=!s.titleEscape,delete s.titleEscape),s.hasOwnProperty("styling")&&("bootstrap3"===s.styling?s.icons="bootstrap3":"fontawesome"===s.styling&&(s.styling="bootstrap3",s.icons="fontawesome4")),s.hasOwnProperty("stack")&&s.stack.overlay_close&&(s.stack.overlayClose=s.stack.overlay_close),s.modules={},s.hasOwnProperty("animate")&&(s.modules.Animate=translateOptions(s.animate,!0,"animate"),delete s.animate),s.hasOwnProperty("buttons")&&(s.modules.Buttons=translateOptions(s.buttons,!0,"buttons"),delete s.buttons,s.modules.Buttons.classes&&(s.modules.Buttons.classes=translateOptions(s.modules.Buttons.classes,!0))),s.hasOwnProperty("confirm")&&(s.modules.Confirm=translateOptions(s.confirm,!0,"confirm"),s.modules.Confirm.promptDefault&&(s.modules.Confirm.promptValue=s.modules.Confirm.promptDefault,delete s.modules.Confirm.promptDefault),delete s.confirm),s.hasOwnProperty("desktop")&&(s.modules.Desktop=translateOptions(s.desktop,!0,"desktop"),delete s.desktop),s.hasOwnProperty("history")&&(s.modules.History=translateOptions(s.history,!0,"history"),delete s.history),s.hasOwnProperty("mobile")&&(s.modules.Mobile=translateOptions(s.mobile,!0,"mobile"),delete s.mobile),s.hasOwnProperty("nonblock")&&(s.modules.NonBlock=translateOptions(s.nonblock,!0,"nonblock"),delete s.nonblock),s.hasOwnProperty("reference")&&(s.modules.Reference=translateOptions(s.reference,!0,"reference"),delete s.reference),s.hasOwnProperty("beforeInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeInit=s.beforeInit,delete s.beforeInit),s.hasOwnProperty("afterInit")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterInit=s.afterInit,delete s.afterInit),s.hasOwnProperty("beforeOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeOpen=s.beforeOpen,delete s.beforeOpen),s.hasOwnProperty("afterOpen")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterOpen=s.afterOpen,delete s.afterOpen),s.hasOwnProperty("beforeClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.beforeClose=s.beforeClose,delete s.beforeClose),s.hasOwnProperty("afterClose")&&(s.modules.Callbacks||(s.modules.Callbacks={}),s.modules.Callbacks.afterClose=s.afterClose,delete s.afterClose)),s};class PNotifyCompat extends __WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */]{constructor(e){"object"!=typeof e&&(e={text:e}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&e.before_init&&e.before_init(e),e=translateOptions(e),super({target:document.body,data:e});const t=this.get;this.get=function(e){return void 0===e?Object.assign(window.jQuery?window.jQuery(this.refs.elem):this.refs.elem,t.call(this)):t.call(this,e)},this.on("pnotify.confirm",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.confirm",[this,e.value])}),this.on("pnotify.cancel",e=>{window.jQuery&&window.jQuery(this.refs.elem).trigger("pnotify.cancel",this)}),__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks&&__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Callbacks.getCallbacks(this,null,"afterInit")(this)}update(e){return e=translateOptions(e),super.update(e)}}PNotifyCompat.prototype.options={text_escape:!1,title_escape:!1},PNotifyCompat.reload=(()=>PNotifyCompat),PNotifyCompat.removeAll=(()=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeAll()),PNotifyCompat.removeStack=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].removeStack(e)),PNotifyCompat.positionAll=(e=>__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].positionAll(e)),PNotifyCompat.desktop={permission:()=>{__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.Desktop.permission()}},window.jQuery&&window.jQuery(()=>{window.jQuery(document.body).on("pnotify.history-last",function(){__WEBPACK_IMPORTED_MODULE_0__PNotify_js__["a" /* default */].modules.History.showLast()})});/* harmony default export */ __webpack_exports__["a"] = (PNotifyCompat);
 //# sourceMappingURL=PNotifyCompat.js.map
 
 /***/ }),
-
-/***/ 38:
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13328,135 +13677,88 @@ let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document
 //# sourceMappingURL=PNotify.js.map
 
 /***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 412:
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(413);
+module.exports = __webpack_require__(104);
 
 
 /***/ }),
-
-/***/ 413:
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__ = __webpack_require__(414);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_form_login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__ = __webpack_require__(417);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_forgot_password_vue__);
-window.Vue = __webpack_require__(34);
+window.Vue = __webpack_require__(33);
 
 
 var app = new Vue({
@@ -13481,16 +13783,15 @@ var app = new Vue({
 });
 
 /***/ }),
-
-/***/ 414:
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(9)
 /* script */
-var __vue_script__ = __webpack_require__(415)
+var __vue_script__ = __webpack_require__(106)
 /* template */
-var __vue_template__ = __webpack_require__(416)
+var __vue_template__ = __webpack_require__(107)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13529,15 +13830,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-
-/***/ 415:
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(30);
 //
 //
 //
@@ -13578,7 +13878,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-window.Cookies = __webpack_require__(33);
+window.Cookies = __webpack_require__(29);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -13598,6 +13898,9 @@ window.Cookies = __webpack_require__(33);
                 });
                 vm.styleText.splice(index, 1);
                 window.Cookies.set('token', data.data.token, {
+                    expires: 600000
+                });
+                window.Cookies.set('user', data.data.user.id, {
                     expires: 600000
                 });
                 vm.Text = '';
@@ -13635,8 +13938,7 @@ window.Cookies = __webpack_require__(33);
 });
 
 /***/ }),
-
-/***/ 416:
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -13808,16 +14110,15 @@ if (false) {
 }
 
 /***/ }),
-
-/***/ 417:
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(9)
 /* script */
-var __vue_script__ = __webpack_require__(418)
+var __vue_script__ = __webpack_require__(109)
 /* template */
-var __vue_template__ = __webpack_require__(419)
+var __vue_template__ = __webpack_require__(110)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13856,15 +14157,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-
-/***/ 418:
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(30);
 //
 //
 //
@@ -13988,8 +14288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-
-/***/ 419:
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -14292,279 +14591,5 @@ if (false) {
   }
 }
 
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function bind(fn, thisArg) {
-  return function wrap() {
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return fn.apply(thisArg, args);
-  };
-};
-
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(0);
-var settle = __webpack_require__(19);
-var buildURL = __webpack_require__(21);
-var parseHeaders = __webpack_require__(22);
-var isURLSameOrigin = __webpack_require__(23);
-var createError = __webpack_require__(7);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(24);
-
-module.exports = function xhrAdapter(config) {
-  return new Promise(function dispatchXhrRequest(resolve, reject) {
-    var requestData = config.data;
-    var requestHeaders = config.headers;
-
-    if (utils.isFormData(requestData)) {
-      delete requestHeaders['Content-Type']; // Let the browser set it
-    }
-
-    var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
-
-    // HTTP basic authentication
-    if (config.auth) {
-      var username = config.auth.username || '';
-      var password = config.auth.password || '';
-      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-    }
-
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
-
-    // Set the request timeout in MS
-    request.timeout = config.timeout;
-
-    // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
-        return;
-      }
-
-      // The request errored out and we didn't get a response, this will be
-      // handled by onerror instead
-      // With one exception: request that using file: protocol, most browsers
-      // will return status as 0 even though it's a successful request
-      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
-      }
-
-      // Prepare the response
-      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-      var response = {
-        data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
-        headers: responseHeaders,
-        config: config,
-        request: request
-      };
-
-      settle(resolve, reject, response);
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle low level network errors
-    request.onerror = function handleError() {
-      // Real errors are hidden from us by the browser
-      // onerror should only fire if it's a network error
-      reject(createError('Network Error', config, null, request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle timeout
-    request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
-        request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Add xsrf header
-    // This is only done if running in a standard browser environment.
-    // Specifically not if we're in a web worker, or react-native.
-    if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(25);
-
-      // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
-
-      if (xsrfValue) {
-        requestHeaders[config.xsrfHeaderName] = xsrfValue;
-      }
-    }
-
-    // Add headers to the request
-    if ('setRequestHeader' in request) {
-      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          // Remove Content-Type if data is undefined
-          delete requestHeaders[key];
-        } else {
-          // Otherwise add header to the request
-          request.setRequestHeader(key, val);
-        }
-      });
-    }
-
-    // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
-    }
-
-    // Add responseType to request if needed
-    if (config.responseType) {
-      try {
-        request.responseType = config.responseType;
-      } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-        if (config.responseType !== 'json') {
-          throw e;
-        }
-      }
-    }
-
-    // Handle progress if needed
-    if (typeof config.onDownloadProgress === 'function') {
-      request.addEventListener('progress', config.onDownloadProgress);
-    }
-
-    // Not all browsers support upload events
-    if (typeof config.onUploadProgress === 'function' && request.upload) {
-      request.upload.addEventListener('progress', config.onUploadProgress);
-    }
-
-    if (config.cancelToken) {
-      // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
-        if (!request) {
-          return;
-        }
-
-        request.abort();
-        reject(cancel);
-        // Clean up request
-        request = null;
-      });
-    }
-
-    if (requestData === undefined) {
-      requestData = null;
-    }
-
-    // Send the request
-    request.send(requestData);
-  });
-};
-
-
-/***/ }),
-
-/***/ 7:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var enhanceError = __webpack_require__(20);
-
-/**
- * Create an Error with the specified message, config, error code, request and response.
- *
- * @param {string} message The error message.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- * @returns {Error} The created error.
- */
-module.exports = function createError(message, config, code, request, response) {
-  var error = new Error(message);
-  return enhanceError(error, config, code, request, response);
-};
-
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isCancel(value) {
-  return !!(value && value.__CANCEL__);
-};
-
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * A `Cancel` is an object that is thrown when an operation is canceled.
- *
- * @class
- * @param {string=} message The message.
- */
-function Cancel(message) {
-  this.message = message;
-}
-
-Cancel.prototype.toString = function toString() {
-  return 'Cancel' + (this.message ? ': ' + this.message : '');
-};
-
-Cancel.prototype.__CANCEL__ = true;
-
-module.exports = Cancel;
-
-
 /***/ })
-
-/******/ });
+/******/ ]);

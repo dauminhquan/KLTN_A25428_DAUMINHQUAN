@@ -1,8 +1,8 @@
 <?php
 Route::group(['middleware' => 'web.check.auth'],function(){
     Route::get('/',['uses' => 'HomeController@index','as' => 'home'])->middleware(['web.check.auth']);
-    Route::get('/jobs',['uses' => 'JobController@index']);
-    Route::get('/jobs/{id}',['uses' => 'JobController@info']);
+    Route::get('/tasks',['uses' => 'TaskController@index']);
+    Route::get('/tasks/{id}',['uses' => 'TaskController@info']);
     Route::get('/notifies',['uses' => 'NotifyController@index']);
     Route::get('/notifies/{id}',['uses' => 'NotifyController@info']);
 });

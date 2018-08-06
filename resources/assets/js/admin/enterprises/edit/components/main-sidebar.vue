@@ -23,7 +23,7 @@
                         <li class="navigation-header">Navigation</li>
                         <li class="active" ><a :href="null" data-toggle="tab" @click="updateActive('profile')"><i class=" icon-info3"></i> Thông tin doanh nghiệp</a></li>
                         <li><a :href="null" data-toggle="tab" @click="updateActive('students')"><i class=" icon-office"></i> Danh sách nhân viên</a></li>
-                        <li><a :href="null" data-toggle="tab" @click="updateActive('jobs')"><i class=" icon-list"></i> Danh sách bài đăng tuyển dụng</a></li>
+                        <li><a :href="null" data-toggle="tab" @click="updateActive('tasks')"><i class=" icon-list"></i> Danh sách bài đăng tuyển dụng</a></li>
                     </ul>
                 </div>
             </div>

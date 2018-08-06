@@ -9,16 +9,61 @@
 *
 * ---------------------------------------------------------------------------- */
 
-import $ from 'jquery'
+window.$ = window.jQuery = require('jquery');
 import axios from './../axios'
-window.jQuery = $
-window.$ = $
 require('bootstrap3')
 require('./plugin/drilldown')
 require('./plugin/nicescroll.min')
+
+import Echo from 'laravel-echo'
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true
+});
+
+
+let user = window.Cookies('user')
+
+console.log(user)
+
+if(user != undefined)
+{
+    listenForChanges(user)
+}
+
 $(window).on('load', function() {
     $('body').removeClass('no-transitions');
 });
+
+
+function listenForChanges(id) {
+    window.Echo.channel('channel-name')
+        .listen('NotifyEvent', post => {
+            console.log(123);
+            if (! ('Notification' in window)) {
+                alert('Web Notification is not supported');
+                return;
+            }
+
+            Notification.requestPermission( permission => {
+                let notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                    body: 'Hello', // content for the alert
+                    icon: "https://pusher.com/static_logos/320x320.png" // optional image url
+                });
+
+                // link to page on clicking the notification
+                notification.onclick = () => {
+                    window.open(window.location.href);
+                };
+            });
+        })
+}
+
 $(function() {
 
     // Disable CSS transitions on page load

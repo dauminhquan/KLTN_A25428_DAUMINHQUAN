@@ -76,7 +76,7 @@ class PositionService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $position = Position::findOrFail($id);
-        $position->jobs()->detach();
+        $position->tasks()->detach();
         $position->delete();
         return $position;
 
@@ -91,7 +91,7 @@ class PositionService extends BaseService implements ManageInterface
             $position = Position::find($item);
             if($position)
             {
-                $position->jobs()->detach();
+                $position->tasks()->detach();
                 $position->delete();
                 unset($success[$key]);
             }

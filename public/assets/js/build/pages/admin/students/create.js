@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 127);
+/******/ 	return __webpack_require__(__webpack_require__.s = 129);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1073,8 +1073,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 11 */,
-/* 12 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1111,8 +1110,8 @@ var Config = function () {
                         return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
                 };
                 this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+                this.API_ADMIN_ENTERPRISES_LIST_TASK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-task' + '/' + ID;
                 };
                 this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
                         return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
@@ -1131,23 +1130,23 @@ var Config = function () {
                         return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
                 };
                 this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+                this.API_ADMIN_STUDENTS_LIST_TASK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-task' + '/' + ID;
                 };
                 this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
                         return _this.API_ADMIN_STUDENTS + '/get-option-csv';
                 };
                 /*STUDENTS*/
 
-                /*JOBS*/
-                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_JOBS + '/get-option-csv';
+                /*TASKS*/
+                this.API_ADMIN_TASKS = this.API_ADMIN + '/manage-tasks';
+                this.API_ADMIN_TASKS_RESOURCE = this.API_ADMIN_TASKS + '/resource';
+                this.API_ADMIN_TASKS_UPDATE_FILE_ATTACH = this.API_ADMIN_TASKS + '/update-file-attach';
+                this.API_ADMIN_TASKS_DELETE_LIST = this.API_ADMIN_TASKS + '/delete-list';
+                this.API_ADMIN_TASKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_TASKS + '/get-option-csv';
                 };
-                /*JOBS*/
+                /*TASKS*/
 
                 /*WORKS*/
                 this.API_ADMIN_WORKS = this.API_ADMIN + '/manage-works';
@@ -1226,12 +1225,12 @@ var Config = function () {
 
                 this.API_ENTERPRISE = this.API + '/enterprise';
 
-                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
+                this.API_ENTERPRISE_TASKS = this.API_ENTERPRISE + '/manage-tasks';
+                this.API_ENTERPRISE_TASKS_RESOURCE = this.API_ENTERPRISE_TASKS + '/resource';
+                this.API_ENTERPRISE_TASKS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_TASKS + '/update-file-attach';
+                this.API_ENTERPRISE_TASKS_DELETE_LIST = this.API_ENTERPRISE_TASKS + '/delete-list';
+                this.API_ENTERPRISE_TASKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ENTERPRISE_TASKS + '/get-option-csv';
                 };
 
                 this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
@@ -1252,7 +1251,7 @@ var Config = function () {
                 this.API_TYPES = this.API + '/types';
                 this.API_SALARIES = this.API + '/salaries';
                 this.API_PROVINCES = this.API + '/provinces';
-                this.API_JOBS = this.API + '/jobs';
+                this.API_TASKS = this.API + '/tasks';
                 /*API*/
 
                 /*WEB*/
@@ -1267,7 +1266,7 @@ var Config = function () {
 
                 this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
 
-                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+                this.WEB_ADMIN_TASKS = this.WEB_ADMIN + '/tasks';
 
                 this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
 
@@ -1277,9 +1276,9 @@ var Config = function () {
 
                 this.WEB_ENTERPRISE = this.WEB + '/enterprise';
 
-                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+                this.WEB_ENTERPRISE_TASKS = this.WEB_ENTERPRISE + '/tasks';
 
-                this.WEB_JOBS = this.WEB + '/jobs';
+                this.WEB_TASKS = this.WEB + '/tasks';
 
                 this.WEB_NOTIFIES = this.WEB + '/notifies';
                 /*WEB*/
@@ -1365,7 +1364,7 @@ var Config = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1382,6 +1381,7 @@ ax.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 /* harmony default export */ __webpack_exports__["a"] = (ax);
 
 /***/ }),
+/* 13 */,
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13789,19 +13789,21 @@ e.target.composing||(t.search=e.target.value)}}}),t._v(" "),n("button",{directiv
 /* 124 */,
 /* 125 */,
 /* 126 */,
-/* 127 */
+/* 127 */,
+/* 128 */,
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(128);
+module.exports = __webpack_require__(130);
 
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_content_vue__);
 window.Vue = __webpack_require__(34);
 
@@ -13811,15 +13813,15 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(130)
+var __vue_script__ = __webpack_require__(132)
 /* template */
-var __vue_template__ = __webpack_require__(131)
+var __vue_template__ = __webpack_require__(133)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13858,15 +13860,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(11);
 //
 //
 //
@@ -14160,7 +14162,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

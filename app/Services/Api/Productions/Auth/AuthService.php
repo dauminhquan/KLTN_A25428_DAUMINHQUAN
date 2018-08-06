@@ -27,6 +27,7 @@ class AuthService extends BaseService /*implements ManageInterface*/
             session(['user'=>$user]);
             return response()->json([
                 'token' => $user->createToken('QuanDau')->accessToken,
+                'user' => $user
             ]);
         }
         return response()->json(['password' => 'password không chính xác'],406);

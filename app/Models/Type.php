@@ -8,7 +8,4 @@ class Type extends Model
 {
     protected $table = 'types';
     protected $fillable = ['name'];
-    public function jobs(){
-        return $this->belongsToMany(Job::class,'job_type');
-    }
 }

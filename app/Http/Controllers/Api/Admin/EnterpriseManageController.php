@@ -64,8 +64,8 @@ class EnterpriseManageController extends Controller
         return $this->enterpriseService->getListWork($id);
     }
 
-    public function listJob(GetDataRequest $request,$id){
-        return $this->enterpriseService->getListJob($request->all(),$id);
+    public function listTask(GetDataRequest $request,$id){
+        return $this->enterpriseService->getListTask($request->all(),$id);
     }
 
     public function importCsv(CsvRequest $request){

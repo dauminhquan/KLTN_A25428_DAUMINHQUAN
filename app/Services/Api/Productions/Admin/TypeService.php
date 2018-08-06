@@ -76,7 +76,7 @@ class TypeService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $type = Type::findOrFail($id);
-        $type->jobs()->detach();
+        $type->tasks()->detach();
         $type->delete();
         return $type;
 
@@ -90,7 +90,7 @@ class TypeService extends BaseService implements ManageInterface
             $type = Type::find($item);
             if($type)
             {
-                $type->jobs()->detach();
+                $type->tasks()->detach();
                 $type->delete();
                 unset($success[$item]);
             }

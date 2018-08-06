@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 385);
+/******/ 	return __webpack_require__(__webpack_require__.s = 387);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -567,7 +567,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 12:
+/***/ 11:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -604,8 +604,8 @@ var Config = function () {
                         return _this.API_ADMIN_ENTERPRISES + '/list-work' + '/' + ID;
                 };
                 this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES + '/import-csv';
-                this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_ENTERPRISES + '/list-job' + '/' + ID;
+                this.API_ADMIN_ENTERPRISES_LIST_TASK_ID = function (ID) {
+                        return _this.API_ADMIN_ENTERPRISES + '/list-task' + '/' + ID;
                 };
                 this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = function (ID) {
                         return _this.API_ADMIN_ENTERPRISES + '/get-option-csv';
@@ -624,23 +624,23 @@ var Config = function () {
                         return _this.API_ADMIN_STUDENTS + '/list-work' + '/' + ID;
                 };
                 this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS + '/import-csv';
-                this.API_ADMIN_STUDENTS_LIST_JOB_ID = function (ID) {
-                        return _this.API_ADMIN_STUDENTS + '/list-job' + '/' + ID;
+                this.API_ADMIN_STUDENTS_LIST_TASK_ID = function (ID) {
+                        return _this.API_ADMIN_STUDENTS + '/list-task' + '/' + ID;
                 };
                 this.API_ADMIN_STUDENTS_GET_OPTION_CSV = function (ID) {
                         return _this.API_ADMIN_STUDENTS + '/get-option-csv';
                 };
                 /*STUDENTS*/
 
-                /*JOBS*/
-                this.API_ADMIN_JOBS = this.API_ADMIN + '/manage-jobs';
-                this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS + '/resource';
-                this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS + '/update-file-attach';
-                this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS + '/delete-list';
-                this.API_ADMIN_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ADMIN_JOBS + '/get-option-csv';
+                /*TASKS*/
+                this.API_ADMIN_TASKS = this.API_ADMIN + '/manage-tasks';
+                this.API_ADMIN_TASKS_RESOURCE = this.API_ADMIN_TASKS + '/resource';
+                this.API_ADMIN_TASKS_UPDATE_FILE_ATTACH = this.API_ADMIN_TASKS + '/update-file-attach';
+                this.API_ADMIN_TASKS_DELETE_LIST = this.API_ADMIN_TASKS + '/delete-list';
+                this.API_ADMIN_TASKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ADMIN_TASKS + '/get-option-csv';
                 };
-                /*JOBS*/
+                /*TASKS*/
 
                 /*WORKS*/
                 this.API_ADMIN_WORKS = this.API_ADMIN + '/manage-works';
@@ -719,12 +719,12 @@ var Config = function () {
 
                 this.API_ENTERPRISE = this.API + '/enterprise';
 
-                this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE + '/manage-jobs';
-                this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS + '/resource';
-                this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS + '/update-file-attach';
-                this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS + '/delete-list';
-                this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = function (ID) {
-                        return _this.API_ENTERPRISE_JOBS + '/get-option-csv';
+                this.API_ENTERPRISE_TASKS = this.API_ENTERPRISE + '/manage-tasks';
+                this.API_ENTERPRISE_TASKS_RESOURCE = this.API_ENTERPRISE_TASKS + '/resource';
+                this.API_ENTERPRISE_TASKS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_TASKS + '/update-file-attach';
+                this.API_ENTERPRISE_TASKS_DELETE_LIST = this.API_ENTERPRISE_TASKS + '/delete-list';
+                this.API_ENTERPRISE_TASKS_GET_OPTION_CSV = function (ID) {
+                        return _this.API_ENTERPRISE_TASKS + '/get-option-csv';
                 };
 
                 this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE + '/profile';
@@ -745,7 +745,7 @@ var Config = function () {
                 this.API_TYPES = this.API + '/types';
                 this.API_SALARIES = this.API + '/salaries';
                 this.API_PROVINCES = this.API + '/provinces';
-                this.API_JOBS = this.API + '/jobs';
+                this.API_TASKS = this.API + '/tasks';
                 /*API*/
 
                 /*WEB*/
@@ -760,7 +760,7 @@ var Config = function () {
 
                 this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN + '/students';
 
-                this.WEB_ADMIN_JOBS = this.WEB_ADMIN + '/jobs';
+                this.WEB_ADMIN_TASKS = this.WEB_ADMIN + '/tasks';
 
                 this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN + '/positions';
 
@@ -770,9 +770,9 @@ var Config = function () {
 
                 this.WEB_ENTERPRISE = this.WEB + '/enterprise';
 
-                this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE + '/jobs';
+                this.WEB_ENTERPRISE_TASKS = this.WEB_ENTERPRISE + '/tasks';
 
-                this.WEB_JOBS = this.WEB + '/jobs';
+                this.WEB_TASKS = this.WEB + '/tasks';
 
                 this.WEB_NOTIFIES = this.WEB + '/notifies';
                 /*WEB*/
@@ -859,7 +859,7 @@ var Config = function () {
 
 /***/ }),
 
-/***/ 13:
+/***/ 12:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13347,20 +13347,20 @@ let PNotify,posTimer,onDocumentLoaded=()=>{PNotify.defaultStack.context=document
 
 /***/ }),
 
-/***/ 385:
+/***/ 387:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(386);
+module.exports = __webpack_require__(388);
 
 
 /***/ }),
 
-/***/ 386:
+/***/ 388:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_content__);
 window.Vue = __webpack_require__(34);
 
@@ -13373,15 +13373,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 387:
+/***/ 389:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(388)
+var __vue_script__ = __webpack_require__(390)
 /* template */
-var __vue_template__ = __webpack_require__(398)
+var __vue_template__ = __webpack_require__(400)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13421,14 +13421,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 388:
+/***/ 390:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_sidebar__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_sidebar__ = __webpack_require__(391);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__main_sidebar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_content__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_content__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_content__);
 //
 //
@@ -13465,15 +13465,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 389:
+/***/ 391:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(390)
+var __vue_script__ = __webpack_require__(392)
 /* template */
-var __vue_template__ = __webpack_require__(391)
+var __vue_template__ = __webpack_require__(393)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13513,13 +13513,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 390:
+/***/ 392:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__axios__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(11);
 //
 //
 //
@@ -13663,7 +13663,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 391:
+/***/ 393:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -13944,15 +13944,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 392:
+/***/ 394:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(393)
+var __vue_script__ = __webpack_require__(395)
 /* template */
-var __vue_template__ = __webpack_require__(397)
+var __vue_template__ = __webpack_require__(399)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13992,12 +13992,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 393:
+/***/ 395:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__profile_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__profile_vue__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__profile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__profile_vue__);
 //
 //
@@ -14026,15 +14026,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 394:
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(395)
+var __vue_script__ = __webpack_require__(397)
 /* template */
-var __vue_template__ = __webpack_require__(396)
+var __vue_template__ = __webpack_require__(398)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -14074,15 +14074,15 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 395:
+/***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axios__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(11);
 //
 //
 //
@@ -14239,7 +14239,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 396:
+/***/ 398:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -14565,7 +14565,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 397:
+/***/ 399:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -14595,44 +14595,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-626dede8", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 398:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "page-content" },
-    [
-      _c("main-sidebar", {
-        attrs: { nameItem: _vm.nameItem, avatar: _vm.avatar }
-      }),
-      _vm._v(" "),
-      _c("main-content", {
-        attrs: { active: _vm.active },
-        on: {
-          updateNameItem: _vm.updateNameItem,
-          updateAvatar: _vm.updateAvatar
-        }
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5dbeea46", module.exports)
   }
 }
 
@@ -14745,6 +14707,44 @@ module.exports = function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 400:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "page-content" },
+    [
+      _c("main-sidebar", {
+        attrs: { nameItem: _vm.nameItem, avatar: _vm.avatar }
+      }),
+      _vm._v(" "),
+      _c("main-content", {
+        attrs: { active: _vm.active },
+        on: {
+          updateNameItem: _vm.updateNameItem,
+          updateAvatar: _vm.updateAvatar
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5dbeea46", module.exports)
+  }
+}
 
 /***/ }),
 

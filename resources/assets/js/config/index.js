@@ -17,7 +17,7 @@ class Config{
         this.API_ADMIN_ENTERPRISES_UPDATE_AVATAR = this.API_ADMIN_ENTERPRISES+'/update-avatar'
         this.API_ADMIN_ENTERPRISES_LIST_WORK_ID = (ID) => {return this.API_ADMIN_ENTERPRISES+'/list-work'+'/'+ID}
         this.API_ADMIN_ENTERPRISES_IMPORT_CSV = this.API_ADMIN_ENTERPRISES+'/import-csv'
-        this.API_ADMIN_ENTERPRISES_LIST_JOB_ID = (ID) => {return this.API_ADMIN_ENTERPRISES+'/list-job'+'/'+ID}
+        this.API_ADMIN_ENTERPRISES_LIST_TASK_ID = (ID) => {return this.API_ADMIN_ENTERPRISES+'/list-task'+'/'+ID}
         this.API_ADMIN_ENTERPRISES_GET_OPTION_CSV = (ID) => this.API_ADMIN_ENTERPRISES+'/get-option-csv'
         /*ENTERPRISES*/
 
@@ -30,17 +30,17 @@ class Config{
         this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS+'/update-avatar'
         this.API_ADMIN_STUDENTS_LIST_WORK_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-work'+'/'+ID}
         this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS+'/import-csv'
-        this.API_ADMIN_STUDENTS_LIST_JOB_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-job'+'/'+ID}
+        this.API_ADMIN_STUDENTS_LIST_TASK_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-task'+'/'+ID}
         this.API_ADMIN_STUDENTS_GET_OPTION_CSV = (ID) => this.API_ADMIN_STUDENTS+'/get-option-csv'
         /*STUDENTS*/
         
-        /*JOBS*/
-        this.API_ADMIN_JOBS = this.API_ADMIN+'/manage-jobs'
-        this.API_ADMIN_JOBS_RESOURCE = this.API_ADMIN_JOBS+'/resource'
-        this.API_ADMIN_JOBS_UPDATE_FILE_ATTACH = this.API_ADMIN_JOBS+'/update-file-attach'
-        this.API_ADMIN_JOBS_DELETE_LIST = this.API_ADMIN_JOBS+'/delete-list'
-        this.API_ADMIN_JOBS_GET_OPTION_CSV = (ID) => this.API_ADMIN_JOBS+'/get-option-csv'
-        /*JOBS*/
+        /*TASKS*/
+        this.API_ADMIN_TASKS = this.API_ADMIN+'/manage-tasks'
+        this.API_ADMIN_TASKS_RESOURCE = this.API_ADMIN_TASKS+'/resource'
+        this.API_ADMIN_TASKS_UPDATE_FILE_ATTACH = this.API_ADMIN_TASKS+'/update-file-attach'
+        this.API_ADMIN_TASKS_DELETE_LIST = this.API_ADMIN_TASKS+'/delete-list'
+        this.API_ADMIN_TASKS_GET_OPTION_CSV = (ID) => this.API_ADMIN_TASKS+'/get-option-csv'
+        /*TASKS*/
 
 
         /*WORKS*/
@@ -117,11 +117,11 @@ class Config{
 
         this.API_ENTERPRISE= this.API+'/enterprise'
 
-        this.API_ENTERPRISE_JOBS = this.API_ENTERPRISE+'/manage-jobs'
-        this.API_ENTERPRISE_JOBS_RESOURCE = this.API_ENTERPRISE_JOBS+'/resource'
-        this.API_ENTERPRISE_JOBS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_JOBS+'/update-file-attach'
-        this.API_ENTERPRISE_JOBS_DELETE_LIST = this.API_ENTERPRISE_JOBS+'/delete-list'
-        this.API_ENTERPRISE_JOBS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISE_JOBS+'/get-option-csv'
+        this.API_ENTERPRISE_TASKS = this.API_ENTERPRISE+'/manage-tasks'
+        this.API_ENTERPRISE_TASKS_RESOURCE = this.API_ENTERPRISE_TASKS+'/resource'
+        this.API_ENTERPRISE_TASKS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_TASKS+'/update-file-attach'
+        this.API_ENTERPRISE_TASKS_DELETE_LIST = this.API_ENTERPRISE_TASKS+'/delete-list'
+        this.API_ENTERPRISE_TASKS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISE_TASKS+'/get-option-csv'
 
         this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE+'/profile'
         this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE+'/update-avatar'
@@ -143,7 +143,7 @@ class Config{
         this.API_TYPES = this.API +'/types'
         this.API_SALARIES = this.API +'/salaries'
         this.API_PROVINCES = this.API +'/provinces'
-        this.API_JOBS = this.API+'/jobs'
+        this.API_TASKS = this.API+'/tasks'
         /*API*/
 
         /*WEB*/
@@ -158,7 +158,7 @@ class Config{
 
         this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN+'/students'
 
-        this.WEB_ADMIN_JOBS = this.WEB_ADMIN+'/jobs'
+        this.WEB_ADMIN_TASKS = this.WEB_ADMIN+'/tasks'
 
         this.WEB_ADMIN_POSITIONS = this.WEB_ADMIN+'/positions'
 
@@ -168,9 +168,9 @@ class Config{
 
         this.WEB_ENTERPRISE = this.WEB+'/enterprise'
 
-        this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE+'/jobs'
+        this.WEB_ENTERPRISE_TASKS = this.WEB_ENTERPRISE+'/tasks'
 
-        this.WEB_JOBS = this.WEB+'/jobs'
+        this.WEB_TASKS = this.WEB+'/tasks'
 
         this.WEB_NOTIFIES = this.WEB+'/notifies'
         /*WEB*/
