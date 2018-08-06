@@ -1,5 +1,9 @@
 {
-    "/assets/js/build/pages/notifies/index.js": "/assets/js/build/pages/notifies/index.js",
-    "/assets/js/build/pages/notifies/info.js": "/assets/js/build/pages/notifies/info.js",
-    "/assets/js/build/pages/jobs/info.js": "/assets/js/build/pages/jobs/info.js"
+    "/assets/js/build/pages/enterprise/tasks/index.js": "/assets/js/build/pages/enterprise/tasks/index.js",
+    "/assets/js/common.js": "/assets/js/common.js",
+    "/assets/js/build/pages/tasks/index.js": "/assets/js/build/pages/tasks/index.js",
+    "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js",
+    "/assets/js/build/pages/enterprise/tasks/edit.js": "/assets/js/build/pages/enterprise/tasks/edit.js",
+    "/assets/js/build/pages/enterprise/tasks/create.js": "/assets/js/build/pages/enterprise/tasks/create.js",
+    "/assets/js/build/pages/tasks/info.js": "/assets/js/build/pages/tasks/info.js"
 }

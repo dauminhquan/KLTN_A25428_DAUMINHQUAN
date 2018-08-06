@@ -50,7 +50,9 @@ class User extends Authenticatable
         }
         return null;
     }
-    public function getTableName(){
-        return $this->table;
+
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'users.'.$this->id;
     }
 }

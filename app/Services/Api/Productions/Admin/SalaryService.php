@@ -75,7 +75,7 @@ class SalaryService extends BaseService implements ManageInterface
     public function destroy($id)
     {
         $salary = Salary::findOrFail($id);
-        $salary->jobs()->dissociate();
+        $salary->tasks()->dissociate();
         $salary->delete();
         return $salary;
 
@@ -89,7 +89,7 @@ class SalaryService extends BaseService implements ManageInterface
             $salary = Salary::find($item);
             if($salary)
             {
-                $salary->jobs()->dissociate();
+                $salary->tasks()->dissociate();
                 $salary->delete();
                 unset($success[$item]);
             }

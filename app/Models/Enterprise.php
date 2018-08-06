@@ -14,8 +14,8 @@ class Enterprise extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function jobs(){
-        return $this->hasMany(Job::class,'enterprise_id','id');
+    public function tasks(){
+        return $this->hasMany(Task::class,'enterprise_id','id');
     }
     public function students(){
         return $this->belongsToMany(Student::class,(new Work())->getTable(),'enterprise_id','student_code','id','code');

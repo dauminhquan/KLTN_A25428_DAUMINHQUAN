@@ -19,9 +19,9 @@ class WorkService implements ManageInterface
     private $student;
     public function __construct()
     {
-        $this->student = Student::findOrFail(Auth::user()->student);
+//        $this->student = Student::findOrFail(Auth::user()->student);
     }
-    public function getAll()
+    public function getAll($inputs)
     {
         return $this->student->works;
     }

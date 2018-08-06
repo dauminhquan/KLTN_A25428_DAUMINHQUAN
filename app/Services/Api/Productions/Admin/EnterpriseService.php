@@ -85,7 +85,7 @@ class EnterpriseService extends BaseService implements ManageInterface
         }
 
         $enterprise->user()->delete();
-        $enterprise->jobs()->delete();
+        $enterprise->tasks()->delete();
         $enterprise->delete();
         return $enterprise;
     }
@@ -103,7 +103,7 @@ class EnterpriseService extends BaseService implements ManageInterface
                 }
 
                 $enterprise->user()->delete();
-                $enterprise->jobs()->delete();
+                $enterprise->tasks()->delete();
                 $enterprise->delete();
                 unset($success[$key]);
             }
@@ -172,25 +172,25 @@ class EnterpriseService extends BaseService implements ManageInterface
         }
         return $works;
     }
-    public function getListJob($inputs,$id){
+    public function getListTask($inputs,$id){
         $enterprise = Enterprise::findOrFail($id);
         if(isset($inputs['size']))
         {
             if('size' == -1)
             {
-                $jobs = $enterprise->jobs;
+                $tasks = $enterprise->tasks;
             }
             else{
-                $jobs = $enterprise->jobs()->paginate($inputs['size']);
+                $tasks = $enterprise->tasks()->paginate($inputs['size']);
             }
         }
-        foreach ($jobs as $job)
+        foreach ($tasks as $task)
         {
 
-            $job->salary = $job->salary;
-            $job->rank = $job->rank;
+            $task->salary = $task->salary;
+            $task->rank = $task->rank;
         }
-        return $jobs;
+        return $tasks;
     }
     public function getUser($id)
     {

@@ -29,14 +29,14 @@ Route::group(['middleware' => ['auth:api']],function (){
             Route::post('update-avatar/{id}','EnterpriseManageController@updateAvatar')->name('update.avatar');
             Route::get('list-work/{id}','EnterpriseManageController@listWork')->name('list.work');
             Route::post('/import-csv','EnterpriseManageController@importCsv')->name('import.csv');
-            Route::get('list-job/{id}','EnterpriseManageController@listJob')->name('list.job');
+            Route::get('list-task/{id}','EnterpriseManageController@listTask')->name('list.task');
             Route::post('/get-options-csv','EnterpriseManageController@getOptionsCsv')->name('get.option.csv');
         });
-        Route::group(['prefix' => '/manage-jobs',],function (){
-            Route::resource('/resource','JobManageController')->except(['create','edit','store']);
-            Route::delete('delete-list','JobManageController@delete')->name('delete.list');
-            Route::post('/get-options-csv','JobManageController@getOptionsCsv')->name('get.option.csv');
-            Route::post('/update-file-attach/{id}','JobManageController@updateFileAttach')->name('update.file.attach');
+        Route::group(['prefix' => '/manage-tasks',],function (){
+            Route::resource('/resource','TaskManageController')->except(['create','edit','store']);
+            Route::delete('delete-list','TaskManageController@delete')->name('delete.list');
+            Route::post('/get-options-csv','TaskManageController@getOptionsCsv')->name('get.option.csv');
+            Route::post('/update-file-attach/{id}','TaskManageController@updateFileAttach')->name('update.file.attach');
         });
         Route::group(['prefix' => '/manage-works'],function (){
             Route::resource('/resource','WorkManageController')->except(['create','edit']);
@@ -119,11 +119,11 @@ Route::group(['middleware' => ['auth:api']],function (){
         });
     });
     Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise','as' => 'enterprise.','middleware' => ['api.check.enterprise']],function (){
-        Route::group(['prefix' => '/manage-jobs',],function (){
-            Route::resource('/resource','JobManageController')->except(['create','edit']);
-            Route::delete('delete-list','JobManageController@delete')->name('delete.list');
-            Route::post('/get-options-csv','JobManageController@getOptionsCsv')->name('get.option.csv');
-            Route::post('/update-file-attach/{id}','JobManageController@updateFileAttach')->name('update.file.attach');
+        Route::group(['prefix' => '/manage-tasks',],function (){
+            Route::resource('/resource','TaskManageController')->except(['create','edit']);
+            Route::delete('delete-list','TaskManageController@delete')->name('delete.list');
+            Route::post('/get-options-csv','TaskManageController@getOptionsCsv')->name('get.option.csv');
+            Route::post('/update-file-attach/{id}','TaskManageController@updateFileAttach')->name('update.file.attach');
 
         });
         Route::get('profile','ProfileManageController@getProfile')->name('profile');
@@ -138,8 +138,8 @@ Route::group(['middleware' => ['auth:api']],function (){
         Route::put('profile','ProfileManageController@updateProfile')->name('update.profile');
         Route::post('profile/update-avatar','ProfileManageController@updateAvatar')->name('update.avatar');
     });
-    Route::group(['namespace' => 'Job'],function (){
-        Route::resource('/jobs','JobManageController')->only(['index','show']);
+    Route::group(['namespace' => 'Task'],function (){
+        Route::resource('/tasks','TaskManageController')->only(['index','show']);
     });
     Route::get('notifies','NotifyController@index');
     Route::get('notifies/{id}','NotifyController@show');
