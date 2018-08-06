@@ -142,6 +142,7 @@ Route::group(['middleware' => ['auth:api']],function (){
         Route::resource('/jobs','JobManageController')->only(['index','show']);
     });
     Route::get('notifies','NotifyController@index');
+    Route::get('notifies/{id}','NotifyController@show');
     Route::get('positions','PositionController@index');
     Route::get('skills','SkillController@index');
     Route::get('types','TypeController@index');

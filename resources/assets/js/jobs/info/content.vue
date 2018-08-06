@@ -1,38 +1,29 @@
 <template>
     <div class="content-detached">
-
-        <!-- Details -->
         <div class="panel panel-flat">
             <div class="panel-body">
                 <div class="media stack-media-on-mobile text-left content-group-lg">
                     <a href="#" class="media-left media-middle">
                         <img :src="job.enterprise == null? null: job.enterprise.avatar" class="img-rounded img-lg" alt="">
                     </a>
-
                     <div class="media-body">
                         <h5 class="media-heading text-semibold">{{job.title}}</h5>
                         <ul class="list-inline list-inline-separate text-muted no-margin">
                             <li v-html="TextInfo"></li>
                         </ul>
                     </div>
-
                 </div>
-
                 <div class="content-group-lg" v-html="job.content">
-
                 </div>
-
                 <ul class="list-inline no-margin">
                     <li class="mt-5">
                         <a :href="'https://www.facebook.com/sharer/sharer.php?u='+curUrl" class="btn btn-default">
                             <i class="icon-facebook position-right"></i>
-                            Share
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-
         <h5 class="pt-10 content-group"><b><i>Thông tin về doanh nghiệp</i></b></h5>
         <div class="panel panel-flat">
             <div class="panel-body">
@@ -40,7 +31,6 @@
                     <a href="#" class="media-left media-middle">
                         <img :src="job.enterprise == null? null: job.enterprise.avatar" class="img-rounded img-lg" alt="">
                     </a>
-
                     <div class="media-body">
                         <h5 class="media-heading text-semibold">{{job.enterprise == null? null: job.enterprise.name}}</h5>
                     </div>
@@ -48,7 +38,6 @@
                 <div v-html="job.enterprise == null ? null: job.enterprise.introduce"></div>
             </div>
         </div>
-
         <h5 v-if="job.similars != undefined && job.similars.length > 0" class="pt-10 content-group">Việc làm tường tự</h5>
         <div class="row" v-if="job.similars != undefined">
             <div class="col-sm-6"  v-for="similar in job.similars">
@@ -61,9 +50,8 @@
 
                     <div class="media-body">
                         <h6 class="media-heading text-semibold">
-                            <a href="#"> {{similar.title}}</a>
+                            <a :href="getUrlJob(similar.id)"> {{similar.title}}</a>
                         </h6>
-
                         <ul class="list-inline list-inline-separate text-muted mb-10">
                             <li><a href="#" class="text-muted">{{similar.location}}</a></li>
                             <
@@ -73,8 +61,6 @@
                 </div>
             </div>
         </div>
-        <!-- /similar jobs -->
-
     </div>
 </template>
 
@@ -136,6 +122,11 @@
                     vm.config.notifyError('Không thể lấy được tin tuyển dụng')
                 })
             },
+            getUrlJob(id){
+                let vm = this
+
+                return vm.config.WEB_JOBS+'/'+id
+            }
         },
         mounted(){
             let vm = this

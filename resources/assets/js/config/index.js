@@ -171,6 +171,8 @@ class Config{
         this.WEB_ENTERPRISE_JOBS = this.WEB_ENTERPRISE+'/jobs'
 
         this.WEB_JOBS = this.WEB+'/jobs'
+
+        this.WEB_NOTIFIES = this.WEB+'/notifies'
         /*WEB*/
 
     }
