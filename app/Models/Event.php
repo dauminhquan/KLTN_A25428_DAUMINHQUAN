@@ -16,4 +16,7 @@ class Event extends Model
     public function event_students(){
         return $this->hasMany(EventStudent::class);
     }
+    public function admin(){
+        return $this->belongsTo(Admin::class);
+    }
 }

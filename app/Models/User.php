@@ -50,9 +50,4 @@ class User extends Authenticatable
         }
         return null;
     }
-
-    public function receivesBroadcastNotificationsOn()
-    {
-        return 'users.'.$this->id;
-    }
 }
