@@ -19,17 +19,21 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
+
+let token = window.Cookies('token')
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true
+    encrypted: true,
+    auth: {
+        headers: {
+            Authorization: 'Bearer ' + token
+        },
+    },
 });
 
-
 let user = window.Cookies('user')
-
-console.log(user)
 
 if(user != undefined)
 {
@@ -42,24 +46,27 @@ $(window).on('load', function() {
 
 
 function listenForChanges(id) {
-    window.Echo.channel('channel-name')
-        .listen('NotifyEvent', post => {
-            console.log(123);
+    window.Echo.private('App.Models.User.'+id)
+        .notification(notify => {
+            console.log(notify)
             if (! ('Notification' in window)) {
                 alert('Web Notification is not supported');
                 return;
             }
-
             Notification.requestPermission( permission => {
-                let notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
-                    body: 'Hello', // content for the alert
-                    icon: "https://pusher.com/static_logos/320x320.png" // optional image url
+                var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                    title: 'ThangLong University',
+                    body: notify.title, // content for the alert
+                    icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
                 });
+                if(notify.event_id != undefined)
+                {
+                    notification.onclick = function () {
+                        window.open('events/'+notify.event_id,'_blank')
+                        notification.close()
+                    }
+                }
 
-                // link to page on clicking the notification
-                notification.onclick = () => {
-                    window.open(window.location.href);
-                };
             });
         })
 }

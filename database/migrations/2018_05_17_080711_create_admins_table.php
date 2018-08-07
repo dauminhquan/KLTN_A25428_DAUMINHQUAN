@@ -17,6 +17,7 @@ class CreateAdminsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('user_id');
+            $table->string('avatar',400)->nullable()->default(env('AVATAR_DEFAULT','null'));
             $table->timestamps();
         });
     }

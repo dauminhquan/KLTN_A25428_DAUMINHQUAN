@@ -144,6 +144,13 @@ class Config{
         this.API_SALARIES = this.API +'/salaries'
         this.API_PROVINCES = this.API +'/provinces'
         this.API_TASKS = this.API+'/tasks'
+        this.API_EVENTS = this.API+'/events'
+
+        this.API_REGISTRATION_NOTIFY = this.API+'/registration-notify'
+        this.API_UN_REGISTRATION_NOTIFY = this.API+'/un-registration-notify'
+        this.API_JOIN_EVENT = this.API+'/join-event'
+        this.API_UN_JOIN_EVENT = this.API+'/un-join-event'
+
         /*API*/
 
         /*WEB*/
@@ -173,6 +180,8 @@ class Config{
         this.WEB_TASKS = this.WEB+'/tasks'
 
         this.WEB_NOTIFIES = this.WEB+'/notifies'
+
+        this.WEB_EVENTS = this.WEB+'/events'
         /*WEB*/
 
     }

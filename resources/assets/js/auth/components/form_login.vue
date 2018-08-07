@@ -53,13 +53,14 @@
                 var vm = this
                     vm.processing = true
                     axios.post( vm.config.API_AUTH_LOGIN,vm.infoLogin).then(data => {
-                        console.log(data);
-
                         let index = vm.styleText.findIndex(element => {
                             return 'text-danger' == element
                         })
                         vm.styleText.splice(index,1)
                         window.Cookies.set('token',data.data.token,{
+                            expires: 600000
+                        })
+                        window.Cookies.set('reg_notify',data.data.user.notify,{
                             expires: 600000
                         })
                         window.Cookies.set('user',data.data.user.id,{

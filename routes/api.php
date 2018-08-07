@@ -106,6 +106,7 @@ Route::group(['middleware' => ['auth:api']],function (){
         Route::group(['prefix' => '/manage-provinces'],function (){
             Route::resource('/resource','ProvinceManageController')->except(['create','edit']);
             Route::delete('delete-list','ProvinceManageController@delete')->name('delete.list');
+            Route::post('/import-csv','ProvinceManageController@importCsv')->name('import.csv');
         });
         Route::group(['prefix' => '/manage-events' , 'name' => 'manage.events.'],function (){
             Route::resource('/resource','EventManageController')->except(['create','edit']);
@@ -143,6 +144,12 @@ Route::group(['middleware' => ['auth:api']],function (){
     });
     Route::get('notifies','NotifyController@index');
     Route::get('notifies/{id}','NotifyController@show');
+    Route::get('events','EventController@index');
+    Route::get('events/{id}','EventController@show');
+    Route::post('registration-notify','EventController@registrationNotify');
+    Route::post('join-event/{id}','EventController@joinEvent');
+    Route::post('un-join-event/{id}','EventController@unJoinEvent');
+    Route::post('un-registration-notify','EventController@unRegistrationNotify');
     Route::get('positions','PositionController@index');
     Route::get('skills','SkillController@index');
     Route::get('types','TypeController@index');

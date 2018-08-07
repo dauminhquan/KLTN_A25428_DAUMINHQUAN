@@ -19,9 +19,10 @@ class SendNotify implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    private  $event;
+    public function __construct($event)
     {
-        //
+        $this->event = $event;
     }
 
     /**
@@ -32,7 +33,6 @@ class SendNotify implements ShouldQueue
     public function handle()
     {
         $users = User::where('notify',1)->get();
-        dd($users);
         if(count($users) > 0)
         {
             foreach ($users as $user)

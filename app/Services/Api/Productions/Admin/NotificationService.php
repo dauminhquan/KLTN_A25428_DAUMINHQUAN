@@ -8,10 +8,9 @@
 
 namespace App\Services\Api\Productions\Admin;
 
-
-use App\Events\NotifyEvent;
 use App\Jobs\SendNotify;
 use App\Models\Notification;
+use App\Notifications\NotifyEvent;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -68,8 +67,6 @@ class NotificationService extends BaseService implements ManageInterface
         try{
             $inputs['admin_id'] = Auth::user()->id;
             $notification = Notification::create($inputs);
-            event(new NotifyEvent());
-//            new SendNotify();
             return $notification;
         }catch (\Exception $exception)
         {

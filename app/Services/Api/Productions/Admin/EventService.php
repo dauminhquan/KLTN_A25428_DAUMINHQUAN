@@ -9,8 +9,11 @@
 namespace App\Services\Api\Productions\Admin;
 
 
+use App\Jobs\SendNotify;
 use App\Models\Event;
 use App\Models\EventStudent;
+use App\Models\User;
+use App\Notifications\NotifyEvent;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -29,11 +32,21 @@ class EventService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                return Event::paginate(100000);
+                $events=  Event::paginate(100000);
             }
-            return Event::paginate($inputs['size']);
+            else{
+                $events = Event::paginate($inputs['size']);
+            }
+
         }
-        return Event::paginate(500);
+        else{
+          $events = Event::paginate(500);
+        }
+        foreach ($events as $event)
+        {
+            $event->admin = $event->admin()->select('id','name','avatar')->first();
+        }
+        return $events;
 
     }
 
@@ -59,7 +72,14 @@ class EventService extends BaseService implements ManageInterface
     {
         $inputs['admin_id'] = Auth::user()->admin->id;
         $event = Event::create($inputs);
-
+        $users = User::where('notify',1)->get();
+        if(count($users) > 0)
+        {
+            foreach ($users as $user)
+            {
+                $user->notify(new NotifyEvent(['event_id' => $event->id,'title' => $event->title]));
+            }
+        }
         return $event;
     }
     public function update($inputs, $id)

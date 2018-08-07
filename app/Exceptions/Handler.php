@@ -36,9 +36,12 @@ class Handler extends ExceptionHandler
     {
         if(gettype($exception->getTrace()) === 'array')
         {
-            if($exception->getTrace()[0]['args'][0] == 'Access token has been revoked')
+            if(isset($exception->getTrace()[0]['args'][0]))
             {
-                session()->remove('user');
+                if($exception->getTrace()[0]['args'][0] == 'Access token has been revoked')
+                {
+                    session()->remove('user');
+                }
             }
         }
 

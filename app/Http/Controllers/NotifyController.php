@@ -17,19 +17,5 @@ class NotifyController extends Controller
         $notify->admin = $notify->admin;
         return view('notifies.info',['id' => $id]);
     }
-    public function file($id)
-    {
-        try{
-            $notify = Post::find($id);
-            if($notify != null)
-            {
-                return Storage::download($notify->file_attach_notify);
-            }
-        }catch (\Exception $e)
-        {
-            return ['status' => 0, 'message' => 'File not found'];
-        }
-        return ['status' => 0, 'message' => 'File not found'];
-    }
 
 }
