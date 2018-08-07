@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('type');
             $table->string('reset_token')->nullable();
             $table->dateTime('time_limit')->nullable();
+            $table->boolean('notify')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
