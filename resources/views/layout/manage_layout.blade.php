@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UEC ThangLong University | Thang Long University</title>
-    <link href="{{asset('asset/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+    <link href="{{asset('assets/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{asset("css/common.css")}}" rel="stylesheet" type="text/css">
@@ -14,7 +14,7 @@
 <body>
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{route('web.home')}}"><img src="{{asset("assets/images/logo_light.png")}}" alt=""></a>
+        <a class="navbar-brand" href="{{route('web.home')}}"><img src="{{asset("assets/images/logo.png")}}" alt=""></a>
 
         <ul class="nav navbar-nav pull-right visible-xs-block">
 
@@ -36,7 +36,7 @@
                     <span class="visible-xs-inline-block position-right">Người dùng online</span>
                 </a>
 
-                <div class="dropdown-menu dropdown-content">
+                <!-- <div class="dropdown-menu dropdown-content">
                     <div class="dropdown-content-heading">
                         Người dùng online
                         <ul class="icons-list">
@@ -94,7 +94,7 @@
                     <div class="dropdown-content-footer">
                         <a href="#" data-popup="tooltip" title="All users"><i class="icon-menu display-block"></i></a>
                     </div>
-                </div>
+                </div> -->
             </li>
         </ul>
 
@@ -117,7 +117,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown">
+          <!--   <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-bubbles4"></i>
                     <span class="visible-xs-inline-block position-right">Messages</span>
@@ -207,13 +207,16 @@
                     </div>
                 </div>
             </li>
-
+ -->
+ <?php 
+$user = session('user');
+                        $typeUser = $user->type;
+ ?>
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{asset("assets/images/placeholder.jpg")}}" alt="">
+                    <img src="{{$user->avatar}}" alt="">
                     <span><?php
-                        $user = session('user');
-                        $typeUser = $user->type;
+                       
                         if($typeUser == 1)
                         {
                             echo $user->admin->name;
