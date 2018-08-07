@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+    <title>UEC ThangLong University | Thang Long University</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{asset("css/common.css")}}" rel="stylesheet" type="text/css">
@@ -57,9 +57,8 @@
                 <form-forgot-password v-if="forgetPassword == true"></form-forgot-password>
 
 
-
-                <div class="footer text-muted text-center">
-                    &copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+                <div class="footer text-muted">
+                    &copy; 2018. <a href="{{route('web.home')}}">UEC TLU</a> by <a href="http://thanglong.edu.vn" target="_blank">ThangLong University</a>
                 </div>
 
             </div>
