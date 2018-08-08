@@ -33,6 +33,6 @@ class CheckAuthentication
             return response()->redirectToRoute('web.login')->withErrors(['message' => 'Tài khoản này chưa xác thực hoặc đang bị tạm khóa!']);
         }
         session()->remove('user');
-        return response()->redirectToRoute('web.login')->withErrors(['message' => 'Vui lòng đăng nhập lại!']);
+        return response()->redirectToRoute('web.login');
     }
 }

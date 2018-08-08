@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UEC ThangLong University | Thang Long University</title>
-
+    <link href="{{asset('assets/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{asset("css/common.css")}}" rel="stylesheet" type="text/css">
 </head>
@@ -13,7 +13,7 @@
 <body class="login-container">
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="http://thanglong.edu.vn"><img src="assets/images/logo_light.png" alt=""></a>
+        <a class="navbar-brand" href="http://thanglong.edu.vn"><img src="{{asset("assets/images/logo.png")}}" alt=""></a>
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
         </ul>

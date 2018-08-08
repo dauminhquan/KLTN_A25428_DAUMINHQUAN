@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->boolean('authentication')->default(false);
             $table->integer('type');
             $table->string('reset_token')->nullable();
+            $table->string('accept_token',120)->nullable();
             $table->dateTime('time_limit')->nullable();
             $table->boolean('notify')->default(false);
             $table->rememberToken();
