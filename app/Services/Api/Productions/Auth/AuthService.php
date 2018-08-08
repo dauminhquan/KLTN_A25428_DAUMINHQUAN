@@ -10,6 +10,8 @@ namespace App\Services\Api\Productions\Auth;
 
 
 use App\Mail\GetTokenResetPassword;
+use App\Mail\SendTokenAccept;
+use App\Models\Enterprise;
 use App\Models\User;
 use App\Services\Api\Productions\Admin\BaseService;
 use Carbon\Carbon;
@@ -34,7 +36,12 @@ class AuthService extends BaseService /*implements ManageInterface*/
     }
     public function logout($request)
     {
-        $request->user()->token()->revoke();
+        $user = $request->user();
+        $tokens = $user->tokens;
+        foreach ($tokens as $token)
+        {
+            $token->revoke();
+        }
         session()->remove('user');
         return ['message' => 'logouted'];
 
@@ -52,6 +59,17 @@ class AuthService extends BaseService /*implements ManageInterface*/
     public function registration($inputs)
     {
         $user = User::create($inputs);
+        if($inputs['type'] == 2)
+        {
+            $enterprise = Enterprise::create($inputs);
+            $enterprise->user_id = $user->id;
+            $enterprise->update();
+        }
+        $token = str_random(30);
+        $timeLimit = $user->time_limit = now()->addMinute(15);
+        $user->accept_token = $token;
+        $user->update();
+        Mail::to($user->email)->send((new SendTokenAccept(route('web.accept.user').'?email='.$user->email.'&token='.$token,$timeLimit)));
         return $user;
     }
     public function resetPassword($inputs) :bool

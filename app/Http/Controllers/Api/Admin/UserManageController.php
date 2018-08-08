@@ -44,7 +44,7 @@ class UserManageController extends Controller
         return $this->userService->getOne($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(AccountManageRequest $request, $id)
     {
         return $this->userService->update($request->all(),$id);
     }

@@ -53,9 +53,9 @@
             <div class="content" >
 
 
-                <form-login v-if="forgetPassword == false" @forget_password="forget_password"></form-login>
+                <form-login v-if="login == true" @forget_password="forget_password" @set_reg="set_reg"></form-login>
                 <form-forgot-password v-if="forgetPassword == true"></form-forgot-password>
-
+                <form-reg @set_login="set_login" v-if="reg == true"></form-reg>
 
                 <div class="footer text-muted">
                     &copy; 2018. <a href="{{route('web.home')}}">UEC TLU</a> by <a href="http://thanglong.edu.vn" target="_blank">ThangLong University</a>

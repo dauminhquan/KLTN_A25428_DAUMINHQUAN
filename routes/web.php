@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\User;
+
 Route::group(['middleware' => 'web.check.auth'],function(){
     Route::get('/',['uses' => 'HomeController@index','as' => 'home'])->middleware(['web.check.auth']);
     Route::group(['as' => 'tasks.'],function(){
@@ -22,5 +25,25 @@ Route::group(['middleware' => 'web.check.auth'],function(){
 Route::group(['namespace' => 'Auth'],function(){
     Route::get('login',['uses' => 'AuthController@login','as' => 'login']);
 });
+
+Route::get('authentication-user',function(\Illuminate\Http\Request $request){
+    if($request->has('email') && $request->has('token'))
+    {
+        $user = User::where('email',$request->email)->first();
+        if($user != null)
+        {
+
+            if($user->accept_token == $request->token)
+            {
+
+                $user->authentication = 1;
+                $user->accept_token = null;
+                $user->update();
+                return response()->redirectToRoute('web.login')->withErrors('Tài khoản đã được xác thực thành công');
+            }
+        }
+    }
+    abort(404);
+})->name('accept.user');
 
 

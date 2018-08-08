@@ -16,6 +16,7 @@ class AuthController extends Controller
     }
     public function registration(RegistrationRequest $request){
         $inputs = $request->all();
+        $inputs['email_address'] = $request->email;
         $inputs['password'] = Hash::make($inputs['password']);
         $inputs['type'] = 2;
         return $this->authService->registration($inputs);

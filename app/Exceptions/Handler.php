@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use HttpResponseException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Auth;
 
 class Handler extends ExceptionHandler
 {
@@ -34,17 +36,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        if(gettype($exception->getTrace()) === 'array')
-        {
-            if(isset($exception->getTrace()[0]['args'][0]))
-            {
-                if($exception->getTrace()[0]['args'][0] == 'Access token has been revoked')
-                {
-                    session()->remove('user');
-                }
-            }
-        }
 
+        if($exception->getCode() == 9)
+        {
+            session()->flush();
+        }
         parent::report($exception);
     }
 
@@ -57,6 +53,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
         return parent::render($request, $exception);
     }
 }

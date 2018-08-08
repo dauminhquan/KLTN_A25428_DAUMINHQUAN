@@ -1,6 +1,6 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Quản lý sự kiện "
+        <data-table title="Quản lý tài khoản "
                     :columns="columns"
                     :data="data"
                     :targets="[]"
@@ -55,7 +55,7 @@
 
                         <div class="modal-body">
 
-                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều bài viết. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
+                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều tài khoản. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
                                 <div class="pace-demo" v-if="deleting == true">
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
@@ -67,7 +67,6 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link" data-dismiss="modal">Hủy</button>
                             <button type="button" class="btn btn-danger" @click="deleteListItem">Xác định xóa</button>
-
                         </div>
                     </div>
                 </div>
@@ -77,7 +76,7 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin sự kiện </h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin tài khoản </h6>
                         </div>
 
                         <div class="modal-body">
@@ -85,38 +84,34 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><b>Tiêu đề sự kiện </b></label>
-                                        <input type="text" v-model="info.title" class="form-control">
+                                        <label><b>Email </b></label>
+                                        <input type="text" v-model="info.email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><b>Mô tả </b></label>
-                                        <input type="text" v-model="info.description" class="form-control">
+                                        <label><b>Tình trạng </b></label>
+                                        <select v-model="info.authentication" class="form-control">
+                                            <option value="0">Chưa xác thực / Khóa</option>
+                                            <option value="1">Đã xác thực</option>
+                                        </select>
                                     </div>
                                 </div>
+
 
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><b>Thời gian bắt đầu </b></label>
-                                        <input type="datetime-local" v-model="info.time_start" class="form-control">
+                                        <label><b>Password </b></label>
+                                        <input type="text" v-model="info.password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><b>Địa điểm </b></label>
-                                        <input type="text" v-model="info.location" class="form-control">
+                                        <label><b>Nhập là password </b></label>
+                                        <input type="text" v-model="info.rep_password" class="form-control">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label><b>Nội dung </b></label>
-                                    <textarea v-model="info.content" class="form-control" id="textarea-info-content">
-
-                                    </textarea>
                                 </div>
                             </div>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
@@ -140,46 +135,54 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin sự kiện </h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin tài khoản </h6>
                         </div>
-
                         <div class="modal-body">
-
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label><b>Tiêu đề sự kiện </b></label>
-                                        <input type="text" v-model="create.title" class="form-control">
+                                        <label><b>Email </b></label>
+                                        <input type="text" v-model="create.email" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label><b>Mô tả </b></label>
-                                        <input type="text" v-model="create.description" class="form-control">
+                                        <label><b>Password </b></label>
+                                        <input type="text" v-model="create.password" class="form-control">
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label><b>Thời gian bắt đầu </b></label>
-                                        <input type="datetime-local" v-model="create.time_start" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><b>Địa điểm </b></label>
-                                        <input type="text" v-model="create.location" class="form-control">
+                                        <label><b>Nhập là password </b></label>
+                                        <input type="text" v-model="create.rep_password" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group">
-                                    <label><b>Địa điểm </b></label>
-                                    <textarea v-model="create.content" class="form-control" id="textarea-create-content">
-
-                                    </textarea>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><b>Loại tài khoản </b></label>
+                                        <select class="form-control" v-model="create.type">
+                                            <option value="1">Admin</option>
+                                            <option value="2">Doanh nghiệp</option>
+                                            <option value="3">Sinh viên</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><b>{{text}}</b></label>
+                                        <v-select :options="persCreate" label="text" v-model="create.per"></v-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><b>Tình trạng </b></label>
+                                        <select  v-model="create.authentication" class="form-control">
+                                            <option value="0">Chưa xác thực / Khóa</option>
+                                            <option value="1">Đã xác thực</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
@@ -187,13 +190,10 @@
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link" data-dismiss="modal">Hủy</button>
                             <button type="button" class="btn btn-success" @click="createItem">Thêm mới</button>
-
                         </div>
                     </div>
                 </div>
@@ -203,15 +203,23 @@
 </template>
 <script>
     import table from './components/table.vue'
-
+    import vSelect from 'vue-select'
     import 'select2'
     import axios from './../../../axios'
-
     import config from './../../../config'
     window._config = new config()
     export default {
         components: {
-            'data-table' : table
+            'data-table' : table,
+            'v-select' : vSelect
+        },
+        computed: {
+            infoType() {
+                return this.info.type
+            },
+            createType() {
+                return this.create.type
+            }
         },
         data(){
             return {
@@ -237,11 +245,7 @@
                     },
                     {
                         action :'delete',
-                        html:'<a href="#"><i class="icon-trash"></i> Xóa sự kiện  </a>'
-                    },
-                    {
-                        action :'show',
-                        html:'<a href="#"><i class="icon-table"></i>Quản lý người dự  </a>'
+                        html:'<a href="#"><i class="icon-trash"></i> Xóa tài khoản  </a>'
                     }
                 ],
                 primaryKey: 'id',
@@ -255,59 +259,168 @@
                 totalPage:0,
                 perPage:500,
                 info:{
-                    title: null,
-                    content: null,
-                    description: null,
-                    time_start:null,
-                    location: null
+                    email:null,
+                    password:null,
+                    rep_password: null,
+                    type: null,
+                    per:null,
+                    authentication: 0
                 },
                 create:{
-                    title: null,
-                    content: null,
-                    description: null,
-                    time_start:null,
-                    location: null
+                    email:null,
+                    password:null,
+                    rep_password: null,
+                    type: null,
+                    per:null,
+                    authentication: 0
                 },
+                enterprises: [],
+                students: [],
+                admins: [],
+                persCreate: [],
+                text:'Chọn đối tượng',
                 config: new config(),
             }
         },
         mounted(){
             let vm =this
+            vm.getAdmin()
+            vm.getEnterprises()
+            vm.getStudents()
             vm.getData()
-            CKEDITOR.replace('textarea-create-content').on('change',function () {
-                vm.create.content = this.getData()
-            })
-           CKEDITOR.replace('textarea-info-content').on('change',function () {
-                vm.info.content = this.getData()
-            })
+
         },
         methods: {
-
             getData(perPage=500,page=1){
                 var vm = this
-                axios.get(vm.config.API_ADMIN_EVENTS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
+                axios.get(vm.config.API_ADMIN_USERS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
                     vm.data = data.data.data
+                    vm.data = vm.data.map(item => {
+                        if(item.type == 1 )
+                        {
+                            item.userType = 'Admin'
+                            if(item.admin != null)
+                            {
+                                item.userName = item.admin.name
+                            }
+                            else{
+                                item.userName = null
+                            }
+
+
+                        }
+                        if(item.type == 2)
+                        {
+                            item.userType = 'Doanh nghiệp'
+                            if(item.enterprise != null)
+                            {
+                                item.userName = item.enterprise.name
+                            }
+                            else{
+                                item.userName = null
+                            }
+
+                        }
+                        if(item.type == 3)
+                        {
+                            item.userType = 'Sinh viên'
+
+                            if(item.student != null)
+                            {
+                                item.userName = item.student.full_name
+                            }
+                            else{
+                                item.userName = null
+                            }
+                        }
+                        if(item.authentication == 1)
+                        {
+                            item.status = '<span class="label bg-success-400">Đã xác thực</span>'
+                        }
+                        else{
+
+                            item.status = '<span class="label bg-warning-400">Chưa xác thực/ Bị khóa</span>'
+                        }
+                        return item
+                    })
                     vm.perPage = data.data.per_page
                     vm.totalPage = data.data.total
                     vm.columns = [
                         {
                             key: 'id',
-                            text: 'ID sự kiện'
+                            text: 'ID tài khoản'
                         },
                         {
-                            key:'title',
-                            text:'Tiêu đề sự kiện'
+                            key:'email',
+                            text:'Tiêu đề tài khoản'
                         }
                         ,
                         {
-                            key:'time_start',
-                            text: 'Thời gian bắt đầu'
+                            key:'userType',
+                            text: 'Loại tài khoản'
+                        },
+                        {
+                            key: 'userName',
+                            text: 'Tên người dùng'
+                        },
+                        {
+                            key: 'status',
+                            text: 'Tình trạng'
                         }
 
                     ]
                 }).catch(err => {
                     console.log(err)
                     vm.config.notifyError()
+                })
+            },
+            getAdmin(){
+                let vm = this
+                axios.get(vm.config.API_ADMIN_ADMINS_RESOURCE+'?size=-1').then(data => {
+                    vm.admins = data.data.data
+                    vm.admins = vm.admins.map(item => {
+                        item.text = item.name
+                        return item
+                    })
+                    vm.admins = vm.admins.filter(item => {
+                        return item.user_id == null
+                    })
+                })  .catch(err => {
+                    console.dir(err)
+                    vm.config.notifyError('Không thể lấy thông tin các admin')
+                })
+            },
+            getEnterprises(){
+                let vm = this
+                axios.get(vm.config.API_ADMIN_ENTERPRISES_RESOURCE+'?size=-1').then(data => {
+                    vm.enterprises = data.data.data
+                    vm.enterprises = vm.enterprises.map(item => {
+                        item.text = item.name
+                        return item
+                    })
+                    vm.enterprises = vm.enterprises.filter(item => {
+                        return item.user_id == null
+                    })
+                })  .catch(err => {
+                    console.dir(err)
+                    vm.config.notifyError('Không thể lấy thông tin các admin')
+                })
+            },
+            getStudents(){
+                let vm = this
+
+                axios.get(vm.config.API_ADMIN_STUDENTS_RESOURCE+'?size=-1').then(data => {
+                    vm.students = data.data.data
+                    vm.students = vm.students.map(item => {
+                        item.text = item.full_name
+                        return item
+                    })
+                    vm.students = vm.students.filter(item => {
+                        return item.user_id == null
+                    })
+                })  .catch(err => {
+                    console.dir(err)
+                    vm.config.notifyError('Không thể lấy thông tin các admin')
                 })
             },
             selectAll(){
@@ -331,40 +444,72 @@
                 {
                     vm.showItem(event[0])
                 }
-                if(event[1] == 'show')
-                {
-                    window.open(vm.config.WEB_ADMIN_EVENTS+'/'+event[0]+'/edit','_blank')
-                }
             },
             createItem(){
                 let vm = this
                 vm.creating = true
-                axios.post(vm.config.API_ADMIN_EVENTS_RESOURCE,vm.create,{
-                    name:vm.nameCreate
-                }).then(data => {
+
+                if(vm.create.per == null || vm.create.type == null)
+                {
+                    vm.config.notifyWarning('Vui lòng điền đầy đủ thông tin')
+                    return false
+                }
+                let create = {
+                }
+                create.email = vm.create.email
+                create.password = vm.create.password
+                create.rep_password = vm.create.rep_password
+                create.type = vm.create.type
+                create.per = vm.create.per.id
+                create.authentication = vm.create.authentication
+                axios.post(vm.config.API_ADMIN_USERS_RESOURCE,create).then(data => {
                     vm.config.notifySuccess('Thêm mới thành công')
                     vm.creating = false
-                    vm.nameCreate=''
+                    vm.create = {
+                        email:null,
+                        password:null,
+                        rep_password: null,
+                        type: null,
+                        per:null
+                    }
                     vm.getData()
                     $('#modal_create').modal('hide')
                 }).catch(err => {
+
                     console.dir(err)
-                    vm.config.notifyError()
+                    if(err.response.status == 422)
+                    {
+                        vm.config.notifyError(vm.config.getError(err.response.data))
+                    }else
+                    {
+
+                        vm.config.notifyError()
+                    }
                 })
             },
             updateItem(){
                 let vm = this
                 vm.updating = true
-              axios.put(vm.config.API_ADMIN_EVENTS_RESOURCE+'/'+vm.info.id,vm.info,{
-                  name:vm.info.name
-              }).then(data => {
-                  vm.config.notifySuccess('Update thông tin sự kiện cv thành công')
-                  vm.updating = false
-                  $('#modal_info').modal('hide')
-              }).catch(err => {
-                  console.dir(err)
-                  vm.config.notifyError()
-              })
+                let update = {
+
+                }
+                update.email = vm.info.email
+                update.password = vm.info.password
+                update.rep_password = vm.info.rep_password
+                update.type = vm.info.type
+                update.authentication = vm.info.authentication
+                update.per = vm.info.per
+                axios.put(vm.config.API_ADMIN_USERS_RESOURCE+'/'+vm.info.id,update,{
+                    name:vm.info.name
+                }).then(data => {
+                    vm.config.notifySuccess('Update thông tin tài khoản thành công')
+                    vm.updating = false
+                    vm.getData()
+                    $('#modal_info').modal('hide')
+                }).catch(err => {
+                    console.dir(err)
+                    vm.config.notifyError()
+                })
             },
             deleteItem(){
                 let vm = this
@@ -373,7 +518,7 @@
                 if(vm.primaryKeyDelete != -1)
                 {
                     let indexOf = -1
-                    axios.delete(vm.config.API_ADMIN_EVENTS_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
+                    axios.delete(vm.config.API_ADMIN_USERS_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
                         vm.data.forEach((item,index) => {
 
                             if(item[vm.primaryKey] == vm.primaryKeyDelete)
@@ -423,7 +568,7 @@
             deleteListItem() {
                 let vm = this
                 vm.deleting = true
-                axios.delete(vm.config.API_ADMIN_EVENTS_DELETE_LIST,{
+                axios.delete(vm.config.API_ADMIN_USERS_DELETE_LIST,{
                     params:{
                         id_list: vm.itemSelected
                     }
@@ -432,12 +577,12 @@
                     vm.deleting = false
                     let list_id = vm.itemSelected
                     let newData = []
-                        vm.data.forEach((dt) => {
-                            if(!vm.existsItem(dt[vm.primaryKey],list_id))
-                            {
-                                newData.push(dt)
-                            }
-                        })
+                    vm.data.forEach((dt) => {
+                        if(!vm.existsItem(dt[vm.primaryKey],list_id))
+                        {
+                            newData.push(dt)
+                        }
+                    })
 
                     vm.data = newData
 
@@ -467,8 +612,6 @@
                 vm.info = vm.data.find(item => {
                     return item.id == id
                 })
-                vm.info.time_start= vm.info.time_start.replace(' ','T')
-                CKEDITOR.instances['textarea-info-content'].setData(vm.info.content)
                 $('#modal_info').modal('show')
             },
             changePerPage(perPage){
@@ -476,6 +619,30 @@
             },
             changePageSelect(page){
                 this.getData(this.perPage,page)
+            },
+        },
+        watch:{
+            createType(value){
+                let vm = this
+                if (value == 1)
+                {
+                    vm.text = 'Chọn 1 Admin'
+                    vm.persCreate = vm.admins
+                }
+                else if (value == 2)
+                {
+                    vm.text = 'Chọn 1 doanh nghiệp'
+                    vm.persCreate =  vm.enterprises
+                }
+                else if (value == 3)
+                {
+                    vm.text = 'Chọn 1 sinh viên'
+                    vm.persCreate =  vm.students
+                }
+                else{
+                    vm.text = 'Chọn một người dùng'
+                    vm.persCreate =  []
+                }
             }
         }
     }

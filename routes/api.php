@@ -1,5 +1,5 @@
 <?php
-Route::group(['middleware' => ['auth:api']],function (){
+Route::group(['middleware' => ['auth:api','accept']],function (){
     Route::group(["prefix" => '/admin','namespace' =>'Admin','as' => 'admin.','middleware' => ['api.check.admin']],function (){
         Route::group(['prefix' => '/manage-users', 'as' => 'manage.users.'],function (){
             Route::resource('/resource','UserManageController')->except(['create','edit']);
@@ -31,6 +31,12 @@ Route::group(['middleware' => ['auth:api']],function (){
             Route::post('/import-csv','EnterpriseManageController@importCsv')->name('import.csv');
             Route::get('list-task/{id}','EnterpriseManageController@listTask')->name('list.task');
             Route::post('/get-options-csv','EnterpriseManageController@getOptionsCsv')->name('get.option.csv');
+        });
+        Route::group(['prefix' => '/manage-admins'],function (){
+            Route::resource('/resource','AdminManageController')->except(['create','edit']);
+            Route::delete('delete-list','AdminManageController@delete')->name('delete.list');
+            Route::post('/import-csv','AdminManageController@importCsv')->name('import.csv');
+            Route::post('/get-options-csv','AdminManageController@getOptionsCsv')->name('get.option.csv');
         });
         Route::group(['prefix' => '/manage-tasks',],function (){
             Route::resource('/resource','TaskManageController')->except(['create','edit','store']);

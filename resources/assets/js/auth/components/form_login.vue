@@ -29,9 +29,31 @@
                 <button type="submit" class="btn btn-primary btn-block">Login<i class="icon-circle-right2 position-right"></i></button>
             </div>
 
-            <div class="text-center">
-                <a href="javascript:void(0)" @click="forgotPassword">Quên mật khẩu?</a>
+            <div class="form-group login-options">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="checkbox-inline">
+                            <div class="checker" @click="checked = checked =='checked' ? '': 'checked'"><span :class="checked"><input type="checkbox"  class="styled" checked="checked"></span></div>
+                            Nhớ tài khoản
+                        </label>
+                    </div>
+
+                    <div class="col-sm-6 text-right">
+                        <a href="javascript:void(0)" @click="forgotPassword">Quên mật khẩu</a>
+                    </div>
+                </div>
             </div>
+            <div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+            <ul class="list-inline form-group list-inline-condensed text-center">
+                <li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
+                <li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
+                <li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
+                <li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+            </ul>
+
+            <div class="content-divider text-muted form-group"><span>Bạn là doanh nghiệp và không có tài khoản?</span></div>
+            <a href="javascript:void(0)" @click="$emit('set_reg')" class="btn btn-default btn-block content-group">Đăng ký</a>
+            <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
         </div>
     </form>
 </template>
@@ -99,6 +121,7 @@
                 styleText: ['display-block'],
                 Text: '<br>Điền tài khoản và mật khẩu của bạn',
                 processing: false,
+                checked: '',
                 config: new config()
             }
         }

@@ -24,80 +24,6 @@
     </div>
 
     <div class="navbar-collapse collapse" id="navbar-mobile">
-        <ul class="nav navbar-nav">
-            <li>
-                <a class="sidebar-control sidebar-main-hide hidden-xs">
-                    <i class="icon-paragraph-justify3"></i>
-                </a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-people"></i>
-                    <span class="visible-xs-inline-block position-right">Người dùng online</span>
-                </a>
-
-                <!-- <div class="dropdown-menu dropdown-content">
-                    <div class="dropdown-content-heading">
-                        Người dùng online
-                        <ul class="icons-list">
-                            <li><a href="#"><i class="icon-gear"></i></a></li>
-                        </ul>
-                    </div>
-
-                    <ul class="media-list dropdown-content-body width-300">
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading text-semibold">Jordana Ansley</a>
-                                <span class="display-block text-muted text-size-small">Lead web developer</span>
-                            </div>
-                            <div class="media-right media-middle"><span class="status-mark border-success"></span></div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading text-semibold">Will Brason</a>
-                                <span class="display-block text-muted text-size-small">Marketing manager</span>
-                            </div>
-                            <div class="media-right media-middle"><span class="status-mark border-danger"></span></div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading text-semibold">Hanna Walden</a>
-                                <span class="display-block text-muted text-size-small">Project manager</span>
-                            </div>
-                            <div class="media-right media-middle"><span class="status-mark border-success"></span></div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading text-semibold">Dori Laperriere</a>
-                                <span class="display-block text-muted text-size-small">Business developer</span>
-                            </div>
-                            <div class="media-right media-middle"><span class="status-mark border-warning-300"></span></div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading text-semibold">Vanessa Aurelius</a>
-                                <span class="display-block text-muted text-size-small">UX expert</span>
-                            </div>
-                            <div class="media-right media-middle"><span class="status-mark border-grey-400"></span></div>
-                        </li>
-                    </ul>
-
-                    <div class="dropdown-content-footer">
-                        <a href="#" data-popup="tooltip" title="All users"><i class="icon-menu display-block"></i></a>
-                    </div>
-                </div> -->
-            </li>
-        </ul>
-
         <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
 
         <ul class="nav navbar-nav navbar-right">
@@ -117,106 +43,15 @@
                 </ul>
             </li>
 
-          <!--   <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-bubbles4"></i>
-                    <span class="visible-xs-inline-block position-right">Messages</span>
-                    <span class="badge bg-warning-400">2</span>
-                </a>
-
-                <div class="dropdown-menu dropdown-content width-350">
-                    <div class="dropdown-content-heading">
-                        Messages
-                        <ul class="icons-list">
-                            <li><a href="#"><i class="icon-compose"></i></a></li>
-                        </ul>
-                    </div>
-
-                    <ul class="media-list dropdown-content-body">
-                        <li class="media">
-                            <div class="media-left">
-                                <img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt="">
-                                <span class="badge bg-danger-400 media-badge">5</span>
-                            </div>
-
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">James Alexander</span>
-                                    <span class="media-annotation pull-right">04:58</span>
-                                </a>
-
-                                <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left">
-                                <img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt="">
-                                <span class="badge bg-danger-400 media-badge">4</span>
-                            </div>
-
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Margo Baker</span>
-                                    <span class="media-annotation pull-right">12:16</span>
-                                </a>
-
-                                <span class="text-muted">That was something he was unable to do because...</span>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Jeremy Victorino</span>
-                                    <span class="media-annotation pull-right">22:48</span>
-                                </a>
-
-                                <span class="text-muted">But that would be extremely strained and suspicious...</span>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Beatrix Diaz</span>
-                                    <span class="media-annotation pull-right">Tue</span>
-                                </a>
-
-                                <span class="text-muted">What a strenuous career it is that I've chosen...</span>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset("assets/images/placeholder.jpg")}}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Richard Vango</span>
-                                    <span class="media-annotation pull-right">Mon</span>
-                                </a>
-
-                                <span class="text-muted">Other travelling salesmen live a life of luxury...</span>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="dropdown-content-footer">
-                        <a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
-                    </div>
-                </div>
-            </li>
- -->
- <?php 
-$user = session('user');
-                        $typeUser = $user->type;
- ?>
+            <?php
+            $user = session('user');
+            $typeUser = $user->type;
+            ?>
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{$user->avatar}}" alt="">
                     <span><?php
-                       
+
                         if($typeUser == 1)
                         {
                             echo $user->admin->name;
@@ -290,14 +125,8 @@ $user = session('user');
                         <i class="icon-make-group position-left"></i> Danh mục <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu width-250">
-                        <li class="dropdown-submenu">
-                            <a href="#"><i class="icon-joomla"></i> Tuyển dụng</a>
-                            <ul class="dropdown-menu width-200">
-                                <li class="dropdown-header highlight">Options</li>
-                                <li><a href="{{route('enterprise.tasks.index')}}">Quản lý tin</a></li>
-                                <li><a href="{{route('enterprise.tasks.create')}}">Đăng tin</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{route('enterprise.tasks.index')}}">Quản lý tin</a></li>
+                        <li><a href="{{route('enterprise.tasks.create')}}">Đăng tin</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -343,10 +172,13 @@ $user = session('user');
                         <div class="dropdown-content-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <span class="menu-heading underlined">Quản Sự kiện</span>
+                                    <span class="menu-heading underlined">Quản lý khác</span>
                                     <ul class="menu-list">
                                         <li>
-                                            <a href="{{route('admin.events.index')}}"><i class="icon-align-center-horizontal"></i> Danh sách sự kiện</a>
+                                            <a href="{{route('admin.events.index')}}"><i class="icon-book2"></i> Danh sách sự kiện</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('admin.users.index')}}"><i class="icon-user"></i> Quản lý tài khoản</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -403,14 +235,14 @@ $user = session('user');
                                     </ul>
                                 </div>
                                 <div class="col-md-3">
-                                    <span class="menu-heading underlined">Quản lý thông báo đến doanh nghiệp</span>
+                                    <span class="menu-heading underlined">Quản lý thông báo</span>
                                     <ul class="menu-list">
                                         <li>
-                                            <a href="#"><i class="icon-graph"></i> Thêm mới thông báo</a>
+                                            <a href="{{route('admin.notifies.create')}}"><i class="icon-alarm-add"></i> Thêm mới thông báo</a>
 
                                         </li>
                                         <li>
-                                            <a href="#"><i class="icon-statistics"></i> Danh sách thông báo</a>
+                                            <a href="{{route('admin.notifies.index')}}"><i class="icon-alarm"></i> Danh sách thông báo</a>
                                         </li>
                                     </ul>
                                 </div>

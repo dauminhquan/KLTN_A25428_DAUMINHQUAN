@@ -9,8 +9,12 @@
 namespace App\Services\Api\Productions\Admin;
 
 
+use App\Models\Admin;
+use App\Models\Enterprise;
+use App\Models\Student;
 use App\Models\User;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
@@ -22,18 +26,19 @@ class UserService extends BaseService implements ManageInterface
     }
     public function getAll($inputs)
     {
+        $me = Auth::user();
         if(isset($inputs['size']))
         {
             if($inputs['size'] == -1)
             {
-                $users = User::paginate(100000);
+                $users = User::where('id','<>',$me->id)->paginate(100000);
             }
             else{
-                $users = User::paginate($inputs['size']);
+                $users = User::where('id','<>',$me->id)->paginate($inputs['size']);
             }
         }
         else {
-            $users = User::paginate(500);
+            $users = User::where('id','<>',$me->id)->paginate(500);
         }
         foreach ($users as $user)
         {
@@ -82,6 +87,27 @@ class UserService extends BaseService implements ManageInterface
 
         }
         $user->save();
+       if(isset($inputs['per']))
+       {
+           if($inputs['type'] == 1)
+           {
+               $admin = Admin::findOrFail($inputs['per']);
+               $admin->user_id = $user->id;
+               $admin->update();
+           }
+           if($inputs['type'] == 2)
+           {
+               $enterprise = Enterprise::findOrFail($inputs['per']);
+               $enterprise->user_id = $user->id;
+               $enterprise->update();
+           }
+           if($inputs['type'] == 3)
+           {
+               $student = Student::findOrFail($inputs['per']);
+               $student->user_id = $user->id;
+               $student->update();
+           }
+       }
         return $user;
     }
 
@@ -89,12 +115,21 @@ class UserService extends BaseService implements ManageInterface
     {
         try{
             $columns = Schema::getColumnListing((new User())->getTable());
+
             $user = User::findOrFail($id);
             foreach ($columns as $column)
             {
                 if(isset($inputs[$column]))
                 {
-                    $user->$column = $inputs[$column];
+
+                    if($column == 'password')
+                    {
+                        $user->$column = Hash::make($inputs[$column]);
+                    }
+                    else{
+                        $user->$column = $inputs[$column];
+                    }
+
                 }
 
             }

@@ -9,6 +9,10 @@ class Config{
 
         this.API_ADMIN = this.API+'/admin'
 
+        this.API_ADMIN_ADMINS = this.API_ADMIN+'/manage-admins'
+        this.API_ADMIN_ADMINS_RESOURCE = this.API_ADMIN_ADMINS+'/resource'
+        this.API_ADMIN_ADMINS_DELETE_LIST = this.API_ADMIN_ADMINS+'/delete-list'
+        
         /*ENTERPRISES*/
         this.API_ADMIN_ENTERPRISES = this.API_ADMIN+'/manage-enterprises'
         this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES+'/resource'
@@ -22,6 +26,14 @@ class Config{
         /*ENTERPRISES*/
 
 
+        /*USERS*/
+        this.API_ADMIN_USERS = this.API_ADMIN+'/manage-users'
+        this.API_ADMIN_USERS_RESOURCE = this.API_ADMIN_USERS+'/resource'
+        this.API_ADMIN_USERS_DELETE_LIST = this.API_ADMIN_USERS+'/delete-list'
+        this.API_ADMIN_USERS_IMPORT_CSV = this.API_ADMIN_USERS+'/import-csv'
+        this.API_ADMIN_USERS_GET_OPTION_CSV = (ID) => this.API_ADMIN_USERS+'/get-option-csv'
+        /*USERS*/
+        
         /*STUDENTS*/
         this.API_ADMIN_STUDENTS = this.API_ADMIN+'/manage-students'
         this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS+'/resource'
@@ -122,7 +134,6 @@ class Config{
         this.API_ENTERPRISE_TASKS_UPDATE_FILE_ATTACH = this.API_ENTERPRISE_TASKS+'/update-file-attach'
         this.API_ENTERPRISE_TASKS_DELETE_LIST = this.API_ENTERPRISE_TASKS+'/delete-list'
         this.API_ENTERPRISE_TASKS_GET_OPTION_CSV = (ID) => this.API_ENTERPRISE_TASKS+'/get-option-csv'
-
         this.API_ENTERPRISE_PROFILE = this.API_ENTERPRISE+'/profile'
         this.API_ENTERPRISE_UPDATE_AVATAR = this.API_ENTERPRISE+'/update-avatar'
 
@@ -150,6 +161,7 @@ class Config{
         this.API_UN_REGISTRATION_NOTIFY = this.API+'/un-registration-notify'
         this.API_JOIN_EVENT = this.API+'/join-event'
         this.API_UN_JOIN_EVENT = this.API+'/un-join-event'
+        this.API_REGISTRATION_ENTERPRISE = this.API+'/registration/enterprise'
 
         /*API*/
 
@@ -162,6 +174,8 @@ class Config{
         this.WEB_ADMIN = this.WEB+'/admin'
 
         this.WEB_ADMIN_ENTERPRISES = this.WEB_ADMIN+'/enterprises'
+
+        this.WEB_ADMIN_USERS = this.WEB_ADMIN+'/users'
 
         this.WEB_ADMIN_STUDENTS = this.WEB_ADMIN+'/students'
 
