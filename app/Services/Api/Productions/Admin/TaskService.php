@@ -101,7 +101,6 @@ class TaskService extends BaseService implements ManageInterface
             unset($inputs['attachment']);
             foreach ($columns as $column)
             {
-                dd($inputs);
                 if(isset($inputs[$column]) && $column != 'attachment')
                 {
                     $task->$column = $inputs[$column];

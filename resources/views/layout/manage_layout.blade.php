@@ -200,6 +200,7 @@
                                             <ul>
                                                 <li><a href="{{route('admin.tasks.index')}}">Quản lý bài viết doanh nghiệp</a></li>
                                                 <li><a href="{{route('admin.positions.index')}}">Quản lý vị trí tuyển dụng</a></li>
+                                                <li><a href="{{route('admin.types.index')}}">Quản lý hình thức công việc</a></li>
                                                 <li><a href="{{route('admin.skills.index')}}">Quản lý kỹ năng</a></li>
                                                 <li><a href="{{route('admin.salaries.index')}}">Quản lý mức lương</a></li>
                                             </ul>
