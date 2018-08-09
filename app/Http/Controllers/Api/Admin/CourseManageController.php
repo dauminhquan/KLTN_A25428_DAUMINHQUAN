@@ -25,9 +25,7 @@ class CourseManageController extends Controller
 
     public function store(CourseManageRequest $request)
     {
-
         return $this->courseService->save($request);
-
     }
 
     public function show($id)
@@ -35,7 +33,7 @@ class CourseManageController extends Controller
         return $this->courseService->getOne($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(CourseManageRequest $request, $id)
     {
         return $this->courseService->update($request->all(),$id);
     }

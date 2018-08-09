@@ -1,6 +1,6 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Quản lý loại công việc"
+        <data-table title="Quản lý khóa"
                     :columns="columns"
                     :data="data"
                     :targets="[]"
@@ -55,7 +55,7 @@
 
                         <div class="modal-body">
 
-                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều bài viết. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
+                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều mục. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
                                 <div class="pace-demo" v-if="deleting == true">
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
@@ -77,17 +77,22 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin loại công việc</h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin khóa</h6>
                         </div>
 
                         <div class="modal-body">
-
-                           <div class="row">
-                               <div class="form-group">
-                                   <label><b>Tên loại công việc</b></label>
-                                   <input type="text" v-model="info.name" class="form-control">
-                               </div>
-                           </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label><b>Mã khóa</b></label>
+                                    <input type="text" v-model="info.code" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label><b>Tên khóa</b></label>
+                                    <input type="text" v-model="info.name" class="form-control">
+                                </div>
+                            </div>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
                                 <div class="pace-demo" v-if="updating == true">
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
@@ -109,15 +114,20 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin loại công việc</h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin khóa</h6>
                         </div>
 
                         <div class="modal-body">
-
                             <div class="row">
                                 <div class="form-group">
-                                    <label><b>Tên loại công việc</b></label>
-                                    <input type="text" v-model="nameCreate" class="form-control">
+                                    <label><b>Mã khóa</b></label>
+                                    <input type="text" v-model="codeCreate" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label><b>Tên khóa</b></label>
+                                    <input type="text" v-model="nameCreate" required class="form-control">
                                 </div>
                             </div>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
@@ -133,6 +143,29 @@
                             <button type="button" class="btn btn-success" @click="createItem">Thêm mới</button>
 
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-push-excel" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Thêm doanh nghiệp bằng Excel</h5>
+                        </div>
+
+                        <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
+
+                            <div class="modal-body">
+                                <input type="file"class="form-control" @change="setExcelFile($event)">
+                                <div class="pace-demo" v-if="uploading == true">
+                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
+                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -155,10 +188,9 @@
             return {
                 columns : [
                 ],
-                buttonConfig: [
-                ],
                 deleting: false,
                 updating: false,
+                uploading: false,
                 creating: false,
                 data :[],
                 menu: [
@@ -168,10 +200,10 @@
                     },
                     {
                         action :'delete',
-                        html:'<a href="#"><i class="icon-trash"></i> Xóa loại công việc công việc</a>'
+                        html:'<a href="#"><i class="icon-trash"></i> Xóa khóa học</a>'
                     }
                 ],
-                primaryKey: 'id',
+                primaryKey: 'code',
                 lengths: [50,100,200,500,1000,2000,5000],
                 itemSelected: [],
                 primaryKeyDelete: -1,
@@ -183,7 +215,16 @@
                             $('#modal_create').modal('show')
                         }
                     },
+                    {
+                        text: 'Thêm bằng Excel',
+                        className: 'btn bg-info',
+                        action: function(e, dt, node, config) {
+                            $('#modal-push-excel').modal('show')
+                        }
+                    }
                 ],
+                excelFile: null,
+                codeUpdate: null,
                 deletedSelectItem: false,
                 resetCheck:false,
                 pages: [],
@@ -191,9 +232,12 @@
                 totalPage:0,
                 perPage:500,
                 info:{
-                  name: ''
+                    code:null,
+                    name: null,
+                    old_code: null,
                 },
-                nameCreate:'',
+                nameCreate:null,
+                codeCreate: null,
                 config: new config(),
             }
         },
@@ -203,19 +247,19 @@
         methods: {
 
             getData(perPage=500,page=1){
-                var vm = this
-                axios.get(vm.config.API_ADMIN_TYPES_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
+                let vm = this
+                axios.get(vm.config.API_ADMIN_COURSES_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
                     vm.data = data.data.data
                     vm.perPage = data.data.per_page
                     vm.totalPage = data.data.total
                     vm.columns = [
                         {
-                            key: 'id',
-                            text: 'ID loại'
+                            key: 'code',
+                            text: 'Mã khóa'
                         },
                         {
                             key:'name',
-                            text:'Tên loại'
+                            text:'Tên khóa'
                         }
                         ,
                         {
@@ -254,8 +298,9 @@
             createItem(){
                 let vm = this
                 vm.creating = true
-                axios.post(vm.config.API_ADMIN_TYPES_RESOURCE,{
-                    name:vm.nameCreate
+                axios.post(vm.config.API_ADMIN_COURSES_RESOURCE,{
+                    name:vm.nameCreate,
+                    code: vm.codeCreate
                 }).then(data => {
                     vm.config.notifySuccess('Thêm mới thành công')
                     vm.creating = false
@@ -264,22 +309,36 @@
                     $('#modal_create').modal('hide')
                 }).catch(err => {
                     console.dir(err)
-                    vm.config.notifyError()
+                    if(err.response.status == 422)
+                    {
+                        vm.config.notifyError(vm.config.getError(err.response.data))
+                    }else{
+                        vm.config.notifyError()
+                    }
+                    vm.nameCreate = null
+                    vm.codeCreate = null
+                    vm.creating = false
+                    $('#modal_create').modal('hide')
                 })
             },
             updateItem(){
                 let vm = this
                 vm.updating = true
-              axios.put(vm.config.API_ADMIN_TYPES_RESOURCE+'/'+vm.info.id,{
-                  name:vm.info.name
-              }).then(data => {
-                  vm.config.notifySuccess('Update thông tin loại cv thành công')
-                  vm.updating = false
-                  $('#modal_info').modal('hide')
-              }).catch(err => {
-                  console.dir(err)
-                  vm.config.notifyError()
-              })
+                axios.put(vm.config.API_ADMIN_COURSES_RESOURCE+'/'+vm.codeUpdate,vm.info).then(data => {
+                    vm.config.notifySuccess()
+                    vm.updating = false
+                    $('#modal_info').modal('hide')
+                }).catch(err => {
+                    if(err.response.status == 422)
+                    {
+                        vm.config.notifyError(vm.config.getError(err.response.data))
+                    }else{
+                        vm.config.notifyError()
+                    }
+                    vm.updating = false
+                    vm.getData()
+                    $('#modal_info').modal('hide')
+                })
             },
             deleteItem(){
                 let vm = this
@@ -288,7 +347,7 @@
                 if(vm.primaryKeyDelete != -1)
                 {
                     let indexOf = -1
-                    axios.delete(vm.config.API_ADMIN_TYPES_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
+                    axios.delete(vm.config.API_ADMIN_COURSES_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
                         vm.data.forEach((item,index) => {
 
                             if(item[vm.primaryKey] == vm.primaryKeyDelete)
@@ -338,7 +397,7 @@
             deleteListItem() {
                 let vm = this
                 vm.deleting = true
-                axios.delete(vm.config.API_ADMIN_TYPES_DELETE_LIST,{
+                axios.delete(vm.config.API_ADMIN_COURSES_DELETE_LIST,{
                     params:{
                         id_list: vm.itemSelected
                     }
@@ -347,12 +406,12 @@
                     vm.deleting = false
                     let list_id = vm.itemSelected
                     let newData = []
-                        vm.data.forEach((dt) => {
-                            if(!vm.existsItem(dt[vm.primaryKey],list_id))
-                            {
-                                newData.push(dt)
-                            }
-                        })
+                    vm.data.forEach((dt) => {
+                        if(!vm.existsItem(dt[vm.primaryKey],list_id))
+                        {
+                            newData.push(dt)
+                        }
+                    })
 
                     vm.data = newData
 
@@ -379,13 +438,11 @@
             },
             showItem(id) {
                 let vm = this
-                let positions = vm.data.filter(item => {
-                    return item.id == id
+                vm.info = vm.data.find(item => {
+                    return item.code == id
                 })
-                if(positions.length > 0)
-                {
-                    vm.info = positions[0]
-                }
+                vm.codeUpdate = vm.info.code
+                vm.info.old_code = vm.info.code
                 $('#modal_info').modal('show')
             },
             changePerPage(perPage){
@@ -393,7 +450,37 @@
             },
             changePageSelect(page){
                 this.getData(this.perPage,page)
-            }
+            },
+            setExcelFile(e){
+                let vm = this
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                vm.excelFile = files[0]
+            },
+            uploadExcelFile(){
+                let vm = this
+                vm.uploading = true
+                let formData = new FormData()
+                formData.append('CsvFile',vm.excelFile)
+                axios.post(vm.config.API_ADMIN_COURSES_IMPORT_CSV,formData).then(data => {
+                    vm.uploading = false
+                    $('#modal-push-excel').modal('hide')
+                    if(data.data.message == [] || data.data.error.length == 0)
+                    {
+                        vm.config.notifySuccess()
+                    }
+                    else{
+                        vm.config.notifyWarning()
+                    }
+                    vm.getData()
+                }).catch(err => {
+                    this.uploading = false
+                    console.dir(err)
+                    vm.config.notifyError()
+
+                })
+            },
         }
     }
 </script>

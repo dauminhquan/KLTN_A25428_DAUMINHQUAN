@@ -124,6 +124,10 @@ Route::group(['middleware' => ['auth:api','accept']],function (){
             Route::post('import-csv','EventStudentManageController@importCsv')->name('import.csv');
             Route::post('update-csv','EventStudentManageController@updateCsv')->name('update.csv');
         });
+        Route::group(['prefix' => '/manage-statistics' , 'name' => 'manage.statistics.'],function (){
+            Route::get('/graduate-statistics','StatisticalManageController@graduateStatistics')->name('graduate-statistics');
+            Route::get('/event-statistics','StatisticalManageController@eventStatistics')->name('event-statistics');
+        });
     });
     Route::group(['prefix' => '/enterprise','namespace' => 'Enterprise','as' => 'enterprise.','middleware' => ['api.check.enterprise']],function (){
         Route::group(['prefix' => '/manage-tasks',],function (){
@@ -163,7 +167,6 @@ Route::group(['middleware' => ['auth:api','accept']],function (){
     Route::get('enterprises','EnterpriseController@index');
     Route::get('provinces','Provincetroller@index');
 });
-
 Route::group(['namespace' => 'Auth'],function (){
     Route::post('login','AuthController@login');
     Route::post('logout','AuthController@logout')->middleware(['remove-session','auth:api']);

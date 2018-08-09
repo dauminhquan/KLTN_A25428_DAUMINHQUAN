@@ -33,7 +33,7 @@ Route::get('authentication-user',function(\Illuminate\Http\Request $request){
         if($user != null)
         {
 
-            if($user->accept_token == $request->token)
+            if($user->accept_token == $request->token && $user->accept_token != null)
             {
 
                 $user->authentication = 1;
@@ -45,5 +45,3 @@ Route::get('authentication-user',function(\Illuminate\Http\Request $request){
     }
     abort(404);
 })->name('accept.user');
-
-

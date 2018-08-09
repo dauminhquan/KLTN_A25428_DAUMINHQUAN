@@ -1,7 +1,11 @@
 {
     "/assets/js/build/pages/admin/users/index.js": "/assets/js/build/pages/admin/users/index.js",
+    "/assets/js/build/pages/admin/courses/index.js": "/assets/js/build/pages/admin/courses/index.js",
     "/assets/js/build/pages/student/profile/index.js": "/assets/js/build/pages/student/profile/index.js",
-    "/assets/js/build/pages/enterprise/profile/index.js": "/assets/js/build/pages/enterprise/profile/index.js",
     "/assets/js/common.js": "/assets/js/common.js",
-    "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js"
+    "/assets/js/build/pages/enterprise/profile/index.js": "/assets/js/build/pages/enterprise/profile/index.js",
+    "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js",
+    "/assets/js/build/pages/admin/statistics/index.js": "/assets/js/build/pages/admin/statistics/index.js",
+    "/assets/js/charts/echarts/columns_waterfalls.js": "/assets/js/charts/echarts/columns_waterfalls.js",
+    "/assets/js/charts/echarts/timeline_option.js": "/assets/js/charts/echarts/timeline_option.js"
 }

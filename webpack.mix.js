@@ -13,7 +13,7 @@ mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
 // mix.js('resources/assets/js/admin/students/edit/index.js', 'public/assets/js/build/pages/admin/students/edit.js');
 // //user
 mix.js('resources/assets/js/admin/users/index/index.js', 'public/assets/js/build/pages/admin/users/index.js');
-
+mix.js('resources/assets/js/admin/statistics/index/index.js', 'public/assets/js/build/pages/admin/statistics/index.js');
 //task
 //
 // mix.js('resources/assets/js/admin/tasks/index/index.js', 'public/assets/js/build/pages/admin/tasks/index.js');
@@ -26,6 +26,7 @@ mix.js('resources/assets/js/admin/users/index/index.js', 'public/assets/js/build
 // mix.js('resources/assets/js/admin/ratings/index/index.js', 'public/assets/js/build/pages/admin/ratings/index.js');
 // mix.js('resources/assets/js/admin/ranks/index/index.js', 'public/assets/js/build/pages/admin/ranks/index.js');
 // mix.js('resources/assets/js/admin/departments/index/index.js', 'public/assets/js/build/pages/admin/departments/index.js');
+mix.js('resources/assets/js/admin/courses/index/index.js', 'public/assets/js/build/pages/admin/courses/index.js');
 // mix.js('resources/assets/js/admin/branches/index/index.js', 'public/assets/js/build/pages/admin/branches/index.js');
 // mix.js('resources/assets/js/admin/provinces/index/index.js', 'public/assets/js/build/pages/admin/provinces/index.js');
 // mix.js('resources/assets/js/admin/works/index.js', 'public/assets/js/build/pages/admin/works/index.js');
@@ -58,4 +59,7 @@ mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/l
 
 //
 // mix.copyDirectory('resources/assets/images', 'public/assets/images');
-// mix.copyDirectory('resources/plugin', 'public/assets/js/plugins');
+mix.copyDirectory('resources/plugins', 'public/assets/js/plugins');
+mix.copyDirectory('resources/assets/js/charts', 'public/assets/js/charts');
+mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
+mix.babel('resources/assets/js/charts/echarts/timeline_option.js','public/assets/js/charts/echarts/timeline_option.js')

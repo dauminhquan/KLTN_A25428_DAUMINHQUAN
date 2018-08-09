@@ -117,6 +117,7 @@ class Config{
         this.API_ADMIN_COURSES = this.API_ADMIN+'/manage-courses'
         this.API_ADMIN_COURSES_RESOURCE = this.API_ADMIN_COURSES+'/resource'
         this.API_ADMIN_COURSES_DELETE_LIST = this.API_ADMIN_COURSES+'/delete-list'
+        this.API_ADMIN_COURSES_IMPORT_CSV = this.API_ADMIN_COURSES+'/import-csv'
 
         /*NOTIFIES*/
         this.API_ADMIN_NOTIFIES = this.API_ADMIN+'/manage-notifies'
@@ -203,14 +204,14 @@ class Config{
         if(message != '')
         {
             new PNotify({
-                title: 'Ohh Yeah! Thành công!',
+                title: 'Thành công!',
                 text: message,
                 addclass: 'bg-success'
             });
         }
         else{
             new PNotify({
-                title: 'Ohh Yeah! Thành công!',
+                title: 'Thành công!',
                 text: 'Thao tác thành công',
                 addclass: 'bg-success'
             });
@@ -221,14 +222,14 @@ class Config{
         if(message != '')
         {
             new PNotify({
-                title: 'Ohh! Có gì đó sai sai!',
+                title: 'Chú ý!',
                 text: message,
                 addclass: 'bg-warning'
             });
         }
         else{
             new PNotify({
-                title: 'Ohh! Có gì đó sai sai!',
+                title: 'Chú ý!',
                 text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
                 addclass: 'bg-warning'
             });
@@ -240,14 +241,14 @@ class Config{
         if(message != '')
         {
             new PNotify({
-                title: 'Ohh! Có lỗi xảy ra rồi!',
+                title: 'Đã xảy ra lỗi!',
                 text: message,
                 addclass: 'bg-danger'
             });
         }
         else{
             new PNotify({
-                title: 'Ohh! Có lỗi xảy ra rồi!',
+                title: 'Đã xảy ra lỗi!',
                 text: 'Thao tác thất bại',
                 addclass: 'bg-danger'
             });

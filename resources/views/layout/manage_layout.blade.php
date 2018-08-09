@@ -180,6 +180,9 @@
                                         <li>
                                             <a href="{{route('admin.users.index')}}"><i class="icon-user"></i> Quản lý tài khoản</a>
                                         </li>
+                                        <li>
+                                            <a href="{{route('admin.works.index')}}"><i class="icon-package"></i> Quản lý việc làm sinh viên</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-3">
@@ -251,7 +254,7 @@
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="#">
+                    <a href="{{route('admin.statistical.index')}}">
                         <i class=" icon-stats-growth position-left"></i> Thống kê
                     </a>
                 <li class="dropdown">
@@ -276,7 +279,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="icon-statistics"></i> Thống kê</a></li>
+                        <li><a href="{{route('admin.statistical.index')}}"><i class="icon-statistics"></i> Thống kê</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
                     </ul>
