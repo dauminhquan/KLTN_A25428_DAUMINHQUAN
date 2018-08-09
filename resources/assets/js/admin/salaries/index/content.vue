@@ -140,7 +140,7 @@
     </div>
 </template>
 <script>
-    import table from './components/table.vue'
+    import table from './../../../components/datatable/table'
     import 'select2'
     import axios from './../../../axios'
 
@@ -163,11 +163,11 @@
                 menu: [
                     {
                         action :'view',
-                        html:'<a href="#"><i class="icon-info3"></i> Thông tin chi tiết</a>'
+                        html:'<a href="javascript:void(0);"><i class="icon-info3"></i> Thông tin chi tiết</a>'
                     },
                     {
                         action :'delete',
-                        html:'<a href="#"><i class="icon-trash"></i> Xóa mức lương</a>'
+                        html:'<a href="javascript:void(0);"><i class="icon-trash"></i> Xóa mức lương</a>'
                     }
                 ],
                 primaryKey: 'id',

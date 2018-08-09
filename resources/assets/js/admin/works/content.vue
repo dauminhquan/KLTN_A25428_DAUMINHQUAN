@@ -198,7 +198,7 @@
 </template>
 <script>
     import vSelect from 'vue-select'
-    import table from './components/table.vue'
+    import table from './../../components/datatable/table'
     import axios from './../../axios'
     import config from './../../config'
 
@@ -233,11 +233,11 @@
                 menu: [
                     {
                         action :'view',
-                        html:'<a href="#"><i class="icon-info3"></i> Thông tin chi tiết</a>'
+                        html:'<a href="javascript:void(0);"><i class="icon-info3"></i> Thông tin chi tiết</a>'
                     },
                     {
                         action :'delete',
-                        html:'<a href="#"><i class="icon-trash"></i> Xóa thông tin việc</a>'
+                        html:'<a href="javascript:void(0);"><i class="icon-trash"></i> Xóa thông tin việc</a>'
                     }
                 ],
                 primaryKey: 'id',

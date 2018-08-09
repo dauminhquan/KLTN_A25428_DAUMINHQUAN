@@ -33,7 +33,6 @@
                         <button type="button" class="btn btn-default btn-icon btn-checkbox-all" @click="selectAll">
                             <div class="checker"><span :class="checked"><input type="checkbox"class="styled"></span></div>
                         </button>
-
                         <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </button>
@@ -65,7 +64,6 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="icon-menu9"></i>
                             </a>
-
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li  v-for="li in menu" :key="li.action" v-html="li.html" @click="action(item[primaryKey],li.action)"></li>
                             </ul>
