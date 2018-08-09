@@ -82,6 +82,7 @@
     var $ = require('jquery')
     import 'datatables'
     import 'datatables.net-buttons'
+    import 'select2'
     require( 'datatables.net-buttons/js/buttons.colVis.min');
     require('datatables.net-buttons/js/dataTables.buttons.min')
     export default {

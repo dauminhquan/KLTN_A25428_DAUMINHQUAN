@@ -205,15 +205,23 @@ class Config{
         {
             new PNotify({
                 title: 'Thành công!',
+                icon: 'icon-check',
                 text: message,
-                addclass: 'bg-success'
+                addclass: 'bg-success',
+                delay:2000,
+                mouseReset:false
+
             });
         }
         else{
             new PNotify({
                 title: 'Thành công!',
+                icon: 'icon-check',
                 text: 'Thao tác thành công',
-                addclass: 'bg-success'
+                addclass: 'bg-success',
+                delay:2000,
+                mouseReset:false
+
             });
         }
     }
@@ -223,15 +231,21 @@ class Config{
         {
             new PNotify({
                 title: 'Chú ý!',
+                icon: 'icon-warning',
                 text: message,
-                addclass: 'bg-warning'
+                addclass: 'bg-warning',
+                delay:2000,
+                mouseReset:false
             });
         }
         else{
             new PNotify({
                 title: 'Chú ý!',
+                icon: 'icon-warning',
                 text: 'Thao tác thành công nhưng hình như có gì đó không đúng. Vui lòng kiểm tra lại',
-                addclass: 'bg-warning'
+                addclass: 'bg-warning',
+                delay:2000,
+                mouseReset:false
             });
         }
 
@@ -243,14 +257,20 @@ class Config{
             new PNotify({
                 title: 'Đã xảy ra lỗi!',
                 text: message,
-                addclass: 'bg-danger'
+                icon: 'icon-stop',
+                addclass: 'bg-danger',
+                delay:2000,
+                mouseReset:false
             });
         }
         else{
             new PNotify({
                 title: 'Đã xảy ra lỗi!',
                 text: 'Thao tác thất bại',
-                addclass: 'bg-danger'
+                icon: 'icon-stop',
+                addclass: 'bg-danger',
+                delay:2000,
+                mouseReset:false
             });
         }
 

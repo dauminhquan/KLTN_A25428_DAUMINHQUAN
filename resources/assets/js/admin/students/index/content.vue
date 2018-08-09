@@ -100,7 +100,6 @@
 </template>
 <script>
     import table from './../../../components/datatable/table'
-    import 'select2'
     import axios from './../../../axios'
 
     import config from './../../../config'

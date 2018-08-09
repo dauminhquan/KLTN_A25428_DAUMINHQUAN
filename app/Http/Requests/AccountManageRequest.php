@@ -38,7 +38,6 @@ class AccountManageRequest extends FormRequest
                     'password' => 'required|min:6|max:30',
                     'rep_password' => 'required|same:password',
                     'type' => 'required|'.Rule::in([1,2,3]),
-                    'per' => 'integer'
                 ];
             case('GET'):
                 break;

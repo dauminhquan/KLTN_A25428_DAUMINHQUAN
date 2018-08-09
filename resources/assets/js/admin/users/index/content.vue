@@ -104,13 +104,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label><b>Password </b></label>
-                                        <input type="text" v-model="info.password" class="form-control">
+                                        <input type="password" v-model="info.password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label><b>Nhập là password </b></label>
-                                        <input type="text" v-model="info.rep_password" class="form-control">
+                                        <input type="password" v-model="info.rep_password" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -148,13 +148,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label><b>Password </b></label>
-                                        <input type="text" v-model="create.password" class="form-control">
+                                        <input type="password" v-model="create.password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label><b>Nhập là password </b></label>
-                                        <input type="text" v-model="create.rep_password" class="form-control">
+                                        <input type="password" v-model="create.rep_password" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -448,7 +448,6 @@
             createItem(){
                 let vm = this
                 vm.creating = true
-
                 if(vm.create.per == null || vm.create.type == null)
                 {
                     vm.config.notifyWarning('Vui lòng điền đầy đủ thông tin')
@@ -460,7 +459,14 @@
                 create.password = vm.create.password
                 create.rep_password = vm.create.rep_password
                 create.type = vm.create.type
-                create.per = vm.create.per.id
+                if(create.type == 1 || create.type == 2)
+                {
+                    create.per = vm.create.per.id
+                }
+                if(create.type == 3)
+                {
+                    create.per = vm.create.per.code
+                }
                 create.authentication = vm.create.authentication
                 axios.post(vm.config.API_ADMIN_USERS_RESOURCE,create).then(data => {
                     vm.config.notifySuccess('Thêm mới thành công')
