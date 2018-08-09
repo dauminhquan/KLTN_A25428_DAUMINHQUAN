@@ -220,7 +220,7 @@
                                             <a href="#"><i class="icon-indent-decrease2"></i>  Quản lý chuyên mục khác</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('admin.students.index')}}"><i class="icon-graph"></i> Quản lý khóa</a>
+                                                    <a href="{{route('admin.courses.index')}}"><i class="icon-graph"></i> Quản lý khóa</a>
 
                                                 </li>
                                                 <li>
