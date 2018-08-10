@@ -18,7 +18,7 @@ class NotifyController extends Controller
     {
 
         $notify= Notification::findOrFail($id);
-        $notify->admin = $notify->admin()->select('name','id')->first();
+        $notify->admin = $notify->admin()->select('name','id','avatar')->first();
         $similars = Notification::where('admin_id',$notify->admin_id)->where('id','<>',$notify->id)->orderByDesc('created_at')->limit(6)->get();
         foreach ($similars as $similar)
         {

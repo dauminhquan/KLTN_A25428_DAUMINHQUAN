@@ -50,13 +50,12 @@
         },
         mounted(){
             let vm = this
-            CKEDITOR.replace('textarea-info').on('change',function () {
-                vm.info.content = this.getData()
-            })
+            CKEDITOR.replace('textarea-info')
         },
         methods:{
             submitInsert(){
                 let vm =this
+                vm.info.content = CKEDITOR.instances['textarea-info'].getData()
                 axios.post(vm.config.API_ADMIN_NOTIFIES_RESOURCE,vm.info).then(data => {
                    vm.config.notifySuccess()
                     setTimeout(function () {

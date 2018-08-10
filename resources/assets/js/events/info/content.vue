@@ -25,8 +25,8 @@
                 <div class="content-group-lg" v-html="event.content">
                 </div>
                 <ul class="list-inline no-margin">
-                    <li class="mt-5">
-                        <a :href="'https://www.facebook.com/sharer/sharer.php?u='+curUrl" class="btn btn-default">
+                    <li class="mt-5" style="float: right">
+                        <a :href="'https://www.facebook.com/sharer/sharer.php?u='+curUrl" class="btn btn-default" style="padding: 0 !important;">
                             <i class="icon-facebook position-right"></i>
                         </a>
                     </li>

@@ -46,20 +46,19 @@
                     description: '',
                     content: '',
                 },
+
                 config : new config(),
             }
         },
         mounted(){
             let vm = this
             vm.getInfo()
-            CKEDITOR.replace('textarea-info').on('change',function () {
-                vm.info.content = this.getData()
-            })
 
         },
         methods:{
             submitUpdate(){
                 let vm =this
+                vm.info.content = CKEDITOR.instances['textarea-info'].getData()
                 axios.put(vm.config.API_ADMIN_NOTIFIES_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
                     vm.config.notifySuccess()
                     setTimeout(function () {
@@ -92,7 +91,7 @@
                 {
                     axios.get(vm.config.API_ADMIN_NOTIFIES_RESOURCE+'/'+vm.keyItem).then(data => {
                         vm.info = data.data
-
+                        CKEDITOR.replace('textarea-info')
                     }).catch(err => {
                         console.dir(err)
                         if(err.response.status == 422)

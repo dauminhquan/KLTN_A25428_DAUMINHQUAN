@@ -429,7 +429,7 @@ a.bg-danger:focus {
   box-shadow: 0 1px 0 #fff;
 }
 .page-header-inverse.has-cover {
-  background: url(../images/login_cover.jpg);
+  background: url('./../../images/login_cover.jpg');
   background-size: cover;
 }
 .page-header-default {
@@ -3770,9 +3770,7 @@ li + .dropdown-header.highlight,
     background-color: rgba(0, 0, 0, 0.1);
     color: #fff;
   }
-  .navbar-inverse .navbar-nav .open .dropdown-menu a:not(.label-flat):not(.badge-flat):not(.disabled > a) {
-    color: #fff;
-  }
+
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
     background-color: rgba(255, 255, 255, 0.1);
   }
@@ -5639,9 +5637,6 @@ a.thumbnail.active {
   padding-right: 20px;
 }
 @media (max-width: 768px) {
-  .stack-media-on-mobile:not(.text-left):not(.text-right) {
-    text-align: center;
-  }
   .stack-media-on-mobile .media-annotation {
     display: block;
   }

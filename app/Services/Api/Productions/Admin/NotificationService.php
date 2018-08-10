@@ -65,7 +65,7 @@ class NotificationService extends BaseService implements ManageInterface
     public function save($inputs){
 
         try{
-            $inputs['admin_id'] = Auth::user()->id;
+            $inputs['admin_id'] = Auth::user()->admin->id;
             $notification = Notification::create($inputs);
             return $notification;
         }catch (\Exception $exception)

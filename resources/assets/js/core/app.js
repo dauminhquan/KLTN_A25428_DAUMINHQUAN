@@ -62,7 +62,7 @@ function listenForChanges(id) {
                 if(notify.event_id != undefined)
                 {
                     notification.onclick = function () {
-                        window.open('events/'+notify.event_id,'_blank')
+                        window.open(window.location.origin+'/events/'+notify.event_id,'_blank')
                         notification.close()
                     }
                 }

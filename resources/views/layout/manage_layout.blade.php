@@ -147,29 +147,6 @@
 
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="changelog.html">
-                        <i class="icon-history position-left"></i>
-                        Changelog
-                        <span class="label label-inline position-right bg-success-400">1.5</span>
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-cog3"></i>
-                        <span class="visible-xs-inline-block position-right">Share</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-
-                        <li><a href="#"><i class="icon-statistics"></i> Thống kê</a></li>
-
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-                    </ul>
-                </li>
-            </ul>
         </div>
     @endif
     @if($typeUser == 1)
@@ -178,6 +155,7 @@
                 <li><a href="{{route('web.home')}}"><i class=" icon-home2 position-left"></i> Trang chủ</a></li>
                 <li><a href="{{route('web.tasks.index')}}"><i class=" icon-newspaper position-left"></i> Bảng tin tuyển dụng</a></li>
                 <li><a href="{{route('web.notifies.index')}}"><i class="icon-bell2 position-left"></i> Thông báo nhà trường</a></li>
+                <li><a href="{{route('web.events.index')}}"><i class="icon-alarm position-left"></i> Các sự kiện sắp diễn ra</a></li>
                 <li class="dropdown mega-menu mega-menu-wide">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stars position-left"></i> Danh mục <span class="caret"></span></a>
                     <div class="dropdown-menu dropdown-content">
@@ -187,22 +165,10 @@
                                     <span class="menu-heading underlined">Quản lý khác</span>
                                     <ul class="menu-list">
                                         <li>
-                                            <a href="#"><i class="icon-indent-decrease2"></i>  Quản lý sự kiện</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{{route('admin.events.index')}}"> Danh sách sự kiện</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{route('web.events.index')}}">Xem bảng tin sự kiện</a>
-                                                </li>
-                                            </ul>
-
+                                            <a href="{{route('admin.events.index')}}"><i class="icon-alarm-check"></i> Quản lý sự kiện</a>
                                         </li>
                                         <li>
                                             <a href="{{route('admin.users.index')}}"><i class="icon-user"></i> Quản lý tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('admin.works.index')}}"><i class="icon-package"></i> Quản lý việc làm sinh viên</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -236,6 +202,9 @@
                                             <ul>
                                                 <li><a href="{{route('admin.students.index')}}">Danh sách sinh viên</a></li>
                                                 <li><a href="{{route('admin.ratings.index')}}">Quản lý hạng tốt nghiệp</a></li>
+                                                <li>
+                                                    <a href="{{route('admin.works.index')}}"> Quản lý việc làm sinh viên</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li>
@@ -290,27 +259,6 @@
                         <i class="icon-lock position-left"></i> Đổi mật khẩu
                     </a>
 
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="changelog.html">
-                        <i class="icon-history position-left"></i>
-                        Changelog
-                        <span class="label label-inline position-right bg-success-400">1.5</span>
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-cog3"></i>
-                        <span class="visible-xs-inline-block position-right">Share</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{route('admin.statistical.index')}}"><i class="icon-statistics"></i> Thống kê</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>

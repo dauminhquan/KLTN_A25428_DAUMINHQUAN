@@ -176,7 +176,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group">
-                                    <label><b>Địa điểm </b></label>
+                                    <label><b>Nội dung </b></label>
                                     <textarea v-model="create.content" class="form-control" id="textarea-create-content">
 
                                     </textarea>
@@ -274,12 +274,8 @@
         mounted(){
             let vm =this
             vm.getData()
-            CKEDITOR.replace('textarea-create-content').on('change',function () {
-                vm.create.content = this.getData()
-            })
-           CKEDITOR.replace('textarea-info-content').on('change',function () {
-                vm.info.content = this.getData()
-            })
+            CKEDITOR.replace('textarea-create-content')
+           CKEDITOR.replace('textarea-info-content')
         },
         methods: {
 
@@ -339,6 +335,7 @@
             createItem(){
                 let vm = this
                 vm.creating = true
+                vm.create.content = CKEDITOR.instances['textarea-create-content'].getData()
                 axios.post(vm.config.API_ADMIN_EVENTS_RESOURCE,vm.create,{
                     name:vm.nameCreate
                 }).then(data => {
@@ -355,6 +352,7 @@
             updateItem(){
                 let vm = this
                 vm.updating = true
+                vm.info.content = CKEDITOR.instances['textarea-info-content'].getData()
               axios.put(vm.config.API_ADMIN_EVENTS_RESOURCE+'/'+vm.info.id,vm.info,{
                   name:vm.info.name
               }).then(data => {
