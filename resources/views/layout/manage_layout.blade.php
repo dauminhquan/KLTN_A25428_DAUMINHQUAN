@@ -175,16 +175,15 @@
                                     <span class="menu-heading underlined">Quản lý khác</span>
                                     <ul class="menu-list">
                                         <li>
-                                        <li>
                                             <a href="#"><i class="icon-indent-decrease2"></i>  Quản lý sự kiện</a>
                                             <ul>
                                                 </li>
-                                                <a href="{{route('admin.events.index')}}"> Danh sách sự kiện</a>
+                                                    <a href="{{route('admin.events.index')}}"> Danh sách sự kiện</a>
                                                 </li>
                                                 <li><a href="{{route('web.events.index')}}">Xem bảng tin sự kiện</a></li>
                                             </ul>
 
-
+                                        </li>
                                         <li>
                                             <a href="{{route('admin.users.index')}}"><i class="icon-user"></i> Quản lý tài khoản</a>
                                         </li>
