@@ -110,7 +110,7 @@
                             <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
                         </tr>
                         </thead>
-                        <?php $data = \App\Models\Task::where('accept',0)->orderByDesc('created_at')->get() ?>
+                        <?php $data = \App\Models\Task::where('accept',0)->orderByDesc('created_at')->limit(10)->get() ?>
                         <tbody>
                         @foreach($data as $item)
                             <tr>
@@ -167,7 +167,7 @@
                         </ul>
                     </div>
                 </div>
-                <?php $events = \App\Models\Event::orderByDesc('created_at')->get() ?>
+                <?php $events = \App\Models\Event::orderByDesc('created_at')->limit(10)->get() ?>
                 <div class="panel-body">
                     <div class="row">
                         @foreach($events as $item)
