@@ -6,6 +6,19 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('layout.manage_layout');
+       if(session('user')->type == 1)
+       {
+           return view('admin.home');
+       }
+        if(session('user')->type == 2)
+        {
+            return view('enterprise.home');
+        }
+        if(session('user')->type == 3)
+        {
+            return view('student.home');
+        }
+        abort(404);
+
     }
 }

@@ -177,3 +177,7 @@ Route::group(['prefix' => '/registration'],function(){
     Route::post('student','Student\AuthController@registration');
     Route::post('enterprise','Enterprise\AuthController@registration');
 });
+
+Route::group(['prefix' => '/re-send-accept-token'],function(){
+    Route::post('enterprise','Enterprise\AuthController@reSendAcceptToken');
+});

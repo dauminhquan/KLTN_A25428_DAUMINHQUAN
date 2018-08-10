@@ -18,10 +18,9 @@ class SendTokenAccept extends Mailable
      */
     private $url;
     private $timeLimit;
-    public function __construct($url,$timeLimit)
+    public function __construct($url)
     {
         $this->url = $url;
-        $this->timeLimit = $timeLimit;
     }
 
     /**
@@ -31,6 +30,6 @@ class SendTokenAccept extends Mailable
      */
     public function build()
     {
-        return $this->view('auth.sendTokenAcceptEmail',['url' => $this->url,'timeLimit' => $this->timeLimit]);
+        return $this->view('auth.sendTokenAcceptEmail',['url' => $this->url]);
     }
 }

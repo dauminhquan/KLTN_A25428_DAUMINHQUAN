@@ -1,2 +1,1 @@
-Url xác thực tài khoản của bạn là: {{$url}}<br>
-Thời gian kết thúc: {{$timeLimit}}
+Url xác thực tài khoản của bạn là: <a href="{{$url}}">{{$url}}</a><br>

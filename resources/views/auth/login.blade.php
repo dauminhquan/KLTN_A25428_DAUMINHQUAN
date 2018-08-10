@@ -48,7 +48,7 @@
         <div class="content-wrapper">
 
             @if($errors->any())
-                <h6 class="text-danger text-center">{{$errors->first()}}</h6>
+                <h6 class="text-danger text-center" id="text-error">{{$errors->first()}}</h6>
             @endif
             <div class="content" >
 
@@ -70,6 +70,11 @@
 </div>
 
 <script type="text/javascript" src="{{asset("assets/js/build/pages/auth/login.js")}}"></script>
-
+<script>
+    setTimeout(function(){
+        let textError = document.getElementById('text-error');
+        textError.remove()
+    },5000)
+</script>
 </body>
 </html>

@@ -65,7 +65,7 @@ class AuthService extends BaseService /*implements ManageInterface*/
             $enterprise->user_id = $user->id;
             $enterprise->update();
         }
-        $token = str_random(30);
+        $token = str_random(50);
         $timeLimit = $user->time_limit = now()->addMinute(15);
         $user->accept_token = $token;
         $user->update();

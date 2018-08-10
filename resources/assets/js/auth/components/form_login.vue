@@ -17,7 +17,6 @@
                 </div>
 
             </div>
-
             <div class="form-group has-feedback has-feedback-left">
                 <input type="password" class="form-control" v-model="infoLogin.password" placeholder="Password">
                 <div class="form-control-feedback">
