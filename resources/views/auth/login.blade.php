@@ -73,7 +73,10 @@
 <script>
     setTimeout(function(){
         let textError = document.getElementById('text-error');
-        textError.remove()
+        if(textError != null)
+        {
+            textError.remove()
+        }
     },5000)
 </script>
 </body>

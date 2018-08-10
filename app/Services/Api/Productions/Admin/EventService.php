@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Notifications\NotifyEvent;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 

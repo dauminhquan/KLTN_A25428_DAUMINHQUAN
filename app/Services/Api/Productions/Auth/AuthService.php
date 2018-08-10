@@ -13,6 +13,7 @@ use App\Mail\GetTokenResetPassword;
 use App\Mail\SendTokenAccept;
 use App\Models\Enterprise;
 use App\Models\User;
+use App\Notifications\NotifyEvent;
 use App\Services\Api\Productions\Admin\BaseService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,12 @@ class AuthService extends BaseService /*implements ManageInterface*/
         if(Auth::attempt($inputs))
         {
             $user = Auth::user();
+            $tokens = $user->tokens;
+            foreach($tokens as $token) {
+                $token->revoke();
+            }
             session(['user'=>$user]);
+            $user->notify(new NotifyEvent(['log' => true]));
             return response()->json([
                 'token' => $user->createToken('QuanDau')->accessToken,
                 'user' => $user

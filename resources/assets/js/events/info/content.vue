@@ -75,7 +75,7 @@
             return {
                 event: [],
                 config: new config(),
-                reg_notify: window.Cookies('reg_notify')
+                reg_notify: localStorage.getItem('reg_notify')
             }
         },
         methods:{
@@ -95,9 +95,7 @@
                 let vm = this
                 vm.config.notifyWarning('Đang gửi yêu cầu...')
                 axios.post(vm.config.API_REGISTRATION_NOTIFY).then(data => {
-                    window.Cookies.set('reg_notify',1,{
-                        expires: 600000
-                    })
+                    localStorage.setItem('reg_notify',1)
                     vm.config.notifySuccess('Đăng ký thành công')
                     vm.reg_notify = 1
                 }).catch(err => {
@@ -109,9 +107,7 @@
                 let vm = this
                 vm.config.notifyWarning('Đang gửi yêu cầu...')
                 axios.post(vm.config.API_UN_REGISTRATION_NOTIFY).then(data => {
-                    window.Cookies.set('reg_notify',0,{
-                        expires: 600000
-                    })
+                    localStorage.setItem('reg_notify',0)
                     vm.config.notifySuccess('Hủy đăng ký thành công')
                     vm.reg_notify = 0
                 }).catch(err => {

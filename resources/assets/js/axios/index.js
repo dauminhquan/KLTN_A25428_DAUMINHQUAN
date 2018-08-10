@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-window.Cookies = require('cookies-js');
-
-let token = window.Cookies('token')
+let token = localStorage.getItem('token')
 let csrf_token = document.head.querySelector('meta[name="csrf-token"]');
 const ax = axios.create()
 ax.defaults.headers.common['Authorization'] = `Bearer ${token}`;

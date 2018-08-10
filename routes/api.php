@@ -172,6 +172,7 @@ Route::group(['namespace' => 'Auth'],function (){
     Route::post('logout','AuthController@logout')->middleware(['remove-session','auth:api']);
     Route::post('get-token','AuthController@getToken');
     Route::put('reset-password','AuthController@resetPassword');
+    Route::get('remove-session','AuthController@removeSession');
 });
 Route::group(['prefix' => '/registration'],function(){
     Route::post('student','Student\AuthController@registration');
@@ -181,3 +182,4 @@ Route::group(['prefix' => '/registration'],function(){
 Route::group(['prefix' => '/re-send-accept-token'],function(){
     Route::post('enterprise','Enterprise\AuthController@reSendAcceptToken');
 });
+

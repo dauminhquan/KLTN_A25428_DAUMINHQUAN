@@ -20,7 +20,7 @@ import Echo from 'laravel-echo'
 window.Pusher = require('pusher-js');
 
 
-let token = window.Cookies('token')
+let token = localStorage.getItem('token')
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
@@ -33,7 +33,7 @@ window.Echo = new Echo({
     },
 });
 
-let user = window.Cookies('user')
+let user = localStorage.getItem('user')
 
 if(user != undefined)
 {
@@ -48,24 +48,49 @@ $(window).on('load', function() {
 function listenForChanges(id) {
     window.Echo.private('App.Models.User.'+id)
         .notification(notify => {
-            console.log(notify)
             if (! ('Notification' in window)) {
                 alert('Web Notification is not supported');
                 return;
             }
             Notification.requestPermission( permission => {
-                var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
-                    title: 'ThangLong University',
-                    body: notify.title, // content for the alert
-                    icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
-                });
-                if(notify.event_id != undefined)
-                {
-                    notification.onclick = function () {
-                        window.open(window.location.origin+'/events/'+notify.event_id,'_blank')
-                        notification.close()
-                    }
-                }
+                console.log(notify)
+               if(notify.reg != null && notify != undefined)
+               {
+                   notify = notify.reg
+                   var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                       title: 'ThangLong University',
+                       body: notify.title, // content for the alert
+                       icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
+                   });
+                   if(notify.event_id != undefined)
+                   {
+                       notification.onclick = function () {
+                           window.open(window.location.origin+'/events/'+notify.event_id,'_blank')
+                           notification.close()
+                       }
+                   }
+               }
+               if(notify.log != undefined && notify.log != null)
+               {
+                   var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                       title: 'ThangLong University',
+                       body: 'Có người vừa đăng nhập vào tài khoản của bạn', // content for the alert
+                       icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
+                   });
+                   $.ajax({
+                       url:'/api/remove-session',
+                       type:'get',
+                       success:function() {
+                           setTimeout(function () {
+                               window.location = '/login'
+                           },2000)
+                       },
+                       error: function () {
+                           alert('Đã có lỗi xảy ra. Vui lòng thử lại')
+                       }
+                   })
+
+               }
 
             });
         })

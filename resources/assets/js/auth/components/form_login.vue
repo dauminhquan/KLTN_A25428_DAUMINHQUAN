@@ -78,15 +78,12 @@
                             return 'text-danger' == element
                         })
                         vm.styleText.splice(index,1)
-                        window.Cookies.set('token',data.data.token,{
-                            expires: 600000
-                        })
-                        window.Cookies.set('reg_notify',data.data.user.notify,{
-                            expires: 600000
-                        })
-                        window.Cookies.set('user',data.data.user.id,{
-                            expires: 600000
-                        })
+                        localStorage.setItem('token',data.data.token)
+
+                        localStorage.setItem('reg_notify',data.data.user.notify)
+
+                        localStorage.setItem('user',data.data.user.id)
+
                         vm.Text = ''
                         vm.processing = false
                         window.location = vm.config.WEB_HOME

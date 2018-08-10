@@ -144,7 +144,6 @@
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#modal_form_vertical">
                         <i class="icon-lock position-left"></i> Đổi mật khẩu
                     </a>
-
                 </li>
             </ul>
         </div>

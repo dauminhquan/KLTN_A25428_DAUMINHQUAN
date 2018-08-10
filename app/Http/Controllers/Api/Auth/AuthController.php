@@ -36,5 +36,11 @@ class AuthController extends Controller
         }
         return response()->json(['message' => 'Đã có lỗi xảy ra'],401);
     }
+    public function removeSession(){
+        session()->flush();
+        return [
+          'message' => 'removed'
+        ];
+    }
 
 }
