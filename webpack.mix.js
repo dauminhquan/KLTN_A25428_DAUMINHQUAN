@@ -54,7 +54,7 @@ mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
 // mix.js('resources/assets/js/notifies/index/index.js', 'public/assets/js/build/pages/notifies/index.js');
 // mix.js('resources/assets/js/notifies/info/index.js', 'public/assets/js/build/pages/notifies/info.js');
 // //event
-// mix.js('resources/assets/js/events/index/index.js', 'public/assets/js/build/pages/events/index.js');
+mix.js('resources/assets/js/events/index/index.js', 'public/assets/js/build/pages/events/index.js');
 // mix.js('resources/assets/js/events/info/index.js', 'public/assets/js/build/pages/events/info.js');
 // // //auth
 // mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');

@@ -18,6 +18,25 @@ Route::group(['middleware' => 'web.check.auth'],function(){
         Route::get('/events',['uses' => 'EventController@index'])->name('index');
         Route::get('/events/{id}',['uses' => 'EventController@info'])->name('info');
     });
+    Route::post('/change-password',function(\Illuminate\Http\Request $request){
+        if($request->has('password') && $request->has('rep_password') && $request->has('old_password'))
+        {
+            if($request->rep_password != $request->password)
+            {
+                return back()->withErrors(['not_same' => true]);
+            }
+            $user = session('user');
+            $user = User::where('email',$user->email)->first();
+            if(\Illuminate\Support\Facades\Hash::check($request->old_password,$user->password))
+            {
+                $user->password = \Illuminate\Support\Facades\Hash::make($request->password);
+                $user->update();
+                return back();
+            }
+            return back()->withErrors(['not_true' => 1]);
+        }
+        abort(404);
+    });
 
 
 });

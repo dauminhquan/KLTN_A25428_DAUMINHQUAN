@@ -60,27 +60,35 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 173);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 173:
+/******/ ([
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(174);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
-
-/***/ 174:
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 
-var d3 = __webpack_require__(509);
+var d3 = __webpack_require__(12);
 
-__webpack_require__(510);
+__webpack_require__(13);
 
 generateBarChart("#members-online", 24, 50, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "members");
 
@@ -595,8 +603,7 @@ function dailyRevenue(element, height) {
 }
 
 /***/ }),
-
-/***/ 509:
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -5864,8 +5871,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 }();
 
 /***/ }),
-
-/***/ 510:
+/* 13 */
 /***/ (function(module, exports) {
 
 // d3.tip
@@ -6154,5 +6160,4 @@ d3.tip = function () {
 };
 
 /***/ })
-
-/******/ });
+/******/ ]);

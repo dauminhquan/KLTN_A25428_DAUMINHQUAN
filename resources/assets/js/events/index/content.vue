@@ -31,8 +31,8 @@
             <div class="text-center content-group-lg pt-20">
                 <ul class="pagination">
                     <li v-if="currentPage > 1" @click="currentPage--"><a href="#"><i class="icon-arrow-small-left"></i></a></li>
-                    <li v-for="inPage in listPage" @click="currentPage = inPage"><a href="#">{{inPage}}</a></li>
-                    <li v-if="currentPage < totalPage" @click="currentPage++"><a href="#"><i class="icon-arrow-small-right"></i></a></li>
+                    <li v-if="listPage.length > 1" v-for="inPage in listPage" @click="currentPage = inPage"><a href="#">{{inPage}}</a></li>
+                    <li v-if="currentPage < listPage[listPage.length - 1]" @click="currentPage++"><a href="#"><i class="icon-arrow-small-right"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -49,14 +49,21 @@
         },
         watch:{
           currentPage(value){
-              this.getData()
+              this.getEvents(value)
           }
         },
         computed: {
           listPage(){
               let vm  = this
               let pages = []
-                  for(let i = 1;i<vm.totalPage;i++)
+              let count = parseInt(vm.totalPage / 10)
+              if((vm.totalPage % 10 ) > 0)
+              {
+                  count++
+              }
+              console.log(count)
+              console.log(vm.totalPage)
+                  for(let i = 1;i<count+1;i++)
                   {
                       pages.push(i)
                   }
@@ -74,11 +81,11 @@
             }
         },
         methods:{
-            getEvents(){
+            getEvents(page=1){
                 let vm = this
                 vm.events = []
                 vm.searching = true
-                axios.get(vm.config.API_EVENTS).then(data => {
+                axios.get(vm.config.API_EVENTS+'?size=10&page='+page).then(data => {
                     vm.events = data.data.data
                     vm.totalPage = data.data.total
                     vm.currentPage = data.data.current_page

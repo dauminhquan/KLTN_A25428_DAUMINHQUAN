@@ -88,7 +88,7 @@
                         ?>"><i class="icon-user-plus"></i> Thông tin cá nhân</a></li>
                     <li class="divider"></li>
 
-                    <li><a href="javascript:void(0)" id="logout"><i class="icon-switch2"></i> Đăng xuất</a></li>
+                    <li><a href="javascript:void(0);" id="logout"><i class="icon-switch2"></i> Đăng xuất</a></li>
                 </ul>
             </li>
         </ul>
@@ -105,9 +105,15 @@
                 <li><a href="{{route('web.tasks.index')}}"><i class=" icon-newspaper position-left"></i> Bảng tin tuyển dụng</a></li>
                 <li><a href="{{route('web.notifies.index')}}"><i class="icon-bell2 position-left"></i> Thông báo nhà trường</a></li>
                 <li><a href="{{route('web.events.index')}}"><i class="icon-alarm position-left"></i> Các sự kiện sắp diễn ra</a></li>
-                <li class="dropdown">
+                <li>
                     <a href="{{route('student.profile')}}">
                         <i class="icon-profile position-left"></i> Thông tin cá nhân
+                    </a>
+
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal_form_vertical">
+                        <i class="icon-lock position-left"></i> Đổi mật khẩu
                     </a>
 
                 </li>
@@ -133,6 +139,12 @@
                     <a href="{{route('enterprise.profile')}}">
                         <i class="icon-profile position-left"></i> Thông tin cá nhân
                     </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal_form_vertical">
+                        <i class="icon-lock position-left"></i> Đổi mật khẩu
+                    </a>
+
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -177,10 +189,12 @@
                                         <li>
                                             <a href="#"><i class="icon-indent-decrease2"></i>  Quản lý sự kiện</a>
                                             <ul>
-                                                </li>
+                                                <li>
                                                     <a href="{{route('admin.events.index')}}"> Danh sách sự kiện</a>
                                                 </li>
-                                                <li><a href="{{route('web.events.index')}}">Xem bảng tin sự kiện</a></li>
+                                                <li>
+                                                    <a href="{{route('web.events.index')}}">Xem bảng tin sự kiện</a>
+                                                </li>
                                             </ul>
 
                                         </li>
@@ -271,6 +285,12 @@
                     </a>
 
                 </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal_form_vertical">
+                        <i class="icon-lock position-left"></i> Đổi mật khẩu
+                    </a>
+
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -303,11 +323,61 @@
 <div class="page-container" id="page-container">
     @section("page-content")@show
 </div>
+<div id="modal_form_vertical" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Đổi mật khẩu</h5>
 
+            </div>
+
+            <form method="post" action="/change-password">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>Nhập mật khẩu cũ</label>
+                                    <input name="old_password" type="password" placeholder="Nhập mật khẩu của bạn" class="form-control">
+                                    @if($errors->first('not_same'))<small class="text-danger">Mật khẩu cũ bạn nhập không đúng</small>@endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Nhập mật khẩu mới</label>
+                                <input type="password" name="password" placeholder="Nhập mật khẩu mới" class="form-control">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label>Nhập lại mật khẩu mới</label>
+                                <input type="password" name="rep_password" placeholder="Nhập mật khẩu mới" class="form-control">
+                                @if($errors->first('not_true'))<small class="text-danger">Mật khẩu mới bạn nhập không khớp</small>@endif
+                            </div>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="footer text-muted">
     &copy; 2018. <a href="{{route('web.home')}}">UEC TLU</a> by <a href="http://thanglong.edu.vn" target="_blank">ThangLong University</a>
 </div>
+
 <script type="text/javascript" src="{{asset("assets/js/common.js")}}"></script>
+@if($errors->any())
+    <script>
+        $('#modal_form_vertical').modal('show')
+    </script>
+@endif
 @section('theme-asset')
 @show
 @section('js-page')
