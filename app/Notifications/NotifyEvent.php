@@ -41,7 +41,7 @@ class NotifyEvent extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        if($this->event['log'] == true)
+        if(!isset($this->event['log']))
         {
             $title = 'Có sự kiện mới từ nhà trường';
             if(isset($this->event->titile))
