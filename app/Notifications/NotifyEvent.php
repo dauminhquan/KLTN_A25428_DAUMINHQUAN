@@ -59,6 +59,7 @@ class NotifyEvent extends Notification implements ShouldQueue
                 ->action('Xem chi tiết', $url)
                 ->line('Hãy ghé thăm bạn nhé!');
         }
+        return null;
     }
     public function toBroadcast()
     {
