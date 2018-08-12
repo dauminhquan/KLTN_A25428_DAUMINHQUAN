@@ -30,11 +30,7 @@ class NotifyEvent extends Notification implements ShouldQueue
      */
     public function via()
     {
-        if(isset($this->event['log']))
-        {
-            return ['broadcast'];
-        }
-        return ['mail','broadcast'];
+        return ['mail'];
     }
 
     /**
@@ -61,22 +57,5 @@ class NotifyEvent extends Notification implements ShouldQueue
                 ->action('Xem chi tiết', $url)
                 ->line('Hãy ghé thăm bạn nhé!');
     }
-    public function toBroadcast()
-    {
-        return $this->event;
-    }
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            'text' => 'hello'
-        ];
-    }
-
 
 }

@@ -15,85 +15,97 @@ require('bootstrap3')
 require('./plugin/drilldown')
 require('./plugin/nicescroll.min')
 
-import Echo from 'laravel-echo'
+window.io = require('socket.io-client');
 
-window.Pusher = require('pusher-js');
-
-
-let token = localStorage.getItem('token')
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true,
-    auth: {
-        headers: {
-            Authorization: 'Bearer ' + token
-        },
-    },
-});
-
-let user = localStorage.getItem('user')
-
+var user = localStorage.getItem('user')
+var socket = io(window.location.hostname +':3000')
 if(user != undefined)
 {
-    listenForChanges(user)
+    if (! ('Notification' in window)) {
+        alert('Web Notification is not supported');
+    }
+    else{
+        socket.on('login-'+user, function(data){
+            if(data == true)
+            {
+                Notification.requestPermission( permission => {
+                    var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                        title: 'ThangLong University',
+                        body: 'Có người vừa đăng nhập vào tài khoản của bạn', // content for the alert
+                        icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
+                    });
+                    $.ajax({
+                        url:'/api/remove-session',
+                        type:'get',
+                        success:function() {
+                            setTimeout(function () {
+                                window.location = '/login'
+                            },2000)
+                        },
+                        error: function () {
+                            alert('Đã có lỗi xảy ra. Vui lòng thử lại')
+                        }
+                    })
+
+                });
+            }
+        });
+        socket.on('event-'+user,function(data){
+            Notification.requestPermission( permission => {
+                var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                    title: 'ThangLong University',
+                    body: data.title, // content for the alert
+                    icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
+                });
+                console.log(data)
+                if(data.event_id != undefined)
+                {
+                    notification.onclick = function () {
+                        window.open(window.location.origin+'/events/'+data.event_id,'_blank')
+                        notification.close()
+                    }
+                }
+
+            });
+        })
+
+        socket.on('reg-event-'+user,function(data){
+            console.log(data)
+            if(data == true)
+            {
+                Notification.requestPermission( permission => {
+                    var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                        title: 'ThangLong University',
+                        body: 'Bạn đã đăng ký nhận tin thành công', // content for the alert
+                        icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
+                    });
+
+                });
+            }
+        })
+        socket.on('un-reg-event-'+user,function(data){
+            if(data == true)
+            {
+                Notification.requestPermission( permission => {
+                    var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
+                        title: 'ThangLong University',
+                        body: 'Bạn đã hủy đăng ký nhận tin thành công', // content for the alert
+                        icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
+                    });
+                });
+            }
+        })
+    }
+
+
+
+
 }
+
 
 $(window).on('load', function() {
     $('body').removeClass('no-transitions');
 });
-
-
-function listenForChanges(id) {
-    window.Echo.private('App.Models.User.'+id)
-        .notification(notify => {
-            if (! ('Notification' in window)) {
-                alert('Web Notification is not supported');
-                return;
-            }
-            Notification.requestPermission( permission => {
-               if(notify.reg != null && notify != undefined)
-               {
-                   notify = notify.reg
-                   var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
-                       title: 'ThangLong University',
-                       body: notify.title, // content for the alert
-                       icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
-                   });
-                   if(notify.event_id != undefined)
-                   {
-                       notification.onclick = function () {
-                           window.open(window.location.origin+'/events/'+notify.event_id,'_blank')
-                           notification.close()
-                       }
-                   }
-               }
-               if(notify.log != undefined && notify.log != null)
-               {
-                   var notification = new Notification('Có thông báo mới từ đại học Thăng long!', {
-                       title: 'ThangLong University',
-                       body: 'Có người vừa đăng nhập vào tài khoản của bạn', // content for the alert
-                       icon: "https://upload.wikimedia.org/wikipedia/vi/thumb/a/ad/LogoTLU.jpg/480px-LogoTLU.jpg", // optional image url,
-                   });
-                   $.ajax({
-                       url:'/api/remove-session',
-                       type:'get',
-                       success:function() {
-                           setTimeout(function () {
-                               window.location = '/login'
-                           },2000)
-                       },
-                       error: function () {
-                           alert('Đã có lỗi xảy ra. Vui lòng thử lại')
-                       }
-                   })
-
-               }
-
-            });
-        })
-}
 
 $(function() {
 

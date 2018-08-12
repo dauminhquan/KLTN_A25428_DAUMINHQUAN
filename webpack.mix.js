@@ -3,7 +3,7 @@ let mix = require('laravel-mix');
 // //common
 mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
 //
-// mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
+mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
 // //admin
 // // enterprise
 // mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js/build/pages/admin/enterprises/index.js');
@@ -57,7 +57,7 @@ mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
 // mix.js('resources/assets/js/events/index/index.js', 'public/assets/js/build/pages/events/index.js');
 // mix.js('resources/assets/js/events/info/index.js', 'public/assets/js/build/pages/events/info.js');
 // // //auth
-// mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
+mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
 //
 // //
 // mix.copyDirectory('resources/assets/images', 'public/assets/images');

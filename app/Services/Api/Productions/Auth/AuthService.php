@@ -13,12 +13,12 @@ use App\Mail\GetTokenResetPassword;
 use App\Mail\SendTokenAccept;
 use App\Models\Enterprise;
 use App\Models\User;
-use App\Notifications\NotifyEvent;
 use App\Services\Api\Productions\Admin\BaseService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
 
 class AuthService extends BaseService /*implements ManageInterface*/
 {
@@ -31,8 +31,14 @@ class AuthService extends BaseService /*implements ManageInterface*/
             foreach($tokens as $token) {
                 $token->revoke();
             }
+            $connect = Redis::connection();
+            $connect->publish('message',json_encode([
+                'login' => [
+                    'id' => $user->id
+                ]
+            ]));
             session(['user'=>$user]);
-            $user->notify(new NotifyEvent(['log' => true]));
+//            $user->notify(new NotifyEvent(['log' => true]));
             return response()->json([
                 'token' => $user->createToken('QuanDau')->accessToken,
                 'user' => $user
