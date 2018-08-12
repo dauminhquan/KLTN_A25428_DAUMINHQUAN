@@ -49,7 +49,9 @@ class EventController extends Controller
         $user->notify = 1;
         $user->update();
         $user->notify(new NotifyEvent([
-            'title' => 'Bạn đã đăng ký nhận tin thành công'
+            'reg' => [
+                'title' => 'Bạn đã đăng ký nhận tin thành công'
+            ]
         ]));
         return $user;
     }
@@ -58,7 +60,10 @@ class EventController extends Controller
         $user->notify = 0;
         $user->update();
         $user->notify(new NotifyEvent([
-            'title' => 'Bạn đã hủy nhận tin thành công'
+            'reg' => [
+                'title' => 'Bạn đã hủy nhận tin thành công'
+            ]
+
         ]));
         return $user;
     }

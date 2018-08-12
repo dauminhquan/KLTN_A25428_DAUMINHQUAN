@@ -53,7 +53,6 @@ function listenForChanges(id) {
                 return;
             }
             Notification.requestPermission( permission => {
-                console.log(notify)
                if(notify.reg != null && notify != undefined)
                {
                    notify = notify.reg

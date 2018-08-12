@@ -78,7 +78,11 @@ class EventService extends BaseService implements ManageInterface
         {
             foreach ($users as $user)
             {
-                $user->notify(new NotifyEvent(['event_id' => $event->id,'title' => $event->title]));
+                $user->notify(new NotifyEvent([
+                    'reg' => [
+                        'event_id' => $event->id,'title' => $event->title
+                    ]
+                ]));
             }
         }
         return $event;

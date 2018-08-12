@@ -37,7 +37,6 @@ class EventStudentManageController extends Controller
     {
         return $this->eventStudentService->update($request->all(),$id);
     }
-
     public function destroy($id)
     {
         return $this->eventStudentService->destroy($id);
