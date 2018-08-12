@@ -1,1 +1,6162 @@
-!function(n){var t={};function e(r){if(t[r])return t[r].exports;var i=t[r]={i:r,l:!1,exports:{}};return n[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:r})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,"a",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p="/",e(e.s=73)}({73:function(n,t,e){n.exports=e(74)},74:function(n,t,e){var r=e(75);e(76),function(n,t,e,i,o,u,a,l,c){for(var f=[],s=0;s<t;s++)f.push(Math.round(10*Math.random())+10);var h=r.select(n),p=h.node().getBoundingClientRect().width,g=r.scale.ordinal().rangeBands([0,p],.3),d=r.scale.linear().range([0,e]);g.domain(r.range(0,f.length)),d.domain([0,r.max(f)]);var v=h.append("svg"),y=v.attr("width",p).attr("height",e).append("g"),m=y.selectAll("rect").data(f).enter().append("rect").attr("class","d3-random-bars").attr("width",g.rangeBand()).attr("x",function(n,t){return g(t)}).style("fill",l);r.tip().attr("class","d3-tip").offset([-10,0]);i?m.attr("height",0).attr("y",e).transition().attr("height",function(n){return d(n)}).attr("y",function(n){return e-d(n)}).delay(function(n,t){return t*a}).duration(u).ease(o):m.attr("height",function(n){return d(n)}).attr("y",function(n){return e-d(n)});function x(){p=h.node().getBoundingClientRect().width,v.attr("width",p),y.attr("width",p),g.rangeBands([0,p],.3),y.selectAll(".d3-random-bars").attr("width",g.rangeBand()).attr("x",function(n,t){return g(t)})}$(window).on("resize",x),$(document).on("click",".sidebar-control",x)}("#members-online",24,50,!0,"elastic",1200,50,"rgba(255,255,255,0.5)"),function(n,t,e,i,o,u,a,l){for(var c=r.select(n),f={top:0,right:0,bottom:0,left:0},s=c.node().getBoundingClientRect().width-f.left-f.right,i=i-f.top-f.bottom,h=[],p=0;p<e;p++)h.push(Math.floor(Math.random()*e)+5);var g=r.scale.linear().range([0,s]),d=r.scale.linear().range([i-5,5]);g.domain([1,e-3]),d.domain([0,e]);var v=r.svg.line().interpolate(o).x(function(n,t){return g(t)}).y(function(n,t){return d(n)}),y=r.svg.area().interpolate(o).x(function(n,t){return g(t)}).y0(i).y1(function(n){return d(n)}),m=c.append("svg"),x=m.attr("width",s+f.left+f.right).attr("height",i+f.top+f.bottom).append("g").attr("transform","translate("+f.left+","+f.top+")"),M=x.append("defs").append("clipPath").attr("id",function(t,e){return"load-clip-"+n.substring(1)}).append("rect").attr("class","load-clip").attr("width",0).attr("height",i);M.transition().duration(1e3).ease("linear").attr("width",s);var w=x.append("g").attr("clip-path",function(t,e){return"url(#load-clip-"+n.substring(1)+")"}).append("path").datum(h).attr("transform","translate("+g(0)+",0)");"area"==t?w.attr("d",y).attr("class","d3-area").style("fill",l):w.attr("d",v).attr("class","d3-line d3-line-medium").style("stroke",l);function b(){s=c.node().getBoundingClientRect().width-f.left-f.right,m.attr("width",s+f.left+f.right),x.attr("width",s+f.left+f.right),g.range([0,s]),M.attr("width",s),x.select(".d3-line").attr("d",v),x.select(".d3-area").attr("d",y)}w.style("opacity",0).transition().duration(750).style("opacity",1),setInterval(function(){h.push(Math.floor(Math.random()*e)+5),h.shift(),w.attr("transform",null).transition().duration(u).ease("linear").attr("transform","translate("+g(0)+",0)"),"area"==t?w.attr("d",y).attr("class","d3-area").style("fill",l):w.attr("d",v).attr("class","d3-line d3-line-medium").style("stroke",l)},a),$(window).on("resize",b),$(document).on("click",".sidebar-control",b)}("#server-load","area",30,50,"basis",750,2e3,"rgba(255,255,255,0.5)"),function(n,t){var e=[{date:"04/13/14",alpha:"60"},{date:"04/14/14",alpha:"35"},{date:"04/15/14",alpha:"65"},{date:"04/16/14",alpha:"50"},{date:"04/17/14",alpha:"65"},{date:"04/18/14",alpha:"20"},{date:"04/19/14",alpha:"60"}],i=r.select(n),o={top:0,right:0,bottom:0,left:0},u=i.node().getBoundingClientRect().width-o.left-o.right,t=t-o.top-o.bottom,a=20,l=r.time.format("%m/%d/%y").parse,c=(r.time.format("%a, %B %e"),i.append("svg")),f=c.attr("width",u+o.left+o.right).attr("height",t+o.top+o.bottom).append("g").attr("transform","translate("+o.left+","+o.top+")");e.forEach(function(n){n.date=l(n.date),n.alpha=+n.alpha});var s=r.time.scale().range([a,u-a]),h=r.scale.linear().range([t,5]);s.domain(r.extent(e,function(n){return n.date})),h.domain([0,r.max(e,function(n){return Math.max(n.alpha)})]);var p=r.svg.line().x(function(n){return s(n.date)}).y(function(n){return h(n.alpha)}),g=f.append("defs").append("clipPath").attr("id","clip-line-small").append("rect").attr("class","clip").attr("width",0).attr("height",t);g.transition().duration(1e3).ease("linear").attr("width",u);f.append("path").attr({d:p(e),"clip-path":"url(#clip-line-small)",class:"d3-line d3-line-medium"}).style("stroke","#fff");f.select(".line-tickets").transition().duration(1e3).ease("linear");var d=f.append("g").selectAll(".d3-line-guides-group").data(e);d.enter().append("line").attr("class","d3-line-guides").attr("x1",function(n,t){return s(n.date)}).attr("y1",function(n,e){return t}).attr("x2",function(n,t){return s(n.date)}).attr("y2",function(n,e){return t}).style("stroke","rgba(255,255,255,0.3)").style("stroke-dasharray","4,2").style("shape-rendering","crispEdges"),d.transition().duration(1e3).delay(function(n,t){return 150*t}).attr("y2",function(n,t){return h(n.alpha)});var v=f.insert("g").selectAll(".d3-line-circle").data(e).enter().append("circle").attr("class","d3-line-circle d3-line-circle-medium").attr("cx",p.x()).attr("cy",p.y()).attr("r",3).style("stroke","#fff").style("fill","#29B6F6");function y(){u=i.node().getBoundingClientRect().width-o.left-o.right,c.attr("width",u+o.left+o.right),f.attr("width",u+o.left+o.right),s.range([a,u-a]),g.attr("width",u),f.selectAll(".d3-line").attr("d",p(e)),f.selectAll(".d3-line-circle").attr("cx",p.x()),f.selectAll(".d3-line-guides").attr("x1",function(n,t){return s(n.date)}).attr("x2",function(n,t){return s(n.date)})}v.style("opacity",0).transition().duration(250).ease("linear").delay(1e3).style("opacity",1),v.on("mouseover",function(n){r.select(this).transition().duration(250).attr("r",4)}),$(window).on("resize",y),$(document).on("click",".sidebar-control",y)}("#today-revenue",50)},75:function(n,t,e){var r,i,o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(n){return typeof n}:function(n){return n&&"function"==typeof Symbol&&n.constructor===Symbol&&n!==Symbol.prototype?"symbol":typeof n};!function(){function u(n){return n&&(n.ownerDocument||n.document||n).documentElement}function a(n){return n&&(n.ownerDocument&&n.ownerDocument.defaultView||n.document&&n||n.defaultView)}function l(n,t){return t>n?-1:n>t?1:n>=t?0:NaN}function c(n){return null===n?NaN:+n}function f(n){return!isNaN(n)}function s(n){return{left:function(t,e,r,i){for(arguments.length<3&&(r=0),arguments.length<4&&(i=t.length);i>r;){var o=r+i>>>1;n(t[o],e)<0?r=o+1:i=o}return r},right:function(t,e,r,i){for(arguments.length<3&&(r=0),arguments.length<4&&(i=t.length);i>r;){var o=r+i>>>1;n(t[o],e)>0?i=o:r=o+1}return r}}}function h(n){return n.length}function p(n,t){for(var e in t)Object.defineProperty(n.prototype,e,{value:t[e],enumerable:!1})}function g(){this._=Object.create(null)}function d(n){return(n+="")===so||n[0]===ho?ho+n:n}function v(n){return(n+="")[0]===ho?n.slice(1):n}function y(n){return d(n)in this._}function m(n){return(n=d(n))in this._&&delete this._[n]}function x(){var n=[];for(var t in this._)n.push(v(t));return n}function M(){var n=0;for(var t in this._)++n;return n}function w(){for(var n in this._)return!1;return!0}function b(){this._=Object.create(null)}function _(n){return n}function S(n,t,e){return function(){var r=e.apply(t,arguments);return r===t?n:r}}function k(n,t){if(t in n)return t;t=t.charAt(0).toUpperCase()+t.slice(1);for(var e=0,r=po.length;r>e;++e){var i=po[e]+t;if(i in n)return i}}function N(){}function E(){}function A(n){function t(){for(var t,r=e,i=-1,o=r.length;++i<o;)(t=r[i].on)&&t.apply(this,arguments);return n}var e=[],r=new g;return t.on=function(t,i){var o,u=r.get(t);return arguments.length<2?u&&u.on:(u&&(u.on=null,e=e.slice(0,o=e.indexOf(u)).concat(e.slice(o+1)),r.remove(t)),i&&e.push(r.set(t,{on:i})),n)},t}function C(){no.event.preventDefault()}function z(){for(var n,t=no.event;n=t.sourceEvent;)t=n;return t}function T(n){for(var t=new E,e=0,r=arguments.length;++e<r;)t[arguments[e]]=A(t);return t.of=function(e,r){return function(i){try{var o=i.sourceEvent=no.event;i.target=n,no.event=i,t[i.type].apply(e,r)}finally{no.event=o}}},t}function L(n){return vo(n,Mo),n}function q(n){return"function"==typeof n?n:function(){return yo(n,this)}}function R(n){return"function"==typeof n?n:function(){return mo(n,this)}}function D(n,t){return n=no.ns.qualify(n),null==t?n.local?function(){this.removeAttributeNS(n.space,n.local)}:function(){this.removeAttribute(n)}:"function"==typeof t?n.local?function(){var e=t.apply(this,arguments);null==e?this.removeAttributeNS(n.space,n.local):this.setAttributeNS(n.space,n.local,e)}:function(){var e=t.apply(this,arguments);null==e?this.removeAttribute(n):this.setAttribute(n,e)}:n.local?function(){this.setAttributeNS(n.space,n.local,t)}:function(){this.setAttribute(n,t)}}function P(n){return n.trim().replace(/\s+/g," ")}function j(n){return new RegExp("(?:^|\\s+)"+no.requote(n)+"(?:\\s+|$)","g")}function U(n){return(n+"").trim().split(/^|\s+/)}function H(n,t){var e=(n=U(n).map(F)).length;return"function"==typeof t?function(){for(var r=-1,i=t.apply(this,arguments);++r<e;)n[r](this,i)}:function(){for(var r=-1;++r<e;)n[r](this,t)}}function F(n){var t=j(n);return function(e,r){if(i=e.classList)return r?i.add(n):i.remove(n);var i=e.getAttribute("class")||"";r?(t.lastIndex=0,t.test(i)||e.setAttribute("class",P(i+" "+n))):e.setAttribute("class",P(i.replace(t," ")))}}function O(n,t,e){return null==t?function(){this.style.removeProperty(n)}:"function"==typeof t?function(){var r=t.apply(this,arguments);null==r?this.style.removeProperty(n):this.style.setProperty(n,r,e)}:function(){this.style.setProperty(n,t,e)}}function I(n,t){return null==t?function(){delete this[n]}:"function"==typeof t?function(){var e=t.apply(this,arguments);null==e?delete this[n]:this[n]=e}:function(){this[n]=t}}function Y(n){return"function"==typeof n?n:(n=no.ns.qualify(n)).local?function(){return this.ownerDocument.createElementNS(n.space,n.local)}:function(){var t=this.ownerDocument,e=this.namespaceURI;return e===wo&&t.documentElement.namespaceURI===wo?t.createElement(n):t.createElementNS(e,n)}}function B(){var n=this.parentNode;n&&n.removeChild(this)}function V(n){return{__data__:n}}function Z(n){return function(){return xo(this,n)}}function $(n){return arguments.length||(n=l),function(t,e){return t&&e?n(t.__data__,e.__data__):!t-!e}}function X(n,t){for(var e=0,r=n.length;r>e;e++)for(var i,o=n[e],u=0,a=o.length;a>u;u++)(i=o[u])&&t(i,u,e);return n}function W(n){return vo(n,_o),n}function G(n,t,e){function r(){var t=this[i];t&&(this.removeEventListener(n,t,t.$),delete this[i])}var i="__on"+n,o=n.indexOf("."),u=J;o>0&&(n=n.slice(0,o));var a=So.get(n);return a&&(n=a,u=K),o?t?function(){var o=u(t,eo(arguments));r.call(this),this.addEventListener(n,this[i]=o,o.$=e),o._=t}:r:t?N:function(){var t,e=new RegExp("^__on([^.]+)"+no.requote(n)+"$");for(var r in this)if(t=r.match(e)){var i=this[r];this.removeEventListener(t[1],i,i.$),delete this[r]}}}function J(n,t){return function(e){var r=no.event;no.event=e,t[0]=this.__data__;try{n.apply(this,t)}finally{no.event=r}}}function K(n,t){var e=J(n,t);return function(n){var t=this,r=n.relatedTarget;r&&(r===t||8&r.compareDocumentPosition(t))||e.call(t,n)}}function Q(n){var t=".dragsuppress-"+ ++No,e="click"+t,r=no.select(a(n)).on("touchmove"+t,C).on("dragstart"+t,C).on("selectstart"+t,C);if(null==ko&&(ko=!("onselectstart"in n)&&k(n.style,"userSelect")),ko){var i=u(n).style,o=i[ko];i[ko]="none"}return function(n){if(r.on(t,null),ko&&(i[ko]=o),n){var u=function(){r.on(e,null)};r.on(e,function(){C(),u()},!0),setTimeout(u,0)}}}function nn(n,t){t.changedTouches&&(t=t.changedTouches[0]);var e=n.ownerSVGElement||n;if(e.createSVGPoint){var r=e.createSVGPoint();if(0>Eo){var i=a(n);if(i.scrollX||i.scrollY){var o=(e=no.select("body").append("svg").style({position:"absolute",top:0,left:0,margin:0,padding:0,border:"none"},"important"))[0][0].getScreenCTM();Eo=!(o.f||o.e),e.remove()}}return Eo?(r.x=t.pageX,r.y=t.pageY):(r.x=t.clientX,r.y=t.clientY),[(r=r.matrixTransform(n.getScreenCTM().inverse())).x,r.y]}var u=n.getBoundingClientRect();return[t.clientX-u.left-n.clientLeft,t.clientY-u.top-n.clientTop]}function tn(){return no.event.changedTouches[0].identifier}function en(n){return n>0?1:0>n?-1:0}function rn(n,t,e){return(t[0]-n[0])*(e[1]-n[1])-(t[1]-n[1])*(e[0]-n[0])}function on(n){return n>1?0:-1>n?zo:Math.acos(n)}function un(n){return n>1?qo:-1>n?-qo:Math.asin(n)}function an(n){return((n=Math.exp(n))+1/n)/2}function ln(n){return(n=Math.sin(n/2))*n}function cn(){}function fn(n,t,e){return this instanceof fn?(this.h=+n,this.s=+t,void(this.l=+e)):arguments.length<2?n instanceof fn?new fn(n.h,n.s,n.l):Sn(""+n,kn,fn):new fn(n,t,e)}function sn(n,t,e){function r(n){return Math.round(255*function(n){return n>360?n-=360:0>n&&(n+=360),60>n?i+(o-i)*n/60:180>n?o:240>n?i+(o-i)*(240-n)/60:i}(n))}var i,o;return n=isNaN(n)?0:(n%=360)<0?n+360:n,t=isNaN(t)?0:0>t?0:t>1?1:t,i=2*(e=0>e?0:e>1?1:e)-(o=.5>=e?e*(1+t):e+t-e*t),new Mn(r(n+120),r(n),r(n-120))}function hn(n,t,e){return this instanceof hn?(this.h=+n,this.c=+t,void(this.l=+e)):arguments.length<2?n instanceof hn?new hn(n.h,n.c,n.l):vn(n instanceof gn?n.l:(n=Nn((n=no.rgb(n)).r,n.g,n.b)).l,n.a,n.b):new hn(n,t,e)}function pn(n,t,e){return isNaN(n)&&(n=0),isNaN(t)&&(t=0),new gn(e,Math.cos(n*=Ro)*t,Math.sin(n)*t)}function gn(n,t,e){return this instanceof gn?(this.l=+n,this.a=+t,void(this.b=+e)):arguments.length<2?n instanceof gn?new gn(n.l,n.a,n.b):n instanceof hn?pn(n.h,n.c,n.l):Nn((n=Mn(n)).r,n.g,n.b):new gn(n,t,e)}function dn(n,t,e){var r=(n+16)/116,i=r+t/500,o=r-e/200;return new Mn(xn(3.2404542*(i=yn(i)*Yo)-1.5371385*(r=yn(r)*Bo)-.4985314*(o=yn(o)*Vo)),xn(-.969266*i+1.8760108*r+.041556*o),xn(.0556434*i-.2040259*r+1.0572252*o))}function vn(n,t,e){return n>0?new hn(Math.atan2(e,t)*Do,Math.sqrt(t*t+e*e),n):new hn(NaN,NaN,n)}function yn(n){return n>.206893034?n*n*n:(n-4/29)/7.787037}function mn(n){return n>.008856?Math.pow(n,1/3):7.787037*n+4/29}function xn(n){return Math.round(255*(.00304>=n?12.92*n:1.055*Math.pow(n,1/2.4)-.055))}function Mn(n,t,e){return this instanceof Mn?(this.r=~~n,this.g=~~t,void(this.b=~~e)):arguments.length<2?n instanceof Mn?new Mn(n.r,n.g,n.b):Sn(""+n,Mn,sn):new Mn(n,t,e)}function wn(n){return new Mn(n>>16,n>>8&255,255&n)}function bn(n){return wn(n)+""}function _n(n){return 16>n?"0"+Math.max(0,n).toString(16):Math.min(255,n).toString(16)}function Sn(n,t,e){var r,i,o,u=0,a=0,l=0;if(r=/([a-z]+)\((.*)\)/.exec(n=n.toLowerCase()))switch(i=r[2].split(","),r[1]){case"hsl":return e(parseFloat(i[0]),parseFloat(i[1])/100,parseFloat(i[2])/100);case"rgb":return t(An(i[0]),An(i[1]),An(i[2]))}return(o=Xo.get(n))?t(o.r,o.g,o.b):(null==n||"#"!==n.charAt(0)||isNaN(o=parseInt(n.slice(1),16))||(4===n.length?(u=(3840&o)>>4,u|=u>>4,a=240&o,a|=a>>4,l=15&o,l|=l<<4):7===n.length&&(u=(16711680&o)>>16,a=(65280&o)>>8,l=255&o)),t(u,a,l))}function kn(n,t,e){var r,i,o=Math.min(n/=255,t/=255,e/=255),u=Math.max(n,t,e),a=u-o,l=(u+o)/2;return a?(i=.5>l?a/(u+o):a/(2-u-o),r=n==u?(t-e)/a+(e>t?6:0):t==u?(e-n)/a+2:(n-t)/a+4,r*=60):(r=NaN,i=l>0&&1>l?0:r),new fn(r,i,l)}function Nn(n,t,e){var r=mn((.4124564*(n=En(n))+.3575761*(t=En(t))+.1804375*(e=En(e)))/Yo),i=mn((.2126729*n+.7151522*t+.072175*e)/Bo);return gn(116*i-16,500*(r-i),200*(i-mn((.0193339*n+.119192*t+.9503041*e)/Vo)))}function En(n){return(n/=255)<=.04045?n/12.92:Math.pow((n+.055)/1.055,2.4)}function An(n){var t=parseFloat(n);return"%"===n.charAt(n.length-1)?Math.round(2.55*t):t}function Cn(n){return"function"==typeof n?n:function(){return n}}function zn(n){return function(t,e,r){return 2===arguments.length&&"function"==typeof e&&(r=e,e=null),Tn(t,e,n,r)}}function Tn(n,t,e,r){function i(){var n,t=l.status;if(!t&&function(n){var t=n.responseType;return t&&"text"!==t?n.response:n.responseText}(l)||t>=200&&300>t||304===t){try{n=e.call(o,l)}catch(n){return void u.error.call(o,n)}u.load.call(o,n)}else u.error.call(o,l)}var o={},u=no.dispatch("beforesend","progress","load","error"),a={},l=new XMLHttpRequest,c=null;return!this.XDomainRequest||"withCredentials"in l||!/^(http(s)?:)?\/\//.test(n)||(l=new XDomainRequest),"onload"in l?l.onload=l.onerror=i:l.onreadystatechange=function(){l.readyState>3&&i()},l.onprogress=function(n){var t=no.event;no.event=n;try{u.progress.call(o,l)}finally{no.event=t}},o.header=function(n,t){return n=(n+"").toLowerCase(),arguments.length<2?a[n]:(null==t?delete a[n]:a[n]=t+"",o)},o.mimeType=function(n){return arguments.length?(t=null==n?null:n+"",o):t},o.responseType=function(n){return arguments.length?(c=n,o):c},o.response=function(n){return e=n,o},["get","post"].forEach(function(n){o[n]=function(){return o.send.apply(o,[n].concat(eo(arguments)))}}),o.send=function(e,r,i){if(2===arguments.length&&"function"==typeof r&&(i=r,r=null),l.open(e,n,!0),null==t||"accept"in a||(a.accept=t+",*/*"),l.setRequestHeader)for(var f in a)l.setRequestHeader(f,a[f]);return null!=t&&l.overrideMimeType&&l.overrideMimeType(t),null!=c&&(l.responseType=c),null!=i&&o.on("error",i).on("load",function(n){i(null,n)}),u.beforesend.call(o,l),l.send(null==r?null:r),o},o.abort=function(){return l.abort(),o},no.rebind(o,u,"on"),null==r?o:o.get(function(n){return 1===n.length?function(t,e){n(null==t?e:null)}:n}(r))}function Ln(n,t,e){var r=arguments.length;2>r&&(t=0),3>r&&(e=Date.now());var i={c:n,t:e+t,n:null};return Go?Go.n=i:Wo=i,Go=i,Jo||(Ko=clearTimeout(Ko),Jo=1,Qo(qn)),i}function qn(){var n=Rn(),t=Dn()-n;t>24?(isFinite(t)&&(clearTimeout(Ko),Ko=setTimeout(qn,t)),Jo=0):(Jo=1,Qo(qn))}function Rn(){for(var n=Date.now(),t=Wo;t;)n>=t.t&&t.c(n-t.t)&&(t.c=null),t=t.n;return n}function Dn(){for(var n,t=Wo,e=1/0;t;)t.c?(t.t<e&&(e=t.t),t=(n=t).n):t=n?n.n=t.n:Wo=t.n;return Go=n,e}function Pn(n,t){return t-(n?Math.ceil(Math.log(n)/Math.LN10):1)}function jn(n){return n+""}function Un(){this._=new Date(arguments.length>1?Date.UTC.apply(this,arguments):arguments[0])}function Hn(n,t,e){function r(t){var e=n(t),r=o(e,1);return r-t>t-e?e:r}function i(e){return t(e=n(new iu(e-1)),1),e}function o(n,e){return t(n=new iu(+n),e),n}function u(n,r,o){var u=i(n),a=[];if(o>1)for(;r>u;)e(u)%o||a.push(new Date(+u)),t(u,1);else for(;r>u;)a.push(new Date(+u)),t(u,1);return a}n.floor=n,n.round=r,n.ceil=i,n.offset=o,n.range=u;var a=n.utc=Fn(n);return a.floor=a,a.round=Fn(r),a.ceil=Fn(i),a.offset=Fn(o),a.range=function(n,t,e){try{iu=Un;var r=new Un;return r._=n,u(r,t,e)}finally{iu=Date}},n}function Fn(n){return function(t,e){try{iu=Un;var r=new Un;return r._=t,n(r,e)._}finally{iu=Date}}}function On(n,t,e){var r=0>n?"-":"",i=(r?-n:n)+"",o=i.length;return r+(e>o?new Array(e-o+1).join(t)+i:i)}function In(n){return new RegExp("^(?:"+n.map(no.requote).join("|")+")","i")}function Yn(n){for(var t=new g,e=-1,r=n.length;++e<r;)t.set(n[e].toLowerCase(),e);return t}function Bn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+1));return r?(n.w=+r[0],e+r[0].length):-1}function Vn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e));return r?(n.U=+r[0],e+r[0].length):-1}function Zn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e));return r?(n.W=+r[0],e+r[0].length):-1}function $n(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+4));return r?(n.y=+r[0],e+r[0].length):-1}function Xn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+2));return r?(n.y=function(n){return n+(n>68?1900:2e3)}(+r[0]),e+r[0].length):-1}function Wn(n,t,e){return/^[+-]\d{4}$/.test(t=t.slice(e,e+5))?(n.Z=-t,e+5):-1}function Gn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+2));return r?(n.m=r[0]-1,e+r[0].length):-1}function Jn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+2));return r?(n.d=+r[0],e+r[0].length):-1}function Kn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+3));return r?(n.j=+r[0],e+r[0].length):-1}function Qn(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+2));return r?(n.H=+r[0],e+r[0].length):-1}function nt(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+2));return r?(n.M=+r[0],e+r[0].length):-1}function tt(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+2));return r?(n.S=+r[0],e+r[0].length):-1}function et(n,t,e){au.lastIndex=0;var r=au.exec(t.slice(e,e+3));return r?(n.L=+r[0],e+r[0].length):-1}function rt(n){var t=n.getTimezoneOffset(),e=t>0?"-":"+",r=fo(t)/60|0,i=fo(t)%60;return e+On(r,"0",2)+On(i,"0",2)}function it(n,t,e){lu.lastIndex=0;var r=lu.exec(t.slice(e,e+1));return r?e+r[0].length:-1}function ot(n){for(var t=n.length,e=-1;++e<t;)n[e][0]=this(n[e][0]);return function(t){for(var e=0,r=n[e];!r[1](t);)r=n[++e];return r[0](t)}}function ut(){}function at(n,t,e){var r=e.s=n+t,i=r-n,o=r-i;e.t=n-o+(t-i)}function lt(n,t){n&&hu.hasOwnProperty(n.type)&&hu[n.type](n,t)}function ct(n,t,e){var r,i=-1,o=n.length-e;for(t.lineStart();++i<o;)r=n[i],t.point(r[0],r[1],r[2]);t.lineEnd()}function ft(n,t){var e=-1,r=n.length;for(t.polygonStart();++e<r;)ct(n[e],t,1);t.polygonEnd()}function st(){function n(n,t){t=t*Ro/2+zo/4;var e=(n*=Ro)-r,u=e>=0?1:-1,a=u*e,l=Math.cos(t),c=Math.sin(t),f=o*c,s=i*l+f*Math.cos(a),h=f*u*Math.sin(a);gu.add(Math.atan2(h,s)),r=n,i=l,o=c}var t,e,r,i,o;du.point=function(u,a){du.point=n,r=(t=u)*Ro,i=Math.cos(a=(e=a)*Ro/2+zo/4),o=Math.sin(a)},du.lineEnd=function(){n(t,e)}}function ht(n){var t=n[0],e=n[1],r=Math.cos(e);return[r*Math.cos(t),r*Math.sin(t),Math.sin(e)]}function pt(n,t){return n[0]*t[0]+n[1]*t[1]+n[2]*t[2]}function gt(n,t){return[n[1]*t[2]-n[2]*t[1],n[2]*t[0]-n[0]*t[2],n[0]*t[1]-n[1]*t[0]]}function dt(n,t){n[0]+=t[0],n[1]+=t[1],n[2]+=t[2]}function vt(n,t){return[n[0]*t,n[1]*t,n[2]*t]}function yt(n){var t=Math.sqrt(n[0]*n[0]+n[1]*n[1]+n[2]*n[2]);n[0]/=t,n[1]/=t,n[2]/=t}function mt(n){return[Math.atan2(n[1],n[0]),un(n[2])]}function xt(n,t){return fo(n[0]-t[0])<Ao&&fo(n[1]-t[1])<Ao}function Mt(n,t){n*=Ro;var e=Math.cos(t*=Ro);wt(e*Math.cos(n),e*Math.sin(n),Math.sin(t))}function wt(n,t,e){mu+=(n-mu)/++vu,xu+=(t-xu)/vu,Mu+=(e-Mu)/vu}function bt(){function n(n,i){n*=Ro;var o=Math.cos(i*=Ro),u=o*Math.cos(n),a=o*Math.sin(n),l=Math.sin(i),c=Math.atan2(Math.sqrt((c=e*l-r*a)*c+(c=r*u-t*l)*c+(c=t*a-e*u)*c),t*u+e*a+r*l);yu+=c,wu+=c*(t+(t=u)),bu+=c*(e+(e=a)),_u+=c*(r+(r=l)),wt(t,e,r)}var t,e,r;Eu.point=function(i,o){i*=Ro;var u=Math.cos(o*=Ro);t=u*Math.cos(i),e=u*Math.sin(i),r=Math.sin(o),Eu.point=n,wt(t,e,r)}}function _t(){Eu.point=Mt}function St(){function n(n,t){n*=Ro;var e=Math.cos(t*=Ro),u=e*Math.cos(n),a=e*Math.sin(n),l=Math.sin(t),c=i*l-o*a,f=o*u-r*l,s=r*a-i*u,h=Math.sqrt(c*c+f*f+s*s),p=r*u+i*a+o*l,g=h&&-on(p)/h,d=Math.atan2(h,p);Su+=g*c,ku+=g*f,Nu+=g*s,yu+=d,wu+=d*(r+(r=u)),bu+=d*(i+(i=a)),_u+=d*(o+(o=l)),wt(r,i,o)}var t,e,r,i,o;Eu.point=function(u,a){t=u,e=a,Eu.point=n,u*=Ro;var l=Math.cos(a*=Ro);r=l*Math.cos(u),i=l*Math.sin(u),o=Math.sin(a),wt(r,i,o)},Eu.lineEnd=function(){n(t,e),Eu.lineEnd=_t,Eu.point=Mt}}function kt(n,t){function e(e,r){return e=n(e,r),t(e[0],e[1])}return n.invert&&t.invert&&(e.invert=function(e,r){return(e=t.invert(e,r))&&n.invert(e[0],e[1])}),e}function Nt(){return!0}function Et(n,t,e,r,i){var o=[],u=[];if(n.forEach(function(n){if(!((t=n.length-1)<=0)){var t,e=n[0],r=n[t];if(xt(e,r)){i.lineStart();for(var a=0;t>a;++a)i.point((e=n[a])[0],e[1]);return void i.lineEnd()}var l=new Ct(e,n,null,!0),c=new Ct(e,null,l,!1);l.o=c,o.push(l),u.push(c),c=new Ct(r,null,l=new Ct(r,n,null,!1),!0),l.o=c,o.push(l),u.push(c)}}),u.sort(t),At(o),At(u),o.length){for(var a=0,l=e,c=u.length;c>a;++a)u[a].e=l=!l;for(var f,s,h=o[0];;){for(var p=h,g=!0;p.v;)if((p=p.n)===h)return;f=p.z,i.lineStart();do{if(p.v=p.o.v=!0,p.e){if(g)for(a=0,c=f.length;c>a;++a)i.point((s=f[a])[0],s[1]);else r(p.x,p.n.x,1,i);p=p.n}else{if(g)for(a=(f=p.p.z).length-1;a>=0;--a)i.point((s=f[a])[0],s[1]);else r(p.x,p.p.x,-1,i);p=p.p}f=(p=p.o).z,g=!g}while(!p.v);i.lineEnd()}}}function At(n){if(t=n.length){for(var t,e,r=0,i=n[0];++r<t;)i.n=e=n[r],e.p=i,i=e;i.n=e=n[0],e.p=i}}function Ct(n,t,e,r){this.x=n,this.z=t,this.o=e,this.e=r,this.v=!1,this.n=this.p=null}function zt(n,t,e,r){return function(i,o){function u(t,e){var r=i(t,e);n(t=r[0],e=r[1])&&o.point(t,e)}function a(n,t){var e=i(n,t);v.point(e[0],e[1])}function l(){m.point=a,v.lineStart()}function c(){m.point=u,v.lineEnd()}function f(n,t){d.push([n,t]);var e=i(n,t);M.point(e[0],e[1])}function s(){M.lineStart(),d=[]}function h(){f(d[0][0],d[0][1]),M.lineEnd();var n,t=M.clean(),e=x.buffer(),r=e.length;if(d.pop(),g.push(d),d=null,r)if(1&t){var i,u=-1;if((r=(n=e[0]).length-1)>0){for(w||(o.polygonStart(),w=!0),o.lineStart();++u<r;)o.point((i=n[u])[0],i[1]);o.lineEnd()}}else r>1&&2&t&&e.push(e.pop().concat(e.shift())),p.push(e.filter(Tt))}var p,g,d,v=t(o),y=i.invert(r[0],r[1]),m={point:u,lineStart:l,lineEnd:c,polygonStart:function(){m.point=f,m.lineStart=s,m.lineEnd=h,p=[],g=[]},polygonEnd:function(){m.point=u,m.lineStart=l,m.lineEnd=c,p=no.merge(p);var n=function(n,t){var e=n[0],r=n[1],i=[Math.sin(e),-Math.cos(e),0],o=0,u=0;gu.reset();for(var a=0,l=t.length;l>a;++a){var c=t[a],f=c.length;if(f)for(var s=c[0],h=s[0],p=s[1]/2+zo/4,g=Math.sin(p),d=Math.cos(p),v=1;;){v===f&&(v=0);var y=(n=c[v])[0],m=n[1]/2+zo/4,x=Math.sin(m),M=Math.cos(m),w=y-h,b=w>=0?1:-1,_=b*w,S=_>zo,k=g*x;if(gu.add(Math.atan2(k*b*Math.sin(_),d*M+k*Math.cos(_))),o+=S?w+b*To:w,S^h>=e^y>=e){var N=gt(ht(s),ht(n));yt(N);var E=gt(i,N);yt(E);var A=(S^w>=0?-1:1)*un(E[2]);(r>A||r===A&&(N[0]||N[1]))&&(u+=S^w>=0?1:-1)}if(!v++)break;h=y,g=x,d=M,s=n}}return(-Ao>o||Ao>o&&-Ao>gu)^1&u}(y,g);p.length?(w||(o.polygonStart(),w=!0),Et(p,qt,n,e,o)):n&&(w||(o.polygonStart(),w=!0),o.lineStart(),e(null,null,1,o),o.lineEnd()),w&&(o.polygonEnd(),w=!1),p=g=null},sphere:function(){o.polygonStart(),o.lineStart(),e(null,null,1,o),o.lineEnd(),o.polygonEnd()}},x=Lt(),M=t(x),w=!1;return m}}function Tt(n){return n.length>1}function Lt(){var n,t=[];return{lineStart:function(){t.push(n=[])},point:function(t,e){n.push([t,e])},lineEnd:N,buffer:function(){var e=t;return t=[],n=null,e},rejoin:function(){t.length>1&&t.push(t.pop().concat(t.shift()))}}}function qt(n,t){return((n=n.x)[0]<0?n[1]-qo-Ao:qo-n[1])-((t=t.x)[0]<0?t[1]-qo-Ao:qo-t[1])}function Rt(n,t,e,r){return function(i){var o,u=i.a,a=i.b,l=u.x,c=u.y,f=0,s=1,h=a.x-l,p=a.y-c;if(o=n-l,h||!(o>0)){if(o/=h,0>h){if(f>o)return;s>o&&(s=o)}else if(h>0){if(o>s)return;o>f&&(f=o)}if(o=e-l,h||!(0>o)){if(o/=h,0>h){if(o>s)return;o>f&&(f=o)}else if(h>0){if(f>o)return;s>o&&(s=o)}if(o=t-c,p||!(o>0)){if(o/=p,0>p){if(f>o)return;s>o&&(s=o)}else if(p>0){if(o>s)return;o>f&&(f=o)}if(o=r-c,p||!(0>o)){if(o/=p,0>p){if(o>s)return;o>f&&(f=o)}else if(p>0){if(f>o)return;s>o&&(s=o)}return f>0&&(i.a={x:l+f*h,y:c+f*p}),1>s&&(i.b={x:l+s*h,y:c+s*p}),i}}}}}}function Dt(n,t,e,r){function i(r,i){return fo(r[0]-n)<Ao?i>0?0:3:fo(r[0]-e)<Ao?i>0?2:1:fo(r[1]-t)<Ao?i>0?1:0:i>0?3:2}function o(n,t){return u(n.x,t.x)}function u(n,t){var e=i(n,1),r=i(t,1);return e!==r?e-r:0===e?t[1]-n[1]:1===e?n[0]-t[0]:2===e?n[1]-t[1]:t[0]-n[0]}return function(a){function l(o,a,l,c){var f=0,s=0;if(null==o||(f=i(o,l))!==(s=i(a,l))||u(o,a)<0^l>0)do{c.point(0===f||3===f?n:e,f>1?r:t)}while((f=(f+l+4)%4)!==s);else c.point(a[0],a[1])}function c(i,o){return i>=n&&e>=i&&o>=t&&r>=o}function f(n,t){c(n,t)&&a.point(n,t)}function s(n,t){var e=c(n=Math.max(-Cu,Math.min(Cu,n)),t=Math.max(-Cu,Math.min(Cu,t)));if(p&&g.push([n,t]),w)d=n,v=t,y=e,w=!1,e&&(a.lineStart(),a.point(n,t));else if(e&&M)a.point(n,t);else{var r={a:{x:m,y:x},b:{x:n,y:t}};k(r)?(M||(a.lineStart(),a.point(r.a.x,r.a.y)),a.point(r.b.x,r.b.y),e||a.lineEnd(),b=!1):e&&(a.lineStart(),a.point(n,t),b=!1)}m=n,x=t,M=e}var h,p,g,d,v,y,m,x,M,w,b,_=a,S=Lt(),k=Rt(n,t,e,r),N={point:f,lineStart:function(){N.point=s,p&&p.push(g=[]),w=!0,M=!1,m=x=NaN},lineEnd:function(){h&&(s(d,v),y&&M&&S.rejoin(),h.push(S.buffer())),N.point=f,M&&a.lineEnd()},polygonStart:function(){a=S,h=[],p=[],b=!0},polygonEnd:function(){a=_,h=no.merge(h);var t=function(n){for(var t=0,e=p.length,r=n[1],i=0;e>i;++i)for(var o,u=1,a=p[i],l=a.length,c=a[0];l>u;++u)o=a[u],c[1]<=r?o[1]>r&&rn(c,o,n)>0&&++t:o[1]<=r&&rn(c,o,n)<0&&--t,c=o;return 0!==t}([n,r]),e=b&&t,i=h.length;(e||i)&&(a.polygonStart(),e&&(a.lineStart(),l(null,null,1,a),a.lineEnd()),i&&Et(h,o,t,l,a),a.polygonEnd()),h=p=g=null}};return N}}function Pt(n){var t=0,e=zo/3,r=Xt(n),i=r(t,e);return i.parallels=function(n){return arguments.length?r(t=n[0]*zo/180,e=n[1]*zo/180):[t/zo*180,e/zo*180]},i}function jt(n,t){function e(n,t){var e=Math.sqrt(o-2*i*Math.sin(t))/i;return[e*Math.sin(n*=i),u-e*Math.cos(n)]}var r=Math.sin(n),i=(r+Math.sin(t))/2,o=1+r*(2*i-r),u=Math.sqrt(o)/i;return e.invert=function(n,t){var e=u-t;return[Math.atan2(n,e)/i,un((o-(n*n+e*e)*i*i)/(2*i))]},e}function Ut(){function n(n,t){Tu+=i*n-r*t,r=n,i=t}var t,e,r,i;Pu.point=function(o,u){Pu.point=n,t=r=o,e=i=u},Pu.lineEnd=function(){n(t,e)}}function Ht(n){return"m0,"+n+"a"+n+","+n+" 0 1,1 0,"+-2*n+"a"+n+","+n+" 0 1,1 0,"+2*n+"z"}function Ft(n,t){mu+=n,xu+=t,++Mu}function Ot(){function n(n,r){var i=n-t,o=r-e,u=Math.sqrt(i*i+o*o);wu+=u*(t+n)/2,bu+=u*(e+r)/2,_u+=u,Ft(t=n,e=r)}var t,e;Uu.point=function(r,i){Uu.point=n,Ft(t=r,e=i)}}function It(){Uu.point=Ft}function Yt(){function n(n,t){var e=n-r,o=t-i,u=Math.sqrt(e*e+o*o);wu+=u*(r+n)/2,bu+=u*(i+t)/2,_u+=u,Su+=(u=i*n-r*t)*(r+n),ku+=u*(i+t),Nu+=3*u,Ft(r=n,i=t)}var t,e,r,i;Uu.point=function(o,u){Uu.point=n,Ft(t=r=o,e=i=u)},Uu.lineEnd=function(){n(t,e)}}function Bt(n){function t(n){return(a?r:e)(n)}function e(t){return Zt(t,function(e,r){e=n(e,r),t.point(e[0],e[1])})}function r(t){function e(e,r){e=n(e,r),t.point(e[0],e[1])}function r(){m=NaN,_.point=o,t.lineStart()}function o(e,r){var o=ht([e,r]),u=n(e,r);i(m,x,y,M,w,b,m=u[0],x=u[1],y=e,M=o[0],w=o[1],b=o[2],a,t),t.point(m,x)}function u(){_.point=e,t.lineEnd()}function l(){r(),_.point=c,_.lineEnd=f}function c(n,t){o(s=n,t),h=m,p=x,g=M,d=w,v=b,_.point=o}function f(){i(m,x,y,M,w,b,h,p,s,g,d,v,a,t),_.lineEnd=u,u()}var s,h,p,g,d,v,y,m,x,M,w,b,_={point:e,lineStart:r,lineEnd:u,polygonStart:function(){t.polygonStart(),_.lineStart=l},polygonEnd:function(){t.polygonEnd(),_.lineStart=r}};return _}function i(t,e,r,a,l,c,f,s,h,p,g,d,v,y){var m=f-t,x=s-e,M=m*m+x*x;if(M>4*o&&v--){var w=a+p,b=l+g,_=c+d,S=Math.sqrt(w*w+b*b+_*_),k=Math.asin(_/=S),N=fo(fo(_)-1)<Ao||fo(r-h)<Ao?(r+h)/2:Math.atan2(b,w),E=n(N,k),A=E[0],C=E[1],z=A-t,T=C-e,L=x*z-m*T;(L*L/M>o||fo((m*z+x*T)/M-.5)>.3||u>a*p+l*g+c*d)&&(i(t,e,r,a,l,c,A,C,N,w/=S,b/=S,_,v,y),y.point(A,C),i(A,C,N,w,b,_,f,s,h,p,g,d,v,y))}}var o=.5,u=Math.cos(30*Ro),a=16;return t.precision=function(n){return arguments.length?(a=(o=n*n)>0&&16,t):Math.sqrt(o)},t}function Vt(n){this.stream=n}function Zt(n,t){return{point:t,sphere:function(){n.sphere()},lineStart:function(){n.lineStart()},lineEnd:function(){n.lineEnd()},polygonStart:function(){n.polygonStart()},polygonEnd:function(){n.polygonEnd()}}}function $t(n){return Xt(function(){return n})()}function Xt(n){function t(n){return[(n=a(n[0]*Ro,n[1]*Ro))[0]*h+l,c-n[1]*h]}function e(n){return(n=a.invert((n[0]-l)/h,(c-n[1])/h))&&[n[0]*Do,n[1]*Do]}function r(){a=kt(u=Kt(y,m,x),o);var n=o(d,v);return l=p-n[0]*h,c=g+n[1]*h,i()}function i(){return f&&(f.valid=!1,f=null),t}var o,u,a,l,c,f,s=Bt(function(n,t){return[(n=o(n,t))[0]*h+l,c-n[1]*h]}),h=150,p=480,g=250,d=0,v=0,y=0,m=0,x=0,M=Au,w=_,b=null,S=null;return t.stream=function(n){return f&&(f.valid=!1),(f=Wt(M(u,s(w(n))))).valid=!0,f},t.clipAngle=function(n){return arguments.length?(M=null==n?(b=n,Au):function(n){function t(n,t){return Math.cos(n)*Math.cos(t)>i}function e(n,t,e){var r=[1,0,0],o=gt(ht(n),ht(t)),u=pt(o,o),a=o[0],l=u-a*a;if(!l)return!e&&n;var c=i*u/l,f=-i*a/l,s=gt(r,o),h=vt(r,c);dt(h,vt(o,f));var p=s,g=pt(h,p),d=pt(p,p),v=g*g-d*(pt(h,h)-1);if(!(0>v)){var y=Math.sqrt(v),m=vt(p,(-g-y)/d);if(dt(m,h),m=mt(m),!e)return m;var x,M=n[0],w=t[0],b=n[1],_=t[1];M>w&&(x=M,M=w,w=x);var S=w-M,k=fo(S-zo)<Ao;if(!k&&b>_&&(x=b,b=_,_=x),k||Ao>S?k?b+_>0^m[1]<(fo(m[0]-M)<Ao?b:_):b<=m[1]&&m[1]<=_:S>zo^(M<=m[0]&&m[0]<=w)){var N=vt(p,(-g+y)/d);return dt(N,h),[m,mt(N)]}}}function r(t,e){var r=o?n:zo-n,i=0;return-r>t?i|=1:t>r&&(i|=2),-r>e?i|=4:e>r&&(i|=8),i}var i=Math.cos(n),o=i>0,u=fo(i)>Ao;return zt(t,function(n){var i,a,l,c,f;return{lineStart:function(){c=l=!1,f=1},point:function(s,h){var p,g=[s,h],d=t(s,h),v=o?d?0:r(s,h):d?r(s+(0>s?zo:-zo),h):0;if(!i&&(c=l=d)&&n.lineStart(),d!==l&&(p=e(i,g),(xt(i,p)||xt(g,p))&&(g[0]+=Ao,g[1]+=Ao,d=t(g[0],g[1]))),d!==l)f=0,d?(n.lineStart(),p=e(g,i),n.point(p[0],p[1])):(p=e(i,g),n.point(p[0],p[1]),n.lineEnd()),i=p;else if(u&&i&&o^d){var y;v&a||!(y=e(g,i,!0))||(f=0,o?(n.lineStart(),n.point(y[0][0],y[0][1]),n.point(y[1][0],y[1][1]),n.lineEnd()):(n.point(y[1][0],y[1][1]),n.lineEnd(),n.lineStart(),n.point(y[0][0],y[0][1])))}!d||i&&xt(i,g)||n.point(g[0],g[1]),i=g,l=d,a=v},lineEnd:function(){l&&n.lineEnd(),i=null},clean:function(){return f|(c&&l)<<1}}},ee(n,6*Ro),o?[0,-n]:[-zo,n-zo])}((b=+n)*Ro),i()):b},t.clipExtent=function(n){return arguments.length?(S=n,w=n?Dt(n[0][0],n[0][1],n[1][0],n[1][1]):_,i()):S},t.scale=function(n){return arguments.length?(h=+n,r()):h},t.translate=function(n){return arguments.length?(p=+n[0],g=+n[1],r()):[p,g]},t.center=function(n){return arguments.length?(d=n[0]%360*Ro,v=n[1]%360*Ro,r()):[d*Do,v*Do]},t.rotate=function(n){return arguments.length?(y=n[0]%360*Ro,m=n[1]%360*Ro,x=n.length>2?n[2]%360*Ro:0,r()):[y*Do,m*Do,x*Do]},no.rebind(t,s,"precision"),function(){return o=n.apply(this,arguments),t.invert=o.invert&&e,r()}}function Wt(n){return Zt(n,function(t,e){n.point(t*Ro,e*Ro)})}function Gt(n,t){return[n,t]}function Jt(n,t){return[n>zo?n-To:-zo>n?n+To:n,t]}function Kt(n,t,e){return n?t||e?kt(ne(n),te(t,e)):ne(n):t||e?te(t,e):Jt}function Qt(n){return function(t,e){return[(t+=n)>zo?t-To:-zo>t?t+To:t,e]}}function ne(n){var t=Qt(n);return t.invert=Qt(-n),t}function te(n,t){function e(n,t){var e=Math.cos(t),a=Math.cos(n)*e,l=Math.sin(n)*e,c=Math.sin(t),f=c*r+a*i;return[Math.atan2(l*o-f*u,a*r-c*i),un(f*o+l*u)]}var r=Math.cos(n),i=Math.sin(n),o=Math.cos(t),u=Math.sin(t);return e.invert=function(n,t){var e=Math.cos(t),a=Math.cos(n)*e,l=Math.sin(n)*e,c=Math.sin(t),f=c*o-l*u;return[Math.atan2(l*o+c*u,a*r+f*i),un(f*r-a*i)]},e}function ee(n,t){var e=Math.cos(n),r=Math.sin(n);return function(i,o,u,a){var l=u*t;null!=i?(i=re(e,i),o=re(e,o),(u>0?o>i:i>o)&&(i+=u*To)):(i=n+u*To,o=n-.5*l);for(var c,f=i;u>0?f>o:o>f;f-=l)a.point((c=mt([e,-r*Math.cos(f),-r*Math.sin(f)]))[0],c[1])}}function re(n,t){var e=ht(t);e[0]-=n,yt(e);var r=on(-e[1]);return((-e[2]<0?-r:r)+2*Math.PI-Ao)%(2*Math.PI)}function ie(n,t,e){var r=no.range(n,t-Ao,e).concat(t);return function(n){return r.map(function(t){return[n,t]})}}function oe(n,t,e){var r=no.range(n,t-Ao,e).concat(t);return function(n){return r.map(function(t){return[t,n]})}}function ue(n){return n.source}function ae(n){return n.target}function le(n,t){function e(t,e){var r=Math.cos(t),i=Math.cos(e),o=n(r*i);return[o*i*Math.sin(t),o*Math.sin(e)]}return e.invert=function(n,e){var r=Math.sqrt(n*n+e*e),i=t(r),o=Math.sin(i),u=Math.cos(i);return[Math.atan2(n*o,r*u),Math.asin(r&&e*o/r)]},e}function ce(n,t){function e(n,t){u>0?-qo+Ao>t&&(t=-qo+Ao):t>qo-Ao&&(t=qo-Ao);var e=u/Math.pow(i(t),o);return[e*Math.sin(o*n),u-e*Math.cos(o*n)]}var r=Math.cos(n),i=function(n){return Math.tan(zo/4+n/2)},o=n===t?Math.sin(n):Math.log(r/Math.cos(t))/Math.log(i(t)/i(n)),u=r*Math.pow(i(n),o)/o;return o?(e.invert=function(n,t){var e=u-t,r=en(o)*Math.sqrt(n*n+e*e);return[Math.atan2(n,e)/o,2*Math.atan(Math.pow(u/r,1/o))-qo]},e):se}function fe(n,t){function e(n,t){var e=o-t;return[e*Math.sin(i*n),o-e*Math.cos(i*n)]}var r=Math.cos(n),i=n===t?Math.sin(n):(r-Math.cos(t))/(t-n),o=r/i+n;return fo(i)<Ao?Gt:(e.invert=function(n,t){var e=o-t;return[Math.atan2(n,e)/i,o-en(i)*Math.sqrt(n*n+e*e)]},e)}function se(n,t){return[n,Math.log(Math.tan(zo/4+t/2))]}function he(n){var t,e=$t(n),r=e.scale,i=e.translate,o=e.clipExtent;return e.scale=function(){var n=r.apply(e,arguments);return n===e?t?e.clipExtent(null):e:n},e.translate=function(){var n=i.apply(e,arguments);return n===e?t?e.clipExtent(null):e:n},e.clipExtent=function(n){var u=o.apply(e,arguments);if(u===e){if(t=null==n){var a=zo*r(),l=i();o([[l[0]-a,l[1]-a],[l[0]+a,l[1]+a]])}}else t&&(u=null);return u},e.clipExtent(null)}function pe(n,t){return[Math.log(Math.tan(zo/4+t/2)),-n]}function ge(n){return n[0]}function de(n){return n[1]}function ve(n){for(var t=n.length,e=[0,1],r=2,i=2;t>i;i++){for(;r>1&&rn(n[e[r-2]],n[e[r-1]],n[i])<=0;)--r;e[r++]=i}return e.slice(0,r)}function ye(n,t){return n[0]-t[0]||n[1]-t[1]}function me(n,t,e){return(e[0]-t[0])*(n[1]-t[1])<(e[1]-t[1])*(n[0]-t[0])}function xe(n,t,e,r){var i=n[0],o=e[0],u=t[0]-i,a=r[0]-o,l=n[1],c=e[1],f=t[1]-l,s=r[1]-c,h=(a*(l-c)-s*(i-o))/(s*u-a*f);return[i+h*u,l+h*f]}function Me(n){var t=n[0],e=n[n.length-1];return!(t[0]-e[0]||t[1]-e[1])}function we(n){var t=Ku.pop()||new function(){Ue(this),this.edge=this.site=this.circle=null};return t.site=n,t}function be(n){ze(n),Wu.remove(n),Ku.push(n),Ue(n)}function _e(n){var t=n.circle,e=t.x,r=t.cy,i={x:e,y:r},o=n.P,u=n.N,a=[n];be(n);for(var l=o;l.circle&&fo(e-l.circle.x)<Ao&&fo(r-l.circle.cy)<Ao;)o=l.P,a.unshift(l),be(l),l=o;a.unshift(l),ze(l);for(var c=u;c.circle&&fo(e-c.circle.x)<Ao&&fo(r-c.circle.cy)<Ao;)u=c.N,a.push(c),be(c),c=u;a.push(c),ze(c);var f,s=a.length;for(f=1;s>f;++f)c=a[f],l=a[f-1],De(c.edge,l.site,c.site,i);l=a[0],(c=a[s-1]).edge=qe(l.site,c.site,null,i),Ce(l),Ce(c)}function Se(n){for(var t,e,r,i,o=n.x,u=n.y,a=Wu._;a;)if((r=ke(a,u)-o)>Ao)a=a.L;else{if(!((i=o-Ne(a,u))>Ao)){r>-Ao?(t=a.P,e=a):i>-Ao?(t=a,e=a.N):t=e=a;break}if(!a.R){t=a;break}a=a.R}var l=we(n);if(Wu.insert(t,l),t||e){if(t===e)return ze(t),e=we(t.site),Wu.insert(l,e),l.edge=e.edge=qe(t.site,l.site),Ce(t),void Ce(e);if(!e)return void(l.edge=qe(t.site,l.site));ze(t),ze(e);var c=t.site,f=c.x,s=c.y,h=n.x-f,p=n.y-s,g=e.site,d=g.x-f,v=g.y-s,y=2*(h*v-p*d),m=h*h+p*p,x=d*d+v*v,M={x:(v*m-p*x)/y+f,y:(h*x-d*m)/y+s};De(e.edge,c,g,M),l.edge=qe(c,n,null,M),e.edge=qe(n,g,null,M),Ce(t),Ce(e)}}function ke(n,t){var e=n.site,r=e.x,i=e.y,o=i-t;if(!o)return r;var u=n.P;if(!u)return-1/0;var a=(e=u.site).x,l=e.y,c=l-t;if(!c)return a;var f=a-r,s=1/o-1/c,h=f/c;return s?(-h+Math.sqrt(h*h-2*s*(f*f/(-2*c)-l+c/2+i-o/2)))/s+r:(r+a)/2}function Ne(n,t){var e=n.N;if(e)return ke(e,t);var r=n.site;return r.y===t?r.x:1/0}function Ee(n){this.site=n,this.edges=[]}function Ae(n,t){return t.angle-n.angle}function Ce(n){var t=n.P,e=n.N;if(t&&e){var r=t.site,i=n.site,o=e.site;if(r!==o){var u=i.x,a=i.y,l=r.x-u,c=r.y-a,f=o.x-u,s=2*(l*(v=o.y-a)-c*f);if(!(s>=-Co)){var h=l*l+c*c,p=f*f+v*v,g=(v*h-c*p)/s,d=(l*p-f*h)/s,v=d+a,y=Qu.pop()||new function(){Ue(this),this.x=this.y=this.arc=this.site=this.cy=null};y.arc=n,y.site=i,y.x=g+u,y.y=v+Math.sqrt(g*g+d*d),y.cy=v,n.circle=y;for(var m=null,x=Ju._;x;)if(y.y<x.y||y.y===x.y&&y.x<=x.x){if(!x.L){m=x.P;break}x=x.L}else{if(!x.R){m=x;break}x=x.R}Ju.insert(m,y),m||(Gu=y)}}}}function ze(n){var t=n.circle;t&&(t.P||(Gu=t.N),Ju.remove(t),Qu.push(t),Ue(t),n.circle=null)}function Te(n,t){var e=n.b;if(e)return!0;var r,i,o=n.a,u=t[0][0],a=t[1][0],l=t[0][1],c=t[1][1],f=n.l,s=n.r,h=f.x,p=f.y,g=s.x,d=s.y,v=(h+g)/2,y=(p+d)/2;if(d===p){if(u>v||v>=a)return;if(h>g){if(o){if(o.y>=c)return}else o={x:v,y:l};e={x:v,y:c}}else{if(o){if(o.y<l)return}else o={x:v,y:c};e={x:v,y:l}}}else if(i=y-(r=(h-g)/(d-p))*v,-1>r||r>1)if(h>g){if(o){if(o.y>=c)return}else o={x:(l-i)/r,y:l};e={x:(c-i)/r,y:c}}else{if(o){if(o.y<l)return}else o={x:(c-i)/r,y:c};e={x:(l-i)/r,y:l}}else if(d>p){if(o){if(o.x>=a)return}else o={x:u,y:r*u+i};e={x:a,y:r*a+i}}else{if(o){if(o.x<u)return}else o={x:a,y:r*a+i};e={x:u,y:r*u+i}}return n.a=o,n.b=e,!0}function Le(n,t){this.l=n,this.r=t,this.a=this.b=null}function qe(n,t,e,r){var i=new Le(n,t);return $u.push(i),e&&De(i,n,t,e),r&&De(i,t,n,r),Xu[n.i].edges.push(new Pe(i,n,t)),Xu[t.i].edges.push(new Pe(i,t,n)),i}function Re(n,t,e){var r=new Le(n,null);return r.a=t,r.b=e,$u.push(r),r}function De(n,t,e,r){n.a||n.b?n.l===e?n.b=r:n.a=r:(n.a=r,n.l=t,n.r=e)}function Pe(n,t,e){var r=n.a,i=n.b;this.edge=n,this.site=t,this.angle=e?Math.atan2(e.y-t.y,e.x-t.x):n.l===t?Math.atan2(i.x-r.x,r.y-i.y):Math.atan2(r.x-i.x,i.y-r.y)}function je(){this._=null}function Ue(n){n.U=n.C=n.L=n.R=n.P=n.N=null}function He(n,t){var e=t,r=t.R,i=e.U;i?i.L===e?i.L=r:i.R=r:n._=r,r.U=i,e.U=r,e.R=r.L,e.R&&(e.R.U=e),r.L=e}function Fe(n,t){var e=t,r=t.L,i=e.U;i?i.L===e?i.L=r:i.R=r:n._=r,r.U=i,e.U=r,e.L=r.R,e.L&&(e.L.U=e),r.R=e}function Oe(n){for(;n.L;)n=n.L;return n}function Ie(n,t){var e,r,i,o=n.sort(Ye).pop();for($u=[],Xu=new Array(n.length),Wu=new je,Ju=new je;;)if(i=Gu,o&&(!i||o.y<i.y||o.y===i.y&&o.x<i.x))o.x===e&&o.y===r||(Xu[o.i]=new Ee(o),Se(o),e=o.x,r=o.y),o=n.pop();else{if(!i)break;_e(i.arc)}t&&(function(n){for(var t,e=$u,r=Rt(n[0][0],n[0][1],n[1][0],n[1][1]),i=e.length;i--;)(!Te(t=e[i],n)||!r(t)||fo(t.a.x-t.b.x)<Ao&&fo(t.a.y-t.b.y)<Ao)&&(t.a=t.b=null,e.splice(i,1))}(t),function(n){for(var t,e,r,i,o,u,a,l,c,f,s=n[0][0],h=n[1][0],p=n[0][1],g=n[1][1],d=Xu,v=d.length;v--;)if((o=d[v])&&o.prepare())for(l=(a=o.edges).length,u=0;l>u;)r=(f=a[u].end()).x,i=f.y,t=(c=a[++u%l].start()).x,e=c.y,(fo(r-t)>Ao||fo(i-e)>Ao)&&(a.splice(u,0,new Pe(Re(o.site,f,fo(r-s)<Ao&&g-i>Ao?{x:s,y:fo(t-s)<Ao?e:g}:fo(i-g)<Ao&&h-r>Ao?{x:fo(e-g)<Ao?t:h,y:g}:fo(r-h)<Ao&&i-p>Ao?{x:h,y:fo(t-h)<Ao?e:p}:fo(i-p)<Ao&&r-s>Ao?{x:fo(e-p)<Ao?t:s,y:p}:null),o.site,null)),++l)}(t));var u={cells:Xu,edges:$u};return Wu=Ju=$u=Xu=null,u}function Ye(n,t){return t.y-n.y||t.x-n.x}function Be(n,t,e){return(n.x-e.x)*(t.y-n.y)-(n.x-t.x)*(e.y-n.y)}function Ve(n){return n.x}function Ze(n){return n.y}function $e(n,t){n=no.rgb(n),t=no.rgb(t);var e=n.r,r=n.g,i=n.b,o=t.r-e,u=t.g-r,a=t.b-i;return function(n){return"#"+_n(Math.round(e+o*n))+_n(Math.round(r+u*n))+_n(Math.round(i+a*n))}}function Xe(n,t){var e,r={},i={};for(e in n)e in t?r[e]=Je(n[e],t[e]):i[e]=n[e];for(e in t)e in n||(i[e]=t[e]);return function(n){for(e in r)i[e]=r[e](n);return i}}function We(n,t){return n=+n,t=+t,function(e){return n*(1-e)+t*e}}function Ge(n,t){var e,r,i,o=ta.lastIndex=ea.lastIndex=0,u=-1,a=[],l=[];for(n+="",t+="";(e=ta.exec(n))&&(r=ea.exec(t));)(i=r.index)>o&&(i=t.slice(o,i),a[u]?a[u]+=i:a[++u]=i),(e=e[0])===(r=r[0])?a[u]?a[u]+=r:a[++u]=r:(a[++u]=null,l.push({i:u,x:We(e,r)})),o=ea.lastIndex;return o<t.length&&(i=t.slice(o),a[u]?a[u]+=i:a[++u]=i),a.length<2?l[0]?(t=l[0].x,function(n){return t(n)+""}):function(){return t}:(t=l.length,function(n){for(var e,r=0;t>r;++r)a[(e=l[r]).i]=e.x(n);return a.join("")})}function Je(n,t){for(var e,r=no.interpolators.length;--r>=0&&!(e=no.interpolators[r](n,t)););return e}function Ke(n,t){var e,r=[],i=[],o=n.length,u=t.length,a=Math.min(n.length,t.length);for(e=0;a>e;++e)r.push(Je(n[e],t[e]));for(;o>e;++e)i[e]=n[e];for(;u>e;++e)i[e]=t[e];return function(n){for(e=0;a>e;++e)i[e]=r[e](n);return i}}function Qe(n){return function(t){return 1-n(1-t)}}function nr(n){return function(t){return.5*(.5>t?n(2*t):2-n(2-2*t))}}function tr(n){return n*n}function er(n){return n*n*n}function rr(n){if(0>=n)return 0;if(n>=1)return 1;var t=n*n,e=t*n;return 4*(.5>n?e:3*(n-t)+e-.75)}function ir(n){return 1-Math.cos(n*qo)}function or(n){return Math.pow(2,10*(n-1))}function ur(n){return 1-Math.sqrt(1-n*n)}function ar(n){return 1/2.75>n?7.5625*n*n:2/2.75>n?7.5625*(n-=1.5/2.75)*n+.75:2.5/2.75>n?7.5625*(n-=2.25/2.75)*n+.9375:7.5625*(n-=2.625/2.75)*n+.984375}function lr(n,t){return t-=n,function(e){return Math.round(n+t*e)}}function cr(n){var t=[n.a,n.b],e=[n.c,n.d],r=sr(t),i=fr(t,e),o=sr(function(n,t,e){return n[0]+=e*t[0],n[1]+=e*t[1],n}(e,t,-i))||0;t[0]*e[1]<e[0]*t[1]&&(t[0]*=-1,t[1]*=-1,r*=-1,i*=-1),this.rotate=(r?Math.atan2(t[1],t[0]):Math.atan2(-e[0],e[1]))*Do,this.translate=[n.e,n.f],this.scale=[r,o],this.skew=o?Math.atan2(i,o)*Do:0}function fr(n,t){return n[0]*t[0]+n[1]*t[1]}function sr(n){var t=Math.sqrt(fr(n,n));return t&&(n[0]/=t,n[1]/=t),t}function hr(n){return n.length?n.pop()+",":""}function pr(n,t){var e=[],r=[];return n=no.transform(n),t=no.transform(t),function(n,t,e,r){if(n[0]!==t[0]||n[1]!==t[1]){var i=e.push("translate(",null,",",null,")");r.push({i:i-4,x:We(n[0],t[0])},{i:i-2,x:We(n[1],t[1])})}else(t[0]||t[1])&&e.push("translate("+t+")")}(n.translate,t.translate,e,r),function(n,t,e,r){n!==t?(n-t>180?t+=360:t-n>180&&(n+=360),r.push({i:e.push(hr(e)+"rotate(",null,")")-2,x:We(n,t)})):t&&e.push(hr(e)+"rotate("+t+")")}(n.rotate,t.rotate,e,r),function(n,t,e,r){n!==t?r.push({i:e.push(hr(e)+"skewX(",null,")")-2,x:We(n,t)}):t&&e.push(hr(e)+"skewX("+t+")")}(n.skew,t.skew,e,r),function(n,t,e,r){if(n[0]!==t[0]||n[1]!==t[1]){var i=e.push(hr(e)+"scale(",null,",",null,")");r.push({i:i-4,x:We(n[0],t[0])},{i:i-2,x:We(n[1],t[1])})}else 1===t[0]&&1===t[1]||e.push(hr(e)+"scale("+t+")")}(n.scale,t.scale,e,r),n=t=null,function(n){for(var t,i=-1,o=r.length;++i<o;)e[(t=r[i]).i]=t.x(n);return e.join("")}}function gr(n,t){return t=(t-=n=+n)||1/t,function(e){return(e-n)/t}}function dr(n,t){return t=(t-=n=+n)||1/t,function(e){return Math.max(0,Math.min(1,(e-n)/t))}}function vr(n){for(var t=n.source,e=n.target,r=function(n,t){if(n===t)return n;for(var e=yr(n),r=yr(t),i=e.pop(),o=r.pop(),u=null;i===o;)u=i,i=e.pop(),o=r.pop();return u}(t,e),i=[t];t!==r;)t=t.parent,i.push(t);for(var o=i.length;e!==r;)i.splice(o,0,e),e=e.parent;return i}function yr(n){for(var t=[],e=n.parent;null!=e;)t.push(n),n=e,e=e.parent;return t.push(n),t}function mr(n){n.fixed|=2}function xr(n){n.fixed&=-7}function Mr(n){n.fixed|=4,n.px=n.x,n.py=n.y}function wr(n){n.fixed&=-5}function br(n,t){return no.rebind(n,t,"sort","children","value"),n.nodes=n,n.links=Ar,n}function _r(n,t){for(var e=[n];null!=(n=e.pop());)if(t(n),(i=n.children)&&(r=i.length))for(var r,i;--r>=0;)e.push(i[r])}function Sr(n,t){for(var e=[n],r=[];null!=(n=e.pop());)if(r.push(n),(o=n.children)&&(i=o.length))for(var i,o,u=-1;++u<i;)e.push(o[u]);for(;null!=(n=r.pop());)t(n)}function kr(n){return n.children}function Nr(n){return n.value}function Er(n,t){return t.value-n.value}function Ar(n){return no.merge(n.map(function(n){return(n.children||[]).map(function(t){return{source:n,target:t}})}))}function Cr(n){return n.x}function zr(n){return n.y}function Tr(n,t,e){n.y0=t,n.y=e}function Lr(n){return no.range(n.length)}function qr(n){for(var t=-1,e=n[0].length,r=[];++t<e;)r[t]=0;return r}function Rr(n){for(var t,e=1,r=0,i=n[0][1],o=n.length;o>e;++e)(t=n[e][1])>i&&(r=e,i=t);return r}function Dr(n){return n.reduce(Pr,0)}function Pr(n,t){return n+t[1]}function jr(n,t){return Ur(n,Math.ceil(Math.log(t.length)/Math.LN2+1))}function Ur(n,t){for(var e=-1,r=+n[0],i=(n[1]-r)/t,o=[];++e<=t;)o[e]=i*e+r;return o}function Hr(n){return[no.min(n),no.max(n)]}function Fr(n,t){return n.value-t.value}function Or(n,t){var e=n._pack_next;n._pack_next=t,t._pack_prev=n,t._pack_next=e,e._pack_prev=t}function Ir(n,t){n._pack_next=t,t._pack_prev=n}function Yr(n,t){var e=t.x-n.x,r=t.y-n.y,i=n.r+t.r;return.999*i*i>e*e+r*r}function Br(n){function t(n){f=Math.min(n.x-n.r,f),s=Math.max(n.x+n.r,s),h=Math.min(n.y-n.r,h),p=Math.max(n.y+n.r,p)}if((e=n.children)&&(c=e.length)){var e,r,i,o,u,a,l,c,f=1/0,s=-1/0,h=1/0,p=-1/0;if(e.forEach(Vr),(r=e[0]).x=-r.r,r.y=0,t(r),c>1&&((i=e[1]).x=i.r,i.y=0,t(i),c>2))for($r(r,i,o=e[2]),t(o),Or(r,o),r._pack_prev=o,Or(o,i),i=r._pack_next,u=3;c>u;u++){$r(r,i,o=e[u]);var g=0,d=1,v=1;for(a=i._pack_next;a!==i;a=a._pack_next,d++)if(Yr(a,o)){g=1;break}if(1==g)for(l=r._pack_prev;l!==a._pack_prev&&!Yr(l,o);l=l._pack_prev,v++);g?(v>d||d==v&&i.r<r.r?Ir(r,i=a):Ir(r=l,i),u--):(Or(r,o),i=o,t(o))}var y=(f+s)/2,m=(h+p)/2,x=0;for(u=0;c>u;u++)(o=e[u]).x-=y,o.y-=m,x=Math.max(x,o.r+Math.sqrt(o.x*o.x+o.y*o.y));n.r=x,e.forEach(Zr)}}function Vr(n){n._pack_next=n._pack_prev=n}function Zr(n){delete n._pack_next,delete n._pack_prev}function $r(n,t,e){var r=n.r+e.r,i=t.x-n.x,o=t.y-n.y;if(r&&(i||o)){var u=t.r+e.r,a=i*i+o*o,l=.5+((r*=r)-(u*=u))/(2*a),c=Math.sqrt(Math.max(0,2*u*(r+a)-(r-=a)*r-u*u))/(2*a);e.x=n.x+l*i+c*o,e.y=n.y+l*o-c*i}else e.x=n.x+r,e.y=n.y}function Xr(n,t){return n.parent==t.parent?1:2}function Wr(n){var t=n.children;return t.length?t[0]:n.t}function Gr(n){var t,e=n.children;return(t=e.length)?e[t-1]:n.t}function Jr(n,t,e){var r=e/(t.i-n.i);t.c-=r,t.s+=e,n.c+=r,t.z+=e,t.m+=e}function Kr(n,t,e){return n.a.parent===t.parent?n.a:e}function Qr(n){return{x:n.x,y:n.y,dx:n.dx,dy:n.dy}}function ni(n,t){var e=n.x+t[3],r=n.y+t[0],i=n.dx-t[1]-t[3],o=n.dy-t[0]-t[2];return 0>i&&(e+=i/2,i=0),0>o&&(r+=o/2,o=0),{x:e,y:r,dx:i,dy:o}}function ti(n){var t=n[0],e=n[n.length-1];return e>t?[t,e]:[e,t]}function ei(n){return n.rangeExtent?n.rangeExtent():ti(n.range())}function ri(n,t,e,r){var i=e(n[0],n[1]),o=r(t[0],t[1]);return function(n){return o(i(n))}}function ii(n,t){var e,r=0,i=n.length-1,o=n[r],u=n[i];return o>u&&(e=r,r=i,i=e,e=o,o=u,u=e),n[r]=t.floor(o),n[i]=t.ceil(u),n}function oi(n){return n?{floor:function(t){return Math.floor(t/n)*n},ceil:function(t){return Math.ceil(t/n)*n}}:pa}function ui(n,t,e,r){var i=[],o=[],u=0,a=Math.min(n.length,t.length)-1;for(n[a]<n[0]&&(n=n.slice().reverse(),t=t.slice().reverse());++u<=a;)i.push(e(n[u-1],n[u])),o.push(r(t[u-1],t[u]));return function(t){var e=no.bisect(n,t,1,a)-1;return o[e](i[e](t))}}function ai(n,t){return no.rebind(n,t,"range","rangeRound","interpolate","clamp")}function li(n,t){return ii(n,oi(ci(n,t)[2])),ii(n,oi(ci(n,t)[2])),n}function ci(n,t){null==t&&(t=10);var e=ti(n),r=e[1]-e[0],i=Math.pow(10,Math.floor(Math.log(r/t)/Math.LN10)),o=t/r*i;return.15>=o?i*=10:.35>=o?i*=5:.75>=o&&(i*=2),e[0]=Math.ceil(e[0]/i)*i,e[1]=Math.floor(e[1]/i)*i+.5*i,e[2]=i,e}function fi(n,t){return no.range.apply(no,ci(n,t))}function si(n,t,e){var r=ci(n,t);if(e){var i=tu.exec(e);if(i.shift(),"s"===i[8]){var o=no.formatPrefix(Math.max(fo(r[0]),fo(r[1])));return i[7]||(i[7]="."+hi(o.scale(r[2]))),i[8]="f",e=no.format(i.join("")),function(n){return e(o.scale(n))+o.symbol}}i[7]||(i[7]="."+function(n,t){var e=hi(t[2]);return n in ga?Math.abs(e-hi(Math.max(fo(t[0]),fo(t[1]))))+ +("e"!==n):e-2*("%"===n)}(i[8],r)),e=i.join("")}else e=",."+hi(r[2])+"f";return no.format(e)}function hi(n){return-Math.floor(Math.log(n)/Math.LN10+.01)}function pi(n){return function(t){return 0>t?-Math.pow(-t,n):Math.pow(t,n)}}function gi(){return 0}function di(n){return n.innerRadius}function vi(n){return n.outerRadius}function yi(n){return n.startAngle}function mi(n){return n.endAngle}function xi(n){return n&&n.padAngle}function Mi(n,t,e,r){return(n-e)*t-(t-r)*n>0?0:1}function wi(n,t,e,r,i){var o=n[0]-t[0],u=n[1]-t[1],a=(i?r:-r)/Math.sqrt(o*o+u*u),l=a*u,c=-a*o,f=n[0]+l,s=n[1]+c,h=t[0]+l,p=t[1]+c,g=(f+h)/2,d=(s+p)/2,v=h-f,y=p-s,m=v*v+y*y,x=e-r,M=f*p-h*s,w=(0>y?-1:1)*Math.sqrt(Math.max(0,x*x*m-M*M)),b=(M*y-v*w)/m,_=(-M*v-y*w)/m,S=(M*y+v*w)/m,k=(-M*v+y*w)/m,N=b-g,E=_-d,A=S-g,C=k-d;return N*N+E*E>A*A+C*C&&(b=S,_=k),[[b-l,_-c],[b*e/x,_*e/x]]}function bi(n){function t(t){function u(){c.push("M",o(n(f),a))}for(var l,c=[],f=[],s=-1,h=t.length,p=Cn(e),g=Cn(r);++s<h;)i.call(this,l=t[s],s)?f.push([+p.call(this,l,s),+g.call(this,l,s)]):f.length&&(u(),f=[]);return f.length&&u(),c.length?c.join(""):null}var e=ge,r=de,i=Nt,o=_i,u=o.key,a=.7;return t.x=function(n){return arguments.length?(e=n,t):e},t.y=function(n){return arguments.length?(r=n,t):r},t.defined=function(n){return arguments.length?(i=n,t):i},t.interpolate=function(n){return arguments.length?(u="function"==typeof n?o=n:(o=ba.get(n)||_i).key,t):u},t.tension=function(n){return arguments.length?(a=n,t):a},t}function _i(n){return n.length>1?n.join("L"):n+"Z"}function Si(n){return n.join("L")+"Z"}function ki(n){for(var t=0,e=n.length,r=n[0],i=[r[0],",",r[1]];++t<e;)i.push("V",(r=n[t])[1],"H",r[0]);return i.join("")}function Ni(n){for(var t=0,e=n.length,r=n[0],i=[r[0],",",r[1]];++t<e;)i.push("H",(r=n[t])[0],"V",r[1]);return i.join("")}function Ei(n,t){if(t.length<1||n.length!=t.length&&n.length!=t.length+2)return _i(n);var e=n.length!=t.length,r="",i=n[0],o=n[1],u=t[0],a=u,l=1;if(e&&(r+="Q"+(o[0]-2*u[0]/3)+","+(o[1]-2*u[1]/3)+","+o[0]+","+o[1],i=n[1],l=2),t.length>1){a=t[1],o=n[l],l++,r+="C"+(i[0]+u[0])+","+(i[1]+u[1])+","+(o[0]-a[0])+","+(o[1]-a[1])+","+o[0]+","+o[1];for(var c=2;c<t.length;c++,l++)o=n[l],a=t[c],r+="S"+(o[0]-a[0])+","+(o[1]-a[1])+","+o[0]+","+o[1]}if(e){var f=n[l];r+="Q"+(o[0]+2*a[0]/3)+","+(o[1]+2*a[1]/3)+","+f[0]+","+f[1]}return r}function Ai(n,t){for(var e,r=[],i=(1-t)/2,o=n[0],u=n[1],a=1,l=n.length;++a<l;)e=o,o=u,u=n[a],r.push([i*(u[0]-e[0]),i*(u[1]-e[1])]);return r}function Ci(n){if(n.length<3)return _i(n);var t=1,e=n.length,r=n[0],i=r[0],o=r[1],u=[i,i,i,(r=n[1])[0]],a=[o,o,o,r[1]],l=[i,",",o,"L",zi(ka,u),",",zi(ka,a)];for(n.push(n[e-1]);++t<=e;)r=n[t],u.shift(),u.push(r[0]),a.shift(),a.push(r[1]),Ti(l,u,a);return n.pop(),l.push("L",r),l.join("")}function zi(n,t){return n[0]*t[0]+n[1]*t[1]+n[2]*t[2]+n[3]*t[3]}function Ti(n,t,e){n.push("C",zi(_a,t),",",zi(_a,e),",",zi(Sa,t),",",zi(Sa,e),",",zi(ka,t),",",zi(ka,e))}function Li(n,t){return(t[1]-n[1])/(t[0]-n[0])}function qi(n){for(var t,e,r,i,o=[],u=function(n){for(var t=0,e=n.length-1,r=[],i=n[0],o=n[1],u=r[0]=Li(i,o);++t<e;)r[t]=(u+(u=Li(i=o,o=n[t+1])))/2;return r[t]=u,r}(n),a=-1,l=n.length-1;++a<l;)t=Li(n[a],n[a+1]),fo(t)<Ao?u[a]=u[a+1]=0:(i=(e=u[a]/t)*e+(r=u[a+1]/t)*r)>9&&(i=3*t/Math.sqrt(i),u[a]=i*e,u[a+1]=i*r);for(a=-1;++a<=l;)i=(n[Math.min(l,a+1)][0]-n[Math.max(0,a-1)][0])/(6*(1+u[a]*u[a])),o.push([i||0,u[a]*i||0]);return o}function Ri(n){for(var t,e,r,i=-1,o=n.length;++i<o;)e=(t=n[i])[0],r=t[1]-qo,t[0]=e*Math.cos(r),t[1]=e*Math.sin(r);return n}function Di(n){function t(t){function l(){d.push("M",a(n(y),s),f,c(n(v.reverse()),s),"Z")}for(var h,p,g,d=[],v=[],y=[],m=-1,x=t.length,M=Cn(e),w=Cn(i),b=e===r?function(){return p}:Cn(r),_=i===o?function(){return g}:Cn(o);++m<x;)u.call(this,h=t[m],m)?(v.push([p=+M.call(this,h,m),g=+w.call(this,h,m)]),y.push([+b.call(this,h,m),+_.call(this,h,m)])):v.length&&(l(),v=[],y=[]);return v.length&&l(),d.length?d.join(""):null}var e=ge,r=ge,i=0,o=de,u=Nt,a=_i,l=a.key,c=a,f="L",s=.7;return t.x=function(n){return arguments.length?(e=r=n,t):r},t.x0=function(n){return arguments.length?(e=n,t):e},t.x1=function(n){return arguments.length?(r=n,t):r},t.y=function(n){return arguments.length?(i=o=n,t):o},t.y0=function(n){return arguments.length?(i=n,t):i},t.y1=function(n){return arguments.length?(o=n,t):o},t.defined=function(n){return arguments.length?(u=n,t):u},t.interpolate=function(n){return arguments.length?(l="function"==typeof n?a=n:(a=ba.get(n)||_i).key,c=a.reverse||a,f=a.closed?"M":"L",t):l},t.tension=function(n){return arguments.length?(s=n,t):s},t}function Pi(n){return n.radius}function ji(n){return[n.x,n.y]}function Ui(){return 64}function Hi(){return"circle"}function Fi(n){var t=Math.sqrt(n/zo);return"M0,"+t+"A"+t+","+t+" 0 1,1 0,"+-t+"A"+t+","+t+" 0 1,1 0,"+t+"Z"}function Oi(n){return function(){var t,e,r;(t=this[n])&&(r=t[e=t.active])&&(r.timer.c=null,r.timer.t=NaN,--t.count?delete t[e]:delete this[n],t.active+=.5,r.event&&r.event.interrupt.call(this,this.__data__,r.index))}}function Ii(n,t,e){return vo(n,La),n.namespace=t,n.id=e,n}function Yi(n,t,e,r){var i=n.id,o=n.namespace;return X(n,"function"==typeof e?function(n,u,a){n[o][i].tween.set(t,r(e.call(n,n.__data__,u,a)))}:(e=r(e),function(n){n[o][i].tween.set(t,e)}))}function Bi(n){return null==n&&(n=""),function(){this.textContent=n}}function Vi(n){return null==n?"__transition__":"__transition_"+n+"__"}function Zi(n,t,e,r,i){function o(e){var i=h.active,o=h[i];for(var g in o&&(o.timer.c=null,o.timer.t=NaN,--h.count,delete h[i],o.event&&o.event.interrupt.call(n,n.__data__,o.index)),h)if(r>+g){var d=h[g];d.timer.c=null,d.timer.t=NaN,--h.count,delete h[g]}l.c=u,Ln(function(){return l.c&&u(e||1)&&(l.c=null,l.t=NaN),1},0,a),h.active=r,p.event&&p.event.start.call(n,n.__data__,t),s=[],p.tween.forEach(function(e,r){(r=r.call(n,n.__data__,t))&&s.push(r)}),f=p.ease,c=p.duration}function u(i){for(var o=i/c,u=f(o),a=s.length;a>0;)s[--a].call(n,u);return o>=1?(p.event&&p.event.end.call(n,n.__data__,t),--h.count?delete h[r]:delete n[e],1):void 0}var a,l,c,f,s,h=n[e]||(n[e]={active:0,count:0}),p=h[r];p||(a=i.time,l=Ln(function(n){var t=p.delay;return l.t=t+a,n>=t?o(n-t):void(l.c=o)},0,a),p=h[r]={tween:new g,time:a,timer:l,delay:i.delay,duration:i.duration,ease:i.ease,index:t},i=null,++h.count)}function $i(n,t,e){n.attr("transform",function(n){var r=t(n);return"translate("+(isFinite(r)?r:e(n))+",0)"})}function Xi(n,t,e){n.attr("transform",function(n){var r=t(n);return"translate(0,"+(isFinite(r)?r:e(n))+")"})}function Wi(n){return n.toISOString()}function Gi(n,t,e){function r(t){return n(t)}function i(n,e){var r=(n[1]-n[0])/e,i=no.bisect(Oa,r);return i==Oa.length?[t.year,ci(n.map(function(n){return n/31536e6}),e)[2]]:i?t[r/Oa[i-1]<Oa[i]/r?i-1:i]:[Ba,ci(n,e)[2]]}return r.invert=function(t){return Ji(n.invert(t))},r.domain=function(t){return arguments.length?(n.domain(t),r):n.domain().map(Ji)},r.nice=function(n,t){function e(e){return!isNaN(e)&&!n.range(e,Ji(+e+1),t).length}var o=r.domain(),u=ti(o),a=null==n?i(u,10):"number"==typeof n&&i(u,n);return a&&(n=a[0],t=a[1]),r.domain(ii(o,t>1?{floor:function(t){for(;e(t=n.floor(t));)t=Ji(t-1);return t},ceil:function(t){for(;e(t=n.ceil(t));)t=Ji(+t+1);return t}}:n))},r.ticks=function(n,t){var e=ti(r.domain()),o=null==n?i(e,10):"number"==typeof n?i(e,n):!n.range&&[{range:n},t];return o&&(n=o[0],t=o[1]),n.range(e[0],Ji(+e[1]+1),1>t?1:t)},r.tickFormat=function(){return e},r.copy=function(){return Gi(n.copy(),t,e)},ai(r,n)}function Ji(n){return new Date(n)}function Ki(n){return JSON.parse(n.responseText)}function Qi(n){var t=ro.createRange();return t.selectNode(ro.body),t.createContextualFragment(n.responseText)}var no={version:"3.5.17"},to=[].slice,eo=function(n){return to.call(n)},ro=this.document;if(ro)try{eo(ro.documentElement.childNodes)[0].nodeType}catch(n){eo=function(n){for(var t=n.length,e=new Array(t);t--;)e[t]=n[t];return e}}if(Date.now||(Date.now=function(){return+new Date}),ro)try{ro.createElement("DIV").style.setProperty("opacity",0,"")}catch(n){var io=this.Element.prototype,oo=io.setAttribute,uo=io.setAttributeNS,ao=this.CSSStyleDeclaration.prototype,lo=ao.setProperty;io.setAttribute=function(n,t){oo.call(this,n,t+"")},io.setAttributeNS=function(n,t,e){uo.call(this,n,t,e+"")},ao.setProperty=function(n,t,e){lo.call(this,n,t+"",e)}}no.ascending=l,no.descending=function(n,t){return n>t?-1:t>n?1:t>=n?0:NaN},no.min=function(n,t){var e,r,i=-1,o=n.length;if(1===arguments.length){for(;++i<o;)if(null!=(r=n[i])&&r>=r){e=r;break}for(;++i<o;)null!=(r=n[i])&&e>r&&(e=r)}else{for(;++i<o;)if(null!=(r=t.call(n,n[i],i))&&r>=r){e=r;break}for(;++i<o;)null!=(r=t.call(n,n[i],i))&&e>r&&(e=r)}return e},no.max=function(n,t){var e,r,i=-1,o=n.length;if(1===arguments.length){for(;++i<o;)if(null!=(r=n[i])&&r>=r){e=r;break}for(;++i<o;)null!=(r=n[i])&&r>e&&(e=r)}else{for(;++i<o;)if(null!=(r=t.call(n,n[i],i))&&r>=r){e=r;break}for(;++i<o;)null!=(r=t.call(n,n[i],i))&&r>e&&(e=r)}return e},no.extent=function(n,t){var e,r,i,o=-1,u=n.length;if(1===arguments.length){for(;++o<u;)if(null!=(r=n[o])&&r>=r){e=i=r;break}for(;++o<u;)null!=(r=n[o])&&(e>r&&(e=r),r>i&&(i=r))}else{for(;++o<u;)if(null!=(r=t.call(n,n[o],o))&&r>=r){e=i=r;break}for(;++o<u;)null!=(r=t.call(n,n[o],o))&&(e>r&&(e=r),r>i&&(i=r))}return[e,i]},no.sum=function(n,t){var e,r=0,i=n.length,o=-1;if(1===arguments.length)for(;++o<i;)f(e=+n[o])&&(r+=e);else for(;++o<i;)f(e=+t.call(n,n[o],o))&&(r+=e);return r},no.mean=function(n,t){var e,r=0,i=n.length,o=-1,u=i;if(1===arguments.length)for(;++o<i;)f(e=c(n[o]))?r+=e:--u;else for(;++o<i;)f(e=c(t.call(n,n[o],o)))?r+=e:--u;return u?r/u:void 0},no.quantile=function(n,t){var e=(n.length-1)*t+1,r=Math.floor(e),i=+n[r-1],o=e-r;return o?i+o*(n[r]-i):i},no.median=function(n,t){var e,r=[],i=n.length,o=-1;if(1===arguments.length)for(;++o<i;)f(e=c(n[o]))&&r.push(e);else for(;++o<i;)f(e=c(t.call(n,n[o],o)))&&r.push(e);return r.length?no.quantile(r.sort(l),.5):void 0},no.variance=function(n,t){var e,r,i=n.length,o=0,u=0,a=-1,l=0;if(1===arguments.length)for(;++a<i;)f(e=c(n[a]))&&(u+=(r=e-o)*(e-(o+=r/++l)));else for(;++a<i;)f(e=c(t.call(n,n[a],a)))&&(u+=(r=e-o)*(e-(o+=r/++l)));return l>1?u/(l-1):void 0},no.deviation=function(){var n=no.variance.apply(this,arguments);return n?Math.sqrt(n):n};var co=s(l);no.bisectLeft=co.left,no.bisect=no.bisectRight=co.right,no.bisector=function(n){return s(1===n.length?function(t,e){return l(n(t),e)}:n)},no.shuffle=function(n,t,e){(o=arguments.length)<3&&(e=n.length,2>o&&(t=0));for(var r,i,o=e-t;o;)i=Math.random()*o--|0,r=n[o+t],n[o+t]=n[i+t],n[i+t]=r;return n},no.permute=function(n,t){for(var e=t.length,r=new Array(e);e--;)r[e]=n[t[e]];return r},no.pairs=function(n){for(var t=0,e=n.length-1,r=n[0],i=new Array(0>e?0:e);e>t;)i[t]=[r,r=n[++t]];return i},no.transpose=function(n){if(!(i=n.length))return[];for(var t=-1,e=no.min(n,h),r=new Array(e);++t<e;)for(var i,o=-1,u=r[t]=new Array(i);++o<i;)u[o]=n[o][t];return r},no.zip=function(){return no.transpose(arguments)},no.keys=function(n){var t=[];for(var e in n)t.push(e);return t},no.values=function(n){var t=[];for(var e in n)t.push(n[e]);return t},no.entries=function(n){var t=[];for(var e in n)t.push({key:e,value:n[e]});return t},no.merge=function(n){for(var t,e,r,i=n.length,o=-1,u=0;++o<i;)u+=n[o].length;for(e=new Array(u);--i>=0;)for(t=(r=n[i]).length;--t>=0;)e[--u]=r[t];return e};var fo=Math.abs;no.range=function(n,t,e){if(arguments.length<3&&(e=1,arguments.length<2&&(t=n,n=0)),(t-n)/e==1/0)throw new Error("infinite range");var r,i=[],o=function(n){for(var t=1;n*t%1;)t*=10;return t}(fo(e)),u=-1;if(n*=o,t*=o,0>(e*=o))for(;(r=n+e*++u)>t;)i.push(r/o);else for(;(r=n+e*++u)<t;)i.push(r/o);return i},no.map=function(n,t){var e=new g;if(n instanceof g)n.forEach(function(n,t){e.set(n,t)});else if(Array.isArray(n)){var r,i=-1,o=n.length;if(1===arguments.length)for(;++i<o;)e.set(i,n[i]);else for(;++i<o;)e.set(t.call(n,r=n[i],i),r)}else for(var u in n)e.set(u,n[u]);return e};var so="__proto__",ho="\0";p(g,{has:y,get:function(n){return this._[d(n)]},set:function(n,t){return this._[d(n)]=t},remove:m,keys:x,values:function(){var n=[];for(var t in this._)n.push(this._[t]);return n},entries:function(){var n=[];for(var t in this._)n.push({key:v(t),value:this._[t]});return n},size:M,empty:w,forEach:function(n){for(var t in this._)n.call(this,v(t),this._[t])}}),no.nest=function(){function n(o,u,a){if(a>=i.length)return e?e.call(r,u):t?u.sort(t):u;for(var l,c,f,s,h=-1,p=u.length,d=i[a++],v=new g;++h<p;)(s=v.get(l=d(c=u[h])))?s.push(c):v.set(l,[c]);return o?(c=o(),f=function(t,e){c.set(t,n(o,e,a))}):(c={},f=function(t,e){c[t]=n(o,e,a)}),v.forEach(f),c}var t,e,r={},i=[],o=[];return r.map=function(t,e){return n(e,t,0)},r.entries=function(t){return function n(t,e){if(e>=i.length)return t;var r=[],u=o[e++];return t.forEach(function(t,i){r.push({key:t,values:n(i,e)})}),u?r.sort(function(n,t){return u(n.key,t.key)}):r}(n(no.map,t,0),0)},r.key=function(n){return i.push(n),r},r.sortKeys=function(n){return o[i.length-1]=n,r},r.sortValues=function(n){return t=n,r},r.rollup=function(n){return e=n,r},r},no.set=function(n){var t=new b;if(n)for(var e=0,r=n.length;r>e;++e)t.add(n[e]);return t},p(b,{has:y,add:function(n){return this._[d(n+="")]=!0,n},remove:m,values:x,size:M,empty:w,forEach:function(n){for(var t in this._)n.call(this,v(t))}}),no.behavior={},no.rebind=function(n,t){for(var e,r=1,i=arguments.length;++r<i;)n[e=arguments[r]]=S(n,t,t[e]);return n};var po=["webkit","ms","moz","Moz","o","O"];no.dispatch=function(){for(var n=new E,t=-1,e=arguments.length;++t<e;)n[arguments[t]]=A(n);return n},E.prototype.on=function(n,t){var e=n.indexOf("."),r="";if(e>=0&&(r=n.slice(e+1),n=n.slice(0,e)),n)return arguments.length<2?this[n].on(r):this[n].on(r,t);if(2===arguments.length){if(null==t)for(n in this)this.hasOwnProperty(n)&&this[n].on(r,null);return this}},no.event=null,no.requote=function(n){return n.replace(go,"\\$&")};var go=/[\\\^\$\*\+\?\|\[\]\(\)\.\{\}]/g,vo={}.__proto__?function(n,t){n.__proto__=t}:function(n,t){for(var e in t)n[e]=t[e]},yo=function(n,t){return t.querySelector(n)},mo=function(n,t){return t.querySelectorAll(n)},xo=function(n,t){var e=n.matches||n[k(n,"matchesSelector")];return(xo=function(n,t){return e.call(n,t)})(n,t)};"function"==typeof Sizzle&&(yo=function(n,t){return Sizzle(n,t)[0]||null},mo=Sizzle,xo=Sizzle.matchesSelector),no.selection=function(){return no.select(ro.documentElement)};var Mo=no.selection.prototype=[];Mo.select=function(n){var t,e,r,i,o=[];n=q(n);for(var u=-1,a=this.length;++u<a;){o.push(t=[]),t.parentNode=(r=this[u]).parentNode;for(var l=-1,c=r.length;++l<c;)(i=r[l])?(t.push(e=n.call(i,i.__data__,l,u)),e&&"__data__"in i&&(e.__data__=i.__data__)):t.push(null)}return L(o)},Mo.selectAll=function(n){var t,e,r=[];n=R(n);for(var i=-1,o=this.length;++i<o;)for(var u=this[i],a=-1,l=u.length;++a<l;)(e=u[a])&&(r.push(t=eo(n.call(e,e.__data__,a,i))),t.parentNode=e);return L(r)};var wo="http://www.w3.org/1999/xhtml",bo={svg:"http://www.w3.org/2000/svg",xhtml:wo,xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace",xmlns:"http://www.w3.org/2000/xmlns/"};no.ns={prefix:bo,qualify:function(n){var t=n.indexOf(":"),e=n;return t>=0&&"xmlns"!==(e=n.slice(0,t))&&(n=n.slice(t+1)),bo.hasOwnProperty(e)?{space:bo[e],local:n}:n}},Mo.attr=function(n,t){if(arguments.length<2){if("string"==typeof n){var e=this.node();return(n=no.ns.qualify(n)).local?e.getAttributeNS(n.space,n.local):e.getAttribute(n)}for(t in n)this.each(D(t,n[t]));return this}return this.each(D(n,t))},Mo.classed=function(n,t){if(arguments.length<2){if("string"==typeof n){var e=this.node(),r=(n=U(n)).length,i=-1;if(t=e.classList){for(;++i<r;)if(!t.contains(n[i]))return!1}else for(t=e.getAttribute("class");++i<r;)if(!j(n[i]).test(t))return!1;return!0}for(t in n)this.each(H(t,n[t]));return this}return this.each(H(n,t))},Mo.style=function(n,t,e){var r=arguments.length;if(3>r){if("string"!=typeof n){for(e in 2>r&&(t=""),n)this.each(O(e,n[e],t));return this}if(2>r){var i=this.node();return a(i).getComputedStyle(i,null).getPropertyValue(n)}e=""}return this.each(O(n,t,e))},Mo.property=function(n,t){if(arguments.length<2){if("string"==typeof n)return this.node()[n];for(t in n)this.each(I(t,n[t]));return this}return this.each(I(n,t))},Mo.text=function(n){return arguments.length?this.each("function"==typeof n?function(){var t=n.apply(this,arguments);this.textContent=null==t?"":t}:null==n?function(){this.textContent=""}:function(){this.textContent=n}):this.node().textContent},Mo.html=function(n){return arguments.length?this.each("function"==typeof n?function(){var t=n.apply(this,arguments);this.innerHTML=null==t?"":t}:null==n?function(){this.innerHTML=""}:function(){this.innerHTML=n}):this.node().innerHTML},Mo.append=function(n){return n=Y(n),this.select(function(){return this.appendChild(n.apply(this,arguments))})},Mo.insert=function(n,t){return n=Y(n),t=q(t),this.select(function(){return this.insertBefore(n.apply(this,arguments),t.apply(this,arguments)||null)})},Mo.remove=function(){return this.each(B)},Mo.data=function(n,t){function e(n,e){var r,i,o,u=n.length,f=e.length,s=Math.min(u,f),h=new Array(f),p=new Array(f),d=new Array(u);if(t){var v,y=new g,m=new Array(u);for(r=-1;++r<u;)(i=n[r])&&(y.has(v=t.call(i,i.__data__,r))?d[r]=i:y.set(v,i),m[r]=v);for(r=-1;++r<f;)(i=y.get(v=t.call(e,o=e[r],r)))?!0!==i&&(h[r]=i,i.__data__=o):p[r]=V(o),y.set(v,!0);for(r=-1;++r<u;)r in m&&!0!==y.get(m[r])&&(d[r]=n[r])}else{for(r=-1;++r<s;)i=n[r],o=e[r],i?(i.__data__=o,h[r]=i):p[r]=V(o);for(;f>r;++r)p[r]=V(e[r]);for(;u>r;++r)d[r]=n[r]}p.update=h,p.parentNode=h.parentNode=d.parentNode=n.parentNode,a.push(p),l.push(h),c.push(d)}var r,i,o=-1,u=this.length;if(!arguments.length){for(n=new Array(u=(r=this[0]).length);++o<u;)(i=r[o])&&(n[o]=i.__data__);return n}var a=W([]),l=L([]),c=L([]);if("function"==typeof n)for(;++o<u;)e(r=this[o],n.call(r,r.parentNode.__data__,o));else for(;++o<u;)e(r=this[o],n);return l.enter=function(){return a},l.exit=function(){return c},l},Mo.datum=function(n){return arguments.length?this.property("__data__",n):this.property("__data__")},Mo.filter=function(n){var t,e,r,i=[];"function"!=typeof n&&(n=Z(n));for(var o=0,u=this.length;u>o;o++){i.push(t=[]),t.parentNode=(e=this[o]).parentNode;for(var a=0,l=e.length;l>a;a++)(r=e[a])&&n.call(r,r.__data__,a,o)&&t.push(r)}return L(i)},Mo.order=function(){for(var n=-1,t=this.length;++n<t;)for(var e,r=this[n],i=r.length-1,o=r[i];--i>=0;)(e=r[i])&&(o&&o!==e.nextSibling&&o.parentNode.insertBefore(e,o),o=e);return this},Mo.sort=function(n){n=$.apply(this,arguments);for(var t=-1,e=this.length;++t<e;)this[t].sort(n);return this.order()},Mo.each=function(n){return X(this,function(t,e,r){n.call(t,t.__data__,e,r)})},Mo.call=function(n){var t=eo(arguments);return n.apply(t[0]=this,t),this},Mo.empty=function(){return!this.node()},Mo.node=function(){for(var n=0,t=this.length;t>n;n++)for(var e=this[n],r=0,i=e.length;i>r;r++){var o=e[r];if(o)return o}return null},Mo.size=function(){var n=0;return X(this,function(){++n}),n};var _o=[];no.selection.enter=W,no.selection.enter.prototype=_o,_o.append=Mo.append,_o.empty=Mo.empty,_o.node=Mo.node,_o.call=Mo.call,_o.size=Mo.size,_o.select=function(n){for(var t,e,r,i,o,u=[],a=-1,l=this.length;++a<l;){r=(i=this[a]).update,u.push(t=[]),t.parentNode=i.parentNode;for(var c=-1,f=i.length;++c<f;)(o=i[c])?(t.push(r[c]=e=n.call(i.parentNode,o.__data__,c,a)),e.__data__=o.__data__):t.push(null)}return L(u)},_o.insert=function(n,t){return arguments.length<2&&(t=function(n){var t,e;return function(r,i,o){var u,a=n[o].update,l=a.length;for(o!=e&&(e=o,t=0),i>=t&&(t=i+1);!(u=a[t])&&++t<l;);return u}}(this)),Mo.insert.call(this,n,t)},no.select=function(n){var t;return"string"==typeof n?(t=[yo(n,ro)]).parentNode=ro.documentElement:(t=[n]).parentNode=u(n),L([t])},no.selectAll=function(n){var t;return"string"==typeof n?(t=eo(mo(n,ro))).parentNode=ro.documentElement:(t=eo(n)).parentNode=null,L([t])},Mo.on=function(n,t,e){var r=arguments.length;if(3>r){if("string"!=typeof n){for(e in 2>r&&(t=!1),n)this.each(G(e,n[e],t));return this}if(2>r)return(r=this.node()["__on"+n])&&r._;e=!1}return this.each(G(n,t,e))};var So=no.map({mouseenter:"mouseover",mouseleave:"mouseout"});ro&&So.forEach(function(n){"on"+n in ro&&So.remove(n)});var ko,No=0;no.mouse=function(n){return nn(n,z())};var Eo=this.navigator&&/WebKit/.test(this.navigator.userAgent)?-1:0;no.touch=function(n,t,e){if(arguments.length<3&&(e=t,t=z().changedTouches),t)for(var r,i=0,o=t.length;o>i;++i)if((r=t[i]).identifier===e)return nn(n,r)},no.behavior.drag=function(){function n(){this.on("mousedown.drag",i).on("touchstart.drag",o)}function t(n,t,i,o,u){return function(){var a,l=this,c=no.event.target.correspondingElement||no.event.target,f=l.parentNode,s=e.of(l,arguments),h=0,p=n(),g=".drag"+(null==p?"":"-"+p),d=no.select(i(c)).on(o+g,function(){var n,e,r=t(f,p);r&&(n=r[0]-y[0],e=r[1]-y[1],h|=n|e,y=r,s({type:"drag",x:r[0]+a[0],y:r[1]+a[1],dx:n,dy:e}))}).on(u+g,function(){t(f,p)&&(d.on(o+g,null).on(u+g,null),v(h),s({type:"dragend"}))}),v=Q(c),y=t(f,p);r?a=[(a=r.apply(l,arguments)).x-y[0],a.y-y[1]]:a=[0,0],s({type:"dragstart"})}}var e=T(n,"drag","dragstart","dragend"),r=null,i=t(N,no.mouse,a,"mousemove","mouseup"),o=t(tn,no.touch,_,"touchmove","touchend");return n.origin=function(t){return arguments.length?(r=t,n):r},no.rebind(n,e,"on")},no.touches=function(n,t){return arguments.length<2&&(t=z().touches),t?eo(t).map(function(t){var e=nn(n,t);return e.identifier=t.identifier,e}):[]};var Ao=1e-6,Co=Ao*Ao,zo=Math.PI,To=2*zo,Lo=To-Ao,qo=zo/2,Ro=zo/180,Do=180/zo,Po=Math.SQRT2;no.interpolateZoom=function(n,t){var e,r,i=n[0],o=n[1],u=n[2],a=t[0],l=t[1],c=t[2],f=a-i,s=l-o,h=f*f+s*s;if(Co>h)r=Math.log(c/u)/Po,e=function(n){return[i+n*f,o+n*s,u*Math.exp(Po*n*r)]};else{var p=Math.sqrt(h),g=(c*c-u*u+4*h)/(2*u*2*p),d=(c*c-u*u-4*h)/(2*c*2*p),v=Math.log(Math.sqrt(g*g+1)-g),y=Math.log(Math.sqrt(d*d+1)-d);r=(y-v)/Po,e=function(n){var t=n*r,e=an(v),a=u/(2*p)*(e*function(n){return((n=Math.exp(2*n))-1)/(n+1)}(Po*t+v)-function(n){return((n=Math.exp(n))-1/n)/2}(v));return[i+a*f,o+a*s,u*e/an(Po*t+v)]}}return e.duration=1e3*r,e},no.behavior.zoom=function(){function n(n){n.on(A,f).on(Uo+".zoom",h).on("dblclick.zoom",p).on(q,s)}function t(n){return[(n[0]-_.x)/_.k,(n[1]-_.y)/_.k]}function e(n){_.k=Math.max(k[0],Math.min(k[1],n))}function r(n,t){t=function(n){return[n[0]*_.k+_.x,n[1]*_.k+_.y]}(t),_.x+=n[0]-t[0],_.y+=n[1]-t[1]}function i(t,i,o,u){t.__chart__={x:_.x,y:_.y,k:_.k},e(Math.pow(2,u)),r(d=i,o),t=no.select(t),N>0&&(t=t.transition().duration(N)),t.call(n.event)}function o(){M&&M.domain(x.range().map(function(n){return(n-_.x)/_.k}).map(x.invert)),b&&b.domain(w.range().map(function(n){return(n-_.y)/_.k}).map(w.invert))}function u(n){E++||n({type:"zoomstart"})}function l(n){o(),n({type:"zoom",scale:_.k,translate:[_.x,_.y]})}function c(n){--E||(n({type:"zoomend"}),d=null)}function f(){var n=this,e=R.of(n,arguments),i=0,o=no.select(a(n)).on(z,function(){i=1,r(no.mouse(n),f),l(e)}).on(L,function(){o.on(z,null).on(L,null),s(i),c(e)}),f=t(no.mouse(n)),s=Q(n);Ta.call(n),u(e)}function s(){function n(){var n=no.touches(g);return p=_.k,n.forEach(function(n){n.identifier in v&&(v[n.identifier]=t(n))}),n}function o(){var t=no.event.target;no.select(t).on(M,a).on(w,h),b.push(t);for(var e=no.event.changedTouches,r=0,o=e.length;o>r;++r)v[e[r].identifier]=null;var u=n(),l=Date.now();if(1===u.length){if(500>l-m){var c=u[0];i(g,c,v[c.identifier],Math.floor(Math.log(_.k)/Math.LN2)+1),C()}m=l}else if(u.length>1){c=u[0];var f=u[1],s=c[0]-f[0],p=c[1]-f[1];y=s*s+p*p}}function a(){var n,t,i,o,u=no.touches(g);Ta.call(g);for(var a=0,c=u.length;c>a;++a,o=null)if(i=u[a],o=v[i.identifier]){if(t)break;n=i,t=o}if(o){var f=(f=i[0]-n[0])*f+(f=i[1]-n[1])*f,s=y&&Math.sqrt(f/y);n=[(n[0]+i[0])/2,(n[1]+i[1])/2],t=[(t[0]+o[0])/2,(t[1]+o[1])/2],e(s*p)}m=null,r(n,t),l(d)}function h(){if(no.event.touches.length){for(var t=no.event.changedTouches,e=0,r=t.length;r>e;++e)delete v[t[e].identifier];for(var i in v)return void n()}no.selectAll(b).on(x,null),S.on(A,f).on(q,s),k(),c(d)}var p,g=this,d=R.of(g,arguments),v={},y=0,x=".zoom-"+no.event.changedTouches[0].identifier,M="touchmove"+x,w="touchend"+x,b=[],S=no.select(g),k=Q(g);o(),u(d),S.on(A,null).on(q,o)}function h(){var n=R.of(this,arguments);y?clearTimeout(y):(Ta.call(this),g=t(d=v||no.mouse(this)),u(n)),y=setTimeout(function(){y=null,c(n)},50),C(),e(Math.pow(2,.002*jo())*_.k),r(d,g),l(n)}function p(){var n=no.mouse(this),e=Math.log(_.k)/Math.LN2;i(this,n,t(n),no.event.shiftKey?Math.ceil(e)-1:Math.floor(e)+1)}var g,d,v,y,m,x,M,w,b,_={x:0,y:0,k:1},S=[960,500],k=Ho,N=250,E=0,A="mousedown.zoom",z="mousemove.zoom",L="mouseup.zoom",q="touchstart.zoom",R=T(n,"zoomstart","zoom","zoomend");return Uo||(Uo="onwheel"in ro?(jo=function(){return-no.event.deltaY*(no.event.deltaMode?120:1)},"wheel"):"onmousewheel"in ro?(jo=function(){return no.event.wheelDelta},"mousewheel"):(jo=function(){return-no.event.detail},"MozMousePixelScroll")),n.event=function(n){n.each(function(){var n=R.of(this,arguments),t=_;Ca?no.select(this).transition().each("start.zoom",function(){_=this.__chart__||{x:0,y:0,k:1},u(n)}).tween("zoom:zoom",function(){var e=S[0],r=S[1],i=d?d[0]:e/2,o=d?d[1]:r/2,u=no.interpolateZoom([(i-_.x)/_.k,(o-_.y)/_.k,e/_.k],[(i-t.x)/t.k,(o-t.y)/t.k,e/t.k]);return function(t){var r=u(t),a=e/r[2];this.__chart__=_={x:i-r[0]*a,y:o-r[1]*a,k:a},l(n)}}).each("interrupt.zoom",function(){c(n)}).each("end.zoom",function(){c(n)}):(this.__chart__=_,u(n),l(n),c(n))})},n.translate=function(t){return arguments.length?(_={x:+t[0],y:+t[1],k:_.k},o(),n):[_.x,_.y]},n.scale=function(t){return arguments.length?(_={x:_.x,y:_.y,k:null},e(+t),o(),n):_.k},n.scaleExtent=function(t){return arguments.length?(k=null==t?Ho:[+t[0],+t[1]],n):k},n.center=function(t){return arguments.length?(v=t&&[+t[0],+t[1]],n):v},n.size=function(t){return arguments.length?(S=t&&[+t[0],+t[1]],n):S},n.duration=function(t){return arguments.length?(N=+t,n):N},n.x=function(t){return arguments.length?(M=t,x=t.copy(),_={x:0,y:0,k:1},n):M},n.y=function(t){return arguments.length?(b=t,w=t.copy(),_={x:0,y:0,k:1},n):b},no.rebind(n,R,"on")};var jo,Uo,Ho=[0,1/0];no.color=cn,cn.prototype.toString=function(){return this.rgb()+""},no.hsl=fn;var Fo=fn.prototype=new cn;Fo.brighter=function(n){return n=Math.pow(.7,arguments.length?n:1),new fn(this.h,this.s,this.l/n)},Fo.darker=function(n){return n=Math.pow(.7,arguments.length?n:1),new fn(this.h,this.s,n*this.l)},Fo.rgb=function(){return sn(this.h,this.s,this.l)},no.hcl=hn;var Oo=hn.prototype=new cn;Oo.brighter=function(n){return new hn(this.h,this.c,Math.min(100,this.l+Io*(arguments.length?n:1)))},Oo.darker=function(n){return new hn(this.h,this.c,Math.max(0,this.l-Io*(arguments.length?n:1)))},Oo.rgb=function(){return pn(this.h,this.c,this.l).rgb()},no.lab=gn;var Io=18,Yo=.95047,Bo=1,Vo=1.08883,Zo=gn.prototype=new cn;Zo.brighter=function(n){return new gn(Math.min(100,this.l+Io*(arguments.length?n:1)),this.a,this.b)},Zo.darker=function(n){return new gn(Math.max(0,this.l-Io*(arguments.length?n:1)),this.a,this.b)},Zo.rgb=function(){return dn(this.l,this.a,this.b)},no.rgb=Mn;var $o=Mn.prototype=new cn;$o.brighter=function(n){n=Math.pow(.7,arguments.length?n:1);var t=this.r,e=this.g,r=this.b,i=30;return t||e||r?(t&&i>t&&(t=i),e&&i>e&&(e=i),r&&i>r&&(r=i),new Mn(Math.min(255,t/n),Math.min(255,e/n),Math.min(255,r/n))):new Mn(i,i,i)},$o.darker=function(n){return new Mn((n=Math.pow(.7,arguments.length?n:1))*this.r,n*this.g,n*this.b)},$o.hsl=function(){return kn(this.r,this.g,this.b)},$o.toString=function(){return"#"+_n(this.r)+_n(this.g)+_n(this.b)};var Xo=no.map({aliceblue:15792383,antiquewhite:16444375,aqua:65535,aquamarine:8388564,azure:15794175,beige:16119260,bisque:16770244,black:0,blanchedalmond:16772045,blue:255,blueviolet:9055202,brown:10824234,burlywood:14596231,cadetblue:6266528,chartreuse:8388352,chocolate:13789470,coral:16744272,cornflowerblue:6591981,cornsilk:16775388,crimson:14423100,cyan:65535,darkblue:139,darkcyan:35723,darkgoldenrod:12092939,darkgray:11119017,darkgreen:25600,darkgrey:11119017,darkkhaki:12433259,darkmagenta:9109643,darkolivegreen:5597999,darkorange:16747520,darkorchid:10040012,darkred:9109504,darksalmon:15308410,darkseagreen:9419919,darkslateblue:4734347,darkslategray:3100495,darkslategrey:3100495,darkturquoise:52945,darkviolet:9699539,deeppink:16716947,deepskyblue:49151,dimgray:6908265,dimgrey:6908265,dodgerblue:2003199,firebrick:11674146,floralwhite:16775920,forestgreen:2263842,fuchsia:16711935,gainsboro:14474460,ghostwhite:16316671,gold:16766720,goldenrod:14329120,gray:8421504,green:32768,greenyellow:11403055,grey:8421504,honeydew:15794160,hotpink:16738740,indianred:13458524,indigo:4915330,ivory:16777200,khaki:15787660,lavender:15132410,lavenderblush:16773365,lawngreen:8190976,lemonchiffon:16775885,lightblue:11393254,lightcoral:15761536,lightcyan:14745599,lightgoldenrodyellow:16448210,lightgray:13882323,lightgreen:9498256,lightgrey:13882323,lightpink:16758465,lightsalmon:16752762,lightseagreen:2142890,lightskyblue:8900346,lightslategray:7833753,lightslategrey:7833753,lightsteelblue:11584734,lightyellow:16777184,lime:65280,limegreen:3329330,linen:16445670,magenta:16711935,maroon:8388608,mediumaquamarine:6737322,mediumblue:205,mediumorchid:12211667,mediumpurple:9662683,mediumseagreen:3978097,mediumslateblue:8087790,mediumspringgreen:64154,mediumturquoise:4772300,mediumvioletred:13047173,midnightblue:1644912,mintcream:16121850,mistyrose:16770273,moccasin:16770229,navajowhite:16768685,navy:128,oldlace:16643558,olive:8421376,olivedrab:7048739,orange:16753920,orangered:16729344,orchid:14315734,palegoldenrod:15657130,palegreen:10025880,paleturquoise:11529966,palevioletred:14381203,papayawhip:16773077,peachpuff:16767673,peru:13468991,pink:16761035,plum:14524637,powderblue:11591910,purple:8388736,rebeccapurple:6697881,red:16711680,rosybrown:12357519,royalblue:4286945,saddlebrown:9127187,salmon:16416882,sandybrown:16032864,seagreen:3050327,seashell:16774638,sienna:10506797,silver:12632256,skyblue:8900331,slateblue:6970061,slategray:7372944,slategrey:7372944,snow:16775930,springgreen:65407,steelblue:4620980,tan:13808780,teal:32896,thistle:14204888,tomato:16737095,turquoise:4251856,violet:15631086,wheat:16113331,white:16777215,whitesmoke:16119285,yellow:16776960,yellowgreen:10145074});Xo.forEach(function(n,t){Xo.set(n,wn(t))}),no.functor=Cn,no.xhr=zn(_),no.dsv=function(n,t){function e(n,e,o){arguments.length<3&&(o=e,e=null);var u=Tn(n,t,null==e?r:i(e),o);return u.row=function(n){return arguments.length?u.response(null==(e=n)?r:i(n)):e},u}function r(n){return e.parse(n.responseText)}function i(n){return function(t){return e.parse(t.responseText,n)}}function o(t){return t.map(u).join(n)}function u(n){return a.test(n)?'"'+n.replace(/\"/g,'""')+'"':n}var a=new RegExp('["'+n+"\n]"),l=n.charCodeAt(0);return e.parse=function(n,t){var r;return e.parseRows(n,function(n,e){if(r)return r(n,e-1);var i=new Function("d","return {"+n.map(function(n,t){return JSON.stringify(n)+": d["+t+"]"}).join(",")+"}");r=t?function(n,e){return t(i(n),e)}:i})},e.parseRows=function(n,t){function e(){if(f>=c)return u;if(i)return i=!1,o;var t=f;if(34===n.charCodeAt(t)){for(var e=t;e++<c;)if(34===n.charCodeAt(e)){if(34!==n.charCodeAt(e+1))break;++e}return f=e+2,13===(r=n.charCodeAt(e+1))?(i=!0,10===n.charCodeAt(e+2)&&++f):10===r&&(i=!0),n.slice(t+1,e).replace(/""/g,'"')}for(;c>f;){var r,a=1;if(10===(r=n.charCodeAt(f++)))i=!0;else if(13===r)i=!0,10===n.charCodeAt(f)&&(++f,++a);else if(r!==l)continue;return n.slice(t,f-a)}return n.slice(t)}for(var r,i,o={},u={},a=[],c=n.length,f=0,s=0;(r=e())!==u;){for(var h=[];r!==o&&r!==u;)h.push(r),r=e();t&&null==(h=t(h,s++))||a.push(h)}return a},e.format=function(t){if(Array.isArray(t[0]))return e.formatRows(t);var r=new b,i=[];return t.forEach(function(n){for(var t in n)r.has(t)||i.push(r.add(t))}),[i.map(u).join(n)].concat(t.map(function(t){return i.map(function(n){return u(t[n])}).join(n)})).join("\n")},e.formatRows=function(n){return n.map(o).join("\n")},e},no.csv=no.dsv(",","text/csv"),no.tsv=no.dsv("\t","text/tab-separated-values");var Wo,Go,Jo,Ko,Qo=this[k(this,"requestAnimationFrame")]||function(n){setTimeout(n,17)};no.timer=function(){Ln.apply(this,arguments)},no.timer.flush=function(){Rn(),Dn()},no.round=function(n,t){return t?Math.round(n*(t=Math.pow(10,t)))/t:Math.round(n)};var nu=["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"].map(function(n,t){var e=Math.pow(10,3*fo(8-t));return{scale:t>8?function(n){return n/e}:function(n){return n*e},symbol:n}});no.formatPrefix=function(n,t){var e=0;return(n=+n)&&(0>n&&(n*=-1),t&&(n=no.round(n,Pn(n,t))),e=1+Math.floor(1e-12+Math.log(n)/Math.LN10),e=Math.max(-24,Math.min(24,3*Math.floor((e-1)/3)))),nu[8+e/3]};var tu=/(?:([^{])?([<>=^]))?([+\- ])?([$#])?(0)?(\d+)?(,)?(\.-?\d+)?([a-z%])?/i,eu=no.map({b:function(n){return n.toString(2)},c:function(n){return String.fromCharCode(n)},o:function(n){return n.toString(8)},x:function(n){return n.toString(16)},X:function(n){return n.toString(16).toUpperCase()},g:function(n,t){return n.toPrecision(t)},e:function(n,t){return n.toExponential(t)},f:function(n,t){return n.toFixed(t)},r:function(n,t){return(n=no.round(n,Pn(n,t))).toFixed(Math.max(0,Math.min(20,Pn(n*(1+1e-15),t))))}}),ru=no.time={},iu=Date;Un.prototype={getDate:function(){return this._.getUTCDate()},getDay:function(){return this._.getUTCDay()},getFullYear:function(){return this._.getUTCFullYear()},getHours:function(){return this._.getUTCHours()},getMilliseconds:function(){return this._.getUTCMilliseconds()},getMinutes:function(){return this._.getUTCMinutes()},getMonth:function(){return this._.getUTCMonth()},getSeconds:function(){return this._.getUTCSeconds()},getTime:function(){return this._.getTime()},getTimezoneOffset:function(){return 0},valueOf:function(){return this._.valueOf()},setDate:function(){ou.setUTCDate.apply(this._,arguments)},setDay:function(){ou.setUTCDay.apply(this._,arguments)},setFullYear:function(){ou.setUTCFullYear.apply(this._,arguments)},setHours:function(){ou.setUTCHours.apply(this._,arguments)},setMilliseconds:function(){ou.setUTCMilliseconds.apply(this._,arguments)},setMinutes:function(){ou.setUTCMinutes.apply(this._,arguments)},setMonth:function(){ou.setUTCMonth.apply(this._,arguments)},setSeconds:function(){ou.setUTCSeconds.apply(this._,arguments)},setTime:function(){ou.setTime.apply(this._,arguments)}};var ou=Date.prototype;ru.year=Hn(function(n){return(n=ru.day(n)).setMonth(0,1),n},function(n,t){n.setFullYear(n.getFullYear()+t)},function(n){return n.getFullYear()}),ru.years=ru.year.range,ru.years.utc=ru.year.utc.range,ru.day=Hn(function(n){var t=new iu(2e3,0);return t.setFullYear(n.getFullYear(),n.getMonth(),n.getDate()),t},function(n,t){n.setDate(n.getDate()+t)},function(n){return n.getDate()-1}),ru.days=ru.day.range,ru.days.utc=ru.day.utc.range,ru.dayOfYear=function(n){var t=ru.year(n);return Math.floor((n-t-6e4*(n.getTimezoneOffset()-t.getTimezoneOffset()))/864e5)},["sunday","monday","tuesday","wednesday","thursday","friday","saturday"].forEach(function(n,t){t=7-t;var e=ru[n]=Hn(function(n){return(n=ru.day(n)).setDate(n.getDate()-(n.getDay()+t)%7),n},function(n,t){n.setDate(n.getDate()+7*Math.floor(t))},function(n){var e=ru.year(n).getDay();return Math.floor((ru.dayOfYear(n)+(e+t)%7)/7)-(e!==t)});ru[n+"s"]=e.range,ru[n+"s"].utc=e.utc.range,ru[n+"OfYear"]=function(n){var e=ru.year(n).getDay();return Math.floor((ru.dayOfYear(n)+(e+t)%7)/7)}}),ru.week=ru.sunday,ru.weeks=ru.sunday.range,ru.weeks.utc=ru.sunday.utc.range,ru.weekOfYear=ru.sundayOfYear;var uu={"-":"",_:" ",0:"0"},au=/^\s*\d+/,lu=/^%/;no.locale=function(n){return{numberFormat:function(n){var t=n.decimal,e=n.thousands,r=n.grouping,i=n.currency,o=r&&e?function(n,t){for(var i=n.length,o=[],u=0,a=r[0],l=0;i>0&&a>0&&(l+a+1>t&&(a=Math.max(1,t-l)),o.push(n.substring(i-=a,i+a)),!((l+=a+1)>t));)a=r[u=(u+1)%r.length];return o.reverse().join(e)}:_;return function(n){var e=tu.exec(n),r=e[1]||" ",u=e[2]||">",a=e[3]||"-",l=e[4]||"",c=e[5],f=+e[6],s=e[7],h=e[8],p=e[9],g=1,d="",v="",y=!1,m=!0;switch(h&&(h=+h.substring(1)),(c||"0"===r&&"="===u)&&(c=r="0",u="="),p){case"n":s=!0,p="g";break;case"%":g=100,v="%",p="f";break;case"p":g=100,v="%",p="r";break;case"b":case"o":case"x":case"X":"#"===l&&(d="0"+p.toLowerCase());case"c":m=!1;case"d":y=!0,h=0;break;case"s":g=-1,p="r"}"$"===l&&(d=i[0],v=i[1]),"r"!=p||h||(p="g"),null!=h&&("g"==p?h=Math.max(1,Math.min(21,h)):"e"!=p&&"f"!=p||(h=Math.max(0,Math.min(20,h)))),p=eu.get(p)||jn;var x=c&&s;return function(n){var e=v;if(y&&n%1)return"";var i=0>n||0===n&&0>1/n?(n=-n,"-"):"-"===a?"":a;if(0>g){var l=no.formatPrefix(n,h);n=l.scale(n),e=l.symbol+v}else n*=g;var M,w,b=(n=p(n,h)).lastIndexOf(".");if(0>b){var _=m?n.lastIndexOf("e"):-1;0>_?(M=n,w=""):(M=n.substring(0,_),w=n.substring(_))}else M=n.substring(0,b),w=t+n.substring(b+1);!c&&s&&(M=o(M,1/0));var S=d.length+M.length+w.length+(x?0:i.length),k=f>S?new Array(S=f-S+1).join(r):"";return x&&(M=o(k+M,k.length?f-w.length:1/0)),i+=d,n=M+w,("<"===u?i+n+k:">"===u?k+i+n:"^"===u?k.substring(0,S>>=1)+i+n+k.substring(S):i+(x?n:k+n))+e}}}(n),timeFormat:function(n){function t(n){function t(t){for(var e,i,o,u=[],a=-1,l=0;++a<r;)37===n.charCodeAt(a)&&(u.push(n.slice(l,a)),null!=(i=uu[e=n.charAt(++a)])&&(e=n.charAt(++a)),(o=M[e])&&(e=o(t,null==i?"e"===e?" ":"0":i)),u.push(e),l=a+1);return u.push(n.slice(l,a)),u.join("")}var r=n.length;return t.parse=function(t){var r={y:1900,m:0,d:1,H:0,M:0,S:0,L:0,Z:null};if(e(r,n,t,0)!=t.length)return null;"p"in r&&(r.H=r.H%12+12*r.p);var i=null!=r.Z&&iu!==Un,o=new(i?Un:iu);return"j"in r?o.setFullYear(r.y,0,r.j):"W"in r||"U"in r?("w"in r||(r.w="W"in r?1:0),o.setFullYear(r.y,0,1),o.setFullYear(r.y,0,"W"in r?(r.w+6)%7+7*r.W-(o.getDay()+5)%7:r.w+7*r.U-(o.getDay()+6)%7)):o.setFullYear(r.y,r.m,r.d),o.setHours(r.H+(r.Z/100|0),r.M+r.Z%100,r.S,r.L),i?o._:o},t.toString=function(){return n},t}function e(n,t,e,r){for(var i,o,u,a=0,l=t.length,c=e.length;l>a;){if(r>=c)return-1;if(37===(i=t.charCodeAt(a++))){if(u=t.charAt(a++),!(o=w[u in uu?t.charAt(a++):u])||(r=o(n,e,r))<0)return-1}else if(i!=e.charCodeAt(r++))return-1}return r}var r=n.dateTime,i=n.date,o=n.time,u=n.periods,a=n.days,l=n.shortDays,c=n.months,f=n.shortMonths;t.utc=function(n){function e(n){try{var t=new(iu=Un);return t._=n,r(t)}finally{iu=Date}}var r=t(n);return e.parse=function(n){try{iu=Un;var t=r.parse(n);return t&&t._}finally{iu=Date}},e.toString=r.toString,e},t.multi=t.utc.multi=ot;var s=no.map(),h=In(a),p=Yn(a),g=In(l),d=Yn(l),v=In(c),y=Yn(c),m=In(f),x=Yn(f);u.forEach(function(n,t){s.set(n.toLowerCase(),t)});var M={a:function(n){return l[n.getDay()]},A:function(n){return a[n.getDay()]},b:function(n){return f[n.getMonth()]},B:function(n){return c[n.getMonth()]},c:t(r),d:function(n,t){return On(n.getDate(),t,2)},e:function(n,t){return On(n.getDate(),t,2)},H:function(n,t){return On(n.getHours(),t,2)},I:function(n,t){return On(n.getHours()%12||12,t,2)},j:function(n,t){return On(1+ru.dayOfYear(n),t,3)},L:function(n,t){return On(n.getMilliseconds(),t,3)},m:function(n,t){return On(n.getMonth()+1,t,2)},M:function(n,t){return On(n.getMinutes(),t,2)},p:function(n){return u[+(n.getHours()>=12)]},S:function(n,t){return On(n.getSeconds(),t,2)},U:function(n,t){return On(ru.sundayOfYear(n),t,2)},w:function(n){return n.getDay()},W:function(n,t){return On(ru.mondayOfYear(n),t,2)},x:t(i),X:t(o),y:function(n,t){return On(n.getFullYear()%100,t,2)},Y:function(n,t){return On(n.getFullYear()%1e4,t,4)},Z:rt,"%":function(){return"%"}},w={a:function(n,t,e){g.lastIndex=0;var r=g.exec(t.slice(e));return r?(n.w=d.get(r[0].toLowerCase()),e+r[0].length):-1},A:function(n,t,e){h.lastIndex=0;var r=h.exec(t.slice(e));return r?(n.w=p.get(r[0].toLowerCase()),e+r[0].length):-1},b:function(n,t,e){m.lastIndex=0;var r=m.exec(t.slice(e));return r?(n.m=x.get(r[0].toLowerCase()),e+r[0].length):-1},B:function(n,t,e){v.lastIndex=0;var r=v.exec(t.slice(e));return r?(n.m=y.get(r[0].toLowerCase()),e+r[0].length):-1},c:function(n,t,r){return e(n,M.c.toString(),t,r)},d:Jn,e:Jn,H:Qn,I:Qn,j:Kn,L:et,m:Gn,M:nt,p:function(n,t,e){var r=s.get(t.slice(e,e+=2).toLowerCase());return null==r?-1:(n.p=r,e)},S:tt,U:Vn,w:Bn,W:Zn,x:function(n,t,r){return e(n,M.x.toString(),t,r)},X:function(n,t,r){return e(n,M.X.toString(),t,r)},y:Xn,Y:$n,Z:Wn,"%":it};return t}(n)}};var cu=no.locale({decimal:".",thousands:",",grouping:[3],currency:["$",""],dateTime:"%a %b %e %X %Y",date:"%m/%d/%Y",time:"%H:%M:%S",periods:["AM","PM"],days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],shortDays:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],months:["January","February","March","April","May","June","July","August","September","October","November","December"],shortMonths:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]});no.format=cu.numberFormat,no.geo={},ut.prototype={s:0,t:0,add:function(n){at(n,this.t,fu),at(fu.s,this.s,this),this.s?this.t+=fu.t:this.s=fu.t},reset:function(){this.s=this.t=0},valueOf:function(){return this.s}};var fu=new ut;no.geo.stream=function(n,t){n&&su.hasOwnProperty(n.type)?su[n.type](n,t):lt(n,t)};var su={Feature:function(n,t){lt(n.geometry,t)},FeatureCollection:function(n,t){for(var e=n.features,r=-1,i=e.length;++r<i;)lt(e[r].geometry,t)}},hu={Sphere:function(n,t){t.sphere()},Point:function(n,t){n=n.coordinates,t.point(n[0],n[1],n[2])},MultiPoint:function(n,t){for(var e=n.coordinates,r=-1,i=e.length;++r<i;)n=e[r],t.point(n[0],n[1],n[2])},LineString:function(n,t){ct(n.coordinates,t,0)},MultiLineString:function(n,t){for(var e=n.coordinates,r=-1,i=e.length;++r<i;)ct(e[r],t,0)},Polygon:function(n,t){ft(n.coordinates,t)},MultiPolygon:function(n,t){for(var e=n.coordinates,r=-1,i=e.length;++r<i;)ft(e[r],t)},GeometryCollection:function(n,t){for(var e=n.geometries,r=-1,i=e.length;++r<i;)lt(e[r],t)}};no.geo.area=function(n){return pu=0,no.geo.stream(n,du),pu};var pu,gu=new ut,du={sphere:function(){pu+=4*zo},point:N,lineStart:N,lineEnd:N,polygonStart:function(){gu.reset(),du.lineStart=st},polygonEnd:function(){var n=2*gu;pu+=0>n?4*zo+n:n,du.lineStart=du.lineEnd=du.point=N}};no.geo.bounds=function(){function n(n,t){x.push(M=[f=n,h=n]),s>t&&(s=t),t>p&&(p=t)}function t(t,e){var r=ht([t*Ro,e*Ro]);if(y){var i=gt(y,r),o=gt([i[1],-i[0],0],i);yt(o),o=mt(o);var u=t-g,l=u>0?1:-1,c=o[0]*Do*l,d=fo(u)>180;if(d^(c>l*g&&l*t>c))(v=o[1]*Do)>p&&(p=v);else if(d^((c=(c+360)%360-180)>l*g&&l*t>c)){var v=-o[1]*Do;s>v&&(s=v)}else s>e&&(s=e),e>p&&(p=e);d?g>t?a(f,t)>a(f,h)&&(h=t):a(t,h)>a(f,h)&&(f=t):h>=f?(f>t&&(f=t),t>h&&(h=t)):t>g?a(f,t)>a(f,h)&&(h=t):a(t,h)>a(f,h)&&(f=t)}else n(t,e);y=r,g=t}function e(){w.point=t}function r(){M[0]=f,M[1]=h,w.point=n,y=null}function i(n,e){if(y){var r=n-g;m+=fo(r)>180?r+(r>0?360:-360):r}else d=n,v=e;du.point(n,e),t(n,e)}function o(){du.lineStart()}function u(){i(d,v),du.lineEnd(),fo(m)>Ao&&(f=-(h=180)),M[0]=f,M[1]=h,y=null}function a(n,t){return(t-=n)<0?t+360:t}function l(n,t){return n[0]-t[0]}function c(n,t){return t[0]<=t[1]?t[0]<=n&&n<=t[1]:n<t[0]||t[1]<n}var f,s,h,p,g,d,v,y,m,x,M,w={point:n,lineStart:e,lineEnd:r,polygonStart:function(){w.point=i,w.lineStart=o,w.lineEnd=u,m=0,du.polygonStart()},polygonEnd:function(){du.polygonEnd(),w.point=n,w.lineStart=e,w.lineEnd=r,0>gu?(f=-(h=180),s=-(p=90)):m>Ao?p=90:-Ao>m&&(s=-90),M[0]=f,M[1]=h}};return function(n){if(p=h=-(f=s=1/0),x=[],no.geo.stream(n,w),o=x.length){x.sort(l);for(var t=1,e=[g=x[0]];o>t;++t)c((i=x[t])[0],g)||c(i[1],g)?(a(g[0],i[1])>a(g[0],g[1])&&(g[1]=i[1]),a(i[0],g[1])>a(g[0],g[1])&&(g[0]=i[0])):e.push(g=i);for(var r,i,o,u=-1/0,g=(t=0,e[o=e.length-1]);o>=t;g=i,++t)i=e[t],(r=a(g[1],i[0]))>u&&(u=r,f=i[0],h=g[1])}return x=M=null,f===1/0||s===1/0?[[NaN,NaN],[NaN,NaN]]:[[f,s],[h,p]]}}(),no.geo.centroid=function(n){vu=yu=mu=xu=Mu=wu=bu=_u=Su=ku=Nu=0,no.geo.stream(n,Eu);var t=Su,e=ku,r=Nu,i=t*t+e*e+r*r;return Co>i&&(t=wu,e=bu,r=_u,Ao>yu&&(t=mu,e=xu,r=Mu),Co>(i=t*t+e*e+r*r))?[NaN,NaN]:[Math.atan2(e,t)*Do,un(r/Math.sqrt(i))*Do]};var vu,yu,mu,xu,Mu,wu,bu,_u,Su,ku,Nu,Eu={sphere:N,point:Mt,lineStart:bt,lineEnd:_t,polygonStart:function(){Eu.lineStart=St},polygonEnd:function(){Eu.lineStart=bt}},Au=zt(Nt,function(n){var t,e=NaN,r=NaN,i=NaN;return{lineStart:function(){n.lineStart(),t=1},point:function(o,u){var a=o>0?zo:-zo,l=fo(o-e);fo(l-zo)<Ao?(n.point(e,r=(r+u)/2>0?qo:-qo),n.point(i,r),n.lineEnd(),n.lineStart(),n.point(a,r),n.point(o,r),t=0):i!==a&&l>=zo&&(fo(e-i)<Ao&&(e-=i*Ao),fo(o-a)<Ao&&(o-=a*Ao),r=function(n,t,e,r){var i,o,u=Math.sin(n-e);return fo(u)>Ao?Math.atan((Math.sin(t)*(o=Math.cos(r))*Math.sin(e)-Math.sin(r)*(i=Math.cos(t))*Math.sin(n))/(i*o*u)):(t+r)/2}(e,r,o,u),n.point(i,r),n.lineEnd(),n.lineStart(),n.point(a,r),t=0),n.point(e=o,r=u),i=a},lineEnd:function(){n.lineEnd(),e=r=NaN},clean:function(){return 2-t}}},function(n,t,e,r){var i;if(null==n)i=e*qo,r.point(-zo,i),r.point(0,i),r.point(zo,i),r.point(zo,0),r.point(zo,-i),r.point(0,-i),r.point(-zo,-i),r.point(-zo,0),r.point(-zo,i);else if(fo(n[0]-t[0])>Ao){var o=n[0]<t[0]?zo:-zo;i=e*o/2,r.point(-o,i),r.point(0,i),r.point(o,i)}else r.point(t[0],t[1])},[-zo,-zo/2]),Cu=1e9;no.geo.clipExtent=function(){var n,t,e,r,i,o,u={stream:function(n){return i&&(i.valid=!1),(i=o(n)).valid=!0,i},extent:function(a){return arguments.length?(o=Dt(n=+a[0][0],t=+a[0][1],e=+a[1][0],r=+a[1][1]),i&&(i.valid=!1,i=null),u):[[n,t],[e,r]]}};return u.extent([[0,0],[960,500]])},(no.geo.conicEqualArea=function(){return Pt(jt)}).raw=jt,no.geo.albers=function(){return no.geo.conicEqualArea().rotate([96,0]).center([-.6,38.7]).parallels([29.5,45.5]).scale(1070)},no.geo.albersUsa=function(){function n(n){var o=n[0],u=n[1];return t=null,e(o,u),t||(r(o,u),t)||i(o,u),t}var t,e,r,i,o=no.geo.albers(),u=no.geo.conicEqualArea().rotate([154,0]).center([-2,58.5]).parallels([55,65]),a=no.geo.conicEqualArea().rotate([157,0]).center([-3,19.9]).parallels([8,18]),l={point:function(n,e){t=[n,e]}};return n.invert=function(n){var t=o.scale(),e=o.translate(),r=(n[0]-e[0])/t,i=(n[1]-e[1])/t;return(i>=.12&&.234>i&&r>=-.425&&-.214>r?u:i>=.166&&.234>i&&r>=-.214&&-.115>r?a:o).invert(n)},n.stream=function(n){var t=o.stream(n),e=u.stream(n),r=a.stream(n);return{point:function(n,i){t.point(n,i),e.point(n,i),r.point(n,i)},sphere:function(){t.sphere(),e.sphere(),r.sphere()},lineStart:function(){t.lineStart(),e.lineStart(),r.lineStart()},lineEnd:function(){t.lineEnd(),e.lineEnd(),r.lineEnd()},polygonStart:function(){t.polygonStart(),e.polygonStart(),r.polygonStart()},polygonEnd:function(){t.polygonEnd(),e.polygonEnd(),r.polygonEnd()}}},n.precision=function(t){return arguments.length?(o.precision(t),u.precision(t),a.precision(t),n):o.precision()},n.scale=function(t){return arguments.length?(o.scale(t),u.scale(.35*t),a.scale(t),n.translate(o.translate())):o.scale()},n.translate=function(t){if(!arguments.length)return o.translate();var c=o.scale(),f=+t[0],s=+t[1];return e=o.translate(t).clipExtent([[f-.455*c,s-.238*c],[f+.455*c,s+.238*c]]).stream(l).point,r=u.translate([f-.307*c,s+.201*c]).clipExtent([[f-.425*c+Ao,s+.12*c+Ao],[f-.214*c-Ao,s+.234*c-Ao]]).stream(l).point,i=a.translate([f-.205*c,s+.212*c]).clipExtent([[f-.214*c+Ao,s+.166*c+Ao],[f-.115*c-Ao,s+.234*c-Ao]]).stream(l).point,n},n.scale(1070)};var zu,Tu,Lu,qu,Ru,Du,Pu={point:N,lineStart:N,lineEnd:N,polygonStart:function(){Tu=0,Pu.lineStart=Ut},polygonEnd:function(){Pu.lineStart=Pu.lineEnd=Pu.point=N,zu+=fo(Tu/2)}},ju={point:function(n,t){Lu>n&&(Lu=n),n>Ru&&(Ru=n),qu>t&&(qu=t),t>Du&&(Du=t)},lineStart:N,lineEnd:N,polygonStart:N,polygonEnd:N},Uu={point:Ft,lineStart:Ot,lineEnd:It,polygonStart:function(){Uu.lineStart=Yt},polygonEnd:function(){Uu.point=Ft,Uu.lineStart=Ot,Uu.lineEnd=It}};no.geo.path=function(){function n(n){return n&&("function"==typeof a&&o.pointRadius(+a.apply(this,arguments)),u&&u.valid||(u=i(o)),no.geo.stream(n,u)),o.result()}function t(){return u=null,n}var e,r,i,o,u,a=4.5;return n.area=function(n){return zu=0,no.geo.stream(n,i(Pu)),zu},n.centroid=function(n){return mu=xu=Mu=wu=bu=_u=Su=ku=Nu=0,no.geo.stream(n,i(Uu)),Nu?[Su/Nu,ku/Nu]:_u?[wu/_u,bu/_u]:Mu?[mu/Mu,xu/Mu]:[NaN,NaN]},n.bounds=function(n){return Ru=Du=-(Lu=qu=1/0),no.geo.stream(n,i(ju)),[[Lu,qu],[Ru,Du]]},n.projection=function(n){return arguments.length?(i=(e=n)?n.stream||function(n){var t=Bt(function(t,e){return n([t*Do,e*Do])});return function(n){return Wt(t(n))}}(n):_,t()):e},n.context=function(n){return arguments.length?(o=null==(r=n)?new function(){function n(n,t){u.push("M",n,",",t,o)}function t(n,t){u.push("M",n,",",t),a.point=e}function e(n,t){u.push("L",n,",",t)}function r(){a.point=n}function i(){u.push("Z")}var o=Ht(4.5),u=[],a={point:n,lineStart:function(){a.point=t},lineEnd:r,polygonStart:function(){a.lineEnd=i},polygonEnd:function(){a.lineEnd=r,a.point=n},pointRadius:function(n){return o=Ht(n),a},result:function(){if(u.length){var n=u.join("");return u=[],n}}};return a}:new function(n){function t(t,e){n.moveTo(t+u,e),n.arc(t,e,u,0,To)}function e(t,e){n.moveTo(t,e),a.point=r}function r(t,e){n.lineTo(t,e)}function i(){a.point=t}function o(){n.closePath()}var u=4.5,a={point:t,lineStart:function(){a.point=e},lineEnd:i,polygonStart:function(){a.lineEnd=o},polygonEnd:function(){a.lineEnd=i,a.point=t},pointRadius:function(n){return u=n,a},result:N};return a}(n),"function"!=typeof a&&o.pointRadius(a),t()):r},n.pointRadius=function(t){return arguments.length?(a="function"==typeof t?t:(o.pointRadius(+t),+t),n):a},n.projection(no.geo.albersUsa()).context(null)},no.geo.transform=function(n){return{stream:function(t){var e=new Vt(t);for(var r in n)e[r]=n[r];return e}}},Vt.prototype={point:function(n,t){this.stream.point(n,t)},sphere:function(){this.stream.sphere()},lineStart:function(){this.stream.lineStart()},lineEnd:function(){this.stream.lineEnd()},polygonStart:function(){this.stream.polygonStart()},polygonEnd:function(){this.stream.polygonEnd()}},no.geo.projection=$t,no.geo.projectionMutator=Xt,(no.geo.equirectangular=function(){return $t(Gt)}).raw=Gt.invert=Gt,no.geo.rotation=function(n){function t(t){return(t=n(t[0]*Ro,t[1]*Ro))[0]*=Do,t[1]*=Do,t}return n=Kt(n[0]%360*Ro,n[1]*Ro,n.length>2?n[2]*Ro:0),t.invert=function(t){return(t=n.invert(t[0]*Ro,t[1]*Ro))[0]*=Do,t[1]*=Do,t},t},Jt.invert=Gt,no.geo.circle=function(){function n(){var n="function"==typeof r?r.apply(this,arguments):r,t=Kt(-n[0]*Ro,-n[1]*Ro,0).invert,i=[];return e(null,null,1,{point:function(n,e){i.push(n=t(n,e)),n[0]*=Do,n[1]*=Do}}),{type:"Polygon",coordinates:[i]}}var t,e,r=[0,0],i=6;return n.origin=function(t){return arguments.length?(r=t,n):r},n.angle=function(r){return arguments.length?(e=ee((t=+r)*Ro,i*Ro),n):t},n.precision=function(r){return arguments.length?(e=ee(t*Ro,(i=+r)*Ro),n):i},n.angle(90)},no.geo.distance=function(n,t){var e,r=(t[0]-n[0])*Ro,i=n[1]*Ro,o=t[1]*Ro,u=Math.sin(r),a=Math.cos(r),l=Math.sin(i),c=Math.cos(i),f=Math.sin(o),s=Math.cos(o);return Math.atan2(Math.sqrt((e=s*u)*e+(e=c*f-l*s*a)*e),l*f+c*s*a)},no.geo.graticule=function(){function n(){return{type:"MultiLineString",coordinates:t()}}function t(){return no.range(Math.ceil(o/v)*v,i,v).map(h).concat(no.range(Math.ceil(c/y)*y,l,y).map(p)).concat(no.range(Math.ceil(r/g)*g,e,g).filter(function(n){return fo(n%v)>Ao}).map(f)).concat(no.range(Math.ceil(a/d)*d,u,d).filter(function(n){return fo(n%y)>Ao}).map(s))}var e,r,i,o,u,a,l,c,f,s,h,p,g=10,d=g,v=90,y=360,m=2.5;return n.lines=function(){return t().map(function(n){return{type:"LineString",coordinates:n}})},n.outline=function(){return{type:"Polygon",coordinates:[h(o).concat(p(l).slice(1),h(i).reverse().slice(1),p(c).reverse().slice(1))]}},n.extent=function(t){return arguments.length?n.majorExtent(t).minorExtent(t):n.minorExtent()},n.majorExtent=function(t){return arguments.length?(o=+t[0][0],i=+t[1][0],c=+t[0][1],l=+t[1][1],o>i&&(t=o,o=i,i=t),c>l&&(t=c,c=l,l=t),n.precision(m)):[[o,c],[i,l]]},n.minorExtent=function(t){return arguments.length?(r=+t[0][0],e=+t[1][0],a=+t[0][1],u=+t[1][1],r>e&&(t=r,r=e,e=t),a>u&&(t=a,a=u,u=t),n.precision(m)):[[r,a],[e,u]]},n.step=function(t){return arguments.length?n.majorStep(t).minorStep(t):n.minorStep()},n.majorStep=function(t){return arguments.length?(v=+t[0],y=+t[1],n):[v,y]},n.minorStep=function(t){return arguments.length?(g=+t[0],d=+t[1],n):[g,d]},n.precision=function(t){return arguments.length?(m=+t,f=ie(a,u,90),s=oe(r,e,m),h=ie(c,l,90),p=oe(o,i,m),n):m},n.majorExtent([[-180,-90+Ao],[180,90-Ao]]).minorExtent([[-180,-80-Ao],[180,80+Ao]])},no.geo.greatArc=function(){function n(){return{type:"LineString",coordinates:[t||r.apply(this,arguments),e||i.apply(this,arguments)]}}var t,e,r=ue,i=ae;return n.distance=function(){return no.geo.distance(t||r.apply(this,arguments),e||i.apply(this,arguments))},n.source=function(e){return arguments.length?(r=e,t="function"==typeof e?null:e,n):r},n.target=function(t){return arguments.length?(i=t,e="function"==typeof t?null:t,n):i},n.precision=function(){return arguments.length?n:0},n},no.geo.interpolate=function(n,t){return function(n,t,e,r){var i=Math.cos(t),o=Math.sin(t),u=Math.cos(r),a=Math.sin(r),l=i*Math.cos(n),c=i*Math.sin(n),f=u*Math.cos(e),s=u*Math.sin(e),h=2*Math.asin(Math.sqrt(ln(r-t)+i*u*ln(e-n))),p=1/Math.sin(h),g=h?function(n){var t=Math.sin(n*=h)*p,e=Math.sin(h-n)*p,r=e*l+t*f,i=e*c+t*s,u=e*o+t*a;return[Math.atan2(i,r)*Do,Math.atan2(u,Math.sqrt(r*r+i*i))*Do]}:function(){return[n*Do,t*Do]};return g.distance=h,g}(n[0]*Ro,n[1]*Ro,t[0]*Ro,t[1]*Ro)},no.geo.length=function(n){return Hu=0,no.geo.stream(n,Fu),Hu};var Hu,Fu={sphere:N,point:N,lineStart:function(){function n(n,i){var o=Math.sin(i*=Ro),u=Math.cos(i),a=fo((n*=Ro)-t),l=Math.cos(a);Hu+=Math.atan2(Math.sqrt((a=u*Math.sin(a))*a+(a=r*o-e*u*l)*a),e*o+r*u*l),t=n,e=o,r=u}var t,e,r;Fu.point=function(i,o){t=i*Ro,e=Math.sin(o*=Ro),r=Math.cos(o),Fu.point=n},Fu.lineEnd=function(){Fu.point=Fu.lineEnd=N}},lineEnd:N,polygonStart:N,polygonEnd:N},Ou=le(function(n){return Math.sqrt(2/(1+n))},function(n){return 2*Math.asin(n/2)});(no.geo.azimuthalEqualArea=function(){return $t(Ou)}).raw=Ou;var Iu=le(function(n){var t=Math.acos(n);return t&&t/Math.sin(t)},_);(no.geo.azimuthalEquidistant=function(){return $t(Iu)}).raw=Iu,(no.geo.conicConformal=function(){return Pt(ce)}).raw=ce,(no.geo.conicEquidistant=function(){return Pt(fe)}).raw=fe;var Yu=le(function(n){return 1/n},Math.atan);(no.geo.gnomonic=function(){return $t(Yu)}).raw=Yu,se.invert=function(n,t){return[n,2*Math.atan(Math.exp(t))-qo]},(no.geo.mercator=function(){return he(se)}).raw=se;var Bu=le(function(){return 1},Math.asin);(no.geo.orthographic=function(){return $t(Bu)}).raw=Bu;var Vu=le(function(n){return 1/(1+n)},function(n){return 2*Math.atan(n)});(no.geo.stereographic=function(){return $t(Vu)}).raw=Vu,pe.invert=function(n,t){return[-t,2*Math.atan(Math.exp(n))-qo]},(no.geo.transverseMercator=function(){var n=he(pe),t=n.center,e=n.rotate;return n.center=function(n){return n?t([-n[1],n[0]]):[(n=t())[1],-n[0]]},n.rotate=function(n){return n?e([n[0],n[1],n.length>2?n[2]+90:90]):[(n=e())[0],n[1],n[2]-90]},e([0,0,90])}).raw=pe,no.geom={},no.geom.hull=function(n){function t(n){if(n.length<3)return[];var t,i=Cn(e),o=Cn(r),u=n.length,a=[],l=[];for(t=0;u>t;t++)a.push([+i.call(this,n[t],t),+o.call(this,n[t],t),t]);for(a.sort(ye),t=0;u>t;t++)l.push([a[t][0],-a[t][1]]);var c=ve(a),f=ve(l),s=f[0]===c[0],h=f[f.length-1]===c[c.length-1],p=[];for(t=c.length-1;t>=0;--t)p.push(n[a[c[t]][2]]);for(t=+s;t<f.length-h;++t)p.push(n[a[f[t]][2]]);return p}var e=ge,r=de;return arguments.length?t(n):(t.x=function(n){return arguments.length?(e=n,t):e},t.y=function(n){return arguments.length?(r=n,t):r},t)},no.geom.polygon=function(n){return vo(n,Zu),n};var Zu=no.geom.polygon.prototype=[];Zu.area=function(){for(var n,t=-1,e=this.length,r=this[e-1],i=0;++t<e;)n=r,r=this[t],i+=n[1]*r[0]-n[0]*r[1];return.5*i},Zu.centroid=function(n){var t,e,r=-1,i=this.length,o=0,u=0,a=this[i-1];for(arguments.length||(n=-1/(6*this.area()));++r<i;)t=a,a=this[r],e=t[0]*a[1]-a[0]*t[1],o+=(t[0]+a[0])*e,u+=(t[1]+a[1])*e;return[o*n,u*n]},Zu.clip=function(n){for(var t,e,r,i,o,u,a=Me(n),l=-1,c=this.length-Me(this),f=this[c-1];++l<c;){for(t=n.slice(),n.length=0,i=this[l],o=t[(r=t.length-a)-1],e=-1;++e<r;)me(u=t[e],f,i)?(me(o,f,i)||n.push(xe(o,u,f,i)),n.push(u)):me(o,f,i)&&n.push(xe(o,u,f,i)),o=u;a&&n.push(n[0]),f=i}return n};var $u,Xu,Wu,Gu,Ju,Ku=[],Qu=[];Ee.prototype.prepare=function(){for(var n,t=this.edges,e=t.length;e--;)(n=t[e].edge).b&&n.a||t.splice(e,1);return t.sort(Ae),t.length},Pe.prototype={start:function(){return this.edge.l===this.site?this.edge.a:this.edge.b},end:function(){return this.edge.l===this.site?this.edge.b:this.edge.a}},je.prototype={insert:function(n,t){var e,r,i;if(n){if(t.P=n,t.N=n.N,n.N&&(n.N.P=t),n.N=t,n.R){for(n=n.R;n.L;)n=n.L;n.L=t}else n.R=t;e=n}else this._?(n=Oe(this._),t.P=null,t.N=n,n.P=n.L=t,e=n):(t.P=t.N=null,this._=t,e=null);for(t.L=t.R=null,t.U=e,t.C=!0,n=t;e&&e.C;)e===(r=e.U).L?(i=r.R)&&i.C?(e.C=i.C=!1,r.C=!0,n=r):(n===e.R&&(He(this,e),e=(n=e).U),e.C=!1,r.C=!0,Fe(this,r)):(i=r.L)&&i.C?(e.C=i.C=!1,r.C=!0,n=r):(n===e.L&&(Fe(this,e),e=(n=e).U),e.C=!1,r.C=!0,He(this,r)),e=n.U;this._.C=!1},remove:function(n){n.N&&(n.N.P=n.P),n.P&&(n.P.N=n.N),n.N=n.P=null;var t,e,r,i=n.U,o=n.L,u=n.R;if(e=o?u?Oe(u):o:u,i?i.L===n?i.L=e:i.R=e:this._=e,o&&u?(r=e.C,e.C=n.C,e.L=o,o.U=e,e!==u?(i=e.U,e.U=n.U,n=e.R,i.L=n,e.R=u,u.U=e):(e.U=i,i=e,n=e.R)):(r=n.C,n=e),n&&(n.U=i),!r){if(n&&n.C)return void(n.C=!1);do{if(n===this._)break;if(n===i.L){if((t=i.R).C&&(t.C=!1,i.C=!0,He(this,i),t=i.R),t.L&&t.L.C||t.R&&t.R.C){t.R&&t.R.C||(t.L.C=!1,t.C=!0,Fe(this,t),t=i.R),t.C=i.C,i.C=t.R.C=!1,He(this,i),n=this._;break}}else if((t=i.L).C&&(t.C=!1,i.C=!0,Fe(this,i),t=i.L),t.L&&t.L.C||t.R&&t.R.C){t.L&&t.L.C||(t.R.C=!1,t.C=!0,He(this,t),t=i.L),t.C=i.C,i.C=t.L.C=!1,Fe(this,i),n=this._;break}t.C=!0,n=i,i=i.U}while(!n.C);n&&(n.C=!1)}}},no.geom.voronoi=function(n){function t(n){var t=new Array(n.length),r=a[0][0],i=a[0][1],o=a[1][0],u=a[1][1];return Ie(e(n),a).cells.forEach(function(e,a){var l=e.edges,c=e.site;(t[a]=l.length?l.map(function(n){var t=n.start();return[t.x,t.y]}):c.x>=r&&c.x<=o&&c.y>=i&&c.y<=u?[[r,u],[o,u],[o,i],[r,i]]:[]).point=n[a]}),t}function e(n){return n.map(function(n,t){return{x:Math.round(o(n,t)/Ao)*Ao,y:Math.round(u(n,t)/Ao)*Ao,i:t}})}var r=ge,i=de,o=r,u=i,a=na;return n?t(n):(t.links=function(n){return Ie(e(n)).edges.filter(function(n){return n.l&&n.r}).map(function(t){return{source:n[t.l.i],target:n[t.r.i]}})},t.triangles=function(n){var t=[];return Ie(e(n)).cells.forEach(function(e,r){for(var i,o=e.site,u=e.edges.sort(Ae),a=-1,l=u.length,c=u[l-1].edge,f=c.l===o?c.r:c.l;++a<l;)c,i=f,f=(c=u[a].edge).l===o?c.r:c.l,r<i.i&&r<f.i&&Be(o,i,f)<0&&t.push([n[r],n[i.i],n[f.i]])}),t},t.x=function(n){return arguments.length?(o=Cn(r=n),t):r},t.y=function(n){return arguments.length?(u=Cn(i=n),t):i},t.clipExtent=function(n){return arguments.length?(a=null==n?na:n,t):a===na?null:a},t.size=function(n){return arguments.length?t.clipExtent(n&&[[0,0],n]):a===na?null:a&&a[1]},t)};var na=[[-1e6,-1e6],[1e6,1e6]];no.geom.delaunay=function(n){return no.geom.voronoi().triangles(n)},no.geom.quadtree=function(n,t,e,r,i){function o(n){function o(n,t,e,r,i,o,u,a){if(!isNaN(e)&&!isNaN(r))if(n.leaf){var l=n.x,f=n.y;if(null!=l)if(fo(l-e)+fo(f-r)<.01)c(n,t,e,r,i,o,u,a);else{var s=n.point;n.x=n.y=n.point=null,c(n,s,l,f,i,o,u,a),c(n,t,e,r,i,o,u,a)}else n.x=e,n.y=r,n.point=t}else c(n,t,e,r,i,o,u,a)}function c(n,t,e,r,i,u,a,l){var c=.5*(i+a),f=.5*(u+l),s=e>=c,h=r>=f,p=h<<1|s;n.leaf=!1,n=n.nodes[p]||(n.nodes[p]={leaf:!0,nodes:[],point:null,x:null,y:null,add:function(n){o(k,n,+x(n,++p),+M(n,p),d,v,y,m)}}),s?i=c:a=c,h?u=f:l=f,o(n,t,e,r,i,u,a,l)}var f,s,h,p,g,d,v,y,m,x=Cn(a),M=Cn(l);if(null!=t)d=t,v=e,y=r,m=i;else if(y=m=-(d=v=1/0),s=[],h=[],g=n.length,u)for(p=0;g>p;++p)(f=n[p]).x<d&&(d=f.x),f.y<v&&(v=f.y),f.x>y&&(y=f.x),f.y>m&&(m=f.y),s.push(f.x),h.push(f.y);else for(p=0;g>p;++p){var w=+x(f=n[p],p),b=+M(f,p);d>w&&(d=w),v>b&&(v=b),w>y&&(y=w),b>m&&(m=b),s.push(w),h.push(b)}var _=y-d,S=m-v;_>S?m=v+_:y=d+S;var k={leaf:!0,nodes:[],point:null,x:null,y:null,add:function(n){o(k,n,+x(n,++p),+M(n,p),d,v,y,m)}};if(k.visit=function(n){!function n(t,e,r,i,o,u){if(!t(e,r,i,o,u)){var a=.5*(r+o),l=.5*(i+u),c=e.nodes;c[0]&&n(t,c[0],r,i,a,l),c[1]&&n(t,c[1],a,i,o,l),c[2]&&n(t,c[2],r,l,a,u),c[3]&&n(t,c[3],a,l,o,u)}}(n,k,d,v,y,m)},k.find=function(n){return function(n,t,e,r,i,o,u){var a,l=1/0;return function n(c,f,s,h,p){if(!(f>o||s>u||r>h||i>p)){if(g=c.point){var g,d=t-c.x,v=e-c.y,y=d*d+v*v;if(l>y){var m=Math.sqrt(l=y);r=t-m,i=e-m,o=t+m,u=e+m,a=g}}for(var x=c.nodes,M=.5*(f+h),w=.5*(s+p),b=(e>=w)<<1|t>=M,_=b+4;_>b;++b)if(c=x[3&b])switch(3&b){case 0:n(c,f,s,M,w);break;case 1:n(c,M,s,h,w);break;case 2:n(c,f,w,M,p);break;case 3:n(c,M,w,h,p)}}}(n,r,i,o,u),a}(k,n[0],n[1],d,v,y,m)},p=-1,null==t){for(;++p<g;)o(k,n[p],s[p],h[p],d,v,y,m);--p}else n.forEach(k.add);return s=h=n=f=null,k}var u,a=ge,l=de;return(u=arguments.length)?(a=Ve,l=Ze,3===u&&(i=e,r=t,e=t=0),o(n)):(o.x=function(n){return arguments.length?(a=n,o):a},o.y=function(n){return arguments.length?(l=n,o):l},o.extent=function(n){return arguments.length?(null==n?t=e=r=i=null:(t=+n[0][0],e=+n[0][1],r=+n[1][0],i=+n[1][1]),o):null==t?null:[[t,e],[r,i]]},o.size=function(n){return arguments.length?(null==n?t=e=r=i=null:(t=e=0,r=+n[0],i=+n[1]),o):null==t?null:[r-t,i-e]},o)},no.interpolateRgb=$e,no.interpolateObject=Xe,no.interpolateNumber=We,no.interpolateString=Ge;var ta=/[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,ea=new RegExp(ta.source,"g");no.interpolate=Je,no.interpolators=[function(n,t){var e=void 0===t?"undefined":o(t);return("string"===e?Xo.has(t.toLowerCase())||/^(#|rgb\(|hsl\()/i.test(t)?$e:Ge:t instanceof cn?$e:Array.isArray(t)?Ke:"object"===e&&isNaN(t)?Xe:We)(n,t)}],no.interpolateArray=Ke;var ra=function(){return _},ia=no.map({linear:ra,poly:function(n){return function(t){return Math.pow(t,n)}},quad:function(){return tr},cubic:function(){return er},sin:function(){return ir},exp:function(){return or},circle:function(){return ur},elastic:function(n,t){var e;return arguments.length<2&&(t=.45),arguments.length?e=t/To*Math.asin(1/n):(n=1,e=t/4),function(r){return 1+n*Math.pow(2,-10*r)*Math.sin((r-e)*To/t)}},back:function(n){return n||(n=1.70158),function(t){return t*t*((n+1)*t-n)}},bounce:function(){return ar}}),oa=no.map({in:_,out:Qe,"in-out":nr,"out-in":function(n){return nr(Qe(n))}});no.ease=function(n){var t=n.indexOf("-"),e=t>=0?n.slice(0,t):n,r=t>=0?n.slice(t+1):"in";return e=ia.get(e)||ra,function(n){return function(t){return 0>=t?0:t>=1?1:n(t)}}((r=oa.get(r)||_)(e.apply(null,to.call(arguments,1))))},no.interpolateHcl=function(n,t){n=no.hcl(n),t=no.hcl(t);var e=n.h,r=n.c,i=n.l,o=t.h-e,u=t.c-r,a=t.l-i;return isNaN(u)&&(u=0,r=isNaN(r)?t.c:r),isNaN(o)?(o=0,e=isNaN(e)?t.h:e):o>180?o-=360:-180>o&&(o+=360),function(n){return pn(e+o*n,r+u*n,i+a*n)+""}},no.interpolateHsl=function(n,t){n=no.hsl(n),t=no.hsl(t);var e=n.h,r=n.s,i=n.l,o=t.h-e,u=t.s-r,a=t.l-i;return isNaN(u)&&(u=0,r=isNaN(r)?t.s:r),isNaN(o)?(o=0,e=isNaN(e)?t.h:e):o>180?o-=360:-180>o&&(o+=360),function(n){return sn(e+o*n,r+u*n,i+a*n)+""}},no.interpolateLab=function(n,t){n=no.lab(n),t=no.lab(t);var e=n.l,r=n.a,i=n.b,o=t.l-e,u=t.a-r,a=t.b-i;return function(n){return dn(e+o*n,r+u*n,i+a*n)+""}},no.interpolateRound=lr,no.transform=function(n){var t=ro.createElementNS(no.ns.prefix.svg,"g");return(no.transform=function(n){if(null!=n){t.setAttribute("transform",n);var e=t.transform.baseVal.consolidate()}return new cr(e?e.matrix:ua)})(n)},cr.prototype.toString=function(){return"translate("+this.translate+")rotate("+this.rotate+")skewX("+this.skew+")scale("+this.scale+")"};var ua={a:1,b:0,c:0,d:1,e:0,f:0};no.interpolateTransform=pr,no.layout={},no.layout.bundle=function(){return function(n){for(var t=[],e=-1,r=n.length;++e<r;)t.push(vr(n[e]));return t}},no.layout.chord=function(){function n(){var n,c,s,h,p,g={},d=[],v=no.range(o),y=[];for(e=[],r=[],n=0,h=-1;++h<o;){for(c=0,p=-1;++p<o;)c+=i[h][p];d.push(c),y.push(no.range(o)),n+=c}for(u&&v.sort(function(n,t){return u(d[n],d[t])}),a&&y.forEach(function(n,t){n.sort(function(n,e){return a(i[t][n],i[t][e])})}),n=(To-f*o)/n,c=0,h=-1;++h<o;){for(s=c,p=-1;++p<o;){var m=v[h],x=y[m][p],M=i[m][x],w=c,b=c+=M*n;g[m+"-"+x]={index:m,subindex:x,startAngle:w,endAngle:b,value:M}}r[m]={index:m,startAngle:s,endAngle:c,value:d[m]},c+=f}for(h=-1;++h<o;)for(p=h-1;++p<o;){var _=g[h+"-"+p],S=g[p+"-"+h];(_.value||S.value)&&e.push(_.value<S.value?{source:S,target:_}:{source:_,target:S})}l&&t()}function t(){e.sort(function(n,t){return l((n.source.value+n.target.value)/2,(t.source.value+t.target.value)/2)})}var e,r,i,o,u,a,l,c={},f=0;return c.matrix=function(n){return arguments.length?(o=(i=n)&&i.length,e=r=null,c):i},c.padding=function(n){return arguments.length?(f=n,e=r=null,c):f},c.sortGroups=function(n){return arguments.length?(u=n,e=r=null,c):u},c.sortSubgroups=function(n){return arguments.length?(a=n,e=null,c):a},c.sortChords=function(n){return arguments.length?(l=n,e&&t(),c):l},c.chords=function(){return e||n(),e},c.groups=function(){return r||n(),r},c},no.layout.force=function(){function n(n){return function(t,e,r,i){if(t.point!==n){var o=t.cx-n.x,u=t.cy-n.y,a=i-e,l=o*o+u*u;if(l>a*a/y){if(d>l){var c=t.charge/l;n.px-=o*c,n.py-=u*c}return!0}if(t.point&&l&&d>l){c=t.pointCharge/l;n.px-=o*c,n.py-=u*c}}return!t.charge}}function t(n){n.px=no.event.x,n.py=no.event.y,l.resume()}var e,r,i,o,u,a,l={},c=no.dispatch("start","tick","end"),f=[1,1],s=.9,h=aa,p=la,g=-30,d=ca,v=.1,y=.64,m=[],x=[];return l.tick=function(){if((i*=.99)<.005)return e=null,c.end({type:"end",alpha:i=0}),!0;var t,r,l,h,p,d,y,M,w,b=m.length,_=x.length;for(r=0;_>r;++r)h=(l=x[r]).source,(d=(M=(p=l.target).x-h.x)*M+(w=p.y-h.y)*w)&&(M*=d=i*u[r]*((d=Math.sqrt(d))-o[r])/d,w*=d,p.x-=M*(y=h.weight+p.weight?h.weight/(h.weight+p.weight):.5),p.y-=w*y,h.x+=M*(y=1-y),h.y+=w*y);if((y=i*v)&&(M=f[0]/2,w=f[1]/2,r=-1,y))for(;++r<b;)(l=m[r]).x+=(M-l.x)*y,l.y+=(w-l.y)*y;if(g)for(function n(t,e,r){var i=0,o=0;if(t.charge=0,!t.leaf)for(var u,a=t.nodes,l=a.length,c=-1;++c<l;)null!=(u=a[c])&&(n(u,e,r),t.charge+=u.charge,i+=u.charge*u.cx,o+=u.charge*u.cy);if(t.point){t.leaf||(t.point.x+=Math.random()-.5,t.point.y+=Math.random()-.5);var f=e*r[t.point.index];t.charge+=t.pointCharge=f,i+=f*t.point.x,o+=f*t.point.y}t.cx=i/t.charge,t.cy=o/t.charge}(t=no.geom.quadtree(m),i,a),r=-1;++r<b;)(l=m[r]).fixed||t.visit(n(l));for(r=-1;++r<b;)(l=m[r]).fixed?(l.x=l.px,l.y=l.py):(l.x-=(l.px-(l.px=l.x))*s,l.y-=(l.py-(l.py=l.y))*s);c.tick({type:"tick",alpha:i})},l.nodes=function(n){return arguments.length?(m=n,l):m},l.links=function(n){return arguments.length?(x=n,l):x},l.size=function(n){return arguments.length?(f=n,l):f},l.linkDistance=function(n){return arguments.length?(h="function"==typeof n?n:+n,l):h},l.distance=l.linkDistance,l.linkStrength=function(n){return arguments.length?(p="function"==typeof n?n:+n,l):p},l.friction=function(n){return arguments.length?(s=+n,l):s},l.charge=function(n){return arguments.length?(g="function"==typeof n?n:+n,l):g},l.chargeDistance=function(n){return arguments.length?(d=n*n,l):Math.sqrt(d)},l.gravity=function(n){return arguments.length?(v=+n,l):v},l.theta=function(n){return arguments.length?(y=n*n,l):Math.sqrt(y)},l.alpha=function(n){return arguments.length?(n=+n,i?n>0?i=n:(e.c=null,e.t=NaN,e=null,c.end({type:"end",alpha:i=0})):n>0&&(c.start({type:"start",alpha:i=n}),e=Ln(l.tick)),l):i},l.start=function(){function n(n,r){if(!e){for(e=new Array(i),l=0;i>l;++l)e[l]=[];for(l=0;c>l;++l){var o=x[l];e[o.source.index].push(o.target),e[o.target.index].push(o.source)}}for(var u,a=e[t],l=-1,f=a.length;++l<f;)if(!isNaN(u=a[l][n]))return u;return Math.random()*r}var t,e,r,i=m.length,c=x.length,s=f[0],d=f[1];for(t=0;i>t;++t)(r=m[t]).index=t,r.weight=0;for(t=0;c>t;++t)"number"==typeof(r=x[t]).source&&(r.source=m[r.source]),"number"==typeof r.target&&(r.target=m[r.target]),++r.source.weight,++r.target.weight;for(t=0;i>t;++t)r=m[t],isNaN(r.x)&&(r.x=n("x",s)),isNaN(r.y)&&(r.y=n("y",d)),isNaN(r.px)&&(r.px=r.x),isNaN(r.py)&&(r.py=r.y);if(o=[],"function"==typeof h)for(t=0;c>t;++t)o[t]=+h.call(this,x[t],t);else for(t=0;c>t;++t)o[t]=h;if(u=[],"function"==typeof p)for(t=0;c>t;++t)u[t]=+p.call(this,x[t],t);else for(t=0;c>t;++t)u[t]=p;if(a=[],"function"==typeof g)for(t=0;i>t;++t)a[t]=+g.call(this,m[t],t);else for(t=0;i>t;++t)a[t]=g;return l.resume()},l.resume=function(){return l.alpha(.1)},l.stop=function(){return l.alpha(0)},l.drag=function(){return r||(r=no.behavior.drag().origin(_).on("dragstart.force",mr).on("drag.force",t).on("dragend.force",xr)),arguments.length?void this.on("mouseover.force",Mr).on("mouseout.force",wr).call(r):r},no.rebind(l,c,"on")};var aa=20,la=1,ca=1/0;no.layout.hierarchy=function(){function n(i){var o,u=[i],a=[];for(i.depth=0;null!=(o=u.pop());)if(a.push(o),(c=e.call(n,o,o.depth))&&(l=c.length)){for(var l,c,f;--l>=0;)u.push(f=c[l]),f.parent=o,f.depth=o.depth+1;r&&(o.value=0),o.children=c}else r&&(o.value=+r.call(n,o,o.depth)||0),delete o.children;return Sr(i,function(n){var e,i;t&&(e=n.children)&&e.sort(t),r&&(i=n.parent)&&(i.value+=n.value)}),a}var t=Er,e=kr,r=Nr;return n.sort=function(e){return arguments.length?(t=e,n):t},n.children=function(t){return arguments.length?(e=t,n):e},n.value=function(t){return arguments.length?(r=t,n):r},n.revalue=function(t){return r&&(_r(t,function(n){n.children&&(n.value=0)}),Sr(t,function(t){var e;t.children||(t.value=+r.call(n,t,t.depth)||0),(e=t.parent)&&(e.value+=t.value)})),t},n},no.layout.partition=function(){function n(n,r){var i=t.call(this,n,r);return function n(t,e,r,i){var o=t.children;if(t.x=e,t.y=t.depth*i,t.dx=r,t.dy=i,o&&(u=o.length)){var u,a,l,c=-1;for(r=t.value?r/t.value:0;++c<u;)n(a=o[c],e,l=a.value*r,i),e+=l}}(i[0],0,e[0],e[1]/function n(t){var e=t.children,r=0;if(e&&(i=e.length))for(var i,o=-1;++o<i;)r=Math.max(r,n(e[o]));return 1+r}(i[0])),i}var t=no.layout.hierarchy(),e=[1,1];return n.size=function(t){return arguments.length?(e=t,n):e},br(n,t)},no.layout.pie=function(){function n(u){var a,l=u.length,c=u.map(function(e,r){return+t.call(n,e,r)}),f=+("function"==typeof r?r.apply(this,arguments):r),s=("function"==typeof i?i.apply(this,arguments):i)-f,h=Math.min(Math.abs(s)/l,+("function"==typeof o?o.apply(this,arguments):o)),p=h*(0>s?-1:1),g=no.sum(c),d=g?(s-l*p)/g:0,v=no.range(l),y=[];return null!=e&&v.sort(e===fa?function(n,t){return c[t]-c[n]}:function(n,t){return e(u[n],u[t])}),v.forEach(function(n){y[n]={data:u[n],value:a=c[n],startAngle:f,endAngle:f+=a*d+p,padAngle:h}}),y}var t=Number,e=fa,r=0,i=To,o=0;return n.value=function(e){return arguments.length?(t=e,n):t},n.sort=function(t){return arguments.length?(e=t,n):e},n.startAngle=function(t){return arguments.length?(r=t,n):r},n.endAngle=function(t){return arguments.length?(i=t,n):i},n.padAngle=function(t){return arguments.length?(o=t,n):o},n};var fa={};no.layout.stack=function(){function n(a,l){if(!(h=a.length))return a;var c=a.map(function(e,r){return t.call(n,e,r)}),f=c.map(function(t){return t.map(function(t,e){return[o.call(n,t,e),u.call(n,t,e)]})}),s=e.call(n,f,l);c=no.permute(c,s),f=no.permute(f,s);var h,p,g,d,v=r.call(n,f,l),y=c[0].length;for(g=0;y>g;++g)for(i.call(n,c[0][g],d=v[g],f[0][g][1]),p=1;h>p;++p)i.call(n,c[p][g],d+=f[p-1][g][1],f[p][g][1]);return a}var t=_,e=Lr,r=qr,i=Tr,o=Cr,u=zr;return n.values=function(e){return arguments.length?(t=e,n):t},n.order=function(t){return arguments.length?(e="function"==typeof t?t:sa.get(t)||Lr,n):e},n.offset=function(t){return arguments.length?(r="function"==typeof t?t:ha.get(t)||qr,n):r},n.x=function(t){return arguments.length?(o=t,n):o},n.y=function(t){return arguments.length?(u=t,n):u},n.out=function(t){return arguments.length?(i=t,n):i},n};var sa=no.map({"inside-out":function(n){var t,e,r=n.length,i=n.map(Rr),o=n.map(Dr),u=no.range(r).sort(function(n,t){return i[n]-i[t]}),a=0,l=0,c=[],f=[];for(t=0;r>t;++t)e=u[t],l>a?(a+=o[e],c.push(e)):(l+=o[e],f.push(e));return f.reverse().concat(c)},reverse:function(n){return no.range(n.length).reverse()},default:Lr}),ha=no.map({silhouette:function(n){var t,e,r,i=n.length,o=n[0].length,u=[],a=0,l=[];for(e=0;o>e;++e){for(t=0,r=0;i>t;t++)r+=n[t][e][1];r>a&&(a=r),u.push(r)}for(e=0;o>e;++e)l[e]=(a-u[e])/2;return l},wiggle:function(n){var t,e,r,i,o,u,a,l,c,f=n.length,s=n[0],h=s.length,p=[];for(p[0]=l=c=0,e=1;h>e;++e){for(t=0,i=0;f>t;++t)i+=n[t][e][1];for(t=0,o=0,a=s[e][0]-s[e-1][0];f>t;++t){for(r=0,u=(n[t][e][1]-n[t][e-1][1])/(2*a);t>r;++r)u+=(n[r][e][1]-n[r][e-1][1])/a;o+=u*n[t][e][1]}p[e]=l-=i?o/i*a:0,c>l&&(c=l)}for(e=0;h>e;++e)p[e]-=c;return p},expand:function(n){var t,e,r,i=n.length,o=n[0].length,u=1/i,a=[];for(e=0;o>e;++e){for(t=0,r=0;i>t;t++)r+=n[t][e][1];if(r)for(t=0;i>t;t++)n[t][e][1]/=r;else for(t=0;i>t;t++)n[t][e][1]=u}for(e=0;o>e;++e)a[e]=0;return a},zero:qr});no.layout.histogram=function(){function n(n,o){for(var u,a,l=[],c=n.map(e,this),f=r.call(this,c,o),s=i.call(this,f,c,o),h=(o=-1,c.length),p=s.length-1,g=t?1:1/h;++o<p;)(u=l[o]=[]).dx=s[o+1]-(u.x=s[o]),u.y=0;if(p>0)for(o=-1;++o<h;)(a=c[o])>=f[0]&&a<=f[1]&&((u=l[no.bisect(s,a,1,p)-1]).y+=g,u.push(n[o]));return l}var t=!0,e=Number,r=Hr,i=jr;return n.value=function(t){return arguments.length?(e=t,n):e},n.range=function(t){return arguments.length?(r=Cn(t),n):r},n.bins=function(t){return arguments.length?(i="number"==typeof t?function(n){return Ur(n,t)}:Cn(t),n):i},n.frequency=function(e){return arguments.length?(t=!!e,n):t},n},no.layout.pack=function(){function n(n,o){var u=e.call(this,n,o),a=u[0],l=i[0],c=i[1],f=null==t?Math.sqrt:"function"==typeof t?t:function(){return t};if(a.x=a.y=0,Sr(a,function(n){n.r=+f(n.value)}),Sr(a,Br),r){var s=r*(t?1:Math.max(2*a.r/l,2*a.r/c))/2;Sr(a,function(n){n.r+=s}),Sr(a,Br),Sr(a,function(n){n.r-=s})}return function n(t,e,r,i){var o=t.children;if(t.x=e+=i*t.x,t.y=r+=i*t.y,t.r*=i,o)for(var u=-1,a=o.length;++u<a;)n(o[u],e,r,i)}(a,l/2,c/2,t?1:1/Math.max(2*a.r/l,2*a.r/c)),u}var t,e=no.layout.hierarchy().sort(Fr),r=0,i=[1,1];return n.size=function(t){return arguments.length?(i=t,n):i},n.radius=function(e){return arguments.length?(t=null==e||"function"==typeof e?e:+e,n):t},n.padding=function(t){return arguments.length?(r=+t,n):r},br(n,e)},no.layout.tree=function(){function n(n,l){var c=i.call(this,n,l),f=c[0],s=function(n){for(var t,e={A:null,children:[n]},r=[e];null!=(t=r.pop());)for(var i,o=t.children,u=0,a=o.length;a>u;++u)r.push((o[u]=i={_:o[u],parent:t,children:(i=o[u].children)&&i.slice()||[],A:null,a:null,z:0,m:0,c:0,s:0,t:null,i:u}).a=i);return e.children[0]}(f);if(Sr(s,t),s.parent.m=-s.z,_r(s,e),a)_r(f,r);else{var h=f,p=f,g=f;_r(f,function(n){n.x<h.x&&(h=n),n.x>p.x&&(p=n),n.depth>g.depth&&(g=n)});var d=o(h,p)/2-h.x,v=u[0]/(p.x+o(p,h)/2+d),y=u[1]/(g.depth||1);_r(f,function(n){n.x=(n.x+d)*v,n.y=n.depth*y})}return c}function t(n){var t=n.children,e=n.parent.children,r=n.i?e[n.i-1]:null;if(t.length){!function(n){for(var t,e=0,r=0,i=n.children,o=i.length;--o>=0;)(t=i[o]).z+=e,t.m+=e,e+=t.s+(r+=t.c)}(n);var i=(t[0].z+t[t.length-1].z)/2;r?(n.z=r.z+o(n._,r._),n.m=n.z-i):n.z=i}else r&&(n.z=r.z+o(n._,r._));n.parent.A=function(n,t,e){if(t){for(var r,i=n,u=n,a=t,l=i.parent.children[0],c=i.m,f=u.m,s=a.m,h=l.m;a=Gr(a),i=Wr(i),a&&i;)l=Wr(l),(u=Gr(u)).a=n,(r=a.z+s-i.z-c+o(a._,i._))>0&&(Jr(Kr(a,n,e),n,r),c+=r,f+=r),s+=a.m,c+=i.m,h+=l.m,f+=u.m;a&&!Gr(u)&&(u.t=a,u.m+=s-f),i&&!Wr(l)&&(l.t=i,l.m+=c-h,e=n)}return e}(n,r,n.parent.A||e[0])}function e(n){n._.x=n.z+n.parent.m,n.m+=n.parent.m}function r(n){n.x*=u[0],n.y=n.depth*u[1]}var i=no.layout.hierarchy().sort(null).value(null),o=Xr,u=[1,1],a=null;return n.separation=function(t){return arguments.length?(o=t,n):o},n.size=function(t){return arguments.length?(a=null==(u=t)?r:null,n):a?null:u},n.nodeSize=function(t){return arguments.length?(a=null==(u=t)?null:r,n):a?u:null},br(n,i)},no.layout.cluster=function(){function n(n,o){var u,a=t.call(this,n,o),l=a[0],c=0;Sr(l,function(n){var t=n.children;t&&t.length?(n.x=function(n){return n.reduce(function(n,t){return n+t.x},0)/n.length}(t),n.y=function(n){return 1+no.max(n,function(n){return n.y})}(t)):(n.x=u?c+=e(n,u):0,n.y=0,u=n)});var f=function n(t){var e=t.children;return e&&e.length?n(e[0]):t}(l),s=function n(t){var e,r=t.children;return r&&(e=r.length)?n(r[e-1]):t}(l),h=f.x-e(f,s)/2,p=s.x+e(s,f)/2;return Sr(l,i?function(n){n.x=(n.x-l.x)*r[0],n.y=(l.y-n.y)*r[1]}:function(n){n.x=(n.x-h)/(p-h)*r[0],n.y=(1-(l.y?n.y/l.y:1))*r[1]}),a}var t=no.layout.hierarchy().sort(null).value(null),e=Xr,r=[1,1],i=!1;return n.separation=function(t){return arguments.length?(e=t,n):e},n.size=function(t){return arguments.length?(i=null==(r=t),n):i?null:r},n.nodeSize=function(t){return arguments.length?(i=null!=(r=t),n):i?r:null},br(n,t)},no.layout.treemap=function(){function n(n,t){for(var e,r,i=-1,o=n.length;++i<o;)r=(e=n[i]).value*(0>t?0:t),e.area=isNaN(r)||0>=r?0:r}function t(e){var o=e.children;if(o&&o.length){var u,a,l,c=h(e),f=[],s=o.slice(),p=1/0,d="slice"===g?c.dx:"dice"===g?c.dy:"slice-dice"===g?1&e.depth?c.dy:c.dx:Math.min(c.dx,c.dy);for(n(s,c.dx*c.dy/e.value),f.area=0;(l=s.length)>0;)f.push(u=s[l-1]),f.area+=u.area,"squarify"!==g||(a=r(f,d))<=p?(s.pop(),p=a):(f.area-=f.pop().area,i(f,d,c,!1),d=Math.min(c.dx,c.dy),f.length=f.area=0,p=1/0);f.length&&(i(f,d,c,!0),f.length=f.area=0),o.forEach(t)}}function e(t){var r=t.children;if(r&&r.length){var o,u=h(t),a=r.slice(),l=[];for(n(a,u.dx*u.dy/t.value),l.area=0;o=a.pop();)l.push(o),l.area+=o.area,null!=o.z&&(i(l,o.z?u.dx:u.dy,u,!a.length),l.length=l.area=0);r.forEach(e)}}function r(n,t){for(var e,r=n.area,i=0,o=1/0,u=-1,a=n.length;++u<a;)(e=n[u].area)&&(o>e&&(o=e),e>i&&(i=e));return t*=t,(r*=r)?Math.max(t*i*d/r,r/(t*o*d)):1/0}function i(n,t,e,r){var i,o=-1,u=n.length,a=e.x,l=e.y,f=t?c(n.area/t):0;if(t==e.dx){for((r||f>e.dy)&&(f=e.dy);++o<u;)(i=n[o]).x=a,i.y=l,i.dy=f,a+=i.dx=Math.min(e.x+e.dx-a,f?c(i.area/f):0);i.z=!0,i.dx+=e.x+e.dx-a,e.y+=f,e.dy-=f}else{for((r||f>e.dx)&&(f=e.dx);++o<u;)(i=n[o]).x=a,i.y=l,i.dx=f,l+=i.dy=Math.min(e.y+e.dy-l,f?c(i.area/f):0);i.z=!1,i.dy+=e.y+e.dy-l,e.x+=f,e.dx-=f}}function u(r){var i=a||l(r),o=i[0];return o.x=o.y=0,o.value?(o.dx=f[0],o.dy=f[1]):o.dx=o.dy=0,a&&l.revalue(o),n([o],o.dx*o.dy/o.value),(a?e:t)(o),p&&(a=i),i}var a,l=no.layout.hierarchy(),c=Math.round,f=[1,1],s=null,h=Qr,p=!1,g="squarify",d=.5*(1+Math.sqrt(5));return u.size=function(n){return arguments.length?(f=n,u):f},u.padding=function(n){function t(t){return ni(t,n)}return arguments.length?(h=null==(s=n)?Qr:"function"==(e=void 0===n?"undefined":o(n))?function(t){var e=n.call(u,t,t.depth);return null==e?Qr(t):ni(t,"number"==typeof e?[e,e,e,e]:e)}:"number"===e?(n=[n,n,n,n],t):t,u):s;var e},u.round=function(n){return arguments.length?(c=n?Math.round:Number,u):c!=Number},u.sticky=function(n){return arguments.length?(p=n,a=null,u):p},u.ratio=function(n){return arguments.length?(d=n,u):d},u.mode=function(n){return arguments.length?(g=n+"",u):g},br(u,l)},no.random={normal:function(n,t){var e=arguments.length;return 2>e&&(t=1),1>e&&(n=0),function(){var e,r,i;do{i=(e=2*Math.random()-1)*e+(r=2*Math.random()-1)*r}while(!i||i>1);return n+t*e*Math.sqrt(-2*Math.log(i)/i)}},logNormal:function(){var n=no.random.normal.apply(no,arguments);return function(){return Math.exp(n())}},bates:function(n){var t=no.random.irwinHall(n);return function(){return t()/n}},irwinHall:function(n){return function(){for(var t=0,e=0;n>e;e++)t+=Math.random();return t}}},no.scale={};var pa={floor:_,ceil:_};no.scale.linear=function(){return function n(t,e,r,i){function o(){var n=Math.min(t.length,e.length)>2?ui:ri,o=i?dr:gr;return a=n(t,e,o,r),l=n(e,t,o,Je),u}function u(n){return a(n)}var a,l;return u.invert=function(n){return l(n)},u.domain=function(n){return arguments.length?(t=n.map(Number),o()):t},u.range=function(n){return arguments.length?(e=n,o()):e},u.rangeRound=function(n){return u.range(n).interpolate(lr)},u.clamp=function(n){return arguments.length?(i=n,o()):i},u.interpolate=function(n){return arguments.length?(r=n,o()):r},u.ticks=function(n){return fi(t,n)},u.tickFormat=function(n,e){return si(t,n,e)},u.nice=function(n){return li(t,n),o()},u.copy=function(){return n(t,e,r,i)},o()}([0,1],[0,1],Je,!1)};var ga={s:1,g:1,p:1,r:1,e:1};no.scale.log=function(){return function n(t,e,r,i){function o(n){return(r?Math.log(0>n?0:n):-Math.log(n>0?0:-n))/Math.log(e)}function u(n){return r?Math.pow(e,n):-Math.pow(e,-n)}function a(n){return t(o(n))}return a.invert=function(n){return u(t.invert(n))},a.domain=function(n){return arguments.length?(r=n[0]>=0,t.domain((i=n.map(Number)).map(o)),a):i},a.base=function(n){return arguments.length?(e=+n,t.domain(i.map(o)),a):e},a.nice=function(){var n=ii(i.map(o),r?Math:va);return t.domain(n),i=n.map(u),a},a.ticks=function(){var n=ti(i),t=[],a=n[0],l=n[1],c=Math.floor(o(a)),f=Math.ceil(o(l)),s=e%1?2:e;if(isFinite(f-c)){if(r){for(;f>c;c++)for(var h=1;s>h;h++)t.push(u(c)*h);t.push(u(c))}else for(t.push(u(c));c++<f;)for(h=s-1;h>0;h--)t.push(u(c)*h);for(c=0;t[c]<a;c++);for(f=t.length;t[f-1]>l;f--);t=t.slice(c,f)}return t},a.tickFormat=function(n,t){if(!arguments.length)return da;arguments.length<2?t=da:"function"!=typeof t&&(t=no.format(t));var r=Math.max(1,e*n/a.ticks().length);return function(n){var i=n/u(Math.round(o(n)));return e-.5>i*e&&(i*=e),r>=i?t(n):""}},a.copy=function(){return n(t.copy(),e,r,i)},ai(a,t)}(no.scale.linear().domain([0,1]),10,!0,[1,10])};var da=no.format(".0e"),va={floor:function(n){return-Math.ceil(-n)},ceil:function(n){return-Math.floor(-n)}};no.scale.pow=function(){return function n(t,e,r){function i(n){return t(o(n))}var o=pi(e),u=pi(1/e);return i.invert=function(n){return u(t.invert(n))},i.domain=function(n){return arguments.length?(t.domain((r=n.map(Number)).map(o)),i):r},i.ticks=function(n){return fi(r,n)},i.tickFormat=function(n,t){return si(r,n,t)},i.nice=function(n){return i.domain(li(r,n))},i.exponent=function(n){return arguments.length?(o=pi(e=n),u=pi(1/e),t.domain(r.map(o)),i):e},i.copy=function(){return n(t.copy(),e,r)},ai(i,t)}(no.scale.linear(),1,[0,1])},no.scale.sqrt=function(){return no.scale.pow().exponent(.5)},no.scale.ordinal=function(){return function n(t,e){function r(n){return u[((o.get(n)||("range"===e.t?o.set(n,t.push(n)):NaN))-1)%u.length]}function i(n,e){return no.range(t.length).map(function(t){return n+e*t})}var o,u,a;return r.domain=function(n){if(!arguments.length)return t;t=[],o=new g;for(var i,u=-1,a=n.length;++u<a;)o.has(i=n[u])||o.set(i,t.push(i));return r[e.t].apply(r,e.a)},r.range=function(n){return arguments.length?(u=n,a=0,e={t:"range",a:arguments},r):u},r.rangePoints=function(n,o){arguments.length<2&&(o=0);var l=n[0],c=n[1],f=t.length<2?(l=(l+c)/2,0):(c-l)/(t.length-1+o);return u=i(l+f*o/2,f),a=0,e={t:"rangePoints",a:arguments},r},r.rangeRoundPoints=function(n,o){arguments.length<2&&(o=0);var l=n[0],c=n[1],f=t.length<2?(l=c=Math.round((l+c)/2),0):(c-l)/(t.length-1+o)|0;return u=i(l+Math.round(f*o/2+(c-l-(t.length-1+o)*f)/2),f),a=0,e={t:"rangeRoundPoints",a:arguments},r},r.rangeBands=function(n,o,l){arguments.length<2&&(o=0),arguments.length<3&&(l=o);var c=n[1]<n[0],f=n[c-0],s=(n[1-c]-f)/(t.length-o+2*l);return u=i(f+s*l,s),c&&u.reverse(),a=s*(1-o),e={t:"rangeBands",a:arguments},r},r.rangeRoundBands=function(n,o,l){arguments.length<2&&(o=0),arguments.length<3&&(l=o);var c=n[1]<n[0],f=n[c-0],s=n[1-c],h=Math.floor((s-f)/(t.length-o+2*l));return u=i(f+Math.round((s-f-(t.length-o)*h)/2),h),c&&u.reverse(),a=Math.round(h*(1-o)),e={t:"rangeRoundBands",a:arguments},r},r.rangeBand=function(){return a},r.rangeExtent=function(){return ti(e.a[0])},r.copy=function(){return n(t,e)},r.domain(t)}([],{t:"range",a:[[]]})},no.scale.category10=function(){return no.scale.ordinal().range(ya)},no.scale.category20=function(){return no.scale.ordinal().range(ma)},no.scale.category20b=function(){return no.scale.ordinal().range(xa)},no.scale.category20c=function(){return no.scale.ordinal().range(Ma)};var ya=[2062260,16744206,2924588,14034728,9725885,9197131,14907330,8355711,12369186,1556175].map(bn),ma=[2062260,11454440,16744206,16759672,2924588,10018698,14034728,16750742,9725885,12955861,9197131,12885140,14907330,16234194,8355711,13092807,12369186,14408589,1556175,10410725].map(bn),xa=[3750777,5395619,7040719,10264286,6519097,9216594,11915115,13556636,9202993,12426809,15186514,15190932,8666169,11356490,14049643,15177372,8077683,10834324,13528509,14589654].map(bn),Ma=[3244733,7057110,10406625,13032431,15095053,16616764,16625259,16634018,3253076,7652470,10607003,13101504,7695281,10394312,12369372,14342891,6513507,9868950,12434877,14277081].map(bn);no.scale.quantile=function(){return function n(t,e){function r(){var n=0,r=e.length;for(o=[];++n<r;)o[n-1]=no.quantile(t,n/r);return i}function i(n){return isNaN(n=+n)?void 0:e[no.bisect(o,n)]}var o;return i.domain=function(n){return arguments.length?(t=n.map(c).filter(f).sort(l),r()):t},i.range=function(n){return arguments.length?(e=n,r()):e},i.quantiles=function(){return o},i.invertExtent=function(n){return 0>(n=e.indexOf(n))?[NaN,NaN]:[n>0?o[n-1]:t[0],n<o.length?o[n]:t[t.length-1]]},i.copy=function(){return n(t,e)},r()}([],[])},no.scale.quantize=function(){return function n(t,e,r){function i(n){return r[Math.max(0,Math.min(a,Math.floor(u*(n-t))))]}function o(){return u=r.length/(e-t),a=r.length-1,i}var u,a;return i.domain=function(n){return arguments.length?(t=+n[0],e=+n[n.length-1],o()):[t,e]},i.range=function(n){return arguments.length?(r=n,o()):r},i.invertExtent=function(n){return[n=0>(n=r.indexOf(n))?NaN:n/u+t,n+1/u]},i.copy=function(){return n(t,e,r)},o()}(0,1,[0,1])},no.scale.threshold=function(){return function n(t,e){function r(n){return n>=n?e[no.bisect(t,n)]:void 0}return r.domain=function(n){return arguments.length?(t=n,r):t},r.range=function(n){return arguments.length?(e=n,r):e},r.invertExtent=function(n){return n=e.indexOf(n),[t[n-1],t[n]]},r.copy=function(){return n(t,e)},r}([.5],[0,1])},no.scale.identity=function(){return function n(t){function e(n){return+n}return e.invert=e,e.domain=e.range=function(n){return arguments.length?(t=n.map(e),e):t},e.ticks=function(n){return fi(t,n)},e.tickFormat=function(n,e){return si(t,n,e)},e.copy=function(){return n(t)},e}([0,1])},no.svg={},no.svg.arc=function(){function n(){var n=Math.max(0,+e.apply(this,arguments)),c=Math.max(0,+r.apply(this,arguments)),f=u.apply(this,arguments)-qo,s=a.apply(this,arguments)-qo,h=Math.abs(s-f),p=f>s?0:1;if(n>c&&(g=c,c=n,n=g),h>=Lo)return t(c,p)+(n?t(n,1-p):"")+"Z";var g,d,v,y,m,x,M,w,b,_,S,k,N=0,E=0,A=[];if((y=(+l.apply(this,arguments)||0)/2)&&(v=o===wa?Math.sqrt(n*n+c*c):+o.apply(this,arguments),p||(E*=-1),c&&(E=un(v/c*Math.sin(y))),n&&(N=un(v/n*Math.sin(y)))),c){m=c*Math.cos(f+E),x=c*Math.sin(f+E),M=c*Math.cos(s-E),w=c*Math.sin(s-E);var C=Math.abs(s-f-2*E)<=zo?0:1;if(E&&Mi(m,x,M,w)===p^C){var z=(f+s)/2;m=c*Math.cos(z),x=c*Math.sin(z),M=w=null}}else m=x=0;if(n){b=n*Math.cos(s-N),_=n*Math.sin(s-N),S=n*Math.cos(f+N),k=n*Math.sin(f+N);var T=Math.abs(f-s+2*N)<=zo?0:1;if(N&&Mi(b,_,S,k)===1-p^T){var L=(f+s)/2;b=n*Math.cos(L),_=n*Math.sin(L),S=k=null}}else b=_=0;if(h>Ao&&(g=Math.min(Math.abs(c-n)/2,+i.apply(this,arguments)))>.001){d=c>n^p?0:1;var q=g,R=g;if(zo>h){var D=null==S?[b,_]:null==M?[m,x]:xe([m,x],[S,k],[M,w],[b,_]),P=m-D[0],j=x-D[1],U=M-D[0],H=w-D[1],F=1/Math.sin(Math.acos((P*U+j*H)/(Math.sqrt(P*P+j*j)*Math.sqrt(U*U+H*H)))/2),O=Math.sqrt(D[0]*D[0]+D[1]*D[1]);R=Math.min(g,(n-O)/(F-1)),q=Math.min(g,(c-O)/(F+1))}if(null!=M){var I=wi(null==S?[b,_]:[S,k],[m,x],c,q,p),Y=wi([M,w],[b,_],c,q,p);g===q?A.push("M",I[0],"A",q,",",q," 0 0,",d," ",I[1],"A",c,",",c," 0 ",1-p^Mi(I[1][0],I[1][1],Y[1][0],Y[1][1]),",",p," ",Y[1],"A",q,",",q," 0 0,",d," ",Y[0]):A.push("M",I[0],"A",q,",",q," 0 1,",d," ",Y[0])}else A.push("M",m,",",x);if(null!=S){var B=wi([m,x],[S,k],n,-R,p),V=wi([b,_],null==M?[m,x]:[M,w],n,-R,p);g===R?A.push("L",V[0],"A",R,",",R," 0 0,",d," ",V[1],"A",n,",",n," 0 ",p^Mi(V[1][0],V[1][1],B[1][0],B[1][1]),",",1-p," ",B[1],"A",R,",",R," 0 0,",d," ",B[0]):A.push("L",V[0],"A",R,",",R," 0 0,",d," ",B[0])}else A.push("L",b,",",_)}else A.push("M",m,",",x),null!=M&&A.push("A",c,",",c," 0 ",C,",",p," ",M,",",w),A.push("L",b,",",_),null!=S&&A.push("A",n,",",n," 0 ",T,",",1-p," ",S,",",k);return A.push("Z"),A.join("")}function t(n,t){return"M0,"+n+"A"+n+","+n+" 0 1,"+t+" 0,"+-n+"A"+n+","+n+" 0 1,"+t+" 0,"+n}var e=di,r=vi,i=gi,o=wa,u=yi,a=mi,l=xi;return n.innerRadius=function(t){return arguments.length?(e=Cn(t),n):e},n.outerRadius=function(t){return arguments.length?(r=Cn(t),n):r},n.cornerRadius=function(t){return arguments.length?(i=Cn(t),n):i},n.padRadius=function(t){return arguments.length?(o=t==wa?wa:Cn(t),n):o},n.startAngle=function(t){return arguments.length?(u=Cn(t),n):u},n.endAngle=function(t){return arguments.length?(a=Cn(t),n):a},n.padAngle=function(t){return arguments.length?(l=Cn(t),n):l},n.centroid=function(){var n=(+e.apply(this,arguments)+ +r.apply(this,arguments))/2,t=(+u.apply(this,arguments)+ +a.apply(this,arguments))/2-qo;return[Math.cos(t)*n,Math.sin(t)*n]},n};var wa="auto";no.svg.line=function(){return bi(_)};var ba=no.map({linear:_i,"linear-closed":Si,step:function(n){for(var t=0,e=n.length,r=n[0],i=[r[0],",",r[1]];++t<e;)i.push("H",(r[0]+(r=n[t])[0])/2,"V",r[1]);return e>1&&i.push("H",r[0]),i.join("")},"step-before":ki,"step-after":Ni,basis:Ci,"basis-open":function(n){if(n.length<4)return _i(n);for(var t,e=[],r=-1,i=n.length,o=[0],u=[0];++r<3;)t=n[r],o.push(t[0]),u.push(t[1]);for(e.push(zi(ka,o)+","+zi(ka,u)),--r;++r<i;)t=n[r],o.shift(),o.push(t[0]),u.shift(),u.push(t[1]),Ti(e,o,u);return e.join("")},"basis-closed":function(n){for(var t,e,r=-1,i=n.length,o=i+4,u=[],a=[];++r<4;)e=n[r%i],u.push(e[0]),a.push(e[1]);for(t=[zi(ka,u),",",zi(ka,a)],--r;++r<o;)e=n[r%i],u.shift(),u.push(e[0]),a.shift(),a.push(e[1]),Ti(t,u,a);return t.join("")},bundle:function(n,t){var e=n.length-1;if(e)for(var r,i,o=n[0][0],u=n[0][1],a=n[e][0]-o,l=n[e][1]-u,c=-1;++c<=e;)i=c/e,(r=n[c])[0]=t*r[0]+(1-t)*(o+i*a),r[1]=t*r[1]+(1-t)*(u+i*l);return Ci(n)},cardinal:function(n,t){return n.length<3?_i(n):n[0]+Ei(n,Ai(n,t))},"cardinal-open":function(n,t){return n.length<4?_i(n):n[1]+Ei(n.slice(1,-1),Ai(n,t))},"cardinal-closed":function(n,t){return n.length<3?Si(n):n[0]+Ei((n.push(n[0]),n),Ai([n[n.length-2]].concat(n,[n[1]]),t))},monotone:function(n){return n.length<3?_i(n):n[0]+Ei(n,qi(n))}});ba.forEach(function(n,t){t.key=n,t.closed=/-closed$/.test(n)});var _a=[0,2/3,1/3,0],Sa=[0,1/3,2/3,0],ka=[0,1/6,2/3,1/6];no.svg.line.radial=function(){var n=bi(Ri);return n.radius=n.x,delete n.x,n.angle=n.y,delete n.y,n},ki.reverse=Ni,Ni.reverse=ki,no.svg.area=function(){return Di(_)},no.svg.area.radial=function(){var n=Di(Ri);return n.radius=n.x,delete n.x,n.innerRadius=n.x0,delete n.x0,n.outerRadius=n.x1,delete n.x1,n.angle=n.y,delete n.y,n.startAngle=n.y0,delete n.y0,n.endAngle=n.y1,delete n.y1,n},no.svg.chord=function(){function n(n,u){var a=t(this,i,n,u),l=t(this,o,n,u);return"M"+a.p0+e(a.r,a.p1,a.a1-a.a0)+(function(n,t){return n.a0==t.a0&&n.a1==t.a1}(a,l)?r(a.r,a.p1,a.r,a.p0):r(a.r,a.p1,l.r,l.p0)+e(l.r,l.p1,l.a1-l.a0)+r(l.r,l.p1,a.r,a.p0))+"Z"}function t(n,t,e,r){var i=t.call(n,e,r),o=u.call(n,i,r),c=a.call(n,i,r)-qo,f=l.call(n,i,r)-qo;return{r:o,a0:c,a1:f,p0:[o*Math.cos(c),o*Math.sin(c)],p1:[o*Math.cos(f),o*Math.sin(f)]}}function e(n,t,e){return"A"+n+","+n+" 0 "+ +(e>zo)+",1 "+t}function r(n,t,e,r){return"Q 0,0 "+r}var i=ue,o=ae,u=Pi,a=yi,l=mi;return n.radius=function(t){return arguments.length?(u=Cn(t),n):u},n.source=function(t){return arguments.length?(i=Cn(t),n):i},n.target=function(t){return arguments.length?(o=Cn(t),n):o},n.startAngle=function(t){return arguments.length?(a=Cn(t),n):a},n.endAngle=function(t){return arguments.length?(l=Cn(t),n):l},n},no.svg.diagonal=function(){function n(n,i){var o=t.call(this,n,i),u=e.call(this,n,i),a=(o.y+u.y)/2,l=[o,{x:o.x,y:a},{x:u.x,y:a},u];return"M"+(l=l.map(r))[0]+"C"+l[1]+" "+l[2]+" "+l[3]}var t=ue,e=ae,r=ji;return n.source=function(e){return arguments.length?(t=Cn(e),n):t},n.target=function(t){return arguments.length?(e=Cn(t),n):e},n.projection=function(t){return arguments.length?(r=t,n):r},n},no.svg.diagonal.radial=function(){var n=no.svg.diagonal(),t=ji,e=n.projection;return n.projection=function(n){return arguments.length?e(function(n){return function(){var t=n.apply(this,arguments),e=t[0],r=t[1]-qo;return[e*Math.cos(r),e*Math.sin(r)]}}(t=n)):t},n},no.svg.symbol=function(){function n(n,r){return(Na.get(t.call(this,n,r))||Fi)(e.call(this,n,r))}var t=Hi,e=Ui;return n.type=function(e){return arguments.length?(t=Cn(e),n):t},n.size=function(t){return arguments.length?(e=Cn(t),n):e},n};var Na=no.map({circle:Fi,cross:function(n){var t=Math.sqrt(n/5)/2;return"M"+-3*t+","+-t+"H"+-t+"V"+-3*t+"H"+t+"V"+-t+"H"+3*t+"V"+t+"H"+t+"V"+3*t+"H"+-t+"V"+t+"H"+-3*t+"Z"},diamond:function(n){var t=Math.sqrt(n/(2*Aa)),e=t*Aa;return"M0,"+-t+"L"+e+",0 0,"+t+" "+-e+",0Z"},square:function(n){var t=Math.sqrt(n)/2;return"M"+-t+","+-t+"L"+t+","+-t+" "+t+","+t+" "+-t+","+t+"Z"},"triangle-down":function(n){var t=Math.sqrt(n/Ea),e=t*Ea/2;return"M0,"+e+"L"+t+","+-e+" "+-t+","+-e+"Z"},"triangle-up":function(n){var t=Math.sqrt(n/Ea),e=t*Ea/2;return"M0,"+-e+"L"+t+","+e+" "+-t+","+e+"Z"}});no.svg.symbolTypes=Na.keys();var Ea=Math.sqrt(3),Aa=Math.tan(30*Ro);Mo.transition=function(n){for(var t,e,r=Ca||++qa,i=Vi(n),o=[],u=za||{time:Date.now(),ease:rr,delay:0,duration:250},a=-1,l=this.length;++a<l;){o.push(t=[]);for(var c=this[a],f=-1,s=c.length;++f<s;)(e=c[f])&&Zi(e,f,i,r,u),t.push(e)}return Ii(o,i,r)},Mo.interrupt=function(n){return this.each(null==n?Ta:Oi(Vi(n)))};var Ca,za,Ta=Oi(Vi()),La=[],qa=0;La.call=Mo.call,La.empty=Mo.empty,La.node=Mo.node,La.size=Mo.size,no.transition=function(n,t){return n&&n.transition?Ca?n.transition(t):n:no.selection().transition(n)},no.transition.prototype=La,La.select=function(n){var t,e,r,i=this.id,o=this.namespace,u=[];n=q(n);for(var a=-1,l=this.length;++a<l;){u.push(t=[]);for(var c=this[a],f=-1,s=c.length;++f<s;)(r=c[f])&&(e=n.call(r,r.__data__,f,a))?("__data__"in r&&(e.__data__=r.__data__),Zi(e,f,o,i,r[o][i]),t.push(e)):t.push(null)}return Ii(u,o,i)},La.selectAll=function(n){var t,e,r,i,o,u=this.id,a=this.namespace,l=[];n=R(n);for(var c=-1,f=this.length;++c<f;)for(var s=this[c],h=-1,p=s.length;++h<p;)if(r=s[h]){o=r[a][u],e=n.call(r,r.__data__,h,c),l.push(t=[]);for(var g=-1,d=e.length;++g<d;)(i=e[g])&&Zi(i,g,a,u,o),t.push(i)}return Ii(l,a,u)},La.filter=function(n){var t,e,r=[];"function"!=typeof n&&(n=Z(n));for(var i=0,o=this.length;o>i;i++){r.push(t=[]);for(var u,a=0,l=(u=this[i]).length;l>a;a++)(e=u[a])&&n.call(e,e.__data__,a,i)&&t.push(e)}return Ii(r,this.namespace,this.id)},La.tween=function(n,t){var e=this.id,r=this.namespace;return arguments.length<2?this.node()[r][e].tween.get(n):X(this,null==t?function(t){t[r][e].tween.remove(n)}:function(i){i[r][e].tween.set(n,t)})},La.attr=function(n,t){function e(){this.removeAttribute(o)}function r(){this.removeAttributeNS(o.space,o.local)}if(arguments.length<2){for(t in n)this.attr(t,n[t]);return this}var i="transform"==n?pr:Je,o=no.ns.qualify(n);return Yi(this,"attr."+n,t,o.local?function(n){return null==n?r:(n+="",function(){var t,e=this.getAttributeNS(o.space,o.local);return e!==n&&(t=i(e,n),function(n){this.setAttributeNS(o.space,o.local,t(n))})})}:function(n){return null==n?e:(n+="",function(){var t,e=this.getAttribute(o);return e!==n&&(t=i(e,n),function(n){this.setAttribute(o,t(n))})})})},La.attrTween=function(n,t){var e=no.ns.qualify(n);return this.tween("attr."+n,e.local?function(n,r){var i=t.call(this,n,r,this.getAttributeNS(e.space,e.local));return i&&function(n){this.setAttributeNS(e.space,e.local,i(n))}}:function(n,r){var i=t.call(this,n,r,this.getAttribute(e));return i&&function(n){this.setAttribute(e,i(n))}})},La.style=function(n,t,e){function r(){this.style.removeProperty(n)}var i=arguments.length;if(3>i){if("string"!=typeof n){for(e in 2>i&&(t=""),n)this.style(e,n[e],t);return this}e=""}return Yi(this,"style."+n,t,function(t){return null==t?r:(t+="",function(){var r,i=a(this).getComputedStyle(this,null).getPropertyValue(n);return i!==t&&(r=Je(i,t),function(t){this.style.setProperty(n,r(t),e)})})})},La.styleTween=function(n,t,e){return arguments.length<3&&(e=""),this.tween("style."+n,function(r,i){var o=t.call(this,r,i,a(this).getComputedStyle(this,null).getPropertyValue(n));return o&&function(t){this.style.setProperty(n,o(t),e)}})},La.text=function(n){return Yi(this,"text",n,Bi)},La.remove=function(){var n=this.namespace;return this.each("end.transition",function(){var t;this[n].count<2&&(t=this.parentNode)&&t.removeChild(this)})},La.ease=function(n){var t=this.id,e=this.namespace;return arguments.length<1?this.node()[e][t].ease:("function"!=typeof n&&(n=no.ease.apply(no,arguments)),X(this,function(r){r[e][t].ease=n}))},La.delay=function(n){var t=this.id,e=this.namespace;return arguments.length<1?this.node()[e][t].delay:X(this,"function"==typeof n?function(r,i,o){r[e][t].delay=+n.call(r,r.__data__,i,o)}:(n=+n,function(r){r[e][t].delay=n}))},La.duration=function(n){var t=this.id,e=this.namespace;return arguments.length<1?this.node()[e][t].duration:X(this,"function"==typeof n?function(r,i,o){r[e][t].duration=Math.max(1,n.call(r,r.__data__,i,o))}:(n=Math.max(1,n),function(r){r[e][t].duration=n}))},La.each=function(n,t){var e=this.id,r=this.namespace;if(arguments.length<2){var i=za,o=Ca;try{Ca=e,X(this,function(t,i,o){za=t[r][e],n.call(t,t.__data__,i,o)})}finally{za=i,Ca=o}}else X(this,function(i){var o=i[r][e];(o.event||(o.event=no.dispatch("start","end","interrupt"))).on(n,t)});return this},La.transition=function(){for(var n,t,e,r=this.id,i=++qa,o=this.namespace,u=[],a=0,l=this.length;l>a;a++){u.push(n=[]);for(var c,f=0,s=(c=this[a]).length;s>f;f++)(t=c[f])&&Zi(t,f,o,i,{time:(e=t[o][r]).time,ease:e.ease,delay:e.delay+e.duration,duration:e.duration}),n.push(t)}return Ii(u,o,i)},no.svg.axis=function(){function n(n){n.each(function(){var n,c=no.select(this),f=this.__chart__||e,s=this.__chart__=e.copy(),h=null==l?s.ticks?s.ticks.apply(s,a):s.domain():l,p=null==t?s.tickFormat?s.tickFormat.apply(s,a):_:t,g=c.selectAll(".tick").data(h,s),d=g.enter().insert("g",".domain").attr("class","tick").style("opacity",Ao),v=no.transition(g.exit()).style("opacity",Ao).remove(),y=no.transition(g.order()).style("opacity",1),m=Math.max(i,0)+u,x=ei(s),M=c.selectAll(".domain").data([0]),w=(M.enter().append("path").attr("class","domain"),no.transition(M));d.append("line"),d.append("text");var b,S,k,N,E=d.select("line"),A=y.select("line"),C=g.select("text").text(p),z=d.select("text"),T=y.select("text"),L="top"===r||"left"===r?-1:1;if("bottom"===r||"top"===r?(n=$i,b="x",k="y",S="x2",N="y2",C.attr("dy",0>L?"0em":".71em").style("text-anchor","middle"),w.attr("d","M"+x[0]+","+L*o+"V0H"+x[1]+"V"+L*o)):(n=Xi,b="y",k="x",S="y2",N="x2",C.attr("dy",".32em").style("text-anchor",0>L?"end":"start"),w.attr("d","M"+L*o+","+x[0]+"H0V"+x[1]+"H"+L*o)),E.attr(N,L*i),z.attr(k,L*m),A.attr(S,0).attr(N,L*i),T.attr(b,0).attr(k,L*m),s.rangeBand){var q=s,R=q.rangeBand()/2;f=s=function(n){return q(n)+R}}else f.rangeBand?f=s:v.call(n,s,f);d.call(n,f,s),y.call(n,s,s)})}var t,e=no.scale.linear(),r=Ra,i=6,o=6,u=3,a=[10],l=null;return n.scale=function(t){return arguments.length?(e=t,n):e},n.orient=function(t){return arguments.length?(r=t in Da?t+"":Ra,n):r},n.ticks=function(){return arguments.length?(a=eo(arguments),n):a},n.tickValues=function(t){return arguments.length?(l=t,n):l},n.tickFormat=function(e){return arguments.length?(t=e,n):t},n.tickSize=function(t){var e=arguments.length;return e?(i=+t,o=+arguments[e-1],n):i},n.innerTickSize=function(t){return arguments.length?(i=+t,n):i},n.outerTickSize=function(t){return arguments.length?(o=+t,n):o},n.tickPadding=function(t){return arguments.length?(u=+t,n):u},n.tickSubdivide=function(){return arguments.length&&n},n};var Ra="bottom",Da={top:1,right:1,bottom:1,left:1};no.svg.brush=function(){function n(o){o.each(function(){var o=no.select(this).style("pointer-events","all").style("-webkit-tap-highlight-color","rgba(0,0,0,0)").on("mousedown.brush",i).on("touchstart.brush",i),u=o.selectAll(".background").data([0]);u.enter().append("rect").attr("class","background").style("visibility","hidden").style("cursor","crosshair"),o.selectAll(".extent").data([0]).enter().append("rect").attr("class","extent").style("cursor","move");var a=o.selectAll(".resize").data(d,_);a.exit().remove(),a.enter().append("g").attr("class",function(n){return"resize "+n}).style("cursor",function(n){return Pa[n]}).append("rect").attr("x",function(n){return/[ew]$/.test(n)?-3:null}).attr("y",function(n){return/^[ns]/.test(n)?-3:null}).attr("width",6).attr("height",6).style("visibility","hidden"),a.style("display",n.empty()?"none":null);var l,s=no.transition(o),h=no.transition(u);c&&(l=ei(c),h.attr("x",l[0]).attr("width",l[1]-l[0]),e(s)),f&&(l=ei(f),h.attr("y",l[0]).attr("height",l[1]-l[0]),r(s)),t(s)})}function t(n){n.selectAll(".resize").attr("transform",function(n){return"translate("+s[+/e$/.test(n)]+","+h[+/^s/.test(n)]+")"})}function e(n){n.select(".extent").attr("x",s[0]),n.selectAll(".extent,.n>rect,.s>rect").attr("width",s[1]-s[0])}function r(n){n.select(".extent").attr("y",h[0]),n.selectAll(".extent,.e>rect,.w>rect").attr("height",h[1]-h[0])}function i(){function i(){var n=no.mouse(x),i=!1;m&&(n[0]+=m[0],n[1]+=m[1]),N||(no.event.altKey?(y||(y=[(s[0]+s[1])/2,(h[0]+h[1])/2]),A[0]=s[+(n[0]<y[0])],A[1]=h[+(n[1]<y[1])]):y=null),S&&d(n,c,0)&&(e(b),i=!0),k&&d(n,f,1)&&(r(b),i=!0),i&&(t(b),w({type:"brush",mode:N?"move":"resize"}))}function d(n,t,e){var r,i,a=ei(t),l=a[0],c=a[1],f=A[e],d=e?h:s,v=d[1]-d[0];return N&&(l-=f,c-=v+f),r=(e?g:p)?Math.max(l,Math.min(c,n[e])):n[e],N?i=(r+=f)+v:(y&&(f=Math.max(l,Math.min(c,2*y[e]-r))),r>f?(i=r,r=f):i=f),d[0]!=r||d[1]!=i?(e?u=null:o=null,d[0]=r,d[1]=i,!0):void 0}function v(){i(),b.style("pointer-events","all").selectAll(".resize").style("display",n.empty()?"none":null),no.select("body").style("cursor",null),z.on("mousemove.brush",null).on("mouseup.brush",null).on("touchmove.brush",null).on("touchend.brush",null).on("keydown.brush",null).on("keyup.brush",null),E(),w({type:"brushend"})}var y,m,x=this,M=no.select(no.event.target),w=l.of(x,arguments),b=no.select(x),_=M.datum(),S=!/^(n|s)$/.test(_)&&c,k=!/^(e|w)$/.test(_)&&f,N=M.classed("extent"),E=Q(x),A=no.mouse(x),z=no.select(a(x)).on("keydown.brush",function(){32==no.event.keyCode&&(N||(y=null,A[0]-=s[1],A[1]-=h[1],N=2),C())}).on("keyup.brush",function(){32==no.event.keyCode&&2==N&&(A[0]+=s[1],A[1]+=h[1],N=0,C())});if(no.event.changedTouches?z.on("touchmove.brush",i).on("touchend.brush",v):z.on("mousemove.brush",i).on("mouseup.brush",v),b.interrupt().selectAll("*").interrupt(),N)A[0]=s[0]-A[0],A[1]=h[0]-A[1];else if(_){var T=+/w$/.test(_),L=+/^n/.test(_);m=[s[1-T]-A[0],h[1-L]-A[1]],A[0]=s[T],A[1]=h[L]}else no.event.altKey&&(y=A.slice());b.style("pointer-events","none").selectAll(".resize").style("display",null),no.select("body").style("cursor",M.style("cursor")),w({type:"brushstart"}),i()}var o,u,l=T(n,"brushstart","brush","brushend"),c=null,f=null,s=[0,0],h=[0,0],p=!0,g=!0,d=ja[0];return n.event=function(n){n.each(function(){var n=l.of(this,arguments),t={x:s,y:h,i:o,j:u},e=this.__chart__||t;this.__chart__=t,Ca?no.select(this).transition().each("start.brush",function(){o=e.i,u=e.j,s=e.x,h=e.y,n({type:"brushstart"})}).tween("brush:brush",function(){var e=Ke(s,t.x),r=Ke(h,t.y);return o=u=null,function(i){s=t.x=e(i),h=t.y=r(i),n({type:"brush",mode:"resize"})}}).each("end.brush",function(){o=t.i,u=t.j,n({type:"brush",mode:"resize"}),n({type:"brushend"})}):(n({type:"brushstart"}),n({type:"brush",mode:"resize"}),n({type:"brushend"}))})},n.x=function(t){return arguments.length?(d=ja[!(c=t)<<1|!f],n):c},n.y=function(t){return arguments.length?(d=ja[!c<<1|!(f=t)],n):f},n.clamp=function(t){return arguments.length?(c&&f?(p=!!t[0],g=!!t[1]):c?p=!!t:f&&(g=!!t),n):c&&f?[p,g]:c?p:f?g:null},n.extent=function(t){var e,r,i,a,l;return arguments.length?(c&&(e=t[0],r=t[1],f&&(e=e[0],r=r[0]),o=[e,r],c.invert&&(e=c(e),r=c(r)),e>r&&(l=e,e=r,r=l),e==s[0]&&r==s[1]||(s=[e,r])),f&&(i=t[0],a=t[1],c&&(i=i[1],a=a[1]),u=[i,a],f.invert&&(i=f(i),a=f(a)),i>a&&(l=i,i=a,a=l),i==h[0]&&a==h[1]||(h=[i,a])),n):(c&&(o?(e=o[0],r=o[1]):(e=s[0],r=s[1],c.invert&&(e=c.invert(e),r=c.invert(r)),e>r&&(l=e,e=r,r=l))),f&&(u?(i=u[0],a=u[1]):(i=h[0],a=h[1],f.invert&&(i=f.invert(i),a=f.invert(a)),i>a&&(l=i,i=a,a=l))),c&&f?[[e,i],[r,a]]:c?[e,r]:f&&[i,a])},n.clear=function(){return n.empty()||(s=[0,0],h=[0,0],o=u=null),n},n.empty=function(){return!!c&&s[0]==s[1]||!!f&&h[0]==h[1]},no.rebind(n,l,"on")};var Pa={n:"ns-resize",e:"ew-resize",s:"ns-resize",w:"ew-resize",nw:"nwse-resize",ne:"nesw-resize",se:"nwse-resize",sw:"nesw-resize"},ja=[["n","e","s","w","nw","ne","se","sw"],["e","w"],["n","s"],[]],Ua=ru.format=cu.timeFormat,Ha=Ua.utc,Fa=Ha("%Y-%m-%dT%H:%M:%S.%LZ");Ua.iso=Date.prototype.toISOString&&+new Date("2000-01-01T00:00:00.000Z")?Wi:Fa,Wi.parse=function(n){var t=new Date(n);return isNaN(t)?null:t},Wi.toString=Fa.toString,ru.second=Hn(function(n){return new iu(1e3*Math.floor(n/1e3))},function(n,t){n.setTime(n.getTime()+1e3*Math.floor(t))},function(n){return n.getSeconds()}),ru.seconds=ru.second.range,ru.seconds.utc=ru.second.utc.range,ru.minute=Hn(function(n){return new iu(6e4*Math.floor(n/6e4))},function(n,t){n.setTime(n.getTime()+6e4*Math.floor(t))},function(n){return n.getMinutes()}),ru.minutes=ru.minute.range,ru.minutes.utc=ru.minute.utc.range,ru.hour=Hn(function(n){var t=n.getTimezoneOffset()/60;return new iu(36e5*(Math.floor(n/36e5-t)+t))},function(n,t){n.setTime(n.getTime()+36e5*Math.floor(t))},function(n){return n.getHours()}),ru.hours=ru.hour.range,ru.hours.utc=ru.hour.utc.range,ru.month=Hn(function(n){return(n=ru.day(n)).setDate(1),n},function(n,t){n.setMonth(n.getMonth()+t)},function(n){return n.getMonth()}),ru.months=ru.month.range,ru.months.utc=ru.month.utc.range;var Oa=[1e3,5e3,15e3,3e4,6e4,3e5,9e5,18e5,36e5,108e5,216e5,432e5,864e5,1728e5,6048e5,2592e6,7776e6,31536e6],Ia=[[ru.second,1],[ru.second,5],[ru.second,15],[ru.second,30],[ru.minute,1],[ru.minute,5],[ru.minute,15],[ru.minute,30],[ru.hour,1],[ru.hour,3],[ru.hour,6],[ru.hour,12],[ru.day,1],[ru.day,2],[ru.week,1],[ru.month,1],[ru.month,3],[ru.year,1]],Ya=Ua.multi([[".%L",function(n){return n.getMilliseconds()}],[":%S",function(n){return n.getSeconds()}],["%I:%M",function(n){return n.getMinutes()}],["%I %p",function(n){return n.getHours()}],["%a %d",function(n){return n.getDay()&&1!=n.getDate()}],["%b %d",function(n){return 1!=n.getDate()}],["%B",function(n){return n.getMonth()}],["%Y",Nt]]),Ba={range:function(n,t,e){return no.range(Math.ceil(n/e)*e,+t,e).map(Ji)},floor:_,ceil:_};Ia.year=ru.year,ru.scale=function(){return Gi(no.scale.linear(),Ia,Ya)};var Va=Ia.map(function(n){return[n[0].utc,n[1]]}),Za=Ha.multi([[".%L",function(n){return n.getUTCMilliseconds()}],[":%S",function(n){return n.getUTCSeconds()}],["%I:%M",function(n){return n.getUTCMinutes()}],["%I %p",function(n){return n.getUTCHours()}],["%a %d",function(n){return n.getUTCDay()&&1!=n.getUTCDate()}],["%b %d",function(n){return 1!=n.getUTCDate()}],["%B",function(n){return n.getUTCMonth()}],["%Y",Nt]]);Va.year=ru.year.utc,ru.scale.utc=function(){return Gi(no.scale.linear(),Va,Za)},no.text=zn(function(n){return n.responseText}),no.json=function(n,t){return Tn(n,"application/json",Ki,t)},no.html=function(n,t){return Tn(n,"text/html",Qi,t)},no.xml=zn(function(n){return n.responseXML}),this.d3=no,void 0===(i="function"==typeof(r=no)?r.call(t,e,t,n):r)||(n.exports=i)}()},76:function(n,t){d3.tip=function(){var n=function(){return"n"},t=function(){return[0,0]},e=function(){return" "},r=function(){var n=d3.select(document.createElement("div"));return n.style({position:"absolute",opacity:0,pointerEvents:"none",boxSizing:"border-box"}),n.node()}(),i=null,o=null,u=null;function a(n){var t;i="svg"==(t=(t=n).node()).tagName.toLowerCase()?t:t.ownerSVGElement,o=i.createSVGPoint(),document.body.appendChild(r)}a.show=function(){var i=Array.prototype.slice.call(arguments);i[i.length-1]instanceof SVGElement&&(u=i.pop());var o,f=e.apply(this,i),s=t.apply(this,i),h=n.apply(this,i),p=d3.select(r),g=0;for(p.html(f).style({opacity:1,"pointer-events":"all"});g--;)p.classed(c[g],!1);return o=l.get(h).apply(this),p.classed(h,!0).style({top:o.top+s[0]+"px",left:o.left+s[1]+"px"}),a},a.hide=function(){return nodel=d3.select(r),nodel.style({opacity:0,"pointer-events":"none"}),a},a.attr=function(n,t){if(arguments.length<2&&"string"==typeof n)return d3.select(r).attr(n);var e=Array.prototype.slice.call(arguments);return d3.selection.prototype.attr.apply(d3.select(r),e),a},a.style=function(n,t){if(arguments.length<2&&"string"==typeof n)return d3.select(r).style(n);var e=Array.prototype.slice.call(arguments);return d3.selection.prototype.style.apply(d3.select(r),e),a},a.direction=function(t){return arguments.length?(n=null==t?t:d3.functor(t),a):n},a.offset=function(n){return arguments.length?(t=null==n?n:d3.functor(n),a):t},a.html=function(n){return arguments.length?(e=null==n?n:d3.functor(n),a):e};var l=d3.map({n:function(){var n=f();return{top:n.n.y-r.offsetHeight,left:n.n.x-r.offsetWidth/2}},s:function(){var n=f();return{top:n.s.y,left:n.s.x-r.offsetWidth/2}},e:function(){var n=f();return{top:n.e.y-r.offsetHeight/2,left:n.e.x}},w:function(){var n=f();return{top:n.w.y-r.offsetHeight/2,left:n.w.x-r.offsetWidth}},nw:function(){var n=f();return{top:n.nw.y-r.offsetHeight,left:n.nw.x-r.offsetWidth}},ne:function(){var n=f();return{top:n.ne.y-r.offsetHeight,left:n.ne.x}},sw:function(){var n=f();return{top:n.sw.y,left:n.sw.x-r.offsetWidth}},se:function(){var n=f();return{top:n.se.y,left:n.e.x}}}),c=l.keys();function f(){var n=u||d3.event.target,t={},e=n.getScreenCTM(),r=n.getBBox(),i=r.width,a=r.height,l=r.x,c=r.y,f=document.documentElement.scrollTop||document.body.scrollTop,s=document.documentElement.scrollLeft||document.body.scrollLeft;return o.x=l+s,o.y=c+f,t.nw=o.matrixTransform(e),o.x+=i,t.ne=o.matrixTransform(e),o.y+=a,t.se=o.matrixTransform(e),o.x-=i,t.sw=o.matrixTransform(e),o.y-=a/2,t.w=o.matrixTransform(e),o.x+=i,t.e=o.matrixTransform(e),o.x-=i/2,o.y-=a/2,t.n=o.matrixTransform(e),o.y+=a,t.s=o.matrixTransform(e),t}return a}}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 95);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 95:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(96);
+
+
+/***/ }),
+
+/***/ 96:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+
+var d3 = __webpack_require__(97);
+
+__webpack_require__(98);
+
+if (d3.select('#members-online').node() != null) {
+    generateBarChart("#members-online", 24, 50, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "members");
+}
+
+function generateBarChart(element, barQty, height, animate, easing, duration, delay, color, tooltip) {
+
+    // Basic setup
+    // ------------------------------
+
+    // Add data set
+    var bardata = [];
+    for (var i = 0; i < barQty; i++) {
+        bardata.push(Math.round(Math.random() * 10) + 10);
+    }
+
+    // Main variables
+    var d3Container = d3.select(element),
+        width = d3Container.node().getBoundingClientRect().width;
+
+    // Construct scales
+    // ------------------------------
+
+    // Horizontal
+    var x = d3.scale.ordinal().rangeBands([0, width], 0.3);
+
+    // Vertical
+    var y = d3.scale.linear().range([0, height]);
+
+    // Set input domains
+    // ------------------------------
+
+    // Horizontal
+    x.domain(d3.range(0, bardata.length));
+
+    // Vertical
+    y.domain([0, d3.max(bardata)]);
+
+    // Create chart
+    // ------------------------------
+
+    // Add svg element
+    var container = d3Container.append('svg');
+
+    // Add SVG group
+    var svg = container.attr('width', width).attr('height', height).append('g');
+
+    //
+    // Append chart elements
+    //
+
+    // Bars
+    var bars = svg.selectAll('rect').data(bardata).enter().append('rect').attr('class', 'd3-random-bars').attr('width', x.rangeBand()).attr('x', function (d, i) {
+        return x(i);
+    }).style('fill', color);
+
+    // Tooltip
+    // ------------------------------
+
+    var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]);
+
+    // Bar loading animation
+    // ------------------------------
+
+    // Choose between animated or static
+    if (animate) {
+        withAnimation();
+    } else {
+        withoutAnimation();
+    }
+
+    // Animate on load
+    function withAnimation() {
+        bars.attr('height', 0).attr('y', height).transition().attr('height', function (d) {
+            return y(d);
+        }).attr('y', function (d) {
+            return height - y(d);
+        }).delay(function (d, i) {
+            return i * delay;
+        }).duration(duration).ease(easing);
+    }
+
+    // Load without animateion
+    function withoutAnimation() {
+        bars.attr('height', function (d) {
+            return y(d);
+        }).attr('y', function (d) {
+            return height - y(d);
+        });
+    }
+
+    // Resize chart
+    // ------------------------------
+
+    // Call function on window resize
+    $(window).on('resize', barsResize);
+
+    // Call function on sidebar width change
+    $(document).on('click', '.sidebar-control', barsResize);
+
+    // Resize function
+    //
+    // Since D3 doesn't support SVG resize by default,
+    // we need to manually specify parts of the graph that need to
+    // be updated on window resize
+    function barsResize() {
+
+        // Layout variables
+        width = d3Container.node().getBoundingClientRect().width;
+
+        // Layout
+        // -------------------------
+
+        // Main svg width
+        container.attr("width", width);
+
+        // Width of appended group
+        svg.attr("width", width);
+
+        // Horizontal range
+        x.rangeBands([0, width], 0.3);
+
+        // Chart elements
+        // -------------------------
+
+        // Bars
+        svg.selectAll('.d3-random-bars').attr('width', x.rangeBand()).attr('x', function (d, i) {
+            return x(i);
+        });
+    }
+}
+
+sparkline("#server-load", "area", 30, 50, "basis", 750, 2000, "rgba(255,255,255,0.5)");
+
+function sparkline(element, chartType, qty, height, interpolation, duration, interval, color) {
+
+    // Basic setup
+    // ------------------------------
+
+    // Define main variables
+    var d3Container = d3.select(element),
+        margin = { top: 0, right: 0, bottom: 0, left: 0 },
+        width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
+        height = height - margin.top - margin.bottom;
+
+    // Generate random data (for demo only)
+    var data = [];
+    for (var i = 0; i < qty; i++) {
+        data.push(Math.floor(Math.random() * qty) + 5);
+    }
+
+    // Construct scales
+    // ------------------------------
+
+    // Horizontal
+    var x = d3.scale.linear().range([0, width]);
+
+    // Vertical
+    var y = d3.scale.linear().range([height - 5, 5]);
+
+    // Set input domains
+    // ------------------------------
+
+    // Horizontal
+    x.domain([1, qty - 3]);
+
+    // Vertical
+    y.domain([0, qty]);
+
+    // Construct chart layout
+    // ------------------------------
+
+    // Line
+    var line = d3.svg.line().interpolate(interpolation).x(function (d, i) {
+        return x(i);
+    }).y(function (d, i) {
+        return y(d);
+    });
+
+    // Area
+    var area = d3.svg.area().interpolate(interpolation).x(function (d, i) {
+        return x(i);
+    }).y0(height).y1(function (d) {
+        return y(d);
+    });
+
+    // Create SVG
+    // ------------------------------
+
+    // Container
+    var container = d3Container.append('svg');
+
+    // SVG element
+    var svg = container.attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Add mask for animation
+    // ------------------------------
+
+    // Add clip path
+    var clip = svg.append("defs").append("clipPath").attr('id', function (d, i) {
+        return "load-clip-" + element.substring(1);
+    });
+
+    // Add clip shape
+    var clips = clip.append("rect").attr('class', 'load-clip').attr("width", 0).attr("height", height);
+
+    // Animate mask
+    clips.transition().duration(1000).ease('linear').attr("width", width);
+
+    //
+    // Append chart elements
+    //
+
+    // Main path
+    var path = svg.append("g").attr("clip-path", function (d, i) {
+        return "url(#load-clip-" + element.substring(1) + ")";
+    }).append("path").datum(data).attr("transform", "translate(" + x(0) + ",0)");
+
+    // Add path based on chart type
+    if (chartType == "area") {
+        path.attr("d", area).attr('class', 'd3-area').style("fill", color); // area
+    } else {
+        path.attr("d", line).attr("class", "d3-line d3-line-medium").style('stroke', color); // line
+    }
+
+    // Animate path
+    path.style('opacity', 0).transition().duration(750).style('opacity', 1);
+
+    // Set update interval. For demo only
+    // ------------------------------
+
+    setInterval(function () {
+
+        // push a new data point onto the back
+        data.push(Math.floor(Math.random() * qty) + 5);
+
+        // pop the old data point off the front
+        data.shift();
+
+        update();
+    }, interval);
+
+    // Update random data. For demo only
+    // ------------------------------
+
+    function update() {
+
+        // Redraw the path and slide it to the left
+        path.attr("transform", null).transition().duration(duration).ease("linear").attr("transform", "translate(" + x(0) + ",0)");
+
+        // Update path type
+        if (chartType == "area") {
+            path.attr("d", area).attr('class', 'd3-area').style("fill", color);
+        } else {
+            path.attr("d", line).attr("class", "d3-line d3-line-medium").style('stroke', color);
+        }
+    }
+
+    // Resize chart
+    // ------------------------------
+
+    // Call function on window resize
+    $(window).on('resize', resizeSparklines);
+
+    // Call function on sidebar width change
+    $(document).on('click', '.sidebar-control', resizeSparklines);
+
+    // Resize function
+    //
+    // Since D3 doesn't support SVG resize by default,
+    // we need to manually specify parts of the graph that need to
+    // be updated on window resize
+    function resizeSparklines() {
+
+        // Layout variables
+        width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
+
+        // Layout
+        // -------------------------
+
+        // Main svg width
+        container.attr("width", width + margin.left + margin.right);
+
+        // Width of appended group
+        svg.attr("width", width + margin.left + margin.right);
+
+        // Horizontal range
+        x.range([0, width]);
+
+        // Chart elements
+        // -------------------------
+
+        // Clip mask
+        clips.attr("width", width);
+
+        // Line
+        svg.select(".d3-line").attr("d", line);
+
+        // Area
+        svg.select(".d3-area").attr("d", area);
+    }
+}
+
+if (d3.select('#today-revenue').node() != null) {
+    dailyRevenue('#today-revenue', 50); // initialize chart
+}
+
+// Chart setup
+function dailyRevenue(element, height) {
+
+    // Basic setup
+    // ------------------------------
+
+    // Add data set
+    var dataset = [{
+        "date": "04/13/14",
+        "alpha": "60"
+    }, {
+        "date": "04/14/14",
+        "alpha": "35"
+    }, {
+        "date": "04/15/14",
+        "alpha": "65"
+    }, {
+        "date": "04/16/14",
+        "alpha": "50"
+    }, {
+        "date": "04/17/14",
+        "alpha": "65"
+    }, {
+        "date": "04/18/14",
+        "alpha": "20"
+    }, {
+        "date": "04/19/14",
+        "alpha": "60"
+    }];
+
+    // Main variables
+    var d3Container = d3.select(element),
+        margin = { top: 0, right: 0, bottom: 0, left: 0 },
+        width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
+        height = height - margin.top - margin.bottom,
+        padding = 20;
+
+    // Format date
+    var parseDate = d3.time.format("%m/%d/%y").parse,
+        formatDate = d3.time.format("%a, %B %e");
+
+    // Create chart
+    // ------------------------------
+
+    // Add svg element
+    var container = d3Container.append('svg');
+
+    // Add SVG group
+    var svg = container.attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Load data
+    // ------------------------------
+
+    dataset.forEach(function (d) {
+        d.date = parseDate(d.date);
+        d.alpha = +d.alpha;
+    });
+
+    // Construct scales
+    // ------------------------------
+
+    // Horizontal
+    var x = d3.time.scale().range([padding, width - padding]);
+
+    // Vertical
+    var y = d3.scale.linear().range([height, 5]);
+
+    // Set input domains
+    // ------------------------------
+
+    // Horizontal
+    x.domain(d3.extent(dataset, function (d) {
+        return d.date;
+    }));
+
+    // Vertical
+    y.domain([0, d3.max(dataset, function (d) {
+        return Math.max(d.alpha);
+    })]);
+
+    // Construct chart layout
+    // ------------------------------
+
+    // Line
+    var line = d3.svg.line().x(function (d) {
+        return x(d.date);
+    }).y(function (d) {
+        return y(d.alpha);
+    });
+
+    //
+    // Append chart elements
+    //
+
+    // Add mask for animation
+    // ------------------------------
+
+    // Add clip path
+    var clip = svg.append("defs").append("clipPath").attr("id", "clip-line-small");
+
+    // Add clip shape
+    var clipRect = clip.append("rect").attr('class', 'clip').attr("width", 0).attr("height", height);
+
+    // Animate mask
+    clipRect.transition().duration(1000).ease('linear').attr("width", width);
+
+    // Line
+    // ------------------------------
+
+    // Path
+    var path = svg.append('path').attr({
+        'd': line(dataset),
+        "clip-path": "url(#clip-line-small)",
+        'class': 'd3-line d3-line-medium'
+    }).style('stroke', '#fff');
+
+    // Animate path
+    svg.select('.line-tickets').transition().duration(1000).ease('linear');
+
+    // Add vertical guide lines
+    // ------------------------------
+
+    // Bind data
+    var guide = svg.append('g').selectAll('.d3-line-guides-group').data(dataset);
+
+    // Append lines
+    guide.enter().append('line').attr('class', 'd3-line-guides').attr('x1', function (d, i) {
+        return x(d.date);
+    }).attr('y1', function (d, i) {
+        return height;
+    }).attr('x2', function (d, i) {
+        return x(d.date);
+    }).attr('y2', function (d, i) {
+        return height;
+    }).style('stroke', 'rgba(255,255,255,0.3)').style('stroke-dasharray', '4,2').style('shape-rendering', 'crispEdges');
+
+    // Animate guide lines
+    guide.transition().duration(1000).delay(function (d, i) {
+        return i * 150;
+    }).attr('y2', function (d, i) {
+        return y(d.alpha);
+    });
+
+    // Alpha app points
+    // ------------------------------
+
+    // Add points
+    var points = svg.insert('g').selectAll('.d3-line-circle').data(dataset).enter().append('circle').attr('class', 'd3-line-circle d3-line-circle-medium').attr("cx", line.x()).attr("cy", line.y()).attr("r", 3).style('stroke', '#fff').style('fill', '#29B6F6');
+
+    // Animate points on page load
+    points.style('opacity', 0).transition().duration(250).ease('linear').delay(1000).style('opacity', 1);
+
+    // Add user interaction
+    points.on("mouseover", function (d) {
+
+        d3.select(this).transition().duration(250).attr('r', 4);
+    });
+
+    // Resize chart
+    // ------------------------------
+
+    // Call function on window resize
+    $(window).on('resize', revenueResize);
+
+    // Call function on sidebar width change
+    $(document).on('click', '.sidebar-control', revenueResize);
+
+    // Resize function
+    //
+    // Since D3 doesn't support SVG resize by default,
+    // we need to manually specify parts of the graph that need to
+    // be updated on window resize
+    function revenueResize() {
+
+        // Layout variables
+        width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
+
+        // Layout
+        // -------------------------
+
+        // Main svg width
+        container.attr("width", width + margin.left + margin.right);
+
+        // Width of appended group
+        svg.attr("width", width + margin.left + margin.right);
+
+        // Horizontal range
+        x.range([padding, width - padding]);
+
+        // Chart elements
+        // -------------------------
+
+        // Mask
+        clipRect.attr("width", width);
+
+        // Line path
+        svg.selectAll('.d3-line').attr("d", line(dataset));
+
+        // Circles
+        svg.selectAll('.d3-line-circle').attr("cx", line.x());
+
+        // Guide lines
+        svg.selectAll('.d3-line-guides').attr('x1', function (d, i) {
+            return x(d.date);
+        }).attr('x2', function (d, i) {
+            return x(d.date);
+        });
+    }
+}
+
+/***/ }),
+
+/***/ 97:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+!function () {
+    function n(n) {
+        return n && (n.ownerDocument || n.document || n).documentElement;
+    }function t(n) {
+        return n && (n.ownerDocument && n.ownerDocument.defaultView || n.document && n || n.defaultView);
+    }function e(n, t) {
+        return t > n ? -1 : n > t ? 1 : n >= t ? 0 : NaN;
+    }function r(n) {
+        return null === n ? NaN : +n;
+    }function i(n) {
+        return !isNaN(n);
+    }function u(n) {
+        return { left: function left(t, e, r, i) {
+                for (arguments.length < 3 && (r = 0), arguments.length < 4 && (i = t.length); i > r;) {
+                    var u = r + i >>> 1;n(t[u], e) < 0 ? r = u + 1 : i = u;
+                }return r;
+            }, right: function right(t, e, r, i) {
+                for (arguments.length < 3 && (r = 0), arguments.length < 4 && (i = t.length); i > r;) {
+                    var u = r + i >>> 1;n(t[u], e) > 0 ? i = u : r = u + 1;
+                }return r;
+            } };
+    }function o(n) {
+        return n.length;
+    }function a(n) {
+        for (var t = 1; n * t % 1;) {
+            t *= 10;
+        }return t;
+    }function l(n, t) {
+        for (var e in t) {
+            Object.defineProperty(n.prototype, e, { value: t[e], enumerable: !1 });
+        }
+    }function c() {
+        this._ = Object.create(null);
+    }function f(n) {
+        return (n += "") === bo || n[0] === _o ? _o + n : n;
+    }function s(n) {
+        return (n += "")[0] === _o ? n.slice(1) : n;
+    }function h(n) {
+        return f(n) in this._;
+    }function p(n) {
+        return (n = f(n)) in this._ && delete this._[n];
+    }function g() {
+        var n = [];for (var t in this._) {
+            n.push(s(t));
+        }return n;
+    }function v() {
+        var n = 0;for (var t in this._) {
+            ++n;
+        }return n;
+    }function d() {
+        for (var n in this._) {
+            return !1;
+        }return !0;
+    }function y() {
+        this._ = Object.create(null);
+    }function m(n) {
+        return n;
+    }function M(n, t, e) {
+        return function () {
+            var r = e.apply(t, arguments);return r === t ? n : r;
+        };
+    }function x(n, t) {
+        if (t in n) return t;t = t.charAt(0).toUpperCase() + t.slice(1);for (var e = 0, r = wo.length; r > e; ++e) {
+            var i = wo[e] + t;if (i in n) return i;
+        }
+    }function b() {}function _() {}function w(n) {
+        function t() {
+            for (var t, r = e, i = -1, u = r.length; ++i < u;) {
+                (t = r[i].on) && t.apply(this, arguments);
+            }return n;
+        }var e = [],
+            r = new c();return t.on = function (t, i) {
+            var u,
+                o = r.get(t);return arguments.length < 2 ? o && o.on : (o && (o.on = null, e = e.slice(0, u = e.indexOf(o)).concat(e.slice(u + 1)), r.remove(t)), i && e.push(r.set(t, { on: i })), n);
+        }, t;
+    }function S() {
+        ao.event.preventDefault();
+    }function k() {
+        for (var n, t = ao.event; n = t.sourceEvent;) {
+            t = n;
+        }return t;
+    }function N(n) {
+        for (var t = new _(), e = 0, r = arguments.length; ++e < r;) {
+            t[arguments[e]] = w(t);
+        }return t.of = function (e, r) {
+            return function (i) {
+                try {
+                    var u = i.sourceEvent = ao.event;i.target = n, ao.event = i, t[i.type].apply(e, r);
+                } finally {
+                    ao.event = u;
+                }
+            };
+        }, t;
+    }function E(n) {
+        return ko(n, Co), n;
+    }function A(n) {
+        return "function" == typeof n ? n : function () {
+            return No(n, this);
+        };
+    }function C(n) {
+        return "function" == typeof n ? n : function () {
+            return Eo(n, this);
+        };
+    }function z(n, t) {
+        function e() {
+            this.removeAttribute(n);
+        }function r() {
+            this.removeAttributeNS(n.space, n.local);
+        }function i() {
+            this.setAttribute(n, t);
+        }function u() {
+            this.setAttributeNS(n.space, n.local, t);
+        }function o() {
+            var e = t.apply(this, arguments);null == e ? this.removeAttribute(n) : this.setAttribute(n, e);
+        }function a() {
+            var e = t.apply(this, arguments);null == e ? this.removeAttributeNS(n.space, n.local) : this.setAttributeNS(n.space, n.local, e);
+        }return n = ao.ns.qualify(n), null == t ? n.local ? r : e : "function" == typeof t ? n.local ? a : o : n.local ? u : i;
+    }function L(n) {
+        return n.trim().replace(/\s+/g, " ");
+    }function q(n) {
+        return new RegExp("(?:^|\\s+)" + ao.requote(n) + "(?:\\s+|$)", "g");
+    }function T(n) {
+        return (n + "").trim().split(/^|\s+/);
+    }function R(n, t) {
+        function e() {
+            for (var e = -1; ++e < i;) {
+                n[e](this, t);
+            }
+        }function r() {
+            for (var e = -1, r = t.apply(this, arguments); ++e < i;) {
+                n[e](this, r);
+            }
+        }n = T(n).map(D);var i = n.length;return "function" == typeof t ? r : e;
+    }function D(n) {
+        var t = q(n);return function (e, r) {
+            if (i = e.classList) return r ? i.add(n) : i.remove(n);var i = e.getAttribute("class") || "";r ? (t.lastIndex = 0, t.test(i) || e.setAttribute("class", L(i + " " + n))) : e.setAttribute("class", L(i.replace(t, " ")));
+        };
+    }function P(n, t, e) {
+        function r() {
+            this.style.removeProperty(n);
+        }function i() {
+            this.style.setProperty(n, t, e);
+        }function u() {
+            var r = t.apply(this, arguments);null == r ? this.style.removeProperty(n) : this.style.setProperty(n, r, e);
+        }return null == t ? r : "function" == typeof t ? u : i;
+    }function U(n, t) {
+        function e() {
+            delete this[n];
+        }function r() {
+            this[n] = t;
+        }function i() {
+            var e = t.apply(this, arguments);null == e ? delete this[n] : this[n] = e;
+        }return null == t ? e : "function" == typeof t ? i : r;
+    }function j(n) {
+        function t() {
+            var t = this.ownerDocument,
+                e = this.namespaceURI;return e === zo && t.documentElement.namespaceURI === zo ? t.createElement(n) : t.createElementNS(e, n);
+        }function e() {
+            return this.ownerDocument.createElementNS(n.space, n.local);
+        }return "function" == typeof n ? n : (n = ao.ns.qualify(n)).local ? e : t;
+    }function F() {
+        var n = this.parentNode;n && n.removeChild(this);
+    }function H(n) {
+        return { __data__: n };
+    }function O(n) {
+        return function () {
+            return _Ao(this, n);
+        };
+    }function I(n) {
+        return arguments.length || (n = e), function (t, e) {
+            return t && e ? n(t.__data__, e.__data__) : !t - !e;
+        };
+    }function Y(n, t) {
+        for (var e = 0, r = n.length; r > e; e++) {
+            for (var i, u = n[e], o = 0, a = u.length; a > o; o++) {
+                (i = u[o]) && t(i, o, e);
+            }
+        }return n;
+    }function Z(n) {
+        return ko(n, qo), n;
+    }function V(n) {
+        var t, e;return function (r, i, u) {
+            var o,
+                a = n[u].update,
+                l = a.length;for (u != e && (e = u, t = 0), i >= t && (t = i + 1); !(o = a[t]) && ++t < l;) {}return o;
+        };
+    }function X(n, t, e) {
+        function r() {
+            var t = this[o];t && (this.removeEventListener(n, t, t.$), delete this[o]);
+        }function i() {
+            var i = l(t, co(arguments));r.call(this), this.addEventListener(n, this[o] = i, i.$ = e), i._ = t;
+        }function u() {
+            var t,
+                e = new RegExp("^__on([^.]+)" + ao.requote(n) + "$");for (var r in this) {
+                if (t = r.match(e)) {
+                    var i = this[r];this.removeEventListener(t[1], i, i.$), delete this[r];
+                }
+            }
+        }var o = "__on" + n,
+            a = n.indexOf("."),
+            l = $;a > 0 && (n = n.slice(0, a));var c = To.get(n);return c && (n = c, l = B), a ? t ? i : r : t ? b : u;
+    }function $(n, t) {
+        return function (e) {
+            var r = ao.event;ao.event = e, t[0] = this.__data__;try {
+                n.apply(this, t);
+            } finally {
+                ao.event = r;
+            }
+        };
+    }function B(n, t) {
+        var e = $(n, t);return function (n) {
+            var t = this,
+                r = n.relatedTarget;r && (r === t || 8 & r.compareDocumentPosition(t)) || e.call(t, n);
+        };
+    }function W(e) {
+        var r = ".dragsuppress-" + ++Do,
+            i = "click" + r,
+            u = ao.select(t(e)).on("touchmove" + r, S).on("dragstart" + r, S).on("selectstart" + r, S);if (null == Ro && (Ro = "onselectstart" in e ? !1 : x(e.style, "userSelect")), Ro) {
+            var o = n(e).style,
+                a = o[Ro];o[Ro] = "none";
+        }return function (n) {
+            if (u.on(r, null), Ro && (o[Ro] = a), n) {
+                var t = function t() {
+                    u.on(i, null);
+                };u.on(i, function () {
+                    S(), t();
+                }, !0), setTimeout(t, 0);
+            }
+        };
+    }function J(n, e) {
+        e.changedTouches && (e = e.changedTouches[0]);var r = n.ownerSVGElement || n;if (r.createSVGPoint) {
+            var i = r.createSVGPoint();if (0 > Po) {
+                var u = t(n);if (u.scrollX || u.scrollY) {
+                    r = ao.select("body").append("svg").style({ position: "absolute", top: 0, left: 0, margin: 0, padding: 0, border: "none" }, "important");var o = r[0][0].getScreenCTM();Po = !(o.f || o.e), r.remove();
+                }
+            }return Po ? (i.x = e.pageX, i.y = e.pageY) : (i.x = e.clientX, i.y = e.clientY), i = i.matrixTransform(n.getScreenCTM().inverse()), [i.x, i.y];
+        }var a = n.getBoundingClientRect();return [e.clientX - a.left - n.clientLeft, e.clientY - a.top - n.clientTop];
+    }function G() {
+        return ao.event.changedTouches[0].identifier;
+    }function K(n) {
+        return n > 0 ? 1 : 0 > n ? -1 : 0;
+    }function Q(n, t, e) {
+        return (t[0] - n[0]) * (e[1] - n[1]) - (t[1] - n[1]) * (e[0] - n[0]);
+    }function nn(n) {
+        return n > 1 ? 0 : -1 > n ? Fo : Math.acos(n);
+    }function tn(n) {
+        return n > 1 ? Io : -1 > n ? -Io : Math.asin(n);
+    }function en(n) {
+        return ((n = Math.exp(n)) - 1 / n) / 2;
+    }function rn(n) {
+        return ((n = Math.exp(n)) + 1 / n) / 2;
+    }function un(n) {
+        return ((n = Math.exp(2 * n)) - 1) / (n + 1);
+    }function on(n) {
+        return (n = Math.sin(n / 2)) * n;
+    }function an() {}function ln(n, t, e) {
+        return this instanceof ln ? (this.h = +n, this.s = +t, void (this.l = +e)) : arguments.length < 2 ? n instanceof ln ? new ln(n.h, n.s, n.l) : _n("" + n, wn, ln) : new ln(n, t, e);
+    }function cn(n, t, e) {
+        function r(n) {
+            return n > 360 ? n -= 360 : 0 > n && (n += 360), 60 > n ? u + (o - u) * n / 60 : 180 > n ? o : 240 > n ? u + (o - u) * (240 - n) / 60 : u;
+        }function i(n) {
+            return Math.round(255 * r(n));
+        }var u, o;return n = isNaN(n) ? 0 : (n %= 360) < 0 ? n + 360 : n, t = isNaN(t) ? 0 : 0 > t ? 0 : t > 1 ? 1 : t, e = 0 > e ? 0 : e > 1 ? 1 : e, o = .5 >= e ? e * (1 + t) : e + t - e * t, u = 2 * e - o, new mn(i(n + 120), i(n), i(n - 120));
+    }function fn(n, t, e) {
+        return this instanceof fn ? (this.h = +n, this.c = +t, void (this.l = +e)) : arguments.length < 2 ? n instanceof fn ? new fn(n.h, n.c, n.l) : n instanceof hn ? gn(n.l, n.a, n.b) : gn((n = Sn((n = ao.rgb(n)).r, n.g, n.b)).l, n.a, n.b) : new fn(n, t, e);
+    }function sn(n, t, e) {
+        return isNaN(n) && (n = 0), isNaN(t) && (t = 0), new hn(e, Math.cos(n *= Yo) * t, Math.sin(n) * t);
+    }function hn(n, t, e) {
+        return this instanceof hn ? (this.l = +n, this.a = +t, void (this.b = +e)) : arguments.length < 2 ? n instanceof hn ? new hn(n.l, n.a, n.b) : n instanceof fn ? sn(n.h, n.c, n.l) : Sn((n = mn(n)).r, n.g, n.b) : new hn(n, t, e);
+    }function pn(n, t, e) {
+        var r = (n + 16) / 116,
+            i = r + t / 500,
+            u = r - e / 200;return i = vn(i) * na, r = vn(r) * ta, u = vn(u) * ea, new mn(yn(3.2404542 * i - 1.5371385 * r - .4985314 * u), yn(-.969266 * i + 1.8760108 * r + .041556 * u), yn(.0556434 * i - .2040259 * r + 1.0572252 * u));
+    }function gn(n, t, e) {
+        return n > 0 ? new fn(Math.atan2(e, t) * Zo, Math.sqrt(t * t + e * e), n) : new fn(NaN, NaN, n);
+    }function vn(n) {
+        return n > .206893034 ? n * n * n : (n - 4 / 29) / 7.787037;
+    }function dn(n) {
+        return n > .008856 ? Math.pow(n, 1 / 3) : 7.787037 * n + 4 / 29;
+    }function yn(n) {
+        return Math.round(255 * (.00304 >= n ? 12.92 * n : 1.055 * Math.pow(n, 1 / 2.4) - .055));
+    }function mn(n, t, e) {
+        return this instanceof mn ? (this.r = ~~n, this.g = ~~t, void (this.b = ~~e)) : arguments.length < 2 ? n instanceof mn ? new mn(n.r, n.g, n.b) : _n("" + n, mn, cn) : new mn(n, t, e);
+    }function Mn(n) {
+        return new mn(n >> 16, n >> 8 & 255, 255 & n);
+    }function xn(n) {
+        return Mn(n) + "";
+    }function bn(n) {
+        return 16 > n ? "0" + Math.max(0, n).toString(16) : Math.min(255, n).toString(16);
+    }function _n(n, t, e) {
+        var r,
+            i,
+            u,
+            o = 0,
+            a = 0,
+            l = 0;if (r = /([a-z]+)\((.*)\)/.exec(n = n.toLowerCase())) switch (i = r[2].split(","), r[1]) {case "hsl":
+                return e(parseFloat(i[0]), parseFloat(i[1]) / 100, parseFloat(i[2]) / 100);case "rgb":
+                return t(Nn(i[0]), Nn(i[1]), Nn(i[2]));}return (u = ua.get(n)) ? t(u.r, u.g, u.b) : (null == n || "#" !== n.charAt(0) || isNaN(u = parseInt(n.slice(1), 16)) || (4 === n.length ? (o = (3840 & u) >> 4, o = o >> 4 | o, a = 240 & u, a = a >> 4 | a, l = 15 & u, l = l << 4 | l) : 7 === n.length && (o = (16711680 & u) >> 16, a = (65280 & u) >> 8, l = 255 & u)), t(o, a, l));
+    }function wn(n, t, e) {
+        var r,
+            i,
+            u = Math.min(n /= 255, t /= 255, e /= 255),
+            o = Math.max(n, t, e),
+            a = o - u,
+            l = (o + u) / 2;return a ? (i = .5 > l ? a / (o + u) : a / (2 - o - u), r = n == o ? (t - e) / a + (e > t ? 6 : 0) : t == o ? (e - n) / a + 2 : (n - t) / a + 4, r *= 60) : (r = NaN, i = l > 0 && 1 > l ? 0 : r), new ln(r, i, l);
+    }function Sn(n, t, e) {
+        n = kn(n), t = kn(t), e = kn(e);var r = dn((.4124564 * n + .3575761 * t + .1804375 * e) / na),
+            i = dn((.2126729 * n + .7151522 * t + .072175 * e) / ta),
+            u = dn((.0193339 * n + .119192 * t + .9503041 * e) / ea);return hn(116 * i - 16, 500 * (r - i), 200 * (i - u));
+    }function kn(n) {
+        return (n /= 255) <= .04045 ? n / 12.92 : Math.pow((n + .055) / 1.055, 2.4);
+    }function Nn(n) {
+        var t = parseFloat(n);return "%" === n.charAt(n.length - 1) ? Math.round(2.55 * t) : t;
+    }function En(n) {
+        return "function" == typeof n ? n : function () {
+            return n;
+        };
+    }function An(n) {
+        return function (t, e, r) {
+            return 2 === arguments.length && "function" == typeof e && (r = e, e = null), Cn(t, e, n, r);
+        };
+    }function Cn(n, t, e, r) {
+        function i() {
+            var n,
+                t = l.status;if (!t && Ln(l) || t >= 200 && 300 > t || 304 === t) {
+                try {
+                    n = e.call(u, l);
+                } catch (r) {
+                    return void o.error.call(u, r);
+                }o.load.call(u, n);
+            } else o.error.call(u, l);
+        }var u = {},
+            o = ao.dispatch("beforesend", "progress", "load", "error"),
+            a = {},
+            l = new XMLHttpRequest(),
+            c = null;return !this.XDomainRequest || "withCredentials" in l || !/^(http(s)?:)?\/\//.test(n) || (l = new XDomainRequest()), "onload" in l ? l.onload = l.onerror = i : l.onreadystatechange = function () {
+            l.readyState > 3 && i();
+        }, l.onprogress = function (n) {
+            var t = ao.event;ao.event = n;try {
+                o.progress.call(u, l);
+            } finally {
+                ao.event = t;
+            }
+        }, u.header = function (n, t) {
+            return n = (n + "").toLowerCase(), arguments.length < 2 ? a[n] : (null == t ? delete a[n] : a[n] = t + "", u);
+        }, u.mimeType = function (n) {
+            return arguments.length ? (t = null == n ? null : n + "", u) : t;
+        }, u.responseType = function (n) {
+            return arguments.length ? (c = n, u) : c;
+        }, u.response = function (n) {
+            return e = n, u;
+        }, ["get", "post"].forEach(function (n) {
+            u[n] = function () {
+                return u.send.apply(u, [n].concat(co(arguments)));
+            };
+        }), u.send = function (e, r, i) {
+            if (2 === arguments.length && "function" == typeof r && (i = r, r = null), l.open(e, n, !0), null == t || "accept" in a || (a.accept = t + ",*/*"), l.setRequestHeader) for (var f in a) {
+                l.setRequestHeader(f, a[f]);
+            }return null != t && l.overrideMimeType && l.overrideMimeType(t), null != c && (l.responseType = c), null != i && u.on("error", i).on("load", function (n) {
+                i(null, n);
+            }), o.beforesend.call(u, l), l.send(null == r ? null : r), u;
+        }, u.abort = function () {
+            return l.abort(), u;
+        }, ao.rebind(u, o, "on"), null == r ? u : u.get(zn(r));
+    }function zn(n) {
+        return 1 === n.length ? function (t, e) {
+            n(null == t ? e : null);
+        } : n;
+    }function Ln(n) {
+        var t = n.responseType;return t && "text" !== t ? n.response : n.responseText;
+    }function qn(n, t, e) {
+        var r = arguments.length;2 > r && (t = 0), 3 > r && (e = Date.now());var i = e + t,
+            u = { c: n, t: i, n: null };return aa ? aa.n = u : oa = u, aa = u, la || (ca = clearTimeout(ca), la = 1, fa(Tn)), u;
+    }function Tn() {
+        var n = Rn(),
+            t = Dn() - n;t > 24 ? (isFinite(t) && (clearTimeout(ca), ca = setTimeout(Tn, t)), la = 0) : (la = 1, fa(Tn));
+    }function Rn() {
+        for (var n = Date.now(), t = oa; t;) {
+            n >= t.t && t.c(n - t.t) && (t.c = null), t = t.n;
+        }return n;
+    }function Dn() {
+        for (var n, t = oa, e = 1 / 0; t;) {
+            t.c ? (t.t < e && (e = t.t), t = (n = t).n) : t = n ? n.n = t.n : oa = t.n;
+        }return aa = n, e;
+    }function Pn(n, t) {
+        return t - (n ? Math.ceil(Math.log(n) / Math.LN10) : 1);
+    }function Un(n, t) {
+        var e = Math.pow(10, 3 * xo(8 - t));return { scale: t > 8 ? function (n) {
+                return n / e;
+            } : function (n) {
+                return n * e;
+            }, symbol: n };
+    }function jn(n) {
+        var t = n.decimal,
+            e = n.thousands,
+            r = n.grouping,
+            i = n.currency,
+            u = r && e ? function (n, t) {
+            for (var i = n.length, u = [], o = 0, a = r[0], l = 0; i > 0 && a > 0 && (l + a + 1 > t && (a = Math.max(1, t - l)), u.push(n.substring(i -= a, i + a)), !((l += a + 1) > t));) {
+                a = r[o = (o + 1) % r.length];
+            }return u.reverse().join(e);
+        } : m;return function (n) {
+            var e = ha.exec(n),
+                r = e[1] || " ",
+                o = e[2] || ">",
+                a = e[3] || "-",
+                l = e[4] || "",
+                c = e[5],
+                f = +e[6],
+                s = e[7],
+                h = e[8],
+                p = e[9],
+                g = 1,
+                v = "",
+                d = "",
+                y = !1,
+                m = !0;switch (h && (h = +h.substring(1)), (c || "0" === r && "=" === o) && (c = r = "0", o = "="), p) {case "n":
+                    s = !0, p = "g";break;case "%":
+                    g = 100, d = "%", p = "f";break;case "p":
+                    g = 100, d = "%", p = "r";break;case "b":case "o":case "x":case "X":
+                    "#" === l && (v = "0" + p.toLowerCase());case "c":
+                    m = !1;case "d":
+                    y = !0, h = 0;break;case "s":
+                    g = -1, p = "r";}"$" === l && (v = i[0], d = i[1]), "r" != p || h || (p = "g"), null != h && ("g" == p ? h = Math.max(1, Math.min(21, h)) : "e" != p && "f" != p || (h = Math.max(0, Math.min(20, h)))), p = pa.get(p) || Fn;var M = c && s;return function (n) {
+                var e = d;if (y && n % 1) return "";var i = 0 > n || 0 === n && 0 > 1 / n ? (n = -n, "-") : "-" === a ? "" : a;if (0 > g) {
+                    var l = ao.formatPrefix(n, h);n = l.scale(n), e = l.symbol + d;
+                } else n *= g;n = p(n, h);var x,
+                    b,
+                    _ = n.lastIndexOf(".");if (0 > _) {
+                    var w = m ? n.lastIndexOf("e") : -1;0 > w ? (x = n, b = "") : (x = n.substring(0, w), b = n.substring(w));
+                } else x = n.substring(0, _), b = t + n.substring(_ + 1);!c && s && (x = u(x, 1 / 0));var S = v.length + x.length + b.length + (M ? 0 : i.length),
+                    k = f > S ? new Array(S = f - S + 1).join(r) : "";return M && (x = u(k + x, k.length ? f - b.length : 1 / 0)), i += v, n = x + b, ("<" === o ? i + n + k : ">" === o ? k + i + n : "^" === o ? k.substring(0, S >>= 1) + i + n + k.substring(S) : i + (M ? n : k + n)) + e;
+            };
+        };
+    }function Fn(n) {
+        return n + "";
+    }function Hn() {
+        this._ = new Date(arguments.length > 1 ? Date.UTC.apply(this, arguments) : arguments[0]);
+    }function On(n, t, e) {
+        function r(t) {
+            var e = n(t),
+                r = u(e, 1);return r - t > t - e ? e : r;
+        }function i(e) {
+            return t(e = n(new va(e - 1)), 1), e;
+        }function u(n, e) {
+            return t(n = new va(+n), e), n;
+        }function o(n, r, u) {
+            var o = i(n),
+                a = [];if (u > 1) for (; r > o;) {
+                e(o) % u || a.push(new Date(+o)), t(o, 1);
+            } else for (; r > o;) {
+                a.push(new Date(+o)), t(o, 1);
+            }return a;
+        }function a(n, t, e) {
+            try {
+                va = Hn;var r = new Hn();return r._ = n, o(r, t, e);
+            } finally {
+                va = Date;
+            }
+        }n.floor = n, n.round = r, n.ceil = i, n.offset = u, n.range = o;var l = n.utc = In(n);return l.floor = l, l.round = In(r), l.ceil = In(i), l.offset = In(u), l.range = a, n;
+    }function In(n) {
+        return function (t, e) {
+            try {
+                va = Hn;var r = new Hn();return r._ = t, n(r, e)._;
+            } finally {
+                va = Date;
+            }
+        };
+    }function Yn(n) {
+        function t(n) {
+            function t(t) {
+                for (var e, i, u, o = [], a = -1, l = 0; ++a < r;) {
+                    37 === n.charCodeAt(a) && (o.push(n.slice(l, a)), null != (i = ya[e = n.charAt(++a)]) && (e = n.charAt(++a)), (u = A[e]) && (e = u(t, null == i ? "e" === e ? " " : "0" : i)), o.push(e), l = a + 1);
+                }return o.push(n.slice(l, a)), o.join("");
+            }var r = n.length;return t.parse = function (t) {
+                var r = { y: 1900, m: 0, d: 1, H: 0, M: 0, S: 0, L: 0, Z: null },
+                    i = e(r, n, t, 0);if (i != t.length) return null;"p" in r && (r.H = r.H % 12 + 12 * r.p);var u = null != r.Z && va !== Hn,
+                    o = new (u ? Hn : va)();return "j" in r ? o.setFullYear(r.y, 0, r.j) : "W" in r || "U" in r ? ("w" in r || (r.w = "W" in r ? 1 : 0), o.setFullYear(r.y, 0, 1), o.setFullYear(r.y, 0, "W" in r ? (r.w + 6) % 7 + 7 * r.W - (o.getDay() + 5) % 7 : r.w + 7 * r.U - (o.getDay() + 6) % 7)) : o.setFullYear(r.y, r.m, r.d), o.setHours(r.H + (r.Z / 100 | 0), r.M + r.Z % 100, r.S, r.L), u ? o._ : o;
+            }, t.toString = function () {
+                return n;
+            }, t;
+        }function e(n, t, e, r) {
+            for (var i, u, o, a = 0, l = t.length, c = e.length; l > a;) {
+                if (r >= c) return -1;if (i = t.charCodeAt(a++), 37 === i) {
+                    if (o = t.charAt(a++), u = C[o in ya ? t.charAt(a++) : o], !u || (r = u(n, e, r)) < 0) return -1;
+                } else if (i != e.charCodeAt(r++)) return -1;
+            }return r;
+        }function r(n, t, e) {
+            _.lastIndex = 0;var r = _.exec(t.slice(e));return r ? (n.w = w.get(r[0].toLowerCase()), e + r[0].length) : -1;
+        }function i(n, t, e) {
+            x.lastIndex = 0;var r = x.exec(t.slice(e));return r ? (n.w = b.get(r[0].toLowerCase()), e + r[0].length) : -1;
+        }function u(n, t, e) {
+            N.lastIndex = 0;var r = N.exec(t.slice(e));return r ? (n.m = E.get(r[0].toLowerCase()), e + r[0].length) : -1;
+        }function o(n, t, e) {
+            S.lastIndex = 0;var r = S.exec(t.slice(e));return r ? (n.m = k.get(r[0].toLowerCase()), e + r[0].length) : -1;
+        }function a(n, t, r) {
+            return e(n, A.c.toString(), t, r);
+        }function l(n, t, r) {
+            return e(n, A.x.toString(), t, r);
+        }function c(n, t, r) {
+            return e(n, A.X.toString(), t, r);
+        }function f(n, t, e) {
+            var r = M.get(t.slice(e, e += 2).toLowerCase());return null == r ? -1 : (n.p = r, e);
+        }var s = n.dateTime,
+            h = n.date,
+            p = n.time,
+            g = n.periods,
+            v = n.days,
+            d = n.shortDays,
+            y = n.months,
+            m = n.shortMonths;t.utc = function (n) {
+            function e(n) {
+                try {
+                    va = Hn;var t = new va();return t._ = n, r(t);
+                } finally {
+                    va = Date;
+                }
+            }var r = t(n);return e.parse = function (n) {
+                try {
+                    va = Hn;var t = r.parse(n);return t && t._;
+                } finally {
+                    va = Date;
+                }
+            }, e.toString = r.toString, e;
+        }, t.multi = t.utc.multi = ct;var M = ao.map(),
+            x = Vn(v),
+            b = Xn(v),
+            _ = Vn(d),
+            w = Xn(d),
+            S = Vn(y),
+            k = Xn(y),
+            N = Vn(m),
+            E = Xn(m);g.forEach(function (n, t) {
+            M.set(n.toLowerCase(), t);
+        });var A = { a: function a(n) {
+                return d[n.getDay()];
+            }, A: function A(n) {
+                return v[n.getDay()];
+            }, b: function b(n) {
+                return m[n.getMonth()];
+            }, B: function B(n) {
+                return y[n.getMonth()];
+            }, c: t(s), d: function d(n, t) {
+                return Zn(n.getDate(), t, 2);
+            }, e: function e(n, t) {
+                return Zn(n.getDate(), t, 2);
+            }, H: function H(n, t) {
+                return Zn(n.getHours(), t, 2);
+            }, I: function I(n, t) {
+                return Zn(n.getHours() % 12 || 12, t, 2);
+            }, j: function j(n, t) {
+                return Zn(1 + ga.dayOfYear(n), t, 3);
+            }, L: function L(n, t) {
+                return Zn(n.getMilliseconds(), t, 3);
+            }, m: function m(n, t) {
+                return Zn(n.getMonth() + 1, t, 2);
+            }, M: function M(n, t) {
+                return Zn(n.getMinutes(), t, 2);
+            }, p: function p(n) {
+                return g[+(n.getHours() >= 12)];
+            }, S: function S(n, t) {
+                return Zn(n.getSeconds(), t, 2);
+            }, U: function U(n, t) {
+                return Zn(ga.sundayOfYear(n), t, 2);
+            }, w: function w(n) {
+                return n.getDay();
+            }, W: function W(n, t) {
+                return Zn(ga.mondayOfYear(n), t, 2);
+            }, x: t(h), X: t(p), y: function y(n, t) {
+                return Zn(n.getFullYear() % 100, t, 2);
+            }, Y: function Y(n, t) {
+                return Zn(n.getFullYear() % 1e4, t, 4);
+            }, Z: at, "%": function _() {
+                return "%";
+            } },
+            C = { a: r, A: i, b: u, B: o, c: a, d: tt, e: tt, H: rt, I: rt, j: et, L: ot, m: nt, M: it, p: f, S: ut, U: Bn, w: $n, W: Wn, x: l, X: c, y: Gn, Y: Jn, Z: Kn, "%": lt };return t;
+    }function Zn(n, t, e) {
+        var r = 0 > n ? "-" : "",
+            i = (r ? -n : n) + "",
+            u = i.length;return r + (e > u ? new Array(e - u + 1).join(t) + i : i);
+    }function Vn(n) {
+        return new RegExp("^(?:" + n.map(ao.requote).join("|") + ")", "i");
+    }function Xn(n) {
+        for (var t = new c(), e = -1, r = n.length; ++e < r;) {
+            t.set(n[e].toLowerCase(), e);
+        }return t;
+    }function $n(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 1));return r ? (n.w = +r[0], e + r[0].length) : -1;
+    }function Bn(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e));return r ? (n.U = +r[0], e + r[0].length) : -1;
+    }function Wn(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e));return r ? (n.W = +r[0], e + r[0].length) : -1;
+    }function Jn(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 4));return r ? (n.y = +r[0], e + r[0].length) : -1;
+    }function Gn(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 2));return r ? (n.y = Qn(+r[0]), e + r[0].length) : -1;
+    }function Kn(n, t, e) {
+        return (/^[+-]\d{4}$/.test(t = t.slice(e, e + 5)) ? (n.Z = -t, e + 5) : -1
+        );
+    }function Qn(n) {
+        return n + (n > 68 ? 1900 : 2e3);
+    }function nt(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 2));return r ? (n.m = r[0] - 1, e + r[0].length) : -1;
+    }function tt(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 2));return r ? (n.d = +r[0], e + r[0].length) : -1;
+    }function et(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 3));return r ? (n.j = +r[0], e + r[0].length) : -1;
+    }function rt(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 2));return r ? (n.H = +r[0], e + r[0].length) : -1;
+    }function it(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 2));return r ? (n.M = +r[0], e + r[0].length) : -1;
+    }function ut(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 2));return r ? (n.S = +r[0], e + r[0].length) : -1;
+    }function ot(n, t, e) {
+        ma.lastIndex = 0;var r = ma.exec(t.slice(e, e + 3));return r ? (n.L = +r[0], e + r[0].length) : -1;
+    }function at(n) {
+        var t = n.getTimezoneOffset(),
+            e = t > 0 ? "-" : "+",
+            r = xo(t) / 60 | 0,
+            i = xo(t) % 60;return e + Zn(r, "0", 2) + Zn(i, "0", 2);
+    }function lt(n, t, e) {
+        Ma.lastIndex = 0;var r = Ma.exec(t.slice(e, e + 1));return r ? e + r[0].length : -1;
+    }function ct(n) {
+        for (var t = n.length, e = -1; ++e < t;) {
+            n[e][0] = this(n[e][0]);
+        }return function (t) {
+            for (var e = 0, r = n[e]; !r[1](t);) {
+                r = n[++e];
+            }return r[0](t);
+        };
+    }function ft() {}function st(n, t, e) {
+        var r = e.s = n + t,
+            i = r - n,
+            u = r - i;e.t = n - u + (t - i);
+    }function ht(n, t) {
+        n && wa.hasOwnProperty(n.type) && wa[n.type](n, t);
+    }function pt(n, t, e) {
+        var r,
+            i = -1,
+            u = n.length - e;for (t.lineStart(); ++i < u;) {
+            r = n[i], t.point(r[0], r[1], r[2]);
+        }t.lineEnd();
+    }function gt(n, t) {
+        var e = -1,
+            r = n.length;for (t.polygonStart(); ++e < r;) {
+            pt(n[e], t, 1);
+        }t.polygonEnd();
+    }function vt() {
+        function n(n, t) {
+            n *= Yo, t = t * Yo / 2 + Fo / 4;var e = n - r,
+                o = e >= 0 ? 1 : -1,
+                a = o * e,
+                l = Math.cos(t),
+                c = Math.sin(t),
+                f = u * c,
+                s = i * l + f * Math.cos(a),
+                h = f * o * Math.sin(a);ka.add(Math.atan2(h, s)), r = n, i = l, u = c;
+        }var t, e, r, i, u;Na.point = function (o, a) {
+            Na.point = n, r = (t = o) * Yo, i = Math.cos(a = (e = a) * Yo / 2 + Fo / 4), u = Math.sin(a);
+        }, Na.lineEnd = function () {
+            n(t, e);
+        };
+    }function dt(n) {
+        var t = n[0],
+            e = n[1],
+            r = Math.cos(e);return [r * Math.cos(t), r * Math.sin(t), Math.sin(e)];
+    }function yt(n, t) {
+        return n[0] * t[0] + n[1] * t[1] + n[2] * t[2];
+    }function mt(n, t) {
+        return [n[1] * t[2] - n[2] * t[1], n[2] * t[0] - n[0] * t[2], n[0] * t[1] - n[1] * t[0]];
+    }function Mt(n, t) {
+        n[0] += t[0], n[1] += t[1], n[2] += t[2];
+    }function xt(n, t) {
+        return [n[0] * t, n[1] * t, n[2] * t];
+    }function bt(n) {
+        var t = Math.sqrt(n[0] * n[0] + n[1] * n[1] + n[2] * n[2]);n[0] /= t, n[1] /= t, n[2] /= t;
+    }function _t(n) {
+        return [Math.atan2(n[1], n[0]), tn(n[2])];
+    }function wt(n, t) {
+        return xo(n[0] - t[0]) < Uo && xo(n[1] - t[1]) < Uo;
+    }function St(n, t) {
+        n *= Yo;var e = Math.cos(t *= Yo);kt(e * Math.cos(n), e * Math.sin(n), Math.sin(t));
+    }function kt(n, t, e) {
+        ++Ea, Ca += (n - Ca) / Ea, za += (t - za) / Ea, La += (e - La) / Ea;
+    }function Nt() {
+        function n(n, i) {
+            n *= Yo;var u = Math.cos(i *= Yo),
+                o = u * Math.cos(n),
+                a = u * Math.sin(n),
+                l = Math.sin(i),
+                c = Math.atan2(Math.sqrt((c = e * l - r * a) * c + (c = r * o - t * l) * c + (c = t * a - e * o) * c), t * o + e * a + r * l);Aa += c, qa += c * (t + (t = o)), Ta += c * (e + (e = a)), Ra += c * (r + (r = l)), kt(t, e, r);
+        }var t, e, r;ja.point = function (i, u) {
+            i *= Yo;var o = Math.cos(u *= Yo);t = o * Math.cos(i), e = o * Math.sin(i), r = Math.sin(u), ja.point = n, kt(t, e, r);
+        };
+    }function Et() {
+        ja.point = St;
+    }function At() {
+        function n(n, t) {
+            n *= Yo;var e = Math.cos(t *= Yo),
+                o = e * Math.cos(n),
+                a = e * Math.sin(n),
+                l = Math.sin(t),
+                c = i * l - u * a,
+                f = u * o - r * l,
+                s = r * a - i * o,
+                h = Math.sqrt(c * c + f * f + s * s),
+                p = r * o + i * a + u * l,
+                g = h && -nn(p) / h,
+                v = Math.atan2(h, p);Da += g * c, Pa += g * f, Ua += g * s, Aa += v, qa += v * (r + (r = o)), Ta += v * (i + (i = a)), Ra += v * (u + (u = l)), kt(r, i, u);
+        }var t, e, r, i, u;ja.point = function (o, a) {
+            t = o, e = a, ja.point = n, o *= Yo;var l = Math.cos(a *= Yo);r = l * Math.cos(o), i = l * Math.sin(o), u = Math.sin(a), kt(r, i, u);
+        }, ja.lineEnd = function () {
+            n(t, e), ja.lineEnd = Et, ja.point = St;
+        };
+    }function Ct(n, t) {
+        function e(e, r) {
+            return e = n(e, r), t(e[0], e[1]);
+        }return n.invert && t.invert && (e.invert = function (e, r) {
+            return e = t.invert(e, r), e && n.invert(e[0], e[1]);
+        }), e;
+    }function zt() {
+        return !0;
+    }function Lt(n, t, e, r, i) {
+        var u = [],
+            o = [];if (n.forEach(function (n) {
+            if (!((t = n.length - 1) <= 0)) {
+                var t,
+                    e = n[0],
+                    r = n[t];if (wt(e, r)) {
+                    i.lineStart();for (var a = 0; t > a; ++a) {
+                        i.point((e = n[a])[0], e[1]);
+                    }return void i.lineEnd();
+                }var l = new Tt(e, n, null, !0),
+                    c = new Tt(e, null, l, !1);l.o = c, u.push(l), o.push(c), l = new Tt(r, n, null, !1), c = new Tt(r, null, l, !0), l.o = c, u.push(l), o.push(c);
+            }
+        }), o.sort(t), qt(u), qt(o), u.length) {
+            for (var a = 0, l = e, c = o.length; c > a; ++a) {
+                o[a].e = l = !l;
+            }for (var f, s, h = u[0];;) {
+                for (var p = h, g = !0; p.v;) {
+                    if ((p = p.n) === h) return;
+                }f = p.z, i.lineStart();do {
+                    if (p.v = p.o.v = !0, p.e) {
+                        if (g) for (var a = 0, c = f.length; c > a; ++a) {
+                            i.point((s = f[a])[0], s[1]);
+                        } else r(p.x, p.n.x, 1, i);p = p.n;
+                    } else {
+                        if (g) {
+                            f = p.p.z;for (var a = f.length - 1; a >= 0; --a) {
+                                i.point((s = f[a])[0], s[1]);
+                            }
+                        } else r(p.x, p.p.x, -1, i);p = p.p;
+                    }p = p.o, f = p.z, g = !g;
+                } while (!p.v);i.lineEnd();
+            }
+        }
+    }function qt(n) {
+        if (t = n.length) {
+            for (var t, e, r = 0, i = n[0]; ++r < t;) {
+                i.n = e = n[r], e.p = i, i = e;
+            }i.n = e = n[0], e.p = i;
+        }
+    }function Tt(n, t, e, r) {
+        this.x = n, this.z = t, this.o = e, this.e = r, this.v = !1, this.n = this.p = null;
+    }function Rt(n, t, e, r) {
+        return function (i, u) {
+            function o(t, e) {
+                var r = i(t, e);n(t = r[0], e = r[1]) && u.point(t, e);
+            }function a(n, t) {
+                var e = i(n, t);d.point(e[0], e[1]);
+            }function l() {
+                m.point = a, d.lineStart();
+            }function c() {
+                m.point = o, d.lineEnd();
+            }function f(n, t) {
+                v.push([n, t]);var e = i(n, t);x.point(e[0], e[1]);
+            }function s() {
+                x.lineStart(), v = [];
+            }function h() {
+                f(v[0][0], v[0][1]), x.lineEnd();var n,
+                    t = x.clean(),
+                    e = M.buffer(),
+                    r = e.length;if (v.pop(), g.push(v), v = null, r) if (1 & t) {
+                    n = e[0];var i,
+                        r = n.length - 1,
+                        o = -1;if (r > 0) {
+                        for (b || (u.polygonStart(), b = !0), u.lineStart(); ++o < r;) {
+                            u.point((i = n[o])[0], i[1]);
+                        }u.lineEnd();
+                    }
+                } else r > 1 && 2 & t && e.push(e.pop().concat(e.shift())), p.push(e.filter(Dt));
+            }var p,
+                g,
+                v,
+                d = t(u),
+                y = i.invert(r[0], r[1]),
+                m = { point: o, lineStart: l, lineEnd: c, polygonStart: function polygonStart() {
+                    m.point = f, m.lineStart = s, m.lineEnd = h, p = [], g = [];
+                }, polygonEnd: function polygonEnd() {
+                    m.point = o, m.lineStart = l, m.lineEnd = c, p = ao.merge(p);var n = Ot(y, g);p.length ? (b || (u.polygonStart(), b = !0), Lt(p, Ut, n, e, u)) : n && (b || (u.polygonStart(), b = !0), u.lineStart(), e(null, null, 1, u), u.lineEnd()), b && (u.polygonEnd(), b = !1), p = g = null;
+                }, sphere: function sphere() {
+                    u.polygonStart(), u.lineStart(), e(null, null, 1, u), u.lineEnd(), u.polygonEnd();
+                } },
+                M = Pt(),
+                x = t(M),
+                b = !1;return m;
+        };
+    }function Dt(n) {
+        return n.length > 1;
+    }function Pt() {
+        var n,
+            t = [];return { lineStart: function lineStart() {
+                t.push(n = []);
+            }, point: function point(t, e) {
+                n.push([t, e]);
+            }, lineEnd: b, buffer: function buffer() {
+                var e = t;return t = [], n = null, e;
+            }, rejoin: function rejoin() {
+                t.length > 1 && t.push(t.pop().concat(t.shift()));
+            } };
+    }function Ut(n, t) {
+        return ((n = n.x)[0] < 0 ? n[1] - Io - Uo : Io - n[1]) - ((t = t.x)[0] < 0 ? t[1] - Io - Uo : Io - t[1]);
+    }function jt(n) {
+        var t,
+            e = NaN,
+            r = NaN,
+            i = NaN;return { lineStart: function lineStart() {
+                n.lineStart(), t = 1;
+            }, point: function point(u, o) {
+                var a = u > 0 ? Fo : -Fo,
+                    l = xo(u - e);xo(l - Fo) < Uo ? (n.point(e, r = (r + o) / 2 > 0 ? Io : -Io), n.point(i, r), n.lineEnd(), n.lineStart(), n.point(a, r), n.point(u, r), t = 0) : i !== a && l >= Fo && (xo(e - i) < Uo && (e -= i * Uo), xo(u - a) < Uo && (u -= a * Uo), r = Ft(e, r, u, o), n.point(i, r), n.lineEnd(), n.lineStart(), n.point(a, r), t = 0), n.point(e = u, r = o), i = a;
+            }, lineEnd: function lineEnd() {
+                n.lineEnd(), e = r = NaN;
+            }, clean: function clean() {
+                return 2 - t;
+            } };
+    }function Ft(n, t, e, r) {
+        var i,
+            u,
+            o = Math.sin(n - e);return xo(o) > Uo ? Math.atan((Math.sin(t) * (u = Math.cos(r)) * Math.sin(e) - Math.sin(r) * (i = Math.cos(t)) * Math.sin(n)) / (i * u * o)) : (t + r) / 2;
+    }function Ht(n, t, e, r) {
+        var i;if (null == n) i = e * Io, r.point(-Fo, i), r.point(0, i), r.point(Fo, i), r.point(Fo, 0), r.point(Fo, -i), r.point(0, -i), r.point(-Fo, -i), r.point(-Fo, 0), r.point(-Fo, i);else if (xo(n[0] - t[0]) > Uo) {
+            var u = n[0] < t[0] ? Fo : -Fo;i = e * u / 2, r.point(-u, i), r.point(0, i), r.point(u, i);
+        } else r.point(t[0], t[1]);
+    }function Ot(n, t) {
+        var e = n[0],
+            r = n[1],
+            i = [Math.sin(e), -Math.cos(e), 0],
+            u = 0,
+            o = 0;ka.reset();for (var a = 0, l = t.length; l > a; ++a) {
+            var c = t[a],
+                f = c.length;if (f) for (var s = c[0], h = s[0], p = s[1] / 2 + Fo / 4, g = Math.sin(p), v = Math.cos(p), d = 1;;) {
+                d === f && (d = 0), n = c[d];var y = n[0],
+                    m = n[1] / 2 + Fo / 4,
+                    M = Math.sin(m),
+                    x = Math.cos(m),
+                    b = y - h,
+                    _ = b >= 0 ? 1 : -1,
+                    w = _ * b,
+                    S = w > Fo,
+                    k = g * M;if (ka.add(Math.atan2(k * _ * Math.sin(w), v * x + k * Math.cos(w))), u += S ? b + _ * Ho : b, S ^ h >= e ^ y >= e) {
+                    var N = mt(dt(s), dt(n));bt(N);var E = mt(i, N);bt(E);var A = (S ^ b >= 0 ? -1 : 1) * tn(E[2]);(r > A || r === A && (N[0] || N[1])) && (o += S ^ b >= 0 ? 1 : -1);
+                }if (!d++) break;h = y, g = M, v = x, s = n;
+            }
+        }return (-Uo > u || Uo > u && -Uo > ka) ^ 1 & o;
+    }function It(n) {
+        function t(n, t) {
+            return Math.cos(n) * Math.cos(t) > u;
+        }function e(n) {
+            var e, u, l, c, f;return { lineStart: function lineStart() {
+                    c = l = !1, f = 1;
+                }, point: function point(s, h) {
+                    var p,
+                        g = [s, h],
+                        v = t(s, h),
+                        d = o ? v ? 0 : i(s, h) : v ? i(s + (0 > s ? Fo : -Fo), h) : 0;if (!e && (c = l = v) && n.lineStart(), v !== l && (p = r(e, g), (wt(e, p) || wt(g, p)) && (g[0] += Uo, g[1] += Uo, v = t(g[0], g[1]))), v !== l) f = 0, v ? (n.lineStart(), p = r(g, e), n.point(p[0], p[1])) : (p = r(e, g), n.point(p[0], p[1]), n.lineEnd()), e = p;else if (a && e && o ^ v) {
+                        var y;d & u || !(y = r(g, e, !0)) || (f = 0, o ? (n.lineStart(), n.point(y[0][0], y[0][1]), n.point(y[1][0], y[1][1]), n.lineEnd()) : (n.point(y[1][0], y[1][1]), n.lineEnd(), n.lineStart(), n.point(y[0][0], y[0][1])));
+                    }!v || e && wt(e, g) || n.point(g[0], g[1]), e = g, l = v, u = d;
+                }, lineEnd: function lineEnd() {
+                    l && n.lineEnd(), e = null;
+                }, clean: function clean() {
+                    return f | (c && l) << 1;
+                } };
+        }function r(n, t, e) {
+            var r = dt(n),
+                i = dt(t),
+                o = [1, 0, 0],
+                a = mt(r, i),
+                l = yt(a, a),
+                c = a[0],
+                f = l - c * c;if (!f) return !e && n;var s = u * l / f,
+                h = -u * c / f,
+                p = mt(o, a),
+                g = xt(o, s),
+                v = xt(a, h);Mt(g, v);var d = p,
+                y = yt(g, d),
+                m = yt(d, d),
+                M = y * y - m * (yt(g, g) - 1);if (!(0 > M)) {
+                var x = Math.sqrt(M),
+                    b = xt(d, (-y - x) / m);if (Mt(b, g), b = _t(b), !e) return b;var _,
+                    w = n[0],
+                    S = t[0],
+                    k = n[1],
+                    N = t[1];w > S && (_ = w, w = S, S = _);var E = S - w,
+                    A = xo(E - Fo) < Uo,
+                    C = A || Uo > E;if (!A && k > N && (_ = k, k = N, N = _), C ? A ? k + N > 0 ^ b[1] < (xo(b[0] - w) < Uo ? k : N) : k <= b[1] && b[1] <= N : E > Fo ^ (w <= b[0] && b[0] <= S)) {
+                    var z = xt(d, (-y + x) / m);return Mt(z, g), [b, _t(z)];
+                }
+            }
+        }function i(t, e) {
+            var r = o ? n : Fo - n,
+                i = 0;return -r > t ? i |= 1 : t > r && (i |= 2), -r > e ? i |= 4 : e > r && (i |= 8), i;
+        }var u = Math.cos(n),
+            o = u > 0,
+            a = xo(u) > Uo,
+            l = ve(n, 6 * Yo);return Rt(t, e, l, o ? [0, -n] : [-Fo, n - Fo]);
+    }function Yt(n, t, e, r) {
+        return function (i) {
+            var u,
+                o = i.a,
+                a = i.b,
+                l = o.x,
+                c = o.y,
+                f = a.x,
+                s = a.y,
+                h = 0,
+                p = 1,
+                g = f - l,
+                v = s - c;if (u = n - l, g || !(u > 0)) {
+                if (u /= g, 0 > g) {
+                    if (h > u) return;p > u && (p = u);
+                } else if (g > 0) {
+                    if (u > p) return;u > h && (h = u);
+                }if (u = e - l, g || !(0 > u)) {
+                    if (u /= g, 0 > g) {
+                        if (u > p) return;u > h && (h = u);
+                    } else if (g > 0) {
+                        if (h > u) return;p > u && (p = u);
+                    }if (u = t - c, v || !(u > 0)) {
+                        if (u /= v, 0 > v) {
+                            if (h > u) return;p > u && (p = u);
+                        } else if (v > 0) {
+                            if (u > p) return;u > h && (h = u);
+                        }if (u = r - c, v || !(0 > u)) {
+                            if (u /= v, 0 > v) {
+                                if (u > p) return;u > h && (h = u);
+                            } else if (v > 0) {
+                                if (h > u) return;p > u && (p = u);
+                            }return h > 0 && (i.a = { x: l + h * g, y: c + h * v }), 1 > p && (i.b = { x: l + p * g, y: c + p * v }), i;
+                        }
+                    }
+                }
+            }
+        };
+    }function Zt(n, t, e, r) {
+        function i(r, i) {
+            return xo(r[0] - n) < Uo ? i > 0 ? 0 : 3 : xo(r[0] - e) < Uo ? i > 0 ? 2 : 1 : xo(r[1] - t) < Uo ? i > 0 ? 1 : 0 : i > 0 ? 3 : 2;
+        }function u(n, t) {
+            return o(n.x, t.x);
+        }function o(n, t) {
+            var e = i(n, 1),
+                r = i(t, 1);return e !== r ? e - r : 0 === e ? t[1] - n[1] : 1 === e ? n[0] - t[0] : 2 === e ? n[1] - t[1] : t[0] - n[0];
+        }return function (a) {
+            function l(n) {
+                for (var t = 0, e = d.length, r = n[1], i = 0; e > i; ++i) {
+                    for (var u, o = 1, a = d[i], l = a.length, c = a[0]; l > o; ++o) {
+                        u = a[o], c[1] <= r ? u[1] > r && Q(c, u, n) > 0 && ++t : u[1] <= r && Q(c, u, n) < 0 && --t, c = u;
+                    }
+                }return 0 !== t;
+            }function c(u, a, l, c) {
+                var f = 0,
+                    s = 0;if (null == u || (f = i(u, l)) !== (s = i(a, l)) || o(u, a) < 0 ^ l > 0) {
+                    do {
+                        c.point(0 === f || 3 === f ? n : e, f > 1 ? r : t);
+                    } while ((f = (f + l + 4) % 4) !== s);
+                } else c.point(a[0], a[1]);
+            }function f(i, u) {
+                return i >= n && e >= i && u >= t && r >= u;
+            }function s(n, t) {
+                f(n, t) && a.point(n, t);
+            }function h() {
+                C.point = g, d && d.push(y = []), S = !0, w = !1, b = _ = NaN;
+            }function p() {
+                v && (g(m, M), x && w && E.rejoin(), v.push(E.buffer())), C.point = s, w && a.lineEnd();
+            }function g(n, t) {
+                n = Math.max(-Ha, Math.min(Ha, n)), t = Math.max(-Ha, Math.min(Ha, t));var e = f(n, t);if (d && y.push([n, t]), S) m = n, M = t, x = e, S = !1, e && (a.lineStart(), a.point(n, t));else if (e && w) a.point(n, t);else {
+                    var r = { a: { x: b, y: _ }, b: { x: n, y: t } };A(r) ? (w || (a.lineStart(), a.point(r.a.x, r.a.y)), a.point(r.b.x, r.b.y), e || a.lineEnd(), k = !1) : e && (a.lineStart(), a.point(n, t), k = !1);
+                }b = n, _ = t, w = e;
+            }var v,
+                d,
+                y,
+                m,
+                M,
+                x,
+                b,
+                _,
+                w,
+                S,
+                k,
+                N = a,
+                E = Pt(),
+                A = Yt(n, t, e, r),
+                C = { point: s, lineStart: h, lineEnd: p, polygonStart: function polygonStart() {
+                    a = E, v = [], d = [], k = !0;
+                }, polygonEnd: function polygonEnd() {
+                    a = N, v = ao.merge(v);var t = l([n, r]),
+                        e = k && t,
+                        i = v.length;(e || i) && (a.polygonStart(), e && (a.lineStart(), c(null, null, 1, a), a.lineEnd()), i && Lt(v, u, t, c, a), a.polygonEnd()), v = d = y = null;
+                } };return C;
+        };
+    }function Vt(n) {
+        var t = 0,
+            e = Fo / 3,
+            r = ae(n),
+            i = r(t, e);return i.parallels = function (n) {
+            return arguments.length ? r(t = n[0] * Fo / 180, e = n[1] * Fo / 180) : [t / Fo * 180, e / Fo * 180];
+        }, i;
+    }function Xt(n, t) {
+        function e(n, t) {
+            var e = Math.sqrt(u - 2 * i * Math.sin(t)) / i;return [e * Math.sin(n *= i), o - e * Math.cos(n)];
+        }var r = Math.sin(n),
+            i = (r + Math.sin(t)) / 2,
+            u = 1 + r * (2 * i - r),
+            o = Math.sqrt(u) / i;return e.invert = function (n, t) {
+            var e = o - t;return [Math.atan2(n, e) / i, tn((u - (n * n + e * e) * i * i) / (2 * i))];
+        }, e;
+    }function $t() {
+        function n(n, t) {
+            Ia += i * n - r * t, r = n, i = t;
+        }var t, e, r, i;$a.point = function (u, o) {
+            $a.point = n, t = r = u, e = i = o;
+        }, $a.lineEnd = function () {
+            n(t, e);
+        };
+    }function Bt(n, t) {
+        Ya > n && (Ya = n), n > Va && (Va = n), Za > t && (Za = t), t > Xa && (Xa = t);
+    }function Wt() {
+        function n(n, t) {
+            o.push("M", n, ",", t, u);
+        }function t(n, t) {
+            o.push("M", n, ",", t), a.point = e;
+        }function e(n, t) {
+            o.push("L", n, ",", t);
+        }function r() {
+            a.point = n;
+        }function i() {
+            o.push("Z");
+        }var u = Jt(4.5),
+            o = [],
+            a = { point: n, lineStart: function lineStart() {
+                a.point = t;
+            }, lineEnd: r, polygonStart: function polygonStart() {
+                a.lineEnd = i;
+            }, polygonEnd: function polygonEnd() {
+                a.lineEnd = r, a.point = n;
+            }, pointRadius: function pointRadius(n) {
+                return u = Jt(n), a;
+            }, result: function result() {
+                if (o.length) {
+                    var n = o.join("");return o = [], n;
+                }
+            } };return a;
+    }function Jt(n) {
+        return "m0," + n + "a" + n + "," + n + " 0 1,1 0," + -2 * n + "a" + n + "," + n + " 0 1,1 0," + 2 * n + "z";
+    }function Gt(n, t) {
+        Ca += n, za += t, ++La;
+    }function Kt() {
+        function n(n, r) {
+            var i = n - t,
+                u = r - e,
+                o = Math.sqrt(i * i + u * u);qa += o * (t + n) / 2, Ta += o * (e + r) / 2, Ra += o, Gt(t = n, e = r);
+        }var t, e;Wa.point = function (r, i) {
+            Wa.point = n, Gt(t = r, e = i);
+        };
+    }function Qt() {
+        Wa.point = Gt;
+    }function ne() {
+        function n(n, t) {
+            var e = n - r,
+                u = t - i,
+                o = Math.sqrt(e * e + u * u);qa += o * (r + n) / 2, Ta += o * (i + t) / 2, Ra += o, o = i * n - r * t, Da += o * (r + n), Pa += o * (i + t), Ua += 3 * o, Gt(r = n, i = t);
+        }var t, e, r, i;Wa.point = function (u, o) {
+            Wa.point = n, Gt(t = r = u, e = i = o);
+        }, Wa.lineEnd = function () {
+            n(t, e);
+        };
+    }function te(n) {
+        function t(t, e) {
+            n.moveTo(t + o, e), n.arc(t, e, o, 0, Ho);
+        }function e(t, e) {
+            n.moveTo(t, e), a.point = r;
+        }function r(t, e) {
+            n.lineTo(t, e);
+        }function i() {
+            a.point = t;
+        }function u() {
+            n.closePath();
+        }var o = 4.5,
+            a = { point: t, lineStart: function lineStart() {
+                a.point = e;
+            }, lineEnd: i, polygonStart: function polygonStart() {
+                a.lineEnd = u;
+            }, polygonEnd: function polygonEnd() {
+                a.lineEnd = i, a.point = t;
+            }, pointRadius: function pointRadius(n) {
+                return o = n, a;
+            }, result: b };return a;
+    }function ee(n) {
+        function t(n) {
+            return (a ? r : e)(n);
+        }function e(t) {
+            return ue(t, function (e, r) {
+                e = n(e, r), t.point(e[0], e[1]);
+            });
+        }function r(t) {
+            function e(e, r) {
+                e = n(e, r), t.point(e[0], e[1]);
+            }function r() {
+                M = NaN, S.point = u, t.lineStart();
+            }function u(e, r) {
+                var u = dt([e, r]),
+                    o = n(e, r);i(M, x, m, b, _, w, M = o[0], x = o[1], m = e, b = u[0], _ = u[1], w = u[2], a, t), t.point(M, x);
+            }function o() {
+                S.point = e, t.lineEnd();
+            }function l() {
+                r(), S.point = c, S.lineEnd = f;
+            }function c(n, t) {
+                u(s = n, h = t), p = M, g = x, v = b, d = _, y = w, S.point = u;
+            }function f() {
+                i(M, x, m, b, _, w, p, g, s, v, d, y, a, t), S.lineEnd = o, o();
+            }var s,
+                h,
+                p,
+                g,
+                v,
+                d,
+                y,
+                m,
+                M,
+                x,
+                b,
+                _,
+                w,
+                S = { point: e, lineStart: r, lineEnd: o, polygonStart: function polygonStart() {
+                    t.polygonStart(), S.lineStart = l;
+                }, polygonEnd: function polygonEnd() {
+                    t.polygonEnd(), S.lineStart = r;
+                } };return S;
+        }function i(t, e, r, a, l, c, f, s, h, p, g, v, d, y) {
+            var m = f - t,
+                M = s - e,
+                x = m * m + M * M;if (x > 4 * u && d--) {
+                var b = a + p,
+                    _ = l + g,
+                    w = c + v,
+                    S = Math.sqrt(b * b + _ * _ + w * w),
+                    k = Math.asin(w /= S),
+                    N = xo(xo(w) - 1) < Uo || xo(r - h) < Uo ? (r + h) / 2 : Math.atan2(_, b),
+                    E = n(N, k),
+                    A = E[0],
+                    C = E[1],
+                    z = A - t,
+                    L = C - e,
+                    q = M * z - m * L;(q * q / x > u || xo((m * z + M * L) / x - .5) > .3 || o > a * p + l * g + c * v) && (i(t, e, r, a, l, c, A, C, N, b /= S, _ /= S, w, d, y), y.point(A, C), i(A, C, N, b, _, w, f, s, h, p, g, v, d, y));
+            }
+        }var u = .5,
+            o = Math.cos(30 * Yo),
+            a = 16;return t.precision = function (n) {
+            return arguments.length ? (a = (u = n * n) > 0 && 16, t) : Math.sqrt(u);
+        }, t;
+    }function re(n) {
+        var t = ee(function (t, e) {
+            return n([t * Zo, e * Zo]);
+        });return function (n) {
+            return le(t(n));
+        };
+    }function ie(n) {
+        this.stream = n;
+    }function ue(n, t) {
+        return { point: t, sphere: function sphere() {
+                n.sphere();
+            }, lineStart: function lineStart() {
+                n.lineStart();
+            }, lineEnd: function lineEnd() {
+                n.lineEnd();
+            }, polygonStart: function polygonStart() {
+                n.polygonStart();
+            }, polygonEnd: function polygonEnd() {
+                n.polygonEnd();
+            } };
+    }function oe(n) {
+        return ae(function () {
+            return n;
+        })();
+    }function ae(n) {
+        function t(n) {
+            return n = a(n[0] * Yo, n[1] * Yo), [n[0] * h + l, c - n[1] * h];
+        }function e(n) {
+            return n = a.invert((n[0] - l) / h, (c - n[1]) / h), n && [n[0] * Zo, n[1] * Zo];
+        }function r() {
+            a = Ct(o = se(y, M, x), u);var n = u(v, d);return l = p - n[0] * h, c = g + n[1] * h, i();
+        }function i() {
+            return f && (f.valid = !1, f = null), t;
+        }var u,
+            o,
+            a,
+            l,
+            c,
+            f,
+            s = ee(function (n, t) {
+            return n = u(n, t), [n[0] * h + l, c - n[1] * h];
+        }),
+            h = 150,
+            p = 480,
+            g = 250,
+            v = 0,
+            d = 0,
+            y = 0,
+            M = 0,
+            x = 0,
+            b = Fa,
+            _ = m,
+            w = null,
+            S = null;return t.stream = function (n) {
+            return f && (f.valid = !1), f = le(b(o, s(_(n)))), f.valid = !0, f;
+        }, t.clipAngle = function (n) {
+            return arguments.length ? (b = null == n ? (w = n, Fa) : It((w = +n) * Yo), i()) : w;
+        }, t.clipExtent = function (n) {
+            return arguments.length ? (S = n, _ = n ? Zt(n[0][0], n[0][1], n[1][0], n[1][1]) : m, i()) : S;
+        }, t.scale = function (n) {
+            return arguments.length ? (h = +n, r()) : h;
+        }, t.translate = function (n) {
+            return arguments.length ? (p = +n[0], g = +n[1], r()) : [p, g];
+        }, t.center = function (n) {
+            return arguments.length ? (v = n[0] % 360 * Yo, d = n[1] % 360 * Yo, r()) : [v * Zo, d * Zo];
+        }, t.rotate = function (n) {
+            return arguments.length ? (y = n[0] % 360 * Yo, M = n[1] % 360 * Yo, x = n.length > 2 ? n[2] % 360 * Yo : 0, r()) : [y * Zo, M * Zo, x * Zo];
+        }, ao.rebind(t, s, "precision"), function () {
+            return u = n.apply(this, arguments), t.invert = u.invert && e, r();
+        };
+    }function le(n) {
+        return ue(n, function (t, e) {
+            n.point(t * Yo, e * Yo);
+        });
+    }function ce(n, t) {
+        return [n, t];
+    }function fe(n, t) {
+        return [n > Fo ? n - Ho : -Fo > n ? n + Ho : n, t];
+    }function se(n, t, e) {
+        return n ? t || e ? Ct(pe(n), ge(t, e)) : pe(n) : t || e ? ge(t, e) : fe;
+    }function he(n) {
+        return function (t, e) {
+            return t += n, [t > Fo ? t - Ho : -Fo > t ? t + Ho : t, e];
+        };
+    }function pe(n) {
+        var t = he(n);return t.invert = he(-n), t;
+    }function ge(n, t) {
+        function e(n, t) {
+            var e = Math.cos(t),
+                a = Math.cos(n) * e,
+                l = Math.sin(n) * e,
+                c = Math.sin(t),
+                f = c * r + a * i;return [Math.atan2(l * u - f * o, a * r - c * i), tn(f * u + l * o)];
+        }var r = Math.cos(n),
+            i = Math.sin(n),
+            u = Math.cos(t),
+            o = Math.sin(t);return e.invert = function (n, t) {
+            var e = Math.cos(t),
+                a = Math.cos(n) * e,
+                l = Math.sin(n) * e,
+                c = Math.sin(t),
+                f = c * u - l * o;return [Math.atan2(l * u + c * o, a * r + f * i), tn(f * r - a * i)];
+        }, e;
+    }function ve(n, t) {
+        var e = Math.cos(n),
+            r = Math.sin(n);return function (i, u, o, a) {
+            var l = o * t;null != i ? (i = de(e, i), u = de(e, u), (o > 0 ? u > i : i > u) && (i += o * Ho)) : (i = n + o * Ho, u = n - .5 * l);for (var c, f = i; o > 0 ? f > u : u > f; f -= l) {
+                a.point((c = _t([e, -r * Math.cos(f), -r * Math.sin(f)]))[0], c[1]);
+            }
+        };
+    }function de(n, t) {
+        var e = dt(t);e[0] -= n, bt(e);var r = nn(-e[1]);return ((-e[2] < 0 ? -r : r) + 2 * Math.PI - Uo) % (2 * Math.PI);
+    }function ye(n, t, e) {
+        var r = ao.range(n, t - Uo, e).concat(t);return function (n) {
+            return r.map(function (t) {
+                return [n, t];
+            });
+        };
+    }function me(n, t, e) {
+        var r = ao.range(n, t - Uo, e).concat(t);return function (n) {
+            return r.map(function (t) {
+                return [t, n];
+            });
+        };
+    }function Me(n) {
+        return n.source;
+    }function xe(n) {
+        return n.target;
+    }function be(n, t, e, r) {
+        var i = Math.cos(t),
+            u = Math.sin(t),
+            o = Math.cos(r),
+            a = Math.sin(r),
+            l = i * Math.cos(n),
+            c = i * Math.sin(n),
+            f = o * Math.cos(e),
+            s = o * Math.sin(e),
+            h = 2 * Math.asin(Math.sqrt(on(r - t) + i * o * on(e - n))),
+            p = 1 / Math.sin(h),
+            g = h ? function (n) {
+            var t = Math.sin(n *= h) * p,
+                e = Math.sin(h - n) * p,
+                r = e * l + t * f,
+                i = e * c + t * s,
+                o = e * u + t * a;return [Math.atan2(i, r) * Zo, Math.atan2(o, Math.sqrt(r * r + i * i)) * Zo];
+        } : function () {
+            return [n * Zo, t * Zo];
+        };return g.distance = h, g;
+    }function _e() {
+        function n(n, i) {
+            var u = Math.sin(i *= Yo),
+                o = Math.cos(i),
+                a = xo((n *= Yo) - t),
+                l = Math.cos(a);Ja += Math.atan2(Math.sqrt((a = o * Math.sin(a)) * a + (a = r * u - e * o * l) * a), e * u + r * o * l), t = n, e = u, r = o;
+        }var t, e, r;Ga.point = function (i, u) {
+            t = i * Yo, e = Math.sin(u *= Yo), r = Math.cos(u), Ga.point = n;
+        }, Ga.lineEnd = function () {
+            Ga.point = Ga.lineEnd = b;
+        };
+    }function we(n, t) {
+        function e(t, e) {
+            var r = Math.cos(t),
+                i = Math.cos(e),
+                u = n(r * i);return [u * i * Math.sin(t), u * Math.sin(e)];
+        }return e.invert = function (n, e) {
+            var r = Math.sqrt(n * n + e * e),
+                i = t(r),
+                u = Math.sin(i),
+                o = Math.cos(i);return [Math.atan2(n * u, r * o), Math.asin(r && e * u / r)];
+        }, e;
+    }function Se(n, t) {
+        function e(n, t) {
+            o > 0 ? -Io + Uo > t && (t = -Io + Uo) : t > Io - Uo && (t = Io - Uo);var e = o / Math.pow(i(t), u);return [e * Math.sin(u * n), o - e * Math.cos(u * n)];
+        }var r = Math.cos(n),
+            i = function i(n) {
+            return Math.tan(Fo / 4 + n / 2);
+        },
+            u = n === t ? Math.sin(n) : Math.log(r / Math.cos(t)) / Math.log(i(t) / i(n)),
+            o = r * Math.pow(i(n), u) / u;return u ? (e.invert = function (n, t) {
+            var e = o - t,
+                r = K(u) * Math.sqrt(n * n + e * e);return [Math.atan2(n, e) / u, 2 * Math.atan(Math.pow(o / r, 1 / u)) - Io];
+        }, e) : Ne;
+    }function ke(n, t) {
+        function e(n, t) {
+            var e = u - t;return [e * Math.sin(i * n), u - e * Math.cos(i * n)];
+        }var r = Math.cos(n),
+            i = n === t ? Math.sin(n) : (r - Math.cos(t)) / (t - n),
+            u = r / i + n;return xo(i) < Uo ? ce : (e.invert = function (n, t) {
+            var e = u - t;return [Math.atan2(n, e) / i, u - K(i) * Math.sqrt(n * n + e * e)];
+        }, e);
+    }function Ne(n, t) {
+        return [n, Math.log(Math.tan(Fo / 4 + t / 2))];
+    }function Ee(n) {
+        var t,
+            e = oe(n),
+            r = e.scale,
+            i = e.translate,
+            u = e.clipExtent;return e.scale = function () {
+            var n = r.apply(e, arguments);return n === e ? t ? e.clipExtent(null) : e : n;
+        }, e.translate = function () {
+            var n = i.apply(e, arguments);return n === e ? t ? e.clipExtent(null) : e : n;
+        }, e.clipExtent = function (n) {
+            var o = u.apply(e, arguments);if (o === e) {
+                if (t = null == n) {
+                    var a = Fo * r(),
+                        l = i();u([[l[0] - a, l[1] - a], [l[0] + a, l[1] + a]]);
+                }
+            } else t && (o = null);return o;
+        }, e.clipExtent(null);
+    }function Ae(n, t) {
+        return [Math.log(Math.tan(Fo / 4 + t / 2)), -n];
+    }function Ce(n) {
+        return n[0];
+    }function ze(n) {
+        return n[1];
+    }function Le(n) {
+        for (var t = n.length, e = [0, 1], r = 2, i = 2; t > i; i++) {
+            for (; r > 1 && Q(n[e[r - 2]], n[e[r - 1]], n[i]) <= 0;) {
+                --r;
+            }e[r++] = i;
+        }return e.slice(0, r);
+    }function qe(n, t) {
+        return n[0] - t[0] || n[1] - t[1];
+    }function Te(n, t, e) {
+        return (e[0] - t[0]) * (n[1] - t[1]) < (e[1] - t[1]) * (n[0] - t[0]);
+    }function Re(n, t, e, r) {
+        var i = n[0],
+            u = e[0],
+            o = t[0] - i,
+            a = r[0] - u,
+            l = n[1],
+            c = e[1],
+            f = t[1] - l,
+            s = r[1] - c,
+            h = (a * (l - c) - s * (i - u)) / (s * o - a * f);return [i + h * o, l + h * f];
+    }function De(n) {
+        var t = n[0],
+            e = n[n.length - 1];return !(t[0] - e[0] || t[1] - e[1]);
+    }function Pe() {
+        rr(this), this.edge = this.site = this.circle = null;
+    }function Ue(n) {
+        var t = cl.pop() || new Pe();return t.site = n, t;
+    }function je(n) {
+        Be(n), ol.remove(n), cl.push(n), rr(n);
+    }function Fe(n) {
+        var t = n.circle,
+            e = t.x,
+            r = t.cy,
+            i = { x: e, y: r },
+            u = n.P,
+            o = n.N,
+            a = [n];je(n);for (var l = u; l.circle && xo(e - l.circle.x) < Uo && xo(r - l.circle.cy) < Uo;) {
+            u = l.P, a.unshift(l), je(l), l = u;
+        }a.unshift(l), Be(l);for (var c = o; c.circle && xo(e - c.circle.x) < Uo && xo(r - c.circle.cy) < Uo;) {
+            o = c.N, a.push(c), je(c), c = o;
+        }a.push(c), Be(c);var f,
+            s = a.length;for (f = 1; s > f; ++f) {
+            c = a[f], l = a[f - 1], nr(c.edge, l.site, c.site, i);
+        }l = a[0], c = a[s - 1], c.edge = Ke(l.site, c.site, null, i), $e(l), $e(c);
+    }function He(n) {
+        for (var t, e, r, i, u = n.x, o = n.y, a = ol._; a;) {
+            if (r = Oe(a, o) - u, r > Uo) a = a.L;else {
+                if (i = u - Ie(a, o), !(i > Uo)) {
+                    r > -Uo ? (t = a.P, e = a) : i > -Uo ? (t = a, e = a.N) : t = e = a;break;
+                }if (!a.R) {
+                    t = a;break;
+                }a = a.R;
+            }
+        }var l = Ue(n);if (ol.insert(t, l), t || e) {
+            if (t === e) return Be(t), e = Ue(t.site), ol.insert(l, e), l.edge = e.edge = Ke(t.site, l.site), $e(t), void $e(e);if (!e) return void (l.edge = Ke(t.site, l.site));Be(t), Be(e);var c = t.site,
+                f = c.x,
+                s = c.y,
+                h = n.x - f,
+                p = n.y - s,
+                g = e.site,
+                v = g.x - f,
+                d = g.y - s,
+                y = 2 * (h * d - p * v),
+                m = h * h + p * p,
+                M = v * v + d * d,
+                x = { x: (d * m - p * M) / y + f, y: (h * M - v * m) / y + s };nr(e.edge, c, g, x), l.edge = Ke(c, n, null, x), e.edge = Ke(n, g, null, x), $e(t), $e(e);
+        }
+    }function Oe(n, t) {
+        var e = n.site,
+            r = e.x,
+            i = e.y,
+            u = i - t;if (!u) return r;var o = n.P;if (!o) return -(1 / 0);e = o.site;var a = e.x,
+            l = e.y,
+            c = l - t;if (!c) return a;var f = a - r,
+            s = 1 / u - 1 / c,
+            h = f / c;return s ? (-h + Math.sqrt(h * h - 2 * s * (f * f / (-2 * c) - l + c / 2 + i - u / 2))) / s + r : (r + a) / 2;
+    }function Ie(n, t) {
+        var e = n.N;if (e) return Oe(e, t);var r = n.site;return r.y === t ? r.x : 1 / 0;
+    }function Ye(n) {
+        this.site = n, this.edges = [];
+    }function Ze(n) {
+        for (var t, e, r, i, u, o, a, l, c, f, s = n[0][0], h = n[1][0], p = n[0][1], g = n[1][1], v = ul, d = v.length; d--;) {
+            if (u = v[d], u && u.prepare()) for (a = u.edges, l = a.length, o = 0; l > o;) {
+                f = a[o].end(), r = f.x, i = f.y, c = a[++o % l].start(), t = c.x, e = c.y, (xo(r - t) > Uo || xo(i - e) > Uo) && (a.splice(o, 0, new tr(Qe(u.site, f, xo(r - s) < Uo && g - i > Uo ? { x: s, y: xo(t - s) < Uo ? e : g } : xo(i - g) < Uo && h - r > Uo ? { x: xo(e - g) < Uo ? t : h, y: g } : xo(r - h) < Uo && i - p > Uo ? { x: h, y: xo(t - h) < Uo ? e : p } : xo(i - p) < Uo && r - s > Uo ? { x: xo(e - p) < Uo ? t : s, y: p } : null), u.site, null)), ++l);
+            }
+        }
+    }function Ve(n, t) {
+        return t.angle - n.angle;
+    }function Xe() {
+        rr(this), this.x = this.y = this.arc = this.site = this.cy = null;
+    }function $e(n) {
+        var t = n.P,
+            e = n.N;if (t && e) {
+            var r = t.site,
+                i = n.site,
+                u = e.site;if (r !== u) {
+                var o = i.x,
+                    a = i.y,
+                    l = r.x - o,
+                    c = r.y - a,
+                    f = u.x - o,
+                    s = u.y - a,
+                    h = 2 * (l * s - c * f);if (!(h >= -jo)) {
+                    var p = l * l + c * c,
+                        g = f * f + s * s,
+                        v = (s * p - c * g) / h,
+                        d = (l * g - f * p) / h,
+                        s = d + a,
+                        y = fl.pop() || new Xe();y.arc = n, y.site = i, y.x = v + o, y.y = s + Math.sqrt(v * v + d * d), y.cy = s, n.circle = y;for (var m = null, M = ll._; M;) {
+                        if (y.y < M.y || y.y === M.y && y.x <= M.x) {
+                            if (!M.L) {
+                                m = M.P;break;
+                            }M = M.L;
+                        } else {
+                            if (!M.R) {
+                                m = M;break;
+                            }M = M.R;
+                        }
+                    }ll.insert(m, y), m || (al = y);
+                }
+            }
+        }
+    }function Be(n) {
+        var t = n.circle;t && (t.P || (al = t.N), ll.remove(t), fl.push(t), rr(t), n.circle = null);
+    }function We(n) {
+        for (var t, e = il, r = Yt(n[0][0], n[0][1], n[1][0], n[1][1]), i = e.length; i--;) {
+            t = e[i], (!Je(t, n) || !r(t) || xo(t.a.x - t.b.x) < Uo && xo(t.a.y - t.b.y) < Uo) && (t.a = t.b = null, e.splice(i, 1));
+        }
+    }function Je(n, t) {
+        var e = n.b;if (e) return !0;var r,
+            i,
+            u = n.a,
+            o = t[0][0],
+            a = t[1][0],
+            l = t[0][1],
+            c = t[1][1],
+            f = n.l,
+            s = n.r,
+            h = f.x,
+            p = f.y,
+            g = s.x,
+            v = s.y,
+            d = (h + g) / 2,
+            y = (p + v) / 2;if (v === p) {
+            if (o > d || d >= a) return;if (h > g) {
+                if (u) {
+                    if (u.y >= c) return;
+                } else u = { x: d, y: l };e = { x: d, y: c };
+            } else {
+                if (u) {
+                    if (u.y < l) return;
+                } else u = { x: d, y: c };e = { x: d, y: l };
+            }
+        } else if (r = (h - g) / (v - p), i = y - r * d, -1 > r || r > 1) {
+            if (h > g) {
+                if (u) {
+                    if (u.y >= c) return;
+                } else u = { x: (l - i) / r, y: l };e = { x: (c - i) / r, y: c };
+            } else {
+                if (u) {
+                    if (u.y < l) return;
+                } else u = { x: (c - i) / r, y: c };e = { x: (l - i) / r, y: l };
+            }
+        } else if (v > p) {
+            if (u) {
+                if (u.x >= a) return;
+            } else u = { x: o, y: r * o + i };e = { x: a, y: r * a + i };
+        } else {
+            if (u) {
+                if (u.x < o) return;
+            } else u = { x: a, y: r * a + i };e = { x: o, y: r * o + i };
+        }return n.a = u, n.b = e, !0;
+    }function Ge(n, t) {
+        this.l = n, this.r = t, this.a = this.b = null;
+    }function Ke(n, t, e, r) {
+        var i = new Ge(n, t);return il.push(i), e && nr(i, n, t, e), r && nr(i, t, n, r), ul[n.i].edges.push(new tr(i, n, t)), ul[t.i].edges.push(new tr(i, t, n)), i;
+    }function Qe(n, t, e) {
+        var r = new Ge(n, null);return r.a = t, r.b = e, il.push(r), r;
+    }function nr(n, t, e, r) {
+        n.a || n.b ? n.l === e ? n.b = r : n.a = r : (n.a = r, n.l = t, n.r = e);
+    }function tr(n, t, e) {
+        var r = n.a,
+            i = n.b;this.edge = n, this.site = t, this.angle = e ? Math.atan2(e.y - t.y, e.x - t.x) : n.l === t ? Math.atan2(i.x - r.x, r.y - i.y) : Math.atan2(r.x - i.x, i.y - r.y);
+    }function er() {
+        this._ = null;
+    }function rr(n) {
+        n.U = n.C = n.L = n.R = n.P = n.N = null;
+    }function ir(n, t) {
+        var e = t,
+            r = t.R,
+            i = e.U;i ? i.L === e ? i.L = r : i.R = r : n._ = r, r.U = i, e.U = r, e.R = r.L, e.R && (e.R.U = e), r.L = e;
+    }function ur(n, t) {
+        var e = t,
+            r = t.L,
+            i = e.U;i ? i.L === e ? i.L = r : i.R = r : n._ = r, r.U = i, e.U = r, e.L = r.R, e.L && (e.L.U = e), r.R = e;
+    }function or(n) {
+        for (; n.L;) {
+            n = n.L;
+        }return n;
+    }function ar(n, t) {
+        var e,
+            r,
+            i,
+            u = n.sort(lr).pop();for (il = [], ul = new Array(n.length), ol = new er(), ll = new er();;) {
+            if (i = al, u && (!i || u.y < i.y || u.y === i.y && u.x < i.x)) u.x === e && u.y === r || (ul[u.i] = new Ye(u), He(u), e = u.x, r = u.y), u = n.pop();else {
+                if (!i) break;Fe(i.arc);
+            }
+        }t && (We(t), Ze(t));var o = { cells: ul, edges: il };return ol = ll = il = ul = null, o;
+    }function lr(n, t) {
+        return t.y - n.y || t.x - n.x;
+    }function cr(n, t, e) {
+        return (n.x - e.x) * (t.y - n.y) - (n.x - t.x) * (e.y - n.y);
+    }function fr(n) {
+        return n.x;
+    }function sr(n) {
+        return n.y;
+    }function hr() {
+        return { leaf: !0, nodes: [], point: null, x: null, y: null };
+    }function pr(n, t, e, r, i, u) {
+        if (!n(t, e, r, i, u)) {
+            var o = .5 * (e + i),
+                a = .5 * (r + u),
+                l = t.nodes;l[0] && pr(n, l[0], e, r, o, a), l[1] && pr(n, l[1], o, r, i, a), l[2] && pr(n, l[2], e, a, o, u), l[3] && pr(n, l[3], o, a, i, u);
+        }
+    }function gr(n, t, e, r, i, u, o) {
+        var a,
+            l = 1 / 0;return function c(n, f, s, h, p) {
+            if (!(f > u || s > o || r > h || i > p)) {
+                if (g = n.point) {
+                    var g,
+                        v = t - n.x,
+                        d = e - n.y,
+                        y = v * v + d * d;if (l > y) {
+                        var m = Math.sqrt(l = y);r = t - m, i = e - m, u = t + m, o = e + m, a = g;
+                    }
+                }for (var M = n.nodes, x = .5 * (f + h), b = .5 * (s + p), _ = t >= x, w = e >= b, S = w << 1 | _, k = S + 4; k > S; ++S) {
+                    if (n = M[3 & S]) switch (3 & S) {case 0:
+                            c(n, f, s, x, b);break;case 1:
+                            c(n, x, s, h, b);break;case 2:
+                            c(n, f, b, x, p);break;case 3:
+                            c(n, x, b, h, p);}
+                }
+            }
+        }(n, r, i, u, o), a;
+    }function vr(n, t) {
+        n = ao.rgb(n), t = ao.rgb(t);var e = n.r,
+            r = n.g,
+            i = n.b,
+            u = t.r - e,
+            o = t.g - r,
+            a = t.b - i;return function (n) {
+            return "#" + bn(Math.round(e + u * n)) + bn(Math.round(r + o * n)) + bn(Math.round(i + a * n));
+        };
+    }function dr(n, t) {
+        var e,
+            r = {},
+            i = {};for (e in n) {
+            e in t ? r[e] = Mr(n[e], t[e]) : i[e] = n[e];
+        }for (e in t) {
+            e in n || (i[e] = t[e]);
+        }return function (n) {
+            for (e in r) {
+                i[e] = r[e](n);
+            }return i;
+        };
+    }function yr(n, t) {
+        return n = +n, t = +t, function (e) {
+            return n * (1 - e) + t * e;
+        };
+    }function mr(n, t) {
+        var e,
+            r,
+            i,
+            u = hl.lastIndex = pl.lastIndex = 0,
+            o = -1,
+            a = [],
+            l = [];for (n += "", t += ""; (e = hl.exec(n)) && (r = pl.exec(t));) {
+            (i = r.index) > u && (i = t.slice(u, i), a[o] ? a[o] += i : a[++o] = i), (e = e[0]) === (r = r[0]) ? a[o] ? a[o] += r : a[++o] = r : (a[++o] = null, l.push({ i: o, x: yr(e, r) })), u = pl.lastIndex;
+        }return u < t.length && (i = t.slice(u), a[o] ? a[o] += i : a[++o] = i), a.length < 2 ? l[0] ? (t = l[0].x, function (n) {
+            return t(n) + "";
+        }) : function () {
+            return t;
+        } : (t = l.length, function (n) {
+            for (var e, r = 0; t > r; ++r) {
+                a[(e = l[r]).i] = e.x(n);
+            }return a.join("");
+        });
+    }function Mr(n, t) {
+        for (var e, r = ao.interpolators.length; --r >= 0 && !(e = ao.interpolators[r](n, t));) {}return e;
+    }function xr(n, t) {
+        var e,
+            r = [],
+            i = [],
+            u = n.length,
+            o = t.length,
+            a = Math.min(n.length, t.length);for (e = 0; a > e; ++e) {
+            r.push(Mr(n[e], t[e]));
+        }for (; u > e; ++e) {
+            i[e] = n[e];
+        }for (; o > e; ++e) {
+            i[e] = t[e];
+        }return function (n) {
+            for (e = 0; a > e; ++e) {
+                i[e] = r[e](n);
+            }return i;
+        };
+    }function br(n) {
+        return function (t) {
+            return 0 >= t ? 0 : t >= 1 ? 1 : n(t);
+        };
+    }function _r(n) {
+        return function (t) {
+            return 1 - n(1 - t);
+        };
+    }function wr(n) {
+        return function (t) {
+            return .5 * (.5 > t ? n(2 * t) : 2 - n(2 - 2 * t));
+        };
+    }function Sr(n) {
+        return n * n;
+    }function kr(n) {
+        return n * n * n;
+    }function Nr(n) {
+        if (0 >= n) return 0;if (n >= 1) return 1;var t = n * n,
+            e = t * n;return 4 * (.5 > n ? e : 3 * (n - t) + e - .75);
+    }function Er(n) {
+        return function (t) {
+            return Math.pow(t, n);
+        };
+    }function Ar(n) {
+        return 1 - Math.cos(n * Io);
+    }function Cr(n) {
+        return Math.pow(2, 10 * (n - 1));
+    }function zr(n) {
+        return 1 - Math.sqrt(1 - n * n);
+    }function Lr(n, t) {
+        var e;return arguments.length < 2 && (t = .45), arguments.length ? e = t / Ho * Math.asin(1 / n) : (n = 1, e = t / 4), function (r) {
+            return 1 + n * Math.pow(2, -10 * r) * Math.sin((r - e) * Ho / t);
+        };
+    }function qr(n) {
+        return n || (n = 1.70158), function (t) {
+            return t * t * ((n + 1) * t - n);
+        };
+    }function Tr(n) {
+        return 1 / 2.75 > n ? 7.5625 * n * n : 2 / 2.75 > n ? 7.5625 * (n -= 1.5 / 2.75) * n + .75 : 2.5 / 2.75 > n ? 7.5625 * (n -= 2.25 / 2.75) * n + .9375 : 7.5625 * (n -= 2.625 / 2.75) * n + .984375;
+    }function Rr(n, t) {
+        n = ao.hcl(n), t = ao.hcl(t);var e = n.h,
+            r = n.c,
+            i = n.l,
+            u = t.h - e,
+            o = t.c - r,
+            a = t.l - i;return isNaN(o) && (o = 0, r = isNaN(r) ? t.c : r), isNaN(u) ? (u = 0, e = isNaN(e) ? t.h : e) : u > 180 ? u -= 360 : -180 > u && (u += 360), function (n) {
+            return sn(e + u * n, r + o * n, i + a * n) + "";
+        };
+    }function Dr(n, t) {
+        n = ao.hsl(n), t = ao.hsl(t);var e = n.h,
+            r = n.s,
+            i = n.l,
+            u = t.h - e,
+            o = t.s - r,
+            a = t.l - i;return isNaN(o) && (o = 0, r = isNaN(r) ? t.s : r), isNaN(u) ? (u = 0, e = isNaN(e) ? t.h : e) : u > 180 ? u -= 360 : -180 > u && (u += 360), function (n) {
+            return cn(e + u * n, r + o * n, i + a * n) + "";
+        };
+    }function Pr(n, t) {
+        n = ao.lab(n), t = ao.lab(t);var e = n.l,
+            r = n.a,
+            i = n.b,
+            u = t.l - e,
+            o = t.a - r,
+            a = t.b - i;return function (n) {
+            return pn(e + u * n, r + o * n, i + a * n) + "";
+        };
+    }function Ur(n, t) {
+        return t -= n, function (e) {
+            return Math.round(n + t * e);
+        };
+    }function jr(n) {
+        var t = [n.a, n.b],
+            e = [n.c, n.d],
+            r = Hr(t),
+            i = Fr(t, e),
+            u = Hr(Or(e, t, -i)) || 0;t[0] * e[1] < e[0] * t[1] && (t[0] *= -1, t[1] *= -1, r *= -1, i *= -1), this.rotate = (r ? Math.atan2(t[1], t[0]) : Math.atan2(-e[0], e[1])) * Zo, this.translate = [n.e, n.f], this.scale = [r, u], this.skew = u ? Math.atan2(i, u) * Zo : 0;
+    }function Fr(n, t) {
+        return n[0] * t[0] + n[1] * t[1];
+    }function Hr(n) {
+        var t = Math.sqrt(Fr(n, n));return t && (n[0] /= t, n[1] /= t), t;
+    }function Or(n, t, e) {
+        return n[0] += e * t[0], n[1] += e * t[1], n;
+    }function Ir(n) {
+        return n.length ? n.pop() + "," : "";
+    }function Yr(n, t, e, r) {
+        if (n[0] !== t[0] || n[1] !== t[1]) {
+            var i = e.push("translate(", null, ",", null, ")");r.push({ i: i - 4, x: yr(n[0], t[0]) }, { i: i - 2, x: yr(n[1], t[1]) });
+        } else (t[0] || t[1]) && e.push("translate(" + t + ")");
+    }function Zr(n, t, e, r) {
+        n !== t ? (n - t > 180 ? t += 360 : t - n > 180 && (n += 360), r.push({ i: e.push(Ir(e) + "rotate(", null, ")") - 2, x: yr(n, t) })) : t && e.push(Ir(e) + "rotate(" + t + ")");
+    }function Vr(n, t, e, r) {
+        n !== t ? r.push({ i: e.push(Ir(e) + "skewX(", null, ")") - 2, x: yr(n, t) }) : t && e.push(Ir(e) + "skewX(" + t + ")");
+    }function Xr(n, t, e, r) {
+        if (n[0] !== t[0] || n[1] !== t[1]) {
+            var i = e.push(Ir(e) + "scale(", null, ",", null, ")");r.push({ i: i - 4, x: yr(n[0], t[0]) }, { i: i - 2, x: yr(n[1], t[1]) });
+        } else 1 === t[0] && 1 === t[1] || e.push(Ir(e) + "scale(" + t + ")");
+    }function $r(n, t) {
+        var e = [],
+            r = [];return n = ao.transform(n), t = ao.transform(t), Yr(n.translate, t.translate, e, r), Zr(n.rotate, t.rotate, e, r), Vr(n.skew, t.skew, e, r), Xr(n.scale, t.scale, e, r), n = t = null, function (n) {
+            for (var t, i = -1, u = r.length; ++i < u;) {
+                e[(t = r[i]).i] = t.x(n);
+            }return e.join("");
+        };
+    }function Br(n, t) {
+        return t = (t -= n = +n) || 1 / t, function (e) {
+            return (e - n) / t;
+        };
+    }function Wr(n, t) {
+        return t = (t -= n = +n) || 1 / t, function (e) {
+            return Math.max(0, Math.min(1, (e - n) / t));
+        };
+    }function Jr(n) {
+        for (var t = n.source, e = n.target, r = Kr(t, e), i = [t]; t !== r;) {
+            t = t.parent, i.push(t);
+        }for (var u = i.length; e !== r;) {
+            i.splice(u, 0, e), e = e.parent;
+        }return i;
+    }function Gr(n) {
+        for (var t = [], e = n.parent; null != e;) {
+            t.push(n), n = e, e = e.parent;
+        }return t.push(n), t;
+    }function Kr(n, t) {
+        if (n === t) return n;for (var e = Gr(n), r = Gr(t), i = e.pop(), u = r.pop(), o = null; i === u;) {
+            o = i, i = e.pop(), u = r.pop();
+        }return o;
+    }function Qr(n) {
+        n.fixed |= 2;
+    }function ni(n) {
+        n.fixed &= -7;
+    }function ti(n) {
+        n.fixed |= 4, n.px = n.x, n.py = n.y;
+    }function ei(n) {
+        n.fixed &= -5;
+    }function ri(n, t, e) {
+        var r = 0,
+            i = 0;if (n.charge = 0, !n.leaf) for (var u, o = n.nodes, a = o.length, l = -1; ++l < a;) {
+            u = o[l], null != u && (ri(u, t, e), n.charge += u.charge, r += u.charge * u.cx, i += u.charge * u.cy);
+        }if (n.point) {
+            n.leaf || (n.point.x += Math.random() - .5, n.point.y += Math.random() - .5);var c = t * e[n.point.index];n.charge += n.pointCharge = c, r += c * n.point.x, i += c * n.point.y;
+        }n.cx = r / n.charge, n.cy = i / n.charge;
+    }function ii(n, t) {
+        return ao.rebind(n, t, "sort", "children", "value"), n.nodes = n, n.links = fi, n;
+    }function ui(n, t) {
+        for (var e = [n]; null != (n = e.pop());) {
+            if (t(n), (i = n.children) && (r = i.length)) for (var r, i; --r >= 0;) {
+                e.push(i[r]);
+            }
+        }
+    }function oi(n, t) {
+        for (var e = [n], r = []; null != (n = e.pop());) {
+            if (r.push(n), (u = n.children) && (i = u.length)) for (var i, u, o = -1; ++o < i;) {
+                e.push(u[o]);
+            }
+        }for (; null != (n = r.pop());) {
+            t(n);
+        }
+    }function ai(n) {
+        return n.children;
+    }function li(n) {
+        return n.value;
+    }function ci(n, t) {
+        return t.value - n.value;
+    }function fi(n) {
+        return ao.merge(n.map(function (n) {
+            return (n.children || []).map(function (t) {
+                return { source: n, target: t };
+            });
+        }));
+    }function si(n) {
+        return n.x;
+    }function hi(n) {
+        return n.y;
+    }function pi(n, t, e) {
+        n.y0 = t, n.y = e;
+    }function gi(n) {
+        return ao.range(n.length);
+    }function vi(n) {
+        for (var t = -1, e = n[0].length, r = []; ++t < e;) {
+            r[t] = 0;
+        }return r;
+    }function di(n) {
+        for (var t, e = 1, r = 0, i = n[0][1], u = n.length; u > e; ++e) {
+            (t = n[e][1]) > i && (r = e, i = t);
+        }return r;
+    }function yi(n) {
+        return n.reduce(mi, 0);
+    }function mi(n, t) {
+        return n + t[1];
+    }function Mi(n, t) {
+        return xi(n, Math.ceil(Math.log(t.length) / Math.LN2 + 1));
+    }function xi(n, t) {
+        for (var e = -1, r = +n[0], i = (n[1] - r) / t, u = []; ++e <= t;) {
+            u[e] = i * e + r;
+        }return u;
+    }function bi(n) {
+        return [ao.min(n), ao.max(n)];
+    }function _i(n, t) {
+        return n.value - t.value;
+    }function wi(n, t) {
+        var e = n._pack_next;n._pack_next = t, t._pack_prev = n, t._pack_next = e, e._pack_prev = t;
+    }function Si(n, t) {
+        n._pack_next = t, t._pack_prev = n;
+    }function ki(n, t) {
+        var e = t.x - n.x,
+            r = t.y - n.y,
+            i = n.r + t.r;return .999 * i * i > e * e + r * r;
+    }function Ni(n) {
+        function t(n) {
+            f = Math.min(n.x - n.r, f), s = Math.max(n.x + n.r, s), h = Math.min(n.y - n.r, h), p = Math.max(n.y + n.r, p);
+        }if ((e = n.children) && (c = e.length)) {
+            var e,
+                r,
+                i,
+                u,
+                o,
+                a,
+                l,
+                c,
+                f = 1 / 0,
+                s = -(1 / 0),
+                h = 1 / 0,
+                p = -(1 / 0);if (e.forEach(Ei), r = e[0], r.x = -r.r, r.y = 0, t(r), c > 1 && (i = e[1], i.x = i.r, i.y = 0, t(i), c > 2)) for (u = e[2], zi(r, i, u), t(u), wi(r, u), r._pack_prev = u, wi(u, i), i = r._pack_next, o = 3; c > o; o++) {
+                zi(r, i, u = e[o]);var g = 0,
+                    v = 1,
+                    d = 1;for (a = i._pack_next; a !== i; a = a._pack_next, v++) {
+                    if (ki(a, u)) {
+                        g = 1;break;
+                    }
+                }if (1 == g) for (l = r._pack_prev; l !== a._pack_prev && !ki(l, u); l = l._pack_prev, d++) {}g ? (d > v || v == d && i.r < r.r ? Si(r, i = a) : Si(r = l, i), o--) : (wi(r, u), i = u, t(u));
+            }var y = (f + s) / 2,
+                m = (h + p) / 2,
+                M = 0;for (o = 0; c > o; o++) {
+                u = e[o], u.x -= y, u.y -= m, M = Math.max(M, u.r + Math.sqrt(u.x * u.x + u.y * u.y));
+            }n.r = M, e.forEach(Ai);
+        }
+    }function Ei(n) {
+        n._pack_next = n._pack_prev = n;
+    }function Ai(n) {
+        delete n._pack_next, delete n._pack_prev;
+    }function Ci(n, t, e, r) {
+        var i = n.children;if (n.x = t += r * n.x, n.y = e += r * n.y, n.r *= r, i) for (var u = -1, o = i.length; ++u < o;) {
+            Ci(i[u], t, e, r);
+        }
+    }function zi(n, t, e) {
+        var r = n.r + e.r,
+            i = t.x - n.x,
+            u = t.y - n.y;if (r && (i || u)) {
+            var o = t.r + e.r,
+                a = i * i + u * u;o *= o, r *= r;var l = .5 + (r - o) / (2 * a),
+                c = Math.sqrt(Math.max(0, 2 * o * (r + a) - (r -= a) * r - o * o)) / (2 * a);e.x = n.x + l * i + c * u, e.y = n.y + l * u - c * i;
+        } else e.x = n.x + r, e.y = n.y;
+    }function Li(n, t) {
+        return n.parent == t.parent ? 1 : 2;
+    }function qi(n) {
+        var t = n.children;return t.length ? t[0] : n.t;
+    }function Ti(n) {
+        var t,
+            e = n.children;return (t = e.length) ? e[t - 1] : n.t;
+    }function Ri(n, t, e) {
+        var r = e / (t.i - n.i);t.c -= r, t.s += e, n.c += r, t.z += e, t.m += e;
+    }function Di(n) {
+        for (var t, e = 0, r = 0, i = n.children, u = i.length; --u >= 0;) {
+            t = i[u], t.z += e, t.m += e, e += t.s + (r += t.c);
+        }
+    }function Pi(n, t, e) {
+        return n.a.parent === t.parent ? n.a : e;
+    }function Ui(n) {
+        return 1 + ao.max(n, function (n) {
+            return n.y;
+        });
+    }function ji(n) {
+        return n.reduce(function (n, t) {
+            return n + t.x;
+        }, 0) / n.length;
+    }function Fi(n) {
+        var t = n.children;return t && t.length ? Fi(t[0]) : n;
+    }function Hi(n) {
+        var t,
+            e = n.children;return e && (t = e.length) ? Hi(e[t - 1]) : n;
+    }function Oi(n) {
+        return { x: n.x, y: n.y, dx: n.dx, dy: n.dy };
+    }function Ii(n, t) {
+        var e = n.x + t[3],
+            r = n.y + t[0],
+            i = n.dx - t[1] - t[3],
+            u = n.dy - t[0] - t[2];return 0 > i && (e += i / 2, i = 0), 0 > u && (r += u / 2, u = 0), { x: e, y: r, dx: i, dy: u };
+    }function Yi(n) {
+        var t = n[0],
+            e = n[n.length - 1];return e > t ? [t, e] : [e, t];
+    }function Zi(n) {
+        return n.rangeExtent ? n.rangeExtent() : Yi(n.range());
+    }function Vi(n, t, e, r) {
+        var i = e(n[0], n[1]),
+            u = r(t[0], t[1]);return function (n) {
+            return u(i(n));
+        };
+    }function Xi(n, t) {
+        var e,
+            r = 0,
+            i = n.length - 1,
+            u = n[r],
+            o = n[i];return u > o && (e = r, r = i, i = e, e = u, u = o, o = e), n[r] = t.floor(u), n[i] = t.ceil(o), n;
+    }function $i(n) {
+        return n ? { floor: function floor(t) {
+                return Math.floor(t / n) * n;
+            }, ceil: function ceil(t) {
+                return Math.ceil(t / n) * n;
+            } } : Sl;
+    }function Bi(n, t, e, r) {
+        var i = [],
+            u = [],
+            o = 0,
+            a = Math.min(n.length, t.length) - 1;for (n[a] < n[0] && (n = n.slice().reverse(), t = t.slice().reverse()); ++o <= a;) {
+            i.push(e(n[o - 1], n[o])), u.push(r(t[o - 1], t[o]));
+        }return function (t) {
+            var e = ao.bisect(n, t, 1, a) - 1;return u[e](i[e](t));
+        };
+    }function Wi(n, t, e, r) {
+        function i() {
+            var i = Math.min(n.length, t.length) > 2 ? Bi : Vi,
+                l = r ? Wr : Br;return o = i(n, t, l, e), a = i(t, n, l, Mr), u;
+        }function u(n) {
+            return o(n);
+        }var o, a;return u.invert = function (n) {
+            return a(n);
+        }, u.domain = function (t) {
+            return arguments.length ? (n = t.map(Number), i()) : n;
+        }, u.range = function (n) {
+            return arguments.length ? (t = n, i()) : t;
+        }, u.rangeRound = function (n) {
+            return u.range(n).interpolate(Ur);
+        }, u.clamp = function (n) {
+            return arguments.length ? (r = n, i()) : r;
+        }, u.interpolate = function (n) {
+            return arguments.length ? (e = n, i()) : e;
+        }, u.ticks = function (t) {
+            return Qi(n, t);
+        }, u.tickFormat = function (t, e) {
+            return nu(n, t, e);
+        }, u.nice = function (t) {
+            return Gi(n, t), i();
+        }, u.copy = function () {
+            return Wi(n, t, e, r);
+        }, i();
+    }function Ji(n, t) {
+        return ao.rebind(n, t, "range", "rangeRound", "interpolate", "clamp");
+    }function Gi(n, t) {
+        return Xi(n, $i(Ki(n, t)[2])), Xi(n, $i(Ki(n, t)[2])), n;
+    }function Ki(n, t) {
+        null == t && (t = 10);var e = Yi(n),
+            r = e[1] - e[0],
+            i = Math.pow(10, Math.floor(Math.log(r / t) / Math.LN10)),
+            u = t / r * i;return .15 >= u ? i *= 10 : .35 >= u ? i *= 5 : .75 >= u && (i *= 2), e[0] = Math.ceil(e[0] / i) * i, e[1] = Math.floor(e[1] / i) * i + .5 * i, e[2] = i, e;
+    }function Qi(n, t) {
+        return ao.range.apply(ao, Ki(n, t));
+    }function nu(n, t, e) {
+        var r = Ki(n, t);if (e) {
+            var i = ha.exec(e);if (i.shift(), "s" === i[8]) {
+                var u = ao.formatPrefix(Math.max(xo(r[0]), xo(r[1])));return i[7] || (i[7] = "." + tu(u.scale(r[2]))), i[8] = "f", e = ao.format(i.join("")), function (n) {
+                    return e(u.scale(n)) + u.symbol;
+                };
+            }i[7] || (i[7] = "." + eu(i[8], r)), e = i.join("");
+        } else e = ",." + tu(r[2]) + "f";return ao.format(e);
+    }function tu(n) {
+        return -Math.floor(Math.log(n) / Math.LN10 + .01);
+    }function eu(n, t) {
+        var e = tu(t[2]);return n in kl ? Math.abs(e - tu(Math.max(xo(t[0]), xo(t[1])))) + +("e" !== n) : e - 2 * ("%" === n);
+    }function ru(n, t, e, r) {
+        function i(n) {
+            return (e ? Math.log(0 > n ? 0 : n) : -Math.log(n > 0 ? 0 : -n)) / Math.log(t);
+        }function u(n) {
+            return e ? Math.pow(t, n) : -Math.pow(t, -n);
+        }function o(t) {
+            return n(i(t));
+        }return o.invert = function (t) {
+            return u(n.invert(t));
+        }, o.domain = function (t) {
+            return arguments.length ? (e = t[0] >= 0, n.domain((r = t.map(Number)).map(i)), o) : r;
+        }, o.base = function (e) {
+            return arguments.length ? (t = +e, n.domain(r.map(i)), o) : t;
+        }, o.nice = function () {
+            var t = Xi(r.map(i), e ? Math : El);return n.domain(t), r = t.map(u), o;
+        }, o.ticks = function () {
+            var n = Yi(r),
+                o = [],
+                a = n[0],
+                l = n[1],
+                c = Math.floor(i(a)),
+                f = Math.ceil(i(l)),
+                s = t % 1 ? 2 : t;if (isFinite(f - c)) {
+                if (e) {
+                    for (; f > c; c++) {
+                        for (var h = 1; s > h; h++) {
+                            o.push(u(c) * h);
+                        }
+                    }o.push(u(c));
+                } else for (o.push(u(c)); c++ < f;) {
+                    for (var h = s - 1; h > 0; h--) {
+                        o.push(u(c) * h);
+                    }
+                }for (c = 0; o[c] < a; c++) {}for (f = o.length; o[f - 1] > l; f--) {}o = o.slice(c, f);
+            }return o;
+        }, o.tickFormat = function (n, e) {
+            if (!arguments.length) return Nl;arguments.length < 2 ? e = Nl : "function" != typeof e && (e = ao.format(e));var r = Math.max(1, t * n / o.ticks().length);return function (n) {
+                var o = n / u(Math.round(i(n)));return t - .5 > o * t && (o *= t), r >= o ? e(n) : "";
+            };
+        }, o.copy = function () {
+            return ru(n.copy(), t, e, r);
+        }, Ji(o, n);
+    }function iu(n, t, e) {
+        function r(t) {
+            return n(i(t));
+        }var i = uu(t),
+            u = uu(1 / t);return r.invert = function (t) {
+            return u(n.invert(t));
+        }, r.domain = function (t) {
+            return arguments.length ? (n.domain((e = t.map(Number)).map(i)), r) : e;
+        }, r.ticks = function (n) {
+            return Qi(e, n);
+        }, r.tickFormat = function (n, t) {
+            return nu(e, n, t);
+        }, r.nice = function (n) {
+            return r.domain(Gi(e, n));
+        }, r.exponent = function (o) {
+            return arguments.length ? (i = uu(t = o), u = uu(1 / t), n.domain(e.map(i)), r) : t;
+        }, r.copy = function () {
+            return iu(n.copy(), t, e);
+        }, Ji(r, n);
+    }function uu(n) {
+        return function (t) {
+            return 0 > t ? -Math.pow(-t, n) : Math.pow(t, n);
+        };
+    }function ou(n, t) {
+        function e(e) {
+            return u[((i.get(e) || ("range" === t.t ? i.set(e, n.push(e)) : NaN)) - 1) % u.length];
+        }function r(t, e) {
+            return ao.range(n.length).map(function (n) {
+                return t + e * n;
+            });
+        }var i, u, o;return e.domain = function (r) {
+            if (!arguments.length) return n;n = [], i = new c();for (var u, o = -1, a = r.length; ++o < a;) {
+                i.has(u = r[o]) || i.set(u, n.push(u));
+            }return e[t.t].apply(e, t.a);
+        }, e.range = function (n) {
+            return arguments.length ? (u = n, o = 0, t = { t: "range", a: arguments }, e) : u;
+        }, e.rangePoints = function (i, a) {
+            arguments.length < 2 && (a = 0);var l = i[0],
+                c = i[1],
+                f = n.length < 2 ? (l = (l + c) / 2, 0) : (c - l) / (n.length - 1 + a);return u = r(l + f * a / 2, f), o = 0, t = { t: "rangePoints", a: arguments }, e;
+        }, e.rangeRoundPoints = function (i, a) {
+            arguments.length < 2 && (a = 0);var l = i[0],
+                c = i[1],
+                f = n.length < 2 ? (l = c = Math.round((l + c) / 2), 0) : (c - l) / (n.length - 1 + a) | 0;return u = r(l + Math.round(f * a / 2 + (c - l - (n.length - 1 + a) * f) / 2), f), o = 0, t = { t: "rangeRoundPoints", a: arguments }, e;
+        }, e.rangeBands = function (i, a, l) {
+            arguments.length < 2 && (a = 0), arguments.length < 3 && (l = a);var c = i[1] < i[0],
+                f = i[c - 0],
+                s = i[1 - c],
+                h = (s - f) / (n.length - a + 2 * l);return u = r(f + h * l, h), c && u.reverse(), o = h * (1 - a), t = { t: "rangeBands", a: arguments }, e;
+        }, e.rangeRoundBands = function (i, a, l) {
+            arguments.length < 2 && (a = 0), arguments.length < 3 && (l = a);var c = i[1] < i[0],
+                f = i[c - 0],
+                s = i[1 - c],
+                h = Math.floor((s - f) / (n.length - a + 2 * l));return u = r(f + Math.round((s - f - (n.length - a) * h) / 2), h), c && u.reverse(), o = Math.round(h * (1 - a)), t = { t: "rangeRoundBands", a: arguments }, e;
+        }, e.rangeBand = function () {
+            return o;
+        }, e.rangeExtent = function () {
+            return Yi(t.a[0]);
+        }, e.copy = function () {
+            return ou(n, t);
+        }, e.domain(n);
+    }function au(n, t) {
+        function u() {
+            var e = 0,
+                r = t.length;for (a = []; ++e < r;) {
+                a[e - 1] = ao.quantile(n, e / r);
+            }return o;
+        }function o(n) {
+            return isNaN(n = +n) ? void 0 : t[ao.bisect(a, n)];
+        }var a;return o.domain = function (t) {
+            return arguments.length ? (n = t.map(r).filter(i).sort(e), u()) : n;
+        }, o.range = function (n) {
+            return arguments.length ? (t = n, u()) : t;
+        }, o.quantiles = function () {
+            return a;
+        }, o.invertExtent = function (e) {
+            return e = t.indexOf(e), 0 > e ? [NaN, NaN] : [e > 0 ? a[e - 1] : n[0], e < a.length ? a[e] : n[n.length - 1]];
+        }, o.copy = function () {
+            return au(n, t);
+        }, u();
+    }function lu(n, t, e) {
+        function r(t) {
+            return e[Math.max(0, Math.min(o, Math.floor(u * (t - n))))];
+        }function i() {
+            return u = e.length / (t - n), o = e.length - 1, r;
+        }var u, o;return r.domain = function (e) {
+            return arguments.length ? (n = +e[0], t = +e[e.length - 1], i()) : [n, t];
+        }, r.range = function (n) {
+            return arguments.length ? (e = n, i()) : e;
+        }, r.invertExtent = function (t) {
+            return t = e.indexOf(t), t = 0 > t ? NaN : t / u + n, [t, t + 1 / u];
+        }, r.copy = function () {
+            return lu(n, t, e);
+        }, i();
+    }function cu(n, t) {
+        function e(e) {
+            return e >= e ? t[ao.bisect(n, e)] : void 0;
+        }return e.domain = function (t) {
+            return arguments.length ? (n = t, e) : n;
+        }, e.range = function (n) {
+            return arguments.length ? (t = n, e) : t;
+        }, e.invertExtent = function (e) {
+            return e = t.indexOf(e), [n[e - 1], n[e]];
+        }, e.copy = function () {
+            return cu(n, t);
+        }, e;
+    }function fu(n) {
+        function t(n) {
+            return +n;
+        }return t.invert = t, t.domain = t.range = function (e) {
+            return arguments.length ? (n = e.map(t), t) : n;
+        }, t.ticks = function (t) {
+            return Qi(n, t);
+        }, t.tickFormat = function (t, e) {
+            return nu(n, t, e);
+        }, t.copy = function () {
+            return fu(n);
+        }, t;
+    }function su() {
+        return 0;
+    }function hu(n) {
+        return n.innerRadius;
+    }function pu(n) {
+        return n.outerRadius;
+    }function gu(n) {
+        return n.startAngle;
+    }function vu(n) {
+        return n.endAngle;
+    }function du(n) {
+        return n && n.padAngle;
+    }function yu(n, t, e, r) {
+        return (n - e) * t - (t - r) * n > 0 ? 0 : 1;
+    }function mu(n, t, e, r, i) {
+        var u = n[0] - t[0],
+            o = n[1] - t[1],
+            a = (i ? r : -r) / Math.sqrt(u * u + o * o),
+            l = a * o,
+            c = -a * u,
+            f = n[0] + l,
+            s = n[1] + c,
+            h = t[0] + l,
+            p = t[1] + c,
+            g = (f + h) / 2,
+            v = (s + p) / 2,
+            d = h - f,
+            y = p - s,
+            m = d * d + y * y,
+            M = e - r,
+            x = f * p - h * s,
+            b = (0 > y ? -1 : 1) * Math.sqrt(Math.max(0, M * M * m - x * x)),
+            _ = (x * y - d * b) / m,
+            w = (-x * d - y * b) / m,
+            S = (x * y + d * b) / m,
+            k = (-x * d + y * b) / m,
+            N = _ - g,
+            E = w - v,
+            A = S - g,
+            C = k - v;return N * N + E * E > A * A + C * C && (_ = S, w = k), [[_ - l, w - c], [_ * e / M, w * e / M]];
+    }function Mu(n) {
+        function t(t) {
+            function o() {
+                c.push("M", u(n(f), a));
+            }for (var l, c = [], f = [], s = -1, h = t.length, p = En(e), g = En(r); ++s < h;) {
+                i.call(this, l = t[s], s) ? f.push([+p.call(this, l, s), +g.call(this, l, s)]) : f.length && (o(), f = []);
+            }return f.length && o(), c.length ? c.join("") : null;
+        }var e = Ce,
+            r = ze,
+            i = zt,
+            u = xu,
+            o = u.key,
+            a = .7;return t.x = function (n) {
+            return arguments.length ? (e = n, t) : e;
+        }, t.y = function (n) {
+            return arguments.length ? (r = n, t) : r;
+        }, t.defined = function (n) {
+            return arguments.length ? (i = n, t) : i;
+        }, t.interpolate = function (n) {
+            return arguments.length ? (o = "function" == typeof n ? u = n : (u = Tl.get(n) || xu).key, t) : o;
+        }, t.tension = function (n) {
+            return arguments.length ? (a = n, t) : a;
+        }, t;
+    }function xu(n) {
+        return n.length > 1 ? n.join("L") : n + "Z";
+    }function bu(n) {
+        return n.join("L") + "Z";
+    }function _u(n) {
+        for (var t = 0, e = n.length, r = n[0], i = [r[0], ",", r[1]]; ++t < e;) {
+            i.push("H", (r[0] + (r = n[t])[0]) / 2, "V", r[1]);
+        }return e > 1 && i.push("H", r[0]), i.join("");
+    }function wu(n) {
+        for (var t = 0, e = n.length, r = n[0], i = [r[0], ",", r[1]]; ++t < e;) {
+            i.push("V", (r = n[t])[1], "H", r[0]);
+        }return i.join("");
+    }function Su(n) {
+        for (var t = 0, e = n.length, r = n[0], i = [r[0], ",", r[1]]; ++t < e;) {
+            i.push("H", (r = n[t])[0], "V", r[1]);
+        }return i.join("");
+    }function ku(n, t) {
+        return n.length < 4 ? xu(n) : n[1] + Au(n.slice(1, -1), Cu(n, t));
+    }function Nu(n, t) {
+        return n.length < 3 ? bu(n) : n[0] + Au((n.push(n[0]), n), Cu([n[n.length - 2]].concat(n, [n[1]]), t));
+    }function Eu(n, t) {
+        return n.length < 3 ? xu(n) : n[0] + Au(n, Cu(n, t));
+    }function Au(n, t) {
+        if (t.length < 1 || n.length != t.length && n.length != t.length + 2) return xu(n);var e = n.length != t.length,
+            r = "",
+            i = n[0],
+            u = n[1],
+            o = t[0],
+            a = o,
+            l = 1;if (e && (r += "Q" + (u[0] - 2 * o[0] / 3) + "," + (u[1] - 2 * o[1] / 3) + "," + u[0] + "," + u[1], i = n[1], l = 2), t.length > 1) {
+            a = t[1], u = n[l], l++, r += "C" + (i[0] + o[0]) + "," + (i[1] + o[1]) + "," + (u[0] - a[0]) + "," + (u[1] - a[1]) + "," + u[0] + "," + u[1];for (var c = 2; c < t.length; c++, l++) {
+                u = n[l], a = t[c], r += "S" + (u[0] - a[0]) + "," + (u[1] - a[1]) + "," + u[0] + "," + u[1];
+            }
+        }if (e) {
+            var f = n[l];r += "Q" + (u[0] + 2 * a[0] / 3) + "," + (u[1] + 2 * a[1] / 3) + "," + f[0] + "," + f[1];
+        }return r;
+    }function Cu(n, t) {
+        for (var e, r = [], i = (1 - t) / 2, u = n[0], o = n[1], a = 1, l = n.length; ++a < l;) {
+            e = u, u = o, o = n[a], r.push([i * (o[0] - e[0]), i * (o[1] - e[1])]);
+        }return r;
+    }function zu(n) {
+        if (n.length < 3) return xu(n);var t = 1,
+            e = n.length,
+            r = n[0],
+            i = r[0],
+            u = r[1],
+            o = [i, i, i, (r = n[1])[0]],
+            a = [u, u, u, r[1]],
+            l = [i, ",", u, "L", Ru(Pl, o), ",", Ru(Pl, a)];for (n.push(n[e - 1]); ++t <= e;) {
+            r = n[t], o.shift(), o.push(r[0]), a.shift(), a.push(r[1]), Du(l, o, a);
+        }return n.pop(), l.push("L", r), l.join("");
+    }function Lu(n) {
+        if (n.length < 4) return xu(n);for (var t, e = [], r = -1, i = n.length, u = [0], o = [0]; ++r < 3;) {
+            t = n[r], u.push(t[0]), o.push(t[1]);
+        }for (e.push(Ru(Pl, u) + "," + Ru(Pl, o)), --r; ++r < i;) {
+            t = n[r], u.shift(), u.push(t[0]), o.shift(), o.push(t[1]), Du(e, u, o);
+        }return e.join("");
+    }function qu(n) {
+        for (var t, e, r = -1, i = n.length, u = i + 4, o = [], a = []; ++r < 4;) {
+            e = n[r % i], o.push(e[0]), a.push(e[1]);
+        }for (t = [Ru(Pl, o), ",", Ru(Pl, a)], --r; ++r < u;) {
+            e = n[r % i], o.shift(), o.push(e[0]), a.shift(), a.push(e[1]), Du(t, o, a);
+        }return t.join("");
+    }function Tu(n, t) {
+        var e = n.length - 1;if (e) for (var r, i, u = n[0][0], o = n[0][1], a = n[e][0] - u, l = n[e][1] - o, c = -1; ++c <= e;) {
+            r = n[c], i = c / e, r[0] = t * r[0] + (1 - t) * (u + i * a), r[1] = t * r[1] + (1 - t) * (o + i * l);
+        }return zu(n);
+    }function Ru(n, t) {
+        return n[0] * t[0] + n[1] * t[1] + n[2] * t[2] + n[3] * t[3];
+    }function Du(n, t, e) {
+        n.push("C", Ru(Rl, t), ",", Ru(Rl, e), ",", Ru(Dl, t), ",", Ru(Dl, e), ",", Ru(Pl, t), ",", Ru(Pl, e));
+    }function Pu(n, t) {
+        return (t[1] - n[1]) / (t[0] - n[0]);
+    }function Uu(n) {
+        for (var t = 0, e = n.length - 1, r = [], i = n[0], u = n[1], o = r[0] = Pu(i, u); ++t < e;) {
+            r[t] = (o + (o = Pu(i = u, u = n[t + 1]))) / 2;
+        }return r[t] = o, r;
+    }function ju(n) {
+        for (var t, e, r, i, u = [], o = Uu(n), a = -1, l = n.length - 1; ++a < l;) {
+            t = Pu(n[a], n[a + 1]), xo(t) < Uo ? o[a] = o[a + 1] = 0 : (e = o[a] / t, r = o[a + 1] / t, i = e * e + r * r, i > 9 && (i = 3 * t / Math.sqrt(i), o[a] = i * e, o[a + 1] = i * r));
+        }for (a = -1; ++a <= l;) {
+            i = (n[Math.min(l, a + 1)][0] - n[Math.max(0, a - 1)][0]) / (6 * (1 + o[a] * o[a])), u.push([i || 0, o[a] * i || 0]);
+        }return u;
+    }function Fu(n) {
+        return n.length < 3 ? xu(n) : n[0] + Au(n, ju(n));
+    }function Hu(n) {
+        for (var t, e, r, i = -1, u = n.length; ++i < u;) {
+            t = n[i], e = t[0], r = t[1] - Io, t[0] = e * Math.cos(r), t[1] = e * Math.sin(r);
+        }return n;
+    }function Ou(n) {
+        function t(t) {
+            function l() {
+                v.push("M", a(n(y), s), f, c(n(d.reverse()), s), "Z");
+            }for (var h, p, g, v = [], d = [], y = [], m = -1, M = t.length, x = En(e), b = En(i), _ = e === r ? function () {
+                return p;
+            } : En(r), w = i === u ? function () {
+                return g;
+            } : En(u); ++m < M;) {
+                o.call(this, h = t[m], m) ? (d.push([p = +x.call(this, h, m), g = +b.call(this, h, m)]), y.push([+_.call(this, h, m), +w.call(this, h, m)])) : d.length && (l(), d = [], y = []);
+            }return d.length && l(), v.length ? v.join("") : null;
+        }var e = Ce,
+            r = Ce,
+            i = 0,
+            u = ze,
+            o = zt,
+            a = xu,
+            l = a.key,
+            c = a,
+            f = "L",
+            s = .7;return t.x = function (n) {
+            return arguments.length ? (e = r = n, t) : r;
+        }, t.x0 = function (n) {
+            return arguments.length ? (e = n, t) : e;
+        }, t.x1 = function (n) {
+            return arguments.length ? (r = n, t) : r;
+        }, t.y = function (n) {
+            return arguments.length ? (i = u = n, t) : u;
+        }, t.y0 = function (n) {
+            return arguments.length ? (i = n, t) : i;
+        }, t.y1 = function (n) {
+            return arguments.length ? (u = n, t) : u;
+        }, t.defined = function (n) {
+            return arguments.length ? (o = n, t) : o;
+        }, t.interpolate = function (n) {
+            return arguments.length ? (l = "function" == typeof n ? a = n : (a = Tl.get(n) || xu).key, c = a.reverse || a, f = a.closed ? "M" : "L", t) : l;
+        }, t.tension = function (n) {
+            return arguments.length ? (s = n, t) : s;
+        }, t;
+    }function Iu(n) {
+        return n.radius;
+    }function Yu(n) {
+        return [n.x, n.y];
+    }function Zu(n) {
+        return function () {
+            var t = n.apply(this, arguments),
+                e = t[0],
+                r = t[1] - Io;return [e * Math.cos(r), e * Math.sin(r)];
+        };
+    }function Vu() {
+        return 64;
+    }function Xu() {
+        return "circle";
+    }function $u(n) {
+        var t = Math.sqrt(n / Fo);return "M0," + t + "A" + t + "," + t + " 0 1,1 0," + -t + "A" + t + "," + t + " 0 1,1 0," + t + "Z";
+    }function Bu(n) {
+        return function () {
+            var t, e, r;(t = this[n]) && (r = t[e = t.active]) && (r.timer.c = null, r.timer.t = NaN, --t.count ? delete t[e] : delete this[n], t.active += .5, r.event && r.event.interrupt.call(this, this.__data__, r.index));
+        };
+    }function Wu(n, t, e) {
+        return ko(n, Yl), n.namespace = t, n.id = e, n;
+    }function Ju(n, t, e, r) {
+        var i = n.id,
+            u = n.namespace;return Y(n, "function" == typeof e ? function (n, o, a) {
+            n[u][i].tween.set(t, r(e.call(n, n.__data__, o, a)));
+        } : (e = r(e), function (n) {
+            n[u][i].tween.set(t, e);
+        }));
+    }function Gu(n) {
+        return null == n && (n = ""), function () {
+            this.textContent = n;
+        };
+    }function Ku(n) {
+        return null == n ? "__transition__" : "__transition_" + n + "__";
+    }function Qu(n, t, e, r, i) {
+        function u(n) {
+            var t = v.delay;return f.t = t + l, n >= t ? o(n - t) : void (f.c = o);
+        }function o(e) {
+            var i = g.active,
+                u = g[i];u && (u.timer.c = null, u.timer.t = NaN, --g.count, delete g[i], u.event && u.event.interrupt.call(n, n.__data__, u.index));for (var o in g) {
+                if (r > +o) {
+                    var c = g[o];c.timer.c = null, c.timer.t = NaN, --g.count, delete g[o];
+                }
+            }f.c = a, qn(function () {
+                return f.c && a(e || 1) && (f.c = null, f.t = NaN), 1;
+            }, 0, l), g.active = r, v.event && v.event.start.call(n, n.__data__, t), p = [], v.tween.forEach(function (e, r) {
+                (r = r.call(n, n.__data__, t)) && p.push(r);
+            }), h = v.ease, s = v.duration;
+        }function a(i) {
+            for (var u = i / s, o = h(u), a = p.length; a > 0;) {
+                p[--a].call(n, o);
+            }return u >= 1 ? (v.event && v.event.end.call(n, n.__data__, t), --g.count ? delete g[r] : delete n[e], 1) : void 0;
+        }var l,
+            f,
+            s,
+            h,
+            p,
+            g = n[e] || (n[e] = { active: 0, count: 0 }),
+            v = g[r];v || (l = i.time, f = qn(u, 0, l), v = g[r] = { tween: new c(), time: l, timer: f, delay: i.delay, duration: i.duration, ease: i.ease, index: t }, i = null, ++g.count);
+    }function no(n, t, e) {
+        n.attr("transform", function (n) {
+            var r = t(n);return "translate(" + (isFinite(r) ? r : e(n)) + ",0)";
+        });
+    }function to(n, t, e) {
+        n.attr("transform", function (n) {
+            var r = t(n);return "translate(0," + (isFinite(r) ? r : e(n)) + ")";
+        });
+    }function eo(n) {
+        return n.toISOString();
+    }function ro(n, t, e) {
+        function r(t) {
+            return n(t);
+        }function i(n, e) {
+            var r = n[1] - n[0],
+                i = r / e,
+                u = ao.bisect(Kl, i);return u == Kl.length ? [t.year, Ki(n.map(function (n) {
+                return n / 31536e6;
+            }), e)[2]] : u ? t[i / Kl[u - 1] < Kl[u] / i ? u - 1 : u] : [tc, Ki(n, e)[2]];
+        }return r.invert = function (t) {
+            return io(n.invert(t));
+        }, r.domain = function (t) {
+            return arguments.length ? (n.domain(t), r) : n.domain().map(io);
+        }, r.nice = function (n, t) {
+            function e(e) {
+                return !isNaN(e) && !n.range(e, io(+e + 1), t).length;
+            }var u = r.domain(),
+                o = Yi(u),
+                a = null == n ? i(o, 10) : "number" == typeof n && i(o, n);return a && (n = a[0], t = a[1]), r.domain(Xi(u, t > 1 ? { floor: function floor(t) {
+                    for (; e(t = n.floor(t));) {
+                        t = io(t - 1);
+                    }return t;
+                }, ceil: function ceil(t) {
+                    for (; e(t = n.ceil(t));) {
+                        t = io(+t + 1);
+                    }return t;
+                } } : n));
+        }, r.ticks = function (n, t) {
+            var e = Yi(r.domain()),
+                u = null == n ? i(e, 10) : "number" == typeof n ? i(e, n) : !n.range && [{ range: n }, t];return u && (n = u[0], t = u[1]), n.range(e[0], io(+e[1] + 1), 1 > t ? 1 : t);
+        }, r.tickFormat = function () {
+            return e;
+        }, r.copy = function () {
+            return ro(n.copy(), t, e);
+        }, Ji(r, n);
+    }function io(n) {
+        return new Date(n);
+    }function uo(n) {
+        return JSON.parse(n.responseText);
+    }function oo(n) {
+        var t = fo.createRange();return t.selectNode(fo.body), t.createContextualFragment(n.responseText);
+    }var ao = { version: "3.5.17" },
+        lo = [].slice,
+        co = function co(n) {
+        return lo.call(n);
+    },
+        fo = this.document;if (fo) try {
+        co(fo.documentElement.childNodes)[0].nodeType;
+    } catch (so) {
+        co = function co(n) {
+            for (var t = n.length, e = new Array(t); t--;) {
+                e[t] = n[t];
+            }return e;
+        };
+    }if (Date.now || (Date.now = function () {
+        return +new Date();
+    }), fo) try {
+        fo.createElement("DIV").style.setProperty("opacity", 0, "");
+    } catch (ho) {
+        var po = this.Element.prototype,
+            go = po.setAttribute,
+            vo = po.setAttributeNS,
+            yo = this.CSSStyleDeclaration.prototype,
+            mo = yo.setProperty;po.setAttribute = function (n, t) {
+            go.call(this, n, t + "");
+        }, po.setAttributeNS = function (n, t, e) {
+            vo.call(this, n, t, e + "");
+        }, yo.setProperty = function (n, t, e) {
+            mo.call(this, n, t + "", e);
+        };
+    }ao.ascending = e, ao.descending = function (n, t) {
+        return n > t ? -1 : t > n ? 1 : t >= n ? 0 : NaN;
+    }, ao.min = function (n, t) {
+        var e,
+            r,
+            i = -1,
+            u = n.length;if (1 === arguments.length) {
+            for (; ++i < u;) {
+                if (null != (r = n[i]) && r >= r) {
+                    e = r;break;
+                }
+            }for (; ++i < u;) {
+                null != (r = n[i]) && e > r && (e = r);
+            }
+        } else {
+            for (; ++i < u;) {
+                if (null != (r = t.call(n, n[i], i)) && r >= r) {
+                    e = r;break;
+                }
+            }for (; ++i < u;) {
+                null != (r = t.call(n, n[i], i)) && e > r && (e = r);
+            }
+        }return e;
+    }, ao.max = function (n, t) {
+        var e,
+            r,
+            i = -1,
+            u = n.length;if (1 === arguments.length) {
+            for (; ++i < u;) {
+                if (null != (r = n[i]) && r >= r) {
+                    e = r;break;
+                }
+            }for (; ++i < u;) {
+                null != (r = n[i]) && r > e && (e = r);
+            }
+        } else {
+            for (; ++i < u;) {
+                if (null != (r = t.call(n, n[i], i)) && r >= r) {
+                    e = r;break;
+                }
+            }for (; ++i < u;) {
+                null != (r = t.call(n, n[i], i)) && r > e && (e = r);
+            }
+        }return e;
+    }, ao.extent = function (n, t) {
+        var e,
+            r,
+            i,
+            u = -1,
+            o = n.length;if (1 === arguments.length) {
+            for (; ++u < o;) {
+                if (null != (r = n[u]) && r >= r) {
+                    e = i = r;break;
+                }
+            }for (; ++u < o;) {
+                null != (r = n[u]) && (e > r && (e = r), r > i && (i = r));
+            }
+        } else {
+            for (; ++u < o;) {
+                if (null != (r = t.call(n, n[u], u)) && r >= r) {
+                    e = i = r;break;
+                }
+            }for (; ++u < o;) {
+                null != (r = t.call(n, n[u], u)) && (e > r && (e = r), r > i && (i = r));
+            }
+        }return [e, i];
+    }, ao.sum = function (n, t) {
+        var e,
+            r = 0,
+            u = n.length,
+            o = -1;if (1 === arguments.length) for (; ++o < u;) {
+            i(e = +n[o]) && (r += e);
+        } else for (; ++o < u;) {
+            i(e = +t.call(n, n[o], o)) && (r += e);
+        }return r;
+    }, ao.mean = function (n, t) {
+        var e,
+            u = 0,
+            o = n.length,
+            a = -1,
+            l = o;if (1 === arguments.length) for (; ++a < o;) {
+            i(e = r(n[a])) ? u += e : --l;
+        } else for (; ++a < o;) {
+            i(e = r(t.call(n, n[a], a))) ? u += e : --l;
+        }return l ? u / l : void 0;
+    }, ao.quantile = function (n, t) {
+        var e = (n.length - 1) * t + 1,
+            r = Math.floor(e),
+            i = +n[r - 1],
+            u = e - r;return u ? i + u * (n[r] - i) : i;
+    }, ao.median = function (n, t) {
+        var u,
+            o = [],
+            a = n.length,
+            l = -1;if (1 === arguments.length) for (; ++l < a;) {
+            i(u = r(n[l])) && o.push(u);
+        } else for (; ++l < a;) {
+            i(u = r(t.call(n, n[l], l))) && o.push(u);
+        }return o.length ? ao.quantile(o.sort(e), .5) : void 0;
+    }, ao.variance = function (n, t) {
+        var e,
+            u,
+            o = n.length,
+            a = 0,
+            l = 0,
+            c = -1,
+            f = 0;if (1 === arguments.length) for (; ++c < o;) {
+            i(e = r(n[c])) && (u = e - a, a += u / ++f, l += u * (e - a));
+        } else for (; ++c < o;) {
+            i(e = r(t.call(n, n[c], c))) && (u = e - a, a += u / ++f, l += u * (e - a));
+        }return f > 1 ? l / (f - 1) : void 0;
+    }, ao.deviation = function () {
+        var n = ao.variance.apply(this, arguments);return n ? Math.sqrt(n) : n;
+    };var Mo = u(e);ao.bisectLeft = Mo.left, ao.bisect = ao.bisectRight = Mo.right, ao.bisector = function (n) {
+        return u(1 === n.length ? function (t, r) {
+            return e(n(t), r);
+        } : n);
+    }, ao.shuffle = function (n, t, e) {
+        (u = arguments.length) < 3 && (e = n.length, 2 > u && (t = 0));for (var r, i, u = e - t; u;) {
+            i = Math.random() * u-- | 0, r = n[u + t], n[u + t] = n[i + t], n[i + t] = r;
+        }return n;
+    }, ao.permute = function (n, t) {
+        for (var e = t.length, r = new Array(e); e--;) {
+            r[e] = n[t[e]];
+        }return r;
+    }, ao.pairs = function (n) {
+        for (var t, e = 0, r = n.length - 1, i = n[0], u = new Array(0 > r ? 0 : r); r > e;) {
+            u[e] = [t = i, i = n[++e]];
+        }return u;
+    }, ao.transpose = function (n) {
+        if (!(i = n.length)) return [];for (var t = -1, e = ao.min(n, o), r = new Array(e); ++t < e;) {
+            for (var i, u = -1, a = r[t] = new Array(i); ++u < i;) {
+                a[u] = n[u][t];
+            }
+        }return r;
+    }, ao.zip = function () {
+        return ao.transpose(arguments);
+    }, ao.keys = function (n) {
+        var t = [];for (var e in n) {
+            t.push(e);
+        }return t;
+    }, ao.values = function (n) {
+        var t = [];for (var e in n) {
+            t.push(n[e]);
+        }return t;
+    }, ao.entries = function (n) {
+        var t = [];for (var e in n) {
+            t.push({ key: e, value: n[e] });
+        }return t;
+    }, ao.merge = function (n) {
+        for (var t, e, r, i = n.length, u = -1, o = 0; ++u < i;) {
+            o += n[u].length;
+        }for (e = new Array(o); --i >= 0;) {
+            for (r = n[i], t = r.length; --t >= 0;) {
+                e[--o] = r[t];
+            }
+        }return e;
+    };var xo = Math.abs;ao.range = function (n, t, e) {
+        if (arguments.length < 3 && (e = 1, arguments.length < 2 && (t = n, n = 0)), (t - n) / e === 1 / 0) throw new Error("infinite range");var r,
+            i = [],
+            u = a(xo(e)),
+            o = -1;if (n *= u, t *= u, e *= u, 0 > e) for (; (r = n + e * ++o) > t;) {
+            i.push(r / u);
+        } else for (; (r = n + e * ++o) < t;) {
+            i.push(r / u);
+        }return i;
+    }, ao.map = function (n, t) {
+        var e = new c();if (n instanceof c) n.forEach(function (n, t) {
+            e.set(n, t);
+        });else if (Array.isArray(n)) {
+            var r,
+                i = -1,
+                u = n.length;if (1 === arguments.length) for (; ++i < u;) {
+                e.set(i, n[i]);
+            } else for (; ++i < u;) {
+                e.set(t.call(n, r = n[i], i), r);
+            }
+        } else for (var o in n) {
+            e.set(o, n[o]);
+        }return e;
+    };var bo = "__proto__",
+        _o = "\x00";l(c, { has: h, get: function get(n) {
+            return this._[f(n)];
+        }, set: function set(n, t) {
+            return this._[f(n)] = t;
+        }, remove: p, keys: g, values: function values() {
+            var n = [];for (var t in this._) {
+                n.push(this._[t]);
+            }return n;
+        }, entries: function entries() {
+            var n = [];for (var t in this._) {
+                n.push({ key: s(t), value: this._[t] });
+            }return n;
+        }, size: v, empty: d, forEach: function forEach(n) {
+            for (var t in this._) {
+                n.call(this, s(t), this._[t]);
+            }
+        } }), ao.nest = function () {
+        function n(t, o, a) {
+            if (a >= u.length) return r ? r.call(i, o) : e ? o.sort(e) : o;for (var l, f, s, h, p = -1, g = o.length, v = u[a++], d = new c(); ++p < g;) {
+                (h = d.get(l = v(f = o[p]))) ? h.push(f) : d.set(l, [f]);
+            }return t ? (f = t(), s = function s(e, r) {
+                f.set(e, n(t, r, a));
+            }) : (f = {}, s = function s(e, r) {
+                f[e] = n(t, r, a);
+            }), d.forEach(s), f;
+        }function t(n, e) {
+            if (e >= u.length) return n;var r = [],
+                i = o[e++];return n.forEach(function (n, i) {
+                r.push({ key: n, values: t(i, e) });
+            }), i ? r.sort(function (n, t) {
+                return i(n.key, t.key);
+            }) : r;
+        }var e,
+            r,
+            i = {},
+            u = [],
+            o = [];return i.map = function (t, e) {
+            return n(e, t, 0);
+        }, i.entries = function (e) {
+            return t(n(ao.map, e, 0), 0);
+        }, i.key = function (n) {
+            return u.push(n), i;
+        }, i.sortKeys = function (n) {
+            return o[u.length - 1] = n, i;
+        }, i.sortValues = function (n) {
+            return e = n, i;
+        }, i.rollup = function (n) {
+            return r = n, i;
+        }, i;
+    }, ao.set = function (n) {
+        var t = new y();if (n) for (var e = 0, r = n.length; r > e; ++e) {
+            t.add(n[e]);
+        }return t;
+    }, l(y, { has: h, add: function add(n) {
+            return this._[f(n += "")] = !0, n;
+        }, remove: p, values: g, size: v, empty: d, forEach: function forEach(n) {
+            for (var t in this._) {
+                n.call(this, s(t));
+            }
+        } }), ao.behavior = {}, ao.rebind = function (n, t) {
+        for (var e, r = 1, i = arguments.length; ++r < i;) {
+            n[e = arguments[r]] = M(n, t, t[e]);
+        }return n;
+    };var wo = ["webkit", "ms", "moz", "Moz", "o", "O"];ao.dispatch = function () {
+        for (var n = new _(), t = -1, e = arguments.length; ++t < e;) {
+            n[arguments[t]] = w(n);
+        }return n;
+    }, _.prototype.on = function (n, t) {
+        var e = n.indexOf("."),
+            r = "";if (e >= 0 && (r = n.slice(e + 1), n = n.slice(0, e)), n) return arguments.length < 2 ? this[n].on(r) : this[n].on(r, t);if (2 === arguments.length) {
+            if (null == t) for (n in this) {
+                this.hasOwnProperty(n) && this[n].on(r, null);
+            }return this;
+        }
+    }, ao.event = null, ao.requote = function (n) {
+        return n.replace(So, "\\$&");
+    };var So = /[\\\^\$\*\+\?\|\[\]\(\)\.\{\}]/g,
+        ko = {}.__proto__ ? function (n, t) {
+        n.__proto__ = t;
+    } : function (n, t) {
+        for (var e in t) {
+            n[e] = t[e];
+        }
+    },
+        No = function No(n, t) {
+        return t.querySelector(n);
+    },
+        Eo = function Eo(n, t) {
+        return t.querySelectorAll(n);
+    },
+        _Ao = function Ao(n, t) {
+        var e = n.matches || n[x(n, "matchesSelector")];return (_Ao = function Ao(n, t) {
+            return e.call(n, t);
+        })(n, t);
+    };"function" == typeof Sizzle && (No = function No(n, t) {
+        return Sizzle(n, t)[0] || null;
+    }, Eo = Sizzle, _Ao = Sizzle.matchesSelector), ao.selection = function () {
+        return ao.select(fo.documentElement);
+    };var Co = ao.selection.prototype = [];Co.select = function (n) {
+        var t,
+            e,
+            r,
+            i,
+            u = [];n = A(n);for (var o = -1, a = this.length; ++o < a;) {
+            u.push(t = []), t.parentNode = (r = this[o]).parentNode;for (var l = -1, c = r.length; ++l < c;) {
+                (i = r[l]) ? (t.push(e = n.call(i, i.__data__, l, o)), e && "__data__" in i && (e.__data__ = i.__data__)) : t.push(null);
+            }
+        }return E(u);
+    }, Co.selectAll = function (n) {
+        var t,
+            e,
+            r = [];n = C(n);for (var i = -1, u = this.length; ++i < u;) {
+            for (var o = this[i], a = -1, l = o.length; ++a < l;) {
+                (e = o[a]) && (r.push(t = co(n.call(e, e.__data__, a, i))), t.parentNode = e);
+            }
+        }return E(r);
+    };var zo = "http://www.w3.org/1999/xhtml",
+        Lo = { svg: "http://www.w3.org/2000/svg", xhtml: zo, xlink: "http://www.w3.org/1999/xlink", xml: "http://www.w3.org/XML/1998/namespace", xmlns: "http://www.w3.org/2000/xmlns/" };ao.ns = { prefix: Lo, qualify: function qualify(n) {
+            var t = n.indexOf(":"),
+                e = n;return t >= 0 && "xmlns" !== (e = n.slice(0, t)) && (n = n.slice(t + 1)), Lo.hasOwnProperty(e) ? { space: Lo[e], local: n } : n;
+        } }, Co.attr = function (n, t) {
+        if (arguments.length < 2) {
+            if ("string" == typeof n) {
+                var e = this.node();return n = ao.ns.qualify(n), n.local ? e.getAttributeNS(n.space, n.local) : e.getAttribute(n);
+            }for (t in n) {
+                this.each(z(t, n[t]));
+            }return this;
+        }return this.each(z(n, t));
+    }, Co.classed = function (n, t) {
+        if (arguments.length < 2) {
+            if ("string" == typeof n) {
+                var e = this.node(),
+                    r = (n = T(n)).length,
+                    i = -1;if (t = e.classList) {
+                    for (; ++i < r;) {
+                        if (!t.contains(n[i])) return !1;
+                    }
+                } else for (t = e.getAttribute("class"); ++i < r;) {
+                    if (!q(n[i]).test(t)) return !1;
+                }return !0;
+            }for (t in n) {
+                this.each(R(t, n[t]));
+            }return this;
+        }return this.each(R(n, t));
+    }, Co.style = function (n, e, r) {
+        var i = arguments.length;if (3 > i) {
+            if ("string" != typeof n) {
+                2 > i && (e = "");for (r in n) {
+                    this.each(P(r, n[r], e));
+                }return this;
+            }if (2 > i) {
+                var u = this.node();return t(u).getComputedStyle(u, null).getPropertyValue(n);
+            }r = "";
+        }return this.each(P(n, e, r));
+    }, Co.property = function (n, t) {
+        if (arguments.length < 2) {
+            if ("string" == typeof n) return this.node()[n];for (t in n) {
+                this.each(U(t, n[t]));
+            }return this;
+        }return this.each(U(n, t));
+    }, Co.text = function (n) {
+        return arguments.length ? this.each("function" == typeof n ? function () {
+            var t = n.apply(this, arguments);this.textContent = null == t ? "" : t;
+        } : null == n ? function () {
+            this.textContent = "";
+        } : function () {
+            this.textContent = n;
+        }) : this.node().textContent;
+    }, Co.html = function (n) {
+        return arguments.length ? this.each("function" == typeof n ? function () {
+            var t = n.apply(this, arguments);this.innerHTML = null == t ? "" : t;
+        } : null == n ? function () {
+            this.innerHTML = "";
+        } : function () {
+            this.innerHTML = n;
+        }) : this.node().innerHTML;
+    }, Co.append = function (n) {
+        return n = j(n), this.select(function () {
+            return this.appendChild(n.apply(this, arguments));
+        });
+    }, Co.insert = function (n, t) {
+        return n = j(n), t = A(t), this.select(function () {
+            return this.insertBefore(n.apply(this, arguments), t.apply(this, arguments) || null);
+        });
+    }, Co.remove = function () {
+        return this.each(F);
+    }, Co.data = function (n, t) {
+        function e(n, e) {
+            var r,
+                i,
+                u,
+                o = n.length,
+                s = e.length,
+                h = Math.min(o, s),
+                p = new Array(s),
+                g = new Array(s),
+                v = new Array(o);if (t) {
+                var d,
+                    y = new c(),
+                    m = new Array(o);for (r = -1; ++r < o;) {
+                    (i = n[r]) && (y.has(d = t.call(i, i.__data__, r)) ? v[r] = i : y.set(d, i), m[r] = d);
+                }for (r = -1; ++r < s;) {
+                    (i = y.get(d = t.call(e, u = e[r], r))) ? i !== !0 && (p[r] = i, i.__data__ = u) : g[r] = H(u), y.set(d, !0);
+                }for (r = -1; ++r < o;) {
+                    r in m && y.get(m[r]) !== !0 && (v[r] = n[r]);
+                }
+            } else {
+                for (r = -1; ++r < h;) {
+                    i = n[r], u = e[r], i ? (i.__data__ = u, p[r] = i) : g[r] = H(u);
+                }for (; s > r; ++r) {
+                    g[r] = H(e[r]);
+                }for (; o > r; ++r) {
+                    v[r] = n[r];
+                }
+            }g.update = p, g.parentNode = p.parentNode = v.parentNode = n.parentNode, a.push(g), l.push(p), f.push(v);
+        }var r,
+            i,
+            u = -1,
+            o = this.length;if (!arguments.length) {
+            for (n = new Array(o = (r = this[0]).length); ++u < o;) {
+                (i = r[u]) && (n[u] = i.__data__);
+            }return n;
+        }var a = Z([]),
+            l = E([]),
+            f = E([]);if ("function" == typeof n) for (; ++u < o;) {
+            e(r = this[u], n.call(r, r.parentNode.__data__, u));
+        } else for (; ++u < o;) {
+            e(r = this[u], n);
+        }return l.enter = function () {
+            return a;
+        }, l.exit = function () {
+            return f;
+        }, l;
+    }, Co.datum = function (n) {
+        return arguments.length ? this.property("__data__", n) : this.property("__data__");
+    }, Co.filter = function (n) {
+        var t,
+            e,
+            r,
+            i = [];"function" != typeof n && (n = O(n));for (var u = 0, o = this.length; o > u; u++) {
+            i.push(t = []), t.parentNode = (e = this[u]).parentNode;for (var a = 0, l = e.length; l > a; a++) {
+                (r = e[a]) && n.call(r, r.__data__, a, u) && t.push(r);
+            }
+        }return E(i);
+    }, Co.order = function () {
+        for (var n = -1, t = this.length; ++n < t;) {
+            for (var e, r = this[n], i = r.length - 1, u = r[i]; --i >= 0;) {
+                (e = r[i]) && (u && u !== e.nextSibling && u.parentNode.insertBefore(e, u), u = e);
+            }
+        }return this;
+    }, Co.sort = function (n) {
+        n = I.apply(this, arguments);for (var t = -1, e = this.length; ++t < e;) {
+            this[t].sort(n);
+        }return this.order();
+    }, Co.each = function (n) {
+        return Y(this, function (t, e, r) {
+            n.call(t, t.__data__, e, r);
+        });
+    }, Co.call = function (n) {
+        var t = co(arguments);return n.apply(t[0] = this, t), this;
+    }, Co.empty = function () {
+        return !this.node();
+    }, Co.node = function () {
+        for (var n = 0, t = this.length; t > n; n++) {
+            for (var e = this[n], r = 0, i = e.length; i > r; r++) {
+                var u = e[r];if (u) return u;
+            }
+        }return null;
+    }, Co.size = function () {
+        var n = 0;return Y(this, function () {
+            ++n;
+        }), n;
+    };var qo = [];ao.selection.enter = Z, ao.selection.enter.prototype = qo, qo.append = Co.append, qo.empty = Co.empty, qo.node = Co.node, qo.call = Co.call, qo.size = Co.size, qo.select = function (n) {
+        for (var t, e, r, i, u, o = [], a = -1, l = this.length; ++a < l;) {
+            r = (i = this[a]).update, o.push(t = []), t.parentNode = i.parentNode;for (var c = -1, f = i.length; ++c < f;) {
+                (u = i[c]) ? (t.push(r[c] = e = n.call(i.parentNode, u.__data__, c, a)), e.__data__ = u.__data__) : t.push(null);
+            }
+        }return E(o);
+    }, qo.insert = function (n, t) {
+        return arguments.length < 2 && (t = V(this)), Co.insert.call(this, n, t);
+    }, ao.select = function (t) {
+        var e;return "string" == typeof t ? (e = [No(t, fo)], e.parentNode = fo.documentElement) : (e = [t], e.parentNode = n(t)), E([e]);
+    }, ao.selectAll = function (n) {
+        var t;return "string" == typeof n ? (t = co(Eo(n, fo)), t.parentNode = fo.documentElement) : (t = co(n), t.parentNode = null), E([t]);
+    }, Co.on = function (n, t, e) {
+        var r = arguments.length;if (3 > r) {
+            if ("string" != typeof n) {
+                2 > r && (t = !1);for (e in n) {
+                    this.each(X(e, n[e], t));
+                }return this;
+            }if (2 > r) return (r = this.node()["__on" + n]) && r._;e = !1;
+        }return this.each(X(n, t, e));
+    };var To = ao.map({ mouseenter: "mouseover", mouseleave: "mouseout" });fo && To.forEach(function (n) {
+        "on" + n in fo && To.remove(n);
+    });var Ro,
+        Do = 0;ao.mouse = function (n) {
+        return J(n, k());
+    };var Po = this.navigator && /WebKit/.test(this.navigator.userAgent) ? -1 : 0;ao.touch = function (n, t, e) {
+        if (arguments.length < 3 && (e = t, t = k().changedTouches), t) for (var r, i = 0, u = t.length; u > i; ++i) {
+            if ((r = t[i]).identifier === e) return J(n, r);
+        }
+    }, ao.behavior.drag = function () {
+        function n() {
+            this.on("mousedown.drag", u).on("touchstart.drag", o);
+        }function e(n, t, e, u, o) {
+            return function () {
+                function a() {
+                    var n,
+                        e,
+                        r = t(h, v);r && (n = r[0] - M[0], e = r[1] - M[1], g |= n | e, M = r, p({ type: "drag", x: r[0] + c[0], y: r[1] + c[1], dx: n, dy: e }));
+                }function l() {
+                    t(h, v) && (y.on(u + d, null).on(o + d, null), m(g), p({ type: "dragend" }));
+                }var c,
+                    f = this,
+                    s = ao.event.target.correspondingElement || ao.event.target,
+                    h = f.parentNode,
+                    p = r.of(f, arguments),
+                    g = 0,
+                    v = n(),
+                    d = ".drag" + (null == v ? "" : "-" + v),
+                    y = ao.select(e(s)).on(u + d, a).on(o + d, l),
+                    m = W(s),
+                    M = t(h, v);i ? (c = i.apply(f, arguments), c = [c.x - M[0], c.y - M[1]]) : c = [0, 0], p({ type: "dragstart" });
+            };
+        }var r = N(n, "drag", "dragstart", "dragend"),
+            i = null,
+            u = e(b, ao.mouse, t, "mousemove", "mouseup"),
+            o = e(G, ao.touch, m, "touchmove", "touchend");return n.origin = function (t) {
+            return arguments.length ? (i = t, n) : i;
+        }, ao.rebind(n, r, "on");
+    }, ao.touches = function (n, t) {
+        return arguments.length < 2 && (t = k().touches), t ? co(t).map(function (t) {
+            var e = J(n, t);return e.identifier = t.identifier, e;
+        }) : [];
+    };var Uo = 1e-6,
+        jo = Uo * Uo,
+        Fo = Math.PI,
+        Ho = 2 * Fo,
+        Oo = Ho - Uo,
+        Io = Fo / 2,
+        Yo = Fo / 180,
+        Zo = 180 / Fo,
+        Vo = Math.SQRT2,
+        Xo = 2,
+        $o = 4;ao.interpolateZoom = function (n, t) {
+        var e,
+            r,
+            i = n[0],
+            u = n[1],
+            o = n[2],
+            a = t[0],
+            l = t[1],
+            c = t[2],
+            f = a - i,
+            s = l - u,
+            h = f * f + s * s;if (jo > h) r = Math.log(c / o) / Vo, e = function e(n) {
+            return [i + n * f, u + n * s, o * Math.exp(Vo * n * r)];
+        };else {
+            var p = Math.sqrt(h),
+                g = (c * c - o * o + $o * h) / (2 * o * Xo * p),
+                v = (c * c - o * o - $o * h) / (2 * c * Xo * p),
+                d = Math.log(Math.sqrt(g * g + 1) - g),
+                y = Math.log(Math.sqrt(v * v + 1) - v);r = (y - d) / Vo, e = function e(n) {
+                var t = n * r,
+                    e = rn(d),
+                    a = o / (Xo * p) * (e * un(Vo * t + d) - en(d));return [i + a * f, u + a * s, o * e / rn(Vo * t + d)];
+            };
+        }return e.duration = 1e3 * r, e;
+    }, ao.behavior.zoom = function () {
+        function n(n) {
+            n.on(L, s).on(Wo + ".zoom", p).on("dblclick.zoom", g).on(R, h);
+        }function e(n) {
+            return [(n[0] - k.x) / k.k, (n[1] - k.y) / k.k];
+        }function r(n) {
+            return [n[0] * k.k + k.x, n[1] * k.k + k.y];
+        }function i(n) {
+            k.k = Math.max(A[0], Math.min(A[1], n));
+        }function u(n, t) {
+            t = r(t), k.x += n[0] - t[0], k.y += n[1] - t[1];
+        }function o(t, e, r, o) {
+            t.__chart__ = { x: k.x, y: k.y, k: k.k }, i(Math.pow(2, o)), u(d = e, r), t = ao.select(t), C > 0 && (t = t.transition().duration(C)), t.call(n.event);
+        }function a() {
+            b && b.domain(x.range().map(function (n) {
+                return (n - k.x) / k.k;
+            }).map(x.invert)), w && w.domain(_.range().map(function (n) {
+                return (n - k.y) / k.k;
+            }).map(_.invert));
+        }function l(n) {
+            z++ || n({ type: "zoomstart" });
+        }function c(n) {
+            a(), n({ type: "zoom", scale: k.k, translate: [k.x, k.y] });
+        }function f(n) {
+            --z || (n({ type: "zoomend" }), d = null);
+        }function s() {
+            function n() {
+                a = 1, u(ao.mouse(i), h), c(o);
+            }function r() {
+                s.on(q, null).on(T, null), p(a), f(o);
+            }var i = this,
+                o = D.of(i, arguments),
+                a = 0,
+                s = ao.select(t(i)).on(q, n).on(T, r),
+                h = e(ao.mouse(i)),
+                p = W(i);Il.call(i), l(o);
+        }function h() {
+            function n() {
+                var n = ao.touches(g);return p = k.k, n.forEach(function (n) {
+                    n.identifier in d && (d[n.identifier] = e(n));
+                }), n;
+            }function t() {
+                var t = ao.event.target;ao.select(t).on(x, r).on(b, a), _.push(t);for (var e = ao.event.changedTouches, i = 0, u = e.length; u > i; ++i) {
+                    d[e[i].identifier] = null;
+                }var l = n(),
+                    c = Date.now();if (1 === l.length) {
+                    if (500 > c - M) {
+                        var f = l[0];o(g, f, d[f.identifier], Math.floor(Math.log(k.k) / Math.LN2) + 1), S();
+                    }M = c;
+                } else if (l.length > 1) {
+                    var f = l[0],
+                        s = l[1],
+                        h = f[0] - s[0],
+                        p = f[1] - s[1];y = h * h + p * p;
+                }
+            }function r() {
+                var n,
+                    t,
+                    e,
+                    r,
+                    o = ao.touches(g);Il.call(g);for (var a = 0, l = o.length; l > a; ++a, r = null) {
+                    if (e = o[a], r = d[e.identifier]) {
+                        if (t) break;n = e, t = r;
+                    }
+                }if (r) {
+                    var f = (f = e[0] - n[0]) * f + (f = e[1] - n[1]) * f,
+                        s = y && Math.sqrt(f / y);n = [(n[0] + e[0]) / 2, (n[1] + e[1]) / 2], t = [(t[0] + r[0]) / 2, (t[1] + r[1]) / 2], i(s * p);
+                }M = null, u(n, t), c(v);
+            }function a() {
+                if (ao.event.touches.length) {
+                    for (var t = ao.event.changedTouches, e = 0, r = t.length; r > e; ++e) {
+                        delete d[t[e].identifier];
+                    }for (var i in d) {
+                        return void n();
+                    }
+                }ao.selectAll(_).on(m, null), w.on(L, s).on(R, h), N(), f(v);
+            }var p,
+                g = this,
+                v = D.of(g, arguments),
+                d = {},
+                y = 0,
+                m = ".zoom-" + ao.event.changedTouches[0].identifier,
+                x = "touchmove" + m,
+                b = "touchend" + m,
+                _ = [],
+                w = ao.select(g),
+                N = W(g);t(), l(v), w.on(L, null).on(R, t);
+        }function p() {
+            var n = D.of(this, arguments);m ? clearTimeout(m) : (Il.call(this), v = e(d = y || ao.mouse(this)), l(n)), m = setTimeout(function () {
+                m = null, f(n);
+            }, 50), S(), i(Math.pow(2, .002 * Bo()) * k.k), u(d, v), c(n);
+        }function g() {
+            var n = ao.mouse(this),
+                t = Math.log(k.k) / Math.LN2;o(this, n, e(n), ao.event.shiftKey ? Math.ceil(t) - 1 : Math.floor(t) + 1);
+        }var v,
+            d,
+            y,
+            m,
+            M,
+            x,
+            b,
+            _,
+            w,
+            k = { x: 0, y: 0, k: 1 },
+            E = [960, 500],
+            A = Jo,
+            C = 250,
+            z = 0,
+            L = "mousedown.zoom",
+            q = "mousemove.zoom",
+            T = "mouseup.zoom",
+            R = "touchstart.zoom",
+            D = N(n, "zoomstart", "zoom", "zoomend");return Wo || (Wo = "onwheel" in fo ? (Bo = function Bo() {
+            return -ao.event.deltaY * (ao.event.deltaMode ? 120 : 1);
+        }, "wheel") : "onmousewheel" in fo ? (Bo = function Bo() {
+            return ao.event.wheelDelta;
+        }, "mousewheel") : (Bo = function Bo() {
+            return -ao.event.detail;
+        }, "MozMousePixelScroll")), n.event = function (n) {
+            n.each(function () {
+                var n = D.of(this, arguments),
+                    t = k;Hl ? ao.select(this).transition().each("start.zoom", function () {
+                    k = this.__chart__ || { x: 0, y: 0, k: 1 }, l(n);
+                }).tween("zoom:zoom", function () {
+                    var e = E[0],
+                        r = E[1],
+                        i = d ? d[0] : e / 2,
+                        u = d ? d[1] : r / 2,
+                        o = ao.interpolateZoom([(i - k.x) / k.k, (u - k.y) / k.k, e / k.k], [(i - t.x) / t.k, (u - t.y) / t.k, e / t.k]);return function (t) {
+                        var r = o(t),
+                            a = e / r[2];this.__chart__ = k = { x: i - r[0] * a, y: u - r[1] * a, k: a }, c(n);
+                    };
+                }).each("interrupt.zoom", function () {
+                    f(n);
+                }).each("end.zoom", function () {
+                    f(n);
+                }) : (this.__chart__ = k, l(n), c(n), f(n));
+            });
+        }, n.translate = function (t) {
+            return arguments.length ? (k = { x: +t[0], y: +t[1], k: k.k }, a(), n) : [k.x, k.y];
+        }, n.scale = function (t) {
+            return arguments.length ? (k = { x: k.x, y: k.y, k: null }, i(+t), a(), n) : k.k;
+        }, n.scaleExtent = function (t) {
+            return arguments.length ? (A = null == t ? Jo : [+t[0], +t[1]], n) : A;
+        }, n.center = function (t) {
+            return arguments.length ? (y = t && [+t[0], +t[1]], n) : y;
+        }, n.size = function (t) {
+            return arguments.length ? (E = t && [+t[0], +t[1]], n) : E;
+        }, n.duration = function (t) {
+            return arguments.length ? (C = +t, n) : C;
+        }, n.x = function (t) {
+            return arguments.length ? (b = t, x = t.copy(), k = { x: 0, y: 0, k: 1 }, n) : b;
+        }, n.y = function (t) {
+            return arguments.length ? (w = t, _ = t.copy(), k = { x: 0, y: 0, k: 1 }, n) : w;
+        }, ao.rebind(n, D, "on");
+    };var Bo,
+        Wo,
+        Jo = [0, 1 / 0];ao.color = an, an.prototype.toString = function () {
+        return this.rgb() + "";
+    }, ao.hsl = ln;var Go = ln.prototype = new an();Go.brighter = function (n) {
+        return n = Math.pow(.7, arguments.length ? n : 1), new ln(this.h, this.s, this.l / n);
+    }, Go.darker = function (n) {
+        return n = Math.pow(.7, arguments.length ? n : 1), new ln(this.h, this.s, n * this.l);
+    }, Go.rgb = function () {
+        return cn(this.h, this.s, this.l);
+    }, ao.hcl = fn;var Ko = fn.prototype = new an();Ko.brighter = function (n) {
+        return new fn(this.h, this.c, Math.min(100, this.l + Qo * (arguments.length ? n : 1)));
+    }, Ko.darker = function (n) {
+        return new fn(this.h, this.c, Math.max(0, this.l - Qo * (arguments.length ? n : 1)));
+    }, Ko.rgb = function () {
+        return sn(this.h, this.c, this.l).rgb();
+    }, ao.lab = hn;var Qo = 18,
+        na = .95047,
+        ta = 1,
+        ea = 1.08883,
+        ra = hn.prototype = new an();ra.brighter = function (n) {
+        return new hn(Math.min(100, this.l + Qo * (arguments.length ? n : 1)), this.a, this.b);
+    }, ra.darker = function (n) {
+        return new hn(Math.max(0, this.l - Qo * (arguments.length ? n : 1)), this.a, this.b);
+    }, ra.rgb = function () {
+        return pn(this.l, this.a, this.b);
+    }, ao.rgb = mn;var ia = mn.prototype = new an();ia.brighter = function (n) {
+        n = Math.pow(.7, arguments.length ? n : 1);var t = this.r,
+            e = this.g,
+            r = this.b,
+            i = 30;return t || e || r ? (t && i > t && (t = i), e && i > e && (e = i), r && i > r && (r = i), new mn(Math.min(255, t / n), Math.min(255, e / n), Math.min(255, r / n))) : new mn(i, i, i);
+    }, ia.darker = function (n) {
+        return n = Math.pow(.7, arguments.length ? n : 1), new mn(n * this.r, n * this.g, n * this.b);
+    }, ia.hsl = function () {
+        return wn(this.r, this.g, this.b);
+    }, ia.toString = function () {
+        return "#" + bn(this.r) + bn(this.g) + bn(this.b);
+    };var ua = ao.map({ aliceblue: 15792383, antiquewhite: 16444375, aqua: 65535, aquamarine: 8388564, azure: 15794175, beige: 16119260, bisque: 16770244, black: 0, blanchedalmond: 16772045, blue: 255, blueviolet: 9055202, brown: 10824234, burlywood: 14596231, cadetblue: 6266528, chartreuse: 8388352, chocolate: 13789470, coral: 16744272, cornflowerblue: 6591981, cornsilk: 16775388, crimson: 14423100, cyan: 65535, darkblue: 139, darkcyan: 35723, darkgoldenrod: 12092939, darkgray: 11119017, darkgreen: 25600, darkgrey: 11119017, darkkhaki: 12433259, darkmagenta: 9109643, darkolivegreen: 5597999, darkorange: 16747520, darkorchid: 10040012, darkred: 9109504, darksalmon: 15308410, darkseagreen: 9419919, darkslateblue: 4734347, darkslategray: 3100495, darkslategrey: 3100495, darkturquoise: 52945, darkviolet: 9699539, deeppink: 16716947, deepskyblue: 49151, dimgray: 6908265, dimgrey: 6908265, dodgerblue: 2003199, firebrick: 11674146, floralwhite: 16775920, forestgreen: 2263842, fuchsia: 16711935, gainsboro: 14474460, ghostwhite: 16316671, gold: 16766720, goldenrod: 14329120, gray: 8421504, green: 32768, greenyellow: 11403055, grey: 8421504, honeydew: 15794160, hotpink: 16738740, indianred: 13458524, indigo: 4915330, ivory: 16777200, khaki: 15787660, lavender: 15132410, lavenderblush: 16773365, lawngreen: 8190976, lemonchiffon: 16775885, lightblue: 11393254, lightcoral: 15761536, lightcyan: 14745599, lightgoldenrodyellow: 16448210, lightgray: 13882323, lightgreen: 9498256, lightgrey: 13882323, lightpink: 16758465, lightsalmon: 16752762, lightseagreen: 2142890, lightskyblue: 8900346, lightslategray: 7833753, lightslategrey: 7833753, lightsteelblue: 11584734, lightyellow: 16777184, lime: 65280, limegreen: 3329330, linen: 16445670, magenta: 16711935, maroon: 8388608, mediumaquamarine: 6737322, mediumblue: 205, mediumorchid: 12211667, mediumpurple: 9662683, mediumseagreen: 3978097, mediumslateblue: 8087790, mediumspringgreen: 64154, mediumturquoise: 4772300, mediumvioletred: 13047173, midnightblue: 1644912, mintcream: 16121850, mistyrose: 16770273, moccasin: 16770229, navajowhite: 16768685, navy: 128, oldlace: 16643558, olive: 8421376, olivedrab: 7048739, orange: 16753920, orangered: 16729344, orchid: 14315734, palegoldenrod: 15657130, palegreen: 10025880, paleturquoise: 11529966, palevioletred: 14381203, papayawhip: 16773077, peachpuff: 16767673, peru: 13468991, pink: 16761035, plum: 14524637, powderblue: 11591910, purple: 8388736, rebeccapurple: 6697881, red: 16711680, rosybrown: 12357519, royalblue: 4286945, saddlebrown: 9127187, salmon: 16416882, sandybrown: 16032864, seagreen: 3050327, seashell: 16774638, sienna: 10506797, silver: 12632256, skyblue: 8900331, slateblue: 6970061, slategray: 7372944, slategrey: 7372944, snow: 16775930, springgreen: 65407, steelblue: 4620980, tan: 13808780, teal: 32896, thistle: 14204888, tomato: 16737095, turquoise: 4251856, violet: 15631086, wheat: 16113331, white: 16777215, whitesmoke: 16119285, yellow: 16776960, yellowgreen: 10145074 });ua.forEach(function (n, t) {
+        ua.set(n, Mn(t));
+    }), ao.functor = En, ao.xhr = An(m), ao.dsv = function (n, t) {
+        function e(n, e, u) {
+            arguments.length < 3 && (u = e, e = null);var o = Cn(n, t, null == e ? r : i(e), u);return o.row = function (n) {
+                return arguments.length ? o.response(null == (e = n) ? r : i(n)) : e;
+            }, o;
+        }function r(n) {
+            return e.parse(n.responseText);
+        }function i(n) {
+            return function (t) {
+                return e.parse(t.responseText, n);
+            };
+        }function u(t) {
+            return t.map(o).join(n);
+        }function o(n) {
+            return a.test(n) ? '"' + n.replace(/\"/g, '""') + '"' : n;
+        }var a = new RegExp('["' + n + "\n]"),
+            l = n.charCodeAt(0);return e.parse = function (n, t) {
+            var r;return e.parseRows(n, function (n, e) {
+                if (r) return r(n, e - 1);var i = new Function("d", "return {" + n.map(function (n, t) {
+                    return JSON.stringify(n) + ": d[" + t + "]";
+                }).join(",") + "}");r = t ? function (n, e) {
+                    return t(i(n), e);
+                } : i;
+            });
+        }, e.parseRows = function (n, t) {
+            function e() {
+                if (f >= c) return o;if (i) return i = !1, u;var t = f;if (34 === n.charCodeAt(t)) {
+                    for (var e = t; e++ < c;) {
+                        if (34 === n.charCodeAt(e)) {
+                            if (34 !== n.charCodeAt(e + 1)) break;++e;
+                        }
+                    }f = e + 2;var r = n.charCodeAt(e + 1);return 13 === r ? (i = !0, 10 === n.charCodeAt(e + 2) && ++f) : 10 === r && (i = !0), n.slice(t + 1, e).replace(/""/g, '"');
+                }for (; c > f;) {
+                    var r = n.charCodeAt(f++),
+                        a = 1;if (10 === r) i = !0;else if (13 === r) i = !0, 10 === n.charCodeAt(f) && (++f, ++a);else if (r !== l) continue;return n.slice(t, f - a);
+                }return n.slice(t);
+            }for (var r, i, u = {}, o = {}, a = [], c = n.length, f = 0, s = 0; (r = e()) !== o;) {
+                for (var h = []; r !== u && r !== o;) {
+                    h.push(r), r = e();
+                }t && null == (h = t(h, s++)) || a.push(h);
+            }return a;
+        }, e.format = function (t) {
+            if (Array.isArray(t[0])) return e.formatRows(t);var r = new y(),
+                i = [];return t.forEach(function (n) {
+                for (var t in n) {
+                    r.has(t) || i.push(r.add(t));
+                }
+            }), [i.map(o).join(n)].concat(t.map(function (t) {
+                return i.map(function (n) {
+                    return o(t[n]);
+                }).join(n);
+            })).join("\n");
+        }, e.formatRows = function (n) {
+            return n.map(u).join("\n");
+        }, e;
+    }, ao.csv = ao.dsv(",", "text/csv"), ao.tsv = ao.dsv("	", "text/tab-separated-values");var oa,
+        aa,
+        la,
+        ca,
+        fa = this[x(this, "requestAnimationFrame")] || function (n) {
+        setTimeout(n, 17);
+    };ao.timer = function () {
+        qn.apply(this, arguments);
+    }, ao.timer.flush = function () {
+        Rn(), Dn();
+    }, ao.round = function (n, t) {
+        return t ? Math.round(n * (t = Math.pow(10, t))) / t : Math.round(n);
+    };var sa = ["y", "z", "a", "f", "p", "n", "\xb5", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y"].map(Un);ao.formatPrefix = function (n, t) {
+        var e = 0;return (n = +n) && (0 > n && (n *= -1), t && (n = ao.round(n, Pn(n, t))), e = 1 + Math.floor(1e-12 + Math.log(n) / Math.LN10), e = Math.max(-24, Math.min(24, 3 * Math.floor((e - 1) / 3)))), sa[8 + e / 3];
+    };var ha = /(?:([^{])?([<>=^]))?([+\- ])?([$#])?(0)?(\d+)?(,)?(\.-?\d+)?([a-z%])?/i,
+        pa = ao.map({ b: function b(n) {
+            return n.toString(2);
+        }, c: function c(n) {
+            return String.fromCharCode(n);
+        }, o: function o(n) {
+            return n.toString(8);
+        }, x: function x(n) {
+            return n.toString(16);
+        }, X: function X(n) {
+            return n.toString(16).toUpperCase();
+        }, g: function g(n, t) {
+            return n.toPrecision(t);
+        }, e: function e(n, t) {
+            return n.toExponential(t);
+        }, f: function f(n, t) {
+            return n.toFixed(t);
+        }, r: function r(n, t) {
+            return (n = ao.round(n, Pn(n, t))).toFixed(Math.max(0, Math.min(20, Pn(n * (1 + 1e-15), t))));
+        } }),
+        ga = ao.time = {},
+        va = Date;Hn.prototype = { getDate: function getDate() {
+            return this._.getUTCDate();
+        }, getDay: function getDay() {
+            return this._.getUTCDay();
+        }, getFullYear: function getFullYear() {
+            return this._.getUTCFullYear();
+        }, getHours: function getHours() {
+            return this._.getUTCHours();
+        }, getMilliseconds: function getMilliseconds() {
+            return this._.getUTCMilliseconds();
+        }, getMinutes: function getMinutes() {
+            return this._.getUTCMinutes();
+        }, getMonth: function getMonth() {
+            return this._.getUTCMonth();
+        }, getSeconds: function getSeconds() {
+            return this._.getUTCSeconds();
+        }, getTime: function getTime() {
+            return this._.getTime();
+        }, getTimezoneOffset: function getTimezoneOffset() {
+            return 0;
+        }, valueOf: function valueOf() {
+            return this._.valueOf();
+        }, setDate: function setDate() {
+            da.setUTCDate.apply(this._, arguments);
+        }, setDay: function setDay() {
+            da.setUTCDay.apply(this._, arguments);
+        }, setFullYear: function setFullYear() {
+            da.setUTCFullYear.apply(this._, arguments);
+        }, setHours: function setHours() {
+            da.setUTCHours.apply(this._, arguments);
+        }, setMilliseconds: function setMilliseconds() {
+            da.setUTCMilliseconds.apply(this._, arguments);
+        }, setMinutes: function setMinutes() {
+            da.setUTCMinutes.apply(this._, arguments);
+        }, setMonth: function setMonth() {
+            da.setUTCMonth.apply(this._, arguments);
+        }, setSeconds: function setSeconds() {
+            da.setUTCSeconds.apply(this._, arguments);
+        }, setTime: function setTime() {
+            da.setTime.apply(this._, arguments);
+        } };var da = Date.prototype;ga.year = On(function (n) {
+        return n = ga.day(n), n.setMonth(0, 1), n;
+    }, function (n, t) {
+        n.setFullYear(n.getFullYear() + t);
+    }, function (n) {
+        return n.getFullYear();
+    }), ga.years = ga.year.range, ga.years.utc = ga.year.utc.range, ga.day = On(function (n) {
+        var t = new va(2e3, 0);return t.setFullYear(n.getFullYear(), n.getMonth(), n.getDate()), t;
+    }, function (n, t) {
+        n.setDate(n.getDate() + t);
+    }, function (n) {
+        return n.getDate() - 1;
+    }), ga.days = ga.day.range, ga.days.utc = ga.day.utc.range, ga.dayOfYear = function (n) {
+        var t = ga.year(n);return Math.floor((n - t - 6e4 * (n.getTimezoneOffset() - t.getTimezoneOffset())) / 864e5);
+    }, ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"].forEach(function (n, t) {
+        t = 7 - t;var e = ga[n] = On(function (n) {
+            return (n = ga.day(n)).setDate(n.getDate() - (n.getDay() + t) % 7), n;
+        }, function (n, t) {
+            n.setDate(n.getDate() + 7 * Math.floor(t));
+        }, function (n) {
+            var e = ga.year(n).getDay();return Math.floor((ga.dayOfYear(n) + (e + t) % 7) / 7) - (e !== t);
+        });ga[n + "s"] = e.range, ga[n + "s"].utc = e.utc.range, ga[n + "OfYear"] = function (n) {
+            var e = ga.year(n).getDay();return Math.floor((ga.dayOfYear(n) + (e + t) % 7) / 7);
+        };
+    }), ga.week = ga.sunday, ga.weeks = ga.sunday.range, ga.weeks.utc = ga.sunday.utc.range, ga.weekOfYear = ga.sundayOfYear;var ya = { "-": "", _: " ", 0: "0" },
+        ma = /^\s*\d+/,
+        Ma = /^%/;ao.locale = function (n) {
+        return { numberFormat: jn(n), timeFormat: Yn(n) };
+    };var xa = ao.locale({ decimal: ".", thousands: ",", grouping: [3], currency: ["$", ""], dateTime: "%a %b %e %X %Y", date: "%m/%d/%Y", time: "%H:%M:%S", periods: ["AM", "PM"], days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] });ao.format = xa.numberFormat, ao.geo = {}, ft.prototype = { s: 0, t: 0, add: function add(n) {
+            st(n, this.t, ba), st(ba.s, this.s, this), this.s ? this.t += ba.t : this.s = ba.t;
+        }, reset: function reset() {
+            this.s = this.t = 0;
+        }, valueOf: function valueOf() {
+            return this.s;
+        } };var ba = new ft();ao.geo.stream = function (n, t) {
+        n && _a.hasOwnProperty(n.type) ? _a[n.type](n, t) : ht(n, t);
+    };var _a = { Feature: function Feature(n, t) {
+            ht(n.geometry, t);
+        }, FeatureCollection: function FeatureCollection(n, t) {
+            for (var e = n.features, r = -1, i = e.length; ++r < i;) {
+                ht(e[r].geometry, t);
+            }
+        } },
+        wa = { Sphere: function Sphere(n, t) {
+            t.sphere();
+        }, Point: function Point(n, t) {
+            n = n.coordinates, t.point(n[0], n[1], n[2]);
+        }, MultiPoint: function MultiPoint(n, t) {
+            for (var e = n.coordinates, r = -1, i = e.length; ++r < i;) {
+                n = e[r], t.point(n[0], n[1], n[2]);
+            }
+        }, LineString: function LineString(n, t) {
+            pt(n.coordinates, t, 0);
+        }, MultiLineString: function MultiLineString(n, t) {
+            for (var e = n.coordinates, r = -1, i = e.length; ++r < i;) {
+                pt(e[r], t, 0);
+            }
+        }, Polygon: function Polygon(n, t) {
+            gt(n.coordinates, t);
+        }, MultiPolygon: function MultiPolygon(n, t) {
+            for (var e = n.coordinates, r = -1, i = e.length; ++r < i;) {
+                gt(e[r], t);
+            }
+        }, GeometryCollection: function GeometryCollection(n, t) {
+            for (var e = n.geometries, r = -1, i = e.length; ++r < i;) {
+                ht(e[r], t);
+            }
+        } };ao.geo.area = function (n) {
+        return Sa = 0, ao.geo.stream(n, Na), Sa;
+    };var Sa,
+        ka = new ft(),
+        Na = { sphere: function sphere() {
+            Sa += 4 * Fo;
+        }, point: b, lineStart: b, lineEnd: b, polygonStart: function polygonStart() {
+            ka.reset(), Na.lineStart = vt;
+        }, polygonEnd: function polygonEnd() {
+            var n = 2 * ka;Sa += 0 > n ? 4 * Fo + n : n, Na.lineStart = Na.lineEnd = Na.point = b;
+        } };ao.geo.bounds = function () {
+        function n(n, t) {
+            M.push(x = [f = n, h = n]), s > t && (s = t), t > p && (p = t);
+        }function t(t, e) {
+            var r = dt([t * Yo, e * Yo]);if (y) {
+                var i = mt(y, r),
+                    u = [i[1], -i[0], 0],
+                    o = mt(u, i);bt(o), o = _t(o);var l = t - g,
+                    c = l > 0 ? 1 : -1,
+                    v = o[0] * Zo * c,
+                    d = xo(l) > 180;if (d ^ (v > c * g && c * t > v)) {
+                    var m = o[1] * Zo;m > p && (p = m);
+                } else if (v = (v + 360) % 360 - 180, d ^ (v > c * g && c * t > v)) {
+                    var m = -o[1] * Zo;s > m && (s = m);
+                } else s > e && (s = e), e > p && (p = e);d ? g > t ? a(f, t) > a(f, h) && (h = t) : a(t, h) > a(f, h) && (f = t) : h >= f ? (f > t && (f = t), t > h && (h = t)) : t > g ? a(f, t) > a(f, h) && (h = t) : a(t, h) > a(f, h) && (f = t);
+            } else n(t, e);y = r, g = t;
+        }function e() {
+            b.point = t;
+        }function r() {
+            x[0] = f, x[1] = h, b.point = n, y = null;
+        }function i(n, e) {
+            if (y) {
+                var r = n - g;m += xo(r) > 180 ? r + (r > 0 ? 360 : -360) : r;
+            } else v = n, d = e;Na.point(n, e), t(n, e);
+        }function u() {
+            Na.lineStart();
+        }function o() {
+            i(v, d), Na.lineEnd(), xo(m) > Uo && (f = -(h = 180)), x[0] = f, x[1] = h, y = null;
+        }function a(n, t) {
+            return (t -= n) < 0 ? t + 360 : t;
+        }function l(n, t) {
+            return n[0] - t[0];
+        }function c(n, t) {
+            return t[0] <= t[1] ? t[0] <= n && n <= t[1] : n < t[0] || t[1] < n;
+        }var f,
+            s,
+            h,
+            p,
+            g,
+            v,
+            d,
+            y,
+            m,
+            M,
+            x,
+            b = { point: n, lineStart: e, lineEnd: r, polygonStart: function polygonStart() {
+                b.point = i, b.lineStart = u, b.lineEnd = o, m = 0, Na.polygonStart();
+            }, polygonEnd: function polygonEnd() {
+                Na.polygonEnd(), b.point = n, b.lineStart = e, b.lineEnd = r, 0 > ka ? (f = -(h = 180), s = -(p = 90)) : m > Uo ? p = 90 : -Uo > m && (s = -90), x[0] = f, x[1] = h;
+            } };return function (n) {
+            p = h = -(f = s = 1 / 0), M = [], ao.geo.stream(n, b);var t = M.length;if (t) {
+                M.sort(l);for (var e, r = 1, i = M[0], u = [i]; t > r; ++r) {
+                    e = M[r], c(e[0], i) || c(e[1], i) ? (a(i[0], e[1]) > a(i[0], i[1]) && (i[1] = e[1]), a(e[0], i[1]) > a(i[0], i[1]) && (i[0] = e[0])) : u.push(i = e);
+                }for (var o, e, g = -(1 / 0), t = u.length - 1, r = 0, i = u[t]; t >= r; i = e, ++r) {
+                    e = u[r], (o = a(i[1], e[0])) > g && (g = o, f = e[0], h = i[1]);
+                }
+            }return M = x = null, f === 1 / 0 || s === 1 / 0 ? [[NaN, NaN], [NaN, NaN]] : [[f, s], [h, p]];
+        };
+    }(), ao.geo.centroid = function (n) {
+        Ea = Aa = Ca = za = La = qa = Ta = Ra = Da = Pa = Ua = 0, ao.geo.stream(n, ja);var t = Da,
+            e = Pa,
+            r = Ua,
+            i = t * t + e * e + r * r;return jo > i && (t = qa, e = Ta, r = Ra, Uo > Aa && (t = Ca, e = za, r = La), i = t * t + e * e + r * r, jo > i) ? [NaN, NaN] : [Math.atan2(e, t) * Zo, tn(r / Math.sqrt(i)) * Zo];
+    };var Ea,
+        Aa,
+        Ca,
+        za,
+        La,
+        qa,
+        Ta,
+        Ra,
+        Da,
+        Pa,
+        Ua,
+        ja = { sphere: b, point: St, lineStart: Nt, lineEnd: Et, polygonStart: function polygonStart() {
+            ja.lineStart = At;
+        }, polygonEnd: function polygonEnd() {
+            ja.lineStart = Nt;
+        } },
+        Fa = Rt(zt, jt, Ht, [-Fo, -Fo / 2]),
+        Ha = 1e9;ao.geo.clipExtent = function () {
+        var n,
+            t,
+            e,
+            r,
+            i,
+            u,
+            o = { stream: function stream(n) {
+                return i && (i.valid = !1), i = u(n), i.valid = !0, i;
+            }, extent: function extent(a) {
+                return arguments.length ? (u = Zt(n = +a[0][0], t = +a[0][1], e = +a[1][0], r = +a[1][1]), i && (i.valid = !1, i = null), o) : [[n, t], [e, r]];
+            } };return o.extent([[0, 0], [960, 500]]);
+    }, (ao.geo.conicEqualArea = function () {
+        return Vt(Xt);
+    }).raw = Xt, ao.geo.albers = function () {
+        return ao.geo.conicEqualArea().rotate([96, 0]).center([-.6, 38.7]).parallels([29.5, 45.5]).scale(1070);
+    }, ao.geo.albersUsa = function () {
+        function n(n) {
+            var u = n[0],
+                o = n[1];return t = null, e(u, o), t || (r(u, o), t) || i(u, o), t;
+        }var t,
+            e,
+            r,
+            i,
+            u = ao.geo.albers(),
+            o = ao.geo.conicEqualArea().rotate([154, 0]).center([-2, 58.5]).parallels([55, 65]),
+            a = ao.geo.conicEqualArea().rotate([157, 0]).center([-3, 19.9]).parallels([8, 18]),
+            l = { point: function point(n, e) {
+                t = [n, e];
+            } };return n.invert = function (n) {
+            var t = u.scale(),
+                e = u.translate(),
+                r = (n[0] - e[0]) / t,
+                i = (n[1] - e[1]) / t;return (i >= .12 && .234 > i && r >= -.425 && -.214 > r ? o : i >= .166 && .234 > i && r >= -.214 && -.115 > r ? a : u).invert(n);
+        }, n.stream = function (n) {
+            var t = u.stream(n),
+                e = o.stream(n),
+                r = a.stream(n);return { point: function point(n, i) {
+                    t.point(n, i), e.point(n, i), r.point(n, i);
+                }, sphere: function sphere() {
+                    t.sphere(), e.sphere(), r.sphere();
+                }, lineStart: function lineStart() {
+                    t.lineStart(), e.lineStart(), r.lineStart();
+                }, lineEnd: function lineEnd() {
+                    t.lineEnd(), e.lineEnd(), r.lineEnd();
+                }, polygonStart: function polygonStart() {
+                    t.polygonStart(), e.polygonStart(), r.polygonStart();
+                }, polygonEnd: function polygonEnd() {
+                    t.polygonEnd(), e.polygonEnd(), r.polygonEnd();
+                } };
+        }, n.precision = function (t) {
+            return arguments.length ? (u.precision(t), o.precision(t), a.precision(t), n) : u.precision();
+        }, n.scale = function (t) {
+            return arguments.length ? (u.scale(t), o.scale(.35 * t), a.scale(t), n.translate(u.translate())) : u.scale();
+        }, n.translate = function (t) {
+            if (!arguments.length) return u.translate();var c = u.scale(),
+                f = +t[0],
+                s = +t[1];return e = u.translate(t).clipExtent([[f - .455 * c, s - .238 * c], [f + .455 * c, s + .238 * c]]).stream(l).point, r = o.translate([f - .307 * c, s + .201 * c]).clipExtent([[f - .425 * c + Uo, s + .12 * c + Uo], [f - .214 * c - Uo, s + .234 * c - Uo]]).stream(l).point, i = a.translate([f - .205 * c, s + .212 * c]).clipExtent([[f - .214 * c + Uo, s + .166 * c + Uo], [f - .115 * c - Uo, s + .234 * c - Uo]]).stream(l).point, n;
+        }, n.scale(1070);
+    };var Oa,
+        Ia,
+        Ya,
+        Za,
+        Va,
+        Xa,
+        $a = { point: b, lineStart: b, lineEnd: b, polygonStart: function polygonStart() {
+            Ia = 0, $a.lineStart = $t;
+        }, polygonEnd: function polygonEnd() {
+            $a.lineStart = $a.lineEnd = $a.point = b, Oa += xo(Ia / 2);
+        } },
+        Ba = { point: Bt, lineStart: b, lineEnd: b, polygonStart: b, polygonEnd: b },
+        Wa = { point: Gt, lineStart: Kt, lineEnd: Qt, polygonStart: function polygonStart() {
+            Wa.lineStart = ne;
+        }, polygonEnd: function polygonEnd() {
+            Wa.point = Gt, Wa.lineStart = Kt, Wa.lineEnd = Qt;
+        } };ao.geo.path = function () {
+        function n(n) {
+            return n && ("function" == typeof a && u.pointRadius(+a.apply(this, arguments)), o && o.valid || (o = i(u)), ao.geo.stream(n, o)), u.result();
+        }function t() {
+            return o = null, n;
+        }var e,
+            r,
+            i,
+            u,
+            o,
+            a = 4.5;return n.area = function (n) {
+            return Oa = 0, ao.geo.stream(n, i($a)), Oa;
+        }, n.centroid = function (n) {
+            return Ca = za = La = qa = Ta = Ra = Da = Pa = Ua = 0, ao.geo.stream(n, i(Wa)), Ua ? [Da / Ua, Pa / Ua] : Ra ? [qa / Ra, Ta / Ra] : La ? [Ca / La, za / La] : [NaN, NaN];
+        }, n.bounds = function (n) {
+            return Va = Xa = -(Ya = Za = 1 / 0), ao.geo.stream(n, i(Ba)), [[Ya, Za], [Va, Xa]];
+        }, n.projection = function (n) {
+            return arguments.length ? (i = (e = n) ? n.stream || re(n) : m, t()) : e;
+        }, n.context = function (n) {
+            return arguments.length ? (u = null == (r = n) ? new Wt() : new te(n), "function" != typeof a && u.pointRadius(a), t()) : r;
+        }, n.pointRadius = function (t) {
+            return arguments.length ? (a = "function" == typeof t ? t : (u.pointRadius(+t), +t), n) : a;
+        }, n.projection(ao.geo.albersUsa()).context(null);
+    }, ao.geo.transform = function (n) {
+        return { stream: function stream(t) {
+                var e = new ie(t);for (var r in n) {
+                    e[r] = n[r];
+                }return e;
+            } };
+    }, ie.prototype = { point: function point(n, t) {
+            this.stream.point(n, t);
+        }, sphere: function sphere() {
+            this.stream.sphere();
+        }, lineStart: function lineStart() {
+            this.stream.lineStart();
+        }, lineEnd: function lineEnd() {
+            this.stream.lineEnd();
+        }, polygonStart: function polygonStart() {
+            this.stream.polygonStart();
+        }, polygonEnd: function polygonEnd() {
+            this.stream.polygonEnd();
+        } }, ao.geo.projection = oe, ao.geo.projectionMutator = ae, (ao.geo.equirectangular = function () {
+        return oe(ce);
+    }).raw = ce.invert = ce, ao.geo.rotation = function (n) {
+        function t(t) {
+            return t = n(t[0] * Yo, t[1] * Yo), t[0] *= Zo, t[1] *= Zo, t;
+        }return n = se(n[0] % 360 * Yo, n[1] * Yo, n.length > 2 ? n[2] * Yo : 0), t.invert = function (t) {
+            return t = n.invert(t[0] * Yo, t[1] * Yo), t[0] *= Zo, t[1] *= Zo, t;
+        }, t;
+    }, fe.invert = ce, ao.geo.circle = function () {
+        function n() {
+            var n = "function" == typeof r ? r.apply(this, arguments) : r,
+                t = se(-n[0] * Yo, -n[1] * Yo, 0).invert,
+                i = [];return e(null, null, 1, { point: function point(n, e) {
+                    i.push(n = t(n, e)), n[0] *= Zo, n[1] *= Zo;
+                } }), { type: "Polygon", coordinates: [i] };
+        }var t,
+            e,
+            r = [0, 0],
+            i = 6;return n.origin = function (t) {
+            return arguments.length ? (r = t, n) : r;
+        }, n.angle = function (r) {
+            return arguments.length ? (e = ve((t = +r) * Yo, i * Yo), n) : t;
+        }, n.precision = function (r) {
+            return arguments.length ? (e = ve(t * Yo, (i = +r) * Yo), n) : i;
+        }, n.angle(90);
+    }, ao.geo.distance = function (n, t) {
+        var e,
+            r = (t[0] - n[0]) * Yo,
+            i = n[1] * Yo,
+            u = t[1] * Yo,
+            o = Math.sin(r),
+            a = Math.cos(r),
+            l = Math.sin(i),
+            c = Math.cos(i),
+            f = Math.sin(u),
+            s = Math.cos(u);return Math.atan2(Math.sqrt((e = s * o) * e + (e = c * f - l * s * a) * e), l * f + c * s * a);
+    }, ao.geo.graticule = function () {
+        function n() {
+            return { type: "MultiLineString", coordinates: t() };
+        }function t() {
+            return ao.range(Math.ceil(u / d) * d, i, d).map(h).concat(ao.range(Math.ceil(c / y) * y, l, y).map(p)).concat(ao.range(Math.ceil(r / g) * g, e, g).filter(function (n) {
+                return xo(n % d) > Uo;
+            }).map(f)).concat(ao.range(Math.ceil(a / v) * v, o, v).filter(function (n) {
+                return xo(n % y) > Uo;
+            }).map(s));
+        }var e,
+            r,
+            i,
+            u,
+            o,
+            a,
+            l,
+            c,
+            f,
+            s,
+            h,
+            p,
+            g = 10,
+            v = g,
+            d = 90,
+            y = 360,
+            m = 2.5;return n.lines = function () {
+            return t().map(function (n) {
+                return { type: "LineString", coordinates: n };
+            });
+        }, n.outline = function () {
+            return { type: "Polygon", coordinates: [h(u).concat(p(l).slice(1), h(i).reverse().slice(1), p(c).reverse().slice(1))] };
+        }, n.extent = function (t) {
+            return arguments.length ? n.majorExtent(t).minorExtent(t) : n.minorExtent();
+        }, n.majorExtent = function (t) {
+            return arguments.length ? (u = +t[0][0], i = +t[1][0], c = +t[0][1], l = +t[1][1], u > i && (t = u, u = i, i = t), c > l && (t = c, c = l, l = t), n.precision(m)) : [[u, c], [i, l]];
+        }, n.minorExtent = function (t) {
+            return arguments.length ? (r = +t[0][0], e = +t[1][0], a = +t[0][1], o = +t[1][1], r > e && (t = r, r = e, e = t), a > o && (t = a, a = o, o = t), n.precision(m)) : [[r, a], [e, o]];
+        }, n.step = function (t) {
+            return arguments.length ? n.majorStep(t).minorStep(t) : n.minorStep();
+        }, n.majorStep = function (t) {
+            return arguments.length ? (d = +t[0], y = +t[1], n) : [d, y];
+        }, n.minorStep = function (t) {
+            return arguments.length ? (g = +t[0], v = +t[1], n) : [g, v];
+        }, n.precision = function (t) {
+            return arguments.length ? (m = +t, f = ye(a, o, 90), s = me(r, e, m), h = ye(c, l, 90), p = me(u, i, m), n) : m;
+        }, n.majorExtent([[-180, -90 + Uo], [180, 90 - Uo]]).minorExtent([[-180, -80 - Uo], [180, 80 + Uo]]);
+    }, ao.geo.greatArc = function () {
+        function n() {
+            return { type: "LineString", coordinates: [t || r.apply(this, arguments), e || i.apply(this, arguments)] };
+        }var t,
+            e,
+            r = Me,
+            i = xe;return n.distance = function () {
+            return ao.geo.distance(t || r.apply(this, arguments), e || i.apply(this, arguments));
+        }, n.source = function (e) {
+            return arguments.length ? (r = e, t = "function" == typeof e ? null : e, n) : r;
+        }, n.target = function (t) {
+            return arguments.length ? (i = t, e = "function" == typeof t ? null : t, n) : i;
+        }, n.precision = function () {
+            return arguments.length ? n : 0;
+        }, n;
+    }, ao.geo.interpolate = function (n, t) {
+        return be(n[0] * Yo, n[1] * Yo, t[0] * Yo, t[1] * Yo);
+    }, ao.geo.length = function (n) {
+        return Ja = 0, ao.geo.stream(n, Ga), Ja;
+    };var Ja,
+        Ga = { sphere: b, point: b, lineStart: _e, lineEnd: b, polygonStart: b, polygonEnd: b },
+        Ka = we(function (n) {
+        return Math.sqrt(2 / (1 + n));
+    }, function (n) {
+        return 2 * Math.asin(n / 2);
+    });(ao.geo.azimuthalEqualArea = function () {
+        return oe(Ka);
+    }).raw = Ka;var Qa = we(function (n) {
+        var t = Math.acos(n);return t && t / Math.sin(t);
+    }, m);(ao.geo.azimuthalEquidistant = function () {
+        return oe(Qa);
+    }).raw = Qa, (ao.geo.conicConformal = function () {
+        return Vt(Se);
+    }).raw = Se, (ao.geo.conicEquidistant = function () {
+        return Vt(ke);
+    }).raw = ke;var nl = we(function (n) {
+        return 1 / n;
+    }, Math.atan);(ao.geo.gnomonic = function () {
+        return oe(nl);
+    }).raw = nl, Ne.invert = function (n, t) {
+        return [n, 2 * Math.atan(Math.exp(t)) - Io];
+    }, (ao.geo.mercator = function () {
+        return Ee(Ne);
+    }).raw = Ne;var tl = we(function () {
+        return 1;
+    }, Math.asin);(ao.geo.orthographic = function () {
+        return oe(tl);
+    }).raw = tl;var el = we(function (n) {
+        return 1 / (1 + n);
+    }, function (n) {
+        return 2 * Math.atan(n);
+    });(ao.geo.stereographic = function () {
+        return oe(el);
+    }).raw = el, Ae.invert = function (n, t) {
+        return [-t, 2 * Math.atan(Math.exp(n)) - Io];
+    }, (ao.geo.transverseMercator = function () {
+        var n = Ee(Ae),
+            t = n.center,
+            e = n.rotate;return n.center = function (n) {
+            return n ? t([-n[1], n[0]]) : (n = t(), [n[1], -n[0]]);
+        }, n.rotate = function (n) {
+            return n ? e([n[0], n[1], n.length > 2 ? n[2] + 90 : 90]) : (n = e(), [n[0], n[1], n[2] - 90]);
+        }, e([0, 0, 90]);
+    }).raw = Ae, ao.geom = {}, ao.geom.hull = function (n) {
+        function t(n) {
+            if (n.length < 3) return [];var t,
+                i = En(e),
+                u = En(r),
+                o = n.length,
+                a = [],
+                l = [];for (t = 0; o > t; t++) {
+                a.push([+i.call(this, n[t], t), +u.call(this, n[t], t), t]);
+            }for (a.sort(qe), t = 0; o > t; t++) {
+                l.push([a[t][0], -a[t][1]]);
+            }var c = Le(a),
+                f = Le(l),
+                s = f[0] === c[0],
+                h = f[f.length - 1] === c[c.length - 1],
+                p = [];for (t = c.length - 1; t >= 0; --t) {
+                p.push(n[a[c[t]][2]]);
+            }for (t = +s; t < f.length - h; ++t) {
+                p.push(n[a[f[t]][2]]);
+            }return p;
+        }var e = Ce,
+            r = ze;return arguments.length ? t(n) : (t.x = function (n) {
+            return arguments.length ? (e = n, t) : e;
+        }, t.y = function (n) {
+            return arguments.length ? (r = n, t) : r;
+        }, t);
+    }, ao.geom.polygon = function (n) {
+        return ko(n, rl), n;
+    };var rl = ao.geom.polygon.prototype = [];rl.area = function () {
+        for (var n, t = -1, e = this.length, r = this[e - 1], i = 0; ++t < e;) {
+            n = r, r = this[t], i += n[1] * r[0] - n[0] * r[1];
+        }return .5 * i;
+    }, rl.centroid = function (n) {
+        var t,
+            e,
+            r = -1,
+            i = this.length,
+            u = 0,
+            o = 0,
+            a = this[i - 1];for (arguments.length || (n = -1 / (6 * this.area())); ++r < i;) {
+            t = a, a = this[r], e = t[0] * a[1] - a[0] * t[1], u += (t[0] + a[0]) * e, o += (t[1] + a[1]) * e;
+        }return [u * n, o * n];
+    }, rl.clip = function (n) {
+        for (var t, e, r, i, u, o, a = De(n), l = -1, c = this.length - De(this), f = this[c - 1]; ++l < c;) {
+            for (t = n.slice(), n.length = 0, i = this[l], u = t[(r = t.length - a) - 1], e = -1; ++e < r;) {
+                o = t[e], Te(o, f, i) ? (Te(u, f, i) || n.push(Re(u, o, f, i)), n.push(o)) : Te(u, f, i) && n.push(Re(u, o, f, i)), u = o;
+            }a && n.push(n[0]), f = i;
+        }return n;
+    };var il,
+        ul,
+        ol,
+        al,
+        ll,
+        cl = [],
+        fl = [];Ye.prototype.prepare = function () {
+        for (var n, t = this.edges, e = t.length; e--;) {
+            n = t[e].edge, n.b && n.a || t.splice(e, 1);
+        }return t.sort(Ve), t.length;
+    }, tr.prototype = { start: function start() {
+            return this.edge.l === this.site ? this.edge.a : this.edge.b;
+        }, end: function end() {
+            return this.edge.l === this.site ? this.edge.b : this.edge.a;
+        } }, er.prototype = { insert: function insert(n, t) {
+            var e, r, i;if (n) {
+                if (t.P = n, t.N = n.N, n.N && (n.N.P = t), n.N = t, n.R) {
+                    for (n = n.R; n.L;) {
+                        n = n.L;
+                    }n.L = t;
+                } else n.R = t;e = n;
+            } else this._ ? (n = or(this._), t.P = null, t.N = n, n.P = n.L = t, e = n) : (t.P = t.N = null, this._ = t, e = null);for (t.L = t.R = null, t.U = e, t.C = !0, n = t; e && e.C;) {
+                r = e.U, e === r.L ? (i = r.R, i && i.C ? (e.C = i.C = !1, r.C = !0, n = r) : (n === e.R && (ir(this, e), n = e, e = n.U), e.C = !1, r.C = !0, ur(this, r))) : (i = r.L, i && i.C ? (e.C = i.C = !1, r.C = !0, n = r) : (n === e.L && (ur(this, e), n = e, e = n.U), e.C = !1, r.C = !0, ir(this, r))), e = n.U;
+            }this._.C = !1;
+        }, remove: function remove(n) {
+            n.N && (n.N.P = n.P), n.P && (n.P.N = n.N), n.N = n.P = null;var t,
+                e,
+                r,
+                i = n.U,
+                u = n.L,
+                o = n.R;if (e = u ? o ? or(o) : u : o, i ? i.L === n ? i.L = e : i.R = e : this._ = e, u && o ? (r = e.C, e.C = n.C, e.L = u, u.U = e, e !== o ? (i = e.U, e.U = n.U, n = e.R, i.L = n, e.R = o, o.U = e) : (e.U = i, i = e, n = e.R)) : (r = n.C, n = e), n && (n.U = i), !r) {
+                if (n && n.C) return void (n.C = !1);do {
+                    if (n === this._) break;if (n === i.L) {
+                        if (t = i.R, t.C && (t.C = !1, i.C = !0, ir(this, i), t = i.R), t.L && t.L.C || t.R && t.R.C) {
+                            t.R && t.R.C || (t.L.C = !1, t.C = !0, ur(this, t), t = i.R), t.C = i.C, i.C = t.R.C = !1, ir(this, i), n = this._;break;
+                        }
+                    } else if (t = i.L, t.C && (t.C = !1, i.C = !0, ur(this, i), t = i.L), t.L && t.L.C || t.R && t.R.C) {
+                        t.L && t.L.C || (t.R.C = !1, t.C = !0, ir(this, t), t = i.L), t.C = i.C, i.C = t.L.C = !1, ur(this, i), n = this._;break;
+                    }t.C = !0, n = i, i = i.U;
+                } while (!n.C);n && (n.C = !1);
+            }
+        } }, ao.geom.voronoi = function (n) {
+        function t(n) {
+            var t = new Array(n.length),
+                r = a[0][0],
+                i = a[0][1],
+                u = a[1][0],
+                o = a[1][1];return ar(e(n), a).cells.forEach(function (e, a) {
+                var l = e.edges,
+                    c = e.site,
+                    f = t[a] = l.length ? l.map(function (n) {
+                    var t = n.start();return [t.x, t.y];
+                }) : c.x >= r && c.x <= u && c.y >= i && c.y <= o ? [[r, o], [u, o], [u, i], [r, i]] : [];f.point = n[a];
+            }), t;
+        }function e(n) {
+            return n.map(function (n, t) {
+                return { x: Math.round(u(n, t) / Uo) * Uo, y: Math.round(o(n, t) / Uo) * Uo, i: t };
+            });
+        }var r = Ce,
+            i = ze,
+            u = r,
+            o = i,
+            a = sl;return n ? t(n) : (t.links = function (n) {
+            return ar(e(n)).edges.filter(function (n) {
+                return n.l && n.r;
+            }).map(function (t) {
+                return { source: n[t.l.i], target: n[t.r.i] };
+            });
+        }, t.triangles = function (n) {
+            var t = [];return ar(e(n)).cells.forEach(function (e, r) {
+                for (var i, u, o = e.site, a = e.edges.sort(Ve), l = -1, c = a.length, f = a[c - 1].edge, s = f.l === o ? f.r : f.l; ++l < c;) {
+                    i = f, u = s, f = a[l].edge, s = f.l === o ? f.r : f.l, r < u.i && r < s.i && cr(o, u, s) < 0 && t.push([n[r], n[u.i], n[s.i]]);
+                }
+            }), t;
+        }, t.x = function (n) {
+            return arguments.length ? (u = En(r = n), t) : r;
+        }, t.y = function (n) {
+            return arguments.length ? (o = En(i = n), t) : i;
+        }, t.clipExtent = function (n) {
+            return arguments.length ? (a = null == n ? sl : n, t) : a === sl ? null : a;
+        }, t.size = function (n) {
+            return arguments.length ? t.clipExtent(n && [[0, 0], n]) : a === sl ? null : a && a[1];
+        }, t);
+    };var sl = [[-1e6, -1e6], [1e6, 1e6]];ao.geom.delaunay = function (n) {
+        return ao.geom.voronoi().triangles(n);
+    }, ao.geom.quadtree = function (n, t, e, r, i) {
+        function u(n) {
+            function u(n, t, e, r, i, u, o, a) {
+                if (!isNaN(e) && !isNaN(r)) if (n.leaf) {
+                    var l = n.x,
+                        f = n.y;if (null != l) {
+                        if (xo(l - e) + xo(f - r) < .01) c(n, t, e, r, i, u, o, a);else {
+                            var s = n.point;n.x = n.y = n.point = null, c(n, s, l, f, i, u, o, a), c(n, t, e, r, i, u, o, a);
+                        }
+                    } else n.x = e, n.y = r, n.point = t;
+                } else c(n, t, e, r, i, u, o, a);
+            }function c(n, t, e, r, i, o, a, l) {
+                var c = .5 * (i + a),
+                    f = .5 * (o + l),
+                    s = e >= c,
+                    h = r >= f,
+                    p = h << 1 | s;n.leaf = !1, n = n.nodes[p] || (n.nodes[p] = hr()), s ? i = c : a = c, h ? o = f : l = f, u(n, t, e, r, i, o, a, l);
+            }var f,
+                s,
+                h,
+                p,
+                g,
+                v,
+                d,
+                y,
+                m,
+                M = En(a),
+                x = En(l);if (null != t) v = t, d = e, y = r, m = i;else if (y = m = -(v = d = 1 / 0), s = [], h = [], g = n.length, o) for (p = 0; g > p; ++p) {
+                f = n[p], f.x < v && (v = f.x), f.y < d && (d = f.y), f.x > y && (y = f.x), f.y > m && (m = f.y), s.push(f.x), h.push(f.y);
+            } else for (p = 0; g > p; ++p) {
+                var b = +M(f = n[p], p),
+                    _ = +x(f, p);v > b && (v = b), d > _ && (d = _), b > y && (y = b), _ > m && (m = _), s.push(b), h.push(_);
+            }var w = y - v,
+                S = m - d;w > S ? m = d + w : y = v + S;var k = hr();if (k.add = function (n) {
+                u(k, n, +M(n, ++p), +x(n, p), v, d, y, m);
+            }, k.visit = function (n) {
+                pr(n, k, v, d, y, m);
+            }, k.find = function (n) {
+                return gr(k, n[0], n[1], v, d, y, m);
+            }, p = -1, null == t) {
+                for (; ++p < g;) {
+                    u(k, n[p], s[p], h[p], v, d, y, m);
+                }--p;
+            } else n.forEach(k.add);return s = h = n = f = null, k;
+        }var o,
+            a = Ce,
+            l = ze;return (o = arguments.length) ? (a = fr, l = sr, 3 === o && (i = e, r = t, e = t = 0), u(n)) : (u.x = function (n) {
+            return arguments.length ? (a = n, u) : a;
+        }, u.y = function (n) {
+            return arguments.length ? (l = n, u) : l;
+        }, u.extent = function (n) {
+            return arguments.length ? (null == n ? t = e = r = i = null : (t = +n[0][0], e = +n[0][1], r = +n[1][0], i = +n[1][1]), u) : null == t ? null : [[t, e], [r, i]];
+        }, u.size = function (n) {
+            return arguments.length ? (null == n ? t = e = r = i = null : (t = e = 0, r = +n[0], i = +n[1]), u) : null == t ? null : [r - t, i - e];
+        }, u);
+    }, ao.interpolateRgb = vr, ao.interpolateObject = dr, ao.interpolateNumber = yr, ao.interpolateString = mr;var hl = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
+        pl = new RegExp(hl.source, "g");ao.interpolate = Mr, ao.interpolators = [function (n, t) {
+        var e = typeof t === "undefined" ? "undefined" : _typeof(t);return ("string" === e ? ua.has(t.toLowerCase()) || /^(#|rgb\(|hsl\()/i.test(t) ? vr : mr : t instanceof an ? vr : Array.isArray(t) ? xr : "object" === e && isNaN(t) ? dr : yr)(n, t);
+    }], ao.interpolateArray = xr;var gl = function gl() {
+        return m;
+    },
+        vl = ao.map({ linear: gl, poly: Er, quad: function quad() {
+            return Sr;
+        }, cubic: function cubic() {
+            return kr;
+        }, sin: function sin() {
+            return Ar;
+        }, exp: function exp() {
+            return Cr;
+        }, circle: function circle() {
+            return zr;
+        }, elastic: Lr, back: qr, bounce: function bounce() {
+            return Tr;
+        } }),
+        dl = ao.map({ "in": m, out: _r, "in-out": wr, "out-in": function outIn(n) {
+            return wr(_r(n));
+        } });ao.ease = function (n) {
+        var t = n.indexOf("-"),
+            e = t >= 0 ? n.slice(0, t) : n,
+            r = t >= 0 ? n.slice(t + 1) : "in";return e = vl.get(e) || gl, r = dl.get(r) || m, br(r(e.apply(null, lo.call(arguments, 1))));
+    }, ao.interpolateHcl = Rr, ao.interpolateHsl = Dr, ao.interpolateLab = Pr, ao.interpolateRound = Ur, ao.transform = function (n) {
+        var t = fo.createElementNS(ao.ns.prefix.svg, "g");return (ao.transform = function (n) {
+            if (null != n) {
+                t.setAttribute("transform", n);var e = t.transform.baseVal.consolidate();
+            }return new jr(e ? e.matrix : yl);
+        })(n);
+    }, jr.prototype.toString = function () {
+        return "translate(" + this.translate + ")rotate(" + this.rotate + ")skewX(" + this.skew + ")scale(" + this.scale + ")";
+    };var yl = { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 };ao.interpolateTransform = $r, ao.layout = {}, ao.layout.bundle = function () {
+        return function (n) {
+            for (var t = [], e = -1, r = n.length; ++e < r;) {
+                t.push(Jr(n[e]));
+            }return t;
+        };
+    }, ao.layout.chord = function () {
+        function n() {
+            var n,
+                c,
+                s,
+                h,
+                p,
+                g = {},
+                v = [],
+                d = ao.range(u),
+                y = [];for (e = [], r = [], n = 0, h = -1; ++h < u;) {
+                for (c = 0, p = -1; ++p < u;) {
+                    c += i[h][p];
+                }v.push(c), y.push(ao.range(u)), n += c;
+            }for (o && d.sort(function (n, t) {
+                return o(v[n], v[t]);
+            }), a && y.forEach(function (n, t) {
+                n.sort(function (n, e) {
+                    return a(i[t][n], i[t][e]);
+                });
+            }), n = (Ho - f * u) / n, c = 0, h = -1; ++h < u;) {
+                for (s = c, p = -1; ++p < u;) {
+                    var m = d[h],
+                        M = y[m][p],
+                        x = i[m][M],
+                        b = c,
+                        _ = c += x * n;g[m + "-" + M] = { index: m, subindex: M, startAngle: b, endAngle: _, value: x };
+                }r[m] = { index: m, startAngle: s, endAngle: c, value: v[m] }, c += f;
+            }for (h = -1; ++h < u;) {
+                for (p = h - 1; ++p < u;) {
+                    var w = g[h + "-" + p],
+                        S = g[p + "-" + h];(w.value || S.value) && e.push(w.value < S.value ? { source: S, target: w } : { source: w, target: S });
+                }
+            }l && t();
+        }function t() {
+            e.sort(function (n, t) {
+                return l((n.source.value + n.target.value) / 2, (t.source.value + t.target.value) / 2);
+            });
+        }var e,
+            r,
+            i,
+            u,
+            o,
+            a,
+            l,
+            c = {},
+            f = 0;return c.matrix = function (n) {
+            return arguments.length ? (u = (i = n) && i.length, e = r = null, c) : i;
+        }, c.padding = function (n) {
+            return arguments.length ? (f = n, e = r = null, c) : f;
+        }, c.sortGroups = function (n) {
+            return arguments.length ? (o = n, e = r = null, c) : o;
+        }, c.sortSubgroups = function (n) {
+            return arguments.length ? (a = n, e = null, c) : a;
+        }, c.sortChords = function (n) {
+            return arguments.length ? (l = n, e && t(), c) : l;
+        }, c.chords = function () {
+            return e || n(), e;
+        }, c.groups = function () {
+            return r || n(), r;
+        }, c;
+    }, ao.layout.force = function () {
+        function n(n) {
+            return function (t, e, r, i) {
+                if (t.point !== n) {
+                    var u = t.cx - n.x,
+                        o = t.cy - n.y,
+                        a = i - e,
+                        l = u * u + o * o;if (l > a * a / y) {
+                        if (v > l) {
+                            var c = t.charge / l;n.px -= u * c, n.py -= o * c;
+                        }return !0;
+                    }if (t.point && l && v > l) {
+                        var c = t.pointCharge / l;n.px -= u * c, n.py -= o * c;
+                    }
+                }return !t.charge;
+            };
+        }function t(n) {
+            n.px = ao.event.x, n.py = ao.event.y, l.resume();
+        }var e,
+            r,
+            i,
+            u,
+            o,
+            a,
+            l = {},
+            c = ao.dispatch("start", "tick", "end"),
+            f = [1, 1],
+            s = .9,
+            h = ml,
+            p = Ml,
+            g = -30,
+            v = xl,
+            d = .1,
+            y = .64,
+            M = [],
+            x = [];return l.tick = function () {
+            if ((i *= .99) < .005) return e = null, c.end({ type: "end", alpha: i = 0 }), !0;var t,
+                r,
+                l,
+                h,
+                p,
+                v,
+                y,
+                m,
+                b,
+                _ = M.length,
+                w = x.length;for (r = 0; w > r; ++r) {
+                l = x[r], h = l.source, p = l.target, m = p.x - h.x, b = p.y - h.y, (v = m * m + b * b) && (v = i * o[r] * ((v = Math.sqrt(v)) - u[r]) / v, m *= v, b *= v, p.x -= m * (y = h.weight + p.weight ? h.weight / (h.weight + p.weight) : .5), p.y -= b * y, h.x += m * (y = 1 - y), h.y += b * y);
+            }if ((y = i * d) && (m = f[0] / 2, b = f[1] / 2, r = -1, y)) for (; ++r < _;) {
+                l = M[r], l.x += (m - l.x) * y, l.y += (b - l.y) * y;
+            }if (g) for (ri(t = ao.geom.quadtree(M), i, a), r = -1; ++r < _;) {
+                (l = M[r]).fixed || t.visit(n(l));
+            }for (r = -1; ++r < _;) {
+                l = M[r], l.fixed ? (l.x = l.px, l.y = l.py) : (l.x -= (l.px - (l.px = l.x)) * s, l.y -= (l.py - (l.py = l.y)) * s);
+            }c.tick({ type: "tick", alpha: i });
+        }, l.nodes = function (n) {
+            return arguments.length ? (M = n, l) : M;
+        }, l.links = function (n) {
+            return arguments.length ? (x = n, l) : x;
+        }, l.size = function (n) {
+            return arguments.length ? (f = n, l) : f;
+        }, l.linkDistance = function (n) {
+            return arguments.length ? (h = "function" == typeof n ? n : +n, l) : h;
+        }, l.distance = l.linkDistance, l.linkStrength = function (n) {
+            return arguments.length ? (p = "function" == typeof n ? n : +n, l) : p;
+        }, l.friction = function (n) {
+            return arguments.length ? (s = +n, l) : s;
+        }, l.charge = function (n) {
+            return arguments.length ? (g = "function" == typeof n ? n : +n, l) : g;
+        }, l.chargeDistance = function (n) {
+            return arguments.length ? (v = n * n, l) : Math.sqrt(v);
+        }, l.gravity = function (n) {
+            return arguments.length ? (d = +n, l) : d;
+        }, l.theta = function (n) {
+            return arguments.length ? (y = n * n, l) : Math.sqrt(y);
+        }, l.alpha = function (n) {
+            return arguments.length ? (n = +n, i ? n > 0 ? i = n : (e.c = null, e.t = NaN, e = null, c.end({ type: "end", alpha: i = 0 })) : n > 0 && (c.start({ type: "start", alpha: i = n }), e = qn(l.tick)), l) : i;
+        }, l.start = function () {
+            function n(n, r) {
+                if (!e) {
+                    for (e = new Array(i), l = 0; i > l; ++l) {
+                        e[l] = [];
+                    }for (l = 0; c > l; ++l) {
+                        var u = x[l];e[u.source.index].push(u.target), e[u.target.index].push(u.source);
+                    }
+                }for (var o, a = e[t], l = -1, f = a.length; ++l < f;) {
+                    if (!isNaN(o = a[l][n])) return o;
+                }return Math.random() * r;
+            }var t,
+                e,
+                r,
+                i = M.length,
+                c = x.length,
+                s = f[0],
+                v = f[1];for (t = 0; i > t; ++t) {
+                (r = M[t]).index = t, r.weight = 0;
+            }for (t = 0; c > t; ++t) {
+                r = x[t], "number" == typeof r.source && (r.source = M[r.source]), "number" == typeof r.target && (r.target = M[r.target]), ++r.source.weight, ++r.target.weight;
+            }for (t = 0; i > t; ++t) {
+                r = M[t], isNaN(r.x) && (r.x = n("x", s)), isNaN(r.y) && (r.y = n("y", v)), isNaN(r.px) && (r.px = r.x), isNaN(r.py) && (r.py = r.y);
+            }if (u = [], "function" == typeof h) for (t = 0; c > t; ++t) {
+                u[t] = +h.call(this, x[t], t);
+            } else for (t = 0; c > t; ++t) {
+                u[t] = h;
+            }if (o = [], "function" == typeof p) for (t = 0; c > t; ++t) {
+                o[t] = +p.call(this, x[t], t);
+            } else for (t = 0; c > t; ++t) {
+                o[t] = p;
+            }if (a = [], "function" == typeof g) for (t = 0; i > t; ++t) {
+                a[t] = +g.call(this, M[t], t);
+            } else for (t = 0; i > t; ++t) {
+                a[t] = g;
+            }return l.resume();
+        }, l.resume = function () {
+            return l.alpha(.1);
+        }, l.stop = function () {
+            return l.alpha(0);
+        }, l.drag = function () {
+            return r || (r = ao.behavior.drag().origin(m).on("dragstart.force", Qr).on("drag.force", t).on("dragend.force", ni)), arguments.length ? void this.on("mouseover.force", ti).on("mouseout.force", ei).call(r) : r;
+        }, ao.rebind(l, c, "on");
+    };var ml = 20,
+        Ml = 1,
+        xl = 1 / 0;ao.layout.hierarchy = function () {
+        function n(i) {
+            var u,
+                o = [i],
+                a = [];for (i.depth = 0; null != (u = o.pop());) {
+                if (a.push(u), (c = e.call(n, u, u.depth)) && (l = c.length)) {
+                    for (var l, c, f; --l >= 0;) {
+                        o.push(f = c[l]), f.parent = u, f.depth = u.depth + 1;
+                    }r && (u.value = 0), u.children = c;
+                } else r && (u.value = +r.call(n, u, u.depth) || 0), delete u.children;
+            }return oi(i, function (n) {
+                var e, i;t && (e = n.children) && e.sort(t), r && (i = n.parent) && (i.value += n.value);
+            }), a;
+        }var t = ci,
+            e = ai,
+            r = li;return n.sort = function (e) {
+            return arguments.length ? (t = e, n) : t;
+        }, n.children = function (t) {
+            return arguments.length ? (e = t, n) : e;
+        }, n.value = function (t) {
+            return arguments.length ? (r = t, n) : r;
+        }, n.revalue = function (t) {
+            return r && (ui(t, function (n) {
+                n.children && (n.value = 0);
+            }), oi(t, function (t) {
+                var e;t.children || (t.value = +r.call(n, t, t.depth) || 0), (e = t.parent) && (e.value += t.value);
+            })), t;
+        }, n;
+    }, ao.layout.partition = function () {
+        function n(t, e, r, i) {
+            var u = t.children;if (t.x = e, t.y = t.depth * i, t.dx = r, t.dy = i, u && (o = u.length)) {
+                var o,
+                    a,
+                    l,
+                    c = -1;for (r = t.value ? r / t.value : 0; ++c < o;) {
+                    n(a = u[c], e, l = a.value * r, i), e += l;
+                }
+            }
+        }function t(n) {
+            var e = n.children,
+                r = 0;if (e && (i = e.length)) for (var i, u = -1; ++u < i;) {
+                r = Math.max(r, t(e[u]));
+            }return 1 + r;
+        }function e(e, u) {
+            var o = r.call(this, e, u);return n(o[0], 0, i[0], i[1] / t(o[0])), o;
+        }var r = ao.layout.hierarchy(),
+            i = [1, 1];return e.size = function (n) {
+            return arguments.length ? (i = n, e) : i;
+        }, ii(e, r);
+    }, ao.layout.pie = function () {
+        function n(o) {
+            var a,
+                l = o.length,
+                c = o.map(function (e, r) {
+                return +t.call(n, e, r);
+            }),
+                f = +("function" == typeof r ? r.apply(this, arguments) : r),
+                s = ("function" == typeof i ? i.apply(this, arguments) : i) - f,
+                h = Math.min(Math.abs(s) / l, +("function" == typeof u ? u.apply(this, arguments) : u)),
+                p = h * (0 > s ? -1 : 1),
+                g = ao.sum(c),
+                v = g ? (s - l * p) / g : 0,
+                d = ao.range(l),
+                y = [];return null != e && d.sort(e === bl ? function (n, t) {
+                return c[t] - c[n];
+            } : function (n, t) {
+                return e(o[n], o[t]);
+            }), d.forEach(function (n) {
+                y[n] = { data: o[n], value: a = c[n], startAngle: f, endAngle: f += a * v + p, padAngle: h };
+            }), y;
+        }var t = Number,
+            e = bl,
+            r = 0,
+            i = Ho,
+            u = 0;return n.value = function (e) {
+            return arguments.length ? (t = e, n) : t;
+        }, n.sort = function (t) {
+            return arguments.length ? (e = t, n) : e;
+        }, n.startAngle = function (t) {
+            return arguments.length ? (r = t, n) : r;
+        }, n.endAngle = function (t) {
+            return arguments.length ? (i = t, n) : i;
+        }, n.padAngle = function (t) {
+            return arguments.length ? (u = t, n) : u;
+        }, n;
+    };var bl = {};ao.layout.stack = function () {
+        function n(a, l) {
+            if (!(h = a.length)) return a;var c = a.map(function (e, r) {
+                return t.call(n, e, r);
+            }),
+                f = c.map(function (t) {
+                return t.map(function (t, e) {
+                    return [u.call(n, t, e), o.call(n, t, e)];
+                });
+            }),
+                s = e.call(n, f, l);c = ao.permute(c, s), f = ao.permute(f, s);var h,
+                p,
+                g,
+                v,
+                d = r.call(n, f, l),
+                y = c[0].length;for (g = 0; y > g; ++g) {
+                for (i.call(n, c[0][g], v = d[g], f[0][g][1]), p = 1; h > p; ++p) {
+                    i.call(n, c[p][g], v += f[p - 1][g][1], f[p][g][1]);
+                }
+            }return a;
+        }var t = m,
+            e = gi,
+            r = vi,
+            i = pi,
+            u = si,
+            o = hi;return n.values = function (e) {
+            return arguments.length ? (t = e, n) : t;
+        }, n.order = function (t) {
+            return arguments.length ? (e = "function" == typeof t ? t : _l.get(t) || gi, n) : e;
+        }, n.offset = function (t) {
+            return arguments.length ? (r = "function" == typeof t ? t : wl.get(t) || vi, n) : r;
+        }, n.x = function (t) {
+            return arguments.length ? (u = t, n) : u;
+        }, n.y = function (t) {
+            return arguments.length ? (o = t, n) : o;
+        }, n.out = function (t) {
+            return arguments.length ? (i = t, n) : i;
+        }, n;
+    };var _l = ao.map({ "inside-out": function insideOut(n) {
+            var t,
+                e,
+                r = n.length,
+                i = n.map(di),
+                u = n.map(yi),
+                o = ao.range(r).sort(function (n, t) {
+                return i[n] - i[t];
+            }),
+                a = 0,
+                l = 0,
+                c = [],
+                f = [];for (t = 0; r > t; ++t) {
+                e = o[t], l > a ? (a += u[e], c.push(e)) : (l += u[e], f.push(e));
+            }return f.reverse().concat(c);
+        }, reverse: function reverse(n) {
+            return ao.range(n.length).reverse();
+        }, "default": gi }),
+        wl = ao.map({ silhouette: function silhouette(n) {
+            var t,
+                e,
+                r,
+                i = n.length,
+                u = n[0].length,
+                o = [],
+                a = 0,
+                l = [];for (e = 0; u > e; ++e) {
+                for (t = 0, r = 0; i > t; t++) {
+                    r += n[t][e][1];
+                }r > a && (a = r), o.push(r);
+            }for (e = 0; u > e; ++e) {
+                l[e] = (a - o[e]) / 2;
+            }return l;
+        }, wiggle: function wiggle(n) {
+            var t,
+                e,
+                r,
+                i,
+                u,
+                o,
+                a,
+                l,
+                c,
+                f = n.length,
+                s = n[0],
+                h = s.length,
+                p = [];for (p[0] = l = c = 0, e = 1; h > e; ++e) {
+                for (t = 0, i = 0; f > t; ++t) {
+                    i += n[t][e][1];
+                }for (t = 0, u = 0, a = s[e][0] - s[e - 1][0]; f > t; ++t) {
+                    for (r = 0, o = (n[t][e][1] - n[t][e - 1][1]) / (2 * a); t > r; ++r) {
+                        o += (n[r][e][1] - n[r][e - 1][1]) / a;
+                    }u += o * n[t][e][1];
+                }p[e] = l -= i ? u / i * a : 0, c > l && (c = l);
+            }for (e = 0; h > e; ++e) {
+                p[e] -= c;
+            }return p;
+        }, expand: function expand(n) {
+            var t,
+                e,
+                r,
+                i = n.length,
+                u = n[0].length,
+                o = 1 / i,
+                a = [];for (e = 0; u > e; ++e) {
+                for (t = 0, r = 0; i > t; t++) {
+                    r += n[t][e][1];
+                }if (r) for (t = 0; i > t; t++) {
+                    n[t][e][1] /= r;
+                } else for (t = 0; i > t; t++) {
+                    n[t][e][1] = o;
+                }
+            }for (e = 0; u > e; ++e) {
+                a[e] = 0;
+            }return a;
+        }, zero: vi });ao.layout.histogram = function () {
+        function n(n, u) {
+            for (var o, a, l = [], c = n.map(e, this), f = r.call(this, c, u), s = i.call(this, f, c, u), u = -1, h = c.length, p = s.length - 1, g = t ? 1 : 1 / h; ++u < p;) {
+                o = l[u] = [], o.dx = s[u + 1] - (o.x = s[u]), o.y = 0;
+            }if (p > 0) for (u = -1; ++u < h;) {
+                a = c[u], a >= f[0] && a <= f[1] && (o = l[ao.bisect(s, a, 1, p) - 1], o.y += g, o.push(n[u]));
+            }return l;
+        }var t = !0,
+            e = Number,
+            r = bi,
+            i = Mi;return n.value = function (t) {
+            return arguments.length ? (e = t, n) : e;
+        }, n.range = function (t) {
+            return arguments.length ? (r = En(t), n) : r;
+        }, n.bins = function (t) {
+            return arguments.length ? (i = "number" == typeof t ? function (n) {
+                return xi(n, t);
+            } : En(t), n) : i;
+        }, n.frequency = function (e) {
+            return arguments.length ? (t = !!e, n) : t;
+        }, n;
+    }, ao.layout.pack = function () {
+        function n(n, u) {
+            var o = e.call(this, n, u),
+                a = o[0],
+                l = i[0],
+                c = i[1],
+                f = null == t ? Math.sqrt : "function" == typeof t ? t : function () {
+                return t;
+            };if (a.x = a.y = 0, oi(a, function (n) {
+                n.r = +f(n.value);
+            }), oi(a, Ni), r) {
+                var s = r * (t ? 1 : Math.max(2 * a.r / l, 2 * a.r / c)) / 2;oi(a, function (n) {
+                    n.r += s;
+                }), oi(a, Ni), oi(a, function (n) {
+                    n.r -= s;
+                });
+            }return Ci(a, l / 2, c / 2, t ? 1 : 1 / Math.max(2 * a.r / l, 2 * a.r / c)), o;
+        }var t,
+            e = ao.layout.hierarchy().sort(_i),
+            r = 0,
+            i = [1, 1];return n.size = function (t) {
+            return arguments.length ? (i = t, n) : i;
+        }, n.radius = function (e) {
+            return arguments.length ? (t = null == e || "function" == typeof e ? e : +e, n) : t;
+        }, n.padding = function (t) {
+            return arguments.length ? (r = +t, n) : r;
+        }, ii(n, e);
+    }, ao.layout.tree = function () {
+        function n(n, i) {
+            var f = o.call(this, n, i),
+                s = f[0],
+                h = t(s);if (oi(h, e), h.parent.m = -h.z, ui(h, r), c) ui(s, u);else {
+                var p = s,
+                    g = s,
+                    v = s;ui(s, function (n) {
+                    n.x < p.x && (p = n), n.x > g.x && (g = n), n.depth > v.depth && (v = n);
+                });var d = a(p, g) / 2 - p.x,
+                    y = l[0] / (g.x + a(g, p) / 2 + d),
+                    m = l[1] / (v.depth || 1);ui(s, function (n) {
+                    n.x = (n.x + d) * y, n.y = n.depth * m;
+                });
+            }return f;
+        }function t(n) {
+            for (var t, e = { A: null, children: [n] }, r = [e]; null != (t = r.pop());) {
+                for (var i, u = t.children, o = 0, a = u.length; a > o; ++o) {
+                    r.push((u[o] = i = { _: u[o], parent: t, children: (i = u[o].children) && i.slice() || [], A: null, a: null, z: 0, m: 0, c: 0, s: 0, t: null, i: o }).a = i);
+                }
+            }return e.children[0];
+        }function e(n) {
+            var t = n.children,
+                e = n.parent.children,
+                r = n.i ? e[n.i - 1] : null;if (t.length) {
+                Di(n);var u = (t[0].z + t[t.length - 1].z) / 2;r ? (n.z = r.z + a(n._, r._), n.m = n.z - u) : n.z = u;
+            } else r && (n.z = r.z + a(n._, r._));n.parent.A = i(n, r, n.parent.A || e[0]);
+        }function r(n) {
+            n._.x = n.z + n.parent.m, n.m += n.parent.m;
+        }function i(n, t, e) {
+            if (t) {
+                for (var r, i = n, u = n, o = t, l = i.parent.children[0], c = i.m, f = u.m, s = o.m, h = l.m; o = Ti(o), i = qi(i), o && i;) {
+                    l = qi(l), u = Ti(u), u.a = n, r = o.z + s - i.z - c + a(o._, i._), r > 0 && (Ri(Pi(o, n, e), n, r), c += r, f += r), s += o.m, c += i.m, h += l.m, f += u.m;
+                }o && !Ti(u) && (u.t = o, u.m += s - f), i && !qi(l) && (l.t = i, l.m += c - h, e = n);
+            }return e;
+        }function u(n) {
+            n.x *= l[0], n.y = n.depth * l[1];
+        }var o = ao.layout.hierarchy().sort(null).value(null),
+            a = Li,
+            l = [1, 1],
+            c = null;return n.separation = function (t) {
+            return arguments.length ? (a = t, n) : a;
+        }, n.size = function (t) {
+            return arguments.length ? (c = null == (l = t) ? u : null, n) : c ? null : l;
+        }, n.nodeSize = function (t) {
+            return arguments.length ? (c = null == (l = t) ? null : u, n) : c ? l : null;
+        }, ii(n, o);
+    }, ao.layout.cluster = function () {
+        function n(n, u) {
+            var o,
+                a = t.call(this, n, u),
+                l = a[0],
+                c = 0;oi(l, function (n) {
+                var t = n.children;t && t.length ? (n.x = ji(t), n.y = Ui(t)) : (n.x = o ? c += e(n, o) : 0, n.y = 0, o = n);
+            });var f = Fi(l),
+                s = Hi(l),
+                h = f.x - e(f, s) / 2,
+                p = s.x + e(s, f) / 2;return oi(l, i ? function (n) {
+                n.x = (n.x - l.x) * r[0], n.y = (l.y - n.y) * r[1];
+            } : function (n) {
+                n.x = (n.x - h) / (p - h) * r[0], n.y = (1 - (l.y ? n.y / l.y : 1)) * r[1];
+            }), a;
+        }var t = ao.layout.hierarchy().sort(null).value(null),
+            e = Li,
+            r = [1, 1],
+            i = !1;return n.separation = function (t) {
+            return arguments.length ? (e = t, n) : e;
+        }, n.size = function (t) {
+            return arguments.length ? (i = null == (r = t), n) : i ? null : r;
+        }, n.nodeSize = function (t) {
+            return arguments.length ? (i = null != (r = t), n) : i ? r : null;
+        }, ii(n, t);
+    }, ao.layout.treemap = function () {
+        function n(n, t) {
+            for (var e, r, i = -1, u = n.length; ++i < u;) {
+                r = (e = n[i]).value * (0 > t ? 0 : t), e.area = isNaN(r) || 0 >= r ? 0 : r;
+            }
+        }function t(e) {
+            var u = e.children;if (u && u.length) {
+                var o,
+                    a,
+                    l,
+                    c = s(e),
+                    f = [],
+                    h = u.slice(),
+                    g = 1 / 0,
+                    v = "slice" === p ? c.dx : "dice" === p ? c.dy : "slice-dice" === p ? 1 & e.depth ? c.dy : c.dx : Math.min(c.dx, c.dy);for (n(h, c.dx * c.dy / e.value), f.area = 0; (l = h.length) > 0;) {
+                    f.push(o = h[l - 1]), f.area += o.area, "squarify" !== p || (a = r(f, v)) <= g ? (h.pop(), g = a) : (f.area -= f.pop().area, i(f, v, c, !1), v = Math.min(c.dx, c.dy), f.length = f.area = 0, g = 1 / 0);
+                }f.length && (i(f, v, c, !0), f.length = f.area = 0), u.forEach(t);
+            }
+        }function e(t) {
+            var r = t.children;if (r && r.length) {
+                var u,
+                    o = s(t),
+                    a = r.slice(),
+                    l = [];for (n(a, o.dx * o.dy / t.value), l.area = 0; u = a.pop();) {
+                    l.push(u), l.area += u.area, null != u.z && (i(l, u.z ? o.dx : o.dy, o, !a.length), l.length = l.area = 0);
+                }r.forEach(e);
+            }
+        }function r(n, t) {
+            for (var e, r = n.area, i = 0, u = 1 / 0, o = -1, a = n.length; ++o < a;) {
+                (e = n[o].area) && (u > e && (u = e), e > i && (i = e));
+            }return r *= r, t *= t, r ? Math.max(t * i * g / r, r / (t * u * g)) : 1 / 0;
+        }function i(n, t, e, r) {
+            var i,
+                u = -1,
+                o = n.length,
+                a = e.x,
+                c = e.y,
+                f = t ? l(n.area / t) : 0;
+            if (t == e.dx) {
+                for ((r || f > e.dy) && (f = e.dy); ++u < o;) {
+                    i = n[u], i.x = a, i.y = c, i.dy = f, a += i.dx = Math.min(e.x + e.dx - a, f ? l(i.area / f) : 0);
+                }i.z = !0, i.dx += e.x + e.dx - a, e.y += f, e.dy -= f;
+            } else {
+                for ((r || f > e.dx) && (f = e.dx); ++u < o;) {
+                    i = n[u], i.x = a, i.y = c, i.dx = f, c += i.dy = Math.min(e.y + e.dy - c, f ? l(i.area / f) : 0);
+                }i.z = !1, i.dy += e.y + e.dy - c, e.x += f, e.dx -= f;
+            }
+        }function u(r) {
+            var i = o || a(r),
+                u = i[0];return u.x = u.y = 0, u.value ? (u.dx = c[0], u.dy = c[1]) : u.dx = u.dy = 0, o && a.revalue(u), n([u], u.dx * u.dy / u.value), (o ? e : t)(u), h && (o = i), i;
+        }var o,
+            a = ao.layout.hierarchy(),
+            l = Math.round,
+            c = [1, 1],
+            f = null,
+            s = Oi,
+            h = !1,
+            p = "squarify",
+            g = .5 * (1 + Math.sqrt(5));return u.size = function (n) {
+            return arguments.length ? (c = n, u) : c;
+        }, u.padding = function (n) {
+            function t(t) {
+                var e = n.call(u, t, t.depth);return null == e ? Oi(t) : Ii(t, "number" == typeof e ? [e, e, e, e] : e);
+            }function e(t) {
+                return Ii(t, n);
+            }if (!arguments.length) return f;var r;return s = null == (f = n) ? Oi : "function" == (r = typeof n === "undefined" ? "undefined" : _typeof(n)) ? t : "number" === r ? (n = [n, n, n, n], e) : e, u;
+        }, u.round = function (n) {
+            return arguments.length ? (l = n ? Math.round : Number, u) : l != Number;
+        }, u.sticky = function (n) {
+            return arguments.length ? (h = n, o = null, u) : h;
+        }, u.ratio = function (n) {
+            return arguments.length ? (g = n, u) : g;
+        }, u.mode = function (n) {
+            return arguments.length ? (p = n + "", u) : p;
+        }, ii(u, a);
+    }, ao.random = { normal: function normal(n, t) {
+            var e = arguments.length;return 2 > e && (t = 1), 1 > e && (n = 0), function () {
+                var e, r, i;do {
+                    e = 2 * Math.random() - 1, r = 2 * Math.random() - 1, i = e * e + r * r;
+                } while (!i || i > 1);return n + t * e * Math.sqrt(-2 * Math.log(i) / i);
+            };
+        }, logNormal: function logNormal() {
+            var n = ao.random.normal.apply(ao, arguments);return function () {
+                return Math.exp(n());
+            };
+        }, bates: function bates(n) {
+            var t = ao.random.irwinHall(n);return function () {
+                return t() / n;
+            };
+        }, irwinHall: function irwinHall(n) {
+            return function () {
+                for (var t = 0, e = 0; n > e; e++) {
+                    t += Math.random();
+                }return t;
+            };
+        } }, ao.scale = {};var Sl = { floor: m, ceil: m };ao.scale.linear = function () {
+        return Wi([0, 1], [0, 1], Mr, !1);
+    };var kl = { s: 1, g: 1, p: 1, r: 1, e: 1 };ao.scale.log = function () {
+        return ru(ao.scale.linear().domain([0, 1]), 10, !0, [1, 10]);
+    };var Nl = ao.format(".0e"),
+        El = { floor: function floor(n) {
+            return -Math.ceil(-n);
+        }, ceil: function ceil(n) {
+            return -Math.floor(-n);
+        } };ao.scale.pow = function () {
+        return iu(ao.scale.linear(), 1, [0, 1]);
+    }, ao.scale.sqrt = function () {
+        return ao.scale.pow().exponent(.5);
+    }, ao.scale.ordinal = function () {
+        return ou([], { t: "range", a: [[]] });
+    }, ao.scale.category10 = function () {
+        return ao.scale.ordinal().range(Al);
+    }, ao.scale.category20 = function () {
+        return ao.scale.ordinal().range(Cl);
+    }, ao.scale.category20b = function () {
+        return ao.scale.ordinal().range(zl);
+    }, ao.scale.category20c = function () {
+        return ao.scale.ordinal().range(Ll);
+    };var Al = [2062260, 16744206, 2924588, 14034728, 9725885, 9197131, 14907330, 8355711, 12369186, 1556175].map(xn),
+        Cl = [2062260, 11454440, 16744206, 16759672, 2924588, 10018698, 14034728, 16750742, 9725885, 12955861, 9197131, 12885140, 14907330, 16234194, 8355711, 13092807, 12369186, 14408589, 1556175, 10410725].map(xn),
+        zl = [3750777, 5395619, 7040719, 10264286, 6519097, 9216594, 11915115, 13556636, 9202993, 12426809, 15186514, 15190932, 8666169, 11356490, 14049643, 15177372, 8077683, 10834324, 13528509, 14589654].map(xn),
+        Ll = [3244733, 7057110, 10406625, 13032431, 15095053, 16616764, 16625259, 16634018, 3253076, 7652470, 10607003, 13101504, 7695281, 10394312, 12369372, 14342891, 6513507, 9868950, 12434877, 14277081].map(xn);ao.scale.quantile = function () {
+        return au([], []);
+    }, ao.scale.quantize = function () {
+        return lu(0, 1, [0, 1]);
+    }, ao.scale.threshold = function () {
+        return cu([.5], [0, 1]);
+    }, ao.scale.identity = function () {
+        return fu([0, 1]);
+    }, ao.svg = {}, ao.svg.arc = function () {
+        function n() {
+            var n = Math.max(0, +e.apply(this, arguments)),
+                c = Math.max(0, +r.apply(this, arguments)),
+                f = o.apply(this, arguments) - Io,
+                s = a.apply(this, arguments) - Io,
+                h = Math.abs(s - f),
+                p = f > s ? 0 : 1;if (n > c && (g = c, c = n, n = g), h >= Oo) return t(c, p) + (n ? t(n, 1 - p) : "") + "Z";var g,
+                v,
+                d,
+                y,
+                m,
+                M,
+                x,
+                b,
+                _,
+                w,
+                S,
+                k,
+                N = 0,
+                E = 0,
+                A = [];if ((y = (+l.apply(this, arguments) || 0) / 2) && (d = u === ql ? Math.sqrt(n * n + c * c) : +u.apply(this, arguments), p || (E *= -1), c && (E = tn(d / c * Math.sin(y))), n && (N = tn(d / n * Math.sin(y)))), c) {
+                m = c * Math.cos(f + E), M = c * Math.sin(f + E), x = c * Math.cos(s - E), b = c * Math.sin(s - E);var C = Math.abs(s - f - 2 * E) <= Fo ? 0 : 1;if (E && yu(m, M, x, b) === p ^ C) {
+                    var z = (f + s) / 2;m = c * Math.cos(z), M = c * Math.sin(z), x = b = null;
+                }
+            } else m = M = 0;if (n) {
+                _ = n * Math.cos(s - N), w = n * Math.sin(s - N), S = n * Math.cos(f + N), k = n * Math.sin(f + N);var L = Math.abs(f - s + 2 * N) <= Fo ? 0 : 1;if (N && yu(_, w, S, k) === 1 - p ^ L) {
+                    var q = (f + s) / 2;_ = n * Math.cos(q), w = n * Math.sin(q), S = k = null;
+                }
+            } else _ = w = 0;if (h > Uo && (g = Math.min(Math.abs(c - n) / 2, +i.apply(this, arguments))) > .001) {
+                v = c > n ^ p ? 0 : 1;var T = g,
+                    R = g;if (Fo > h) {
+                    var D = null == S ? [_, w] : null == x ? [m, M] : Re([m, M], [S, k], [x, b], [_, w]),
+                        P = m - D[0],
+                        U = M - D[1],
+                        j = x - D[0],
+                        F = b - D[1],
+                        H = 1 / Math.sin(Math.acos((P * j + U * F) / (Math.sqrt(P * P + U * U) * Math.sqrt(j * j + F * F))) / 2),
+                        O = Math.sqrt(D[0] * D[0] + D[1] * D[1]);R = Math.min(g, (n - O) / (H - 1)), T = Math.min(g, (c - O) / (H + 1));
+                }if (null != x) {
+                    var I = mu(null == S ? [_, w] : [S, k], [m, M], c, T, p),
+                        Y = mu([x, b], [_, w], c, T, p);g === T ? A.push("M", I[0], "A", T, ",", T, " 0 0,", v, " ", I[1], "A", c, ",", c, " 0 ", 1 - p ^ yu(I[1][0], I[1][1], Y[1][0], Y[1][1]), ",", p, " ", Y[1], "A", T, ",", T, " 0 0,", v, " ", Y[0]) : A.push("M", I[0], "A", T, ",", T, " 0 1,", v, " ", Y[0]);
+                } else A.push("M", m, ",", M);if (null != S) {
+                    var Z = mu([m, M], [S, k], n, -R, p),
+                        V = mu([_, w], null == x ? [m, M] : [x, b], n, -R, p);g === R ? A.push("L", V[0], "A", R, ",", R, " 0 0,", v, " ", V[1], "A", n, ",", n, " 0 ", p ^ yu(V[1][0], V[1][1], Z[1][0], Z[1][1]), ",", 1 - p, " ", Z[1], "A", R, ",", R, " 0 0,", v, " ", Z[0]) : A.push("L", V[0], "A", R, ",", R, " 0 0,", v, " ", Z[0]);
+                } else A.push("L", _, ",", w);
+            } else A.push("M", m, ",", M), null != x && A.push("A", c, ",", c, " 0 ", C, ",", p, " ", x, ",", b), A.push("L", _, ",", w), null != S && A.push("A", n, ",", n, " 0 ", L, ",", 1 - p, " ", S, ",", k);return A.push("Z"), A.join("");
+        }function t(n, t) {
+            return "M0," + n + "A" + n + "," + n + " 0 1," + t + " 0," + -n + "A" + n + "," + n + " 0 1," + t + " 0," + n;
+        }var e = hu,
+            r = pu,
+            i = su,
+            u = ql,
+            o = gu,
+            a = vu,
+            l = du;return n.innerRadius = function (t) {
+            return arguments.length ? (e = En(t), n) : e;
+        }, n.outerRadius = function (t) {
+            return arguments.length ? (r = En(t), n) : r;
+        }, n.cornerRadius = function (t) {
+            return arguments.length ? (i = En(t), n) : i;
+        }, n.padRadius = function (t) {
+            return arguments.length ? (u = t == ql ? ql : En(t), n) : u;
+        }, n.startAngle = function (t) {
+            return arguments.length ? (o = En(t), n) : o;
+        }, n.endAngle = function (t) {
+            return arguments.length ? (a = En(t), n) : a;
+        }, n.padAngle = function (t) {
+            return arguments.length ? (l = En(t), n) : l;
+        }, n.centroid = function () {
+            var n = (+e.apply(this, arguments) + +r.apply(this, arguments)) / 2,
+                t = (+o.apply(this, arguments) + +a.apply(this, arguments)) / 2 - Io;return [Math.cos(t) * n, Math.sin(t) * n];
+        }, n;
+    };var ql = "auto";ao.svg.line = function () {
+        return Mu(m);
+    };var Tl = ao.map({ linear: xu, "linear-closed": bu, step: _u, "step-before": wu, "step-after": Su, basis: zu, "basis-open": Lu, "basis-closed": qu, bundle: Tu, cardinal: Eu, "cardinal-open": ku, "cardinal-closed": Nu, monotone: Fu });Tl.forEach(function (n, t) {
+        t.key = n, t.closed = /-closed$/.test(n);
+    });var Rl = [0, 2 / 3, 1 / 3, 0],
+        Dl = [0, 1 / 3, 2 / 3, 0],
+        Pl = [0, 1 / 6, 2 / 3, 1 / 6];ao.svg.line.radial = function () {
+        var n = Mu(Hu);return n.radius = n.x, delete n.x, n.angle = n.y, delete n.y, n;
+    }, wu.reverse = Su, Su.reverse = wu, ao.svg.area = function () {
+        return Ou(m);
+    }, ao.svg.area.radial = function () {
+        var n = Ou(Hu);return n.radius = n.x, delete n.x, n.innerRadius = n.x0, delete n.x0, n.outerRadius = n.x1, delete n.x1, n.angle = n.y, delete n.y, n.startAngle = n.y0, delete n.y0, n.endAngle = n.y1, delete n.y1, n;
+    }, ao.svg.chord = function () {
+        function n(n, a) {
+            var l = t(this, u, n, a),
+                c = t(this, o, n, a);return "M" + l.p0 + r(l.r, l.p1, l.a1 - l.a0) + (e(l, c) ? i(l.r, l.p1, l.r, l.p0) : i(l.r, l.p1, c.r, c.p0) + r(c.r, c.p1, c.a1 - c.a0) + i(c.r, c.p1, l.r, l.p0)) + "Z";
+        }function t(n, t, e, r) {
+            var i = t.call(n, e, r),
+                u = a.call(n, i, r),
+                o = l.call(n, i, r) - Io,
+                f = c.call(n, i, r) - Io;return { r: u, a0: o, a1: f, p0: [u * Math.cos(o), u * Math.sin(o)], p1: [u * Math.cos(f), u * Math.sin(f)] };
+        }function e(n, t) {
+            return n.a0 == t.a0 && n.a1 == t.a1;
+        }function r(n, t, e) {
+            return "A" + n + "," + n + " 0 " + +(e > Fo) + ",1 " + t;
+        }function i(n, t, e, r) {
+            return "Q 0,0 " + r;
+        }var u = Me,
+            o = xe,
+            a = Iu,
+            l = gu,
+            c = vu;return n.radius = function (t) {
+            return arguments.length ? (a = En(t), n) : a;
+        }, n.source = function (t) {
+            return arguments.length ? (u = En(t), n) : u;
+        }, n.target = function (t) {
+            return arguments.length ? (o = En(t), n) : o;
+        }, n.startAngle = function (t) {
+            return arguments.length ? (l = En(t), n) : l;
+        }, n.endAngle = function (t) {
+            return arguments.length ? (c = En(t), n) : c;
+        }, n;
+    }, ao.svg.diagonal = function () {
+        function n(n, i) {
+            var u = t.call(this, n, i),
+                o = e.call(this, n, i),
+                a = (u.y + o.y) / 2,
+                l = [u, { x: u.x, y: a }, { x: o.x, y: a }, o];return l = l.map(r), "M" + l[0] + "C" + l[1] + " " + l[2] + " " + l[3];
+        }var t = Me,
+            e = xe,
+            r = Yu;return n.source = function (e) {
+            return arguments.length ? (t = En(e), n) : t;
+        }, n.target = function (t) {
+            return arguments.length ? (e = En(t), n) : e;
+        }, n.projection = function (t) {
+            return arguments.length ? (r = t, n) : r;
+        }, n;
+    }, ao.svg.diagonal.radial = function () {
+        var n = ao.svg.diagonal(),
+            t = Yu,
+            e = n.projection;return n.projection = function (n) {
+            return arguments.length ? e(Zu(t = n)) : t;
+        }, n;
+    }, ao.svg.symbol = function () {
+        function n(n, r) {
+            return (Ul.get(t.call(this, n, r)) || $u)(e.call(this, n, r));
+        }var t = Xu,
+            e = Vu;return n.type = function (e) {
+            return arguments.length ? (t = En(e), n) : t;
+        }, n.size = function (t) {
+            return arguments.length ? (e = En(t), n) : e;
+        }, n;
+    };var Ul = ao.map({ circle: $u, cross: function cross(n) {
+            var t = Math.sqrt(n / 5) / 2;return "M" + -3 * t + "," + -t + "H" + -t + "V" + -3 * t + "H" + t + "V" + -t + "H" + 3 * t + "V" + t + "H" + t + "V" + 3 * t + "H" + -t + "V" + t + "H" + -3 * t + "Z";
+        }, diamond: function diamond(n) {
+            var t = Math.sqrt(n / (2 * Fl)),
+                e = t * Fl;return "M0," + -t + "L" + e + ",0 0," + t + " " + -e + ",0Z";
+        }, square: function square(n) {
+            var t = Math.sqrt(n) / 2;return "M" + -t + "," + -t + "L" + t + "," + -t + " " + t + "," + t + " " + -t + "," + t + "Z";
+        }, "triangle-down": function triangleDown(n) {
+            var t = Math.sqrt(n / jl),
+                e = t * jl / 2;return "M0," + e + "L" + t + "," + -e + " " + -t + "," + -e + "Z";
+        }, "triangle-up": function triangleUp(n) {
+            var t = Math.sqrt(n / jl),
+                e = t * jl / 2;return "M0," + -e + "L" + t + "," + e + " " + -t + "," + e + "Z";
+        } });ao.svg.symbolTypes = Ul.keys();var jl = Math.sqrt(3),
+        Fl = Math.tan(30 * Yo);Co.transition = function (n) {
+        for (var t, e, r = Hl || ++Zl, i = Ku(n), u = [], o = Ol || { time: Date.now(), ease: Nr, delay: 0, duration: 250 }, a = -1, l = this.length; ++a < l;) {
+            u.push(t = []);for (var c = this[a], f = -1, s = c.length; ++f < s;) {
+                (e = c[f]) && Qu(e, f, i, r, o), t.push(e);
+            }
+        }return Wu(u, i, r);
+    }, Co.interrupt = function (n) {
+        return this.each(null == n ? Il : Bu(Ku(n)));
+    };var Hl,
+        Ol,
+        Il = Bu(Ku()),
+        Yl = [],
+        Zl = 0;Yl.call = Co.call, Yl.empty = Co.empty, Yl.node = Co.node, Yl.size = Co.size, ao.transition = function (n, t) {
+        return n && n.transition ? Hl ? n.transition(t) : n : ao.selection().transition(n);
+    }, ao.transition.prototype = Yl, Yl.select = function (n) {
+        var t,
+            e,
+            r,
+            i = this.id,
+            u = this.namespace,
+            o = [];n = A(n);for (var a = -1, l = this.length; ++a < l;) {
+            o.push(t = []);for (var c = this[a], f = -1, s = c.length; ++f < s;) {
+                (r = c[f]) && (e = n.call(r, r.__data__, f, a)) ? ("__data__" in r && (e.__data__ = r.__data__), Qu(e, f, u, i, r[u][i]), t.push(e)) : t.push(null);
+            }
+        }return Wu(o, u, i);
+    }, Yl.selectAll = function (n) {
+        var t,
+            e,
+            r,
+            i,
+            u,
+            o = this.id,
+            a = this.namespace,
+            l = [];n = C(n);for (var c = -1, f = this.length; ++c < f;) {
+            for (var s = this[c], h = -1, p = s.length; ++h < p;) {
+                if (r = s[h]) {
+                    u = r[a][o], e = n.call(r, r.__data__, h, c), l.push(t = []);for (var g = -1, v = e.length; ++g < v;) {
+                        (i = e[g]) && Qu(i, g, a, o, u), t.push(i);
+                    }
+                }
+            }
+        }return Wu(l, a, o);
+    }, Yl.filter = function (n) {
+        var t,
+            e,
+            r,
+            i = [];"function" != typeof n && (n = O(n));for (var u = 0, o = this.length; o > u; u++) {
+            i.push(t = []);for (var e = this[u], a = 0, l = e.length; l > a; a++) {
+                (r = e[a]) && n.call(r, r.__data__, a, u) && t.push(r);
+            }
+        }return Wu(i, this.namespace, this.id);
+    }, Yl.tween = function (n, t) {
+        var e = this.id,
+            r = this.namespace;return arguments.length < 2 ? this.node()[r][e].tween.get(n) : Y(this, null == t ? function (t) {
+            t[r][e].tween.remove(n);
+        } : function (i) {
+            i[r][e].tween.set(n, t);
+        });
+    }, Yl.attr = function (n, t) {
+        function e() {
+            this.removeAttribute(a);
+        }function r() {
+            this.removeAttributeNS(a.space, a.local);
+        }function i(n) {
+            return null == n ? e : (n += "", function () {
+                var t,
+                    e = this.getAttribute(a);return e !== n && (t = o(e, n), function (n) {
+                    this.setAttribute(a, t(n));
+                });
+            });
+        }function u(n) {
+            return null == n ? r : (n += "", function () {
+                var t,
+                    e = this.getAttributeNS(a.space, a.local);return e !== n && (t = o(e, n), function (n) {
+                    this.setAttributeNS(a.space, a.local, t(n));
+                });
+            });
+        }if (arguments.length < 2) {
+            for (t in n) {
+                this.attr(t, n[t]);
+            }return this;
+        }var o = "transform" == n ? $r : Mr,
+            a = ao.ns.qualify(n);return Ju(this, "attr." + n, t, a.local ? u : i);
+    }, Yl.attrTween = function (n, t) {
+        function e(n, e) {
+            var r = t.call(this, n, e, this.getAttribute(i));return r && function (n) {
+                this.setAttribute(i, r(n));
+            };
+        }function r(n, e) {
+            var r = t.call(this, n, e, this.getAttributeNS(i.space, i.local));return r && function (n) {
+                this.setAttributeNS(i.space, i.local, r(n));
+            };
+        }var i = ao.ns.qualify(n);return this.tween("attr." + n, i.local ? r : e);
+    }, Yl.style = function (n, e, r) {
+        function i() {
+            this.style.removeProperty(n);
+        }function u(e) {
+            return null == e ? i : (e += "", function () {
+                var i,
+                    u = t(this).getComputedStyle(this, null).getPropertyValue(n);return u !== e && (i = Mr(u, e), function (t) {
+                    this.style.setProperty(n, i(t), r);
+                });
+            });
+        }var o = arguments.length;if (3 > o) {
+            if ("string" != typeof n) {
+                2 > o && (e = "");for (r in n) {
+                    this.style(r, n[r], e);
+                }return this;
+            }r = "";
+        }return Ju(this, "style." + n, e, u);
+    }, Yl.styleTween = function (n, e, r) {
+        function i(i, u) {
+            var o = e.call(this, i, u, t(this).getComputedStyle(this, null).getPropertyValue(n));return o && function (t) {
+                this.style.setProperty(n, o(t), r);
+            };
+        }return arguments.length < 3 && (r = ""), this.tween("style." + n, i);
+    }, Yl.text = function (n) {
+        return Ju(this, "text", n, Gu);
+    }, Yl.remove = function () {
+        var n = this.namespace;return this.each("end.transition", function () {
+            var t;this[n].count < 2 && (t = this.parentNode) && t.removeChild(this);
+        });
+    }, Yl.ease = function (n) {
+        var t = this.id,
+            e = this.namespace;return arguments.length < 1 ? this.node()[e][t].ease : ("function" != typeof n && (n = ao.ease.apply(ao, arguments)), Y(this, function (r) {
+            r[e][t].ease = n;
+        }));
+    }, Yl.delay = function (n) {
+        var t = this.id,
+            e = this.namespace;return arguments.length < 1 ? this.node()[e][t].delay : Y(this, "function" == typeof n ? function (r, i, u) {
+            r[e][t].delay = +n.call(r, r.__data__, i, u);
+        } : (n = +n, function (r) {
+            r[e][t].delay = n;
+        }));
+    }, Yl.duration = function (n) {
+        var t = this.id,
+            e = this.namespace;return arguments.length < 1 ? this.node()[e][t].duration : Y(this, "function" == typeof n ? function (r, i, u) {
+            r[e][t].duration = Math.max(1, n.call(r, r.__data__, i, u));
+        } : (n = Math.max(1, n), function (r) {
+            r[e][t].duration = n;
+        }));
+    }, Yl.each = function (n, t) {
+        var e = this.id,
+            r = this.namespace;if (arguments.length < 2) {
+            var i = Ol,
+                u = Hl;try {
+                Hl = e, Y(this, function (t, i, u) {
+                    Ol = t[r][e], n.call(t, t.__data__, i, u);
+                });
+            } finally {
+                Ol = i, Hl = u;
+            }
+        } else Y(this, function (i) {
+            var u = i[r][e];(u.event || (u.event = ao.dispatch("start", "end", "interrupt"))).on(n, t);
+        });return this;
+    }, Yl.transition = function () {
+        for (var n, t, e, r, i = this.id, u = ++Zl, o = this.namespace, a = [], l = 0, c = this.length; c > l; l++) {
+            a.push(n = []);for (var t = this[l], f = 0, s = t.length; s > f; f++) {
+                (e = t[f]) && (r = e[o][i], Qu(e, f, o, u, { time: r.time, ease: r.ease, delay: r.delay + r.duration, duration: r.duration })), n.push(e);
+            }
+        }return Wu(a, o, u);
+    }, ao.svg.axis = function () {
+        function n(n) {
+            n.each(function () {
+                var n,
+                    c = ao.select(this),
+                    f = this.__chart__ || e,
+                    s = this.__chart__ = e.copy(),
+                    h = null == l ? s.ticks ? s.ticks.apply(s, a) : s.domain() : l,
+                    p = null == t ? s.tickFormat ? s.tickFormat.apply(s, a) : m : t,
+                    g = c.selectAll(".tick").data(h, s),
+                    v = g.enter().insert("g", ".domain").attr("class", "tick").style("opacity", Uo),
+                    d = ao.transition(g.exit()).style("opacity", Uo).remove(),
+                    y = ao.transition(g.order()).style("opacity", 1),
+                    M = Math.max(i, 0) + o,
+                    x = Zi(s),
+                    b = c.selectAll(".domain").data([0]),
+                    _ = (b.enter().append("path").attr("class", "domain"), ao.transition(b));v.append("line"), v.append("text");var w,
+                    S,
+                    k,
+                    N,
+                    E = v.select("line"),
+                    A = y.select("line"),
+                    C = g.select("text").text(p),
+                    z = v.select("text"),
+                    L = y.select("text"),
+                    q = "top" === r || "left" === r ? -1 : 1;if ("bottom" === r || "top" === r ? (n = no, w = "x", k = "y", S = "x2", N = "y2", C.attr("dy", 0 > q ? "0em" : ".71em").style("text-anchor", "middle"), _.attr("d", "M" + x[0] + "," + q * u + "V0H" + x[1] + "V" + q * u)) : (n = to, w = "y", k = "x", S = "y2", N = "x2", C.attr("dy", ".32em").style("text-anchor", 0 > q ? "end" : "start"), _.attr("d", "M" + q * u + "," + x[0] + "H0V" + x[1] + "H" + q * u)), E.attr(N, q * i), z.attr(k, q * M), A.attr(S, 0).attr(N, q * i), L.attr(w, 0).attr(k, q * M), s.rangeBand) {
+                    var T = s,
+                        R = T.rangeBand() / 2;f = s = function s(n) {
+                        return T(n) + R;
+                    };
+                } else f.rangeBand ? f = s : d.call(n, s, f);v.call(n, f, s), y.call(n, s, s);
+            });
+        }var t,
+            e = ao.scale.linear(),
+            r = Vl,
+            i = 6,
+            u = 6,
+            o = 3,
+            a = [10],
+            l = null;return n.scale = function (t) {
+            return arguments.length ? (e = t, n) : e;
+        }, n.orient = function (t) {
+            return arguments.length ? (r = t in Xl ? t + "" : Vl, n) : r;
+        }, n.ticks = function () {
+            return arguments.length ? (a = co(arguments), n) : a;
+        }, n.tickValues = function (t) {
+            return arguments.length ? (l = t, n) : l;
+        }, n.tickFormat = function (e) {
+            return arguments.length ? (t = e, n) : t;
+        }, n.tickSize = function (t) {
+            var e = arguments.length;return e ? (i = +t, u = +arguments[e - 1], n) : i;
+        }, n.innerTickSize = function (t) {
+            return arguments.length ? (i = +t, n) : i;
+        }, n.outerTickSize = function (t) {
+            return arguments.length ? (u = +t, n) : u;
+        }, n.tickPadding = function (t) {
+            return arguments.length ? (o = +t, n) : o;
+        }, n.tickSubdivide = function () {
+            return arguments.length && n;
+        }, n;
+    };var Vl = "bottom",
+        Xl = { top: 1, right: 1, bottom: 1, left: 1 };ao.svg.brush = function () {
+        function n(t) {
+            t.each(function () {
+                var t = ao.select(this).style("pointer-events", "all").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)").on("mousedown.brush", u).on("touchstart.brush", u),
+                    o = t.selectAll(".background").data([0]);o.enter().append("rect").attr("class", "background").style("visibility", "hidden").style("cursor", "crosshair"), t.selectAll(".extent").data([0]).enter().append("rect").attr("class", "extent").style("cursor", "move");var a = t.selectAll(".resize").data(v, m);a.exit().remove(), a.enter().append("g").attr("class", function (n) {
+                    return "resize " + n;
+                }).style("cursor", function (n) {
+                    return $l[n];
+                }).append("rect").attr("x", function (n) {
+                    return (/[ew]$/.test(n) ? -3 : null
+                    );
+                }).attr("y", function (n) {
+                    return (/^[ns]/.test(n) ? -3 : null
+                    );
+                }).attr("width", 6).attr("height", 6).style("visibility", "hidden"), a.style("display", n.empty() ? "none" : null);var l,
+                    s = ao.transition(t),
+                    h = ao.transition(o);c && (l = Zi(c), h.attr("x", l[0]).attr("width", l[1] - l[0]), r(s)), f && (l = Zi(f), h.attr("y", l[0]).attr("height", l[1] - l[0]), i(s)), e(s);
+            });
+        }function e(n) {
+            n.selectAll(".resize").attr("transform", function (n) {
+                return "translate(" + s[+/e$/.test(n)] + "," + h[+/^s/.test(n)] + ")";
+            });
+        }function r(n) {
+            n.select(".extent").attr("x", s[0]), n.selectAll(".extent,.n>rect,.s>rect").attr("width", s[1] - s[0]);
+        }function i(n) {
+            n.select(".extent").attr("y", h[0]), n.selectAll(".extent,.e>rect,.w>rect").attr("height", h[1] - h[0]);
+        }function u() {
+            function u() {
+                32 == ao.event.keyCode && (C || (M = null, L[0] -= s[1], L[1] -= h[1], C = 2), S());
+            }function v() {
+                32 == ao.event.keyCode && 2 == C && (L[0] += s[1], L[1] += h[1], C = 0, S());
+            }function d() {
+                var n = ao.mouse(b),
+                    t = !1;x && (n[0] += x[0], n[1] += x[1]), C || (ao.event.altKey ? (M || (M = [(s[0] + s[1]) / 2, (h[0] + h[1]) / 2]), L[0] = s[+(n[0] < M[0])], L[1] = h[+(n[1] < M[1])]) : M = null), E && y(n, c, 0) && (r(k), t = !0), A && y(n, f, 1) && (i(k), t = !0), t && (e(k), w({ type: "brush", mode: C ? "move" : "resize" }));
+            }function y(n, t, e) {
+                var r,
+                    i,
+                    u = Zi(t),
+                    l = u[0],
+                    c = u[1],
+                    f = L[e],
+                    v = e ? h : s,
+                    d = v[1] - v[0];return C && (l -= f, c -= d + f), r = (e ? g : p) ? Math.max(l, Math.min(c, n[e])) : n[e], C ? i = (r += f) + d : (M && (f = Math.max(l, Math.min(c, 2 * M[e] - r))), r > f ? (i = r, r = f) : i = f), v[0] != r || v[1] != i ? (e ? a = null : o = null, v[0] = r, v[1] = i, !0) : void 0;
+            }function m() {
+                d(), k.style("pointer-events", "all").selectAll(".resize").style("display", n.empty() ? "none" : null), ao.select("body").style("cursor", null), q.on("mousemove.brush", null).on("mouseup.brush", null).on("touchmove.brush", null).on("touchend.brush", null).on("keydown.brush", null).on("keyup.brush", null), z(), w({ type: "brushend" });
+            }var M,
+                x,
+                b = this,
+                _ = ao.select(ao.event.target),
+                w = l.of(b, arguments),
+                k = ao.select(b),
+                N = _.datum(),
+                E = !/^(n|s)$/.test(N) && c,
+                A = !/^(e|w)$/.test(N) && f,
+                C = _.classed("extent"),
+                z = W(b),
+                L = ao.mouse(b),
+                q = ao.select(t(b)).on("keydown.brush", u).on("keyup.brush", v);if (ao.event.changedTouches ? q.on("touchmove.brush", d).on("touchend.brush", m) : q.on("mousemove.brush", d).on("mouseup.brush", m), k.interrupt().selectAll("*").interrupt(), C) L[0] = s[0] - L[0], L[1] = h[0] - L[1];else if (N) {
+                var T = +/w$/.test(N),
+                    R = +/^n/.test(N);x = [s[1 - T] - L[0], h[1 - R] - L[1]], L[0] = s[T], L[1] = h[R];
+            } else ao.event.altKey && (M = L.slice());k.style("pointer-events", "none").selectAll(".resize").style("display", null), ao.select("body").style("cursor", _.style("cursor")), w({ type: "brushstart" }), d();
+        }var o,
+            a,
+            l = N(n, "brushstart", "brush", "brushend"),
+            c = null,
+            f = null,
+            s = [0, 0],
+            h = [0, 0],
+            p = !0,
+            g = !0,
+            v = Bl[0];return n.event = function (n) {
+            n.each(function () {
+                var n = l.of(this, arguments),
+                    t = { x: s, y: h, i: o, j: a },
+                    e = this.__chart__ || t;this.__chart__ = t, Hl ? ao.select(this).transition().each("start.brush", function () {
+                    o = e.i, a = e.j, s = e.x, h = e.y, n({ type: "brushstart" });
+                }).tween("brush:brush", function () {
+                    var e = xr(s, t.x),
+                        r = xr(h, t.y);return o = a = null, function (i) {
+                        s = t.x = e(i), h = t.y = r(i), n({ type: "brush", mode: "resize" });
+                    };
+                }).each("end.brush", function () {
+                    o = t.i, a = t.j, n({ type: "brush", mode: "resize" }), n({ type: "brushend" });
+                }) : (n({ type: "brushstart" }), n({ type: "brush", mode: "resize" }), n({ type: "brushend" }));
+            });
+        }, n.x = function (t) {
+            return arguments.length ? (c = t, v = Bl[!c << 1 | !f], n) : c;
+        }, n.y = function (t) {
+            return arguments.length ? (f = t, v = Bl[!c << 1 | !f], n) : f;
+        }, n.clamp = function (t) {
+            return arguments.length ? (c && f ? (p = !!t[0], g = !!t[1]) : c ? p = !!t : f && (g = !!t), n) : c && f ? [p, g] : c ? p : f ? g : null;
+        }, n.extent = function (t) {
+            var e, r, i, u, l;return arguments.length ? (c && (e = t[0], r = t[1], f && (e = e[0], r = r[0]), o = [e, r], c.invert && (e = c(e), r = c(r)), e > r && (l = e, e = r, r = l), e == s[0] && r == s[1] || (s = [e, r])), f && (i = t[0], u = t[1], c && (i = i[1], u = u[1]), a = [i, u], f.invert && (i = f(i), u = f(u)), i > u && (l = i, i = u, u = l), i == h[0] && u == h[1] || (h = [i, u])), n) : (c && (o ? (e = o[0], r = o[1]) : (e = s[0], r = s[1], c.invert && (e = c.invert(e), r = c.invert(r)), e > r && (l = e, e = r, r = l))), f && (a ? (i = a[0], u = a[1]) : (i = h[0], u = h[1], f.invert && (i = f.invert(i), u = f.invert(u)), i > u && (l = i, i = u, u = l))), c && f ? [[e, i], [r, u]] : c ? [e, r] : f && [i, u]);
+        }, n.clear = function () {
+            return n.empty() || (s = [0, 0], h = [0, 0], o = a = null), n;
+        }, n.empty = function () {
+            return !!c && s[0] == s[1] || !!f && h[0] == h[1];
+        }, ao.rebind(n, l, "on");
+    };var $l = { n: "ns-resize", e: "ew-resize", s: "ns-resize", w: "ew-resize", nw: "nwse-resize", ne: "nesw-resize", se: "nwse-resize", sw: "nesw-resize" },
+        Bl = [["n", "e", "s", "w", "nw", "ne", "se", "sw"], ["e", "w"], ["n", "s"], []],
+        Wl = ga.format = xa.timeFormat,
+        Jl = Wl.utc,
+        Gl = Jl("%Y-%m-%dT%H:%M:%S.%LZ");Wl.iso = Date.prototype.toISOString && +new Date("2000-01-01T00:00:00.000Z") ? eo : Gl, eo.parse = function (n) {
+        var t = new Date(n);return isNaN(t) ? null : t;
+    }, eo.toString = Gl.toString, ga.second = On(function (n) {
+        return new va(1e3 * Math.floor(n / 1e3));
+    }, function (n, t) {
+        n.setTime(n.getTime() + 1e3 * Math.floor(t));
+    }, function (n) {
+        return n.getSeconds();
+    }), ga.seconds = ga.second.range, ga.seconds.utc = ga.second.utc.range, ga.minute = On(function (n) {
+        return new va(6e4 * Math.floor(n / 6e4));
+    }, function (n, t) {
+        n.setTime(n.getTime() + 6e4 * Math.floor(t));
+    }, function (n) {
+        return n.getMinutes();
+    }), ga.minutes = ga.minute.range, ga.minutes.utc = ga.minute.utc.range, ga.hour = On(function (n) {
+        var t = n.getTimezoneOffset() / 60;return new va(36e5 * (Math.floor(n / 36e5 - t) + t));
+    }, function (n, t) {
+        n.setTime(n.getTime() + 36e5 * Math.floor(t));
+    }, function (n) {
+        return n.getHours();
+    }), ga.hours = ga.hour.range, ga.hours.utc = ga.hour.utc.range, ga.month = On(function (n) {
+        return n = ga.day(n), n.setDate(1), n;
+    }, function (n, t) {
+        n.setMonth(n.getMonth() + t);
+    }, function (n) {
+        return n.getMonth();
+    }), ga.months = ga.month.range, ga.months.utc = ga.month.utc.range;var Kl = [1e3, 5e3, 15e3, 3e4, 6e4, 3e5, 9e5, 18e5, 36e5, 108e5, 216e5, 432e5, 864e5, 1728e5, 6048e5, 2592e6, 7776e6, 31536e6],
+        Ql = [[ga.second, 1], [ga.second, 5], [ga.second, 15], [ga.second, 30], [ga.minute, 1], [ga.minute, 5], [ga.minute, 15], [ga.minute, 30], [ga.hour, 1], [ga.hour, 3], [ga.hour, 6], [ga.hour, 12], [ga.day, 1], [ga.day, 2], [ga.week, 1], [ga.month, 1], [ga.month, 3], [ga.year, 1]],
+        nc = Wl.multi([[".%L", function (n) {
+        return n.getMilliseconds();
+    }], [":%S", function (n) {
+        return n.getSeconds();
+    }], ["%I:%M", function (n) {
+        return n.getMinutes();
+    }], ["%I %p", function (n) {
+        return n.getHours();
+    }], ["%a %d", function (n) {
+        return n.getDay() && 1 != n.getDate();
+    }], ["%b %d", function (n) {
+        return 1 != n.getDate();
+    }], ["%B", function (n) {
+        return n.getMonth();
+    }], ["%Y", zt]]),
+        tc = { range: function range(n, t, e) {
+            return ao.range(Math.ceil(n / e) * e, +t, e).map(io);
+        }, floor: m, ceil: m };Ql.year = ga.year, ga.scale = function () {
+        return ro(ao.scale.linear(), Ql, nc);
+    };var ec = Ql.map(function (n) {
+        return [n[0].utc, n[1]];
+    }),
+        rc = Jl.multi([[".%L", function (n) {
+        return n.getUTCMilliseconds();
+    }], [":%S", function (n) {
+        return n.getUTCSeconds();
+    }], ["%I:%M", function (n) {
+        return n.getUTCMinutes();
+    }], ["%I %p", function (n) {
+        return n.getUTCHours();
+    }], ["%a %d", function (n) {
+        return n.getUTCDay() && 1 != n.getUTCDate();
+    }], ["%b %d", function (n) {
+        return 1 != n.getUTCDate();
+    }], ["%B", function (n) {
+        return n.getUTCMonth();
+    }], ["%Y", zt]]);ec.year = ga.year.utc, ga.scale.utc = function () {
+        return ro(ao.scale.linear(), ec, rc);
+    }, ao.text = An(function (n) {
+        return n.responseText;
+    }), ao.json = function (n, t) {
+        return Cn(n, "application/json", uo, t);
+    }, ao.html = function (n, t) {
+        return Cn(n, "text/html", oo, t);
+    }, ao.xml = An(function (n) {
+        return n.responseXML;
+    }),  true ? (this.d3 = ao, !(__WEBPACK_AMD_DEFINE_FACTORY__ = (ao),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))) : "object" == (typeof module === "undefined" ? "undefined" : _typeof(module)) && module.exports ? module.exports = ao : this.d3 = ao;
+}();
+
+/***/ }),
+
+/***/ 98:
+/***/ (function(module, exports) {
+
+// d3.tip
+// Copyright (c) 2013 Justin Palmer
+//
+// Tooltips for d3.js SVG visualizations
+
+// Public - contructs a new tooltip
+//
+// Returns a tip
+d3.tip = function () {
+    var direction = d3_tip_direction,
+        offset = d3_tip_offset,
+        html = d3_tip_html,
+        node = initNode(),
+        svg = null,
+        point = null,
+        target = null;
+
+    function tip(vis) {
+        svg = getSVGNode(vis);
+        point = svg.createSVGPoint();
+        document.body.appendChild(node);
+    }
+
+    // Public - show the tooltip on the screen
+    //
+    // Returns a tip
+    tip.show = function () {
+        var args = Array.prototype.slice.call(arguments);
+        if (args[args.length - 1] instanceof SVGElement) target = args.pop();
+
+        var content = html.apply(this, args),
+            poffset = offset.apply(this, args),
+            dir = direction.apply(this, args),
+            nodel = d3.select(node),
+            i = 0,
+            coords;
+
+        nodel.html(content).style({ opacity: 1, 'pointer-events': 'all' });
+
+        while (i--) {
+            nodel.classed(directions[i], false);
+        }coords = direction_callbacks.get(dir).apply(this);
+        nodel.classed(dir, true).style({
+            top: coords.top + poffset[0] + 'px',
+            left: coords.left + poffset[1] + 'px'
+        });
+
+        return tip;
+    };
+
+    // Public - hide the tooltip
+    //
+    // Returns a tip
+    tip.hide = function () {
+        nodel = d3.select(node);
+        nodel.style({ opacity: 0, 'pointer-events': 'none' });
+        return tip;
+    };
+
+    // Public: Proxy attr calls to the d3 tip container.  Sets or gets attribute value.
+    //
+    // n - name of the attribute
+    // v - value of the attribute
+    //
+    // Returns tip or attribute value
+    tip.attr = function (n, v) {
+        if (arguments.length < 2 && typeof n === 'string') {
+            return d3.select(node).attr(n);
+        } else {
+            var args = Array.prototype.slice.call(arguments);
+            d3.selection.prototype.attr.apply(d3.select(node), args);
+        }
+
+        return tip;
+    };
+
+    // Public: Proxy style calls to the d3 tip container.  Sets or gets a style value.
+    //
+    // n - name of the property
+    // v - value of the property
+    //
+    // Returns tip or style property value
+    tip.style = function (n, v) {
+        if (arguments.length < 2 && typeof n === 'string') {
+            return d3.select(node).style(n);
+        } else {
+            var args = Array.prototype.slice.call(arguments);
+            d3.selection.prototype.style.apply(d3.select(node), args);
+        }
+
+        return tip;
+    };
+
+    // Public: Set or get the direction of the tooltip
+    //
+    // v - One of n(north), s(south), e(east), or w(west), nw(northwest),
+    //     sw(southwest), ne(northeast) or se(southeast)
+    //
+    // Returns tip or direction
+    tip.direction = function (v) {
+        if (!arguments.length) return direction;
+        direction = v == null ? v : d3.functor(v);
+
+        return tip;
+    };
+
+    // Public: Sets or gets the offset of the tip
+    //
+    // v - Array of [x, y] offset
+    //
+    // Returns offset or
+    tip.offset = function (v) {
+        if (!arguments.length) return offset;
+        offset = v == null ? v : d3.functor(v);
+
+        return tip;
+    };
+
+    // Public: sets or gets the html value of the tooltip
+    //
+    // v - String value of the tip
+    //
+    // Returns html value or tip
+    tip.html = function (v) {
+        if (!arguments.length) return html;
+        html = v == null ? v : d3.functor(v);
+
+        return tip;
+    };
+
+    function d3_tip_direction() {
+        return 'n';
+    }
+    function d3_tip_offset() {
+        return [0, 0];
+    }
+    function d3_tip_html() {
+        return ' ';
+    }
+
+    var direction_callbacks = d3.map({
+        n: direction_n,
+        s: direction_s,
+        e: direction_e,
+        w: direction_w,
+        nw: direction_nw,
+        ne: direction_ne,
+        sw: direction_sw,
+        se: direction_se
+    }),
+        directions = direction_callbacks.keys();
+
+    function direction_n() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.n.y - node.offsetHeight,
+            left: bbox.n.x - node.offsetWidth / 2
+        };
+    }
+
+    function direction_s() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.s.y,
+            left: bbox.s.x - node.offsetWidth / 2
+        };
+    }
+
+    function direction_e() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.e.y - node.offsetHeight / 2,
+            left: bbox.e.x
+        };
+    }
+
+    function direction_w() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.w.y - node.offsetHeight / 2,
+            left: bbox.w.x - node.offsetWidth
+        };
+    }
+
+    function direction_nw() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.nw.y - node.offsetHeight,
+            left: bbox.nw.x - node.offsetWidth
+        };
+    }
+
+    function direction_ne() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.ne.y - node.offsetHeight,
+            left: bbox.ne.x
+        };
+    }
+
+    function direction_sw() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.sw.y,
+            left: bbox.sw.x - node.offsetWidth
+        };
+    }
+
+    function direction_se() {
+        var bbox = getScreenBBox();
+        return {
+            top: bbox.se.y,
+            left: bbox.e.x
+        };
+    }
+
+    function initNode() {
+        var node = d3.select(document.createElement('div'));
+        node.style({
+            position: 'absolute',
+            opacity: 0,
+            pointerEvents: 'none',
+            boxSizing: 'border-box'
+        });
+
+        return node.node();
+    }
+
+    function getSVGNode(el) {
+        el = el.node();
+        if (el.tagName.toLowerCase() == 'svg') return el;
+
+        return el.ownerSVGElement;
+    }
+
+    // Private - gets the screen coordinates of a shape
+    //
+    // Given a shape on the screen, will return an SVGPoint for the directions
+    // n(north), s(south), e(east), w(west), ne(northeast), se(southeast), nw(northwest),
+    // sw(southwest).
+    //
+    //    +-+-+
+    //    |   |
+    //    +   +
+    //    |   |
+    //    +-+-+
+    //
+    // Returns an Object {n, s, e, w, nw, sw, ne, se}
+    function getScreenBBox() {
+        var targetel = target || d3.event.target,
+            bbox = {},
+            matrix = targetel.getScreenCTM(),
+            tbbox = targetel.getBBox(),
+            width = tbbox.width,
+            height = tbbox.height,
+            x = tbbox.x,
+            y = tbbox.y,
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+            scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+
+        point.x = x + scrollLeft;
+        point.y = y + scrollTop;
+        bbox.nw = point.matrixTransform(matrix);
+        point.x += width;
+        bbox.ne = point.matrixTransform(matrix);
+        point.y += height;
+        bbox.se = point.matrixTransform(matrix);
+        point.x -= width;
+        bbox.sw = point.matrixTransform(matrix);
+        point.y -= height / 2;
+        bbox.w = point.matrixTransform(matrix);
+        point.x += width;
+        bbox.e = point.matrixTransform(matrix);
+        point.x -= width / 2;
+        point.y -= height / 2;
+        bbox.n = point.matrixTransform(matrix);
+        point.y += height;
+        bbox.s = point.matrixTransform(matrix);
+
+        return bbox;
+    }
+
+    return tip;
+};
+
+/***/ })
+
+/******/ });

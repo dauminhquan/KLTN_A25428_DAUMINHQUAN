@@ -4,7 +4,11 @@ var d3 = require('./core/plugin/d3/d3.min')
 
 require('./core/plugin/d3/d3_tooltip')
 
-generateBarChart("#members-online", 24, 50, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "members");
+if(d3.select('#members-online').node() != null)
+{
+    generateBarChart("#members-online", 24, 50, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "members");
+}
+
 
 function generateBarChart(element, barQty, height, animate, easing, duration, delay, color, tooltip) {
 
@@ -400,8 +404,12 @@ function sparkline(element, chartType, qty, height, interpolation, duration, int
     }
 }
 
+if(d3.select('#today-revenue').node() != null)
+{
+    dailyRevenue('#today-revenue', 50); // initialize chart
+}
 
-dailyRevenue('#today-revenue', 50); // initialize chart
+
 
 // Chart setup
 function dailyRevenue(element, height) {

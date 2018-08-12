@@ -1,3 +1,5 @@
 {
-    "/assets/js/common.js": "/assets/js/common.js"
+    "/assets/js/common.js": "/assets/js/common.js",
+    "/assets/js/build/pages/auth/login.js": "/assets/js/build/pages/auth/login.js",
+    "/assets/js/home/index.js": "/assets/js/home/index.js"
 }

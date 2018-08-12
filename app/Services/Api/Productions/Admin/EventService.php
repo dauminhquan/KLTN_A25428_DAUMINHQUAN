@@ -9,16 +9,14 @@
 namespace App\Services\Api\Productions\Admin;
 
 
-use App\Jobs\SendNotify;
 use App\Models\Event;
-use App\Models\EventStudent;
 use App\Models\User;
 use App\Notifications\NotifyEvent;
 use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Schema;
-use Maatwebsite\Excel\Facades\Excel;
 
 class EventService extends BaseService implements ManageInterface
 {
@@ -56,6 +54,7 @@ class EventService extends BaseService implements ManageInterface
         $event = Event::findOrFail($id);
         $event->event_students = $event->event_students;
         $event_students = $event->event_students;
+
         foreach ($event_students as $item)
         {
             $item->student = $item->student()->select(['code','full_name'])->first();
@@ -74,17 +73,27 @@ class EventService extends BaseService implements ManageInterface
         $inputs['admin_id'] = Auth::user()->admin->id;
         $event = Event::create($inputs);
         $users = User::where('notify',1)->get();
+        $connect = Redis::connection();
+
+        $listId = [];
         if(count($users) > 0)
         {
             foreach ($users as $user)
             {
-                $user->notify(new NotifyEvent([
-                    'reg' => [
-                        'event_id' => $event->id,'title' => $event->title
-                    ]
-                ]));
+                $listId[] = $user->id;
             }
         }
+        $connect->publish('message',json_encode([
+            'event' => [
+                'listId' => $listId,
+                'event_id' => $event->id,
+                'title' => $event->title
+            ]
+        ]));
+        Notification::send($user,new NotifyEvent([
+            'title' => $event->tile,
+            'id' => $event->id
+        ]));
         return $event;
     }
     public function update($inputs, $id)

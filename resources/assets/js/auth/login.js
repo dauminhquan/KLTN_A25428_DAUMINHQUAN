@@ -40,3 +40,7 @@ const app = new Vue({
         }
     }
 })
+
+import io from 'socket.io-client'
+let user = localStorage.getItem('user')
+var socket = io(window.location.hostname +':3000')

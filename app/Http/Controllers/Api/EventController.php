@@ -9,6 +9,7 @@ use App\Notifications\NotifyEvent;
 use App\Services\Api\Productions\Admin\EventService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class EventController extends Controller
 {
@@ -48,9 +49,10 @@ class EventController extends Controller
         $user = Auth::user();
         $user->notify = 1;
         $user->update();
-        $user->notify(new NotifyEvent([
-            'reg' => [
-                'title' => 'Bạn đã đăng ký nhận tin thành công'
+        $connect = Redis::connection();
+        $connect->publish('message',json_encode([
+            'reg_event' => [
+                'id' => $user->id
             ]
         ]));
         return $user;
@@ -59,11 +61,11 @@ class EventController extends Controller
         $user = Auth::user();
         $user->notify = 0;
         $user->update();
-        $user->notify(new NotifyEvent([
-            'reg' => [
-                'title' => 'Bạn đã hủy nhận tin thành công'
+        $connect = Redis::connection();
+        $connect->publish('message',json_encode([
+            'un_reg_event' => [
+                'id' => $user->id
             ]
-
         ]));
         return $user;
     }
