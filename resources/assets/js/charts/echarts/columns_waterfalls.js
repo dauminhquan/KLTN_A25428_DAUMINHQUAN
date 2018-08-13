@@ -1,30 +1,16 @@
 /* ------------------------------------------------------------------------------
  *
- *  # Echarts - columns and waterfalls
+ *  Auth: QuanDau
+ *  Facebook : https://facebook.com/toi.cam.7
  *
  *  Columns and waterfalls chart configurations
  *
  *  Version: 1.0
- *  Latest update: August 1, 2015
+ *  Latest update: August 8, 2018
  *
  * ---------------------------------------------------------------------------- */
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
 
-const token = getCookie('token')
+const token = localStorage.getItem('token')
 
 setDepartMent()
 setEvent()
@@ -54,6 +40,7 @@ function setDepartMent( course_codes = ['K27','K28']) {
         dataType: 'json',
         async: false,
         success: function(data){
+            console.log(data)
             data.data.forEach(item => {
                 depart_name.push(item.department)
                 baseSeries.push( {
@@ -84,7 +71,6 @@ function setDepartMent( course_codes = ['K27','K28']) {
             })
             toolDepartment(depart_name,course_names,baseSeries)
         },
-
         errors: function (error) {
             console.log(err)
         }
@@ -107,7 +93,6 @@ function setEvent() {
         dataType: 'json',
         async: false,
         success: function(data){
-            console.log(data)
             toolEvent(data.listName,data.go,data.notgo)
         },
         errors: function (error) {

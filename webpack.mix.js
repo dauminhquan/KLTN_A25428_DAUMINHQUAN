@@ -1,9 +1,9 @@
 let mix = require('laravel-mix');
 // mix.sass('resources/assets/sass/app.scss','public/css/common.css')
 // //common
-mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
+// mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
 //
-mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
+// mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
 // //admin
 // // enterprise
 // mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js/build/pages/admin/enterprises/index.js');
@@ -44,8 +44,8 @@ mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
 // mix.js('resources/assets/js/enterprise/tasks/edit/index.js', 'public/assets/js/build/pages/enterprise/tasks/edit.js');
 // mix.js('resources/assets/js/enterprise/tasks/create/index.js', 'public/assets/js/build/pages/enterprise/tasks/create.js');
 // mix.js('resources/assets/js/enterprise/profile/index.js', 'public/assets/js/build/pages/enterprise/profile/index.js');
-// //enterprise
-// //student
+// // //enterprise
+// // //student
 // mix.js('resources/assets/js/student/profile/index.js', 'public/assets/js/build/pages/student/profile/index.js');
 // // tasks
 // mix.js('resources/assets/js/tasks/index/index.js', 'public/assets/js/build/pages/tasks/index.js');
@@ -57,11 +57,11 @@ mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
 // mix.js('resources/assets/js/events/index/index.js', 'public/assets/js/build/pages/events/index.js');
 // mix.js('resources/assets/js/events/info/index.js', 'public/assets/js/build/pages/events/info.js');
 // // //auth
-mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
+// mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
 //
 // //
 // mix.copyDirectory('resources/assets/images', 'public/assets/images');
 // mix.copyDirectory('resources/plugins', 'public/assets/js/plugins');
 // mix.copyDirectory('resources/assets/js/charts', 'public/assets/js/charts');
-// mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
+mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
 // mix.babel('resources/assets/js/charts/echarts/timeline_option.js','public/assets/js/charts/echarts/timeline_option.js')

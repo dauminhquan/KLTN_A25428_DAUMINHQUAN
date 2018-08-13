@@ -71,9 +71,6 @@
         },
         mounted(){
             let vm = this
-            CKEDITOR.replace('textarea-info').on('change',function () {
-                vm.info.introduce = this.getData()
-            })
             vm.getInfo()
 
         },
@@ -91,6 +88,8 @@
                     keys.forEach(key => {
                         vm.info[key] = enterprise[key]
                     })
+                    CKEDITOR.replace('textarea-info')
+
                 }).catch(err => {
                     console.dir(err)
                     if(err.response.status == 422)
@@ -105,6 +104,8 @@
             },
             submitUpdate(){
                 let vm =this
+
+                vm.info.introduce = CKEDITOR.instances['textarea-info'].getData()
                 axios.put(vm.config.API_ENTERPRISE_PROFILE,vm.info).then(data => {
                     vm.config.notifySuccess('Update thông tin doanh nghiệp thành công')
                     vm.$emit('updateNameItem',data.data.name)
