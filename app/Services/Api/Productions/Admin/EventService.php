@@ -90,7 +90,7 @@ class EventService extends BaseService implements ManageInterface
                 'title' => $event->title
             ]
         ]));
-        Notification::send($user,new NotifyEvent([
+        Notification::send($users,new NotifyEvent([
             'title' => $event->tile,
             'id' => $event->id
         ]));
