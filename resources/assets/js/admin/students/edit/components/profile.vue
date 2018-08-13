@@ -227,9 +227,6 @@
             vm.getDepartments()
             vm.getCourses()
             vm.getInfo()
-            CKEDITOR.replace('textarea-info').on('change',function () {
-                vm.info.introduce = this.getData()
-            })
         },
         methods:{
             submitUpdate(){
@@ -260,6 +257,7 @@
                 vm.info.rating_id = vm.info.rating== null? null:vm.info.rating.id
                 vm.info.branch_code = vm.info.branch.code
                 vm.info.course_code = vm.info.course.code
+                vm.info.introduce = CKEDITOR.instances['textarea-info'].getData()
                 axios.put(vm.config.API_ADMIN_STUDENTS_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
                     vm.config.notifySuccess()
                     setTimeout(function () {
@@ -331,6 +329,7 @@
                 axios.get(vm.config.API_ADMIN_STUDENTS_RESOURCE+'/'+vm.keyItem).then(data => {
                     vm.info = data.data.student
                     vm.departmentSelect = data.data.department
+                    CKEDITOR.replace('textarea-info')
                 }).catch(err => {
                     console.log(err)
                     vm.config.notifyError()

@@ -95,9 +95,6 @@
             let vm = this
             vm.getProvinces()
             vm.getInfo()
-            CKEDITOR.replace('textarea-info').on('change',function () {
-                vm.info.introduce = this.getData()
-            })
         },
         methods:{
             submitUpdate(){
@@ -113,6 +110,7 @@
                     return false;
                 }
                 vm.info.province_id = vm.info.province.id
+                vm.info.introduce = CKEDITOR.instances['textarea-info'].getData()
                 axios.put(vm.config.API_STUDENT_PROFILE,vm.info).then(data => {
                     vm.config.notifySuccess()
                 }).catch(err => {
@@ -149,6 +147,7 @@
                 axios.get(vm.config.API_STUDENT_PROFILE).then(data => {
                     vm.info = data.data
                     vm.departmentSelect = data.data.department
+                    CKEDITOR.replace('textarea-info')
                 }).catch(err => {
                     console.log(err)
                     vm.config.notifyError()

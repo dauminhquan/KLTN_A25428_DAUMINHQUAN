@@ -1,13 +1,15 @@
+
 /* ------------------------------------------------------------------------------
-*
-*  # Template JS core
-*
-*  Core JS file with default functionality configuration
-*
-*  Version: 1.2
-*  Latest update: Dec 11, 2015
-*
-* ---------------------------------------------------------------------------- */
+ *
+ *  Auth: QuanDau
+ *  Facebook : https://facebook.com/toi.cam.7
+ *
+ *  Core JS file with default functionality configuration
+ *
+ *  Version: 1.0
+ *  Latest update: August 8, 2018
+ *
+ * ---------------------------------------------------------------------------- */
 
 window.$ = window.jQuery = require('jquery');
 import axios from './../axios'
