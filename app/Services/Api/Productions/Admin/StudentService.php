@@ -41,6 +41,7 @@ class StudentService extends BaseService implements ManageInterface
         {
             $student->branch = $student->branch;
             $student->department = $student->branch == null? null : $student->branch->department;
+            $student->course = $student->course;
         }
         return $students;
     }
@@ -131,7 +132,7 @@ class StudentService extends BaseService implements ManageInterface
 
     public function csvStore($path){
         $list_err = [];
-
+        $size_success = 0;
         $data = Excel::load($path,function($reader){})->get()->toArray();
         if(count($data) > 0)
         {
@@ -140,12 +141,10 @@ class StudentService extends BaseService implements ManageInterface
 
                 try{
                     Student::create($item);
+                    $size_success++;
                 }catch (\Exception $exception)
                 {
-                    $list_err[] = [
-                        'error' => $exception->getCode(),
-                        'message' => $exception->getMessage()
-                    ];
+                    $list_err[] = $item['code'];
                 }
             }
         }
@@ -158,7 +157,8 @@ class StudentService extends BaseService implements ManageInterface
         }
         return [
             'message' => 'Thêm danh sách sinh viên thành công',
-            'error' => $list_err
+            'error' => $list_err,
+            'lengthError' => $size_success
         ];
     }
 

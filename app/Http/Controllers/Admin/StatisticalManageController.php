@@ -15,6 +15,11 @@ class StatisticalManageController extends Controller
     public function index()
     {
         $courses = Course::select(['code','name'])->get();
+        $courses= $courses->toArray();
+        usort($courses,function($a,$b){
+            return (int)substr($a['code'],1) <=> (int)substr($b['code'],1);
+        });
+
         return view('admin.statistics.index',[
             'courses' => $courses
         ]);

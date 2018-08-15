@@ -172,7 +172,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label><b>{{text}}</b></label>
-                                        <v-select :options="persCreate" label="text" v-model="create.per"></v-select>
+                                        <v-select :options="persCreate" label="text" v-model="create.per" v-if="create.type != 3"></v-select>
+                                        <input type="text" class="form-control" v-model="create.per" v-if="create.type == 3">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -194,6 +195,52 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link" data-dismiss="modal">Hủy</button>
                             <button type="button" class="btn btn-success" @click="createItem">Thêm mới</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-push-excel" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Thêm người dùng bằng Excel</h5>
+                        </div>
+
+                        <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
+
+                            <div class="modal-body">
+                                <input type="file"class="form-control" @change="setExcelFile($event)">
+                                <div class="pace-demo" v-if="uploading == true">
+                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
+                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-show-err" class="modal fade">
+                <div class="modal-dialog  modal-full">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Thêm danh sách người dùng thành công</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <p> Bạn đã thêm mới thành công <span class="text-danger-400">{{lengthSucces}}</span> người dùng</p>
+
+                            <div class="form-group">
+                                <label><b>Danh sách dòng</b></label>
+                                <textarea class="form-control" rows="15">
+                                {{listRowError}}
+                            </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Ok</button>
                         </div>
                     </div>
                 </div>
@@ -233,9 +280,17 @@
                             $('#modal_create').modal('show')
                         }
                     },
+                    {
+                        text: 'Thêm bằng Excel',
+                        className: 'btn bg-info',
+                        action: function (e, dt, node, config) {
+                            $('#modal-push-excel').modal('show')
+                        }
+                    },
                 ],
                 deleting: false,
                 updating: false,
+                uploading: false,
                 creating: false,
                 data :[],
                 menu: [
@@ -258,6 +313,7 @@
                 page:1,
                 totalPage:0,
                 perPage:500,
+                excelFile: null,
                 info:{
                     email:null,
                     password:null,
@@ -279,6 +335,8 @@
                 admins: [],
                 persCreate: [],
                 text:'Chọn đối tượng',
+                lengthSucces: 0,
+                listRowError: [],
                 config: new config(),
             }
         },
@@ -286,7 +344,6 @@
             let vm =this
             vm.getAdmin()
             vm.getEnterprises()
-            vm.getStudents()
             vm.getData()
 
         },
@@ -306,8 +363,6 @@
                             else{
                                 item.userName = null
                             }
-
-
                         }
                         if(item.type == 2)
                         {
@@ -352,7 +407,7 @@
                         },
                         {
                             key:'email',
-                            text:'Tiêu đề tài khoản'
+                            text:'Email'
                         }
                         ,
                         {
@@ -406,23 +461,6 @@
                     vm.config.notifyError('Không thể lấy thông tin các admin')
                 })
             },
-            getStudents(){
-                let vm = this
-
-                axios.get(vm.config.API_ADMIN_STUDENTS_RESOURCE+'?size=-1').then(data => {
-                    vm.students = data.data.data
-                    vm.students = vm.students.map(item => {
-                        item.text = item.full_name
-                        return item
-                    })
-                    vm.students = vm.students.filter(item => {
-                        return item.user_id == null
-                    })
-                })  .catch(err => {
-                    console.dir(err)
-                    vm.config.notifyError('Không thể lấy thông tin các admin')
-                })
-            },
             selectAll(){
                 let vm = this
                 vm.itemSelected = []
@@ -459,13 +497,10 @@
                 create.password = vm.create.password
                 create.rep_password = vm.create.rep_password
                 create.type = vm.create.type
+                create.per = vm.create.per
                 if(create.type == 1 || create.type == 2)
                 {
                     create.per = vm.create.per.id
-                }
-                if(create.type == 3)
-                {
-                    create.per = vm.create.per.code
                 }
                 create.authentication = vm.create.authentication
                 axios.post(vm.config.API_ADMIN_USERS_RESOURCE,create).then(data => {
@@ -481,7 +516,6 @@
                     vm.getData()
                     $('#modal_create').modal('hide')
                 }).catch(err => {
-
                     console.dir(err)
                     if(err.response.status == 422)
                     {
@@ -626,6 +660,50 @@
             changePageSelect(page){
                 this.getData(this.perPage,page)
             },
+            setExcelFile(e){
+                var vm = this
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                vm.excelFile = files[0]
+            },
+            uploadExcelFile(){
+                var vm = this
+                vm.uploading = true
+                var formData = new FormData()
+                formData.append('CsvFile',vm.excelFile)
+                axios.post(vm.config.API_ADMIN_USERS_IMPORT_CSV,formData).then(data => {
+                    vm.uploading = false
+                    $('#modal-push-excel').modal('hide')
+                    if(data.data.message == [] || data.data.error.length == 0)
+                    {
+                        vm.config.notifySuccess()
+                    }
+                    else{
+
+                        vm.config.notifyWarning()
+                        vm.lengthSucces = data.data.lengthSucess
+                        vm.listRowError = data.data.error
+                        $('#modal-show-err').modal('show')
+
+                    }
+                    vm.getData()
+                }).catch(err => {
+                    this.uploading = false
+                    console.dir(err)
+                    if(err.response.status == 405)
+                    {
+                        vm.config.notifyError('Lỗi nghiêm trọng! Định dạng file không đúng, vui lòng kiểm tra lại')
+                    }
+                    if(err.response.status == 422)
+                    {
+                        vm.config.notifyError(err.response.data.message)
+                    }
+                    else{
+                        vm.config.notifyError()
+                    }
+                })
+            },
         },
         watch:{
             createType(value){
@@ -642,8 +720,8 @@
                 }
                 else if (value == 3)
                 {
-                    vm.text = 'Chọn 1 sinh viên'
-                    vm.persCreate =  vm.students
+                    vm.text = 'Nhập mã sinh viên'
+                    vm.persCreate =  []
                 }
                 else{
                     vm.text = 'Chọn một người dùng'

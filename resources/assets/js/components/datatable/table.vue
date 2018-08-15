@@ -195,8 +195,15 @@
             },
             selectAll(){
                 this.doChecked()
+                if(this.allChecked == true)
+                {
+                    this.$emit('unSelectAll')
+                }
+                else{
+                    this.$emit('selectAll')
+                }
                 this.allChecked = !this.allChecked
-                this.$emit('selectAll')
+
             },
             unSelectAll(){
                 this.doChecked()
