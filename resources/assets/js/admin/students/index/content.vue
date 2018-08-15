@@ -10,6 +10,7 @@
                     :primaryKey="primaryKey"
                     :pages="totalPage"
                     :lengths="lengths"
+                    :setAll="setAll"
                     @selectAll="selectAll"
                     @unSelectAll="unSelectAll"
                     @deleteSelected="deleteSelected"
@@ -17,6 +18,7 @@
                     @clickedKeyItem="clickedKeyItem"
                     @changePerPage="changePerPage"
                     @changePageSelect="changePageSelect"
+
         >
             <div id="modal_danger" class="modal fade">
                 <div class="modal-dialog">
@@ -95,6 +97,30 @@
                     </div>
                 </div>
             </div>
+
+            <div id="modal-show-err" class="modal fade">
+                <div class="modal-dialog  modal-full">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Thêm danh sách sinh viên thành công</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <p> Bạn đã thêm mới thành công <span class="text-danger-400">{{lengthSucces}}</span> sinh viên</p>
+
+                            <div class="form-group">
+                                <label><b>Danh sách mã sinh viên bị lỗi</b></label>
+                                <textarea class="form-control" rows="15">
+                                {{listCodeError}}
+                            </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </data-table>
     </div>
 </template>
@@ -105,6 +131,11 @@
     import config from './../../../config'
     window._config = new config()
     export default {
+        computed:{
+            setAll(){
+                return this.data.length == this.itemSelected.length
+            }
+        },
         components: {
             'data-table' : table
         },
@@ -153,7 +184,8 @@
                 page:1,
                 totalPage:0,
                 perPage:500,
-
+                lengthSucces: 0,
+                listCodeError: '',
                 config: new config(),
             }
         },
@@ -171,6 +203,7 @@
                     vm.data = vm.data.map(item => {
                         item.department_name = item.department == null ? null : item.department.name
                         item.branch_name = item.branch == null ? null : item.branch.name
+                        item.course_name = item.course == null ? null : item.course.name
                         if(item.graduated == 1)
                         {
                             item.graduated = '<span class="label bg-success-400">Đã tốt nghiệp</span>'
@@ -188,6 +221,10 @@
                         {
                             key:'full_name',
                             text: 'Tên sinh viên'
+                        },
+                        {
+                            key:'course_name',
+                            text: 'Tên khóa'
                         },
                         {
                             key:'branch_name',
@@ -213,6 +250,7 @@
                 })
             },
             selectAll(){
+                console.log(123)
                 let vm = this
                 vm.itemSelected = []
                 vm.data.forEach(item => {
@@ -354,7 +392,12 @@
                        vm.config.notifySuccess()
                     }
                     else{
+
                         vm.config.notifyWarning()
+                        vm.lengthSucces = data.data.lengthError
+                            vm.listCodeError = data.data.error
+                        $('#modal-show-err').modal('show')
+
                     }
                     vm.getData()
                 }).catch(err => {

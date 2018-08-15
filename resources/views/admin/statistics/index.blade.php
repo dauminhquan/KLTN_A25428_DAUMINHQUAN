@@ -28,7 +28,7 @@
 
                                     <select name="" id="departments" class="multiselect" multiple="multiple">
                                         @foreach($courses as $course)
-                                            <option value="{{$course->code}}">{{$course->name}}</option>
+                                            <option value="{{$course['code']}}">{{$course['name']}}</option>
                                         @endforeach
                                     </select>
                                 </div>

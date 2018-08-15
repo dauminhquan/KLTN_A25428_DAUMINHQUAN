@@ -17,6 +17,9 @@ use App\Services\Api\Interfaces\ManageInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserService extends BaseService implements ManageInterface
 {
@@ -67,7 +70,7 @@ class UserService extends BaseService implements ManageInterface
 
     public function save($inputs)
     {
-
+        $errors = [];
         $user = new User();
         $columns = Schema::getColumnListing((new User())->getTable());
         foreach ($columns as $column)
@@ -82,7 +85,6 @@ class UserService extends BaseService implements ManageInterface
                 else{
                     $user->$column = $inputs[$column];
                 }
-
             }
 
         }
@@ -91,24 +93,51 @@ class UserService extends BaseService implements ManageInterface
        {
            if($inputs['type'] == 1)
            {
-               $admin = Admin::findOrFail($inputs['per']);
-               $admin->user_id = $user->id;
-               $admin->update();
+               $admin = Admin::find($inputs['per']);
+               if($admin)
+               {
+                   $admin->user_id = $user->id;
+                   $admin->update();
+                   return $user;
+               }
+               $errors['admin'] = [
+                    'Admin tồn tại'
+               ];
+
            }
            if($inputs['type'] == 2)
            {
-               $enterprise = Enterprise::findOrFail($inputs['per']);
-               $enterprise->user_id = $user->id;
-               $enterprise->update();
+               $enterprise = Enterprise::find($inputs['per']);
+               if($enterprise)
+               {
+                   $enterprise->user_id = $user->id;
+                   $enterprise->update();
+                   return $user;
+               }
+               $errors['enterprise'] = [
+                   'Doanh nghiệp không tồn tại'
+               ];
            }
            if($inputs['type'] == 3)
            {
-               $student = Student::findOrFail($inputs['per']);
-               $student->user_id = $user->id;
-               $student->update();
+               $student = Student::find($inputs['per']);
+               if($student)
+               {
+                   $student->user_id = $user->id;
+                   $student->update();
+                   return $user;
+               }
+               $errors['student'] = [
+                   'Sinh viên không tồn tại'
+               ];
            }
        }
-        return $user;
+        $user->delete();
+       return response()->json([
+           'message' => 'Đã có lỗi xảy ra',
+           'errors' => $errors
+       ],422);
+
     }
 
     public function update($inputs, $id)
@@ -196,35 +225,151 @@ class UserService extends BaseService implements ManageInterface
     }
 
     public function csvStore($path){
-        $list_err = [];
 
         $data = Excel::load($path,function($reader){})->get()->toArray();
+
+        $listIndexError = [];
+        $lengthSuccess = 0;
         if(count($data) > 0)
         {
-            foreach ($data as $item)
+            foreach ($data as $index => $item)
             {
 
                 try{
-                    User::create($item);
+                    $validator = Validator::make($item,[
+                       'email' => 'email',
+                        'type' => Rule::in([1,2,3])
+                    ]);
+                    if($validator->fails())
+                    {
+                        $listIndexError[] = [
+                            'row' => $index+1,
+                            'message' => $validator->errors()
+                        ];
+                        continue;
+                    }
+                    $admin_id = $item['admin_id'];
+                    $student_code = $item['student_code'];
+                    $enterprise_id = $item['enterprise_id'];
+                    if(User::where('email',$item['email'])->first())
+                    {
+                        $listIndexError[] = [
+                            'row' => $index+1,
+                            'message' => 'Email đã tồn tại'
+                        ];
+                        continue;
+                    }
+                    unset($item['admin_id']);
+                    unset($item['student_code']);
+                    unset($item['enterprise_id']);
+                    $item['password'] = Hash::make($item['password']);
+                    $user = User::create($item);
+
+                    if($item['type'] == 1)
+                    {
+
+                        $admin = Admin::find($admin_id);
+                        if($admin)
+                        {
+                            if($admin->user_id != null)
+                            {
+                                $user->delete();
+                                $listIndexError[] = [
+                                    'row' => $index+1,
+                                    'message' => 'Người dùng này đã có tài khoản rồi'
+                                ];
+                            }
+                            else{
+                                $admin->user_id = $user->id;
+                                $admin->update();
+                                $lengthSuccess++;
+                            }
+                        }
+                        else{
+                            $user->delete();
+                            $listIndexError[] = [
+                                'row' => $index+1,
+                                'message' => 'Admin không tồn tại'
+                            ];
+                        }
+
+                    }
+                    elseif($item['type'] == 2)
+                    {
+                        $enterprise = Enterprise::find($enterprise_id);
+                        if($enterprise)
+                        {
+                            if($enterprise->user_id != null)
+                            {
+                                $user->delete();
+                                $listIndexError[] = [
+                                    'row' => $index+1,
+                                    'message' => 'Người dùng này đã có tài khoản rồi'
+                                ];
+                            }
+                            else{
+                                $enterprise->user_id = $user->id;
+                                $enterprise->update();
+                                $lengthSuccess++;
+                            }
+                        }
+                        else{
+                            $user->delete();
+                            $listIndexError[] = [
+                                'row' => $index+1,
+                                'message' => 'Doanh nghiệp không tồn tại'
+                            ];
+                        }
+                    }
+                    elseif($item['type'] == 3)
+                    {
+                        $student = Student::find($student_code);
+                        if($student)
+                        {
+
+                            if($student->user_id != null)
+                            {
+                                $user->delete();
+                                $listIndexError[] = [
+                                    'row' => $index+1,
+                                    'message' => 'Người dùng này đã có tài khoản rồi'
+                                ];
+                            }
+                            else{
+                                $student->user_id = $user->id;
+                                $student->update();
+                                $lengthSuccess++;
+                            }
+                        }
+                        else{
+                            $user->delete();
+                            $listIndexError[] = [
+                                'row' => $index+1,
+                                'message' => 'Sinh viên không tồn tại'
+                            ];
+                        }
+                    }
+
                 }catch (\Exception $exception)
                 {
-                    $list_err[] = [
-                        'error' => $exception->getCode(),
-                        'message' => $exception->getMessage()
-                    ];
+                    return response()->json([
+                        'error' => 'Lỗi nghiêm trọng! Định dạng file không đúng, vui lòng kiểm tra lại',
+                        'error_code' => $exception->getMessage()
+                    ],405);
                 }
             }
         }
-        if(count($list_err) == count($data))
+        if($lengthSuccess == 0)
         {
             return response()->json([
-                'message' => "File rỗng | Sai định dạng | Trùng dữ liệu toàn bộ",
-                'error' => $list_err
+                'message' => "Toàn bộ file không thể thêm vào. Vui lòng kiểm tra lại",
+                'listError' => $listIndexError
             ],422);
         }
         return [
             'message' => 'Thành công',
-            'error' => $list_err
+            'error' => $listIndexError,
+            'lengthSucess' => $lengthSuccess
         ];
     }
 
