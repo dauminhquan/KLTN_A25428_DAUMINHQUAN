@@ -1,11 +1,11 @@
 let mix = require('laravel-mix');
 // mix.sass('resources/assets/sass/app.scss','public/css/common.css')
-// //common
+// // //common
 // mix.js('resources/assets/js/core/app.js', 'public/assets/js/common.js');
 //
 // mix.js('resources/assets/js/index.js', 'public/assets/js/home/index.js');
-//admin
-// enterprise
+// // admin
+// // enterprise
 // mix.js('resources/assets/js/admin/enterprises/index/index.js', 'public/assets/js/build/pages/admin/enterprises/index.js');
 // mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
 // mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
@@ -49,7 +49,7 @@ let mix = require('laravel-mix');
 // mix.js('resources/assets/js/student/profile/index.js', 'public/assets/js/build/pages/student/profile/index.js');
 // // tasks
 // mix.js('resources/assets/js/tasks/index/index.js', 'public/assets/js/build/pages/tasks/index.js');
-mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/tasks/info.js');
+// mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/tasks/info.js');
 // //notifies
 // mix.js('resources/assets/js/notifies/index/index.js', 'public/assets/js/build/pages/notifies/index.js');
 // mix.js('resources/assets/js/notifies/info/index.js', 'public/assets/js/build/pages/notifies/info.js');
@@ -58,10 +58,10 @@ mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/
 // mix.js('resources/assets/js/events/info/index.js', 'public/assets/js/build/pages/events/info.js');
 // // //auth
 // mix.js('resources/assets/js/auth/login.js', 'public/assets/js/build/pages/auth/login.js');
-//
+// //
 // //
 // mix.copyDirectory('resources/assets/images', 'public/assets/images');
 // mix.copyDirectory('resources/plugins', 'public/assets/js/plugins');
 // mix.copyDirectory('resources/assets/js/charts', 'public/assets/js/charts');
-// mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
+mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
 // mix.babel('resources/assets/js/charts/echarts/timeline_option.js','public/assets/js/charts/echarts/timeline_option.js')

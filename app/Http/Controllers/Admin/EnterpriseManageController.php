@@ -24,8 +24,6 @@ class EnterpriseManageController extends Controller
         $enterprise = Enterprise::findOrFail($id);
         return view('admin.enterprises.edit',['id' => $enterprise->getKey()]);
     }
-
-
     public function get_excel_info_enterprise(){
         $info_enterprise = Enterprise::all();
         return response()->download(Excel::create('enterprise-excel', function($excel) use($info_enterprise) {

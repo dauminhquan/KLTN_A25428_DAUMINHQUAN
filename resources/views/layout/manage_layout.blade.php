@@ -201,7 +201,7 @@
                                             <ul>
                                                 <li><a href="{{route('admin.students.index')}}">Danh sách sinh viên</a></li>
                                                 <li><a href="{{route('admin.ratings.index')}}">Quản lý hạng tốt nghiệp</a></li>
-                                                <li><a href="{{route('admin.ratings.index')}}">Quản chức vụ trong công việc của sinh viên</a></li>
+                                                <li><a href="{{route('admin.ranks.index')}}">Quản lý chức vụ trong công việc của sinh viên</a></li>
                                                 <li>
                                                     <a href="{{route('admin.works.index')}}"> Quản lý việc làm sinh viên</a>
                                                 </li>
@@ -249,8 +249,8 @@
                         <i class=" icon-stats-growth position-left"></i> Thống kê
                     </a>
                 <li class="dropdown">
-                    <a href="#">
-                        <i class="icon-profile position-left"></i> Thông tin cá nhân
+                    <a href="{{route('admin.cover.data')}}">
+                        <i class="icon-profile position-left"></i> Quy đổi dữ liệu
                     </a>
 
                 </li>

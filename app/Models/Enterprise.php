@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 
 class Enterprise extends Model

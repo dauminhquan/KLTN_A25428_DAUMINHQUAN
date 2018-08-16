@@ -112,35 +112,49 @@ class EnterpriseService extends BaseService implements ManageInterface
     }
 
     public function csvStore($path){
-        $list_err = [];
-
         $data = Excel::load($path,function($reader){})->get()->toArray();
+        $countSuccess = 0;
+        $listNameError = [];
+        $importError = [];
         if(count($data) > 0)
         {
-            foreach ($data as $item)
+            foreach ($data as $index => $item)
             {
 
                 try{
-                   Enterprise::create($item);
+                    $enterprise = Enterprise::where('name',$item['name'])->orWhere('email_address',$item['email_address'])->first();
+                    if(!$enterprise)
+                    {
+                        Enterprise::create($item);
+                        $countSuccess++;
+                    }
+                    else{
+                        $listNameError[] = [
+                            'name' => $item['name'],
+                            'index' => $index+2
+                        ];
+                    }
                 }catch (\Exception $exception)
                 {
-                    $list_err[] = [
-                        'error' => $exception->getCode(),
-                        'message' => $exception->getMessage()
+                    $importError[] = [
+                      'index' => $index+2,
+                      'message' => 'Lỗi nghiêm trọng'
                     ];
                 }
             }
         }
-        if(count($list_err) == count($data))
+        if((count($listNameError) + count($importError)) == count($data))
         {
             return response()->json([
                 'message' => "File rỗng | Sai định dạng | Trùng dữ liệu toàn bộ",
-                'error' => $list_err
+                'error' => $listNameError
             ],406);
         }
         return [
             'message' => 'Thêm danh sách doanh nghiệp thành công',
-            'error' => $list_err
+            'error' => $listNameError,
+            'success' => $countSuccess,
+            'importError' => $importError
         ];
     }
 

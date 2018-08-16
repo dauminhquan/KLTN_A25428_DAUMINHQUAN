@@ -392,7 +392,6 @@
                        vm.config.notifySuccess()
                     }
                     else{
-
                         vm.config.notifyWarning()
                         vm.lengthSucces = data.data.lengthError
                         vm.listCodeError = data.data.error

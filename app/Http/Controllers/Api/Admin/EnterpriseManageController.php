@@ -74,7 +74,7 @@ class EnterpriseManageController extends Controller
     public function getOptionsCsv(CsvRequest $request)
     {
         $data = $this->enterpriseService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);
-        return response()->download(Excel::create('CodeWithName', function($excel) use($data) {
+        return response()->download(Excel::create('IdWithName', function($excel) use($data) {
             $excel->sheet('Sheet1', function($sheet) use($data) {
                 $sheet->fromArray($data);
             });

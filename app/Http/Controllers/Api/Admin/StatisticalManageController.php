@@ -53,39 +53,52 @@ class StatisticalManageController extends Controller
                 ];
             }
         }
+        return abort(404);
         //thống kê tốt nghiệp theo khoa và theo khóa
         // lấy danh sách tất cả các khoa
 
 
     }
-    public function eventStatistics()
+    public function eventStatistics(Request $request)
     {
-        $events = Event::orderByDesc('created_at')->limit(10)->get();
-        // ten event
-        // so luong nguoi dang ky
-        // so luong nguoi khong di
-        $listName = [];
-        foreach ($events as $event)
-        {
-            $listName[] = $event->title;
-        }
-        $go = [];
-        $notgo = [];
-        foreach ($listName as $item)
-        {
-            foreach ($events as $event)
+
+        if($request->has('list_id')) {
+            if(gettype($request->list_id) == 'array')
             {
-                if($event->title == $item)
+
+                $events = Event::orderByDesc('created_at');
+
+                $listId = $request->list_id;
+                foreach ($listId as $item)
                 {
-                    $go[] = EventStudent::where('event_id',$event->id)->where('attended',1)->count();
-                    $notgo[] = EventStudent::where('event_id',$event->id)->where('attended',0)->count();
+                    $events->orWhere('id',$item);
                 }
+                $events = $events->get();
+                $listName = [];
+                foreach ($events as $event)
+                {
+                    $listName[] = $event->title;
+                }
+                $go = [];
+                $notgo = [];
+                foreach ($listName as $item)
+                {
+                    foreach ($events as $event)
+                    {
+                        if($event->title == $item)
+                        {
+                            $go[] = EventStudent::where('event_id',$event->id)->where('attended',1)->count();
+                            $notgo[] = EventStudent::where('event_id',$event->id)->where('attended',0)->count();
+                        }
+                    }
+                }
+                return [
+                    'listName' => $listName,
+                    'go' => $go,
+                    'notgo' => $notgo
+                ];
             }
         }
-        return [
-          'listName' => $listName,
-          'go' => $go,
-          'notgo' => $notgo
-        ];
+        return abort(404);
     }
 }

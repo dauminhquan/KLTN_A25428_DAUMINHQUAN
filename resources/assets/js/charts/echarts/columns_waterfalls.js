@@ -16,9 +16,13 @@ setDepartMent()
 setEvent()
 $(document).ready(function () {
     $('#departments').change(
-
         function(){
             setDepartMent($(this).val())
+        }
+    )
+    $('#events').change(
+        function(){
+            setEvent($(this).val())
         }
     )
 })
@@ -77,15 +81,15 @@ function setDepartMent( course_codes = ['K27','K28']) {
     });
 }
 
-
-
-
-function setEvent() {
+function setEvent(listId = [1,2]) {
     let course_names = []
     let depart_name = []
     let baseSeries = []
     $.ajax({
         url: '/api/admin/manage-statistics/event-statistics',
+        data: {
+            list_id : listId
+        },
         headers: {
             'Authorization':'Bearer '+token,
         },
@@ -100,7 +104,6 @@ function setEvent() {
         }
     });
 }
-
 
 
 
@@ -124,9 +127,6 @@ function toolDepartment(depart_name,course_names,baseSeries) {
         function (ec, limitless) {
 
             var basic_columns = ec.init(document.getElementById('basic_columns'), limitless);
-
-
-
             basic_columns_options = {
 
                 grid: {
@@ -135,27 +135,17 @@ function toolDepartment(depart_name,course_names,baseSeries) {
                     y: 35,
                     y2: 25
                 },
-
-
                 tooltip: {
                     trigger: 'axis'
                 },
-
-
                 legend: {
                     data: depart_name
                 },
-
-
                 calculable: true,
-
-
                 xAxis: [{
                     type: 'category',
                     data: course_names
                 }],
-
-
                 yAxis: [{
                     type: 'value'
                 }],
