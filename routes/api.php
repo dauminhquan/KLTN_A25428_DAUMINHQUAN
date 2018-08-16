@@ -117,6 +117,7 @@ Route::group(['middleware' => ['auth:api','accept']],function (){
         Route::group(['prefix' => '/manage-events' , 'name' => 'manage.events.'],function (){
             Route::resource('/resource','EventManageController')->except(['create','edit']);
             Route::delete('delete-list','EventManageController@delete')->name('delete.list');
+            Route::post('send-notify/{id}','EventManageController@sendNotify')->name('send.notify');
         });
         Route::group(['prefix' => '/manage-event-student' , 'name' => 'manage.event.student.'],function (){
             Route::resource('/resource','EventStudentManageController')->except(['create','edit']);

@@ -201,6 +201,7 @@
                                             <ul>
                                                 <li><a href="{{route('admin.students.index')}}">Danh sách sinh viên</a></li>
                                                 <li><a href="{{route('admin.ratings.index')}}">Quản lý hạng tốt nghiệp</a></li>
+                                                <li><a href="{{route('admin.ratings.index')}}">Quản chức vụ trong công việc của sinh viên</a></li>
                                                 <li>
                                                     <a href="{{route('admin.works.index')}}"> Quản lý việc làm sinh viên</a>
                                                 </li>

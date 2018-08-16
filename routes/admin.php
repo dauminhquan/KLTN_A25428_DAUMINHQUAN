@@ -18,4 +18,14 @@ Route::resource('/provinces','ProvinceManageController')->only('index');
 Route::resource('/works','WorkManageController')->only('index','create','edit');
 Route::resource('/events','EventManageController')->only('index','create','edit');
 Route::resource('/statistical','StatisticalManageController')->only('index');
+Route::group(['prefix' => 'get-sample-csv-file','as' => 'ge.sample.csv.file'],function(){
+    Route::get('/user',['as' => 'user','uses' => 'GetSampleFileExcelController@user']);
+    Route::get('/enterprise',['as' => 'enterprise','uses' => 'GetSampleFileExcelController@enterprise']);
+    Route::get('/work',['as' => 'work','uses' => 'GetSampleFileExcelController@work']);
+    Route::get('/course',['as' => 'course','uses' => 'GetSampleFileExcelController@course']);
+    Route::get('/department',['as' => 'department','uses' => 'GetSampleFileExcelController@department']);
+    Route::get('/branch',['as' => 'branch','uses' => 'GetSampleFileExcelController@branch']);
+    Route::get('/province',['as' => 'province','uses' => 'GetSampleFileExcelController@province']);
+    Route::get('/student',['as' => 'student','uses' => 'GetSampleFileExcelController@student']);
+});
 Route::get('/','IndexController@index')->name('dashboard');

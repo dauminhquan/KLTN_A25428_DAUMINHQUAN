@@ -1,3 +1,5 @@
 {
-    "/assets/js/build/pages/admin/users/index.js": "/assets/js/build/pages/admin/users/index.js"
+    "/assets/js/build/pages/notifies/index.js": "/assets/js/build/pages/notifies/index.js",
+    "/assets/js/build/pages/events/index.js": "/assets/js/build/pages/events/index.js",
+    "/assets/js/build/pages/tasks/info.js": "/assets/js/build/pages/tasks/info.js"
 }

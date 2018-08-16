@@ -25,7 +25,12 @@
                             </ul>
                             {{event.description}}
                         </div>
+                        <div class="media-right text-nowrap">
+                            <span class="label bg-blue" v-if="event.status == 2">Đang diễn ra</span>
+                            <span class="label bg-success" v-if="event.status == 1">Đang chuẩn bị diễn ra</span>
+                        </div>
                     </li>
+
                 </ul>
             </div>
             <div class="text-center content-group-lg pt-20">

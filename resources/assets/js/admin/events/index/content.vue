@@ -79,7 +79,6 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h6 class="modal-title"><i class="icon-info3"></i> Thông tin sự kiện </h6>
                         </div>
-
                         <div class="modal-body">
 
                             <div class="row">
@@ -112,6 +111,18 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><b>Trạng thái </b></label>
+                                        <select v-model="info.status" class="form-control">
+                                            <option value="1">Chuẩn bị diễn ra</option>
+                                            <option value="2">Đang diễn ra</option>
+                                            <option value="3">Đã kết thúc</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group">
                                     <label><b>Nội dung </b></label>
                                     <textarea v-model="info.content" class="form-control" id="textarea-info-content">
@@ -129,6 +140,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link" data-dismiss="modal">Hủy</button>
+                            <button type="button" v-if="info.status != 3" @click="sendNotify(info.id)" class="btn btn-danger"><i class="icon-alarm"></i> Gửi thông báo</button>
                             <button type="button" class="btn btn-success" @click="updateItem">Update thông tin</button>
 
                         </div>
@@ -171,6 +183,18 @@
                                     <div class="form-group">
                                         <label><b>Địa điểm </b></label>
                                         <input type="text" v-model="create.location" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><b>Trạng thái </b></label>
+                                        <select v-model="create.status" class="form-control">
+                                            <option value="1">Chuẩn bị diễn ra</option>
+                                            <option value="2">Đang diễn ra</option>
+                                            <option value="3">Đã kết thúc</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -259,14 +283,16 @@
                     content: null,
                     description: null,
                     time_start:null,
-                    location: null
+                    location: null,
+                    status: null,
                 },
                 create:{
                     title: null,
                     content: null,
                     description: null,
                     time_start:null,
-                    location: null
+                    location: null,
+                    status: null,
                 },
                 config: new config(),
             }
@@ -283,6 +309,22 @@
                 var vm = this
                 axios.get(vm.config.API_ADMIN_EVENTS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
                     vm.data = data.data.data
+                    vm.data = vm.data.map(item => {
+                        if(item.status == 1)
+                        {
+                            item.status_text = '<span class="label bg-info-400">Chuẩn bị diễn ra</span>'
+                        }
+                        if(item.status == 2)
+                        {
+                            item.status_text = '<span class="label bg-success-400">Đang diễn ra</span>'
+                        }
+                        if(item.status == 3)
+                        {
+                            item.status_text = '<span class="label bg-danger-400">Đã dừng</span>'
+                        }
+                        item.time_start = item.time_start.replace('T',' ')
+                        return item
+                    })
                     vm.perPage = data.data.per_page
                     vm.totalPage = data.data.total
                     vm.columns = [
@@ -293,6 +335,10 @@
                         {
                             key:'title',
                             text:'Tiêu đề sự kiện'
+                        },
+                        {
+                            key:'status_text',
+                            text:'Trạng thái'
                         }
                         ,
                         {
@@ -353,12 +399,12 @@
                 let vm = this
                 vm.updating = true
                 vm.info.content = CKEDITOR.instances['textarea-info-content'].getData()
-              axios.put(vm.config.API_ADMIN_EVENTS_RESOURCE+'/'+vm.info.id,vm.info,{
-                  name:vm.info.name
-              }).then(data => {
+              axios.put(vm.config.API_ADMIN_EVENTS_RESOURCE+'/'+vm.info.id,vm.info).then(data => {
                   vm.config.notifySuccess('Update thông tin sự kiện cv thành công')
                   vm.updating = false
+                  vm.info.time_start =  vm.info.time_start.replace('T',' ')
                   $('#modal_info').modal('hide')
+                  vm.getData()
               }).catch(err => {
                   console.dir(err)
                   vm.config.notifyError()
@@ -474,6 +520,27 @@
             },
             changePageSelect(page){
                 this.getData(this.perPage,page)
+            },
+            sendNotify(id)
+            {
+                this.updating = true
+                axios.post('/api/admin/manage-events/send-notify/'+id).then(
+                    data => {
+                        this.config.notifySuccess('Gửi thông báo thành công')
+                        this.updating = false
+                    }
+
+                ).catch( err =>{
+                        console.dir(err)
+                        if(err.response.status == 406)
+                        {
+                            this.config.notifyError(err.response.data.message)
+                        }
+                        else{
+                            this.config.notifyError('Đã có lỗi xảy ra. Vui lòng kiểm tra lại')
+                        }
+                    this.updating = false
+                })
             }
         }
     }

@@ -31,13 +31,21 @@ class TaskManageController extends Controller
                 ->whereIn('positions.id',$request->positions);
         }
         $tasks = $tasks->paginate(15);
+
+
         foreach ($tasks as $index => $task)
         {
             $task->enterprise = $task->enterprise()->select('name','id','address','introduce','avatar')->first();
+            $task->enterprise= $task->enterprise->toArray();
             $task->skills = $task->skills;
+            $task->skills = $task->skills->toArray();
             $task->types = $task->types;
+            $task->types =  $task->types->toArray();
             $task->positions = $task->positions;
+            $task->positions =  $task->positions->toArray();
         }
+        $tasks = $tasks->toArray();
+        $tasks['data'] = array_map("unserialize", array_unique(array_map("serialize", $tasks['data'])));
         return $tasks;
     }
 

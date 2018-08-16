@@ -47,7 +47,10 @@ class EventManageController extends Controller
         return $this->eventService->delete($request->id_list);
     }
 
-
+    public function sendNotify($id)
+    {
+        return $this->eventService->sendNotify($id);
+    }
 
     public function getOptionsCsv(CsvRequest $request)
     {

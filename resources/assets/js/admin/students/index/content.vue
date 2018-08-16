@@ -91,7 +91,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>
@@ -395,15 +395,22 @@
 
                         vm.config.notifyWarning()
                         vm.lengthSucces = data.data.lengthError
-                            vm.listCodeError = data.data.error
+                        vm.listCodeError = data.data.error
                         $('#modal-show-err').modal('show')
 
                     }
                     vm.getData()
                 }).catch(err => {
+                    if(err.response.status == 406)
+                    {
+                        vm.config.notifyError('Toàn bộ file bị lỗi dữ liệu. Vui lòng kiểm tra lại')
+                    }
+                    else{
+                        vm.config.notifyError()
+                    }
                     this.uploading = false
                     console.dir(err)
-                    vm.config.notifyError()
+
 
                 })
             },

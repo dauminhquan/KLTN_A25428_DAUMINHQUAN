@@ -15,8 +15,26 @@ class EventController extends Controller
 {
     public function index(GetDataRequest $request)
     {
-        $service = new EventService();
-        return $service->getAll($request->all());
+        $inputs = $request->all();
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                $events=  Event::where('status','<>',3)->paginate(100000);
+            }
+            else{
+                $events = Event::where('status','<>',3)->paginate($inputs['size']);
+            }
+
+        }
+        else{
+            $events = Event::where('status','<>',3)->paginate(500);
+        }
+        foreach ($events as $event)
+        {
+            $event->admin = $event->admin()->select('id','name','avatar')->first();
+        }
+        return $events;
     }
     public function show($id)
     {

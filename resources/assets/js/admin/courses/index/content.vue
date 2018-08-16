@@ -150,7 +150,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-center">
                         <div class="modal-header">
-                            <h5 class="modal-title">Thêm doanh nghiệp bằng Excel</h5>
+                            <h5 class="modal-title">Thêm khóa bằng Excel</h5>
                         </div>
 
                         <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
@@ -163,7 +163,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/course" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>

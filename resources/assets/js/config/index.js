@@ -188,6 +188,8 @@ class Config{
 
         this.WEB_ADMIN_EVENTS = this.WEB_ADMIN+'/events'
 
+        this.WEB_ADMIN_GET_SAMPLE_EXCEL_FILE = this.WEB_ADMIN+'/get-sample-csv-file'
+
         this.WEB_ENTERPRISE = this.WEB+'/enterprise'
 
         this.WEB_ENTERPRISE_TASKS = this.WEB_ENTERPRISE+'/tasks'

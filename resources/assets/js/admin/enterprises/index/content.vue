@@ -89,7 +89,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/enterprise" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>

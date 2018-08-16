@@ -31,7 +31,7 @@ class EventService extends BaseService implements ManageInterface
         {
             if($inputs['size'] == -1)
             {
-                $events=  Event::paginate(100000);
+                $events=  Event::where('status')->paginate(100000);
             }
             else{
                 $events = Event::paginate($inputs['size']);
@@ -72,6 +72,34 @@ class EventService extends BaseService implements ManageInterface
     {
         $inputs['admin_id'] = Auth::user()->admin->id;
         $event = Event::create($inputs);
+        return $event;
+    }
+    public function update($inputs, $id)
+    {
+        try{
+            $columns = Schema::getColumnListing((new Event())->getTable());
+            $event = Event::findOrFail($id);
+            foreach ($columns as $column)
+            {
+                if(isset($inputs[$column]))
+                {
+                    $event->$column = $inputs[$column];
+                }
+            }
+            $event->update();
+            return $event;
+        }catch (\Exception $exception)
+        {
+            return ['err' => $exception->getMessage()];
+        }
+    }
+
+    public function sendNotify($id){
+        $event = Event::findOrfail($id);
+        if($event->status == 3)
+        {
+            return response()->json(['message' => 'Bạn không thể gửi thông báo sự kiện đã bị đóng'],406);
+        }
         $users = User::where('notify',1)->get();
         $connect = Redis::connection();
 
@@ -94,27 +122,7 @@ class EventService extends BaseService implements ManageInterface
             'title' => $event->tile,
             'id' => $event->id
         ]));
-        return $event;
-    }
-    public function update($inputs, $id)
-    {
-        try{
-            $columns = Schema::getColumnListing((new Event())->getTable());
-            $event = Event::findOrFail($id);
-            foreach ($columns as $column)
-            {
-                if(isset($inputs[$column]))
-                {
-                    $event->$column = $inputs[$column];
-                }
-
-            }
-            $event->update();
-            return $event;
-        }catch (\Exception $exception)
-        {
-            return ['err' => $exception->getMessage()];
-        }
+        return ['message' => 'Thành công'];
     }
 
     public function updateEventStudent($inputs,$id){

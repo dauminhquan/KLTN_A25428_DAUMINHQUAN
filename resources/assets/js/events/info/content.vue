@@ -7,26 +7,30 @@
                         <img :src="event.admin == null? null: event.admin.avatar" class="img-rounded img-lg" alt="">
                     </a>
                     <div class="media-body">
-                        <h5 class="media-heading text-semibold">{{event.title}}</h5>
+                        <h5 class="media-heading text-semibold">
+                            {{event.title}}
+                            <span class="label bg-blue" v-if="event.status == 2"> Đang diễn ra</span>
+
+                        </h5>
+                        <span class="label bg-success" v-if="event.status == 1"> Chuẩn bị diễn ra</span>
+                        <br>
+                        <span class="text-muted">{{getDateStart(event.time_start)}} - {{event.location}}</span>
                     </div>
-                    <div class="media-right media-middle text-nowrap" v-if="reg_notify == 0">
-                        <a href="#" class="btn bg-info" @click="regNotify"><i class="icon-alarm position-left" ></i> Nhận thông báo</a>
+
+                    <div class="media-right media-middle text-nowrap">
+
+                        <a href="#" class="btn bg-info" @click="regNotify" v-if="reg_notify == 0"><i class="icon-alarm position-left" ></i> Nhận thông báo</a>
+                        <a href="#" class="btn bg-brown" @click="unRegNotify"  v-if="reg_notify == 1"><i class="icon-alarm position-left" ></i> Hủy nhận thông báo</a>
+                        <a href="#" class="btn bg-primary" @click="joinEvent" v-if="event.joined != undefined && event.joined == 0"><i class="icon-plus3 position-left" ></i> Đăng ký tham gia</a>
+                        <a href="#" class="btn bg-brown" @click="joinEvent" v-if="event.joined != undefined && event.joined == 1"><i class="icon-check2 position-left" ></i> Hủy tham gia</a>
                     </div>
-                    <div class="media-right media-middle text-nowrap" v-if="reg_notify == 1">
-                        <a href="#" class="btn bg-brown" @click="unRegNotify"><i class="icon-alarm position-left" ></i> Hủy nhận thông báo</a>
-                    </div>
-                    <div class="media-right media-middle text-nowrap" v-if="event.joined != undefined && event.joined == 0">
-                        <a href="#" class="btn bg-primary" @click="joinEvent"><i class="icon-plus3 position-left" ></i> Đăng ký tham gia</a>
-                    </div>
-                    <div class="media-right media-middle text-nowrap" v-if="event.joined != undefined && event.joined == 1">
-                        <a href="#" class="btn bg-brown" @click="joinEvent"><i class="icon-check2 position-left" ></i> Hủy tham gia</a>
-                    </div>
+
                 </div>
                 <div class="content-group-lg" v-html="event.content">
                 </div>
                 <ul class="list-inline no-margin">
                     <li class="mt-5" style="float: right">
-                        <a :href="'https://www.facebook.com/sharer/sharer.php?u='+curUrl" class="btn btn-default" style="padding: 0 !important;">
+                        <a :href="'https://www.facebook.com/sharer/sharer.php?u='+curUrl" class="btn btn-default" style="padding: 0 !important;" target="_blank">
                             <i class="icon-facebook position-right"></i>
                         </a>
                     </li>
@@ -49,7 +53,7 @@
                         </h6>
 
                         <ul class="list-inline list-inline-separate text-muted mb-10">
-                            <li><a href="#" class="text-muted">{{similar.location}}</a></li>
+                            <li>{{getDateStart(similar.time_start)}} - {{similar.location}}</li>
                             <
                         </ul>
                         {{similar.description}}
@@ -79,6 +83,17 @@
             }
         },
         methods:{
+            getDateStart(d)
+            {
+                d = new Date(d)
+                let i = d.getMinutes()
+                if(d.getMinutes() < 10)
+                {
+                    i = '0'+d.getMinutes()
+                }
+
+                return d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+' '+d.getHours()+':'+i
+            },
             getEvent(){
                 let vm = this
                 axios.get(vm.config.API_EVENTS+'/'+vm.keyItem).then(data => {
