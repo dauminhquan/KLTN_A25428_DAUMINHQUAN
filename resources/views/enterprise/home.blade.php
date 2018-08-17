@@ -40,7 +40,7 @@
 
                     <div class="panel bg-pink-400">
                         <div class="panel-body">
-                            <h3 class="no-margin">{{\App\Models\Event::where('created_at','>=',DB::raw('date(now())'))->count()}}</h3>
+                            <h3 class="no-margin">{{\App\Models\Notification::where('created_at','>=',DB::raw('date(now())'))->count()}}</h3>
                             Thông báo hôm nay
                             <div class="text-muted text-size-small">Có gì mới?</div>
                         </div>
@@ -145,7 +145,7 @@
                                             <ul class="list-inline list-inline-separate text-muted mb-5">
                                                 <li>{{date_format($item->updated_at,'d/m/Y H:i:s')}}</li>
                                             </ul>
-                                            <a href="{{route('web.events.info',['id' => $item->id])}}">{{$item->title}}</a>
+                                            <a href="{{route('web.tasks.info',['id' => $item->id])}}">{{$item->title}}</a>
                                         </div>
                                     </li>
                                 </ul>

@@ -162,6 +162,45 @@ class StudentService extends BaseService implements ManageInterface
         ];
     }
 
+    public function csvUpdate($path){
+        $list_err = [];
+        $size_success = 0;
+        $data = Excel::load($path,function($reader){})->get()->toArray();
+        if(count($data) > 0)
+        {
+            foreach ($data as $item)
+            {
+                try{
+                    $student = Student::find($item['code']);
+                    if(!$student)
+                    {
+                        $list_err[] = $item['code'];
+                    }
+                    else{
+                        $student->update($item);
+                        $size_success++;
+                    }
+
+                }catch (\Exception $exception)
+                {
+                    $list_err[] = $item['code'];
+                }
+            }
+        }
+        if(count($list_err) == count($data))
+        {
+            return response()->json([
+                'message' => "File rỗng | Sai định dạng | Trùng dữ liệu toàn bộ",
+                'error' => $list_err
+            ],406);
+        }
+        return [
+            'message' => 'Update sách sinh viên thành công',
+            'error' => $list_err,
+            'lengthSuccess' => $size_success
+        ];
+    }
+
     public function updateAvatar($id,$avatar){
         $student = Student::findOrFail($id);
         if(Storage::exists($student->avatar) && $student->avatar != env('AVATAR_DEFAULT'))

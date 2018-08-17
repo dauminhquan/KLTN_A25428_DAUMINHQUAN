@@ -97,7 +97,28 @@
                     </div>
                 </div>
             </div>
+            <div id="modal-update-excel" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update thông tin sinh viên bằng Excel</h5>
+                        </div>
 
+                        <form v-on:submit.prevent="uploadExcelFileUpdate" class="form-inline" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <input type="file"class="form-control" @change="setUpdateExcelFile($event)">
+                                <div class="pace-demo" v-if="uploading == true">
+                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
+                                <a href="/admin/get-sample-csv-file/student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div id="modal-show-err" class="modal fade">
                 <div class="modal-dialog  modal-full">
                     <div class="modal-content text-center">
@@ -158,6 +179,13 @@
                         action: function(e, dt, node, config) {
                             $('#modal-push-excel').modal('show')
                         }
+                    },
+                    {
+                        text: 'Update bằng Excel',
+                        className: 'btn bg-danger',
+                        action: function(e, dt, node, config) {
+                            $('#modal-update-excel').modal('show')
+                        }
                     }
                 ],
                 deleting: false,
@@ -187,6 +215,7 @@
                 lengthSucces: 0,
                 listCodeError: '',
                 config: new config(),
+                excelFileUpdate: null
             }
         },
         mounted(){
@@ -379,6 +408,13 @@
                     return;
                 vm.excelFile = files[0]
             },
+            setUpdateExcelFile(e){
+                var vm = this
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                vm.excelFileUpdate = files[0]
+            },
             uploadExcelFile(){
                 var vm = this
                 vm.uploading = true
@@ -390,6 +426,40 @@
                     if(data.data.message == [] || data.data.error.length == 0)
                     {
                        vm.config.notifySuccess()
+                    }
+                    else{
+                        vm.config.notifyWarning()
+                        vm.lengthSucces = data.data.lengthError
+                        vm.listCodeError = data.data.error
+                        $('#modal-show-err').modal('show')
+
+                    }
+                    vm.getData()
+                }).catch(err => {
+                    if(err.response.status == 406)
+                    {
+                        vm.config.notifyError('Toàn bộ file bị lỗi dữ liệu. Vui lòng kiểm tra lại')
+                    }
+                    else{
+                        vm.config.notifyError()
+                    }
+                    this.uploading = false
+                    console.dir(err)
+
+
+                })
+            },
+            uploadExcelFileUpdate(){
+                var vm = this
+                vm.uploading = true
+                var formData = new FormData()
+                formData.append('CsvFile',vm.excelFileUpdate)
+                axios.post(vm.config.API_ADMIN_STUDENTS_IMPORT_UPDATE_CSV,formData).then(data => {
+                    vm.uploading = false
+                    $('#modal-update-excel').modal('hide')
+                    if(data.data.message == [] || data.data.error.length == 0)
+                    {
+                        vm.config.notifySuccess()
                     }
                     else{
                         vm.config.notifyWarning()

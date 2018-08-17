@@ -55,7 +55,7 @@ class EventController extends Controller
                 }
             }
         }
-        $similars = Event::where('admin_id',$event->admin_id)->where('id','<>',$event->id)->orderByDesc('created_at')->limit(6)->get();
+        $similars = Event::where('admin_id',$event->admin_id)->where('id','<>',$event->id)->where('status','<>',3)->orderByDesc('created_at')->limit(6)->get();
         foreach ($similars as $similar)
         {
             $similar->admin = $similar->admin()->select('name','id','avatar')->first();

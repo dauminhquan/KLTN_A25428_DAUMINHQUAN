@@ -23,7 +23,7 @@ class TaskController extends Controller
         {
             return view('tasks.info',['id' => $id]);
         }
-        return response()->redirectToRoute('web.home');
+        return abort(404);
     }
     public function file($id)
     {

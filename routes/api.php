@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth:api','accept']],function (){
             Route::post('update-avatar/{id}','StudentManageController@updateAvatar')->name('update.avatar');
             Route::get('list-enterprise/{id}','StudentManageController@listenterprise')->name('list.enterprise');
             Route::post('/import-csv','StudentManageController@importCsv')->name('import.csv');
+            Route::post('/import-csv-update','StudentManageController@updateCsv')->name('import.csv.update');
             Route::get('list-work/{id}','StudentManageController@listWork')->name('list.work');
             Route::post('/get-options-csv','StudentManageController@getOptionsCsv')->name('get.option.csv');
 

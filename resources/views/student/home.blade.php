@@ -27,7 +27,7 @@
                             <?php $userAccoutn = session('user')->student()->select('code','last_name')->first() ?>
                             <h3 class="no-margin">{{\App\Models\Event::count()}}</h3>
                             Sự kiện mới
-                            <div class="text-muted text-size-small">{{\App\Models\Event::where('created_at','>=',DB::raw('date(now())'))->count()}} </div>
+                            <div class="text-muted text-size-small">{{\App\Models\Event::where('created_at','>=',DB::raw('date(now())'))->where('status','=',1)->count()}} </div>
                         </div>
                         <div class="container-fluid">
                             <div id="members-online"></div>
@@ -39,7 +39,7 @@
 
                     <div class="panel bg-pink-400">
                         <div class="panel-body">
-                            <h3 class="no-margin">{{\App\Models\Event::where('created_at','>=',DB::raw('date(now())'))->count()}}</h3>
+                            <h3 class="no-margin">{{\App\Models\Notification::where('created_at','>=',DB::raw('date(now())'))->count()}}</h3>
                             Thông báo hôm nay
                             <div class="text-muted text-size-small">Có gì mới?</div>
                         </div>
@@ -79,7 +79,7 @@
                                             <ul class="list-inline list-inline-separate text-muted mb-5">
                                                 <li>{{date_format($item->updated_at,'d/m/Y H:i:s')}}</li>
                                             </ul>
-                                            <a href="{{route('web.events.info',['id' => $item->id])}}">{{$item->title}}</a>
+                                            <a href="{{route('web.tasks.info',['id' => $item->id])}}">{{$item->title}}</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -121,6 +121,46 @@
                                                 <li>{{date_format($item->updated_at,'d/m/Y H:i:s')}}</li>
                                             </ul>
                                             <a href="{{route('web.notifies.info',['id' => $item->id])}}">{{$item->title}}</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Sự kiện mới</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <?php $events = \App\Models\Event::where('status',1)->limit(10)->get() ?>
+                <div class="panel-body">
+                    <div class="row">
+                        @foreach($events as $item)
+                            <div class="col-lg-6">
+                                <ul class="media-list content-group">
+                                    <li class="media stack-media-on-mobile">
+                                        <div class="media-left">
+                                            <div class="thumb">
+                                                <a href="#">
+                                                    <img src="{{asset('assets/images/placeholder.jpg')}}}" class="img-responsive img-rounded media-preview" alt="">
+                                                    <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading"><a href="#">{{$item->tile}}</a></h6>
+                                            <ul class="list-inline list-inline-separate text-muted mb-5">
+                                                <li>{{date_format($item->updated_at,'d/m/Y H:i:s')}}</li>
+                                            </ul>
+                                            <a href="{{route('web.events.info',['id' => $item->id])}}">{{$item->title}}</a>
                                         </div>
                                     </li>
                                 </ul>

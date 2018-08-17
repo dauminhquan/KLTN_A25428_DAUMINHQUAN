@@ -19,6 +19,5 @@ class HomeController extends Controller
             return view('student.home');
         }
         abort(404);
-
     }
 }

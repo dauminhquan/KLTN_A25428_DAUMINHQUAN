@@ -154,7 +154,46 @@
             </div>
             <!-- /support tickets -->
 
-
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Thông báo gần đây</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <?php $notifies = \App\Models\Notification::limit(10)->get() ?>
+                <div class="panel-body">
+                    <div class="row">
+                        @foreach($notifies as $item)
+                            <div class="col-lg-6">
+                                <ul class="media-list content-group">
+                                    <li class="media stack-media-on-mobile">
+                                        <div class="media-left">
+                                            <div class="thumb">
+                                                <a href="#">
+                                                    <img src="{{asset('assets/images/placeholder.jpg')}}}" class="img-responsive img-rounded media-preview" alt="">
+                                                    <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading"><a href="#">{{$item->tile}}</a></h6>
+                                            <ul class="list-inline list-inline-separate text-muted mb-5">
+                                                <li>{{date_format($item->updated_at,'d/m/Y H:i:s')}}</li>
+                                            </ul>
+                                            <a href="{{route('web.notifies.info',['id' => $item->id])}}">{{$item->title}}</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             <!-- Latest posts -->
             <div class="panel panel-flat">
                 <div class="panel-heading">
@@ -167,7 +206,7 @@
                         </ul>
                     </div>
                 </div>
-                <?php $events = \App\Models\Event::orderByDesc('created_at')->limit(10)->get() ?>
+                <?php $events = \App\Models\Event::orderByDesc('created_at')->where('status','<>',3)->limit(10)->get() ?>
                 <div class="panel-body">
                     <div class="row">
                         @foreach($events as $item)

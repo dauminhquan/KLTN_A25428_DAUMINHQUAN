@@ -12,7 +12,7 @@ class Config{
         this.API_ADMIN_ADMINS = this.API_ADMIN+'/manage-admins'
         this.API_ADMIN_ADMINS_RESOURCE = this.API_ADMIN_ADMINS+'/resource'
         this.API_ADMIN_ADMINS_DELETE_LIST = this.API_ADMIN_ADMINS+'/delete-list'
-        
+
         /*ENTERPRISES*/
         this.API_ADMIN_ENTERPRISES = this.API_ADMIN+'/manage-enterprises'
         this.API_ADMIN_ENTERPRISES_RESOURCE = this.API_ADMIN_ENTERPRISES+'/resource'
@@ -33,7 +33,7 @@ class Config{
         this.API_ADMIN_USERS_IMPORT_CSV = this.API_ADMIN_USERS+'/import-csv'
         this.API_ADMIN_USERS_GET_OPTION_CSV = (ID) => this.API_ADMIN_USERS+'/get-option-csv'
         /*USERS*/
-        
+
         /*STUDENTS*/
         this.API_ADMIN_STUDENTS = this.API_ADMIN+'/manage-students'
         this.API_ADMIN_STUDENTS_RESOURCE = this.API_ADMIN_STUDENTS+'/resource'
@@ -42,10 +42,11 @@ class Config{
         this.API_ADMIN_STUDENTS_UPDATE_AVATAR = this.API_ADMIN_STUDENTS+'/update-avatar'
         this.API_ADMIN_STUDENTS_LIST_WORK_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-work'+'/'+ID}
         this.API_ADMIN_STUDENTS_IMPORT_CSV = this.API_ADMIN_STUDENTS+'/import-csv'
+        this.API_ADMIN_STUDENTS_IMPORT_UPDATE_CSV = this.API_ADMIN_STUDENTS+'/import-csv-update'
         this.API_ADMIN_STUDENTS_LIST_TASK_ID = (ID) => {return this.API_ADMIN_STUDENTS+'/list-task'+'/'+ID}
         this.API_ADMIN_STUDENTS_GET_OPTION_CSV = (ID) => this.API_ADMIN_STUDENTS+'/get-option-csv'
         /*STUDENTS*/
-        
+
         /*TASKS*/
         this.API_ADMIN_TASKS = this.API_ADMIN+'/manage-tasks'
         this.API_ADMIN_TASKS_RESOURCE = this.API_ADMIN_TASKS+'/resource'
@@ -125,7 +126,7 @@ class Config{
         this.API_ADMIN_NOTIFIES_DELETE_LIST = this.API_ADMIN_NOTIFIES+'/delete-list'
         this.API_ADMIN_NOTIFIES_GET_OPTION_CSV = (ID) => this.API_ADMIN_NOTIFIES+'/get-option-csv'
         /*NOTIFIES*/
-        
+
         /*ENTERPRISES*/
 
         this.API_ENTERPRISE= this.API+'/enterprise'

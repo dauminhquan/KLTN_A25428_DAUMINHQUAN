@@ -72,6 +72,9 @@ class StudentManageController extends Controller
     public function importCsv(CsvRequest $request){
         return $this->studentService->csvStore($request->file('CsvFile')->getRealPath());
     }
+    public function updateCsv(CsvRequest $request){
+        return $this->studentService->csvUpdate($request->file('CsvFile')->getRealPath());
+    }
     public function getOptionsCsv(CsvRequest $request)
     {
         $data = $this->studentService->getOptionCsv($request->file('CsvFile')->getRealPath(),['id']);

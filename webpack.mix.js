@@ -10,7 +10,7 @@ let mix = require('laravel-mix');
 // mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
 // mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
 // //student
-// mix.js('resources/assets/js/admin/students/index/index.js', 'public/assets/js/build/pages/admin/students/index.js');
+mix.js('resources/assets/js/admin/students/index/index.js', 'public/assets/js/build/pages/admin/students/index.js');
 // mix.js('resources/assets/js/admin/students/create/index.js', 'public/assets/js/build/pages/admin/students/create.js');
 // mix.js('resources/assets/js/admin/students/edit/index.js', 'public/assets/js/build/pages/admin/students/edit.js');
 // // //user
@@ -63,5 +63,5 @@ let mix = require('laravel-mix');
 // mix.copyDirectory('resources/assets/images', 'public/assets/images');
 // mix.copyDirectory('resources/plugins', 'public/assets/js/plugins');
 // mix.copyDirectory('resources/assets/js/charts', 'public/assets/js/charts');
-mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
+// mix.babel('resources/assets/js/charts/echarts/columns_waterfalls.js','public/assets/js/charts/echarts/columns_waterfalls.js')
 // mix.babel('resources/assets/js/charts/echarts/timeline_option.js','public/assets/js/charts/echarts/timeline_option.js')
