@@ -65,16 +65,23 @@ class CoverDataController extends Controller
         }
         try{
             return Excel::create('CoverFile', function($excel) use($listTable,$request,$pointer) {
-                foreach ($listTable as $table)
+                $datas = [];
+                foreach ($listTable as  $table)
                 {
-
                     if($request->hasFile($table->$pointer."-csv") && $request->has('rows-'.$table->$pointer))
                     {
                         $data = $this->getOptionCsv($request->file($table->$pointer."-csv")->getRealPath(),$request['rows-'.$table->$pointer],$table->$pointer);
-                        $excel->sheet($table->$pointer, function($sheet) use($data) {
-                            $sheet->fromArray($data);
-                        });
+                        $datas[] = [
+                          'name' => $table->$pointer,
+                            'data' => $data
+                        ];
                     }
+                }
+                foreach ($datas as $data)
+                {
+                    $excel->sheet($data['name'], function($sheet) use($data) {
+                        $sheet->fromArray($data['data']);
+                    });
                 }
 
             })->download('xls');
