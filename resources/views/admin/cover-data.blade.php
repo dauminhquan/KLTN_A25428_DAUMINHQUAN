@@ -40,24 +40,38 @@
 
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Quy đổi từ tên doanh nghiệp sang Id:</label>
-                            <input type="file" name="enterprise-csv" class="form-control">
+                    @foreach($tables as $table)
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Quy đổi dữ liệu bảng <b>{{$table['name']}}</b></label>
+                                <input type="file" name="{{$table['name']}}-csv" class="form-control">
+                            </div>
+                            <?php $rows = $table['rows'] ?>
+                            <div class="panel panel-flat" style="margin-top: 0 !important;">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title" style="margin-bottom: 0 !important; margin-top: 0 !important;font-size: 13px !important;font-weight: bold">Danh sách các cột trong bảng</h5>
+                                    <div class="heading-elements">
+                                        <ul class="icons-list">
+                                            <li><a data-action="collapse"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="panel-body">
+                                    @foreach($rows as $row)
+                                    <label class="checkbox-inline checkbox-right" style="margin-top: 5px">
+                                    <input type="checkbox" value="{{$row}}" @if($row == 'id' || $row == 'code') checked="checked" @endif name="rows-{{$table['name']}}[]">
+                                    {{$row}}
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Quy đổi từ tên mức lương sang Id:</label>
-                            <input type="file" name="salary-csv" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Quy đổi từ tên chức vụ trong công việc của sinh viên sang Id :</label>
-                            <input type="file" name="rank-csv" class="form-control">
-                        </div>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Quy đổi <i class="icon-arrow-right14 position-right"></i></button>
-                        </div>
-                    </div>
+                    @endforeach
+                </div>
+                <div class="text-right">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-primary">Chuyển đổi <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </div>
         </div>
