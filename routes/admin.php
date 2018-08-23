@@ -30,4 +30,7 @@ Route::group(['prefix' => 'get-sample-csv-file','as' => 'ge.sample.csv.file'],fu
 });
 Route::get('/cover-data','CoverDataController@coverData')->name('cover.data');
 Route::post('/cover-data','CoverDataController@postCoverData');
+Route::get('/import-data','CoverDataController@importData')->name('import.data');
+Route::post('/import-data','CoverDataController@postImportData');
+Route::get('/export-data','CoverDataController@exportData')->name('export.data');
 Route::get('/','IndexController@index')->name('dashboard');

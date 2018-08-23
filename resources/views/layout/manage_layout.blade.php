@@ -254,6 +254,16 @@
                     </a>
 
                 </li>
+                <li class="dropdown">
+                    <a href="{{route('admin.import.data')}}">
+                        <i class="icon-add-to-list position-left"></i> Import dữ liệu
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="{{route('admin.export.data')}}">
+                        <i class="icon-download position-left"></i> Export dữ liệu
+                    </a>
+                </li>
                 <li>
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#modal_form_vertical">
                         <i class="icon-lock position-left"></i> Đổi mật khẩu

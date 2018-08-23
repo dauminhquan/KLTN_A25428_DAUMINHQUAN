@@ -16,6 +16,51 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CoverDataController extends Controller
 {
+    public function exportData(Request $request){
+        if($request->has('table'))
+        {
+            if(!$this->hasTable($request->table))
+            {
+                abort(404);
+            }
+
+            try{
+                $results = DB::table($request->table)->get();
+                $data = array();
+                foreach ($results as $result) {
+                    $data[] = (array)$result;
+                }
+                return Excel::create($request->table, function($excel) use($data) {
+                    $excel->sheet('table', function($sheet) use($data) {
+                        $sheet->fromArray($data);
+                    });
+                })->download('csv');
+            }catch (\Exception $exception)
+            {
+                return abort(404);
+            }
+        }
+        $databaseName = DB::getDatabaseName();
+        $listTable = DB::select('SHOW TABLES');
+        $pointer = "Tables_in_$databaseName";
+
+        $tables = [];
+        foreach ($listTable as $table)
+        {
+            $tableName = $table->$pointer;
+            if(!$this->filterTable($tableName))
+            {
+                continue;
+            }
+
+            $tables[] = [
+                'name' => $tableName,
+            ];
+        }
+        return view('admin.export-data',[
+            'tables' => $tables,
+        ]);
+    }
     public function coverData(){
         $databaseName = DB::getDatabaseName();
         $listTable = DB::select('SHOW TABLES');
@@ -26,7 +71,10 @@ class CoverDataController extends Controller
         foreach ($listTable as $table)
         {
             $tableName = $table->$pointer;
-
+            if(!$this->filterTable($tableName))
+            {
+                continue;
+            }
             $rows = Schema::getColumnListing($tableName);
 
             $tables[] = [
@@ -39,15 +87,6 @@ class CoverDataController extends Controller
             'tables' => $tables,
         ]);
     }
-
-    /*
-     * Request gửi lên gồm:
-     * List table = tableName + -csv
-     *
-     * List row mỗi table: rows-tableName
-     *
-     * */
-
     public function postCoverData(Request $request){
         $databaseName = DB::getDatabaseName();
         $listTable = DB::select('SHOW TABLES');
@@ -87,7 +126,61 @@ class CoverDataController extends Controller
             })->download('xls');
         }catch (\Exception $exception)
         {
-            dd($exception);
+            return abort(404);
+        }
+    }
+
+    public function importData(){
+        $databaseName = DB::getDatabaseName();
+        $listTable = DB::select('SHOW TABLES');
+        $pointer = "Tables_in_$databaseName";
+
+        $tables = [];
+
+        foreach ($listTable as $table)
+        {
+            $tableName = $table->$pointer;
+            if(!$this->filterTable($tableName))
+            {
+                continue;
+            }
+            $tables[] = [
+                'name' => $tableName,
+            ];
+        }
+
+        return view('admin.import-data',[
+            'tables' => $tables,
+        ]);
+    }
+    public function postImportData(Request $request){
+        $databaseName = DB::getDatabaseName();
+        $listTable = DB::select('SHOW TABLES');
+        $pointer = "Tables_in_$databaseName";
+        $rules = [];
+        foreach ($listTable as $table)
+        {
+            $rules[$table->$pointer."-csv"] =  "file|mimes:csv,txt";
+        }
+
+        $validator = Validator::make($request->all(),$rules);
+        if($validator->fails())
+        {
+            return $validator->errors();
+        }
+        try{
+            $res = [];
+            foreach ($listTable as $table)
+            {
+                if($request->hasFile($table->$pointer."-csv"))
+                {
+                    $res[$table->$pointer] = $this->csvStore($request->file($table->$pointer."-csv")->getRealPath(),$table->$pointer);
+                }
+
+            }
+            return $res;
+        }catch (\Exception $exception)
+        {
             return abort(404);
         }
     }
@@ -98,7 +191,6 @@ class CoverDataController extends Controller
         {
             foreach ($data as $item)
             {
-
                 $keys = array_keys((array)$item);
                 $result = [];
                 $rs = $this->getOption($keys[0],$item[$keys[0]],$selects,$tableName);
@@ -130,5 +222,59 @@ class CoverDataController extends Controller
             return DB::table($tableName)->select($selects)->where($column,$queryValue)->first();
         }
         return null;
+    }
+    private function csvStore($path,$tableName){
+        $list_err = [];
+        $size_success = 0;
+        $data = Excel::load($path,function($reader){})->get()->toArray();
+        if(count($data) > 0)
+        {
+            foreach ($data as $index => $item)
+            {
+                try{
+                    DB::table($tableName)->insert($item);
+                    $size_success++;
+                }catch (\Exception $exception)
+                {
+                    $list_err[] = $index+2;
+                }
+            }
+        }
+        return [
+            'errors' => ['Danh sach vi tri loi' => $list_err],
+            'So luong thanh cong' => $size_success
+        ];
+    }
+    private function filterTable($tableName)
+    {
+        switch ($tableName)
+        {
+            case ('notifications'):
+            case ('oauth_access_tokens'):
+            case ('jobs'):
+            case ('migrations'):
+            case ('oauth_auth_codes'):
+            case ('oauth_clients'):
+            case ('oauth_personal_access_clients'):
+            case ('oauth_refresh_tokens'):
+            case ('sessions'):
+                return false;
+        }
+        return true;
+    }
+    private function hasTable($tableName)
+    {
+        $databaseName = DB::getDatabaseName();
+        $listTable = DB::select('SHOW TABLES');
+        $pointer = "Tables_in_$databaseName";
+        foreach ($listTable as $table)
+        {
+            if($table->$pointer == $tableName)
+            {
+                return true;
+            }
+
+        }
+        return false;
     }
 }
