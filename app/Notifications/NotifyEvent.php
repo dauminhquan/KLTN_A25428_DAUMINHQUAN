@@ -42,20 +42,25 @@ class NotifyEvent extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
             $title = 'Có sự kiện mới từ nhà trường';
-            if(isset($this->event->titile))
+            if(isset($this->event['title']))
             {
-                $title = $this->event->titile;
+                $title = $this->event['title'];
             }
             $url = '/';
-            if(isset($this->event->id))
+            if(isset($this->event['id']))
             {
-                $url = route('web.events.id' ,['id' => $this->event->id]);
+                $url = route('web.events.info' ,['id' => $this->event['id']]);
             }
-
+        $description = '';
+        if(isset($this->event['id']))
+        {
+            $description = $this->event['description'];
+        }
             return (new MailMessage)
                 ->line($title)
                 ->action('Xem chi tiết', $url)
-                ->line('Hãy ghé thăm bạn nhé!');
+                ->line($description)
+                ->subject('Thông báo sự kiện mới');
     }
 
 }

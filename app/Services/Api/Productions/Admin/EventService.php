@@ -119,8 +119,9 @@ class EventService extends BaseService implements ManageInterface
             ]
         ]));
         Notification::send($users,new NotifyEvent([
-            'title' => $event->tile,
-            'id' => $event->id
+            'title' => $event->title,
+            'id' => $event->id,
+            'description' => $event->description
         ]));
         return ['message' => 'Thành công'];
     }
