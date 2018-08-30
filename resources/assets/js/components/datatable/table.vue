@@ -29,7 +29,7 @@
             <thead>
             <tr>
                 <th>
-                    <div class="btn-group navbar-btn">
+                    <div class="btn-group navbar-btn" style="margin-left: unset !important;">
                         <button type="button" class="btn btn-default btn-icon btn-checkbox-all" @click="selectAll">
                             <div class="checker"><span :class="checked"><input type="checkbox"class="styled"></span></div>
                         </button>
@@ -265,5 +265,9 @@
 <style>
     .dt-button-collection button{
         width: 100% !important;
+    }
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        vertical-align: middle;
+        max-width: 165px;
     }
 </style>

@@ -59,7 +59,7 @@ class CourseService extends BaseService implements ManageInterface
             $course = Course::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $course->$column = $inputs[$column];
                 }

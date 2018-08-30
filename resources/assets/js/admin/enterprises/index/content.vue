@@ -89,7 +89,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/enterprise" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/enterprise" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>
@@ -120,7 +120,7 @@
                         }
                     },
                     {
-                        text: 'Thêm bằng Excel',
+                        text: 'Thêm bằng CSV',
                         className: 'btn bg-info',
                         action: function(e, dt, node, config) {
                             $('#modal-push-excel').modal('show')

@@ -59,7 +59,7 @@ class RatingService extends BaseService implements ManageInterface
             $rating = Rating::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $rating->$column = $inputs[$column];
                 }

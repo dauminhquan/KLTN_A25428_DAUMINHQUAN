@@ -64,12 +64,13 @@ class EventStudentService extends BaseService implements ManageInterface
 
     public function update($inputs, $id)
     {
+
         try{
             $columns = Schema::getColumnListing((new EventStudent())->getTable());
             $eventStudent = EventStudent::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $eventStudent->$column = $inputs[$column];
                 }

@@ -75,7 +75,7 @@ class UserService extends BaseService implements ManageInterface
         $columns = Schema::getColumnListing((new User())->getTable());
         foreach ($columns as $column)
         {
-            if(isset($inputs[$column]))
+            if(array_key_exists($column,$inputs))
             {
 
                 if($column == 'password')
@@ -148,7 +148,7 @@ class UserService extends BaseService implements ManageInterface
             $user = User::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
 
                     if($column == 'password')

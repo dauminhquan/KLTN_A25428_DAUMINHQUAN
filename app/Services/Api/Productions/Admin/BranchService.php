@@ -68,7 +68,7 @@ class BranchService extends BaseService implements ManageInterface
             $branch = Branch::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $branch->$column = $inputs[$column];
                 }

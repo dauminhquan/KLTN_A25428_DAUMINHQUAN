@@ -36,7 +36,7 @@ class ProfileService
             unset($inputs['authentication']);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $this->enterprise->$column = $inputs[$column];
                 }

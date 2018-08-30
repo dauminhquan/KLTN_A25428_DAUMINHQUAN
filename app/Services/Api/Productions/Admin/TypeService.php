@@ -59,7 +59,7 @@ class TypeService extends BaseService implements ManageInterface
             $type = Type::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $type->$column = $inputs[$column];
                 }

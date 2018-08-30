@@ -59,7 +59,7 @@ class ProvinceService extends BaseService implements ManageInterface
             $province = Province::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $province->$column = $inputs[$column];
                 }

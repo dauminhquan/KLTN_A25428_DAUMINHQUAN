@@ -58,7 +58,7 @@ class SalaryService extends BaseService implements ManageInterface
             $salary = Salary::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $salary->$column = $inputs[$column];
                 }

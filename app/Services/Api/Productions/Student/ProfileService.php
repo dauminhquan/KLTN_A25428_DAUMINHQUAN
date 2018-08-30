@@ -51,7 +51,7 @@ class ProfileService
 
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $this->student->$column = $inputs[$column];
                 }

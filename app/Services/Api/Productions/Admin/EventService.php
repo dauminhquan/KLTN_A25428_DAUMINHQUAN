@@ -81,7 +81,7 @@ class EventService extends BaseService implements ManageInterface
             $event = Event::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $event->$column = $inputs[$column];
                 }

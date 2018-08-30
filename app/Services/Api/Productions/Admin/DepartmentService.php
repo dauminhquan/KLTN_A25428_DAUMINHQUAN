@@ -72,7 +72,7 @@ class DepartmentService extends BaseService implements ManageInterface
         foreach ($columns as $column)
         {
 
-            if(isset($inputs[$column]))
+            if(array_key_exists($column,$inputs))
             {
                 if($column == $department->getKeyName())
                 {

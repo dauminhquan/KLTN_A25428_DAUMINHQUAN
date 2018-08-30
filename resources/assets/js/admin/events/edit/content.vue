@@ -55,7 +55,7 @@
 
                         <div class="modal-body">
 
-                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều bài viết. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
+                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều mục. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
                                 <div class="pace-demo" v-if="deleting == true">
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
@@ -95,6 +95,7 @@
                                         <select v-model="info.attended" class="form-control">
                                             <option value="0">Chưa tham dự</option>
                                             <option value="1">Đã tham dự</option>
+                                            <option value="2">Chưa rõ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -193,7 +194,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>
@@ -216,7 +217,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải Excel mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>
@@ -323,6 +324,10 @@
                         if(item.attended == 1)
                         {
                             item.attendedHtml = '<span class="label bg-success-400">Đã tham dự</span>'
+                        }
+                        if(item.attended == 2)
+                        {
+                            item.attendedHtml = '<span class="label bg-brown-400">Chưa rõ</span>'
                         }
                         else{
                             item.attendedHtml = '<span class="label bg-danger-400">Chưa tham dự</span>'

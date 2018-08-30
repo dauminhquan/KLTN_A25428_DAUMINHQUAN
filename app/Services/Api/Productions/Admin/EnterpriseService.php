@@ -64,7 +64,7 @@ class EnterpriseService extends BaseService implements ManageInterface
                 $enterprise = Enterprise::findOrFail($id);
                 foreach ($columns as $column)
                 {
-                    if(isset($inputs[$column]))
+                    if(array_key_exists($column,$inputs))
                     {
                         $enterprise->$column = $inputs[$column];
                     }

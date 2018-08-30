@@ -59,7 +59,7 @@ class SkillService extends BaseService implements ManageInterface
             $skill = Skill::findOrFail($id);
             foreach ($columns as $column)
             {
-                if(isset($inputs[$column]))
+                if(array_key_exists($column,$inputs))
                 {
                     $skill->$column = $inputs[$column];
                 }

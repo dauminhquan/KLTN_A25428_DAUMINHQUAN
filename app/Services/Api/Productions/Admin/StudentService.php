@@ -83,7 +83,7 @@ class StudentService extends BaseService implements ManageInterface
                 $student = Student::findOrFail($id);
                 foreach ($columns as $column)
                 {
-                    if(isset($inputs[$column]))
+                    if(array_key_exists($column,$inputs))
                     {
                         $student->$column = $inputs[$column];
                     }
@@ -144,6 +144,7 @@ class StudentService extends BaseService implements ManageInterface
                     $size_success++;
                 }catch (\Exception $exception)
                 {
+//                    dd($exception->getMessage());
                     $list_err[] = $item['code'];
                 }
             }
