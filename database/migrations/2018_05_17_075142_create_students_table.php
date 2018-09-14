@@ -25,17 +25,17 @@ class CreateStudentsTable extends Migration
 
             $table->string('full_name');
 
-            $table->string('address');
+            $table->string('address')->nullable();
 
-            $table->boolean('sex');
+            $table->boolean('sex')->nullable();
 
-            $table->string('phone_number');
+            $table->string('phone_number')->nullable();
 
             $table->string('email_address')->unique();
 
-            $table->date('birth_day');
+            $table->date('birth_day')->nullable();
 
-            $table->string('province_id');
+            $table->string('province_id')->nullable();
 
             $table->integer('rating_id')->nullable();
 
@@ -52,10 +52,10 @@ class CreateStudentsTable extends Migration
             $table->string('avatar',400)->nullable()->default(env('AVATAR_DEFAULT','null'));
 
             // khóa học
-            $table->string('course_code');
+            $table->string('course_code')->nullable();
 
             // nganh
-            $table->string('branch_code');
+            $table->string('branch_code')->nullable();
 
             // lop chinh
             $table->string('main_class')->nullable();

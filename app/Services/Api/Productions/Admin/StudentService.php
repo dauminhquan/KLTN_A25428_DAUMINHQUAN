@@ -9,8 +9,13 @@
 namespace App\Services\Api\Productions\Admin;
 
 
+use App\Models\Branch;
+use App\Models\Province;
+use App\Models\Rating;
 use App\Models\Student;
 use App\Services\Api\Interfaces\ManageInterface;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -134,17 +139,138 @@ class StudentService extends BaseService implements ManageInterface
         $list_err = [];
         $size_success = 0;
         $data = Excel::load($path,function($reader){})->get()->toArray();
+//        dd($data);
         if(count($data) > 0)
         {
             foreach ($data as $item)
             {
 
                 try{
+//                    $keyFilter = ['province_id','rating_id','user_id','course_code','branch_code','sex'];
+                    //province
+                    if(array_key_exists('province_id',$item))
+                    {
+                        if(!is_numeric($item['province_id']))
+                        {
+                            $province = Province::where(DB::raw('LOWER(name)'),$item['province_id'])->select('id')->first();
+                            if($province != null)
+                            {
+                                $item['province_id'] = $province->id;
+                            }
+                            else{
+                                $item['province_id'] = null;
+                            }
+                        }
+                    }
+
+                    //sex
+
+                    if(array_key_exists('sex',$item))
+                    {
+                        if(strtolower($item['sex']) == 'nam')
+                        {
+                            $item['sex'] = 1;
+                        }
+                        if(strtolower($item['sex']) == 'nữ')
+                        {
+                            $item['sex'] = 0;
+                        }
+                        else
+                        {
+                            $item['sex'] = 1;
+                        }
+                    }
+
+
+                    //rating
+
+                    if(array_key_exists('rating_id',$item))
+                    {
+                        if(!is_numeric($item['rating_id']))
+                        {
+                            $rating = Rating::where(DB::raw('LOWER(name)'),$item['rating_id'])->select('id')->first();
+                            if($rating != null)
+                            {
+                                $item['rating_id'] = $rating->id;
+                            }
+                            else{
+                                $item['rating_id'] = null;
+                            }
+                        }
+                    }
+                    //user
+
+                    if(array_key_exists('user_id',$item))
+                    {
+                        if(!is_numeric($item['user_id']))
+                        {
+                            $user = User::where(DB::raw('LOWER(email)'),$item['user_id'])->select('id')->first();
+                            if($user != null)
+                            {
+                                $item['user_id'] = $user->id;
+                            }
+                            else{
+                                $item['user_id'] = null;
+                            }
+                        }
+                    }
+
+                    //course
+                    if(array_key_exists('course_code',$item))
+                    {
+                        $course = Course::where('code',$item['course_code'])->select('code')->first();
+                        if($course != null)
+                        {
+                            $course = Course::where(DB::raw('LOWER(name)'),$item['course_code'])->select('code')->first();
+                            if($course != null)
+                            {
+                                $item['course_code'] = $course->code;
+                            }
+                            else{
+                                $item['course_code'] = null;
+                            }
+                        }
+                        else{
+                            $item['course_code'] = null;
+                        }
+                    }
+
+                    //branch
+                    if(array_key_exists('branch_code',$item))
+                    {
+                        $branch = Branch::where('code',$item['branch_code'])->select('code')->first();
+                        if($branch == null)
+                        {
+                            $branch = Branch::where(DB::raw('LOWER(name)'),$item['branch_code'])->select('code')->first();
+                            if($branch != null)
+                            {
+                                $item['branch_code'] = $branch->code;
+                            }
+                            else{
+                                $item['branch_code'] = null;
+                            }
+                        }
+                        else{
+                            $item['branch_code'] = null;
+                        }
+                    }
+
+                    if(array_key_exists('birth_day',$item))
+                    {
+                        $item['birth_day'] = str_replace('/','-',$item['birth_day']);
+                        $item['birth_day'] = Carbon::parse($item['birth_day']);
+                    }
+                    if(array_key_exists('date_graduated',$item))
+                    {
+                        $item['date_graduated'] = str_replace('/','-',$item['date_graduated']);
+                        $item['date_graduated'] = Carbon::parse($item['date_graduated']);
+                    }
+
                     Student::create($item);
                     $size_success++;
                 }catch (\Exception $exception)
                 {
-//                    dd($exception->getMessage());
+                    dd($exception);
                     $list_err[] = $item['code'];
                 }
             }
@@ -233,10 +359,12 @@ class StudentService extends BaseService implements ManageInterface
         }
         return $works;
     }
+
     public function getUser($id)
     {
         $student = Student::findOrFail($id);
 
         return $student->user;
     }
+
 }

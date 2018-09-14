@@ -81,13 +81,6 @@
                         </div>
 
                         <div class="modal-body">
-
-                            <div class="row">
-                                <div class="form-group">
-                                    <label><b>mã thành phố</b></label>
-                                    <input type="text" v-model="info.code" class="form-control">
-                                </div>
-                            </div>
                            <div class="row">
                                <div class="form-group">
                                    <label><b>Tên thành phố</b></label>
@@ -121,10 +114,6 @@
                         <div class="modal-body">
 
                             <div class="row">
-                                <div class="form-group">
-                                    <label><b>Mã thành phố</b></label>
-                                    <input type="text" v-model="codeCreate" class="form-control">
-                                </div>
                                 <div class="form-group">
                                     <label><b>Tên thành phố</b></label>
                                     <input type="text" v-model="nameCreate" class="form-control">

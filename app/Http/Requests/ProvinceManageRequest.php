@@ -27,8 +27,7 @@ class ProvinceManageRequest extends FormRequest
         {
             case ('POST'):
                 return [
-                    'name' => 'required|string|unique:provinces,name',
-                    'id' => 'required|string|unique:provinces,id'
+                    'name' => 'required|string|unique:provinces,name'
                 ];
             case('GET'):
                 break;
