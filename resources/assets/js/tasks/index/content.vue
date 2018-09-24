@@ -104,7 +104,7 @@
                             <ul class="list-inline list-inline-separate text-muted mb-10">
                                 <li v-for="skill in task.skills" :key="skill.id">{{skill.name}}</li>
                                 <li v-for="type in task.types" :key="type.id">{{type.name}}</li>
-                                <li v-for="position in task.positions" :key="position.id">{{position.name}}</li>
+                                <li v-for="position in task.positions" :key="position.name">{{position.name}}</li>
                             </ul>
 
                             {{task.description}}
@@ -118,9 +118,9 @@
             <!-- Pagination -->
             <div class="text-center content-group-lg pt-20">
                 <ul class="pagination">
-                    <li v-if="currentPage > 1" @click="currentPage--"><a href="#"><i class="icon-arrow-small-left"></i></a></li>
-                    <li v-for="inPage in listPage" @click="currentPage = inPage"><a href="#">{{inPage}}</a></li>
-                    <li v-if="currentPage < totalPage" @click="currentPage++"><a href="#"><i class="icon-arrow-small-right"></i></a></li>
+                    <li v-if="currentPage > 1" @click="currentPage--"><a :href="null"><i class="icon-arrow-small-left"></i></a></li>
+                    <li v-for="inPage in listPage" :key="inPage" @click="currentPage = inPage"><a :href="null">{{inPage}}</a></li>
+                    <li v-if="currentPage < totalPage" @click="currentPage++"><a :href="null"><i class="icon-arrow-small-right"></i></a></li>
                 </ul>
             </div>
             <!-- /pagination -->
@@ -257,13 +257,13 @@
                 let positions = []
                 if(vm.skillsSelect.length != 0)
                 {
-                    vm.provincesSelect.forEach(item => {
+                    vm.skillsSelect.forEach(item => {
                         skills.push(item.id)
                     })
                 }
                 if(vm.positionsSelect.length != 0)
                 {
-                    vm.provincesSelect.forEach(item => {
+                    vm.positionsSelect.forEach(item => {
                         positions.push(item.id)
                     })
                 }
@@ -276,7 +276,7 @@
                     }
                 }).then(data => {
                     vm.tasks = data.data.data
-                    vm.totalPage = data.data.total
+                    vm.totalPage = data.data.last_page
                     vm.currentPage = data.data.current_page
                     vm.searching = false
                 }).catch(err => {
