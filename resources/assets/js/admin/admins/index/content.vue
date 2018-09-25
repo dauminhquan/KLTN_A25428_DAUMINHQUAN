@@ -1,6 +1,6 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Quản lý sự kiện "
+        <data-table title="Quản lý Admin"
                     :columns="columns"
                     :data="data"
                     :targets="[]"
@@ -55,7 +55,7 @@
 
                         <div class="modal-body">
 
-                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều mục. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
+                            <p> <i class="icon-warning"></i> Bạn đang xóa nhiều mục cùng 1 lúc. Sau khi xóa, mọi dữ liệu liên quan sẽ bị xóa. Bạn nên cân nhắc điều này ! </p>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
                                 <div class="pace-demo" v-if="deleting == true">
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
@@ -73,42 +73,21 @@
                 </div>
             </div>
             <div id="modal_info" class="modal fade">
-                <div class="modal-dialog modal-full">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin tham dự </h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin đánh giá tốt nghiệp</h6>
                         </div>
 
                         <div class="modal-body">
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><b>Mã sinh viên </b></label>
-                                        <input type="text" readonly v-model="info.student_code" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><b>Tình trạng </b></label>
-                                        <select v-model="info.attended" class="form-control">
-                                            <option value="0">Chưa tham dự</option>
-                                            <option value="1">Đã tham dự</option>
-                                            <option value="2">Chưa rõ</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label><b>Đánh giá </b></label>
-                                    <textarea v-model="info.comment" class="form-control">
-
-                                    </textarea>
-                                </div>
-                            </div>
+                           <div class="row">
+                               <div class="form-group">
+                                   <label><b>Tên Admin</b></label>
+                                   <input type="text" v-model="info.name" class="form-control">
+                               </div>
+                           </div>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
                                 <div class="pace-demo" v-if="updating == true">
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
@@ -126,40 +105,19 @@
                 </div>
             </div>
             <div id="modal_create" class="modal fade">
-                <div class="modal-dialog modal-full">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thêm sinh viên vào sự kiện </h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin Admin</h6>
                         </div>
 
                         <div class="modal-body">
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><b>Mã sinh viên </b></label>
-                                        <input type="text" v-model="create.student_code" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><b>Tình trạng </b></label>
-                                        <select v-model="create.attended" class="form-control">
-                                            <option value="0">Chưa tham dự</option>
-                                            <option value="1">Đã tham dự</option>
-                                            <option value="2">Chưa rõ</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
                                 <div class="form-group">
-                                    <label><b>Đánh giá </b></label>
-                                    <textarea v-model="create.comment" class="form-control">
-
-                                    </textarea>
+                                    <label><b>Tên Admin</b></label>
+                                    <input type="text" v-model="nameCreate" class="form-control">
                                 </div>
                             </div>
                             <div style="border: snow" class="panel panel-body border-top-danger text-center">
@@ -178,52 +136,6 @@
                     </div>
                 </div>
             </div>
-            <div id="modal-push-excel" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content text-center">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Thêm sinh viên bằng Excel</h5>
-                        </div>
-
-                        <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
-
-                            <div class="modal-body">
-                                <input type="file"class="form-control" @change="setExcelFile($event)">
-                                <div class="pace-demo" v-if="uploading == true">
-                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
-                                </div>
-                            </div>
-                            <div class="modal-footer text-center">
-                                <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div id="modal-update-excel" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content text-center">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Thêm sinh viên bằng Excel</h5>
-                        </div>
-
-                        <form v-on:submit.prevent="uploadUpdateExcelFile" class="form-inline" enctype="multipart/form-data">
-
-                            <div class="modal-body">
-                                <input type="file"class="form-control" @change="setUpdateExcelFile($event)">
-                                <div class="pace-demo" v-if="uploading == true">
-                                    <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
-                                </div>
-                            </div>
-                            <div class="modal-footer text-center">
-                                <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </data-table>
     </div>
 </template>
@@ -239,38 +151,15 @@
         components: {
             'data-table' : table
         },
-        props: ['keyItem'],
         data(){
             return {
                 columns : [
                 ],
                 buttonConfig: [
-                    {
-                        text: 'Thêm mới',
-                        className: 'btn bg-primary',
-                        action: function(e, dt, node, config) {
-                            $('#modal_create').modal('show')
-                        }
-                    },
-                    {
-                        text: 'Thêm mới bằng CSV',
-                        className: 'btn bg-warning',
-                        action: function(e, dt, node, config) {
-                            $('#modal-push-excel').modal('show')
-                        }
-                    },
-                    {
-                        text: 'Update bằng CSV',
-                        className: 'btn bg-info',
-                        action: function(e, dt, node, config) {
-                            $('#modal-update-excel').modal('show')
-                        }
-                    }
                 ],
                 deleting: false,
                 updating: false,
                 creating: false,
-                uploading:false,
                 data :[],
                 menu: [
                     {
@@ -279,83 +168,74 @@
                     },
                     {
                         action :'delete',
-                        html:'<a href="javascript:void(0);"><i class="icon-trash"></i> Xóa sinh viên  </a>'
-                    },
+                        html:'<a href="javascript:void(0);"><i class="icon-trash"></i> Xóa admin</a>'
+                    }
                 ],
                 primaryKey: 'id',
-                lengths: ['All'],
+                lengths: [50,100,200,500,1000,2000,5000],
                 itemSelected: [],
                 primaryKeyDelete: -1,
+                buttonConfig: [
+                    {
+                        text: 'Thêm mới',
+                        className: 'btn bg-primary',
+                        action: function(e, dt, node, config) {
+                            $('#modal_create').modal('show')
+                        }
+                    },
+                ],
                 deletedSelectItem: false,
                 resetCheck:false,
                 pages: [],
                 page:1,
                 totalPage:0,
-                perPage:-1,
-                fileAdd:null,
-                fileUpdate:null,
+                perPage:500,
                 info:{
-                    student_code: null,
-                    event_id:null,
-                    comment:null,
-                    attended:false,
-                    id: null
-
+                  name: ''
                 },
-                create:{
-                    student_code: null,
-                    event_id:null,
-
-                },
+                nameCreate:'',
                 config: new config(),
             }
         },
         mounted(){
-            let vm =this
-            vm.getData()
+            this.getData()
         },
         methods: {
 
-            getData(){
+            getData(perPage=500,page=1){
                 var vm = this
-                axios.get(vm.config.API_ADMIN_EVENTS_RESOURCE+'/'+vm.keyItem).then(data => {
-                    vm.data = data.data.event_students
-                    vm.data = vm.data.map(item => {
-                        item.studentName = item.student == null?null: item.student.full_name
-                        if(item.attended == 1)
+                axios.get(vm.config.API_ADMIN_ADMINS_RESOURCE+'?size='+perPage+'&page='+page).then(data => {
+                    vm.data = data.data.data
+                    vm.perPage = data.data.per_page
+                    vm.totalPage = data.data.total
+                    vm.data.forEach(item => {
+                        item.avatar_url = `<img style="width: 60px" src="${item.avatar}" class="img-circle">`
+                        if(item.user != null)
                         {
-                            item.attendedHtml = '<span class="label bg-success-400">Đã tham dự</span>'
-                        }
-                        else if(item.attended == 2)
-                        {
-                            item.attendedHtml = '<span class="label bg-brown-400">Chưa rõ</span>'
+                            item.user_name = item.user.email
                         }
                         else{
-                            item.attendedHtml = '<span class="label bg-danger-400">Chưa tham dự</span>'
+                            item.user_name = 'Chưa có tài khoản'
                         }
-                        return item
-                    })
+
+                })
                     vm.columns = [
                         {
-                            key:'student_code',
-                            text: 'Mã sinh viên'
+                            key: 'id',
+                            text: 'ID Admin'
+                        },
+                        {
+                            key:'name',
+                            text:'Tên Admin'
+                        },
+                        {
+                            key:'user_name',
+                            text:'Tên tài khoản'
                         }
                         ,
                         {
-                            key:'studentName',
-                            text: 'Tên sinh viên'
-                        },
-                        {
-                            key:'attendedHtml',
-                            text: 'Đã tham dự'
-                        },
-                        {
-                            key:'comment',
-                            text: 'Nhận xét'
-                        },
-                        {
-                            key:'created_at',
-                            text: 'Thời gian đăng ký'
+                            key:'avatar_url',
+                            text: 'Avatar'
                         }
 
                     ]
@@ -389,8 +269,9 @@
             createItem(){
                 let vm = this
                 vm.creating = true
-                vm.create.event_id = vm.keyItem
-                axios.post(vm.config.API_ADMIN_EVENT_STUDENT_RESOURCE,vm.create).then(data => {
+                axios.post(vm.config.API_ADMIN_ADMINS_RESOURCE,{
+                    name:vm.nameCreate
+                }).then(data => {
                     vm.config.notifySuccess('Thêm mới thành công')
                     vm.creating = false
                     vm.nameCreate=''
@@ -398,35 +279,21 @@
                     $('#modal_create').modal('hide')
                 }).catch(err => {
                     console.dir(err)
-                    if(err.response.status == 422)
-                    {
-                        vm.config.notifyError(vm.config.getError(err.response.data))
-                    }
-                    else{
-                        vm.config.notifyError()
-                    }
+                    vm.config.notifyError()
                 })
             },
             updateItem(){
                 let vm = this
-                vm.info.event_id = vm.keyItem
                 vm.updating = true
-              axios.put(vm.config.API_ADMIN_EVENT_STUDENT_RESOURCE+'/'+vm.info.id,vm.info).then(data => {
-                  vm.config.notifySuccess('Update thông tin sự kiện cv thành công')
+              axios.put(vm.config.API_ADMIN_ADMINS_RESOURCE+'/'+vm.info.id,{
+                  name:vm.info.name
+              }).then(data => {
+                  vm.config.notifySuccess('Update thông tin loại cv thành công')
                   vm.updating = false
-                  vm.getData()
                   $('#modal_info').modal('hide')
               }).catch(err => {
                   console.dir(err)
-
-                  if(err.response.status == 422)
-                  {
-                      vm.config.notifyError(vm.config.getError(err.response.data))
-                  }
-                  else{
-                      vm.config.notifyError()
-                  }
-
+                  vm.config.notifyError()
               })
             },
             deleteItem(){
@@ -436,7 +303,7 @@
                 if(vm.primaryKeyDelete != -1)
                 {
                     let indexOf = -1
-                    axios.delete(vm.config.API_ADMIN_EVENT_STUDENT_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
+                    axios.delete(vm.config.API_ADMIN_ADMINS_RESOURCE+'/'+vm.primaryKeyDelete).then(data => {
                         vm.data.forEach((item,index) => {
 
                             if(item[vm.primaryKey] == vm.primaryKeyDelete)
@@ -486,7 +353,7 @@
             deleteListItem() {
                 let vm = this
                 vm.deleting = true
-                axios.delete(vm.config.API_ADMIN_EVENT_STUDENT_DELETE_LIST,{
+                axios.delete(vm.config.API_ADMIN_ADMINS_DELETE_LIST,{
                     params:{
                         id_list: vm.itemSelected
                     }
@@ -527,9 +394,13 @@
             },
             showItem(id) {
                 let vm = this
-                vm.info = vm.data.find(item => {
+                let positions = vm.data.filter(item => {
                     return item.id == id
                 })
+                if(positions.length > 0)
+                {
+                    vm.info = positions[0]
+                }
                 $('#modal_info').modal('show')
             },
             changePerPage(perPage){
@@ -537,67 +408,7 @@
             },
             changePageSelect(page){
                 this.getData(this.perPage,page)
-            },
-            setExcelFile(e){
-                var vm = this
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                vm.fileAdd = files[0]
-            },
-            uploadExcelFile(){
-                var vm = this
-                vm.uploading = true
-                var formData = new FormData()
-                formData.append('CsvFile',vm.fileAdd)
-                axios.post(vm.config.API_ADMIN_EVENT_STUDENT_IMPORT_CSV,formData).then(data => {
-                    vm.uploading = false
-                    $('#modal-push-excel').modal('hide')
-                    if(data.data.message == [] || data.data.error.length == 0 )
-                    {
-                        vm.config.notifySuccess()
-                    }
-                    else{
-                        vm.config.notifyWarning()
-                    }
-                    vm.getData()
-                }).catch(err => {
-                    this.uploading = false
-                    console.dir(err)
-                    vm.config.notifyError()
-
-                })
-            },
-            setUpdateExcelFile(e){
-                var vm = this
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                vm.fileUpdate = files[0]
-            },
-            uploadUpdateExcelFile(){
-                var vm = this
-                vm.uploading = true
-                var formData = new FormData()
-                formData.append('CsvFile',vm.fileUpdate)
-                axios.post(vm.config.API_ADMIN_EVENT_STUDENT_UPDATE_CSV,formData).then(data => {
-                    vm.uploading = false
-                    $('#modal-update-excel').modal('hide')
-                    if(data.data.message == [] || data.data.error.length == 0)
-                    {
-                        vm.config.notifySuccess()
-                    }
-                    else{
-                        vm.config.notifyWarning()
-                    }
-                    vm.getData()
-                }).catch(err => {
-                    this.uploading = false
-                    console.dir(err)
-                    vm.config.notifyError()
-
-                })
-            },
+            }
         }
     }
 </script>

@@ -260,6 +260,11 @@
                     </a>
                 </li>
                 <li class="dropdown">
+                    <a href="{{route('admin.admins.index')}}">
+                        <i class="icon-key position-left"></i> Quản lý Admin
+                    </a>
+                </li>
+                <li class="dropdown">
                     <a href="{{route('admin.export.data')}}">
                         <i class="icon-download position-left"></i> Export dữ liệu
                     </a>

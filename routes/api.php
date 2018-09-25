@@ -63,6 +63,12 @@ Route::group(['middleware' => ['auth:api','accept']],function (){
             Route::post('/import-csv','RatingManageController@importCsv')->name('import.csv');
             Route::post('/get-options-csv','RatingManageController@getOptionsCsv')->name('get.option.csv');
         });
+        Route::group(['prefix' => '/manage-admins'],function (){
+            Route::resource('/resource','AdminManageController')->except(['create','edit']);
+            Route::delete('delete-list','AdminManageController@delete')->name('delete.list');
+            Route::post('/import-csv','AdminManageController@importCsv')->name('import.csv');
+            Route::post('/get-options-csv','AdminManageController@getOptionsCsv')->name('get.option.csv');
+        });
         Route::group(['prefix' => '/manage-departments'],function (){
             Route::resource('/resource','DepartmentManageController')->except(['create','edit']);
             Route::delete('delete-list','DepartmentManageController@delete')->name('delete.list');

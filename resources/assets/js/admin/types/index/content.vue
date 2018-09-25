@@ -1,6 +1,6 @@
 <template>
     <div class="content-wrapper" id="content-wrapper">
-        <data-table title="Quản lý loại công việc"
+        <data-table title="Quản lý hình thức việc làm"
                     :columns="columns"
                     :data="data"
                     :targets="[]"
@@ -77,7 +77,7 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin loại công việc</h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin hình thức công việc</h6>
                         </div>
 
                         <div class="modal-body">
@@ -109,14 +109,14 @@
                     <div class="modal-content">
                         <div class="modal-header bg-info">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin loại công việc</h6>
+                            <h6 class="modal-title"><i class="icon-info3"></i> Thông tin hình thức công việc</h6>
                         </div>
 
                         <div class="modal-body">
 
                             <div class="row">
                                 <div class="form-group">
-                                    <label><b>Tên loại công việc</b></label>
+                                    <label><b>Tên hình thức công việc</b></label>
                                     <input type="text" v-model="nameCreate" class="form-control">
                                 </div>
                             </div>

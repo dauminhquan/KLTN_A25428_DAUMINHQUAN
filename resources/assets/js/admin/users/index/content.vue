@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><b>Nhập là password </b></label>
+                                        <label><b>Nhập lại password </b></label>
                                         <input type="password" v-model="info.rep_password" class="form-control">
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label><b>Nhập là password </b></label>
+                                        <label><b>Nhập lại password </b></label>
                                         <input type="password" v-model="create.rep_password" class="form-control">
                                     </div>
                                 </div>
@@ -214,9 +214,10 @@
                                     <div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>
                                 </div>
                             </div>
+
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/student-manage/get-excel-example-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/user" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>

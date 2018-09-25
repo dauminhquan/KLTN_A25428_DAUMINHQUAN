@@ -22,7 +22,6 @@ class WorkService extends BaseService implements ManageInterface
     }
     public function getAll($inputs)
     {
-
         if(isset($inputs['size']))
         {
             if($inputs['size'] == -1)

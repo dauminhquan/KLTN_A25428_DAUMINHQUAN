@@ -37,7 +37,7 @@
                 </ul>
             </div>
         </div>
-        <h5 v-if="event.similars != undefined && event.similars.length > 0" class="pt-10 content-group">Các thông báo khác</h5>
+        <h5 v-if="event.similars != undefined && event.similars.length > 0" class="pt-10 content-group">Các sự kiện liên quan</h5>
         <div class="row" v-if="event.similars != undefined">
             <div class="col-sm-6"  v-for="similar in event.similars">
                 <div class="media panel panel-body stack-media-on-mobile">

@@ -11,6 +11,7 @@ namespace App\Services\Api\Productions\Admin;
 
 use App\Models\Admin;
 use App\Services\Api\Interfaces\ManageInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -23,15 +24,51 @@ class AdminService extends BaseService implements ManageInterface
     public function getAll($inputs)
     {
 
+        /*$me = Auth::user();
+        $me = $me->admin;
         if(isset($inputs['size']))
         {
             if($inputs['size'] == -1)
             {
-                return Admin::paginate(100000);
+                $admins = Admin::where('id','<>',$me->id)->paginate(100000);
             }
-            return Admin::paginate($inputs['size']);
+            else{
+                $admins = Admin::where('id','<>',$me->id)->paginate($inputs['size']);
+            }
         }
-        return Admin::paginate(500);
+        else{
+            $admins = Admin::where('id','<>',$me->id)->paginate(500);
+        }
+        foreach ($admins as $index => $admin)
+        {
+            $admin->user = $admin->user;
+
+        }*/
+        $me = Auth::user();
+        $me = $me->admin;
+        if(isset($inputs['size']))
+        {
+            if($inputs['size'] == -1)
+            {
+                $admins = Admin::paginate(100000);
+            }
+             else{
+                 $admins = Admin::paginate($inputs['size']);
+             }
+        }
+        else{
+            $admins = Admin::paginate(500);
+        }
+        foreach ($admins as $index => $admin)
+        {
+            $admin->user = $admin->user;
+            if($admin->id == $me->id)
+            {
+                $admin->me = 1;
+            }
+        }
+        return $admins;
+
     }
 
     public function getOne($id)

@@ -101,6 +101,11 @@ class Config{
         this.API_ADMIN_RATINGS_RESOURCE = this.API_ADMIN_RATINGS+'/resource'
         this.API_ADMIN_RATINGS_DELETE_LIST = this.API_ADMIN_RATINGS+'/delete-list'
 
+
+        this.API_ADMIN_ADMINS = this.API_ADMIN+'/manage-admins'
+        this.API_ADMIN_ADMINS_RESOURCE = this.API_ADMIN_ADMINS+'/resource'
+        this.API_ADMIN_ADMINS_DELETE_LIST = this.API_ADMIN_ADMINS+'/delete-list'
+
         this.API_ADMIN_RANKS = this.API_ADMIN+'/manage-ranks'
         this.API_ADMIN_RANKS_RESOURCE = this.API_ADMIN_RANKS+'/resource'
         this.API_ADMIN_RANKS_DELETE_LIST = this.API_ADMIN_RANKS+'/delete-list'

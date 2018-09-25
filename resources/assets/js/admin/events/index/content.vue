@@ -100,7 +100,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label><b>Thời gian bắt đầu </b></label>
-                                        <input type="datetime-local" v-model="info.time_start" class="form-control">
+                                        <input type="datetime-local" placeholder="YYYY-mm-dd H:i:s" v-model="info.time_start" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -176,7 +176,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label><b>Thời gian bắt đầu </b></label>
-                                        <input type="datetime-local" v-model="create.time_start" class="form-control">
+                                        <input type="datetime-local" placeholder="YYYY-mm-dd H:i:s" v-model="create.time_start" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

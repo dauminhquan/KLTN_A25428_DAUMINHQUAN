@@ -2,7 +2,7 @@
 @section('header-content')
     <div class="page-header-content">
         <div class="page-title">
-            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Thông báo từ nhà trường</span></h4>
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Các sự kiện</span></h4>
 
             <ul class="breadcrumb breadcrumb-caret position-right">
                 <li><a href="{{route('web.home')}}}">Home</a></li>

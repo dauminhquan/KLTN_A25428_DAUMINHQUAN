@@ -21,7 +21,7 @@
                 </ul>
             </div>
         </div>
-        <h5 v-if="notify.similars != undefined && notify.similars.length > 0" class="pt-10 content-group">Các thông báo khác</h5>
+        <h5 v-if="notify.similars != undefined && notify.similars.length > 0" class="pt-10 content-group">Các thông liên quan</h5>
         <div class="row" v-if="notify.similars != undefined">
             <div class="col-sm-6"  v-for="similar in notify.similars">
                 <div class="media panel panel-body stack-media-on-mobile">
