@@ -177,15 +177,13 @@
             vm.getPositions()
             vm.getSkills()
             vm.getTask()
-            CKEDITOR.replace( 'content-post' ).on('change',function () {
-                vm.info.content = this.getData()
-            });
         },
         methods:{
             getTask(){
                 let vm = this
                 axios.get(vm.config.API_ADMIN_TASKS_RESOURCE+'/'+vm.keyItem).then(data => {
                     vm.info = data.data
+                    CKEDITOR.replace( 'content-post' ).setData(vm.info.content)
                 }).catch(err => {
                     console.log(err)
                     vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại')
@@ -252,7 +250,7 @@
                         return item.id
                     })
                 }
-
+                vm.info.content = CKEDITOR.instances['content-post'].getData()
                 axios.put(vm.config.API_ADMIN_TASKS_RESOURCE+'/'+vm.keyItem,vm.info).then(data => {
                     vm.uploading = false
                     vm.config.notifySuccess('Update việc làm thành công')

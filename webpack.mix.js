@@ -19,7 +19,7 @@ let mix = require('laravel-mix');
 // //task
 //
 // mix.js('resources/assets/js/admin/tasks/index/index.js', 'public/assets/js/build/pages/admin/tasks/index.js');
-// mix.js('resources/assets/js/admin/tasks/edit/index.js', 'public/assets/js/build/pages/admin/tasks/edit.js');
+mix.js('resources/assets/js/admin/tasks/edit/index.js', 'public/assets/js/build/pages/admin/tasks/edit.js');
 //
 // mix.js('resources/assets/js/admin/positions/index/index.js', 'public/assets/js/build/pages/admin/positions/index.js');
 // mix.js('resources/assets/js/admin/skills/index/index.js', 'public/assets/js/build/pages/admin/skills/index.js');
@@ -50,7 +50,7 @@ let mix = require('laravel-mix');
 // mix.js('resources/assets/js/student/profile/index.js', 'public/assets/js/build/pages/student/profile/index.js');
 // // tasks
 // mix.js('resources/assets/js/tasks/index/index.js', 'public/assets/js/build/pages/tasks/index.js');
-mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/tasks/info.js');
+// mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/tasks/info.js');
 // //notifies
 // mix.js('resources/assets/js/notifies/index/index.js', 'public/assets/js/build/pages/notifies/index.js');
 // mix.js('resources/assets/js/notifies/info/index.js', 'public/assets/js/build/pages/notifies/info.js');

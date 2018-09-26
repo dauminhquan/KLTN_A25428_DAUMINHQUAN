@@ -184,6 +184,7 @@
                 let vm = this
                 axios.get(vm.config.API_ENTERPRISE_TASKS_RESOURCE+'/'+vm.keyItem).then(data => {
                     vm.info = data.data
+                    CKEDITOR.replace( 'content-post' ).setData(vm.info.content)
                 }).catch(err => {
                     console.log(err)
                     vm.config.notifyError('Lỗi tải thông tin việc làm. Vui lòng kiềm tra lại')
@@ -267,6 +268,7 @@
                 pushNew.time_end = vm.info.time_end
                 pushNew.location = vm.info.location
                 pushNew.description = vm.info.description
+                vm.info.content = CKEDITOR.instances( 'content-post' ).getData()
                 pushNew.content = vm.info.content
                 axios.put(vm.config.API_ENTERPRISE_TASKS_RESOURCE+'/'+vm.keyItem,pushNew).then(data => {
                     vm.uploading = false
