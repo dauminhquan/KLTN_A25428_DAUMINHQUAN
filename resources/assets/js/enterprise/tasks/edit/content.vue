@@ -175,9 +175,6 @@
             vm.getPositions()
             vm.getSkills()
             vm.getTask()
-            CKEDITOR.replace( 'content-post' ).on('change',function () {
-                vm.info.content = this.getData()
-            });
         },
         methods:{
             getTask(){
