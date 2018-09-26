@@ -78,7 +78,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-center">
                         <div class="modal-header">
-                            <h5 class="modal-title">Thêm sinh viên bằng Excel</h5>
+                            <h5 class="modal-title">Thêm sinh viên bằng CSV</h5>
                         </div>
 
                         <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
@@ -101,7 +101,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-center">
                         <div class="modal-header">
-                            <h5 class="modal-title">Update thông tin sinh viên bằng Excel</h5>
+                            <h5 class="modal-title">Update thông tin sinh viên bằng CSV</h5>
                         </div>
 
                         <form v-on:submit.prevent="uploadExcelFileUpdate" class="form-inline" enctype="multipart/form-data">
@@ -181,7 +181,7 @@
                         }
                     },
                     {
-                        text: 'Update bằng Excel',
+                        text: 'Update bằng CSV',
                         className: 'btn bg-danger',
                         action: function(e, dt, node, config) {
                             $('#modal-update-excel').modal('show')

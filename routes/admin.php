@@ -28,6 +28,7 @@ Route::group(['prefix' => 'get-sample-csv-file','as' => 'ge.sample.csv.file'],fu
     Route::get('/branch',['as' => 'branch','uses' => 'GetSampleFileExcelController@branch']);
     Route::get('/province',['as' => 'province','uses' => 'GetSampleFileExcelController@province']);
     Route::get('/student',['as' => 'student','uses' => 'GetSampleFileExcelController@student']);
+    Route::get('/event-student',['as' => 'student','uses' => 'GetSampleFileExcelController@eventStudent']);
 });
 Route::get('/cover-data','CoverDataController@coverData')->name('cover.data');
 Route::post('/cover-data','CoverDataController@postCoverData');

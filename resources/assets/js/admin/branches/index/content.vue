@@ -163,7 +163,7 @@
             <div class="modal-dialog">
                 <div class="modal-content text-center">
                     <div class="modal-header">
-                        <h5 class="modal-title">Thêm ngành bằng Excel</h5>
+                        <h5 class="modal-title">Thêm ngành bằng CSV</h5>
                     </div>
 
                     <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">

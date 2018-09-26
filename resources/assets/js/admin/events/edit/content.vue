@@ -182,7 +182,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-center">
                         <div class="modal-header">
-                            <h5 class="modal-title">Thêm sinh viên bằng Excel</h5>
+                            <h5 class="modal-title">Thêm danh sách bằng CSV</h5>
                         </div>
 
                         <form v-on:submit.prevent="uploadExcelFile" class="form-inline" enctype="multipart/form-data">
@@ -195,7 +195,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/event-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>
@@ -205,7 +205,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content text-center">
                         <div class="modal-header">
-                            <h5 class="modal-title">Thêm sinh viên bằng Excel</h5>
+                            <h5 class="modal-title">Update danh sách bằng CSV</h5>
                         </div>
 
                         <form v-on:submit.prevent="uploadUpdateExcelFile" class="form-inline" enctype="multipart/form-data">
@@ -218,7 +218,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="submit" class="btn btn-primary">Tải file lên <i class="icon-plus22"></i></button>
-                                <a href="/admin/get-sample-csv-file/event-add-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
+                                <a href="/admin/get-sample-csv-file/event-student" target="_blank" type="button" class="btn btn-info">Tải CSV mẫu <i class="glyphicon glyphicon-info-sign"></i></a>
                             </div>
                         </form>
                     </div>

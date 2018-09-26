@@ -150,4 +150,20 @@ class GetSampleFileExcelController extends Controller
             });
         })->download('csv');
     }
+    public function eventStudent(){
+        return Excel::create('sample', function($excel) {
+
+            $excel->sheet('Sheetname', function($sheet) {
+                $data = [
+                    'student_code' => 'Mã sinh viên',
+                    'event_id' => 'Id sự kiện. Dạng số',
+                    'attended' => 'Tình trạng tham gia. Dạng số: 1: Đã tham gia, 2:Không tham gia, 3 Không rõ',
+                    'comment' => 'Đánh giá sự kiện. Dạng text'
+                ];
+                $sheet->fromArray(array(
+                    $data
+                ));
+            });
+        })->download('csv');
+    }
 }
