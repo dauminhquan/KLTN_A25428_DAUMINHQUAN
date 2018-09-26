@@ -265,7 +265,7 @@
                 pushNew.time_end = vm.info.time_end
                 pushNew.location = vm.info.location
                 pushNew.description = vm.info.description
-                vm.info.content = CKEDITOR.instances( 'content-post' ).getData()
+                vm.info.content = CKEDITOR.instances['content-post'].getData()
                 pushNew.content = vm.info.content
                 axios.put(vm.config.API_ENTERPRISE_TASKS_RESOURCE+'/'+vm.keyItem,pushNew).then(data => {
                     vm.uploading = false
