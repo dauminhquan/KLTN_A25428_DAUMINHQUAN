@@ -42,7 +42,7 @@ mix.js('resources/assets/js/admin/tasks/edit/index.js', 'public/assets/js/build/
 // mix.js('resources/assets/js/admin/events/edit/index.js', 'public/assets/js/build/pages/admin/events/edit.js');
 // //admin
 // mix.js('resources/assets/js/enterprise/tasks/index/index.js', 'public/assets/js/build/pages/enterprise/tasks/index.js');
-// mix.js('resources/assets/js/enterprise/tasks/edit/index.js', 'public/assets/js/build/pages/enterprise/tasks/edit.js');
+mix.js('resources/assets/js/enterprise/tasks/edit/index.js', 'public/assets/js/build/pages/enterprise/tasks/edit.js');
 // mix.js('resources/assets/js/enterprise/tasks/create/index.js', 'public/assets/js/build/pages/enterprise/tasks/create.js');
 // mix.js('resources/assets/js/enterprise/profile/index.js', 'public/assets/js/build/pages/enterprise/profile/index.js');
 // // //enterprise
