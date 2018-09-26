@@ -38,7 +38,7 @@ let mix = require('laravel-mix');
 // mix.js('resources/assets/js/admin/notifies/create/index.js', 'public/assets/js/build/pages/admin/notifies/create.js');
 // mix.js('resources/assets/js/admin/notifies/edit/index.js', 'public/assets/js/build/pages/admin/notifies/edit.js');
 // // // //event
-mix.js('resources/assets/js/admin/events/index/index.js', 'public/assets/js/build/pages/admin/events/index.js');
+// mix.js('resources/assets/js/admin/events/index/index.js', 'public/assets/js/build/pages/admin/events/index.js');
 // mix.js('resources/assets/js/admin/events/edit/index.js', 'public/assets/js/build/pages/admin/events/edit.js');
 // //admin
 // mix.js('resources/assets/js/enterprise/tasks/index/index.js', 'public/assets/js/build/pages/enterprise/tasks/index.js');
@@ -50,7 +50,7 @@ mix.js('resources/assets/js/admin/events/index/index.js', 'public/assets/js/buil
 // mix.js('resources/assets/js/student/profile/index.js', 'public/assets/js/build/pages/student/profile/index.js');
 // // tasks
 // mix.js('resources/assets/js/tasks/index/index.js', 'public/assets/js/build/pages/tasks/index.js');
-// mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/tasks/info.js');
+mix.js('resources/assets/js/tasks/info/index.js', 'public/assets/js/build/pages/tasks/info.js');
 // //notifies
 // mix.js('resources/assets/js/notifies/index/index.js', 'public/assets/js/build/pages/notifies/index.js');
 // mix.js('resources/assets/js/notifies/info/index.js', 'public/assets/js/build/pages/notifies/info.js');

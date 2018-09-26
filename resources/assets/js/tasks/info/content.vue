@@ -10,6 +10,11 @@
                         <h5 class="media-heading text-semibold">{{task.title}}</h5>
                         <ul class="list-inline list-inline-separate text-muted no-margin">
                             <li v-html="TextInfo"></li>
+                            <li>
+                                <a :href="`/tasks/${task.id}/get-file`" class="btn btn-default" target="_blank">
+                                    <i class="icon-download position-right"></i> Tải xuống file đính kèm
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

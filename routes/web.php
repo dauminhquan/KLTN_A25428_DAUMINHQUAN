@@ -7,6 +7,7 @@ Route::group(['middleware' => 'web.check.auth'],function(){
     Route::group(['as' => 'tasks.'],function(){
         Route::get('/tasks',['uses' => 'TaskController@index'])->name('index');
         Route::get('/tasks/{id}',['uses' => 'TaskController@info'])->name('info');
+        Route::get('/tasks/{id}/get-file',['uses' => 'TaskController@getFile'])->name('get.file');
     });
     Route::group(['as' => 'notifies.'],function(){
         Route::get('/notifies',['uses' => 'NotifyController@index'])->name('index');
@@ -37,7 +38,6 @@ Route::group(['middleware' => 'web.check.auth'],function(){
         }
         abort(404);
     });
-
 
 });
 

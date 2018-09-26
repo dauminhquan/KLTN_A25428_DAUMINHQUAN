@@ -40,4 +40,12 @@ class TaskController extends Controller
         return ['status' => 0, 'message' => 'File not found'];
     }
 
+    public function getFile($id){
+        $task = Task::findOrFail($id);
+        if(Storage::exists($task->attachment))
+        {
+            return Storage::download($task->attachment);
+        }
+        return abort(404);
+    }
 }
