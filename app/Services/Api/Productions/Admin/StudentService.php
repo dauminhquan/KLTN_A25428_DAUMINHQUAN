@@ -154,7 +154,7 @@ class StudentService extends BaseService implements ManageInterface
                     {
                         if(!is_numeric($item['province_id']))
                         {
-                            $province = Province::where(DB::raw('LOWER(name)'),$item['province_id'])->select('id')->first();
+                            $province = Province::where(DB::raw('LOWER(name)'),'like','%'.strtolower($item['province_id']).'%')->select('id')->first();
                             if($province != null)
                             {
                                 $item['province_id'] = $province->id;
@@ -190,7 +190,7 @@ class StudentService extends BaseService implements ManageInterface
                     {
                         if(!is_numeric($item['rating_id']))
                         {
-                            $rating = Rating::where(DB::raw('LOWER(name)'),$item['rating_id'])->select('id')->first();
+                            $rating = Rating::where(DB::raw('LOWER(name)'),'like','%'.strtolower($item['rating_id']).'%')->select('id')->first();
                             if($rating != null)
                             {
                                 $item['rating_id'] = $rating->id;
@@ -223,7 +223,7 @@ class StudentService extends BaseService implements ManageInterface
                         $course = Course::where('code',$item['course_code'])->select('code')->first();
                         if($course != null)
                         {
-                            $course = Course::where(DB::raw('LOWER(name)'),$item['course_code'])->select('code')->first();
+                            $course = Course::where(DB::raw('LOWER(name)'),'like','%'.strtolower($item['course_code']).'%')->select('code')->first();
                             if($course != null)
                             {
                                 $item['course_code'] = $course->code;
@@ -243,7 +243,7 @@ class StudentService extends BaseService implements ManageInterface
                         $branch = Branch::where('code',$item['branch_code'])->select('code')->first();
                         if($branch == null)
                         {
-                            $branch = Branch::where(DB::raw('LOWER(name)'),$item['branch_code'])->select('code')->first();
+                            $branch = Branch::where(DB::raw('LOWER(name)'),'like','%'.strtolower($item['branch_code']).'%')->select('code')->first();
                             if($branch != null)
                             {
                                 $item['branch_code'] = $branch->code;
