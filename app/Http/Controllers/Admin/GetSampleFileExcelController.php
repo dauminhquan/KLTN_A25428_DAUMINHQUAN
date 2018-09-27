@@ -129,20 +129,21 @@ class GetSampleFileExcelController extends Controller
                     'last_name' => 'last name',
                     'full_name' => 'Tên đầy đủ',
                     'address' => 'Địa chỉ',
-                    'sex' => 'Giới tính 0 = Nữ,1 = Nam',
+                    'sex' => 'Giới tính 0 = Nữ,1 = Nam hoặc điền Nam,Nữ hoặc nam,nữ',
                     'phone_number' => 'Số điện thoại',
                     'email_address' => 'Địa chỉ Email. Là địa chỉ duy nhất, không thể trùng',
-                    'birth_day' => 'Ngày tháng năm sinh. Định dạng YYY-mm-dd',
-                    'province_id' => 'ID tỉnh thành đang sống',
-                    'rating_id' => 'ID hạng tốt nghiệp. Nếu chưa tốt nghiệp thì bỏ trống',
+                    'birth_day' => 'Ngày tháng năm sinh. Định dạng YYYY-mm-dd hoặc dd-mm-YYYY hoặc dd/mm/YYYY',
+                    'province_id' => 'ID tỉnh thành đang sống hoặc tên tỉnh thành đang sống',
+                    'rating_id' => 'ID hạng tốt nghiệp hoặc tên hạng tốt nghiệp. Nếu chưa tốt nghiệp thì bỏ trống',
                     'introduce' => 'Thông tin thêm về sinh viên',
-                    'graduated' => 'Tình trạng tốt nghiệp 0 = Chưa tốt nghiệp/ 1= Đã tốt nghiệp',
+                    'graduated' => 'Tình trạng tốt nghiệp 0 = Chưa tốt nghiệp/ 1= Đã tốt nghiệp. Mặc định là 0 = Chưa tốt nghiệp',
                     'medium_score' => 'Điểm trung bình tốt nghiệp, Nếu chưa tốt nghiệp thì để trống',
                     'date_graduated' => 'Ngày tốt nghiệp. Định dạng YYYY-mm-dd, Nếu chưa tốt nghiệp thì để trống',
                     'avatar' => 'Url Avatar sinh viên',
-                    'course_code' => 'Mã khóa',
-                    'branch_code' => 'Mã ngành',
+                    'course_code' => 'Mã khóa hoặc tên khóa',
+                    'branch_code' => 'Mã ngành hoặc tên ngành',
                     'main_class' => 'Tên lớp',
+                    'user' => 'Id user hoặc email. Nếu không có tài khoản thì để trống'
                 ];
                 $sheet->fromArray(array(
                     $data
