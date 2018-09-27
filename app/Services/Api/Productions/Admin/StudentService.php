@@ -194,6 +194,7 @@ class StudentService extends BaseService implements ManageInterface
                             if($rating != null)
                             {
                                 $item['rating_id'] = $rating->id;
+                                $item['graduated']= 1;
                             }
                             else{
                                 $item['rating_id'] = null;
