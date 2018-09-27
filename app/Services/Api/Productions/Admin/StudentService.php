@@ -272,7 +272,6 @@ class StudentService extends BaseService implements ManageInterface
                     $size_success++;
                 }catch (\Exception $exception)
                 {
-                    dd($exception);
                     $list_err[] = $item['code'];
                 }
             }
