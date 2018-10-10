@@ -154,7 +154,7 @@
     export default {
         computed:{
             setAll(){
-                return this.data.length == this.itemSelected.length
+                // return this.data.length == this.itemSelected.length
             }
         },
         components: {
