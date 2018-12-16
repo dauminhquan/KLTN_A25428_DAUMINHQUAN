@@ -51,7 +51,7 @@
 @isset($actionText)
 @component('mail::subcopy')
 # <p>Nếu có lỗi xảy ra trong khi nhấn vào button trên. Vui lòng copy URL này: <a href="{{$actionUrl}}">{{$actionUrl}}</a> và dán vào thanh địa chỉ trên trình duyệt của bạn! Xin cảm ơn</p>
-# <p style="float: right">&copy; DauQuan</p>
+# <p style="float: right">&copy; ThangLong University</p>
 @endcomponent
 @endisset
 @endcomponent
