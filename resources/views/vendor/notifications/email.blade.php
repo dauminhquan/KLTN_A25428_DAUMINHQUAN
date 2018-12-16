@@ -44,7 +44,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-#    <p><a href="thanglong.edu.vn" style="text-decoration: none; font-size: 12px"><b>ThangLong University</b></a></p>
+#    <p><a href="https://thanglong.edu.vn" style="text-decoration: none; font-size: 12px"><b>ThangLong University</b></a></p>
 @endif
 
 {{-- Subcopy --}}
