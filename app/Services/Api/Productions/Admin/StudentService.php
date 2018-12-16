@@ -340,7 +340,7 @@ class StudentService extends BaseService implements ManageInterface
         $student->avatar = $url;
         $student->update();
         return [
-            'url' => $url
+            'url' => Storage::url($url)
         ];
     }
 

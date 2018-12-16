@@ -68,7 +68,7 @@
             {
                 var vm = this
                 vm.formData.append('avatar',e.target.files[0])
-                axios.post(vm.config.API_ADMIN_ENTERPRISES_UPDATE_AVATAR+'/'+vm.keyItem,vm.formData).then(data => {
+                axios.post(vm.config.API_ADMIN_STUDENTS_UPDATE_AVATAR+'/'+vm.keyItem,vm.formData).then(data => {
                     vm.config.notifySuccess('Update Avatar thành công')
                     vm.newAvatar = data.data.url+'?'+new Date()
                 }).catch(err => {

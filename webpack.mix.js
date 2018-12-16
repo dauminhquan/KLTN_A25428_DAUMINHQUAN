@@ -10,8 +10,8 @@ let mix = require('laravel-mix');
 // mix.js('resources/assets/js/admin/enterprises/create/index.js', 'public/assets/js/build/pages/admin/enterprises/create.js');
 // mix.js('resources/assets/js/admin/enterprises/edit/index.js', 'public/assets/js/build/pages/admin/enterprises/edit.js');
 // //student
-mix.js('resources/assets/js/admin/students/index/index.js', 'public/assets/js/build/pages/admin/students/index.js');
-// mix.js('resources/assets/js/admin/students/create/index.js', 'public/assets/js/build/pages/admin/students/create.js');
+// mix.js('resources/assets/js/admin/students/index/index.js', 'public/assets/js/build/pages/admin/students/index.js');
+mix.js('resources/assets/js/admin/students/create/index.js', 'public/assets/js/build/pages/admin/students/create.js');
 // mix.js('resources/assets/js/admin/students/edit/index.js', 'public/assets/js/build/pages/admin/students/edit.js');
 // // //user
 // mix.js('resources/assets/js/admin/users/index/index.js', 'public/assets/js/build/pages/admin/users/index.js');

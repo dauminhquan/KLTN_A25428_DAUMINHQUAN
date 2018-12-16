@@ -38,7 +38,12 @@ class EnterpriseService extends BaseService implements ManageInterface
 
     public function getOne($id)
     {
-        return Enterprise::findOrFail($id);
+        $enterprise = Enterprise::findOrFail($id);
+        if($enterprise->avatar != null)
+        {
+            $enterprise->avatar = Storage::url($enterprise->avatar);
+        }
+        return $enterprise;
     }
 
     public function getProfile($option)
@@ -163,13 +168,12 @@ class EnterpriseService extends BaseService implements ManageInterface
         if(Storage::exists($enterprise->avatar) && $enterprise->avatar != env('AVATAR_DEFAULT'))
         {
             Storage::delete($enterprise->avatar);
-
         }
-        $url = Storage::url($avatar->store('/public/avatar'));
+        $url = $avatar->store('/public/avatar');
         $enterprise->avatar = $url;
         $enterprise->update();
         return [
-            'url' => $url
+            'url' =>  Storage::url($url)
         ];
     }
     public function getListWork($id)

@@ -232,11 +232,10 @@
                 vm.info.branch_code = vm.info.branch_code.code
                 vm.info.course_code = vm.info.course_code.code
                 vm.info.province_id = vm.info.province_id.id
-                if(vm.rating_id != null)
+                if(vm.info.rating_id != null && vm.info.rating_id != undefined)
                 {
-                    vm.rating_id = vm.rating_id.id
+                    vm.info.rating_id = vm.info.rating_id.id
                 }
-
                 axios.post(vm.config.API_ADMIN_STUDENTS_RESOURCE,vm.info).then(data => {
                    vm.config.notifySuccess()
                     setTimeout(function () {
