@@ -305,7 +305,7 @@
                         },
                         {
                             key:'enterpriseName',
-                            text: 'Tên thông tin việc'
+                            text: 'Tên doanh nghiệp'
                         },
                         {
                             key:'studentName',
