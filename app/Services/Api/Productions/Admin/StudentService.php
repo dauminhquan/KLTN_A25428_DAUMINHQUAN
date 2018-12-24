@@ -155,12 +155,8 @@ class StudentService extends BaseService implements ManageInterface
                         if(!is_numeric($item['province_id']))
                         {
                             $province = Province::where(DB::raw('LOWER(name)'),'like','%'.strtolower($item['province_id']).'%')->select('id')->first();
-                            if($province != null)
-                            {
+                            if($province != null) {
                                 $item['province_id'] = $province->id;
-                            }
-                            else{
-                                $item['province_id'] = null;
                             }
                         }
                     }
@@ -177,10 +173,6 @@ class StudentService extends BaseService implements ManageInterface
                         {
                             $item['sex'] = 0;
                         }
-                        else
-                        {
-                            $item['sex'] = 1;
-                        }
                     }
 
 
@@ -188,16 +180,13 @@ class StudentService extends BaseService implements ManageInterface
 
                     if(array_key_exists('rating_id',$item))
                     {
-                        if(!is_numeric($item['rating_id']))
+                        if($item['rating_id'] !== null && $item['rating_id'] !== '')
                         {
                             $rating = Rating::where(DB::raw('LOWER(name)'),'like','%'.strtolower($item['rating_id']).'%')->select('id')->first();
                             if($rating != null)
                             {
                                 $item['rating_id'] = $rating->id;
                                 $item['graduated']= 1;
-                            }
-                            else{
-                                $item['rating_id'] = null;
                             }
                         }
                     }
@@ -211,9 +200,6 @@ class StudentService extends BaseService implements ManageInterface
                             if($user != null)
                             {
                                 $item['user_id'] = $user->id;
-                            }
-                            else{
-                                $item['user_id'] = null;
                             }
                         }
                     }
@@ -229,12 +215,6 @@ class StudentService extends BaseService implements ManageInterface
                             {
                                 $item['course_code'] = $course->code;
                             }
-                            else{
-                                $item['course_code'] = null;
-                            }
-                        }
-                        else{
-                            $item['course_code'] = null;
                         }
                     }
 
@@ -249,24 +229,26 @@ class StudentService extends BaseService implements ManageInterface
                             {
                                 $item['branch_code'] = $branch->code;
                             }
-                            else{
-                                $item['branch_code'] = null;
-                            }
-                        }
-                        else{
-                            $item['branch_code'] = null;
                         }
                     }
 
                     if(array_key_exists('birth_day',$item))
                     {
-                        $item['birth_day'] = str_replace('/','-',$item['birth_day']);
-                        $item['birth_day'] = Carbon::parse($item['birth_day']);
+                        if($item['birth_day'] != null)
+                        {
+                            $item['birth_day'] = str_replace('/','-',$item['birth_day']);
+                            $item['birth_day'] = Carbon::parse($item['birth_day']);
+                        }
+
                     }
                     if(array_key_exists('date_graduated',$item))
                     {
-                        $item['date_graduated'] = str_replace('/','-',$item['date_graduated']);
-                        $item['date_graduated'] = Carbon::parse($item['date_graduated']);
+                        if($item['date_graduated'] != null)
+                        {
+                            $item['date_graduated'] = str_replace('/','-',$item['date_graduated']);
+                            $item['date_graduated'] = Carbon::parse($item['date_graduated']);
+                        }
+
                     }
 
                     Student::create($item);
