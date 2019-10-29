@@ -1,3 +1,6 @@
 {
-    "/assets/js/build/pages/admin/students/create.js": "/assets/js/build/pages/admin/students/create.js"
+    "/assets/js/common.js": "/assets/js/common.js",
+    "/assets/js/home/index.js": "/assets/js/home/index.js",
+    "/assets/js/charts/echarts/columns_waterfalls.js": "/assets/js/charts/echarts/columns_waterfalls.js",
+    "/assets/js/charts/echarts/timeline_option.js": "/assets/js/charts/echarts/timeline_option.js"
 }

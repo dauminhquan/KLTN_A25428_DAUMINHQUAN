@@ -17,8 +17,10 @@ use App\Services\Api\Productions\Admin\BaseService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
+use mysql_xdevapi\Exception;
 
 class AuthService extends BaseService /*implements ManageInterface*/
 {
@@ -32,11 +34,15 @@ class AuthService extends BaseService /*implements ManageInterface*/
                 $token->revoke();
             }
             $connect = Redis::connection();
-            $connect->publish('message',json_encode([
-                'login' => [
-                    'id' => $user->id
-                ]
-            ]));
+            try{
+                $connect->publish('message',json_encode([
+                    'login' => [
+                        'id' => $user->id
+                    ]
+                ]));
+            }catch (Exception $exception){
+                Log::error('Cannot connect to redis');
+            }
             session(['user'=>$user]);
 //            $user->notify(new NotifyEvent(['log' => true]));
             return response()->json([

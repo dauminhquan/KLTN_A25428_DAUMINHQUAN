@@ -61,9 +61,7 @@
                 <td class="text-center">
                     <ul class="icons-list">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-menu9"></i>
-                            </a>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"> Chọn 1 chức năng <span class="caret"></span></button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li  v-for="li in menu" :key="li.action" v-html="li.html" @click="action(item[primaryKey],li.action)"></li>
                             </ul>
@@ -191,7 +189,17 @@
                         $(this).attr('removed',1)
                     }
                 })
+                let buttonInit = document.createElement('button')
+                if(this.props.advancedSearch){
+                    buttonInit.className = 'dt-button btn bg-primary'
+                    buttonInit.type = 'button'
+                    buttonInit.innerHTML = '<span>tìm kiếm nâng cao</span> <i class="icon-search4"></i>'
+                    buttonInit.style.marginLeft = '5px'
+                    buttonInit.onclick = this.emit('advanced-search-action')
+                    // thực hiện tìm kiếm trong database
 
+                    $('#data-table_filter').append(buttonInit)
+                }
             },
             selectAll(){
                 this.doChecked()
