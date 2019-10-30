@@ -34,16 +34,16 @@ class AuthService extends BaseService /*implements ManageInterface*/
                 $token->revoke();
             }
 
-//            try{
-//                $connect = Redis::connection();
-//                $connect->publish('message',json_encode([
-//                    'login' => [
-//                        'id' => $user->id
-//                    ]
-//                ]));
-//            }catch (Exception $exception){
-//                Log::error('Cannot connect to redis');
-//            }
+            try{
+                $connect = Redis::connection();
+                $connect->publish('message',json_encode([
+                    'login' => [
+                        'id' => $user->id
+                    ]
+                ]));
+            }catch (Exception $exception){
+                Log::error('Cannot connect to redis');
+            }
             session(['user'=>$user]);
 //            $user->notify(new NotifyEvent(['log' => true]));
             return response()->json([
