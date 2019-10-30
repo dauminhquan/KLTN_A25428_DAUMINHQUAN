@@ -33,8 +33,9 @@ class AuthService extends BaseService /*implements ManageInterface*/
             foreach($tokens as $token) {
                 $token->revoke();
             }
-            $connect = Redis::connection();
+
             try{
+                $connect = Redis::connection();
                 $connect->publish('message',json_encode([
                     'login' => [
                         'id' => $user->id
