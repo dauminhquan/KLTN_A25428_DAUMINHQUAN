@@ -29,7 +29,7 @@
         "datatables.net-buttons": "^1.5.3",
         "install-peers": "^1.0.2",
         "laravel-echo": "^1.4.0",
-        "node-sass": "^4.13.0",
+        "node-sass": "^7.0.0",
         "pnotify": "^4.0.0-alpha.4",
         "pusher-js": "^4.2.2",
         "select2": "^4.0.6-rc.1",
